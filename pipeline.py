@@ -150,7 +150,8 @@ def start_of_proof(header: str,
     import_lines = [f"import {mod}" for mod in modules[:-1]]
 
     last_mod = modules[-1]
-    exclude = name.split(".", 1)[1] if "." in name else name
+    #exclude = name.split(".", 1)[1] if "." in name else name
+    exclude = name
 
     if last_mod.startswith("Mathlib."):
         # Include trimmed Mathlib module snippet
@@ -185,41 +186,36 @@ def replace_proofs_with_sorry_in_text(text: str) -> str:
 			new_lines.append(line)
 	return "".join(new_lines)
 
-def prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, header, start):
+def prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, start, header):
 	# Step 1: extract all import modules from the header
 	modules = extract_import_modules(header)
 	# Step 2: read the contents of these modules
 	lemma_code = "\n".join([read_lean_module_code(m) for m in modules[:-1]])
 
 	# Step 3: build the prompt string
-	return f"""Formalize the provided proof of the following theorem in Lean 4. 
-Write only Lean 4 code, and do not include explanations, comments, code tags, or other artefacts. 
-Do not use Lean 3 syntax. 
-DO NOT write down proofs of any other theorems. 
-Use ONLY definitions and lemmas from the allowed imports.
-DO NOT write anything else before or after the proof. 
+	return f"""
+1. **Informal Theorem**  
+{informal_theorem}
 
-<informal_statement> {informal_theorem} </informal_statement>
-<informal_proof> {informal_proof} </informal_proof>
+2. **Informal Proof**  
+{informal_proof}
 
-The following are contents of definitions and lemmas from the imports in the header. You may find them useful:
-<provided_lemmas>
-{lemma_code}
-</provided_lemmas>
+3. **Formal Theorem**  
+{formal_theorem}
 
-I’ve provided the formalization’s opening for you. Please continue from there to complete the proof.
-<starting_code>
+4. **Prefix**
 {start}
-</starting_code>
+
+5. **Header Information**  
+{lemma_code}
 """
 
-def prompt_with_error(informal_theorem, formal_theorem, informal_proof, previous_proof, error_message, header):
-	return f"""The previous Lean 4 proof attempt contains errors. Please revise it by referring closely to the original informal proof and using the following Lean feedback for corrections.
-
-<error_message> {error_message} </error_message>
-
-You must refer to the original informal proof above along with the Lean error message to revise the proof. 
-Return only corrected Lean 4 code, and do not include explanations."""
+def prompt_with_error(error_message):
+	return f"""The previous lean 4 proof has the following errors. 
+6. **Error Message**
+{error_message}
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+"""
 
 # Save proof to temporary file
 def save_tmp_file(code, path=TMP_FILE):
@@ -291,6 +287,11 @@ def main():
 
 	iterator = tqdm(data_rows, desc="🔄 Processing", ncols=100) if not single_mode else data_rows
 
+	# read system prompt from system.md in the same directory
+	script_dir = os.path.dirname(__file__)
+	with open(os.path.join(script_dir, "system.md"), "r", encoding="utf-8") as _f:
+	    system_prompt = _f.read()
+
 	for row in iterator:
 		id = row[0]
 		if only_id and id != only_id:
@@ -314,15 +315,20 @@ def main():
 		error_message = None
 		success = False
 
-		start = start_of_proof(header, name, formal_theorem)
+		thm_name = name
 		#thm_name = name.split(".")[-1]
-		thm_name = name.split(".", 1)[1] if "." in name else name
+		#thm_name = name.split(".", 1)[1] if "." in name else name
 
-		prompt = prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, header, start)
+		start = start_of_proof(header, name, formal_theorem)
+		prompt = prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, start, header)
 	
-		print(prompt)
+		# print(prompt)
 		# print(start)
-		convo = [{"role": "user", "content": prompt}, {"role": "assistant","content":start,"prefix": True}]
+		convo = [
+			{"role": "system", "content": system_prompt},
+			{"role": "user", "content": prompt},
+			{"role": "assistant","content":start,"prefix": True}
+		]
 
 		for attempt_num in range(1, MAX_TRIES + 1):
 			soft_clear()
@@ -337,17 +343,14 @@ def main():
 				)
 				raw = response.choices[0].message.content
 
-				proof = clean_mistral_code(raw, thm_name)
-				#proof = replace_theorem_with_example(proof)
+				proof = raw
+				#proof = clean_mistral_code(raw, thm_name)
+				proof = replace_theorem_with_example(proof)
 
 				attempts.append(proof)
 			except Exception as e:
 				print("❌ API ERROR:", e)
 				attempts.append(f"API ERROR: {e}")
-				convo.pop()
-				convo.append({"role": "assistant", "content": raw})
-				convo.append({"role": "user", "content": prompt_with_error(informal_theorem, formal_theorem, informal_proof, attempts[-1], error_message, header)})
-				convo.append({"role": "assistant", "content": start, "prefix": True})
 				break
 
 			print("\n📜 Generated Lean 4 proof:")
@@ -370,8 +373,8 @@ def main():
 				error_message = message
 				save_tmp_file(attempts[-1] + f"\n\n/- ACTUAL PROOF OF {name} -/\n\n" + replace_theorem_with_example(formal_proof), os.path.join(PIPELINE_SAVE_DIR, f"{id}-{attempt_num}.lean"))
 				convo.pop()
-				convo.append({"role": "assistant", "content": raw})
-				convo.append({"role": "user", "content": prompt_with_error(informal_theorem, formal_theorem, informal_proof, attempts[-1], error_message, header)})
+				convo.append({"role": "assistant", "content": proof})
+				convo.append({"role": "user", "content": prompt_with_error(error_message)})
 				convo.append({"role": "assistant", "content": start, "prefix": True})
 
 		if not single_mode:

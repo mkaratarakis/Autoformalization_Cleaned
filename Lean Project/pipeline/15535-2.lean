@@ -1,0 +1,25 @@
+import Init.Omega
+example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
+  induction a using Nat.recOn
+  case zero =>
+    simp
+  case succ a ih =>
+    simp [Nat.succ_mul]
+    constructor
+    · intro h
+      apply ih
+      linarith [Nat.lt_succ_of_le (le_add_left _ _)]
+    · intro h
+      apply ih
+      linarith [Nat.lt_succ_of_le (le_add_left _ _)]
+
+/- ACTUAL PROOF OF Nat.mul_lt_mul_left -/
+
+example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
+  induction a with
+  | zero => simp_all
+  | succ a ih =>
+    cases a
+    · simp
+    · simp_all [succ_eq_add_one, Nat.right_distrib]
+      omega
