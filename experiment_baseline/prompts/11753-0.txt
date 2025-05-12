@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Epsilon NFA Evaluation from Empty Set Results in Empty Set : For any epsilon Nondeterministic Finite Automaton \( M \) with alphabet \( \alpha \) and state type \( \sigma \), and for any list of characters \( x \) in \( \alpha \), the set of states that can be reached from the empty set of states by evaluating the string \( x \) is the empty set, i.e., \( M.\text{evalFrom}(\emptyset, x) = \emptyset \).
+
+2. **Informal Proof**  
+We prove the statement by induction on the list \( x \).
+
+1. **Base Case:**
+- We need to show that \( M.\text{evalFrom}(\emptyset, []) = \emptyset \).
+- By the property that the evaluation of \( M \) from any set of states \( S \) with an empty input list is the ε-closure of \( S \), we have:
+\[
+M.\text{evalFrom}(\emptyset, []) = M.\text{εClosure}(\emptyset)
+\]
+- Since the ε-closure of the empty set of states is the empty set, we get:
+\[
+M.\text{εClosure}(\emptyset) = \emptyset
+\]
+- Therefore, \( M.\text{evalFrom}(\emptyset, []) = \emptyset \).
+
+2. **Inductive Step:**
+- Assume that \( M.\text{evalFrom}(\emptyset, x) = \emptyset \) for some list \( x \).
+- We need to show that \( M.\text{evalFrom}(\emptyset, x ++ [a]) = \emptyset \) for any character \( a \) in the alphabet \( \alpha \).
+- By the property that the evaluation of \( M \) from a set of states \( S \) with a list \( x \) followed by a singleton list containing \( a \) is equal to the step set of the evaluation of \( M \) from \( S \) with \( x \) and the input symbol \( a \), we have:
+\[
+M.\text{evalFrom}(\emptyset, x ++ [a]) = M.\text{stepSet}(M.\text{evalFrom}(\emptyset, x), a)
+\]
+- Using the inductive hypothesis \( M.\text{evalFrom}(\emptyset, x) = \emptyset \), we get:
+\[
+M.\text{stepSet}(\emptyset, a) = \emptyset
+\]
+- Since the step set of the empty set of states is the empty set, we conclude that:
+\[
+M.\text{evalFrom}(\emptyset, x ++ [a]) = \emptyset
+\]
+
+By induction, we have shown that for any list \( x \) of characters in \( \alpha \), \( M.\text{evalFrom}(\emptyset, x) = \emptyset \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x : List α) : M.evalFrom ∅ x = ∅ := by sorry
+
+4. **Prefix**
+import Mathlib.Computability.NFA
+import Mathlib.Computability.EpsilonNFA
+
+open εNFA
+open Set
+open Computability
+variable {α : Type u} {σ σ' : Type v} (M : εNFA α σ) {S : Set σ} {x : List α} {s : σ} {a : α}
+variable {M}
+variable (M)
+
+example (x : List α) : M.evalFrom ∅ x = ∅ := by

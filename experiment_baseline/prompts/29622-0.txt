@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Quadratic Residue of \(-2\) Modulo Prime: \(-2\) is a Square Modulo \( p \) if and only if \( p \equiv 1 \pmod{8} \) or \( p \equiv 3 \pmod{8} \) : For any prime number \( p \) such that \( p \neq 2 \), the number \(-2\) is a square modulo \( p \) if and only if \( p \) is congruent to 1 or 3 modulo 8. In other words, \(-2\) is a quadratic residue modulo \( p \) if and only if \( p \equiv 1 \pmod{8} \) or \( p \equiv 3 \pmod{8} \).
+
+2. **Informal Proof**  
+We start by using the equivalence that \(-2\) is a square in a finite field \( F \) if and only if the cardinality of \( F \) is not congruent to 5 or 7 modulo 8. Since the cardinality of \( \mathbb{Z}/p\mathbb{Z} \) is \( p \), the goal is to show that \( p \mod 8 \neq 5 \) and \( p \mod 8 \neq 7 \) if and only if \( p \mod 8 = 1 \) or \( p \mod 8 = 3 \).
+
+Given that \( p \neq 2 \), we know that \( p \mod 2 = 1 \). This is because a prime number \( p \) is congruent to 1 modulo 2 if and only if \( p \neq 2 \).
+
+Next, we use the property that \( p \mod 8 \mod 2 = p \mod 2 \) because 2 divides 8. Since \( p \mod 2 = 1 \), it follows that \( p \mod 8 \mod 2 = 1 \).
+
+We also know that \( p \mod 8 < 8 \) because the remainder of any number when divided by 8 is always less than 8.
+
+We strengthen the proposition we are proving. We show that for every \( m \) such that \( m \mod 2 = 1 \) and \( m < 8 \), the statement \( m \neq 5 \) and \( m \neq 7 \) is equivalent to \( m = 1 \) or \( m = 3 \).
+
+We replace \( p \mod 8 \) with a new variable \( m \) and clear the variable \( p \) from the context. Now, we need to show that \( m \mod 2 = 1 \) and \( m < 8 \) implies \( m \neq 5 \) and \( m \neq 7 \) if and only if \( m = 1 \) or \( m = 3 \).
+
+We introduce the hypotheses \( m \mod 2 = 1 \) and \( m < 8 \). We then consider all possible values of \( m \) in the interval from 0 to 7. By simplifying, we find that the only values of \( m \) that satisfy \( m \mod 2 = 1 \) and \( m < 8 \) are 1, 3, 5, and 7. Since \( m \neq 5 \) and \( m \neq 7 \), the only remaining values are 1 and 3. Therefore, \( m = 1 \) or \( m = 3 \).
+
+Thus, we have shown that \(-2\) is a square modulo \( p \) if and only if \( p \equiv 1 \pmod{8} \) or \( p \equiv 3 \pmod{8} \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hp : p ≠ 2) : IsSquare (-2 : ZMod p) ↔ p % 8 = 1 ∨ p % 8 = 3 := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.Basic
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.GaussSum
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+
+open ZMod
+open Nat
+variable {p : ℕ} [Fact p.Prime]
+open ZMod
+
+example (hp : p ≠ 2) : IsSquare (-2 : ZMod p) ↔ p % 8 = 1 ∨ p % 8 = 3 := by

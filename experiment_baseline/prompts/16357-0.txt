@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Multiplication and Counit Compatibility in Bimonoids: \( M.\text{mul} \circ (M.\text{counit} \otimes M.\text{counit}) = \lambda_I \) : For any bimonoid \( M \) in a braided monoidal category \( C \), the following diagram commutes:
+\[
+\begin{tikzcd}
+M.X \otimes M.X \arrow[r, "M.\text{mul}"] \arrow[d, "M.\text{counit} \otimes M.\text{counit}"'] & M.X \arrow[d, "M.\text{counit}"] \\
+I \otimes I \arrow[r, "\lambda_I"'] & I
+\end{tikzcd}
+\]
+where:
+- \( M.\text{mul} \) is the multiplication morphism of the monoid \( M \).
+- \( M.\text{counit} \) is the counit morphism of the comonoid \( M \).
+- \( I \) is the tensor unit object in the monoidal category \( C \).
+- \( \lambda_I \) is the left unitor isomorphism in \( C \).
+
+2. **Informal Proof**  
+To prove that the given diagram commutes, we need to show that:
+\[
+M.\text{mul} \circ (M.\text{counit} \otimes M.\text{counit}) = \lambda_I
+\]
+
+We start by using the properties of the monoidal category and the definitions of the morphisms involved. Specifically, we use the following properties and definitions:
+1. The left unitor \( \lambda_X : I \otimes X \cong X \) for any object \( X \) in \( C \).
+2. The multiplication morphism \( M.\text{mul} : M.X \otimes M.X \to M.X \).
+3. The counit morphism \( M.\text{counit} : M.X \to I \).
+
+By simplifying the left-hand side of the equation using these properties, we get:
+\[
+M.\text{mul} \circ (M.\text{counit} \otimes M.\text{counit}) : M.X \otimes M.X \to I
+\]
+
+Since \( M.\text{counit} \) maps \( M.X \) to the tensor unit \( I \), the tensor product \( M.\text{counit} \otimes M.\text{counit} \) maps \( M.X \otimes M.X \) to \( I \otimes I \). The left unitor \( \lambda_I \) then maps \( I \otimes I \) to \( I \). Therefore, we have:
+\[
+M.\text{mul} \circ (M.\text{counit} \otimes M.\text{counit}) = \lambda_I
+\]
+
+This shows that the given diagram commutes, completing the proof.
+
+3. **Formal Theorem**  
+example (M : Bimon_ C) :
+    M.X.mul ≫ M.counit.hom = (M.counit.hom ⊗ M.counit.hom) ≫ (λ_ _).hom := by sorry
+
+4. **Prefix**
+import Mathlib.CategoryTheory.Monoidal.Comon_
+import Mathlib.CategoryTheory.Monoidal.Bimon_
+
+open Bimon_
+open CategoryTheory MonoidalCategory
+variable (C : Type u₁) [Category.{v₁} C] [MonoidalCategory.{v₁} C] [BraidedCategory C]
+variable {C}
+
+example (M : Bimon_ C) :
+    M.X.mul ≫ M.counit.hom = (M.counit.hom ⊗ M.counit.hom) ≫ (λ_ _).hom := by

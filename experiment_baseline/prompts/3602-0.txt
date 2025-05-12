@@ -1,0 +1,19 @@
+
+1. **Informal Theorem**  
+Continuum is Strictly Less Than Lifted Cardinal if and Only if Continuum is Strictly Less Than Original Cardinal: \( \mathfrak{c} < \text{Cardinal.lift} \, c \leftrightarrow \mathfrak{c} < c \) : For any cardinal number \( c \) in a universe \( u \), the cardinality of the continuum \( \mathfrak{c} \) is strictly less than the lifted cardinal number \( \text{Cardinal.lift} \, c \) in the universe \( \max(v, u) \) if and only if \( \mathfrak{c} \) is strictly less than \( c \). Formally, this is expressed as:
+\[ \mathfrak{c} < \text{Cardinal.lift} \, c \leftrightarrow \mathfrak{c} < c \]
+
+2. **Informal Proof**  
+We start by using the property that the lift of the continuum cardinality is equal to the continuum itself, i.e., \( \mathfrak{c}^{\max(v, u)} = \mathfrak{c} \). This allows us to rewrite the left-hand side of the goal as \( \mathfrak{c} < \text{Cardinal.lift} \, c \). Next, we apply the theorem that lifting preserves strict inequality of cardinal numbers, i.e., \( \text{Cardinal.lift} \, a < \text{Cardinal.lift} \, b \leftrightarrow a < b \). By applying this theorem, we transform the goal into \( \mathfrak{c} < c \leftrightarrow \mathfrak{c} < c \), which is trivially true. Therefore, the original statement holds.
+
+3. **Formal Theorem**  
+example {c : Cardinal.{u}} : 𝔠 < lift.{v} c ↔ 𝔠 < c := by sorry
+
+4. **Prefix**
+import Mathlib.SetTheory.Cardinal.Ordinal
+import Mathlib.SetTheory.Cardinal.Continuum
+
+open Cardinal
+open Cardinal
+
+example {c : Cardinal.{u}} : 𝔠 < lift.{v} c ↔ 𝔠 < c := by

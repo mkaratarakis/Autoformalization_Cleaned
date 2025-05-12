@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Multiplicativity of Legendre Symbol: \(\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)\) : For any prime number \( p \) and integers \( a \) and \( b \), the Legendre symbol of the product \( a \cdot b \) modulo \( p \) is equal to the product of the Legendre symbols of \( a \) and \( b \) modulo \( p \). In other words, \(\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)\).
+
+2. **Informal Proof**  
+To prove the multiplicativity of the Legendre symbol, we start with the goal:
+\[
+\left(\frac{a \cdot b}{p}\right) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right)
+\]
+
+We use the following definitions and properties:
+1. The Legendre symbol \(\left(\frac{a}{p}\right)\) is defined as the quadratic character of \(a\) modulo \(p\). Specifically:
+- \(\left(\frac{a}{p}\right) = 0\) if \(a \equiv 0 \pmod{p}\),
+- \(\left(\frac{a}{p}\right) = 1\) if \(a\) is a nonzero square modulo \(p\),
+- \(\left(\frac{a}{p}\right) = -1\) otherwise.
+2. The canonical homomorphism from the integers to the field \(\mathbb{Z}/p\mathbb{Z}\) preserves multiplication, i.e., for any integers \(m\) and \(n\),
+\[
+\text{Int.cast}(m \cdot n) = (\text{Int.cast}(m)) \cdot (\text{Int.cast}(n)).
+\]
+3. The quadratic character function \(\chi\) in a finite field \(\mathbb{Z}/p\mathbb{Z}\) is multiplicative, i.e., for any elements \(a, b \in \mathbb{Z}/p\mathbb{Z}\),
+\[
+\chi(a \cdot b) = \chi(a) \cdot \chi(b).
+\]
+
+Using these properties, we can simplify the goal:
+\[
+\left(\frac{a \cdot b}{p}\right) = \chi(a \cdot b) = \chi(a) \cdot \chi(b) = \left(\frac{a}{p}\right) \cdot \left(\frac{b}{p}\right).
+\]
+
+Thus, the multiplicativity of the Legendre symbol is established. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : ℤ) : legendreSym p (a * b) = legendreSym p a * legendreSym p b := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.NumberTheory.LegendreSymbol.Basic
+
+open legendreSym
+open Nat
+variable (p : ℕ) [Fact p.Prime]
+open ZMod
+variable (p : ℕ) [Fact p.Prime]
+
+example (a b : ℤ) : legendreSym p (a * b) = legendreSym p a * legendreSym p b := by

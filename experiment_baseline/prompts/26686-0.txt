@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Jacobi Symbol of Any Integer with Zero is One: \( J(a \mid 0) = 1 \) : For any integer \( a \), the Jacobi symbol \( J(a \mid 0) \) is equal to 1, i.e., \( J(a \mid 0) = 1 \).
+
+2. **Informal Proof**  
+To prove that \( J(a \mid 0) = 1 \), we start by recalling the definition of the Jacobi symbol \( J(a \mid b) \). The Jacobi symbol is defined as the product of the Legendre symbols over the prime factors of \( b \). Specifically, for a natural number \( b \), the Jacobi symbol \( J(a \mid b) \) is given by:
+\[
+J(a \mid b) = \prod_{p \in \text{prime factors of } b} \left( \frac{a}{p} \right)
+\]
+where \(\left( \frac{a}{p} \right)\) is the Legendre symbol.
+
+When \( b = 0 \), the prime factorization of \( 0 \) is the empty list. Therefore, the product of the Legendre symbols over the prime factors of \( 0 \) is the product of an empty list. By the definition of the product of an empty list, this product is \( 1 \). Hence, we have:
+\[
+J(a \mid 0) = \prod_{p \in \text{prime factors of } 0} \left( \frac{a}{p} \right) = 1
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a : ℤ) : J(a | 0) = 1 := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+
+open jacobiSym
+open Nat ZMod
+open NumberTheorySymbols
+
+example (a : ℤ) : J(a | 0) = 1 := by

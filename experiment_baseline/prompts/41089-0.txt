@@ -1,0 +1,87 @@
+
+1. **Informal Theorem**  
+Strict Product Rule for Derivatives : For a nontrivially normed field \( \mathbb{K} \), let \( x \) be an element of \( \mathbb{K} \), and let \( \mathbb{A} \) be a normed ring that is also a normed algebra over \( \mathbb{K} \). Suppose \( c \) and \( d \) are functions from \( \mathbb{K} \) to \( \mathbb{A} \) with strict derivatives \( c' \) and \( d' \) at \( x \), respectively. Then, the function \( f(y) = c(y) \cdot d(y) \) has the strict derivative \( f'(x) = c'(x) \cdot d(x) + c(x) \cdot d'(x) \) at \( x \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the fact that if \( c \) has a strict derivative \( c' \) at \( x \) and \( d \) has a strict derivative \( d' \) at \( x \), then the function \( y \mapsto c(y) \cdot d(y) \) has a strict derivative at \( x \) given by \( c(x) \cdot d' + c'(x) \cdot d(x) \). This gives us a new hypothesis that \( y \mapsto c(y) \cdot d(y) \) has a strict derivative at \( x \) given by \( c(x) \cdot d' + c'(x) \cdot d(x) \).
+
+Next, we simplify the expression for the strict derivative of \( y \mapsto c(y) \cdot d(y) \) at \( x \) using the properties of continuous linear maps and scalar multiplication:
+1. The addition of continuous linear maps applied to an element: \((f + g)(x) = f(x) + g(x)\).
+2. Scalar multiplication on continuous linear maps: \((c \cdot f)(x) = c \cdot f(x)\).
+3. Application of continuous scalar multiplication on the right: \((c \cdot f)(x) = c(x) \cdot f\).
+4. The identity map in continuous linear maps: \(\text{id}(x) = x\).
+5. The multiplicative identity action: \(1 \cdot b = b\).
+6. The commutativity of addition: \(a + b = b + a\).
+
+After applying these properties, we find that the strict derivative of \( y \mapsto c(y) \cdot d(y) \) at \( x \) is \( c'(x) \cdot d(x) + c(x) \cdot d'(x) \).
+
+Thus, the function \( f(y) = c(y) \cdot d(y) \) has the strict derivative \( f'(x) = c'(x) \cdot d(x) + c(x) \cdot d'(x) \) at \( x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hc : HasStrictDerivAt c c' x) (hd : HasStrictDerivAt d d' x) :
+    HasStrictDerivAt (fun y => c y * d y) (c' * d x + c x * d') x := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Analysis.Calculus.FDeriv.Mul
+import Mathlib.Analysis.Calculus.FDeriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Mul
+
+open HasStrictDerivAt
+open scoped Topology Filter ENNReal
+open Filter Asymptotics Set
+open ContinuousLinearMap (smulRight smulRight_one_eq_iff)
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {G : Type*} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {G : Type*} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {G : Type*} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {G : Type*} [NormedAddCommGroup G] [NormedSpace 𝕜 G]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {B : E →L[𝕜] F →L[𝕜] G} {u : 𝕜 → E} {v : 𝕜 → F} {u' : E} {v' : F}
+variable {𝕜' : Type*} [NontriviallyNormedField 𝕜'] [NormedAlgebra 𝕜 𝕜'] [NormedSpace 𝕜' F]
+  [IsScalarTower 𝕜 𝕜' F] {c : 𝕜 → 𝕜'} {c' : 𝕜'}
+variable {R : Type*} [Semiring R] [Module R F] [SMulCommClass 𝕜 R F] [ContinuousConstSMul R F]
+variable {𝕜' 𝔸 : Type*} [NormedField 𝕜'] [NormedRing 𝔸] [NormedAlgebra 𝕜 𝕜'] [NormedAlgebra 𝕜 𝔸]
+  {c d : 𝕜 → 𝔸} {c' d' : 𝔸} {u v : 𝕜 → 𝕜'}
+
+example (hc : HasStrictDerivAt c c' x) (hd : HasStrictDerivAt d d' x) :
+    HasStrictDerivAt (fun y => c y * d y) (c' * d x + c x * d') x := by

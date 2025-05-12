@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Integral Element Under Algebra Homomorphism: \( \text{IsIntegral}(R, b) \to \text{IsIntegral}(R, f(b)) \) : For any commutative rings \( R \) and \( A \), and any rings \( B \) and \( C \) with algebra structures over \( R \) and \( A \), if \( b \) is an integral element in \( B \) over \( R \) and \( f : A \to B \to C \) is an algebra homomorphism, then \( f(b) \) is also an integral element in \( C \) over \( R \).
+
+2. **Informal Proof**  
+Let \( b \) be an integral element in \( B \) over \( R \). By definition, there exists a monic polynomial \( P \) in \( R[X] \) such that \( P(b) = 0 \).
+
+To show that \( f(b) \) is integral over \( R \), we need to find a monic polynomial \( P \) in \( R[X] \) such that \( P(f(b)) = 0 \). We already have \( P \) as a monic polynomial from the assumption.
+
+We start by rewriting the goal using the definition of the algebra evaluation map \( \text{aeval} \). Then, we use the fact that the polynomial \( P \) can be mapped through the algebra map from \( R \) to \( A \) without changing its evaluation. Next, we apply the property of the algebra homomorphism \( f \) that \( \text{aeval}(f(b), P) = f(\text{aeval}(b, P)) \). Since \( P(b) = 0 \) by the assumption, we have \( \text{aeval}(b, P) = 0 \). Finally, since \( f \) is a homomorphism, \( f(0) = 0 \), thus completing the proof.
+
+Therefore, \( f(b) \) is integral over \( R \).
+
+3. **Formal Theorem**  
+example {B C F : Type*} [Ring B] [Ring C] [Algebra R B] [Algebra A B] [Algebra R C]
+    [IsScalarTower R A B] [Algebra A C] [IsScalarTower R A C] {b : B}
+    [FunLike F B C] [AlgHomClass F A B C] (f : F)
+    (hb : IsIntegral R b) : IsIntegral R (f b) := by sorry
+
+4. **Prefix**
+import Mathlib.RingTheory.IntegralClosure.IsIntegral.Defs
+import Mathlib.Algebra.Polynomial.Expand
+import Mathlib.RingTheory.Polynomial.Tower
+import Mathlib.RingTheory.IntegralClosure.IsIntegral.Basic
+
+open IsIntegral
+open Polynomial Submodule
+variable {R S A : Type*}
+variable [CommRing R] [Ring A] [Ring S] (f : R →+* S)
+variable [Algebra R A]
+variable [CommRing R] [Ring A] [Ring S] (f : R →+* S)
+variable [Algebra R A]
+variable [Algebra R A]
+variable {R A B S : Type*}
+variable [CommRing R] [CommRing A] [Ring B] [CommRing S]
+variable [Algebra R A] (f : R →+* S)
+variable [CommRing R] [CommRing A] [Ring B] [CommRing S]
+variable [Algebra R A] (f : R →+* S)
+variable [Algebra R A] (f : R →+* S)
+
+example {B C F : Type*} [Ring B] [Ring C] [Algebra R B] [Algebra A B] [Algebra R C]
+    [IsScalarTower R A B] [Algebra A C] [IsScalarTower R A C] {b : B}
+    [FunLike F B C] [AlgHomClass F A B C] (f : F)
+    (hb : IsIntegral R b) : IsIntegral R (f b) := by

@@ -1,0 +1,69 @@
+
+1. **Informal Theorem**  
+Chain Rule for Derivatives within a Subset: \( (h_2 \circ h)'(x) = h_2'(h(x)) \cdot h'(x) \) : For any normed field \(\mathbb{K}\) and any normed algebra \(\mathbb{K}'\) over \(\mathbb{K}\), if \( h : \mathbb{K} \to \mathbb{K}' \) and \( h_2 : \mathbb{K}' \to \mathbb{K}' \) are functions, and \( h \) has a derivative \( h' \) at \( x \) within a subset \( s \) of \(\mathbb{K}\), and \( h_2 \) has a derivative \( h_2' \) at \( h(x) \) within a subset \( s' \) of \(\mathbb{K}'\), and \( h \) maps \( s \) to \( s' \), then the composition \( h_2 \circ h \) has a derivative \( h_2' \cdot h' \) at \( x \) within \( s \).
+
+2. **Informal Proof**  
+We start by noting that the multiplication in a commutative magma is commutative, so we can rewrite the goal from \( h_2' \cdot h' \) to \( h' \cdot h_2' \).
+
+Next, we apply the chain rule for the composition of functions with derivatives within a subset. Specifically, since \( h_2 \) has a derivative \( h_2' \) at \( h(x) \) within \( s' \), and \( h \) has a derivative \( h' \) at \( x \) within \( s \), and \( h \) maps \( s \) to \( s' \), the composition \( h_2 \circ h \) has a derivative \( h' \cdot h_2' \) at \( x \) within \( s \).
+
+Thus, the composition \( h_2 \circ h \) has a derivative \( h_2' \cdot h' \) at \( x \) within \( s \), which completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hh₂ : HasDerivWithinAt h₂ h₂' s' (h x))
+    (hh : HasDerivWithinAt h h' s x) (hst : MapsTo h s s') :
+    HasDerivWithinAt (h₂ ∘ h) (h₂' * h') s x := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Analysis.Calculus.FDeriv.Comp
+import Mathlib.Analysis.Calculus.FDeriv.RestrictScalars
+import Mathlib.Analysis.Calculus.Deriv.Comp
+
+open HasDerivWithinAt
+open scoped Classical Topology Filter ENNReal
+open Filter Asymptotics Set
+open ContinuousLinearMap (smulRight smulRight_one_eq_iff)
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {𝕜' : Type*} [NontriviallyNormedField 𝕜'] [NormedAlgebra 𝕜 𝕜'] [NormedSpace 𝕜' F]
+  [IsScalarTower 𝕜 𝕜' F] {s' t' : Set 𝕜'} {h : 𝕜 → 𝕜'} {h₁ : 𝕜 → 𝕜} {h₂ : 𝕜' → 𝕜'} {h' h₂' : 𝕜'}
+  {h₁' : 𝕜} {g₁ : 𝕜' → F} {g₁' : F} {L' : Filter 𝕜'} {y : 𝕜'} (x)
+
+example (hh₂ : HasDerivWithinAt h₂ h₂' s' (h x))
+    (hh : HasDerivWithinAt h h' s x) (hst : MapsTo h s s') :
+    HasDerivWithinAt (h₂ ∘ h) (h₂' * h') s x := by

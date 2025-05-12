@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Uniform Concavity of Difference of Uniformly Concave and Uniformly Convex Functions: \( \text{UniformConcaveOn.sub} \) : For a real normed space \( E \), if \( f : E \to \mathbb{R} \) is uniformly concave on a set \( S \subseteq E \) with modulus \( \varphi : \mathbb{R} \to \mathbb{R} \) and \( g : E \to \mathbb{R} \) is uniformly convex on \( S \) with modulus \( \psi : \mathbb{R} \to \mathbb{R} \), then the function \( f - g \) is uniformly concave on \( S \) with modulus \( \varphi + \psi \).
+
+2. **Informal Proof**  
+We need to show that \( f - g \) is uniformly concave on \( S \) with modulus \( \varphi + \psi \).
+
+1. **Step 1:**
+- We know that \( f \) is uniformly concave on \( S \) with modulus \( \varphi \).
+- We also know that \( g \) is uniformly convex on \( S \) with modulus \( \psi \).
+- By the property of uniformly convex functions, the negation of a uniformly convex function is uniformly concave with the same modulus. Therefore, \( -g \) is uniformly concave on \( S \) with modulus \( \psi \).
+
+2. **Step 2:**
+- Using the property that the sum of uniformly concave functions is uniformly concave with the sum of their moduli, we conclude that \( f + (-g) = f - g \) is uniformly concave on \( S \) with modulus \( \varphi + \psi \).
+
+Thus, the function \( f - g \) is uniformly concave on \( S \) with modulus \( \varphi + \psi \). This completes the proof.
+
+3. **Formal Theorem**  
+example (hf : UniformConcaveOn s φ f) (hg : UniformConvexOn s ψ g) :
+    UniformConcaveOn s (φ + ψ) (f - g) := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Analysis.Convex.Strong
+
+open UniformConcaveOn
+open Real
+variable {E : Type*} [NormedAddCommGroup E]
+variable [NormedSpace ℝ E] {φ ψ : ℝ → ℝ} {s : Set E} {a b m : ℝ} {x y : E} {f g : E → ℝ}
+
+example (hf : UniformConcaveOn s φ f) (hg : UniformConvexOn s ψ g) :
+    UniformConcaveOn s (φ + ψ) (f - g) := by

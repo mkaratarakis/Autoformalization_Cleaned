@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Intrinsic Closure of a Closed Set in Affine Span Equals the Set Itself : For any set \( s \subseteq P \) in a normed additive torsor, if the preimage of \( s \) under the canonical map from the affine span of \( s \) to \( P \) is closed, then the intrinsic closure of \( s \) is equal to \( s \) itself, i.e., \(\text{intrinsicClosure}(\mathbb{K}, s) = s\).
+
+2. **Informal Proof**  
+We start by using the definition of the intrinsic closure. The intrinsic closure of a set \( s \) is the image of the closure of \( s \) in its affine span under the canonical map. Given that the preimage of \( s \) under the canonical map is closed, the closure of this preimage is equal to the preimage itself. Therefore, the intrinsic closure of \( s \) is the image of the preimage of \( s \) under the canonical map.
+
+Next, we use the property of the image of the preimage. If \( s \) is a subset of the range of the canonical map, then the image of the preimage of \( s \) is equal to \( s \). To show that \( s \) is a subset of the range of the canonical map, we note that \( s \) is contained in its affine span. The range of the canonical map from the subtype to the set \( s \) is exactly \( s \). By transitivity of the subset relation, if \( s \) is a subset of its affine span and the range of the canonical map is \( s \), then \( s \) is a subset of the range of the canonical map.
+
+Thus, the intrinsic closure of \( s \) is equal to \( s \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hs : IsClosed ((↑) ⁻¹' s : Set <| affineSpan 𝕜 s)) :
+    intrinsicClosure 𝕜 s = s := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+import Mathlib.Analysis.Convex.Intrinsic
+
+open IsClosed
+open AffineSubspace Set
+open scoped Pointwise
+variable {𝕜 V W Q P : Type*}
+variable (𝕜) [Ring 𝕜] [AddCommGroup V] [Module 𝕜 V] [TopologicalSpace P] [AddTorsor V P]
+  {s t : Set P} {x : P}
+variable {𝕜}
+
+example (hs : IsClosed ((↑) ⁻¹' s : Set <| affineSpan 𝕜 s)) :
+    intrinsicClosure 𝕜 s = s := by

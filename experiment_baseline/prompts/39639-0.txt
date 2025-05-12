@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Path in Set Implies Both Endpoints are in the Set : For any topological space \( X \) and any subset \( F \subseteq X \), if there is a path \( \gamma \) joining points \( x \) and \( y \) such that the image of \( \gamma \) is contained in \( F \), then both \( x \) and \( y \) are elements of \( F \).
+
+2. **Informal Proof**  
+Given a topological space \( X \) and a subset \( F \subseteq X \), suppose there is a path \( \gamma \) joining points \( x \) and \( y \) such that the image of \( \gamma \) is contained in \( F \). This means there exists a continuous function \( \gamma : [0, 1] \to X \) such that \( \gamma(0) = x \), \( \gamma(1) = y \), and \( \gamma(t) \in F \) for all \( t \in [0, 1] \).
+
+To prove that \( x \in F \) and \( y \in F \), we note that since \( \gamma(t) \in F \) for all \( t \in [0, 1] \), it follows that \( \gamma(0) \in F \) and \( \gamma(1) \in F \). By the definition of the path \( \gamma \), we have \( \gamma(0) = x \) and \( \gamma(1) = y \). Therefore, \( x \in F \) and \( y \in F \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (h : JoinedIn F x y) : x ∈ F ∧ y ∈ F := by sorry
+
+4. **Prefix**
+import Mathlib.Topology.Order.ProjIcc
+import Mathlib.Topology.CompactOpen
+import Mathlib.Topology.UnitInterval
+import Mathlib.Topology.Connected.PathConnected
+
+open JoinedIn
+open Topology Filter unitInterval Set Function
+variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {x y z : X} {ι : Type*}
+variable (γ : Path x y)
+open ContinuousMap
+variable {a₁ a₂ a₃ : X} {b₁ b₂ b₃ : Y}
+variable {χ : ι → Type*} [∀ i, TopologicalSpace (χ i)] {as bs cs : ∀ i, χ i}
+variable (X)
+variable {X}
+variable {F : Set X}
+
+example (h : JoinedIn F x y) : x ∈ F ∧ y ∈ F := by

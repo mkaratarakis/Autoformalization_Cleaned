@@ -1,0 +1,56 @@
+
+1. **Informal Theorem**  
+Multiplicativity of Quadratic Reciprocity Sign in First Argument: \(\text{qrSign}(m_1 \cdot m_2, n) = \text{qrSign}(m_1, n) \cdot \text{qrSign}(m_2, n)\) : For any natural numbers \( m_1 \), \( m_2 \), and \( n \), the quadratic reciprocity sign function \( \text{qrSign} \) is multiplicative in the first argument, i.e., \( \text{qrSign}(m_1 \cdot m_2, n) = \text{qrSign}(m_1, n) \cdot \text{qrSign}(m_2, n) \).
+
+2. **Informal Proof**  
+To prove the multiplicativity of the quadratic reciprocity sign function \( \text{qrSign} \) in the first argument, we start by using the definition of \( \text{qrSign} \):
+\[
+\text{qrSign}(m, n) = J(\chi_4(m) \mid n),
+\]
+where \( \chi_4(m) \) is the residue class of \( m \) modulo 4, and \( J(a \mid b) \) is the Jacobi symbol.
+
+We need to show that:
+\[
+\text{qrSign}(m_1 \cdot m_2, n) = \text{qrSign}(m_1, n) \cdot \text{qrSign}(m_2, n).
+\]
+
+Using the definition of \( \text{qrSign} \), this is equivalent to:
+\[
+J(\chi_4(m_1 \cdot m_2) \mid n) = J(\chi_4(m_1) \mid n) \cdot J(\chi_4(m_2) \mid n).
+\]
+
+Next, we use the property that the canonical map from natural numbers to integers preserves multiplication:
+\[
+\chi_4(m_1 \cdot m_2) = \chi_4(m_1) \cdot \chi_4(m_2).
+\]
+
+Thus, the left-hand side becomes:
+\[
+J(\chi_4(m_1) \cdot \chi_4(m_2) \mid n).
+\]
+
+By the multiplicativity of the Jacobi symbol in the first argument, we have:
+\[
+J(\chi_4(m_1) \cdot \chi_4(m_2) \mid n) = J(\chi_4(m_1) \mid n) \cdot J(\chi_4(m_2) \mid n).
+\]
+
+Therefore, we have shown that:
+\[
+\text{qrSign}(m_1 \cdot m_2, n) = \text{qrSign}(m_1, n) \cdot \text{qrSign}(m_2, n).
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m₁ m₂ n : ℕ) : qrSign (m₁ * m₂) n = qrSign m₁ n * qrSign m₂ n := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+
+open qrSign
+open Nat ZMod
+open NumberTheorySymbols
+open jacobiSym
+
+example (m₁ m₂ n : ℕ) : qrSign (m₁ * m₂) n = qrSign m₁ n * qrSign m₂ n := by

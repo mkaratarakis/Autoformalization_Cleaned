@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Pair Membership in Enumerated List: \((n + i, x) \in \text{enumFrom } n \, l \leftrightarrow l.get? \, i = \text{some } x\) : For any type \( \alpha \), natural numbers \( n \) and \( i \), and a list \( l \) of elements of type \( \alpha \), the pair \((n + i, x)\) is a member of the list `enumFrom n l` if and only if the \( i \)-th element of the list \( l \) (zero-based) is \( x \), i.e., \( l.get? i = \text{some } x \).
+
+2. **Informal Proof**  
+To prove the theorem, we use the equivalence that an element \((n + i, x)\) is a member of the list `enumFrom n l` if and only if the \( i \)-th element of the list \( l \) (zero-based) is \( x \). This equivalence is given by the theorem that states the membership of a pair in the enumerated list is equivalent to the optional element lookup in the list.
+
+Formally, the theorem states:
+\[
+(n + i, x) \in \text{enumFrom } n \, l \leftrightarrow l.get? \, i = \text{some } x
+\]
+
+By using this equivalence, we can directly conclude that the pair \((n + i, x)\) is a member of the list `enumFrom n l` if and only if the \( i \)-th element of the list \( l \) is \( x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n i : ℕ} {x : α} {l : List α} :
+    (n + i, x) ∈ enumFrom n l ↔ l.get? i = x := by sorry
+
+4. **Prefix**
+import Batteries.Tactic.Alias
+import Mathlib.Tactic.TypeStar
+import Mathlib.Data.Nat.Notation
+import Mathlib.Data.List.Enum
+
+open List
+variable {α β : Type*}
+
+example {n i : ℕ} {x : α} {l : List α} :
+    (n + i, x) ∈ enumFrom n l ↔ l.get? i = x := by

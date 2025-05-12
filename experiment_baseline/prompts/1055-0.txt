@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Membership in Binary Map of Optional Values: \( c \in \text{Option.map₂} \, f \, a \, b \leftrightarrow \exists a', b' \, (a' \in a \land b' \in b \land f(a', b') = c \) : For any types \( \alpha \), \( \beta \), and \( \gamma \), and for any binary function \( f : \alpha \to \beta \to \gamma \), and for any optional values \( a : \text{Option} \, \alpha \) and \( b : \text{Option} \, \beta \), and for any element \( c : \gamma \), the following holds:
+\[
+c \in \text{Option.map₂} \, f \, a \, b \quad \text{if and only if} \quad \exists a' \in \alpha, \, b' \in \beta, \, a' \in a \, \land \, b' \in b \, \land \, f(a', b') = c
+\]
+In other words, \( c \) is a member of the result of the binary map of optional values \( \text{Option.map₂} \, f \, a \, b \) if and only if there exist elements \( a' \) and \( b' \) such that \( a' \) is a member of \( a \), \( b' \) is a member of \( b \), and \( f(a', b') = c \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that \( c \in \text{Option.map₂} \, f \, a \, b \) if and only if there exist \( a' \in \alpha \) and \( b' \in \beta \) such that \( a' \in a \), \( b' \in b \), and \( f(a', b') = c \).
+
+First, we use the definition of `Option.map₂` and the property that `Option.bind` is equivalent to `some` when the optional value is `some`. This simplifies our goal to showing that \( c \in \text{Option.map₂} \, f \, a \, b \) if and only if there exist \( a' \) and \( b' \) such that \( a' \in a \), \( b' \in b \), and \( f(a', b') = c \).
+
+By the definition of `Option.map₂`, the expression \( \text{Option.map₂} \, f \, a \, b \) is equivalent to:
+\[
+\text{Option.bind} \, a \, (\lambda a', \text{Option.bind} \, b \, (\lambda b', \text{some} \, (f(a', b')))
+\]
+This means that \( c \in \text{Option.map₂} \, f \, a \, b \) if and only if there exist \( a' \) and \( b' \) such that \( a' \in a \), \( b' \in b \), and \( f(a', b') = c \).
+
+Thus, the theorem is proved. This completes the proof.
+
+3. **Formal Theorem**  
+example {c : γ} : c ∈ map₂ f a b ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by sorry
+
+4. **Prefix**
+import Mathlib.Logic.Function.Defs
+import Batteries.Tactic.Init
+import Mathlib.Data.Option.NAry
+
+open Option
+open Function
+variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Option β} {c : Option γ}
+
+example {c : γ} : c ∈ map₂ f a b ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by

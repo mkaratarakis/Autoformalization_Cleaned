@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Left Element is Less Than or Equal to Maximum in Natural Numbers : For any natural numbers \( a \) and \( b \), it holds that \( a \leq \max(a, b) \).
+
+2. **Informal Proof**  
+To prove that \( a \leq \max(a, b) \) for any natural numbers \( a \) and \( b \), we consider two cases based on the relationship between \( a \) and \( b \).
+
+1. **Case 1: \( a \leq b \)**
+- By the definition of the maximum function, \(\max(a, b) = b\) if \( a \leq b \).
+- Therefore, \( a \leq \max(a, b) \) simplifies to \( a \leq b \), which is true by our assumption.
+
+2. **Case 2: \( a \not\leq b \)**
+- By the definition of the maximum function, \(\max(a, b) = a\) if \( a \not\leq b \).
+- Therefore, \( a \leq \max(a, b) \) simplifies to \( a \leq a \), which is always true by the reflexive property of the less than or equal to relation.
+
+Since both cases cover all possible relationships between \( a \) and \( b \), we conclude that \( a \leq \max(a, b) \) holds for any natural numbers \( a \) and \( b \). This completes the proof.
+
+3. **Formal Theorem**  
+example ( a b : Nat) : a ≤ max a b := by sorry
+
+4. **Prefix**
+import Init.ByCases
+import Init.Data.Nat.MinMax
+
+open Nat
+
+
+example ( a b : Nat) : a ≤ max a b := by

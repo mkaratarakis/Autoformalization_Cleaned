@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Identity Map on Multivariate Polynomial Functor Elements : For any natural number \( n \) and any multivariate polynomial functor \( F \) of \( n \) variables that is an instance of `MvQPF`, and for any type vector \( \alpha \) of length \( n \), the identity function applied to an element \( x \) of the type \( F \alpha \) results in the same element \( x \). In other words, for any \( x \in F \alpha \), it holds that \( \text{id}_\alpha \cdot x = x \).
+
+2. **Informal Proof**  
+To prove that \( \text{id}_\alpha \cdot x = x \) for any \( x \in F \alpha \), we start by using the properties of the multivariate polynomial functor \( F \). Specifically, we use the fact that the absolute value and representation of a multivariate polynomial functor are inverses, and the property that the absolute value of a multivariate polynomial functor preserves mapping. This allows us to rewrite the goal as follows:
+
+\[
+\text{id}_\alpha \cdot x = x \quad \text{is equivalent to} \quad \text{abs}(\text{id}_\alpha \cdot \text{repr}(x)) = \text{abs}(\text{repr}(x))
+\]
+
+Since the identity function \( \text{id}_\alpha \) applied to \( \text{repr}(x) \) is just \( \text{repr}(x) \), the left-hand side simplifies to \( \text{abs}(\text{repr}(x)) \). Therefore, the goal becomes:
+
+\[
+\text{abs}(\text{repr}(x)) = \text{abs}(\text{repr}(x))
+\]
+
+This equality is trivially true due to the reflexive property of equality, since both sides are the same. Hence, we have shown that \( \text{id}_\alpha \cdot x = x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {α : TypeVec n} (x : F α) : TypeVec.id <$$> x = x := by sorry
+
+4. **Prefix**
+import Mathlib.Data.PFunctor.Multivariate.Basic
+import Mathlib.Data.QPF.Multivariate.Basic
+
+open MvQPF
+open MvFunctor
+variable {n : ℕ} {F : TypeVec.{u} n → Type*} [q : MvQPF F]
+open MvFunctor (LiftP LiftR)
+
+example {α : TypeVec n} (x : F α) : TypeVec.id <$$> x = x := by

@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Local Homeomorphism on a Set via Partial Homeomorphisms : For a function \( f : X \to Y \) between topological spaces and a set \( s \subseteq X \), if for each \( x \in s \) there exists a partial homeomorphism \( e : \text{PartialHomeomorph} X Y \) such that \( x \in e.\text{source} \) and \( f \) agrees with \( e \) on \( e.\text{source} \), then \( f \) satisfies \( \text{IsLocalHomeomorphOn} f s \).
+
+2. **Informal Proof**  
+To prove that \( f \) satisfies \( \text{IsLocalHomeomorphOn } f s \), we need to show that for every \( x \in s \), there exists a partial homeomorphism \( e \) such that \( x \in e.\text{source} \) and \( f = e \).
+
+1. Let \( x \) be an arbitrary element in \( s \). We need to find a partial homeomorphism \( e \) such that \( x \in e.\text{source} \) and \( f = e \).
+
+2. By the hypothesis \( h \), for the element \( x \in s \), there exists a partial homeomorphism \( e \) such that \( x \in e.\text{source} \) and \( f \) agrees with \( e \) on \( e.\text{source} \). Let \( e \) be this partial homeomorphism, and let \( hx \) and \( he \) be the corresponding proofs.
+
+3. We construct a new partial homeomorphism \( e' \) as follows:
+- The forward map \( e'.\text{toFun} \) is defined as \( f \).
+- For any \( x \in e.\text{source} \), we show that \( f(x) \in e.\text{target} \) by using the fact that \( f \) agrees with \( e \) on \( e.\text{source} \) and the property of \( e \) that maps elements of \( e.\text{source} \) to \( e.\text{target} \).
+- For any \( x \in e.\text{source} \), we show that \( e'.\text{invFun}(f(x)) = x \) by using the fact that \( f \) agrees with \( e \) on \( e.\text{source} \) and the left inverse property of \( e \).
+- For any \( y \in e.\text{target} \), we show that \( f(e'.\text{invFun}(y)) = y \) by using the fact that \( f \) agrees with \( e \) on \( e.\text{source} \) and the right inverse property of \( e \).
+- The forward map \( f \) is continuous on \( e.\text{source} \) because \( f \) agrees with \( e \) on \( e.\text{source} \) and \( e \) is continuous on \( e.\text{source} \).
+
+4. Thus, we have constructed a partial homeomorphism \( e' \) such that \( x \in e'.\text{source} \) and \( f = e' \). This completes the proof that \( f \) satisfies \( \text{IsLocalHomeomorphOn } f s \).
+
+3. **Formal Theorem**  
+example (h : ∀ x ∈ s, ∃ e : PartialHomeomorph X Y, x ∈ e.source ∧ Set.EqOn f e e.source) :
+    IsLocalHomeomorphOn f s := by sorry
+
+4. **Prefix**
+import Mathlib.Topology.PartialHomeomorph
+import Mathlib.Topology.SeparatedMap
+import Mathlib.Topology.IsLocalHomeomorph
+
+open IsLocalHomeomorphOn
+open Topology
+variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z] (g : Y → Z)
+  (f : X → Y) (s : Set X) (t : Set Y)
+
+example (h : ∀ x ∈ s, ∃ e : PartialHomeomorph X Y, x ∈ e.source ∧ Set.EqOn f e e.source) :
+    IsLocalHomeomorphOn f s := by

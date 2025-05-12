@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Existence of Equipartitions with Given Number of Parts : For any finite set \( s \) of type \( \alpha \) with decidable equality, and for any natural number \( n \) such that \( n \neq 0 \) and \( n \leq |s| \), there exists a finite partition \( P \) of \( s \) such that \( P \) is an equipartition and the number of parts in \( P \) is exactly \( n \).
+
+2. **Informal Proof**  
+First, note that \( n \neq 0 \) is equivalent to \( 0 < n \). Given \( 0 < n \leq |s| \), we need to show the existence of a partition \( P \) of \( s \) such that \( P \) is an equipartition and \( |P| = n \).
+
+We start by constructing a partition \( P \) by equitabilising the indiscrete partition of \( s \). This partition \( P \) is an equipartition by construction. To show that \( |P| = n \), we use the fact that the number of parts in the equitabilised partition is given by \( n - |s| \% n + |s| \% n \). Using the identity for subtraction and addition cancellation, we conclude that the number of parts is \( n \).
+
+Thus, we have shown the existence of a partition \( P \) of \( s \) such that \( P \) is an equipartition and \( |P| = n \).
+
+3. **Formal Theorem**  
+example (hn : n ≠ 0) (hs : n ≤ s.card) :
+    ∃ P : Finpartition s, P.IsEquipartition ∧ P.parts.card = n := by sorry
+
+4. **Prefix**
+import Mathlib.Order.Partition.Equipartition
+import Mathlib.Combinatorics.SimpleGraph.Regularity.Equitabilise
+
+open Finpartition
+open Finset Nat
+variable {α : Type*} [DecidableEq α] {s t : Finset α} {m n a b : ℕ} {P : Finpartition s}
+variable (h : a * m + b * (m + 1) = s.card)
+variable {h}
+variable (P h)
+variable (s)
+
+example (hn : n ≠ 0) (hs : n ≤ s.card) :
+    ∃ P : Finpartition s, P.IsEquipartition ∧ P.parts.card = n := by

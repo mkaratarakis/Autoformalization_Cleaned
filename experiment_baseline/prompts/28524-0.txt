@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Power of One Identity: \( x^1 = x \) for Extended Nonnegative Real Numbers : For any extended nonnegative real number \( x \in [0, \infty] \), the power function \( x^1 \) is equal to \( x \), i.e., \( x^1 = x \).
+
+2. **Informal Proof**  
+We will consider every possible case of \( x \).
+
+1. **Case 1: \( x = \infty \)**
+- We need to show that \( \infty^1 = \infty \).
+- The power function for \( \infty \) is defined such that \( \infty^1 = \infty \).
+- Specifically, the dependent if-then-else construct evaluates to the true branch when the condition \( 0 < 1 \) is true, which is always the case.
+- Therefore, \( \infty^1 = \infty \).
+
+2. **Case 2: \( x \) is a non-negative real number**
+- We need to show that \( x^1 = x \).
+- We can rewrite the goal using the if-then-else construct, which simplifies to \( ( \text{if } x = 0 \land 1 < 0 \text{ then } \infty \text{ else } x^1 ) = x \).
+- Using the properties of the power function for non-negative real numbers, the if-then-else construct, and logical equivalences, we can simplify the goal.
+- Specifically, we use the fact that \( x^1 = x \) for non-negative real numbers, the identity function, and the property that \( \infty \) is not equal to any non-negative real number.
+- This simplifies the goal to \( x = 0 \to 1 < 0 \to \text{False} \).
+- Since \( 0 \leq 1 \) is always true, the negation of \( 1 < 0 \) is true, i.e., \( 1 \leq 0 \) is false.
+- Therefore, the implication \( 1 < 0 \to \text{False} \) is true, and the entire goal is satisfied.
+
+Thus, we have shown that for any extended nonnegative real number \( x \), \( x^1 = x \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x : ℝ≥0∞) : x ^ (1 : ℝ) = x := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+
+open ENNReal
+open scoped Classical
+open Real NNReal ENNReal ComplexConjugate
+open Finset Function Set
+variable {w x y z : ℝ}
+
+example (x : ℝ≥0∞) : x ^ (1 : ℝ) = x := by

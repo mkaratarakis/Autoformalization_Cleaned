@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Uniqueness of Prefunctor Lift in Pushed Quivers: \( \Phi = \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \) : For any types \( V \) and \( W \) with quiver structures, and a map \( \sigma : V \to W \), if \( \phi : V \rightarrow_q W' \) is a prefunctor and \( \tau : W \to W' \) is a map such that for every vertex \( x \in V \), \( \phi(x) = \tau(\sigma(x)) \), and if \( \Phi : \text{Push}(\sigma) \rightarrow_q W' \) is another prefunctor, then \( \Phi \) is uniquely determined by \( \tau \) and \( \phi \). Specifically, if \( \Phi \) maps each vertex \( \sigma(x) \) to \( \tau(\sigma(x)) \) and each arrow \( \sigma(v) \to \sigma(v') \) to the same arrow as \( \phi \) maps \( v \to v' \), then \( \Phi \) is equal to the prefunctor \( \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \).
+
+2. **Informal Proof**  
+We start by simplifying the goal using the definitions of `of` and `lift`. This reduces the goal to showing that the object mapping of \( \Phi \) is equal to \( \tau \) and the arrow mapping of \( \Phi \) is defined by the recursion principle on the pushed quiver.
+
+To show that \( \Phi \) is equal to \( \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \), it suffices to show that their object mappings and arrow mappings are equal. We will prove these two conditions separately.
+
+1. **Object Mapping:**
+- Let \( X \) be an arbitrary vertex in the pushed quiver \( \text{Push}(\sigma) \).
+- We need to show that \( \Phi.\text{obj}(X) = \tau(X) \).
+- Simplify the proposition we want to show. This simplifies the goal to \( \Phi.\text{obj}(X) = \tau(X) \).
+- Since \( \Phi.\text{obj} = \tau \) by assumption, we can replace \( \Phi.\text{obj}(X) \) with \( \tau(X) \). This completes the proof for the object mapping.
+
+2. **Arrow Mapping:**
+- Let \( X \) and \( Y \) be arbitrary vertices in \( V \), and let \( f : X \to Y \) be an arrow in \( V \).
+- We need to show that \( \Phi.\text{map}(\text{PushQuiver.arrow}(f)) = \text{id}(\text{Eq.recOn}(\text{Eq.recOn}(\text{Quiver.Push.lift}(\sigma, \phi, \tau, h).\text{map}(\text{PushQuiver.arrow}(f)))) \).
+- Substitute the variables to simplify the goal. This simplifies the goal to showing that \( \Phi.\text{map}(\text{PushQuiver.arrow}(f)) = \text{id}(\text{Eq.recOn}(\text{Eq.recOn}(\Phi.\text{map}((\text{Quiver.Push.of}(\sigma)).\text{map}(f)))) \).
+- Simplify the proposition we want to show using the properties of prefunctor composition and type cast identity. This simplifies the goal to \( \Phi.\text{map}(\text{PushQuiver.arrow}(f)) = \text{id}(\Phi.\text{map}((\text{Quiver.Push.of}(\sigma)).\text{map}(f))) \).
+- The current goal is trivially true due to the reflexive property. This completes the proof for the arrow mapping.
+
+Thus, we have shown that \( \Phi \) is equal to \( \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \). This completes the proof.
+
+3. **Formal Theorem**  
+example (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
+    Φ = lift σ φ τ h := by sorry
+
+4. **Prefix**
+import Mathlib.Combinatorics.Quiver.Basic
+import Mathlib.Combinatorics.Quiver.Push
+
+open Quiver
+open Push
+variable {V : Type*} [Quiver V] {W : Type*} (σ : V → W)
+variable {W' : Type*} [Quiver W'] (φ : V ⥤q W') (τ : W → W') (h : ∀ x, φ.obj x = τ (σ x))
+
+example (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
+    Φ = lift σ φ τ h := by

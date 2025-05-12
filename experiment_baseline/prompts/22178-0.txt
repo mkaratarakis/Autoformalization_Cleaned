@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+\( p \)-adic Norm of Zero is Zero : For any prime number \( p \), the \( p \)-adic norm of \( 0 \) is \( 0 \), i.e., \( \lvert 0 \rvert_p = 0 \).
+
+2. **Informal Proof**  
+To prove that the \( p \)-adic norm of \( 0 \) is \( 0 \), we use the definition of the \( p \)-adic norm. The \( p \)-adic norm of a rational number \( q \) is defined as follows:
+- If \( q \neq 0 \), the \( p \)-adic norm of \( q \) is \( p^{-\text{padicValRat}(p, q)} \).
+- If \( q = 0 \), the \( p \)-adic norm of \( q \) is \( 0 \).
+
+Since \( 0 \) is the rational number in question, we directly apply the second part of the definition. Therefore, the \( p \)-adic norm of \( 0 \) is \( 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : padicNorm p 0 = 0 := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Field.Power
+import Mathlib.NumberTheory.Padics.PadicVal.Basic
+import Mathlib.NumberTheory.Padics.PadicNorm
+
+open padicNorm
+open padicValRat
+variable {p : ℕ}
+
+example : padicNorm p 0 = 0 := by

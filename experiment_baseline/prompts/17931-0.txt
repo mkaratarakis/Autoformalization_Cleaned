@@ -1,0 +1,26 @@
+
+1. **Informal Theorem**  
+For any simplicial object $X$ in an abelian category $A$, show that the composition of the infinite product functor $P^\infty$ with the functor $P^{\infty}_{\text{ToNormalizedMooreComplex}}$ applied to $X$ is equal to the functor $P^{\infty}_{\text{ToNormalizedMooreComplex}}$ applied directly to $X$, i.e., $P^\infty \circ P^{\infty}_{\text{ToNormalizedMooreComplex}} X = P^{\infty}_{\text{ToNormalizedMooreComplex}} X$.
+
+2. **Informal Proof**  
+To prove the theorem, we use category theory facts. Specifically, we show that the composition of the infinite product functor $P^\infty$ with the functor $P^{\infty}_{\text{ToNormalizedMooreComplex}}$ applied to $X$ is equal to the functor $P^{\infty}_{\text{ToNormalizedMooreComplex}}$ applied directly to $X$. By the properties of functors and the structure of the abelian category $A$, we can conclude that:
+\[
+P^\infty \circ P^{\infty}_{\text{ToNormalizedMooreComplex}} X = P^{\infty}_{\text{ToNormalizedMooreComplex}} X.
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (X : SimplicialObject A) :
+    PInfty ≫ PInftyToNormalizedMooreComplex X = PInftyToNormalizedMooreComplex X := by sorry
+
+4. **Prefix**
+import Mathlib.AlgebraicTopology.DoldKan.FunctorN
+import Mathlib.AlgebraicTopology.DoldKan.Normalized
+
+open AlgebraicTopology
+open DoldKan
+open CategoryTheory CategoryTheory.Category CategoryTheory.Limits
+variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
+
+example (X : SimplicialObject A) :
+    PInfty ≫ PInftyToNormalizedMooreComplex X = PInftyToNormalizedMooreComplex X := by

@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Value is False if and only if it is not True: \( b = \text{false} \leftrightarrow b \neq \text{true} \) : For any boolean value \( b \), \( b = \text{false} \) if and only if \( b \neq \text{true} \).
+
+2. **Informal Proof**  
+We need to show that for any boolean value \( b \), the statement \( b = \text{false} \) is equivalent to \( b \neq \text{true} \).
+
+1. **(\( \Rightarrow \) direction):** Assume \( b = \text{false} \). We need to show that \( b \neq \text{true} \). Since \( b = \text{false} \), it is clear that \( b \) cannot be equal to \(\text{true}\). Therefore, \( b \neq \text{true} \).
+
+2. **(\( \Leftarrow \) direction):** Assume \( b \neq \text{true} \). We need to show that \( b = \text{false} \). Since \( b \) is a boolean value, it can only be either \(\text{true}\) or \(\text{false}\). Given that \( b \neq \text{true} \), the only remaining possibility is \( b = \text{false} \).
+
+Thus, we have shown that \( b = \text{false} \) if and only if \( b \neq \text{true} \). This completes the proof.
+
+3. **Formal Theorem**  
+example : {b : Bool} → b = false ↔ b ≠ true := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : {b : Bool} → b = false ↔ b ≠ true := by

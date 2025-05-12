@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+For a real differentiable map \( f: E \to F \) and a point \( x \in E \), \( f \) is conformal at \( x \) if and only if there exists a positive scalar \( c \in \mathbb{R} \) such that for all \( u, v \in E \), the inner product of the differentials \( \langle f'(x)u, f'(x)v \rangle \) is equal to \( c \) times the inner product \( \langle u, v \rangle \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that a function \( f \) is conformal at a point \( x \) if and only if its differential at \( x \), denoted \( f'(x) \), is a conformal linear map. This equivalence is given by the theorem \( \text{conformalAt\_iff\_isConformalMap\_fderiv} \).
+
+Next, we use the characterization of a conformal linear map, which states that a linear map \( f \) is conformal if and only if there exists a positive scalar \( c \) such that for all vectors \( u, v \in E \), the inner product of \( f(u) \) and \( f(v) \) is equal to \( c \) times the inner product of \( u \) and \( v \). This characterization is given by the theorem \( \text{isConformalMap\_iff} \).
+
+Combining these two equivalences, we conclude that \( f \) is conformal at \( x \) if and only if there exists a positive scalar \( c \) such that for all \( u, v \in E \), the inner product of \( f'(x)u \) and \( f'(x)v \) is equal to \( c \) times the inner product of \( u \) and \( v \). This completes the proof.
+
+3. **Formal Theorem**  
+example {f : E → F} {x : E} : ConformalAt f x ↔
+    ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪fderiv ℝ f x u, fderiv ℝ f x v⟫ = c * ⟪u, v⟫ := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Conformal.NormedSpace
+import Mathlib.Analysis.InnerProductSpace.ConformalLinearMap
+import Mathlib.Analysis.Calculus.Conformal.InnerProduct
+
+
+variable {E F : Type*}
+variable [NormedAddCommGroup E] [NormedAddCommGroup F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+variable [NormedAddCommGroup E] [NormedAddCommGroup F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+open RealInnerProductSpace
+
+example {f : E → F} {x : E} : ConformalAt f x ↔
+    ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪fderiv ℝ f x u, fderiv ℝ f x v⟫ = c * ⟪u, v⟫ := by

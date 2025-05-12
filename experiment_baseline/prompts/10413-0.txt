@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Logarithmic Derivative of Constant Function is Zero : For any nontrivially normed fields \(\mathbb{𝕜}\) and \(\mathbb{𝕜}'\) and any constant \( a \in \mathbb{𝕜}' \), the logarithmic derivative of the constant function \( f(x) = a \) is zero, i.e., \(\logDeriv(f(x)) = 0\).
+
+2. **Informal Proof**  
+We start by introducing a new variable \( x \) to reason about the logarithmic derivative of the constant function \( f(x) = a \). The logarithmic derivative of a function \( f \) at a point \( x \) is defined as \(\logDeriv(f, x) = \frac{f'(x)}{f(x)}\).
+
+Since \( f(x) = a \) is a constant function, its derivative \( f'(x) = 0 \). Therefore, the logarithmic derivative of \( f \) at \( x \) is:
+\[
+\logDeriv(f, x) = \frac{f'(x)}{f(x)} = \frac{0}{a} = 0
+\]
+This holds for any \( x \in \mathbb{K} \). Hence, the logarithmic derivative of the constant function \( f(x) = a \) is zero. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : 𝕜') : logDeriv (fun _ : 𝕜 ↦ a) = 0 := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.ZPow
+import Mathlib.Analysis.Calculus.LogDeriv
+
+
+open Filter Function
+open scoped Topology BigOperators Classical
+variable {𝕜 𝕜': Type*} [NontriviallyNormedField 𝕜] [NontriviallyNormedField 𝕜']
+  [NormedAlgebra 𝕜 𝕜']
+
+example (a : 𝕜') : logDeriv (fun _ : 𝕜 ↦ a) = 0 := by

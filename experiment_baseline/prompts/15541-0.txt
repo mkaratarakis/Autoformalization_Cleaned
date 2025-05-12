@@ -1,0 +1,26 @@
+
+1. **Informal Theorem**  
+Modulo Identity: \(x \mod (a \cdot b) = x \mod a + a \cdot (x \div a \mod b)\) : For any natural numbers \(a\), \(b\), and \(x\), the modulo operation \(x \mod (a \cdot b)\) is equal to \(x \mod a + a \cdot (x \div a \mod b)\). In other words, the remainder when \(x\) is divided by \(a \cdot b\) can be expressed as the sum of the remainder when \(x\) is divided by \(a\) and the product of \(a\) and the remainder when \(x \div a\) is divided by \(b\).
+
+2. **Informal Proof**  
+We start by using the commutativity of addition to rewrite the goal:
+\[ x \% (a \cdot b) = a \cdot (x / a \% b) + x \% a. \]
+Next, we apply the division and modulo identity:
+\[ a \cdot (x \% (a \cdot b) / a) + x \% (a \cdot b) \% a = a \cdot (x / a \% b) + x \% a. \]
+Then, we use the modulo of product modulo right argument identity to simplify the modulo operation:
+\[ a \cdot (x \% (a \cdot b) / a) + x \% a = a \cdot (x / a \% b) + x \% a. \]
+Finally, we apply the modulo and division identity to simplify the division operation:
+\[ a \cdot (x / a \% b) + x \% a = a \cdot (x / a \% b) + x \% a. \]
+Since the left-hand side and the right-hand side are now identical, the goal is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example {a b x : Nat} : x % (a * b) = x % a + a * (x / a % b) := by sorry
+
+4. **Prefix**
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example {a b x : Nat} : x % (a * b) = x % a + a * (x / a % b) := by

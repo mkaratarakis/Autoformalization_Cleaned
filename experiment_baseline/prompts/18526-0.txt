@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Sum of Uniformly Convex Functions is Uniformly Convex with Sum of Moduli : For any real normed space \( E \), if \( f \) and \( g \) are uniformly convex functions on a set \( S \subseteq E \) with moduli \( \varphi \) and \( \psi \) respectively, then the function \( f + g \) is uniformly convex on \( S \) with modulus \( \varphi + \psi \).
+
+2. **Informal Proof**  
+To prove that \( f + g \) is uniformly convex on \( S \) with modulus \( \varphi + \psi \), we need to show that for any \( x, y \in S \) and any \( a, b \in \mathbb{R} \) such that \( 0 \leq a \), \( 0 \leq b \), and \( a + b = 1 \), the following inequality holds:
+\[ (f + g)(a \cdot x + b \cdot y) \leq a \cdot (f + g)(x) + b \cdot (f + g)(y) - a \cdot b \cdot (\varphi + \psi)(\|x - y\|). \]
+
+Since \( f \) is uniformly convex with modulus \( \varphi \), we have:
+\[ f(a \cdot x + b \cdot y) \leq a \cdot f(x) + b \cdot f(y) - a \cdot b \cdot \varphi(\|x - y\|). \]
+
+Similarly, since \( g \) is uniformly convex with modulus \( \psi \), we have:
+\[ g(a \cdot x + b \cdot y) \leq a \cdot g(x) + b \cdot g(y) - a \cdot b \cdot \psi(\|x - y\|). \]
+
+Adding these two inequalities, we get:
+\[ f(a \cdot x + b \cdot y) + g(a \cdot x + b \cdot y) \leq a \cdot f(x) + b \cdot f(y) - a \cdot b \cdot \varphi(\|x - y\|) + a \cdot g(x) + b \cdot g(y) - a \cdot b \cdot \psi(\|x - y\|). \]
+
+Using the distributive property of multiplication over addition and the commutativity of addition, we can rewrite the right-hand side as:
+\[ (f + g)(a \cdot x + b \cdot y) \leq a \cdot (f(x) + g(x)) + b \cdot (f(y) + g(y)) - a \cdot b \cdot (\varphi(\|x - y\|) + \psi(\|x - y\|)). \]
+
+This simplifies to:
+\[ (f + g)(a \cdot x + b \cdot y) \leq a \cdot (f + g)(x) + b \cdot (f + g)(y) - a \cdot b \cdot (\varphi + \psi)(\|x - y\|). \]
+
+Thus, \( f + g \) is uniformly convex on \( S \) with modulus \( \varphi + \psi \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hf : UniformConvexOn s φ f) (hg : UniformConvexOn s ψ g) :
+    UniformConvexOn s (φ + ψ) (f + g) := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Analysis.Convex.Strong
+
+open UniformConvexOn
+open Real
+variable {E : Type*} [NormedAddCommGroup E]
+variable [NormedSpace ℝ E] {φ ψ : ℝ → ℝ} {s : Set E} {a b m : ℝ} {x y : E} {f g : E → ℝ}
+
+example (hf : UniformConvexOn s φ f) (hg : UniformConvexOn s ψ g) :
+    UniformConvexOn s (φ + ψ) (f + g) := by

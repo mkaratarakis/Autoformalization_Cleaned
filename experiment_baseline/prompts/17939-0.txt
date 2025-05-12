@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+For any simplicial object $X$ in an abelian category $A$, the composition of the inclusion map of the Moore complex of $X$ with the $P^{\infty}$ map is equal to the inclusion map of the Moore complex of $X$.
+
+2. **Informal Proof**  
+To prove the equality of the natural transformations, we need to show that the components at each degree \( n \) are equal. Specifically, we need to show that for \( n = 0 \) and for any \( n \in \mathbb{N} \), the components of the natural transformations are equal.
+
+1. **Component at degree \( 0 \):**
+- We simplify the expression for the component at degree \( 0 \). This simplification shows that the component of the composition of the inclusion map of the Moore complex with \( P^{\infty} \) at degree \( 0 \) is equal to the component of the inclusion map of the Moore complex at degree \( 0 \).
+- Using the property that the composition of a morphism with the identity morphism is the morphism itself, we simplify the expression to show that the component of the inclusion map of the Moore complex at degree \( 0 \) is indeed equal to itself. This completes the proof for the component at degree \( 0 \).
+
+2. **Component at degree \( n + 1 \):**
+- For the component at degree \( n + 1 \), we use the fact that the higher faces vanish for the inclusion map of the Moore complex at degree \( n + 1 \). This implies that the composition of the inclusion map of the Moore complex with \( P^{\infty} \) at degree \( n + 1 \) is equal to the inclusion map of the Moore complex at degree \( n + 1 \).
+- This completes the proof for the component at degree \( n + 1 \).
+
+Since we have shown that the components at all degrees are equal, the natural transformations are equal. Therefore, the composition of the inclusion map of the Moore complex with \( P^{\infty} \) is equal to the inclusion map of the Moore complex. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (X : SimplicialObject A) :
+    inclusionOfMooreComplexMap X ≫ PInfty = inclusionOfMooreComplexMap X := by sorry
+
+4. **Prefix**
+import Mathlib.AlgebraicTopology.DoldKan.FunctorN
+import Mathlib.AlgebraicTopology.DoldKan.Normalized
+
+open AlgebraicTopology
+open DoldKan
+open CategoryTheory CategoryTheory.Category CategoryTheory.Limits
+variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
+
+example (X : SimplicialObject A) :
+    inclusionOfMooreComplexMap X ≫ PInfty = inclusionOfMooreComplexMap X := by

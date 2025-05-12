@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+Right Multiplication Preserves Distance in Natural Numbers : For any natural numbers \( n, k, \) and \( m \), the distance between \( n \cdot k \) and \( m \cdot k \) is equal to the distance between \( n \) and \( m \) multiplied by \( k \), i.e., \(\text{dist}(n \cdot k, m \cdot k) = \text{dist}(n, m) \cdot k\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the distance function on natural numbers. The distance function \(\text{dist}(n, m)\) is defined as:
+\[
+\text{dist}(n, m) = n - m + (m - n)
+\]
+Applying this definition to both \(\text{dist}(n \cdot k, m \cdot k)\) and \(\text{dist}(n, m)\), we have:
+\[
+\text{dist}(n \cdot k, m \cdot k) = (n \cdot k - m \cdot k) + (m \cdot k - n \cdot k)
+\]
+and
+\[
+\text{dist}(n, m) = n - m + (m - n)
+\]
+Thus, the goal is to show:
+\[
+(n \cdot k - m \cdot k) + (m \cdot k - n \cdot k) = (n - m + (m - n)) \cdot k
+\]
+Next, we use the right distributive property of multiplication over addition, which states:
+\[
+(a + b) \cdot c = a \cdot c + b \cdot c
+\]
+Applying this property, we get:
+\[
+(n - m + (m - n)) \cdot k = (n - m) \cdot k + (m - n) \cdot k
+\]
+Finally, we use the distributive property of multiplication over subtraction, which states:
+\[
+(a - b) \cdot c = a \cdot c - b \cdot c
+\]
+Applying this property to both terms, we get:
+\[
+(n - m) \cdot k = n \cdot k - m \cdot k
+\]
+and
+\[
+(m - n) \cdot k = m \cdot k - n \cdot k
+\]
+Thus, we have:
+\[
+(n - m) \cdot k + (m - n) \cdot k = (n \cdot k - m \cdot k) + (m \cdot k - n \cdot k)
+\]
+This shows that:
+\[
+\text{dist}(n \cdot k, m \cdot k) = \text{dist}(n, m) \cdot k
+\]
+Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n k m : ℕ) : dist (n * k) (m * k) = dist n m * k := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Data.Nat.Dist
+
+open Nat
+
+
+example (n k m : ℕ) : dist (n * k) (m * k) = dist n m * k := by

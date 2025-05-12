@@ -1,0 +1,19 @@
+
+1. **Informal Theorem**  
+Swapping Orderings is an Involution: \( o.\text{swap} = o' \leftrightarrow o = o'.\text{swap} \) : For any two orderings \( o \) and \( o' \) in the type `Ordering`, the swapped version of \( o \) is equal to \( o' \) if and only if \( o \) is equal to the swapped version of \( o' \). In other words, \( o.\text{swap} = o' \) if and only if \( o = o'.\text{swap} \).
+
+2. **Informal Proof**  
+We begin by leveraging the injectivity of the swap operation on ordering results, which states that \( o_1.swap = o_2.swap \) if and only if \( o_1 = o_2 \). This allows us to rewrite the goal \( o.swap = o' \) as \( o.swap.swap = o'.swap \). Next, we use the property that applying the swap operation twice results in the original ordering, i.e., \( o.swap.swap = o \). This simplifies our goal to \( o = o'.swap \), which is exactly what we need to show. Therefore, we have shown that \( o.\text{swap} = o' \) if and only if \( o = o'.\text{swap} \).
+
+3. **Formal Theorem**  
+example {o o' : Ordering} : o.swap = o' ↔ o = o'.swap := by sorry
+
+4. **Prefix**
+import Mathlib.Data.Ordering.Basic
+import Mathlib.Order.Synonym
+import Mathlib.Order.Compare
+
+open Ordering
+variable {α β : Type*}
+
+example {o o' : Ordering} : o.swap = o' ↔ o = o'.swap := by

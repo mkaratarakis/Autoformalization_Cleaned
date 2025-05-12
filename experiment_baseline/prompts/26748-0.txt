@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Jacobi Symbol Modulo \( 4|a| \) for Odd \( b \) : For any integer \( a \) and any odd natural number \( b \), the Jacobi symbol \( J(a \mid b) \) is equal to \( J(a \mid b \mod 4|a|) \), i.e., \( J(a \mid b) = J(a \mid b \mod 4|a|) \).
+
+2. **Informal Proof**  
+We start by considering the two cases for the integer \( a \):
+1. **Case 1: \( a = \text{natAbs}(a) \)**
+- In this case, we need to show that \( J(\text{natAbs}(a) \mid b) = J(\text{natAbs}(a) \mid b \mod 4 \cdot \text{natAbs}(a)) \).
+- By the theorem that for any natural number \( a \) and any odd natural number \( b \), \( J(a \mid b) = J(a \mid b \mod 4a) \), the goal is directly proved.
+
+2. **Case 2: \( a = -\text{natAbs}(a) \)**
+- In this case, we need to show that \( J(-\text{natAbs}(a) \mid b) = J(-\text{natAbs}(a) \mid b \mod 4 \cdot \text{natAbs}(a)) \).
+- First, we show that \( b \mod (4 \cdot \text{natAbs}(a)) \) is odd. Since \( b \) is odd and the modulo of an odd number by an even number is odd, \( b \mod (4 \cdot \text{natAbs}(a)) \) is odd.
+- Using the theorem that for any integer \( a \) and any odd natural number \( b \), \( J(-a \mid b) = \chi_4(b) \cdot J(a \mid b) \), we have:
+\[
+J(-\text{natAbs}(a) \mid b) = \chi_4(b) \cdot J(\text{natAbs}(a) \mid b)
+\]
+- Similarly, for \( b \mod (4 \cdot \text{natAbs}(a)) \):
+\[
+J(-\text{natAbs}(a) \mid b \mod (4 \cdot \text{natAbs}(a))) = \chi_4(b \mod (4 \cdot \text{natAbs}(a))) \cdot J(\text{natAbs}(a) \mid b \mod (4 \cdot \text{natAbs}(a)))
+\]
+- By the theorem that for any natural number \( a \) and any odd natural number \( b \), \( J(a \mid b) = J(a \mid b \mod 4a) \), we have:
+\[
+J(\text{natAbs}(a) \mid b) = J(\text{natAbs}(a) \mid b \mod (4 \cdot \text{natAbs}(a)))
+\]
+- Using the property that \( \chi_4(n) = \chi_4(n \mod 4) \) for any natural number \( n \), we have:
+\[
+\chi_4(b) = \chi_4(b \mod 4)
+\]
+- Since \( b \mod (4 \cdot \text{natAbs}(a)) \mod 4 = b \mod 4 \), we have:
+\[
+\chi_4(b \mod (4 \cdot \text{natAbs}(a))) = \chi_4(b)
+\]
+- Therefore:
+\[
+J(-\text{natAbs}(a) \mid b) = \chi_4(b) \cdot J(\text{natAbs}(a) \mid b) = \chi_4(b) \cdot J(\text{natAbs}(a) \mid b \mod (4 \cdot \text{natAbs}(a))) = J(-\text{natAbs}(a) \mid b \mod (4 \cdot \text{natAbs}(a)))
+\]
+
+Thus, in both cases, the goal is proved. Therefore, the theorem is true. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : ℤ) {b : ℕ} (hb : Odd b) : J(a | b) = J(a | b % (4 * a.natAbs)) := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+
+open jacobiSym
+open Nat ZMod
+open NumberTheorySymbols
+open jacobiSym
+
+example (a : ℤ) {b : ℕ} (hb : Odd b) : J(a | b) = J(a | b % (4 * a.natAbs)) := by

@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Minimal Element with Respect to Disjunction of Predicates : For any ordered type \( \alpha \) and any predicates \( P \) and \( Q \) on \( \alpha \), if \( x \) is a minimal element satisfying \( P(x) \lor Q(x) \), then \( x \) is either a minimal element satisfying \( P(x) \) or a minimal element satisfying \( Q(x) \). Formally, if \( \text{Minimal}(P \lor Q, x) \), then \( \text{Minimal}(P, x) \lor \text{Minimal}(Q, x) \).
+
+2. **Informal Proof**  
+We start by assuming that \( x \) is a minimal element satisfying \( P(x) \lor Q(x) \). This means that for any \( y \in \alpha \) such that \( P(y) \lor Q(y) \) and \( y \leq x \), we have \( x \leq y \).
+
+We need to show that \( x \) is either a minimal element satisfying \( P(x) \) or a minimal element satisfying \( Q(x) \). We will handle these cases separately.
+
+1. **Case 1: \( P(x) \) is true.**
+- We need to show that \( x \) is a minimal element satisfying \( P(x) \).
+- For any \( y \in \alpha \) such that \( P(y) \) and \( y \leq x \), we have \( P(y) \lor Q(y) \) (since \( P(y) \) is true).
+- By the minimality of \( x \) for \( P(x) \lor Q(x) \), we have \( x \leq y \).
+- Therefore, \( x \) is a minimal element satisfying \( P(x) \).
+
+2. **Case 2: \( Q(x) \) is true.**
+- We need to show that \( x \) is a minimal element satisfying \( Q(x) \).
+- For any \( y \in \alpha \) such that \( Q(y) \) and \( y \leq x \), we have \( P(y) \lor Q(y) \) (since \( Q(y) \) is true).
+- By the minimality of \( x \) for \( P(x) \lor Q(x) \), we have \( x \leq y \).
+- Therefore, \( x \) is a minimal element satisfying \( Q(x) \).
+
+Since \( x \) is either a minimal element satisfying \( P(x) \) or a minimal element satisfying \( Q(x) \), we conclude that \( \text{Minimal}(P, x) \lor \text{Minimal}(Q, x) \). This completes the proof.
+
+3. **Formal Theorem**  
+example (h : Minimal (fun x ↦ P x ∨ Q x) x) : Minimal P x ∨ Minimal Q x := by sorry
+
+4. **Prefix**
+import Mathlib.Order.Antichain
+import Mathlib.Order.UpperLower.Basic
+import Mathlib.Order.Interval.Set.Basic
+import Mathlib.Order.Minimal
+
+open Minimal
+open Set OrderDual
+variable {α : Type*} {P Q : α → Prop} {a x y : α}
+variable [LE α]
+
+example (h : Minimal (fun x ↦ P x ∨ Q x) x) : Minimal P x ∨ Minimal Q x := by

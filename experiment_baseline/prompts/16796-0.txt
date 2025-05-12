@@ -1,0 +1,63 @@
+
+1. **Informal Theorem**  
+Derivative of Sum of Functions along a Filter: \((f + g)' = f' + g'\) : For any functions \( f, g : \mathbb{𝕜} \to F \) from a nontrivially normed field \(\mathbb{𝕜}\) to a normed space \( F \) over \(\mathbb{𝕜}\), and for any point \( x \in \mathbb{𝕜} \) and filter \( L \) on \(\mathbb{𝕜}\), if \( f \) has the derivative \( f' \) at \( x \) along the filter \( L \) and \( g \) has the derivative \( g' \) at \( x \) along the filter \( L \), then the function \( f + g \) has the derivative \( f' + g' \) at \( x \) along the filter \( L \).
+
+2. **Informal Proof**  
+We start with the given conditions that \( f \) has the derivative \( f' \) at \( x \) along the filter \( L \) and \( g \) has the derivative \( g' \) at \( x \) along the filter \( L \). By the properties of Fréchet derivatives, if \( f \) and \( g \) have Fréchet derivatives at \( x \) along the filter \( L \), then the function \( f + g \) also has a Fréchet derivative at \( x \) along the filter \( L \). Specifically, the Fréchet derivative of \( f + g \) at \( x \) is the sum of the Fréchet derivatives of \( f \) and \( g \) at \( x \).
+
+Using the fact that the Fréchet derivative of \( f + g \) at \( x \) is \( f' + g' \), we can simplify the goal. Since \( f \) has the derivative \( f' \) at \( x \) along the filter \( L \) and \( g \) has the derivative \( g' \) at \( x \) along the filter \( L \), the function \( f + g \) has the derivative \( f' + g' \) at \( x \) along the filter \( L \). This simplification shows that the goal is exactly what we need to prove, thus finishing the proof.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hf : HasDerivAtFilter f f' x L)
+    (hg : HasDerivAtFilter g g' x L) : HasDerivAtFilter (fun y => f y + g y) (f' + g') x L := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Analysis.Calculus.FDeriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Add
+
+open HasDerivAtFilter
+open scoped Classical
+open scoped Topology Filter ENNReal
+open Asymptotics Set
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {L : Filter 𝕜}
+
+example (hf : HasDerivAtFilter f f' x L)
+    (hg : HasDerivAtFilter g g' x L) : HasDerivAtFilter (fun y => f y + g y) (f' + g') x L := by

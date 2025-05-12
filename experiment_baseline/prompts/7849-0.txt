@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+Left Triangle Inequality for Distance in Natural Numbers : For any natural numbers \( n \) and \( m \), it holds that \( n \leq \text{dist}(n, m) + m \).
+
+2. **Informal Proof**  
+We start with the goal of proving that for any natural numbers \( n \) and \( m \), \( n \leq \text{dist}(n, m) + m \).
+
+1. **Symmetry of Distance Function:**
+Since the distance function is symmetric, we have:
+\[
+\text{dist}(n, m) = \text{dist}(m, n)
+\]
+Therefore, the goal \( n \leq \text{dist}(n, m) + m \) can be rewritten as:
+\[
+n \leq \text{dist}(m, n) + m
+\]
+
+2. **Definition of Distance Function:**
+The distance function \(\text{dist}(m, n)\) is defined as the truncated subtraction \(|m - n|\), which is the non-negative difference between \(m\) and \(n\). This means:
+\[
+\text{dist}(m, n) = |m - n|
+\]
+
+3. **Case Analysis:**
+We consider two cases based on the values of \(m\) and \(n\):
+- **Case 1: \(m \geq n\):**
+In this case, \(\text{dist}(m, n) = m - n\). Substituting this into the goal, we get:
+\[
+n \leq (m - n) + m
+\]
+Simplifying the right-hand side:
+\[
+n \leq m - n + m = 2m - n
+\]
+Since \(m \geq n\), we have \(2m - n \geq n\). Therefore, the inequality \(n \leq 2m - n\) holds.
+
+- **Case 2: \(m < n\):**
+In this case, \(\text{dist}(m, n) = n - m\). Substituting this into the goal, we get:
+\[
+n \leq (n - m) + m
+\]
+Simplifying the right-hand side:
+\[
+n \leq n - m + m = n
+\]
+The inequality \(n \leq n\) is trivially true.
+
+Since both cases hold, we conclude that for any natural numbers \( n \) and \( m \), the inequality \( n \leq \text{dist}(n, m) + m \) is true. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m : ℕ) : n ≤ dist n m + m := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Data.Nat.Dist
+
+open Nat
+
+
+example (n m : ℕ) : n ≤ dist n m + m := by

@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Minimum is Less Than or Equal to Right Argument in Natural Numbers : For any natural numbers \(a\) and \(b\), the minimum of \(a\) and \(b\) is less than or equal to \(b\), i.e., \(\min(a, b) \leq b\).
+
+2. **Informal Proof**  
+To prove that \(\min(a, b) \leq b\) for any natural numbers \(a\) and \(b\), we consider two cases based on the relationship between \(a\) and \(b\):
+
+1. **Case 1: \(a \leq b\)**
+
+By the definition of the minimum function, \(\min(a, b) = a\) if \(a \leq b\). Since we are assuming \(a \leq b\), it follows that \(\min(a, b) = a \leq b\). Therefore, \(\min(a, b) \leq b\) holds in this case.
+
+2. **Case 2: \(a \not\leq b\)**
+
+By the definition of the minimum function, \(\min(a, b) = b\) if \(a \not\leq b\). Since we are assuming \(a \not\leq b\), it follows that \(\min(a, b) = b\). Clearly, \(b \leq b\) is always true. Therefore, \(\min(a, b) \leq b\) holds in this case as well.
+
+Since both cases cover all possible relationships between \(a\) and \(b\), we conclude that \(\min(a, b) \leq b\) for any natural numbers \(a\) and \(b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Nat) : min a b ≤ b := by sorry
+
+4. **Prefix**
+import Init.ByCases
+import Init.Data.Nat.MinMax
+
+open Nat
+
+
+example (a b : Nat) : min a b ≤ b := by

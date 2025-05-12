@@ -1,0 +1,25 @@
+
+1. **Informal Theorem**  
+Boolean AND is Commutative: \( x \land y = y \land x \) : For any boolean values \( x \) and \( y \), the boolean "and" operation is commutative, i.e., \( x \land y = y \land x \).
+
+2. **Informal Proof**  
+To prove that the boolean "and" operation is commutative, we need to show that for any boolean values \( x \) and \( y \), the equality \( x \land y = y \land x \) holds. We can do this by checking all possible combinations of \( x \) and \( y \):
+
+1. If \( x = \text{true} \) and \( y = \text{true} \), then \( x \land y = \text{true} \) and \( y \land x = \text{true} \), so \( x \land y = y \land x \).
+2. If \( x = \text{true} \) and \( y = \text{false} \), then \( x \land y = \text{false} \) and \( y \land x = \text{false} \), so \( x \land y = y \land x \).
+3. If \( x = \text{false} \) and \( y = \text{true} \), then \( x \land y = \text{false} \) and \( y \land x = \text{false} \), so \( x \land y = y \land x \).
+4. If \( x = \text{false} \) and \( y = \text{false} \), then \( x \land y = \text{false} \) and \( y \land x = \text{false} \), so \( x \land y = y \land x \).
+
+Since the equality \( x \land y = y \land x \) holds for all possible values of \( x \) and \( y \), we conclude that the boolean "and" operation is commutative. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), (x && y) = (y && x) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (x && y) = (y && x) := by

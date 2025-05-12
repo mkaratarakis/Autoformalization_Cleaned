@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+For any two functions $f$ and $g$ with finite formal power series representations $pf$ and $pg$ at point $x$ up to degrees $n$ and $m$ respectively, show that the sum function $f + g$ has a finite formal power series representation at $x$ up to degree $\max(n, m)$.
+
+2. **Informal Proof**  
+Given that $f$ has a finite formal power series representation $pf$ at $x$ up to degree $n$ and $g$ has a finite formal power series representation $pg$ at $x$ up to degree $m$, we need to show that the sum function $f + g$ has a finite formal power series representation at $x$ up to degree $\max(n, m)$.
+
+1. **Existence of a Common Radius:**
+Since $f$ has a finite formal power series representation $pf$ at $x$ up to degree $n$, there exists a positive radius $r$ such that $f$ has a finite formal power series representation on the ball of radius $r$ around $x$. Similarly, since $g$ has a finite formal power series representation $pg$ at $x$ up to degree $m$, there exists a positive radius $r$ such that $g$ has a finite formal power series representation on the ball of radius $r$ around $x$. We denote this common radius by $r$ and the corresponding properties by $hr.1$ and $hr.2$.
+
+2. **Sum of Finite Formal Power Series:**
+On the ball of radius $r$ around $x$, the sum function $f + g$ has a finite formal power series representation. This is because the sum of the formal power series representations $pf$ and $pg$ is also a finite formal power series representation. Specifically, the formal power series representation of $f + g$ is $pf + pg$ and the degree is $\max(n, m)$.
+
+Therefore, the sum function $f + g$ has a finite formal power series representation at $x$ up to degree $\max(n, m)$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example (hf : HasFiniteFPowerSeriesAt f pf x n)
+    (hg : HasFiniteFPowerSeriesAt g pg x m) :
+    HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (max n m) := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Analytic.Basic
+import Mathlib.Analysis.Analytic.CPolynomial
+
+open HasFiniteFPowerSeriesAt
+variable {𝕜 E F G : Type*} [NontriviallyNormedField 𝕜] [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+  [NormedAddCommGroup F] [NormedSpace 𝕜 F] [NormedAddCommGroup G] [NormedSpace 𝕜 G]
+open scoped Classical Topology
+open Set Filter Asymptotics NNReal ENNReal
+variable {f g : E → F} {p pf pg : FormalMultilinearSeries 𝕜 E F} {x : E} {r r' : ℝ≥0∞} {n m : ℕ}
+variable (𝕜)
+variable {𝕜}
+
+example (hf : HasFiniteFPowerSeriesAt f pf x n)
+    (hg : HasFiniteFPowerSeriesAt g pg x m) :
+    HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (max n m) := by

@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Product of Primal Elements is Primal in Cancel Commutative Monoids with Zero : For any elements \( m \) and \( n \) in a type \( \alpha \) that is a cancel commutative monoid with zero, if \( m \) and \( n \) are both primal, then their product \( m \cdot n \) is also primal. Formally, if \( m \) and \( n \) are primal elements in \( \alpha \), then for any \( b, c \in \alpha \), if \( m \cdot n \mid b \cdot c \), there exist \( a_1, a_2 \in \alpha \) such that \( a_1 \mid b \), \( a_2 \mid c \), and \( m \cdot n = a_1 \cdot a_2 \).
+
+2. **Informal Proof**  
+We start by considering two cases: either \( m = 0 \) or \( m \neq 0 \).
+
+1. **Case 1: \( m = 0 \)**
+- If \( m = 0 \), then \( m \cdot n = 0 \cdot n = 0 \).
+- Since \( 0 \) is primal, the product \( m \cdot n \) is primal. This case is trivial and we move to the next case.
+
+2. **Case 2: \( m \neq 0 \)**
+- Let \( b \) and \( c \) be arbitrary elements in \( \alpha \), and assume \( m \cdot n \mid b \cdot c \).
+- Since \( m \) is primal, there exist elements \( a_1 \) and \( a_2 \) in \( \alpha \) such that \( a_1 \mid b \), \( a_2 \mid c \), and \( m \cdot n = a_1 \cdot a_2 \). This follows from the property of primal elements that if \( m \mid b \cdot c \), then there exist \( a_1 \) and \( a_2 \) such that \( a_1 \mid b \), \( a_2 \mid c \), and \( m = a_1 \cdot a_2 \).
+- Using the commutativity of triple multiplication, we can rewrite \( m \cdot n \mid b \cdot c \) as \( n \mid b \cdot c \).
+- Since \( m \neq 0 \), we can use the property that left multiplication preserves divisibility to conclude that \( n \mid b \cdot c \).
+- Since \( n \) is primal and \( n \mid b \cdot c \), there exist elements \( a_1' \) and \( a_2' \) in \( \alpha \) such that \( a_1' \mid b \), \( a_2' \mid c \), and \( n = a_1' \cdot a_2' \). This follows from the property of primal elements that if \( n \mid b \cdot c \), then there exist \( a_1' \) and \( a_2' \) such that \( a_1' \mid b \), \( a_2' \mid c \), and \( n = a_1' \cdot a_2' \).
+- We now show that \( m \cdot n \) is primal by constructing the elements \( a_1 \cdot a_1' \) and \( a_2 \cdot a_2' \).
+- Since \( a_1' \mid b \) and \( a_2' \mid c \), it follows that \( a_1 \cdot a_1' \mid a_1 \cdot b \) and \( a_2 \cdot a_2' \mid a_2 \cdot c \).
+- Moreover, we have \( m \cdot n = (a_1 \cdot a_1') \cdot (a_2 \cdot a_2') \) by the commutativity of triple multiplication.
+- Therefore, \( m \cdot n \) is primal.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {α} [CancelCommMonoidWithZero α] {m n : α}
+    (hm : IsPrimal m) (hn : IsPrimal n) : IsPrimal (m * n) := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.GroupWithZero.Units.Basic
+import Mathlib.Algebra.Divisibility.Units
+import Mathlib.Algebra.GroupWithZero.Divisibility
+
+open IsPrimal
+variable {α : Type*}
+variable [SemigroupWithZero α] {a : α}
+variable [CommMonoidWithZero α]
+variable {x y : α}
+variable [MonoidWithZero α]
+
+example {α} [CancelCommMonoidWithZero α] {m n : α}
+    (hm : IsPrimal m) (hn : IsPrimal n) : IsPrimal (m * n) := by

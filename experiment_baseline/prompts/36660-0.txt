@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Traverse on First Argument of Bitraversable Type with Pure Embedding : For any bitraversable type \( t \) and any lawful bitraversable instance, and for any types \( \alpha \), \( \alpha' \), and \( \beta \), if \( f : \alpha \to \alpha' \) is a function, then for any element \( x \) of type \( t \, \alpha \, \beta \), the following equality holds:
+\[
+\text{tfst}(\text{pure} \circ f)(x) = \text{pure}(\text{fst} \, f \, x)
+\]
+Here, \(\text{tfst}\) is the function that traverses the first functor argument of a bitraversable type, and \(\text{pure}\) is the function that embeds a value into a monadic context. The function \(\text{fst}\) applies the function \( f \) to the first type argument of a bifunctor while keeping the second type argument fixed.
+
+2. **Informal Proof**  
+To prove the equality \(\text{tfst}(\text{pure} \circ f)(x) = \text{pure}(\text{fst} \, f \, x)\), we use the theorem that for any bitraversable and lawful bitraversable type \( t \), and for any functions \( f : \alpha \to \alpha' \) and \( f' : \alpha' \to \beta' \), the `bitraverse` function applied to the pure embeddings of \( f \) and \( f' \) on an element \( x \) of type \( t \alpha \alpha' \) is equal to the pure embedding of the result of applying the `bimap` function to \( f \) and \( f' \) on \( x \). Specifically, we have:
+\[
+\text{bitraverse} (\text{pure} \circ f) (\text{pure} \circ \text{id}) x = \text{pure} (\text{bimap} f \, \text{id} \, x).
+\]
+Since \(\text{tfst}(\text{pure} \circ f)(x)\) is defined as \(\text{bitraverse} (\text{pure} \circ f) (\text{pure} \circ \text{id}) x\) and \(\text{bimap} f \, \text{id} \, x\) is equivalent to \(\text{fst} f x\), the theorem directly implies the desired equality:
+\[
+\text{tfst}(\text{pure} \circ f)(x) = \text{pure}(\text{fst} \, f \, x).
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {α α' β} (f : α → α') (x : t α β) :
+    tfst (F := Id) (pure ∘ f) x = pure (fst f x) := by sorry
+
+4. **Prefix**
+import Mathlib.Control.Bitraversable.Basic
+import Mathlib.Control.Bitraversable.Lemmas
+
+open Bitraversable
+variable {t : Type u → Type u → Type u} [Bitraversable t]
+variable {β : Type u}
+variable {β : Type u}
+open Functor LawfulApplicative
+variable {F G : Type u → Type u} [Applicative F] [Applicative G]
+variable [LawfulBitraversable t] [LawfulApplicative F] [LawfulApplicative G]
+open Bifunctor
+open Function
+
+example {α α' β} (f : α → α') (x : t α β) :
+    tfst (F := Id) (pure ∘ f) x = pure (fst f x) := by

@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Function Iteration: \( f^{\circ (m + n)}(x) = f^{\circ m}(f^{\circ n}(x)) \) : For any function \( f : \alpha \to \alpha \) and any natural numbers \( m \) and \( n \), the \( (m + n) \)-fold iteration of \( f \) applied to an element \( x \in \alpha \) is equal to the \( m \)-fold iteration of \( f \) applied to the \( n \)-fold iteration of \( f \) applied to \( x \). In other words, \( f^{\circ (m + n)}(x) = f^{\circ m}(f^{\circ n}(x)) \).
+
+2. **Informal Proof**  
+We start by using the theorem that the \( (m + n) \)-fold iteration of \( f \) is equal to the composition of the \( m \)-fold iteration of \( f \) with the \( n \)-fold iteration of \( f \). This allows us to rewrite the goal \( f^{\circ (m + n)}(x) = f^{\circ m}(f^{\circ n}(x)) \) as \( (f^{\circ m} \circ f^{\circ n})(x) = f^{\circ m}(f^{\circ n}(x)) \).
+
+Since both sides of the equation \( (f^{\circ m} \circ f^{\circ n})(x) \) and \( f^{\circ m}(f^{\circ n}(x)) \) are definitionally equal, the goal is trivially true due to the reflexive property of equality. Therefore, we have shown that \( f^{\circ (m + n)}(x) = f^{\circ m}(f^{\circ n}(x)) \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (m n : ℕ) (x : α) : f^[m + n] x = f^[m] (f^[n] x) := by sorry
+
+4. **Prefix**
+import Mathlib.Logic.Function.Conjugate
+import Mathlib.Logic.Function.Iterate
+
+open Function
+variable {α : Type u} {β : Type v}
+open Function (Commute)
+variable (f : α → α)
+
+example (m n : ℕ) (x : α) : f^[m + n] x = f^[m] (f^[n] x) := by

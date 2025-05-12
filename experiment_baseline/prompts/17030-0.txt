@@ -1,0 +1,69 @@
+
+1. **Informal Theorem**  
+Chain Rule for Derivatives along Filters: \((h₂ \circ h)'(x) = h₂'(h(x)) \cdot h'(x)\) : For any normed fields \(\mathbb{𝕜}\) and \(\mathbb{𝕜}'\) with \(\mathbb{𝕜}'\) being a normed algebra over \(\mathbb{𝕜}\), and for any functions \( h : \mathbb{𝕜} \to \mathbb{𝕜}' \) and \( h₂ : \mathbb{𝕜}' \to \mathbb{𝕜}' \), if \( h \) has a derivative \( h' \) at \( x \) along the filter \( L \), and \( h₂ \) has a derivative \( h₂' \) at \( h(x) \) along the filter \( L' \), and \( h \) tends to \( h(x) \) along the filter \( L \) to \( L' \), then the composition \( h₂ \circ h \) has a derivative \( h₂' \cdot h' \) at \( x \) along the filter \( L \).
+
+2. **Informal Proof**  
+We start by noting that the multiplication in a commutative magma is commutative, so we can rewrite the goal to show that the derivative of the composition \( h₂ \circ h \) at \( x \) along the filter \( L \) is \( h' \cdot h₂' \) instead of \( h₂' \cdot h' \).
+
+Next, we apply the chain rule for scalar composition of functions with derivatives along filters. Specifically, since \( h \) has a derivative \( h' \) at \( x \) along the filter \( L \), and \( h₂ \) has a derivative \( h₂' \) at \( h(x) \) along the filter \( L' \), and \( h \) tends to \( h(x) \) along the filter \( L \) to \( L' \), the composition \( h₂ \circ h \) has a derivative \( h' \cdot h₂' \) at \( x \) along the filter \( L \).
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hh₂ : HasDerivAtFilter h₂ h₂' (h x) L')
+    (hh : HasDerivAtFilter h h' x L) (hL : Tendsto h L L') :
+    HasDerivAtFilter (h₂ ∘ h) (h₂' * h') x L := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Analysis.Calculus.FDeriv.Comp
+import Mathlib.Analysis.Calculus.FDeriv.RestrictScalars
+import Mathlib.Analysis.Calculus.Deriv.Comp
+
+open HasDerivAtFilter
+open scoped Classical Topology Filter ENNReal
+open Filter Asymptotics Set
+open ContinuousLinearMap (smulRight smulRight_one_eq_iff)
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+variable {𝕜' : Type*} [NontriviallyNormedField 𝕜'] [NormedAlgebra 𝕜 𝕜'] [NormedSpace 𝕜' F]
+  [IsScalarTower 𝕜 𝕜' F] {s' t' : Set 𝕜'} {h : 𝕜 → 𝕜'} {h₁ : 𝕜 → 𝕜} {h₂ : 𝕜' → 𝕜'} {h' h₂' : 𝕜'}
+  {h₁' : 𝕜} {g₁ : 𝕜' → F} {g₁' : F} {L' : Filter 𝕜'} {y : 𝕜'} (x)
+
+example (hh₂ : HasDerivAtFilter h₂ h₂' (h x) L')
+    (hh : HasDerivAtFilter h h' x L) (hL : Tendsto h L L') :
+    HasDerivAtFilter (h₂ ∘ h) (h₂' * h') x L := by

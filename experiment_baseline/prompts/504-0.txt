@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Bornology Extensionality: \( \text{cobounded}_t = \text{cobounded}_{t'} \to t = t' \) : For any type \( \alpha \) and any two bornologies \( t \) and \( t' \) on \( \alpha \), if the cobounded filters of \( t \) and \( t' \) are equal, then the bornologies \( t \) and \( t' \) are equal. In other words, if \( \text{cobounded}_t = \text{cobounded}_{t'} \), then \( t = t' \).
+
+2. **Informal Proof**  
+We start by considering the structure of the bornologies \( t \) and \( t' \). Since both \( t \) and \( t' \) are bornologies on \( \alpha \), they each consist of a cobounded filter and a proof that this filter contains the cofinite filter. Specifically, we can write \( t \) as \( \{ \text{cobounded}_t, \text{le\_cofinite}_t \} \) and \( t' \) as \( \{ \text{cobounded}_{t'}, \text{le\_cofinite}_{t'} \} \).
+
+Given the assumption that \( \text{cobounded}_t = \text{cobounded}_{t'} \), we need to show that \( t = t' \). To do this, it suffices to show that the cobounded filters \( \text{cobounded}_t \) and \( \text{cobounded}_{t'} \) are equal and that the proofs \( \text{le\_cofinite}_t \) and \( \text{le\_cofinite}_{t'} \) are equal. Since \( \text{cobounded}_t = \text{cobounded}_{t'} \) by assumption, and both \( \text{le\_cofinite}_t \) and \( \text{le\_cofinite}_{t'} \) are proofs that the cobounded filters contain the cofinite filter, they are trivially equal. Therefore, \( t = t' \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (t t' : Bornology α)
+    (h_cobounded : @Bornology.cobounded α t = @Bornology.cobounded α t') :
+    t = t' := by sorry
+
+4. **Prefix**
+import Mathlib.Order.Filter.Cofinite
+import Mathlib.Topology.Bornology.Basic
+
+open Bornology
+open Set Filter
+variable {ι α β : Type*}
+
+example (t t' : Bornology α)
+    (h_cobounded : @Bornology.cobounded α t = @Bornology.cobounded α t') :
+    t = t' := by

@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Invertible Elements are Equal if Their Inverses are Equal: \( a = b \to ⅟a = ⅟b \) : For any type \( \alpha \) that is a monoid, if \( a \) and \( b \) are elements of \( \alpha \) and both are invertible, then \( a = b \) implies \( ⅟a = ⅟b \).
+
+2. **Informal Proof**  
+Given that \( a \) and \( b \) are elements of a monoid \( \alpha \) and both are invertible, we need to show that if \( a = b \), then \( ⅟a = ⅟b \).
+
+1. **Substitution:**
+Since we have the hypothesis that \( a = b \), we can substitute \( b \) with \( a \) in the goal. This simplifies the goal to \( ⅟a = ⅟a \).
+
+2. **Conclusion:**
+The equation \( ⅟a = ⅟a \) is trivially true because any element is equal to itself.
+
+Therefore, we have shown that if \( a = b \), then \( ⅟a = ⅟b \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example [Monoid α] (a b : α) [Invertible a] [Invertible b] (h : a = b) :
+    ⅟a = ⅟b := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Group.Defs
+import Mathlib.Algebra.Group.Invertible.Defs
+
+open Invertible
+variable {α : Type*} [Monoid α]
+variable {α : Type u}
+
+example [Monoid α] (a b : α) [Invertible a] [Invertible b] (h : a = b) :
+    ⅟a = ⅟b := by

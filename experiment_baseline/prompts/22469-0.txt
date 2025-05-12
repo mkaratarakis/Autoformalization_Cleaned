@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Bitvector Addition Equals Second Component of Bitwise Addition with False Carry: \( x + y = \text{snd}(\text{adc}(x, y, \text{false})) \) : For any natural number \( w \) and any bitvectors \( x \) and \( y \) of width \( w \), the sum of \( x \) and \( y \) is equal to the second component of the result of the bitwise addition with carry operation `adc` applied to \( x \), \( y \), and the boolean value `false`. In other words, \( x + y = \text{snd}(\text{adc}(x, y, \text{false})) \).
+
+2. **Informal Proof**  
+To prove the theorem, we use the specification of the bitwise addition with carry operation \( \text{adc} \). According to the specification, for any natural number \( w \) and any bitvectors \( x \) and \( y \) of width \( w \), and for the boolean value `false`, the result of the bitwise addition with carry operation \( \text{adc}(x, y, \text{false}) \) is a pair consisting of the carry bit and the sum of the bitvectors. Specifically, we have:
+\[
+\text{adc}(x, y, \text{false}) = (\text{carry}(w, x, y, \text{false}), x + y + \text{zeroExtend}(w, \text{ofBool}(\text{false})))
+\]
+Since the boolean value `false` is converted to the bitvector `0` of length 1, and the zero extension of `0` to any width \( w \) is still `0`, we have:
+\[
+\text{zeroExtend}(w, \text{ofBool}(\text{false})) = 0
+\]
+Thus, the second component of \( \text{adc}(x, y, \text{false}) \) is:
+\[
+x + y + 0 = x + y
+\]
+Therefore, the proposition \( x + y = \text{snd}(\text{adc}(x, y, \text{false})) \) holds. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (w : Nat) (x y : BitVec w) : x + y = (adc x y false).snd := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (w : Nat) (x y : BitVec w) : x + y = (adc x y false).snd := by

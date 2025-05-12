@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Distance of a Natural Number to Itself is Zero: \( \text{dist}(n, n) = 0 \) : For any natural number \( n \), the distance between \( n \) and itself is zero, i.e., \( \text{dist}(n, n) = 0 \).
+
+2. **Informal Proof**  
+To prove that the distance between a natural number \( n \) and itself is zero, we start by using the definition of the distance function \( \text{dist}(a, b) \). The distance function is defined in terms of truncated subtraction, which is the subtraction operation in a canonically ordered commutative monoid. Specifically, \( \text{dist}(a, b) = a - b \).
+
+We need to show that \( \text{dist}(n, n) = 0 \). By the definition of the distance function, this is equivalent to showing that \( n - n = 0 \).
+
+Using the property of subtraction in a canonically ordered commutative monoid, we know that for any element \( a \), \( a - a = 0 \). Therefore, \( n - n = 0 \).
+
+Thus, \( \text{dist}(n, n) = 0 \), which completes the proof.
+
+3. **Formal Theorem**  
+example (n : ℕ) : dist n n = 0 := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Data.Nat.Dist
+
+open Nat
+
+
+example (n : ℕ) : dist n n = 0 := by

@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Intrinsic Interior of the Empty Set is the Empty Set : For any field \( \mathbb{K} \), vector space \( V \), and affine space \( P \) over \( \mathbb{K} \) with the necessary structures (ring, additive commutative group, module, topological space, and additive torsor), the intrinsic interior of the empty set \( \emptyset \) is the empty set \( \emptyset \).
+
+2. **Informal Proof**  
+To prove that the intrinsic interior of the empty set \( \emptyset \) is the empty set \( \emptyset \), we start by using the definition of the intrinsic interior. The intrinsic interior of a set \( s \) in a normed additive torsor is the interior of \( s \) considered as a set in its affine span. Formally, for a set \( s \subseteq P \) in a normed additive torsor \( P \) over a vector space \( V \) with coefficients in a ring \( \mathbb{K} \), the intrinsic interior of \( s \) is the image of the interior of \( s \) under the canonical map from the affine span of \( s \) to \( P \).
+
+For the empty set \( \emptyset \):
+1. The affine span of \( \emptyset \) is also the empty set, since there are no points in \( \emptyset \) to span.
+2. The interior of the empty set in any topological space is the empty set, because the empty set has no points and thus no interior points.
+3. Therefore, the intrinsic interior of \( \emptyset \) is the image of the empty set under the canonical map from the affine span of \( \emptyset \) to \( P \), which is the empty set.
+
+Hence, the intrinsic interior of the empty set \( \emptyset \) is the empty set \( \emptyset \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : intrinsicInterior 𝕜 (∅ : Set P) = ∅ := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+import Mathlib.Analysis.Convex.Intrinsic
+
+
+open AffineSubspace Set
+open scoped Pointwise
+variable {𝕜 V W Q P : Type*}
+variable (𝕜) [Ring 𝕜] [AddCommGroup V] [Module 𝕜 V] [TopologicalSpace P] [AddTorsor V P]
+  {s t : Set P} {x : P}
+variable {𝕜}
+
+example : intrinsicInterior 𝕜 (∅ : Set P) = ∅ := by

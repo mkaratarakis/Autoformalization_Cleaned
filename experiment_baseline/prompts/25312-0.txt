@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Boolean AND Identity: \( (a \land b) = b \leftrightarrow (b = \text{true} \to a = \text{true}) \) : For any boolean values \( a \) and \( b \), the boolean "and" operation \( a \land b \) is equal to \( b \) if and only if \( b \) is `true` implies \( a \) is `true`.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( a \) and \( b \), the following equivalence holds:
+\[ (a \land b) = b \leftrightarrow (b = \text{true} \to a = \text{true}) \]
+
+We will consider all possible values of \( a \) and \( b \) and verify the equivalence directly.
+
+1. **Case 1: \( a = \text{true} \) and \( b = \text{true} \)**
+- \( (a \land b) = (\text{true} \land \text{true}) = \text{true} \)
+- \( b = \text{true} \)
+- \( b = \text{true} \to a = \text{true} \) is true because both \( b \) and \( a \) are true.
+- Therefore, \( (a \land b) = b \) and \( b = \text{true} \to a = \text{true} \) are both true.
+
+2. **Case 2: \( a = \text{true} \) and \( b = \text{false} \)**
+- \( (a \land b) = (\text{true} \land \text{false}) = \text{false} \)
+- \( b = \text{false} \)
+- \( b = \text{true} \to a = \text{true} \) is vacuously true because \( b \) is false.
+- Therefore, \( (a \land b) = b \) is false and \( b = \text{true} \to a = \text{true} \) is true, so the equivalence holds.
+
+3. **Case 3: \( a = \text{false} \) and \( b = \text{true} \)**
+- \( (a \land b) = (\text{false} \land \text{true}) = \text{false} \)
+- \( b = \text{true} \)
+- \( b = \text{true} \to a = \text{true} \) is false because \( b \) is true and \( a \) is false.
+- Therefore, \( (a \land b) = b \) is false and \( b = \text{true} \to a = \text{true} \) is false, so the equivalence holds.
+
+4. **Case 4: \( a = \text{false} \) and \( b = \text{false} \)**
+- \( (a \land b) = (\text{false} \land \text{false}) = \text{false} \)
+- \( b = \text{false} \)
+- \( b = \text{true} \to a = \text{true} \) is vacuously true because \( b \) is false.
+- Therefore, \( (a \land b) = b \) is false and \( b = \text{true} \to a = \text{true} \) is true, so the equivalence holds.
+
+Since the equivalence holds in all possible cases, we conclude that for any boolean values \( a \) and \( b \),
+\[ (a \land b) = b \leftrightarrow (b = \text{true} \to a = \text{true}) \]
+This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), ((a && b) = b) ↔ (b → a) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), ((a && b) = b) ↔ (b → a) := by

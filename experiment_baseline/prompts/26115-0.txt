@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Composition of Local Homeomorphisms on Sets Preserves Local Homeomorphism Property : For topological spaces \( X \), \( Y \), and \( Z \), if \( g : Y \to Z \) is a local homeomorphism on a set \( t \subseteq Y \) and \( f : X \to Y \) is a local homeomorphism on a set \( s \subseteq X \), and if \( f \) maps \( s \) into \( t \), then the composition \( g \circ f : X \to Z \) is a local homeomorphism on \( s \).
+
+2. **Informal Proof**  
+Let \( x \) be an arbitrary element of \( X \) such that \( x \in s \). We need to show that there exists a partial homeomorphism \( e \) such that \( x \in e.source \) and \( g \circ f = e \).
+
+Since \( f \) maps \( s \) into \( t \) and \( x \in s \), we have \( f(x) \in t \). By the assumption that \( g \) is a local homeomorphism on \( t \), there exists a partial homeomorphism \( e_g \) such that \( f(x) \in e_g.source \) and \( g = e_g \) on \( t \).
+
+Since \( f \) is a local homeomorphism on \( s \) and \( x \in s \), there exists a partial homeomorphism \( e_f \) such that \( x \in e_f.source \) and \( f = e_f \) on \( s \).
+
+We construct the partial homeomorphism \( e \) as the composition \( e_f \circ e_g \). Since \( x \in e_f.source \) and \( e_f(x) \in e_g.source \), it follows that \( x \in (e_f \circ e_g).source \). Therefore, \( g \circ f = e_f \circ e_g \) on \( s \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hg : IsLocalHomeomorphOn g t) (hf : IsLocalHomeomorphOn f s)
+    (h : Set.MapsTo f s t) : IsLocalHomeomorphOn (g ∘ f) s := by sorry
+
+4. **Prefix**
+import Mathlib.Topology.PartialHomeomorph
+import Mathlib.Topology.SeparatedMap
+import Mathlib.Topology.IsLocalHomeomorph
+
+open IsLocalHomeomorphOn
+open Topology
+variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z] (g : Y → Z)
+  (f : X → Y) (s : Set X) (t : Set Y)
+variable {g f s t}
+
+example (hg : IsLocalHomeomorphOn g t) (hf : IsLocalHomeomorphOn f s)
+    (h : Set.MapsTo f s t) : IsLocalHomeomorphOn (g ∘ f) s := by

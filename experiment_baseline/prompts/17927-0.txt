@@ -1,0 +1,22 @@
+
+1. **Informal Theorem**  
+For any simplicial object $X$ in an abelian category $A$, the composition of the map from the infinite projective space associated with $X$ to its normalized Moore complex, followed by the inclusion map from the Moore complex to the infinite projective space, is equal to the map from the infinite projective space to itself. In short, we have $(PInftyToNormalizedMooreComplex X) \circ (inclusionOfMooreComplexMap X) = PInfty$.
+
+2. **Informal Proof**  
+By category theory facts, we have that the composition of the map from the infinite projective space associated with $X$ to its normalized Moore complex, followed by the inclusion map from the Moore complex to the infinite projective space, is equal to the map from the infinite projective space to itself. In other words, $(PInftyToNormalizedMooreComplex X) \circ (inclusionOfMooreComplexMap X) = PInfty$. This completes the proof.
+
+3. **Formal Theorem**  
+example (X : SimplicialObject A) :
+    PInftyToNormalizedMooreComplex X ≫ inclusionOfMooreComplexMap X = PInfty := by sorry
+
+4. **Prefix**
+import Mathlib.AlgebraicTopology.DoldKan.FunctorN
+import Mathlib.AlgebraicTopology.DoldKan.Normalized
+
+open AlgebraicTopology
+open DoldKan
+open CategoryTheory CategoryTheory.Category CategoryTheory.Limits
+variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
+
+example (X : SimplicialObject A) :
+    PInftyToNormalizedMooreComplex X ≫ inclusionOfMooreComplexMap X = PInfty := by

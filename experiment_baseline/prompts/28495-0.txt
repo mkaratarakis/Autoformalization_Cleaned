@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Power of Non-negative Real Number is Zero if and only if Base is Zero and Exponent is Nonzero: \( x^y = 0 \leftrightarrow x = 0 \land y \neq 0 \) : For any non-negative real number \( x \in \mathbb{R}_{\geq 0} \) and any real number \( y \in \mathbb{R} \), the expression \( x^y = 0 \) holds if and only if \( x = 0 \) and \( y \neq 0 \).
+
+2. **Informal Proof**  
+We start by using the injectivity of the canonical map from nonnegative reals to reals. Specifically, for any nonnegative real numbers \( r_1 \) and \( r_2 \), \( \text{toReal}(r_1) = \text{toReal}(r_2) \) if and only if \( r_1 = r_2 \). This allows us to rewrite the goal \( x^y = 0 \) as \( \text{toReal}(x^y) = 0 \).
+
+Next, we use the property that the canonical map preserves the power operation. For any non-negative real number \( x \in \mathbb{R}_{\geq 0} \) and any real number \( y \in \mathbb{R} \), \( \text{toReal}(x^y) = (\text{toReal}(x))^y \). Therefore, \( \text{toReal}(x^y) = 0 \) is equivalent to \( (\text{toReal}(x))^y = 0 \).
+
+Finally, we use the fact that \( \text{toReal}(r) = 0 \) if and only if \( r = 0 \). This means that \( (\text{toReal}(x))^y = 0 \) is equivalent to \( \text{toReal}(x) = 0 \) and \( y \neq 0 \).
+
+Since \( x \) is a nonnegative real number, we can apply the theorem that for any real numbers \( x \) and \( y \) such that \( 0 \leq x \), the power function \( x^y \) is equal to 0 if and only if \( x = 0 \) and \( y \neq 0 \). This theorem directly applies, and thus \( \text{toReal}(x) = 0 \) and \( y \neq 0 \) is equivalent to \( x = 0 \) and \( y \neq 0 \).
+
+Therefore, the expression \( x^y = 0 \) holds if and only if \( x = 0 \) and \( y \neq 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x : ℝ≥0} {y : ℝ} : x ^ y = 0 ↔ x = 0 ∧ y ≠ 0 := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+
+open NNReal
+open scoped Classical
+open Real NNReal ENNReal ComplexConjugate
+open Finset Function Set
+variable {w x y z : ℝ}
+
+example {x : ℝ≥0} {y : ℝ} : x ^ y = 0 ↔ x = 0 ∧ y ≠ 0 := by

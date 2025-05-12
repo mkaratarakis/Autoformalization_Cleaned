@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Singleton Set is a π-system : For any set \( S \) of a type \( \alpha \), the collection \(\{S\}\) is a π-system. This means that the collection \(\{S\}\) is closed under binary intersection of non-disjoint sets. Specifically, if \( S \cap S \) is nonempty, then \( S \cap S \) is also in \(\{S\}\).
+
+2. **Informal Proof**  
+To prove that \(\{S\}\) is a π-system, we need to show that for any sets \( s \) and \( t \) in \(\{S\}\), if \( s \cap t \) is nonempty, then \( s \cap t \in \{S\} \).
+
+1. Let \( s \) and \( t \) be arbitrary sets in \( \alpha \), and assume \( s \in \{S\} \) and \( t \in \{S\} \).
+2. By the definition of membership in a singleton set, \( s = S \) and \( t = S \).
+3. Therefore, \( s \cap t = S \cap S \).
+4. By the property of intersection, \( S \cap S = S \).
+5. Hence, \( s \cap t = S \).
+6. Since \( S \in \{S\} \), it follows that \( s \cap t \in \{S\} \).
+
+This completes the proof that \(\{S\}\) is a π-system.
+
+3. **Formal Theorem**  
+example {α} (S : Set α) : IsPiSystem ({S} : Set (Set α)) := by sorry
+
+4. **Prefix**
+import Mathlib.Logic.Encodable.Lattice
+import Mathlib.MeasureTheory.MeasurableSpace.Defs
+import Mathlib.MeasureTheory.PiSystem
+
+open IsPiSystem
+open MeasurableSpace Set
+open MeasureTheory
+
+example {α} (S : Set α) : IsPiSystem ({S} : Set (Set α)) := by

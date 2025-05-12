@@ -1,0 +1,23 @@
+
+1. **Informal Theorem**  
+Boolean Equality with Negation is False: \( b = \neg b \leftrightarrow \text{False} \) : For any boolean value \( b \), the equation \( b = \neg b \) is equivalent to the false proposition, i.e., \( b = \neg b \leftrightarrow \text{False} \).
+
+2. **Informal Proof**  
+To prove that for any boolean value \( b \), the equation \( b = \neg b \) is equivalent to the false proposition, we consider the possible values of \( b \):
+
+1. If \( b = \text{true} \), then \( \neg b = \text{false} \). Clearly, \( \text{true} \neq \text{false} \), so \( b = \neg b \) is false.
+2. If \( b = \text{false} \), then \( \neg b = \text{true} \). Clearly, \( \text{false} \neq \text{true} \), so \( b = \neg b \) is false.
+
+Since \( b \) can only be either \( \text{true} \) or \( \text{false} \), and in both cases \( b = \neg b \) is false, we conclude that \( b = \neg b \) is equivalent to the false proposition. Therefore, \( b = \neg b \leftrightarrow \text{False} \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(b : Bool), (b = (!b)) ↔ False := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(b : Bool), (b = (!b)) ↔ False := by

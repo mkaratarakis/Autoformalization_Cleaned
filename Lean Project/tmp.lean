@@ -9,10 +9,8 @@ open Function Option
 
 example (f : α ≃. β) {a₁ a₂ : α} {b : β} (h₁ : b ∈ f a₁) (h₂ : b ∈ f a₂) :
     a₁ = a₂ := by
-  have hinv₁ : a₁ ∈ f.symm b := by
-    rw [← f.inv]
-    exact h₁
-  have hinv₂ : a₂ ∈ f.symm b := by
-    rw [← f.inv]
-    exact h₂
-  exact Option.subsingleton (f.symm b) hinv₁ hinv₂
+  have h₁' : a₁ ∈ f.symm b := by
+    simpa only [mem_symm_iff] using h₁
+  have h₂' : a₂ ∈ f.symm b := by
+    simpa only [mem_symm_iff] using h₂
+  exact (Set.eq_of_mem_singleton h₁').symm.trans (Set.eq_of_mem_singleton h₂')

@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Addition of One Preserves Inequality in Natural Numbers with Bottom Element : For any elements \( n \) and \( m \) in the type \( \mathbb{N} \sqcup \{\bot\} \) (natural numbers with a bottom element), if \( n < m \), then \( n + 1 \leq m \).
+
+2. **Informal Proof**  
+We need to show that for any \( n, m \in \mathbb{N} \sqcup \{\bot\} \), if \( n < m \), then \( n + 1 \leq m \).
+
+1. **Case 1: \( n = \bot \)**
+- We use the fact that the addition of the bottom element with any element is the bottom element itself, and the bottom element is less than or equal to any element. Therefore, \( \bot + 1 \leq m \) holds trivially.
+
+2. **Case 2: \( n = a \) for some \( a \in \mathbb{N} \)**
+- We will consider every possible case of \( m \):
+- **Subcase 2.1: \( m = \bot \)**
+- We use the fact that no element in \( \mathbb{N} \) is less than the bottom element. Therefore, the assumption \( a < \bot \) leads to a contradiction, and the goal is vacuously true.
+- **Subcase 2.2: \( m = b \) for some \( b \in \mathbb{N} \)**
+- We use the following equivalences:
+1. The canonical map preserves strict inequality: \( a < b \) if and only if \( \text{WithBot.some}(a) < \text{WithBot.some}(b) \).
+2. The inequality \( a + 1 \leq b \) is equivalent to \( a < b \).
+3. The canonical map preserves the less-than-or-equal relation: \( a + 1 \leq b \) if and only if \( \text{WithBot.some}(a + 1) \leq \text{WithBot.some}(b) \).
+4. The canonical map preserves addition: \( \text{WithBot.some}(a + 1) = \text{WithBot.some}(a) + \text{WithBot.some}(1) \).
+5. The canonical map preserves the multiplicative identity: \( \text{WithBot.some}(1) = 1 \).
+
+Using these equivalences, we can rewrite the assumption \( a < b \) to \( a + 1 \leq b \), which is exactly what we need to show.
+
+Therefore, in all cases, we have shown that if \( n < m \), then \( n + 1 \leq m \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Algebra.Order.Monoid.WithTop
+import Mathlib.Data.Nat.Cast.WithTop
+import Mathlib.Data.Nat.WithBot
+
+open Nat
+open WithBot
+
+
+example {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by

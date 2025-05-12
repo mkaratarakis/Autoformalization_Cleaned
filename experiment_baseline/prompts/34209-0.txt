@@ -1,0 +1,21 @@
+
+1. **Informal Theorem**  
+Irreflexivity of Less-Than Relation on Characters: \( \neg (a < a) \) : For any character \( a \) in the Unicode character type `Char`, it is not the case that \( a < a \). In other words, the less-than relation on characters is irreflexive, i.e., \( \neg (a < a) \).
+
+2. **Informal Proof**  
+To prove that for any character \( a \), \( \neg (a < a) \), we use the properties of the less-than relation on characters. The less-than relation on characters is defined such that \( a < b \) if and only if the integer value of \( a \) is less than the integer value of \( b \).
+
+By the definition of the less-than relation, \( a < a \) would imply that the integer value of \( a \) is less than itself, which is a contradiction. Therefore, \( a < a \) is false. This means that \( \neg (a < a) \) holds for any character \( a \). Hence, the less-than relation on characters is irreflexive. This completes the proof.
+
+3. **Formal Theorem**  
+example (a : Char) : ¬ a < a := by sorry
+
+4. **Prefix**
+import Init.Data.Char.Basic
+import Init.Data.UInt.Lemmas
+import Init.Data.Char.Lemmas
+
+open Char
+
+
+example (a : Char) : ¬ a < a := by

@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Logarithmic Derivative of Identity Function: \(\frac{d}{dx} \log(x) = \frac{1}{x}\) : For any nontrivially normed field \(\mathbb{K}\) and any element \( x \in \mathbb{K} \), the logarithmic derivative of the identity function at \( x \) is equal to \(\frac{1}{x}\), i.e., \(\frac{d}{dx} \log(\text{id}(x)) = \frac{1}{x}\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the logarithmic derivative. The logarithmic derivative of a function \( f \) at a point \( x \) is given by \(\logDeriv(f, x) = \frac{f'(x)}{f(x)}\).
+
+For the identity function \(\text{id}(x) = x\), we have:
+- The derivative of the identity function is \(\text{id}'(x) = 1\).
+- The value of the identity function at \( x \) is \(\text{id}(x) = x\).
+
+Using these, the logarithmic derivative of the identity function at \( x \) is:
+\[
+\logDeriv(\text{id}, x) = \frac{\text{id}'(x)}{\text{id}(x)} = \frac{1}{x}
+\]
+
+Thus, we have shown that \(\logDeriv(\text{id}, x) = \frac{1}{x}\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : 𝕜) : logDeriv id x = 1 / x := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.ZPow
+import Mathlib.Analysis.Calculus.LogDeriv
+
+
+open Filter Function
+open scoped Topology BigOperators Classical
+variable {𝕜 𝕜': Type*} [NontriviallyNormedField 𝕜] [NontriviallyNormedField 𝕜']
+  [NormedAlgebra 𝕜 𝕜']
+
+example (x : 𝕜) : logDeriv id x = 1 / x := by

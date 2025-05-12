@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+ω-limit Subset under Tending Function in Filters : For any types \( \tau \), \( \alpha \), and \( \beta \) where \( \beta \) is a topological space, and for any function \( \phi : \tau \to \alpha \to \beta \) and set \( s \subseteq \alpha \), if \( m : \tau \to \tau \) is a function such that \( m \) tends to \( f_2 \) along the filter \( f_1 \) (denoted as \( m \to f_2 \) as \( t \to f_1 \)), then the ω-limit of \( s \) under the function \( \phi \circ m \) with respect to the filter \( f_1 \) is a subset of the ω-limit of \( s \) under \( \phi \) with respect to the filter \( f_2 \). Formally, this is expressed as:
+\[
+\text{If } m \to f_2 \text{ as } t \to f_1, \text{ then } \omega\text{-limit}(f_1, \phi \circ m, s) \subseteq \omega\text{-limit}(f_2, \phi, s).
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the ω-limit of \( s \) under \( \phi \circ m \) with respect to the filter \( f_1 \) is a subset of the ω-limit of \( s \) under \( \phi \) with respect to the filter \( f_2 \).
+
+1. **Monotonicity of Double Indexed Intersection:**
+We use the monotonicity of the double indexed intersection of sets. For any set \( u \in f_2 \), we need to show that the closure of the image of \( s \) under \( \phi \circ m \) in \( m^{-1}(u) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \). This reduces to showing that \( m^{-1}(u) \in f_1 \) and that the closure of the image of \( s \) under \( \phi \circ m \) in \( m^{-1}(u) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \).
+
+2. **Rewriting the Goal:**
+We use the property of the binary image of sets under function composition to rewrite the goal. Specifically, the binary image of \( s \) and \( m^{-1}(u) \) under \( \phi \circ m \) is equal to the binary image of \( s \) and \( m^{-1}(u) \) under the function \( (t, x) \mapsto \phi(m(t), x) \). This simplifies our goal to showing that the closure of the image of \( s \) under \( \phi \) in \( m(m^{-1}(u)) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \).
+
+3. **Monotonicity of Closure and Subset Relation:**
+We use the monotonicity of the closure and the subset relation to complete the proof. Specifically, since \( m(m^{-1}(u)) \subseteq u \) (by the property of the image of the preimage), the image of \( s \) under \( \phi \) in \( m(m^{-1}(u)) \) is a subset of the image of \( s \) under \( \phi \) in \( u \). Therefore, the closure of the image of \( s \) under \( \phi \) in \( m(m^{-1}(u)) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \).
+
+Thus, we have shown that the ω-limit of \( s \) under \( \phi \circ m \) with respect to the filter \( f_1 \) is a subset of the ω-limit of \( s \) under \( \phi \) with respect to the filter \( f_2 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m : τ → τ} {f₁ f₂ : Filter τ} (hf : Tendsto m f₁ f₂) :
+    ω f₁ (fun t x ↦ ϕ (m t) x) s ⊆ ω f₂ ϕ s := by sorry
+
+4. **Prefix**
+import Mathlib.Dynamics.Flow
+import Mathlib.Tactic.Monotonicity
+import Mathlib.Dynamics.OmegaLimit
+
+
+open Set Function Filter Topology
+variable {τ : Type*} {α : Type*} {β : Type*} {ι : Type*}
+variable [TopologicalSpace β]
+variable (f : Filter τ) (ϕ : τ → α → β) (s s₁ s₂ : Set α)
+variable (f : Filter τ) (ϕ : τ → α → β) (s s₁ s₂ : Set α)
+open omegaLimit
+
+example {m : τ → τ} {f₁ f₂ : Filter τ} (hf : Tendsto m f₁ f₂) :
+    ω f₁ (fun t x ↦ ϕ (m t) x) s ⊆ ω f₂ ϕ s := by

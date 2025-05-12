@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Intrinsic Frontier of the Empty Set is the Empty Set : For any field \( \mathbb{K} \), vector space \( V \), and affine space \( P \) over \( \mathbb{K} \) with the necessary structures (ring, additive commutative group, module, topological space, and additive torsor), the intrinsic frontier of the empty set \( \emptyset \) is the empty set \( \emptyset \).
+
+2. **Informal Proof**  
+To prove that the intrinsic frontier of the empty set \( \emptyset \) is the empty set \( \emptyset \), we start by recalling the definition of the intrinsic frontier. The intrinsic frontier of a set \( s \) in an affine space \( P \) over a field \( \mathbb{K} \) is defined as the image of the frontier of the preimage of \( s \) under the canonical map from the affine span of \( s \) to \( P \).
+
+1. **Step 1: Simplify the Proposition Using the Definition**
+- The preimage of the empty set \( \emptyset \) under the canonical map from the affine span of \( \emptyset \) to \( P \) is the empty set. This is because there are no points in \( \emptyset \) to map.
+- The frontier of the empty set is the empty set. This is a fundamental property of the frontier in topology: the frontier of the empty set is the empty set.
+- Therefore, the intrinsic frontier of the empty set is the image of the empty set under the canonical map, which is the empty set.
+
+Thus, the intrinsic frontier of the empty set \( \emptyset \) is the empty set \( \emptyset \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : intrinsicFrontier 𝕜 (∅ : Set P) = ∅ := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Normed.Affine.AddTorsorBases
+import Mathlib.Analysis.Convex.Intrinsic
+
+
+open AffineSubspace Set
+open scoped Pointwise
+variable {𝕜 V W Q P : Type*}
+variable (𝕜) [Ring 𝕜] [AddCommGroup V] [Module 𝕜 V] [TopologicalSpace P] [AddTorsor V P]
+  {s t : Set P} {x : P}
+variable {𝕜}
+
+example : intrinsicFrontier 𝕜 (∅ : Set P) = ∅ := by

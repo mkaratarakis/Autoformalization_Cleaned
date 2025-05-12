@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Logarithmic Derivative of Integer Power: \(\logDeriv (x^n) = \frac{n}{x}\) : For any element \( x \) in a nontrivially normed field \( \mathbb{𝕜} \) and any integer \( n \), the logarithmic derivative of the function \( f(x) = x^n \) at \( x \) is given by \( \frac{n}{x} \). Formally, this can be written as:
+\[
+\logDeriv (x^n) = \frac{n}{x}.
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that the logarithmic derivative of \( f(x)^n \) is \( n \cdot \logDeriv f(x) \). Specifically, for the function \( f(x) = x \), we have:
+\[
+\logDeriv (x^n) = n \cdot \logDeriv (x).
+\]
+Next, we use the theorem that the logarithmic derivative of the identity function \( f(x) = x \) is \( \frac{1}{x} \), so:
+\[
+\logDeriv (x) = \frac{1}{x}.
+\]
+Substituting this into our previous equation, we get:
+\[
+\logDeriv (x^n) = n \cdot \frac{1}{x} = \frac{n}{x}.
+\]
+Thus, the logarithmic derivative of \( x^n \) at \( x \) is indeed \( \frac{n}{x} \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : 𝕜) (n : ℤ) : logDeriv (· ^ n) x = n / x := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.ZPow
+import Mathlib.Analysis.Calculus.LogDeriv
+
+
+open Filter Function
+open scoped Topology BigOperators Classical
+variable {𝕜 𝕜': Type*} [NontriviallyNormedField 𝕜] [NontriviallyNormedField 𝕜']
+  [NormedAlgebra 𝕜 𝕜']
+
+example (x : 𝕜) (n : ℤ) : logDeriv (· ^ n) x = n / x := by

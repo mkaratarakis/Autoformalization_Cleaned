@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Independence of Points in Projective Space is Equivalent to Linear Independence of Representatives : A family of points \( f : \iota \to \mathbb{P}(K, V) \) in a projective space \(\mathbb{P}(K, V)\) over a division ring \(K\) and a vector space \(V\) is independent if and only if the corresponding family of nonzero vectors \( \{ \text{Projectivization.rep}(f(i)) \}_{i \in \iota} \) in the ambient vector space \(V\) is linearly independent.
+
+2. **Informal Proof**  
+To prove the equivalence, we need to show two implications:
+
+1. **If the family of points \( f \) is independent, then the corresponding family of vectors \( \text{Projectivization.rep} \circ f \) is linearly independent.**
+
+Assume that the family of points \( f \) is independent. By the definition of independence in projective space, there exists a family of nonzero vectors \( ff : \iota \to V \) such that \( f(i) = \text{Projectivization.mk}(K, ff(i)) \) for all \( i \in \iota \), and the family \( ff \) is linearly independent over \( K \).
+
+For each \( i \in \iota \), there exists a nonzero scalar \( a(i) \in K \) such that \( a(i) \cdot ff(i) = \text{Projectivization.rep}(f(i)) \). We choose such a family of scalars \( a : \iota \to K^\times \) and the corresponding equalities \( ha : \forall i \in \iota, a(i) \cdot ff(i) = \text{Projectivization.rep}(f(i)) \).
+
+Since the family \( ff \) is linearly independent and the family \( a \) consists of units in \( K \), the family \( a \cdot ff \) is also linearly independent. Therefore, the family \( \text{Projectivization.rep} \circ f \) is linearly independent.
+
+2. **If the family of vectors \( \text{Projectivization.rep} \circ f \) is linearly independent, then the family of points \( f \) is independent.**
+
+Assume that the family of vectors \( \text{Projectivization.rep} \circ f \) is linearly independent. We need to show that the family of points \( f \) is independent. By the definition of independence in projective space, we need to show that for each \( i \in \iota \), \( f(i) = \text{Projectivization.mk}(K, \text{Projectivization.rep}(f(i))) \) and that \( \text{Projectivization.rep}(f(i)) \neq 0 \) for all \( i \in \iota \).
+
+Using the properties of the projective point construction and the representative function, we have \( f(i) = \text{Projectivization.mk}(K, \text{Projectivization.rep}(f(i))) \) for all \( i \in \iota \).
+
+To show that \( \text{Projectivization.rep}(f(i)) \neq 0 \) for all \( i \in \iota \), we consider an arbitrary \( i \in \iota \). By the property of the representative function, \( \text{Projectivization.rep}(f(i)) \neq 0 \) for all \( i \in \iota \).
+
+Thus, we have shown both implications, completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : Independent f ↔ LinearIndependent K (Projectivization.rep ∘ f) := by sorry
+
+4. **Prefix**
+import Mathlib.LinearAlgebra.Projectivization.Basic
+import Mathlib.LinearAlgebra.Projectivization.Independence
+
+open Projectivization
+open scoped LinearAlgebra.Projectivization
+variable {ι K V : Type*} [DivisionRing K] [AddCommGroup V] [Module K V] {f : ι → ℙ K V}
+
+example : Independent f ↔ LinearIndependent K (Projectivization.rep ∘ f) := by

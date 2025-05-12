@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Injectivity of Partial Equivalence: $b \in f(a_1)$ and $b \in f(a_2)$ implies $a_1 = a_2$ : For any partial equivalence $f : \alpha \simeq. \beta$ between types $\alpha$ and $\beta$, and for any elements $a_1, a_2 \in \alpha$ and $b \in \beta$, if $b$ is in the image of $a_1$ under $f$ and $b$ is also in the image of $a_2$ under $f$, then $a_1$ must be equal to $a_2$. In other words, if $f(a_1) = \text{some } b$ and $f(a_2) = \text{some } b$, then $a_1 = a_2$.
+
+2. **Informal Proof**  
+We start with the given partial equivalence \( f : \alpha \simeq. \beta \) and elements \( a_1, a_2 \in \alpha \) and \( b \in \beta \). We are given that \( b \in f(a_1) \) and \( b \in f(a_2) \). Using the equivalence that \( a \in f^{\text{symm}}(b) \) if and only if \( b \in f(a) \), we can rewrite the assumptions as \( a_1 \in f^{\text{symm}}(b) \) and \( a_2 \in f^{\text{symm}}(b) \).
+
+Since \( f \) is a partial equivalence, \( f^{\text{symm}} \) is the inverse of \( f \). Therefore, \( f^{\text{symm}}(b) \) is a set containing exactly one element, which is the unique element \( a \in \alpha \) such that \( b \in f(a) \). Given that both \( a_1 \) and \( a_2 \) are in \( f^{\text{symm}}(b) \), it follows that \( a_1 \) and \( a_2 \) must be the same element. Hence, \( a_1 = a_2 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (f : α ≃. β) {a₁ a₂ : α} {b : β} (h₁ : b ∈ f a₁) (h₂ : b ∈ f a₂) :
+    a₁ = a₂ := by sorry
+
+4. **Prefix**
+import Mathlib.Data.Option.Basic
+import Mathlib.Data.Set.Basic
+import Batteries.Tactic.Congr
+import Mathlib.Data.PEquiv
+
+open PEquiv
+variable {α : Type u} {β : Type v} {γ : Type w} {δ : Type x}
+open Function Option
+
+example (f : α ≃. β) {a₁ a₂ : α} {b : β} (h₁ : b ∈ f a₁) (h₂ : b ∈ f a₂) :
+    a₁ = a₂ := by

@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Negation or Self is True: $\neg x \lor x = \text{true}$ : For any boolean value $x$, the expression $\neg x \lor x$ is equal to `true`, i.e., $\neg x \lor x = \text{true}$.
+
+2. **Informal Proof**  
+To prove that for any boolean value $x$, the expression $\neg x \lor x$ is equal to `true`, we consider the two possible values of $x$:
+
+1. **Case 1: $x = \text{true}$**
+- If $x = \text{true}$, then $\neg x = \text{false}$.
+- Therefore, $\neg x \lor x = \text{false} \lor \text{true} = \text{true}$.
+
+2. **Case 2: $x = \text{false}$**
+- If $x = \text{false}$, then $\neg x = \text{true}$.
+- Therefore, $\neg x \lor x = \text{true} \lor \text{false} = \text{true}$.
+
+In both cases, the expression $\neg x \lor x$ evaluates to `true`. Hence, for any boolean value $x$, $\neg x \lor x = \text{true}$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), (!x || x) = true := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), (!x || x) = true := by

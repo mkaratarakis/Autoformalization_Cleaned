@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Legendre Symbol Congruence: \(\left(\frac{a}{p}\right) \equiv a^{(p / 2)} \pmod{p}\) : For any prime number \( p \) and any integer \( a \), the Legendre symbol \(\left(\frac{a}{p}\right)\) is congruent to \( a^{(p / 2)} \) modulo \( p \), i.e., \(\left(\frac{a}{p}\right) \equiv a^{(p / 2)} \pmod{p}\).
+
+2. **Informal Proof**  
+We start by considering two cases based on the characteristic of the ring \(\mathbb{Z}/p\mathbb{Z}\).
+
+1. **Case 1: The characteristic of \(\mathbb{Z}/p\mathbb{Z}\) is 2.**
+- **Subcase 1.1: \(a \equiv 0 \pmod{p}\).**
+- By the definition of the Legendre symbol, \(\left(\frac{a}{p}\right) = 0\).
+- Since \(a \equiv 0 \pmod{p}\), we have \(a = 0\) in \(\mathbb{Z}/p\mathbb{Z}\).
+- Therefore, \(a^{(p / 2)} = 0^{(p / 2)} = 0\).
+- Hence, \(\left(\frac{a}{p}\right) = 0 = a^{(p / 2)}\).
+- **Subcase 1.2: \(a \not\equiv 0 \pmod{p}\).**
+- Since the characteristic of \(\mathbb{Z}/p\mathbb{Z}\) is 2, we have \(p = 2\).
+- By the definition of the Legendre symbol, \(\left(\frac{a}{2}\right) = 1\) if \(a \not\equiv 0 \pmod{2}\).
+- Since \(a \not\equiv 0 \pmod{2}\), we have \(a = 1\) in \(\mathbb{Z}/2\mathbb{Z}\).
+- Therefore, \(a^{(2 / 2)} = 1^1 = 1\).
+- Hence, \(\left(\frac{a}{2}\right) = 1 = a^{(2 / 2)}\).
+
+2. **Case 2: The characteristic of \(\mathbb{Z}/p\mathbb{Z}\) is not 2.**
+- By the property of the quadratic character in a field of characteristic not 2, we have \(\left(\frac{a}{p}\right) = a^{(\text{card}(\mathbb{Z}/p\mathbb{Z}) / 2)}\).
+- Since the cardinality of \(\mathbb{Z}/p\mathbb{Z}\) is \(p\), we have \(\text{card}(\mathbb{Z}/p\mathbb{Z}) = p\).
+- Therefore, \(\left(\frac{a}{p}\right) = a^{(p / 2)}\).
+
+In both cases, we have shown that \(\left(\frac{a}{p}\right) \equiv a^{(p / 2)} \pmod{p}\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : ℤ) : (legendreSym p a : ZMod p) = (a : ZMod p) ^ (p / 2) := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.NumberTheory.LegendreSymbol.Basic
+
+open legendreSym
+open Nat
+variable (p : ℕ) [Fact p.Prime]
+open ZMod
+variable (p : ℕ) [Fact p.Prime]
+
+example (a : ℤ) : (legendreSym p a : ZMod p) = (a : ZMod p) ^ (p / 2) := by

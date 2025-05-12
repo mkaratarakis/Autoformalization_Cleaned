@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Square of Element Greater Than or Equal to One Implies Element Greater Than or Equal to One: \( 1 \leq a^2 \to 1 \leq a \) : For any lattice-ordered group \( \alpha \) and any element \( a \in \alpha \), if \( 1 \leq a^2 \), then \( 1 \leq a \).
+
+2. **Informal Proof**  
+To prove \( 1 \leq a \), it suffices to show that \( (a \sqcap 1) \cdot (a \sqcap 1) = a \sqcap 1 \). If this is true, then by the properties of meet and multiplication, we can conclude \( 1 \leq a \).
+
+We simplify the expression \( (a \sqcap 1) \cdot (a \sqcap 1) \) step by step using the following properties:
+1. Distributivity of meet over multiplication: \( c \cdot (a \sqcap b) = (c \cdot a) \sqcap (c \cdot b) \),
+2. Distributivity of meet over multiplication: \( (a \sqcap b) \cdot c = (a \cdot c) \sqcap (b \cdot c) \),
+3. Definition of square in a monoid: \( a^2 = a \cdot a \),
+4. Multiplicative identity: \( a \cdot 1 = a \),
+5. Multiplicative identity: \( 1 \cdot a = a \),
+6. Associativity of meet: \( (a \sqcap b) \sqcap c = a \sqcap (b \sqcap c) \),
+7. Left idempotence of meet: \( a \sqcap (a \sqcap b) = a \sqcap b \),
+8. Commutativity of meet: \( a \sqcap b = b \sqcap a \),
+9. Associativity of meet: \( (a \sqcap b) \sqcap c = a \sqcap (b \sqcap c) \),
+10. Meet identity: \( 1 \leq a^2 \) implies \( 1 \sqcap a^2 = 1 \).
+
+Thus, we have:
+\[
+(a \sqcap 1) \cdot (a \sqcap 1) = (a \cdot a) \sqcap (1 \cdot a) \sqcap (a \sqcap 1) = a^2 \sqcap a \sqcap (a \sqcap 1) = a \sqcap (1 \sqcap a^2) = a \sqcap 1
+\]
+This completes the proof of the new goal, and hence \( 1 \leq a \). Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example 
+    {a : α} (ha : 1 ≤ a ^ 2) : 1 ≤ a := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Group.OrderIso
+import Mathlib.Algebra.Order.Group.Lattice
+
+
+open Function
+variable {α β : Type*}
+variable [Lattice α] [Group α]
+variable [CovariantClass α α (· * ·) (· ≤ ·)] [CovariantClass α α (swap (· * ·)) (· ≤ ·)]
+
+example 
+    {a : α} (ha : 1 ≤ a ^ 2) : 1 ≤ a := by

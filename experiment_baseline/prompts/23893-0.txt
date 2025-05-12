@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Almost Everywhere Measurability of Function from Real and Imaginary Parts : For any type \(\alpha\) and a real or complex-like field \(\mathbb{𝕜}\), if a function \( f : \alpha \to \mathbb{𝕜} \) is almost everywhere measurable with respect to a measure \(\mu\) on \(\alpha\) in both its real and imaginary parts, then \( f \) itself is almost everywhere measurable with respect to \(\mu\). Formally, if \( \text{AEMeasurable}(\text{Re}(f), \mu) \) and \( \text{AEMeasurable}(\text{Im}(f), \mu) \), then \( \text{AEMeasurable}(f, \mu) \).
+
+2. **Informal Proof**  
+To prove that \( f \) is almost everywhere measurable, we start by noting that the real part \( \text{Re}(f) \) and the imaginary part \( \text{Im}(f) \) of \( f \) are both almost everywhere measurable with respect to the measure \(\mu\).
+
+1. **Step 1:**
+We use the fact that the sum of two almost everywhere measurable functions is almost everywhere measurable. Specifically, we consider the real part of \( f \) and the imaginary part of \( f \) multiplied by the imaginary unit \( i \). Since the real part \( \text{Re}(f) \) and the imaginary part \( \text{Im}(f) \) are both almost everywhere measurable, and the canonical coercion from real numbers to the real or complex-like field is measurable, the functions \( \text{Re}(f) \) and \( \text{Im}(f) \cdot i \) are almost everywhere measurable. Therefore, their sum \( \text{Re}(f) + \text{Im}(f) \cdot i \) is almost everywhere measurable. We need to show that this sum is equal to \( f \).
+
+2. **Step 2:**
+We use the property that for any element \( z \) in a real or complex-like field, the sum of its real part and its imaginary part multiplied by the imaginary unit \( i \) is equal to \( z \). This property is symmetric, so we can write \( f(x) = \text{Re}(f(x)) + \text{Im}(f(x)) \cdot i \). This completes the proof that \( f \) is almost everywhere measurable.
+
+Thus, we have shown that if \( \text{AEMeasurable}(\text{Re}(f), \mu) \) and \( \text{AEMeasurable}(\text{Im}(f), \mu) \), then \( \text{AEMeasurable}(f, \mu) \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hre : AEMeasurable (fun x => RCLike.re (f x)) μ)
+    (him : AEMeasurable (fun x => RCLike.im (f x)) μ) : AEMeasurable f μ := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.RCLike.Lemmas
+import Mathlib.MeasureTheory.Constructions.BorelSpace.Complex
+import Mathlib.MeasureTheory.Function.SpecialFunctions.RCLike
+
+
+open NNReal ENNReal
+variable {𝕜 : Type*} [RCLike 𝕜]
+variable {α 𝕜 : Type*} [RCLike 𝕜] {m : MeasurableSpace α} {f : α → 𝕜}
+  {μ : MeasureTheory.Measure α}
+variable {α 𝕜 : Type*} [RCLike 𝕜] [MeasurableSpace α] {f : α → 𝕜} {μ : MeasureTheory.Measure α}
+
+example (hre : AEMeasurable (fun x => RCLike.re (f x)) μ)
+    (him : AEMeasurable (fun x => RCLike.im (f x)) μ) : AEMeasurable f μ := by

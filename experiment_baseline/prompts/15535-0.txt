@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Multiplication Preserves Strict Inequality on the Left in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\) such that \(a > 0\), the inequality \(a \cdot b < a \cdot c\) holds if and only if \(b < c\).
+
+2. **Informal Proof**  
+We will prove the theorem by induction on \(a\).
+
+**Base Case:**
+For \(a = 0\), the assumption \(0 < 0\) is false. Therefore, the implication \(0 \cdot b < 0 \cdot c \leftrightarrow b < c\) is trivially true.
+
+**Inductive Step:**
+Assume \(a = n + 1\) and that the inductive hypothesis \(0 < n \rightarrow (n \cdot b < n \cdot c \leftrightarrow b < c)\) holds. We need to show that \((n + 1) \cdot b < (n + 1) \cdot c \leftrightarrow b < c\).
+
+First, we use the definitions of successor and the right distributive property to simplify the goal:
+\[
+(n + 1) \cdot b = n \cdot b + b \quad \text{and} \quad (n + 1) \cdot c = n \cdot c + c
+\]
+Thus, the goal becomes:
+\[
+n \cdot b + b + b < n \cdot c + c + c \leftrightarrow b < c
+\]
+
+We use the inductive hypothesis \(n \cdot b < n \cdot c \leftrightarrow b < c\) and the fact that adding the same positive number to both sides of an inequality preserves the inequality. Therefore, the goal is trivially true by the properties of natural numbers and the inductive hypothesis.
+
+By induction, the theorem holds for all natural numbers \(a > 0\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a0 : 0 < a) : a * b < a * c ↔ b < c := by sorry
+
+4. **Prefix**
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example (a0 : 0 < a) : a * b < a * c ↔ b < c := by

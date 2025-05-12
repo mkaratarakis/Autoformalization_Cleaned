@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Element in Support of Multivariate Quotient Polynomial Functor if and only if in Image of Universal Set : For any natural number \( n \), a multivariate quotient polynomial functor \( F \) of \( n \) variables, and a type vector \( \alpha \) of length \( n \), an element \( u \) of type \( \alpha_i \) is in the support of \( x \) at index \( i \) if and only if for all elements \( a \) of the type \( (MvQPF.P F).A \) and all functions \( f \) from \( (MvQPF.P F).B a \) to \( \alpha \), if \( x = MvQPF.abs \langle a, f \rangle \), then \( u \) is in the image of \( f_i \) applied to the universal set \( \text{Set.univ} \).
+
+2. **Informal Proof**  
+We start by using the definition of the support of \( x \) at index \( i \). The support of \( x \) at index \( i \) is the set of elements \( y \) in \( \alpha_i \) such that for any family of propositions \( P \) indexed by the elements of \( \alpha \), if \( x \) is in the support of \( P \), then the proposition \( P y \) holds. After simplifying the definition, we split the goal into two directions of the equivalence.
+
+1. **(\(\Rightarrow\))** Assume \( u \in \text{supp } x i \). This means for any family of propositions \( P \) indexed by the elements of \( \alpha \), if \( x \) is in the support of \( P \), then \( P i u \) holds. We need to show that for all \( a \) and \( f \) such that \( x = \text{MvQPF.abs} \langle a, f \rangle \), \( u \in f i '' \text{Set.univ} \).
+
+- Let \( a \) and \( f \) be such that \( x = \text{MvQPF.abs} \langle a, f \rangle \).
+- We need to show \( u \in f i '' \text{Set.univ} \).
+- By the definition of the image of a set under a function, \( u \in f i '' \text{Set.univ} \) if and only if there exists \( j \in \text{Set.univ} \) such that \( f i j = u \).
+- Since \( j \in \text{Set.univ} \) for any \( j \), it follows that \( f i j \in f i '' \text{Set.univ} \).
+
+2. **(\(\Leftarrow\))** Assume for all \( a \) and \( f \) such that \( x = \text{MvQPF.abs} \langle a, f \rangle \), \( u \in f i '' \text{Set.univ} \). We need to show \( u \in \text{supp } x i \).
+
+- Let \( P \) be a family of propositions indexed by the elements of \( \alpha \).
+- Assume \( x \) is in the support of \( P \).
+- We need to show \( P i u \).
+- By the definition of the support, there exist \( a \) and \( f \) such that \( x = \text{MvQPF.abs} \langle a, f \rangle \) and for all \( i \) and \( j \), \( P (f i j) \).
+- Since \( u \in f i '' \text{Set.univ} \), there exists \( j \) such that \( f i j = u \).
+- By the hypothesis, \( P (f i j) \) holds, so \( P i u \) holds.
+
+Thus, we have shown both directions of the equivalence, completing the proof.
+
+3. **Formal Theorem**  
+example {α : TypeVec n} (x : F α) (i) (u : α i) :
+    u ∈ supp x i ↔ ∀ a f, abs ⟨a, f⟩ = x → u ∈ f i '' univ := by sorry
+
+4. **Prefix**
+import Mathlib.Data.PFunctor.Multivariate.Basic
+import Mathlib.Data.QPF.Multivariate.Basic
+
+open MvQPF
+open MvFunctor
+variable {n : ℕ} {F : TypeVec.{u} n → Type*} [q : MvQPF F]
+open MvFunctor (LiftP LiftR)
+open Set
+open MvFunctor (LiftP LiftR)
+
+example {α : TypeVec n} (x : F α) (i) (u : α i) :
+    u ∈ supp x i ↔ ∀ a f, abs ⟨a, f⟩ = x → u ∈ f i '' univ := by

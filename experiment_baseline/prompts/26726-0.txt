@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Quadratic Reciprocity for Jacobi Symbol: \( J(a \mid b) = J(b \mid a) \) when \( a \equiv 1 \pmod{4} \) and \( b \) is odd : For any natural numbers \( a \) and \( b \) such that \( a \equiv 1 \pmod{4} \) and \( b \) is odd, the Jacobi symbol \( J(a \mid b) \) is equal to \( J(b \mid a) \).
+
+2. **Informal Proof**  
+We start by noting that the quadratic reciprocity law for the Jacobi symbol states that for any odd natural numbers \( a \) and \( b \):
+\[ J(a \mid b) = (-1)^{\frac{a}{2} \cdot \frac{b}{2}} \cdot J(b \mid a). \]
+Given that \( a \equiv 1 \pmod{4} \), we know that \( a \) is odd. Therefore, we can apply the quadratic reciprocity law to get:
+\[ J(a \mid b) = (-1)^{\frac{a}{2} \cdot \frac{b}{2}} \cdot J(b \mid a). \]
+Next, we use the property that for any natural number \( n \equiv 1 \pmod{4} \), \( (-1)^{\frac{n}{2}} = 1 \). Applying this to \( a \), we get:
+\[ (-1)^{\frac{a}{2}} = 1. \]
+Thus, the expression simplifies to:
+\[ (-1)^{\frac{a}{2} \cdot \frac{b}{2}} = 1^{\frac{b}{2}} = 1. \]
+Finally, we use the property that \( 1 \cdot J(b \mid a) = J(b \mid a) \). Therefore, we have:
+\[ J(a \mid b) = J(b \mid a). \]
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : ℕ} (ha : a % 4 = 1) (hb : Odd b) :
+    J(a | b) = J(b | a) := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+
+open jacobiSym
+open Nat ZMod
+open NumberTheorySymbols
+open jacobiSym
+
+example {a b : ℕ} (ha : a % 4 = 1) (hb : Odd b) :
+    J(a | b) = J(b | a) := by

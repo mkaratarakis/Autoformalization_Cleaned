@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Sum Equals Zero in Natural Numbers with Bottom Element: \( n + m = 0 \leftrightarrow n = 0 \land m = 0 \) : For any elements \( n \) and \( m \) in the type \( \mathbb{N} \cup \{\bot\} \) (natural numbers with a bottom element adjoined), the sum \( n + m \) is equal to 0 if and only if both \( n \) and \( m \) are equal to 0.
+
+2. **Informal Proof**  
+We need to show that \( n + m = 0 \) if and only if \( n = 0 \) and \( m = 0 \) for any \( n, m \in \mathbb{N} \cup \{\bot\} \).
+
+1. **Case 1: \( n = \bot \)**
+- We need to show that \( \bot + m = 0 \) if and only if \( \bot = 0 \) and \( m = 0 \).
+- Using the property that adding the bottom element to any element results in the bottom element, we have \( \bot + m = \bot \).
+- Since \( \bot \neq 0 \), the only way \( \bot + m = 0 \) is if \( m = 0 \). However, \( \bot \neq 0 \), so this case is vacuously true.
+
+2. **Case 2: \( n = a \) for some \( a \in \mathbb{N} \)**
+- We need to consider the cases for \( m \).
+
+- **Subcase 2.1: \( m = \bot \)**
+- We need to show that \( a + \bot = 0 \) if and only if \( a = 0 \) and \( \bot = 0 \).
+- Using the property that adding the bottom element to any element results in the bottom element, we have \( a + \bot = \bot \).
+- Since \( \bot \neq 0 \), the only way \( a + \bot = 0 \) is if \( a = 0 \). However, \( \bot \neq 0 \), so this subcase is vacuously true.
+
+- **Subcase 2.2: \( m = b \) for some \( b \in \mathbb{N} \)**
+- We need to show that \( a + b = 0 \) if and only if \( a = 0 \) and \( b = 0 \).
+- Using the property that the sum of two nonnegative elements is zero if and only if both elements are zero, we have \( a + b = 0 \) if and only if \( a = 0 \) and \( b = 0 \).
+
+Since all cases have been considered and the conditions are satisfied, we conclude that \( n + m = 0 \) if and only if \( n = 0 \) and \( m = 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Algebra.Order.Monoid.WithTop
+import Mathlib.Data.Nat.Cast.WithTop
+import Mathlib.Data.Nat.WithBot
+
+open Nat
+open WithBot
+
+
+example {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by

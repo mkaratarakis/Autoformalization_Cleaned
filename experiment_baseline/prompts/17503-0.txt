@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Element in Centralizer if and only if Commutator Equals Identity: \( g \in \text{centralizer}(S) \leftrightarrow \forall h \in S, h * g * h^{-1} * g^{-1} = 1 \) : For any group \( G \) and any subset \( S \subseteq G \), an element \( g \in G \) is in the centralizer of \( S \) if and only if for all \( h \in S \), the commutator \( h * g * h^{-1} * g^{-1} \) is equal to the identity element \( 1 \). Formally, \( g \in \text{centralizer}(S) \) if and only if \( \forall h \in S, h * g * h^{-1} * g^{-1} = 1 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the centralizer and the properties of group elements. Specifically, we use the following steps:
+
+1. **Simplification:**
+- We use the definition of the centralizer, which states that \( g \in \text{centralizer}(S) \) if and only if for all \( h \in S \), \( h \cdot g \cdot h^{-1} = g \).
+- We also use the property that \( a \cdot b^{-1} = c \) if and only if \( a = c \cdot b \).
+- Additionally, we use the property that \( 1 \cdot a = a \).
+
+2. **Equivalence:**
+- Using these properties, we can simplify the condition \( h \cdot g \cdot h^{-1} = g \) to \( h \cdot g \cdot h^{-1} \cdot g^{-1} = 1 \).
+
+3. **Conclusion:**
+- Therefore, \( g \in \text{centralizer}(S) \) if and only if for all \( h \in S \), \( h \cdot g \cdot h^{-1} \cdot g^{-1} = 1 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {g : G} {s : Set G} :
+    g ∈ centralizer s ↔ ∀ h ∈ s, h * g * h⁻¹ * g⁻¹ = 1 := by sorry
+
+4. **Prefix**
+import Mathlib.GroupTheory.Subgroup.Center
+import Mathlib.GroupTheory.Submonoid.Centralizer
+import Mathlib.GroupTheory.Subgroup.Centralizer
+
+open Subgroup
+variable {G : Type*} [Group G]
+variable {H K : Subgroup G}
+
+example {g : G} {s : Set G} :
+    g ∈ centralizer s ↔ ∀ h ∈ s, h * g * h⁻¹ * g⁻¹ = 1 := by

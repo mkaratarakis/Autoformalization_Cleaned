@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Stability of Generalised Continued Fraction Approximations at Next Step Under Termination : For any division ring \( K \), a sequence \( s \) of pairs \((a_i, b_i)\) in \( K \), and a natural number \( n \), if the sequence \( s \) terminates at position \( n \), then the approximation of the generalised continued fraction up to position \( n + 1 \) is equal to the approximation up to position \( n \). In other words, if \( s \) terminates at \( n \), then \( \text{convs'Aux}(s, n + 1) = \text{convs'Aux}(s, n) \).
+
+2. **Informal Proof**  
+We need to show that if the sequence \( s \) terminates at position \( n \), then the approximation of the generalised continued fraction up to position \( n + 1 \) is equal to the approximation up to position \( n \).
+
+1. **Base Case:**
+- If \( n = 0 \), the sequence \( s \) terminates at position \( 0 \). This means the first element of \( s \) is `none`.
+- By the definition of `convs'Aux`, the approximation at position \( 0 \) is \( 0 \).
+- Therefore, the approximation at position \( 0 + 1 \) is also \( 0 \), and the base case is proved.
+
+2. **Inductive Step:**
+- Assume the statement holds for \( n \). That is, if the sequence \( s \) terminates at position \( n \), then \( \text{convs'Aux}(s, n + 1) = \text{convs'Aux}(s, n) \).
+- We need to show that if the sequence \( s \) terminates at position \( n + 1 \), then \( \text{convs'Aux}(s, n + 1 + 1) = \text{convs'Aux}(s, n + 1) \).
+
+3. **Case Analysis:**
+- **Case 1: The head of the sequence \( s \) is `none`:**
+- If the head of \( s \) is `none`, the sequence \( s \) terminates at position \( 0 \).
+- By the definition of `convs'Aux`, the approximation at position \( 0 \) is \( 0 \).
+- Therefore, the approximation at position \( 0 + 1 \) is also \( 0 \), and the case is proved.
+- **Case 2: The head of the sequence \( s \) is `some gp_head`:**
+- If the head of \( s \) is `some gp_head`, we need to show that the approximation of the generalised continued fraction up to position \( n + 1 + 1 \) is equal to the approximation up to position \( n + 1 \).
+- We show that the tail of the sequence \( s \) terminates at position \( n \).
+- Using the inductive hypothesis, we have \( \text{convs'Aux}(s_{\text{tail}}, n + 1) = \text{convs'Aux}(s_{\text{tail}}, n) \).
+- By the definition of `convs'Aux`, the approximation at position \( n + 1 + 1 \) is equal to the approximation at position \( n + 1 \).
+
+Thus, by induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {s : Stream'.Seq <| Pair K}
+    (terminatedAt_n : s.TerminatedAt n) : convs'Aux s (n + 1) = convs'Aux s n := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.ContinuedFractions.Translations
+import Mathlib.Algebra.ContinuedFractions.TerminatedStable
+
+open GenContFract
+variable {K : Type*} {g : GenContFract K} {n m : ℕ}
+variable [DivisionRing K]
+
+example {s : Stream'.Seq <| Pair K}
+    (terminatedAt_n : s.TerminatedAt n) : convs'Aux s (n + 1) = convs'Aux s n := by

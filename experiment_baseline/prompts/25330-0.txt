@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Equivalence of False Equality in Boolean Type: $\text{false} = b \leftrightarrow b = \text{false}$ : For any boolean value $b$, the statement $\text{false} = b$ is equivalent to $b = \text{false}$, i.e., $\text{false} = b \leftrightarrow b = \text{false}$.
+
+2. **Informal Proof**  
+To prove the equivalence $\text{false} = b \leftrightarrow b = \text{false}$ for any boolean value $b$, we will consider every possible case of $b$.
+
+1. **Case 1: $b = \text{false}$**
+- We need to show that $(\text{false} = \text{false}) = (\text{false} = \text{false})$.
+- This is trivially true because both sides of the equality are the same.
+
+2. **Case 2: $b = \text{true}$**
+- We need to show that $(\text{false} = \text{true}) = (\text{true} = \text{false})$.
+- Using the fact that $\text{true} \neq \text{false}$, both sides of the equality are false, so the proposition is true.
+
+Since both cases are true, we have shown that $\text{false} = b \leftrightarrow b = \text{false}$ for any boolean value $b$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example (b : Bool) : (false = b) = (b = false) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (b : Bool) : (false = b) = (b = false) := by

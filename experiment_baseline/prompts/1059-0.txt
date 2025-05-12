@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Swapping Arguments in Binary Map of Optional Values : For any types \( \alpha \), \( \beta \), and \( \gamma \), and for any binary function \( f : \alpha \to \beta \to \gamma \), and for any optional values \( a : \text{Option} \, \alpha \) and \( b : \text{Option} \, \beta \), the following holds:
+\[
+\text{Option.map₂} \, f \, a \, b = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, b \, a
+\]
+In other words, swapping the arguments of the binary function \( f \) and the optional values \( a \) and \( b \) in the `Option.map₂` operation results in the same output.
+
+2. **Informal Proof**  
+To prove the theorem, we will consider every possible case for the optional values \( a \) and \( b \).
+
+1. **Case 1: \( a = \text{none} \) and \( b = \text{none} \)**
+\[
+\text{Option.map₂} \, f \, \text{none} \, \text{none} = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, \text{none} \, \text{none}
+\]
+The equality holds trivially due to the reflexive property.
+
+2. **Case 2: \( a = \text{none} \) and \( b = \text{some} \, val \)**
+\[
+\text{Option.map₂} \, f \, \text{none} \, (\text{some} \, val) = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, (\text{some} \, val) \, \text{none}
+\]
+The equality holds trivially due to the reflexive property.
+
+3. **Case 3: \( a = \text{some} \, val \) and \( b = \text{none} \)**
+\[
+\text{Option.map₂} \, f \, (\text{some} \, val) \, \text{none} = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, \text{none} \, (\text{some} \, val)
+\]
+The equality holds trivially due to the reflexive property.
+
+4. **Case 4: \( a = \text{some} \, val_1 \) and \( b = \text{some} \, val_2 \)**
+\[
+\text{Option.map₂} \, f \, (\text{some} \, val_1) \, (\text{some} \, val_2) = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, (\text{some} \, val_2) \, (\text{some} \, val_1)
+\]
+The equality holds trivially due to the reflexive property.
+
+Since all cases have been considered and the equality holds in each case, the theorem is proved.
+
+3. **Formal Theorem**  
+example (f : α → β → γ) (a : Option α) (b : Option β) :
+    map₂ f a b = map₂ (fun a b => f b a) b a := by sorry
+
+4. **Prefix**
+import Mathlib.Logic.Function.Defs
+import Batteries.Tactic.Init
+import Mathlib.Data.Option.NAry
+
+open Option
+open Function
+variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Option β} {c : Option γ}
+
+example (f : α → β → γ) (a : Option α) (b : Option β) :
+    map₂ f a b = map₂ (fun a b => f b a) b a := by

@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Comparison in Dual Order Type is Reversed : For any type \( \alpha \) equipped with a less-than relation \( < \), and for any elements \( a, b \in \alpha \) and any ordering \( o \), the predicate \( o \) compares \( \text{toDual}(a) \) and \( \text{toDual}(b) \) in the dual order type \( \alpha^\mathrm{od} \) if and only if \( o \) compares \( b \) and \( a \) in the original type \( \alpha \). Specifically:
+- If \( o = \text{lt} \), then \( \text{toDual}(a) < \text{toDual}(b) \) if and only if \( b < a \).
+- If \( o = \text{eq} \), then \( \text{toDual}(a) = \text{toDual}(b) \) if and only if \( b = a \).
+- If \( o = \text{gt} \), then \( \text{toDual}(a) > \text{toDual}(b) \) if and only if \( b > a \).
+
+2. **Informal Proof**  
+We will discuss every possible case of the ordering \( o \):
+
+1. **Case \( o = \text{lt} \):**
+The statement \( \text{lt.Compares} (\text{toDual}(a)) (\text{toDual}(b)) \leftrightarrow \text{lt.Compares} b a \) is trivially true by reflexivity.
+
+2. **Case \( o = \text{eq} \):**
+The statement \( \text{eq.Compares} (\text{toDual}(a)) (\text{toDual}(b)) \leftrightarrow \text{eq.Compares} b a \) is equivalent to \( a = b \leftrightarrow b = a \), which is true by the symmetry of equality.
+
+3. **Case \( o = \text{gt} \):**
+The statement \( \text{gt.Compares} (\text{toDual}(a)) (\text{toDual}(b)) \leftrightarrow \text{gt.Compares} b a \) is trivially true by reflexivity.
+
+Thus, for each possible ordering \( o \), the comparison in the dual order type \( \alpha^\mathrm{od} \) is correctly reversed with respect to the original type \( \alpha \). This completes the proof.
+
+3. **Formal Theorem**  
+example [LT α] {a b : α} {o : Ordering} :
+    Compares o (toDual a) (toDual b) ↔ Compares o b a := by sorry
+
+4. **Prefix**
+import Mathlib.Data.Ordering.Basic
+import Mathlib.Order.Synonym
+import Mathlib.Order.Compare
+
+
+variable {α β : Type*}
+open Ordering OrderDual
+
+example [LT α] {a b : α} {o : Ordering} :
+    Compares o (toDual a) (toDual b) ↔ Compares o b a := by

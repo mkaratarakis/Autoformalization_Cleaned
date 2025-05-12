@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Symmetry of Quadratic Reciprocity Sign for Odd Natural Numbers: \(\text{qrSign}(m, n) = \text{qrSign}(n, m)\) : For any odd natural numbers \( m \) and \( n \), the quadratic reciprocity sign function \( \text{qrSign} \) is symmetric, i.e., \( \text{qrSign}(m, n) = \text{qrSign}(n, m) \).
+
+2. **Informal Proof**  
+To prove that \( \text{qrSign}(m, n) = \text{qrSign}(n, m) \) for any odd natural numbers \( m \) and \( n \), we start by using the property of the quadratic reciprocity sign function. Specifically, for any odd natural numbers \( m \) and \( n \), we have:
+\[
+\text{qrSign}(m, n) = (-1)^{\frac{m}{2} \cdot \frac{n}{2}}
+\]
+Similarly,
+\[
+\text{qrSign}(n, m) = (-1)^{\frac{n}{2} \cdot \frac{m}{2}}
+\]
+Since multiplication is commutative, we have:
+\[
+\frac{m}{2} \cdot \frac{n}{2} = \frac{n}{2} \cdot \frac{m}{2}
+\]
+Therefore,
+\[
+(-1)^{\frac{m}{2} \cdot \frac{n}{2}} = (-1)^{\frac{n}{2} \cdot \frac{m}{2}}
+\]
+This implies:
+\[
+\text{qrSign}(m, n) = \text{qrSign}(n, m)
+\]
+Thus, the quadratic reciprocity sign function is symmetric for any odd natural numbers \( m \) and \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n : ℕ} (hm : Odd m) (hn : Odd n) : qrSign m n = qrSign n m := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+
+open qrSign
+open Nat ZMod
+open NumberTheorySymbols
+open jacobiSym
+
+example {m n : ℕ} (hm : Odd m) (hn : Odd n) : qrSign m n = qrSign n m := by

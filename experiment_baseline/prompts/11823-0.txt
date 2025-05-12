@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Epsilon NFA Evaluation of Appended Singleton List Equals Step Set of Evaluation : For any epsilon Nondeterministic Finite Automaton (εNFA) \( M \) over an alphabet \( \alpha \) and a set of states \( \sigma \), and for any set of states \( S \subseteq \sigma \), any list of characters \( x \) in \( \alpha \), and any input symbol \( a \in \alpha \), the evaluation of \( M \) from \( S \) with the list \( x \) followed by the singleton list containing \( a \) (denoted as \( x ++ [a] \)) is equal to the set of states reached by applying the step function to the set of states obtained by evaluating \( M \) from \( S \) with the list \( x \) and the input symbol \( a \). Formally, \( M.\text{evalFrom}(S, x ++ [a]) = M.\text{stepSet}(M.\text{evalFrom}(S, x), a) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of \( M.\text{evalFrom} \). By definition, \( M.\text{evalFrom}(S, x) \) is the set of all possible states that can be reached from any state in \( S \) by following the transitions in \( M \) with input \( x \). This is computed as:
+\[
+M.\text{evalFrom}(S, x) = \text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x)
+\]
+where \( M.\text{εClosure}(S) \) is the set of all states reachable from \( S \) via epsilon transitions.
+
+Next, we use the properties of the left fold operation over lists. Specifically, we use the property that the left fold over the concatenation of two lists is equivalent to the left fold over the second list starting with the result of the left fold over the first list:
+\[
+\text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x ++ [a]) = \text{foldl}(M.\text{stepSet}, \text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x), [a])
+\]
+
+We then use the property of the left fold over a cons list, which states that the left fold over a list starting with an element is equivalent to the left fold over the tail of the list starting with the result of applying the function to the initial value and the first element:
+\[
+\text{foldl}(M.\text{stepSet}, \text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x), [a]) = \text{foldl}(M.\text{stepSet}, M.\text{stepSet}(\text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x), a), \text{nil})
+\]
+
+Finally, we use the property of the left fold over an empty list, which states that the left fold over an empty list starting with any initial value is equal to that initial value:
+\[
+\text{foldl}(M.\text{stepSet}, M.\text{stepSet}(\text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x), a), \text{nil}) = M.\text{stepSet}(\text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x), a)
+\]
+
+Combining these properties, we get:
+\[
+M.\text{evalFrom}(S, x ++ [a]) = \text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x ++ [a]) = M.\text{stepSet}(\text{foldl}(M.\text{stepSet}, M.\text{εClosure}(S), x), a) = M.\text{stepSet}(M.\text{evalFrom}(S, x), a)
+\]
+
+Thus, we have shown that:
+\[
+M.\text{evalFrom}(S, x ++ [a]) = M.\text{stepSet}(M.\text{evalFrom}(S, x), a)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (S : Set σ) (x : List α) (a : α) :
+    M.evalFrom S (x ++ [a]) = M.stepSet (M.evalFrom S x) a := by sorry
+
+4. **Prefix**
+import Mathlib.Computability.NFA
+import Mathlib.Computability.EpsilonNFA
+
+open εNFA
+open Set
+open Computability
+variable {α : Type u} {σ σ' : Type v} (M : εNFA α σ) {S : Set σ} {x : List α} {s : σ} {a : α}
+variable {M}
+variable (M)
+
+example (S : Set σ) (x : List α) (a : α) :
+    M.evalFrom S (x ++ [a]) = M.stepSet (M.evalFrom S x) a := by

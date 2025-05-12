@@ -1,0 +1,25 @@
+
+1. **Informal Theorem**  
+Membership in Open-Open Interval Multiset: \( x \in (a, b) \leftrightarrow a < x \land x < b \) : For any type \( \alpha \) equipped with a preorder and a locally finite order, and for any elements \( a, b, x \in \alpha \), the element \( x \) belongs to the open-open interval multiset \((a, b)\) if and only if \( a < x \) and \( x < b \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the open-open interval multiset \( \text{Multiset.Ioo} \, a \, b \). By definition, \( \text{Multiset.Ioo} \, a \, b \) is the multiset of elements \( x \) such that \( a < x \) and \( x < b \).
+
+Next, we use the fact that membership in a finite set is equivalent to membership in its underlying multiset. Specifically, for any finite set \( s \), \( x \in s \) if and only if \( x \in s.val \). Applying this to the finite set \( \text{Finset.Ioo} \, a \, b \), we have \( x \in \text{Finset.Ioo} \, a \, b \) if and only if \( x \in (\text{Finset.Ioo} \, a \, b).val \).
+
+Finally, we use the theorem that states \( x \in \text{Finset.Ioo} \, a \, b \) if and only if \( a < x \) and \( x < b \). Combining these steps, we conclude that \( x \in \text{Multiset.Ioo} \, a \, b \) if and only if \( a < x \) and \( x < b \).
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : x ∈ Ioo a b ↔ a < x ∧ x < b := by sorry
+
+4. **Prefix**
+import Mathlib.Order.Interval.Finset.Basic
+import Mathlib.Order.Interval.Multiset
+
+open Multiset
+variable {α : Type*}
+variable [Preorder α] [LocallyFiniteOrder α] {a b x : α}
+
+example : x ∈ Ioo a b ↔ a < x ∧ x < b := by

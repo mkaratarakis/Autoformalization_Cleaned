@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Negation of L-series Convergence: \(\sum_{n=1}^{\infty} \text{term}(-f, s, n) = -a\) : For any function \( f : \mathbb{N} \to \mathbb{C} \), any complex number \( s \in \mathbb{C} \), and any complex number \( a \in \mathbb{C} \), if the L-series of \( f \) converges at \( s \) to \( a \), then the L-series of \(-f\) converges at \( s \) to \(-a\). Mathematically, this is expressed as:
+\[ \text{If } \sum_{n=1}^{\infty} \text{term}(f, s, n) = a, \text{ then } \sum_{n=1}^{\infty} \text{term}(-f, s, n) = -a. \]
+
+2. **Informal Proof**  
+Assume that the L-series of \( f \) converges at \( s \) to \( a \). This means:
+\[ \sum_{n=1}^{\infty} \text{term}(f, s, n) = a. \]
+We need to show that the L-series of \(-f\) converges at \( s \) to \(-a\). By the definition of the L-series, the \( n \)-th term of the L-series of \(-f\) evaluated at \( s \) is:
+\[ \text{term}(-f, s, n) = -\text{term}(f, s, n). \]
+Since the L-series of \( f \) converges to \( a \), the L-series of \(-f\) converges to \(-a\) by the property of the negation of an unconditional sum in a commutative topological additive group. Therefore, we have:
+\[ \sum_{n=1}^{\infty} \text{term}(-f, s, n) = -a. \]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {f : ℕ → ℂ} {s a : ℂ} (hf : LSeriesHasSum f s a) :
+    LSeriesHasSum (-f) s (-a) := by sorry
+
+4. **Prefix**
+import Mathlib.NumberTheory.LSeries.Basic
+import Mathlib.NumberTheory.LSeries.Linearity
+
+open LSeriesHasSum
+open LSeries
+
+example {f : ℕ → ℂ} {s a : ℂ} (hf : LSeriesHasSum f s a) :
+    LSeriesHasSum (-f) s (-a) := by

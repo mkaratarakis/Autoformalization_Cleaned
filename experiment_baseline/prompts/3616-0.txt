@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Lift of Continuum Cardinality is Equal to Continuum: \( \mathfrak{c}^{\max(v, u_1)} = \mathfrak{c} \) : The cardinality of the continuum, denoted by \( \mathfrak{c} \), remains unchanged when lifted to a higher universe. Specifically, for any universe \( v \) and \( u_1 \), the lift of \( \mathfrak{c} \) from universe \( v \) to universe \( \max(v, u_1) \) is equal to \( \mathfrak{c} \) itself, i.e., \( \mathfrak{c}^{\max(v, u_1)} = \mathfrak{c} \).
+
+2. **Informal Proof**  
+We begin by expressing the continuum cardinality \( \mathfrak{c} \) as \( 2^{\aleph_0} \). Using the property that lifting the exponentiation of 2 to any cardinal \( a \) results in the exponentiation of 2 to the lifted cardinal \( a \), we have:
+
+\[
+\text{Cardinal.lift}(2^{\aleph_0}) = 2^{\text{Cardinal.lift}(\aleph_0)}
+\]
+
+Next, we use the fact that lifting \( \aleph_0 \) to any universe level results in \( \aleph_0 \) itself:
+
+\[
+\text{Cardinal.lift}(\aleph_0) = \aleph_0
+\]
+
+Thus, we get:
+
+\[
+2^{\text{Cardinal.lift}(\aleph_0)} = 2^{\aleph_0}
+\]
+
+Finally, we recognize that \( 2^{\aleph_0} \) is equal to \( \mathfrak{c} \):
+
+\[
+2^{\aleph_0} = \mathfrak{c}
+\]
+
+Therefore, we have:
+
+\[
+\text{Cardinal.lift}(\mathfrak{c}) = \mathfrak{c}
+\]
+
+This completes the proof that the lift of the continuum cardinality to any higher universe is equal to the continuum cardinality itself.
+
+3. **Formal Theorem**  
+example : lift.{v} 𝔠 = 𝔠 := by sorry
+
+4. **Prefix**
+import Mathlib.SetTheory.Cardinal.Ordinal
+import Mathlib.SetTheory.Cardinal.Continuum
+
+open Cardinal
+open Cardinal
+
+example : lift.{v} 𝔠 = 𝔠 := by

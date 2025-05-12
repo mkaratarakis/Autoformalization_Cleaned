@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Neighborhood Filter of a Set is Less Than or Equal to a Filter if and only if Neighborhood Filters at Each Point are Less Than or Equal to the Filter : For any topological space \( X \), a filter \( f \) on \( X \), and a set \( s \subseteq X \), the neighborhood filter of \( s \), denoted by \( \mathcal{N}^s \), is less than or equal to \( f \) if and only if for every point \( x \in s \), the neighborhood filter at \( x \), denoted by \( \mathcal{N}(x) \), is less than or equal to \( f \). Formally, \( \mathcal{N}^s \leq f \) if and only if \( \forall x \in s, \mathcal{N}(x) \leq f \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the neighborhood filter of a set. The neighborhood filter of a set \( s \), denoted by \( \mathcal{N}^s \), is defined as the supremum of the neighborhood filters of all points in \( s \). This means that \( \mathcal{N}^s \) is the smallest filter that contains all the neighborhood filters \( \mathcal{N}(x) \) for \( x \in s \).
+
+Given this definition, the statement \( \mathcal{N}^s \leq f \) is equivalent to saying that for every point \( x \in s \), the neighborhood filter \( \mathcal{N}(x) \) is less than or equal to \( f \). This is because the supremum of a collection of filters is less than or equal to a filter \( f \) if and only if each filter in the collection is less than or equal to \( f \).
+
+Therefore, we have:
+\[ \mathcal{N}^s \leq f \iff \forall x \in s, \mathcal{N}(x) \leq f \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : 𝓝ˢ s ≤ f ↔ ∀ x ∈ s, 𝓝 x ≤ f := by sorry
+
+4. **Prefix**
+import Mathlib.Topology.Basic
+import Mathlib.Topology.NhdsSet
+
+
+open Set Filter Topology
+variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f : Filter X}
+  {s t s₁ s₂ t₁ t₂ : Set X} {x : X}
+
+example : 𝓝ˢ s ≤ f ↔ ∀ x ∈ s, 𝓝 x ≤ f := by

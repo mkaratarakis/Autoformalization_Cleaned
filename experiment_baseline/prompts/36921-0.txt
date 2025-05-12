@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Previous Element in List Cycle is the Last Element if First Element is Given and Equal : For any list \( l \) of elements of type \( \alpha \) and any elements \( x, y \in \alpha \), if \( x \) is in the list \( y :: l \) and \( x = y \), then the previous element of \( x \) in the list \( y :: l \) is the last element of the list \( y :: l \).
+
+2. **Informal Proof**  
+We need to show that for any list \( l \) of elements of type \( \alpha \) and any elements \( x, y \in \alpha \), if \( x \) is in the list \( y :: l \) and \( x = y \), then the previous element of \( x \) in the list \( y :: l \) is the last element of the list \( y :: l \).
+
+We will consider every possible case of the list \( l \).
+
+**Case 1: \( l \) is the empty list \( [] \)**
+- In this case, the list \( y :: l \) is \( [y] \).
+- Since \( x = y \) and \( x \in [y] \), the previous element of \( x \) in the list \( [y] \) is \( y \).
+- The last element of the list \( [y] \) is also \( y \).
+- Therefore, \( [y].\text{prev}(x, hxy) = y \) and \( [y].\text{getLast} = y \).
+- Hence, \( [y].\text{prev}(x, hxy) = [y].\text{getLast} \).
+
+**Case 2: \( l \) is a non-empty list \( y :: \text{head} :: \text{tail} \)**
+- In this case, the list \( y :: l \) is \( y :: \text{head} :: \text{tail} \).
+- Since \( x = y \) and \( x \in y :: \text{head} :: \text{tail} \), the previous element of \( x \) in the list \( y :: \text{head} :: \text{tail} \) is the last element of the list \( \text{head} :: \text{tail} \).
+- The last element of the list \( y :: \text{head} :: \text{tail} \) is also the last element of the list \( \text{head} :: \text{tail} \).
+- Therefore, \( (y :: \text{head} :: \text{tail}).\text{prev}(x, hxy) = \text{last}(\text{head} :: \text{tail}) \) and \( (y :: \text{head} :: \text{tail}).\text{getLast} = \text{last}(\text{head} :: \text{tail}) \).
+- Hence, \( (y :: \text{head} :: \text{tail}).\text{prev}(x, hxy) = (y :: \text{head} :: \text{tail}).\text{getLast} \).
+
+In both cases, the proposition holds. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example (y : α) (hxy : x ∈ y :: l) (hx : x = y) :
+    prev (y :: l) x hxy = getLast (y :: l) (cons_ne_nil _ _) := by sorry
+
+4. **Prefix**
+import Mathlib.Data.Fintype.List
+import Mathlib.Data.List.Cycle
+
+open List
+variable {α : Type*} [DecidableEq α]
+variable (l : List α) (x : α)
+
+example (y : α) (hxy : x ∈ y :: l) (hx : x = y) :
+    prev (y :: l) x hxy = getLast (y :: l) (cons_ne_nil _ _) := by

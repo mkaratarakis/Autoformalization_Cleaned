@@ -1,0 +1,26 @@
+
+1. **Informal Theorem**  
+Modulo and Division Identity: \(\frac{m \mod (k \cdot n)}{n} = \left( \frac{m}{n} \right) \mod k\) : For any natural numbers \( m \), \( n \), and \( k \), the following identity holds:
+\[ \frac{m \mod (k \cdot n)}{n} = \left( \frac{m}{n} \right) \mod k. \]
+
+2. **Informal Proof**  
+To prove the identity \(\frac{m \mod (k \cdot n)}{n} = \left( \frac{m}{n} \right) \mod k\), we start by using the commutativity of multiplication. This allows us to rewrite \( k \cdot n \) as \( n \cdot k \). Therefore, the left-hand side of the identity becomes \(\frac{m \mod (n \cdot k)}{n}\).
+
+Next, we apply the known identity \(\frac{m \mod (n \cdot k)}{n} = \left( \frac{m}{n} \right) \mod k\). This identity directly simplifies our goal to \(\left( \frac{m}{n} \right) \mod k\), which is exactly the right-hand side of the original identity.
+
+Thus, we have shown that:
+\[ \frac{m \mod (k \cdot n)}{n} = \left( \frac{m}{n} \right) \mod k. \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (m n k : Nat) : m % (k * n) / n = m / n % k := by sorry
+
+4. **Prefix**
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example (m n k : Nat) : m % (k * n) / n = m / n % k := by

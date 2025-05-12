@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Induced Map on Sections of Free Sheaves of Modules Preserves Tautological Sections : For any types \( I \) and \( J \), and a function \( f : I \to J \), the induced map on sections of the free sheaves of modules \( \text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f) \) maps the tautological section of \( \text{free } I \) corresponding to an element \( i \in I \) to the tautological section of \( \text{free } J \) corresponding to the element \( f(i) \in J \). Formally, this is expressed as:
+\[
+\text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f)(\text{SheafOfModules.freeSection } i) = \text{SheafOfModules.freeSection } (f(i))
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we use the equivalence that the composition of the free homomorphism and the application of the free section is the same as the free section of the image. Specifically, we have:
+\[
+\text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f)(\text{SheafOfModules.freeSection } i) = \text{SheafOfModules.freeSection } (f(i))
+\]
+This equivalence allows us to simplify the proposition we want to show to the desired equality. Therefore, the induced map on sections of the free sheaves of modules \( \text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f) \) maps the tautological section of \( \text{free } I \) corresponding to an element \( i \in I \) to the tautological section of \( \text{free } J \) corresponding to the element \( f(i) \in J \). This completes the proof.
+
+3. **Formal Theorem**  
+example (i : I) :
+    sectionsMap (freeMap (R := R) f) (freeSection i) = freeSection (f i) := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Category.ModuleCat.Presheaf.Colimits
+import Mathlib.Algebra.Category.ModuleCat.Sheaf.Colimits
+import Mathlib.Algebra.Category.ModuleCat.Sheaf.Free
+
+open SheafOfModules
+open CategoryTheory Limits
+variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C} {R : Sheaf J RingCat.{u}}
+  [HasWeakSheafify J AddCommGrp.{u}] [J.WEqualsLocallyBijective AddCommGrp.{u}]
+  [J.HasSheafCompose (forget₂ RingCat.{u} AddCommGrp.{u})]
+variable {I J : Type u} (f : I → J)
+
+example (i : I) :
+    sectionsMap (freeMap (R := R) f) (freeSection i) = freeSection (f i) := by

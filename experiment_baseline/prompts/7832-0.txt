@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Equality Implies Zero Distance in Natural Numbers : For any natural numbers \( n \) and \( m \), if \( n = m \), then the distance between \( n \) and \( m \) is zero, i.e., \( \text{dist}(n, m) = 0 \).
+
+2. **Informal Proof**  
+Given natural numbers \( n \) and \( m \) such that \( n = m \), we need to show that \( \text{dist}(n, m) = 0 \).
+
+1. Since \( n = m \), we can substitute \( n \) with \( m \) in the distance function, which gives us \( \text{dist}(m, m) \).
+2. By the property of the distance function, the distance from any element to itself is zero, i.e., \( \text{dist}(m, m) = 0 \).
+3. Therefore, \( \text{dist}(n, m) = 0 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n m : ℕ} (h : n = m) : dist n m = 0 := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Data.Nat.Dist
+
+open Nat
+
+
+example {n m : ℕ} (h : n = m) : dist n m = 0 := by

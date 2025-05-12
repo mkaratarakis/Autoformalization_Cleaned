@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Right Triangle Inequality for Distance in Natural Numbers : For any natural numbers \( n \) and \( m \), it holds that \( n \leq m + \text{dist}(n, m) \).
+
+2. **Informal Proof**  
+We start by noting the symmetry of the distance function, which states that for any natural numbers \( n \) and \( m \), \(\text{dist}(n, m) = \text{dist}(m, n)\). Therefore, the goal of showing \( n \leq m + \text{dist}(n, m) \) is equivalent to showing \( n \leq m + \text{dist}(m, n) \).
+
+To prove \( n \leq m + \text{dist}(m, n) \), we consider the definition of the distance function on natural numbers. The distance function \(\text{dist}(m, n)\) is defined as the absolute value of the difference between \( m \) and \( n \), i.e., \(\text{dist}(m, n) = |m - n|\).
+
+We have two cases to consider:
+1. **Case 1: \( m \geq n \)**
+- In this case, \(\text{dist}(m, n) = m - n\).
+- Therefore, \( m + \text{dist}(m, n) = m + (m - n) = 2m - n \).
+- Since \( m \geq n \), it follows that \( 2m - n \geq n \), which simplifies to \( n \leq 2m - n \).
+- Hence, \( n \leq m + \text{dist}(m, n) \).
+
+2. **Case 2: \( m < n \)**
+- In this case, \(\text{dist}(m, n) = n - m\).
+- Therefore, \( m + \text{dist}(m, n) = m + (n - m) = n \).
+- Clearly, \( n \leq n \).
+
+In both cases, we have shown that \( n \leq m + \text{dist}(m, n) \). Therefore, the theorem holds for any natural numbers \( n \) and \( m \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n m : ℕ) : n ≤ m + dist n m := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Data.Nat.Dist
+
+open Nat
+
+
+example (n m : ℕ) : n ≤ m + dist n m := by
