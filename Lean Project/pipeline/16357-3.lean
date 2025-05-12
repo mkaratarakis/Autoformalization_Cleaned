@@ -1,0 +1,18 @@
+import Mathlib.CategoryTheory.Monoidal.Comon_
+import Mathlib.CategoryTheory.Monoidal.Bimon_
+
+open Bimon_
+open CategoryTheory MonoidalCategory
+variable (C : Type u₁) [Category.{v₁} C] [MonoidalCategory.{v₁} C] [BraidedCategory C]
+variable {C}
+
+example (M : Bimon_ C) :
+    M.X.mul ≫ M.counit.hom = (M.counit.hom ⊗ M.counit.hom) ≫ (λ_ _).hom := by
+  rw [← M.counit_mul, Category.assoc, ← tensor_id, ← M.comul_counit, M.comul_assoc, ← Category.assoc, ← Category.assoc, M.mul_comul]
+  simp
+
+/- ACTUAL PROOF OF Bimon_.mul_counit -/
+
+example (M : Bimon_ C) :
+    M.X.mul ≫ M.counit.hom = (M.counit.hom ⊗ M.counit.hom) ≫ (λ_ _).hom := by
+  simp

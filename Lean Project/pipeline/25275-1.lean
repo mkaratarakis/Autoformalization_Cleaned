@@ -1,14 +1,19 @@
 import Init.BinderPredicates
-example
+import Init.Data.Bool
+
+open Bool
+
+
 example : {b : Bool} → b ≠ false ↔ b = true := by
   constructor
   · intro h
-    cases b
-    · contradiction
-    · rfl
+    by_cases hb : b = true
+    · exact hb
+    · have : b = false := by simpa using hb
+      contradiction
   · intro h
     rw [h]
-    trivial
+    exact Bool.noConfusion rfl
 
 /- ACTUAL PROOF OF Bool.ne_false_iff -/
 

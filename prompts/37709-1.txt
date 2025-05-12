@@ -1,0 +1,32 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:21:121: error: unexpected token ','; expected '|'
+tmp.lean:17:13: error: invalid field 'hr', the environment does not contain 'HasFiniteFPowerSeriesAt.hr'
+  hf
+has type
+  HasFiniteFPowerSeriesAt f pf x n
+tmp.lean:17:13: error: invalid field 'hr', the environment does not contain 'Exists.hr'
+  hf
+has type
+  ∃ r, HasFiniteFPowerSeriesOnBall f pf x n r
+tmp.lean:15:61: error: unsolved goals
+𝕜 : Type u_1
+E : Type u_2
+F : Type u_3
+G : Type u_4
+inst✝⁶ : NontriviallyNormedField 𝕜
+inst✝⁵ : NormedAddCommGroup E
+inst✝⁴ : NormedSpace 𝕜 E
+inst✝³ : NormedAddCommGroup F
+inst✝² : NormedSpace 𝕜 F
+inst✝¹ : NormedAddCommGroup G
+inst✝ : NormedSpace 𝕜 G
+f g : E → F
+p pf pg : FormalMultilinearSeries 𝕜 E F
+x : E
+r r' : ℝ≥0∞
+n m : ℕ
+hf : HasFiniteFPowerSeriesAt f pf x n
+hg : HasFiniteFPowerSeriesAt g pg x m
+⊢ HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (n ⊔ m)
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

@@ -1,0 +1,45 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:15:39: error: function expected at
+  h hx
+term has type
+  ↑e x ∈ t
+tmp.lean:16:20: error: application type mismatch
+  e_g.trans e
+argument
+  e
+has type
+  PartialHomeomorph X Y : Type (max u_1 u_2)
+but is expected to have type
+  PartialHomeomorph Z ?m.572 : Type (max u_3 ?u.559)
+tmp.lean:18:29: error: type mismatch
+  hxe
+has type
+  x ∈ e.source : Prop
+but is expected to have type
+  y ∈ e.source : Prop
+tmp.lean:19:8: error: tactic 'rewrite' failed, equality or iff proof expected
+  y ∈ e.source
+case intro.intro.intro.intro.h
+X : Type u_1
+Y : Type u_2
+Z : Type u_3
+inst✝² : TopologicalSpace X
+inst✝¹ : TopologicalSpace Y
+inst✝ : TopologicalSpace Z
+s : Set X
+t : Set Y
+x : X
+hx : x ∈ s
+e : PartialHomeomorph X Y
+hxe : x ∈ e.source
+hf : IsLocalHomeomorphOn (↑e) s
+h✝ : Set.MapsTo (↑e) s t
+e_g : PartialHomeomorph Y Z
+hxge : ↑e x ∈ e_g.source
+hg : IsLocalHomeomorphOn (↑e_g) t
+y : X
+h : y ∈ e.source
+⊢ (↑e_g ∘ ↑e) y = ↑sorry y
+tmp.lean:21:2: error: no goals to be solved
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

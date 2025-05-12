@@ -1,0 +1,33 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:14:34: error: unknown constant 'ZMod.int_cast_zero'
+tmp.lean:14:54: error: unknown identifier 'zero_pow''
+tmp.lean:14:4: error: unsolved goals
+case pos
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : a ≡ 0 [ZMOD 2]
+⊢ ↑((quadraticChar (ZMod 2)) ↑a) = ↑a ^ (2 / 2)
+tmp.lean:16:14: error: unknown constant 'ZMod.int_cast_one'
+tmp.lean:17:13: error: no goals to be solved
+tmp.lean:15:4: error: unsolved goals
+case neg
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : ¬a ≡ 0 [ZMOD 2]
+this : ↑a = 1
+⊢ ↑((quadraticChar (ZMod 2)) 1) = 1
+tmp.lean:20:27: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑?m.1150 = ↑?m.1151
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp : ¬p = 2
+⊢ ¬p = 2
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

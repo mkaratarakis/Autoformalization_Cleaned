@@ -1,0 +1,338 @@
+
+1. **Informal Theorem**  
+Previous Element in List Cycle is the Last Element if First Element is Given and Equal : For any list \( l \) of elements of type \( \alpha \) and any elements \( x, y \in \alpha \), if \( x \) is in the list \( y :: l \) and \( x = y \), then the previous element of \( x \) in the list \( y :: l \) is the last element of the list \( y :: l \).
+
+2. **Informal Proof**  
+We need to show that for any list \( l \) of elements of type \( \alpha \) and any elements \( x, y \in \alpha \), if \( x \) is in the list \( y :: l \) and \( x = y \), then the previous element of \( x \) in the list \( y :: l \) is the last element of the list \( y :: l \).
+
+We will consider every possible case of the list \( l \).
+
+**Case 1: \( l \) is the empty list \( [] \)**
+- In this case, the list \( y :: l \) is \( [y] \).
+- Since \( x = y \) and \( x \in [y] \), the previous element of \( x \) in the list \( [y] \) is \( y \).
+- The last element of the list \( [y] \) is also \( y \).
+- Therefore, \( [y].\text{prev}(x, hxy) = y \) and \( [y].\text{getLast} = y \).
+- Hence, \( [y].\text{prev}(x, hxy) = [y].\text{getLast} \).
+
+**Case 2: \( l \) is a non-empty list \( y :: \text{head} :: \text{tail} \)**
+- In this case, the list \( y :: l \) is \( y :: \text{head} :: \text{tail} \).
+- Since \( x = y \) and \( x \in y :: \text{head} :: \text{tail} \), the previous element of \( x \) in the list \( y :: \text{head} :: \text{tail} \) is the last element of the list \( \text{head} :: \text{tail} \).
+- The last element of the list \( y :: \text{head} :: \text{tail} \) is also the last element of the list \( \text{head} :: \text{tail} \).
+- Therefore, \( (y :: \text{head} :: \text{tail}).\text{prev}(x, hxy) = \text{last}(\text{head} :: \text{tail}) \) and \( (y :: \text{head} :: \text{tail}).\text{getLast} = \text{last}(\text{head} :: \text{tail}) \).
+- Hence, \( (y :: \text{head} :: \text{tail}).\text{prev}(x, hxy) = (y :: \text{head} :: \text{tail}).\text{getLast} \).
+
+In both cases, the proposition holds. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example (y : α) (hxy : x ∈ y :: l) (hx : x = y) :
+    prev (y :: l) x hxy = getLast (y :: l) (cons_ne_nil _ _) := by sorry
+
+4. **Prefix**
+import Mathlib.Data.Fintype.List
+import Mathlib.Data.List.Cycle
+
+open List
+variable {α : Type*} [DecidableEq α]
+variable (l : List α) (x : α)
+
+example (y : α) (hxy : x ∈ y :: l) (hx : x = y) :
+    prev (y :: l) x hxy = getLast (y :: l) (cons_ne_nil _ _) := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Data.Fintype.List --
+/-
+Copyright (c) 2021 Yakov Pechersky. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yakov Pechersky
+-/
+import Mathlib.Data.Finset.Powerset
+import Mathlib.Data.Fintype.Defs
+import Mathlib.Data.List.Permutation
+
+/-!
+
+# Fintype instance for nodup lists
+
+The subtype of `{l : List α // l.Nodup}` over a `[Fintype α]`
+admits a `Fintype` instance.
+
+## Implementation details
+To construct the `Fintype` instance, a function lifting a `Multiset α`
+to the `Multiset (List α)` is provided.
+This function is applied to the `Finset.powerset` of `Finset.univ`.
+
+-/
+
+
+variable {α : Type*}
+open List
+
+namespace Multiset
+
+/-- Given a `m : Multiset α`, we form the `Multiset` of `l : List α` with the property `⟦l⟧ = m`. -/
+def lists : Multiset α → Multiset (List α) := fun s =>
+  Quotient.liftOn s (fun l => l.permutations) fun l l' (h : l ~ l') => by
+    simp only [mem_permutations, List.mem_toFinset]
+    refine coe_eq_coe.mpr ?_
+    exact Perm.permutations h
+
+@[simp]
+theorem lists_coe (l : List α) : lists (l : Multiset α) = l.permutations :=
+  rfl
+
+@[simp]
+theorem lists_nodup_finset (l : Finset α) : (lists (l.val)).Nodup := by
+  have h_nodup : l.val.Nodup := l.nodup
+  rw [← Finset.coe_toList l, Multiset.coe_nodup] at h_nodup
+  rw [← Finset.coe_toList l]
+  exact nodup_permutations l.val.toList (h_nodup)
+
+@[simp]
+theorem mem_lists_iff (s : Multiset α) (l : List α) : l ∈ lists s ↔ s = ⟦l⟧ := by
+  induction s using Quotient.inductionOn
+  simpa using perm_comm
+
+end Multiset
+
+@[simp]
+theorem perm_toList {f₁ f₂ : Finset α} : f₁.toList ~ f₂.toList ↔ f₁ = f₂ :=
+  ⟨fun h => Finset.ext_iff.mpr (fun x => by simpa [← Finset.mem_toList] using Perm.mem_iff h),
+   fun h ↦ Perm.of_eq <| congrArg Finset.toList h⟩
+
+instance fintypeNodupList [Fintype α] : Fintype { l : List α // l.Nodup } := by
+  refine Fintype.ofFinset ?_ ?_
+  · let univSubsets := ((Finset.univ : Finset α).powerset.1 : (Multiset (Finset α)))
+    let allPerms := Multiset.bind univSubsets (fun s => (Multiset.lists s.1))
+    refine ⟨allPerms, Multiset.nodup_bind.mpr ?_⟩
+    simp only [Multiset.lists_nodup_finset, implies_true, true_and]
+    unfold Multiset.Pairwise
+    use ((Finset.univ : Finset α).powerset.toList : (List (Finset α)))
+    constructor
+    · simp only [Finset.coe_toList]
+      rfl
+    · convert Finset.nodup_toList (Finset.univ.powerset : Finset (Finset α))
+      ext l
+      unfold Nodup
+      refine Pairwise.iff ?_
+      intro m n
+      simp only [_root_.Disjoint]
+      rw [← m.coe_toList, ← n.coe_toList, Multiset.lists_coe, Multiset.lists_coe]
+      have := Multiset.coe_disjoint m.toList.permutations n.toList.permutations
+      rw  [_root_.Disjoint] at this
+      rw [this]
+      simp only [Multiset.coe_disjoint, ne_eq]
+      rw [List.disjoint_iff_ne]
+      constructor
+      · intro h
+        by_contra hc
+        rw [hc] at h
+        contrapose! h
+        use n.toList
+        simp
+      · intro h
+        simp only [mem_permutations]
+        intro a ha b hb
+        by_contra hab
+        absurd h
+        rw [hab] at ha
+        exact perm_toList.mp <| Perm.trans (id (Perm.symm ha)) hb
+  · intro l
+    simp only [Finset.mem_mk, Multiset.mem_bind, Finset.mem_val, Finset.mem_powerset,
+      Finset.subset_univ, Multiset.mem_lists_iff, Multiset.quot_mk_to_coe, true_and]
+    constructor
+    · intro h
+      rcases h with ⟨f, hf⟩
+      convert  Set.mem_def.mpr f.nodup
+      rw [hf]
+      rfl
+    · intro h
+      exact CanLift.prf _ h
+
+-- END Mathlib.Data.Fintype.List --
+
+import Mathlib.Data.Fintype.List
+import Mathlib.Data.Fintype.OfMap
+
+/-!
+# Cycles of a list
+
+Lists have an equivalence relation of whether they are rotational permutations of one another.
+This relation is defined as `IsRotated`.
+
+Based on this, we define the quotient of lists by the rotation relation, called `Cycle`.
+
+We also define a representation of concrete cycles, available when viewing them in a goal state or
+via `#eval`, when over representable types. For example, the cycle `(2 1 4 3)` will be shown
+as `c[2, 1, 4, 3]`. Two equal cycles may be printed differently if their internal representation
+is different.
+
+-/
+
+assert_not_exists MonoidWithZero
+
+namespace List
+
+variable {α : Type*} [DecidableEq α]
+
+/-- Return the `z` such that `x :: z :: _` appears in `xs`, or `default` if there is no such `z`. -/
+def nextOr : ∀ (_ : List α) (_ _ : α), α
+  | [], _, default => default
+  | [_], _, default => default
+  -- Handles the not-found and the wraparound case
+  | y :: z :: xs, x, default => if x = y then z else nextOr (z :: xs) x default
+
+@[simp]
+theorem nextOr_nil (x d : α) : nextOr [] x d = d :=
+  rfl
+
+@[simp]
+theorem nextOr_singleton (x y d : α) : nextOr [y] x d = d :=
+  rfl
+
+@[simp]
+theorem nextOr_self_cons_cons (xs : List α) (x y d : α) : nextOr (x :: y :: xs) x d = y :=
+  if_pos rfl
+
+theorem nextOr_cons_of_ne (xs : List α) (y x d : α) (h : x ≠ y) :
+    nextOr (y :: xs) x d = nextOr xs x d := by
+  rcases xs with - | ⟨z, zs⟩
+  · rfl
+  · exact if_neg h
+
+/-- `nextOr` does not depend on the default value, if the next value appears. -/
+theorem nextOr_eq_nextOr_of_mem_of_ne (xs : List α) (x d d' : α) (x_mem : x ∈ xs)
+    (x_ne : x ≠ xs.getLast (ne_nil_of_mem x_mem)) : nextOr xs x d = nextOr xs x d' := by
+  induction' xs with y ys IH
+  · cases x_mem
+  rcases ys with - | ⟨z, zs⟩
+  · simp at x_mem x_ne
+    contradiction
+  by_cases h : x = y
+  · rw [h, nextOr_self_cons_cons, nextOr_self_cons_cons]
+  · rw [nextOr, nextOr, IH]
+    · simpa [h] using x_mem
+    · simpa using x_ne
+
+theorem mem_of_nextOr_ne {xs : List α} {x d : α} (h : nextOr xs x d ≠ d) : x ∈ xs := by
+  induction' xs with y ys IH
+  · simp at h
+  rcases ys with - | ⟨z, zs⟩
+  · simp at h
+  · by_cases hx : x = y
+    · simp [hx]
+    · rw [nextOr_cons_of_ne _ _ _ _ hx] at h
+      simpa [hx] using IH h
+
+theorem nextOr_concat {xs : List α} {x : α} (d : α) (h : x ∉ xs) : nextOr (xs ++ [x]) x d = d := by
+  induction' xs with z zs IH
+  · simp
+  · obtain ⟨hz, hzs⟩ := not_or.mp (mt mem_cons.2 h)
+    rw [cons_append, nextOr_cons_of_ne _ _ _ _ hz, IH hzs]
+
+theorem nextOr_mem {xs : List α} {x d : α} (hd : d ∈ xs) : nextOr xs x d ∈ xs := by
+  revert hd
+  suffices ∀ xs' : List α, (∀ x ∈ xs, x ∈ xs') → d ∈ xs' → nextOr xs x d ∈ xs' by
+    exact this xs fun _ => id
+  intro xs' hxs' hd
+  induction' xs with y ys ih
+  · exact hd
+  rcases ys with - | ⟨z, zs⟩
+  · exact hd
+  rw [nextOr]
+  split_ifs with h
+  · exact hxs' _ (mem_cons_of_mem _ mem_cons_self)
+  · exact ih fun _ h => hxs' _ (mem_cons_of_mem _ h)
+
+/-- Given an element `x : α` of `l : List α` such that `x ∈ l`, get the next
+element of `l`. This works from head to tail, (including a check for last element)
+so it will match on first hit, ignoring later duplicates.
+
+For example:
+ * `next [1, 2, 3] 2 _ = 3`
+ * `next [1, 2, 3] 3 _ = 1`
+ * `next [1, 2, 3, 2, 4] 2 _ = 3`
+ * `next [1, 2, 3, 2] 2 _ = 3`
+ * `next [1, 1, 2, 3, 2] 1 _ = 1`
+-/
+def next (l : List α) (x : α) (h : x ∈ l) : α :=
+  nextOr l x (l.get ⟨0, length_pos_of_mem h⟩)
+
+/-- Given an element `x : α` of `l : List α` such that `x ∈ l`, get the previous
+element of `l`. This works from head to tail, (including a check for last element)
+so it will match on first hit, ignoring later duplicates.
+
+ * `prev [1, 2, 3] 2 _ = 1`
+ * `prev [1, 2, 3] 1 _ = 3`
+ * `prev [1, 2, 3, 2, 4] 2 _ = 1`
+ * `prev [1, 2, 3, 4, 2] 2 _ = 1`
+ * `prev [1, 1, 2] 1 _ = 2`
+-/
+def prev : ∀ l : List α, ∀ x ∈ l, α
+  | [], _, h => by simp at h
+  | [y], _, _ => y
+  | y :: z :: xs, x, h =>
+    if hx : x = y then getLast (z :: xs) (cons_ne_nil _ _)
+    else if x = z then y else prev (z :: xs) x (by simpa [hx] using h)
+
+variable (l : List α) (x : α)
+
+@[simp]
+theorem next_singleton (x y : α) (h : x ∈ [y]) : next [y] x h = y :=
+  rfl
+
+@[simp]
+theorem prev_singleton (x y : α) (h : x ∈ [y]) : prev [y] x h = y :=
+  rfl
+
+theorem next_cons_cons_eq' (y z : α) (h : x ∈ y :: z :: l) (hx : x = y) :
+    next (y :: z :: l) x h = z := by
+
+@[simp]
+theorem next_cons_cons_eq (z : α) (h : x ∈ x :: z :: l) : next (x :: z :: l) x h = z :=
+  next_cons_cons_eq' l x x z h rfl
+
+theorem next_ne_head_ne_getLast (h : x ∈ l) (y : α) (h : x ∈ y :: l) (hy : x ≠ y)
+    (hx : x ≠ getLast (y :: l) (cons_ne_nil _ _)) :
+    next (y :: l) x h = next l x (by simpa [hy] using h) := by
+  rw [next, next, nextOr_cons_of_ne _ _ _ _ hy, nextOr_eq_nextOr_of_mem_of_ne]
+  · rwa [getLast_cons] at hx
+    exact ne_nil_of_mem (by assumption)
+  · rwa [getLast_cons] at hx
+
+theorem next_cons_concat (y : α) (hy : x ≠ y) (hx : x ∉ l)
+    (h : x ∈ y :: l ++ [x] := mem_append_right _ (mem_singleton_self x)) :
+    next (y :: l ++ [x]) x h = y := by
+  rw [next, nextOr_concat]
+  · rfl
+  · simp [hy, hx]
+
+theorem next_getLast_cons (h : x ∈ l) (y : α) (h : x ∈ y :: l) (hy : x ≠ y)
+    (hx : x = getLast (y :: l) (cons_ne_nil _ _)) (hl : Nodup l) : next (y :: l) x h = y := by
+  rw [next, get, ← dropLast_append_getLast (cons_ne_nil y l), hx, nextOr_concat]
+  subst hx
+  intro H
+  obtain ⟨_ | k, hk, hk'⟩ := getElem_of_mem H
+  · rw [← Option.some_inj] at hk'
+    rw [← getElem?_eq_getElem, dropLast_eq_take, getElem?_take_of_lt, getElem?_cons_zero,
+      Option.some_inj] at hk'
+    · exact hy (Eq.symm hk')
+    rw [length_cons]
+    exact length_pos_of_mem (by assumption)
+  suffices k + 1 = l.length by simp [this] at hk
+  rcases l with - | ⟨hd, tl⟩
+  · simp at hk
+  · rw [nodup_iff_injective_get] at hl
+    rw [length, Nat.succ_inj']
+    refine Fin.val_eq_of_eq <| @hl ⟨k, Nat.lt_of_succ_lt <| by simpa using hk⟩
+      ⟨tl.length, by simp⟩ ?_
+    rw [← Option.some_inj] at hk'
+    rw [← getElem?_eq_getElem, dropLast_eq_take, getElem?_take_of_lt, getElem?_cons_succ,
+      getElem?_eq_getElem, Option.some_inj] at hk'
+    · rw [get_eq_getElem, hk']
+      simp only [getLast_eq_getElem, length_cons, Nat.succ_eq_add_one, Nat.succ_sub_succ_eq_sub,
+        Nat.sub_zero, get_eq_getElem, getElem_cons_succ]
+    simpa using hk
+
+theorem prev_getLast_cons' (y : α) (hxy : x ∈ y :: l) (hx : x = y) :
+    prev (y :: l) x hxy = getLast (y :: l) (cons_ne_nil _ _) := by
+

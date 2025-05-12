@@ -1,0 +1,30 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:22:119: error: unexpected token ','; expected '|'
+tmp.lean:22:2: error: missing cases:
+tmp.lean:15:61: error: unsolved goals
+case intro.intro
+𝕜 : Type u_1
+E : Type u_2
+F : Type u_3
+G : Type u_4
+inst✝⁶ : NontriviallyNormedField 𝕜
+inst✝⁵ : NormedAddCommGroup E
+inst✝⁴ : NormedSpace 𝕜 E
+inst✝³ : NormedAddCommGroup F
+inst✝² : NormedSpace 𝕜 F
+inst✝¹ : NormedAddCommGroup G
+inst✝ : NormedSpace 𝕜 G
+f g : E → F
+p pf pg : FormalMultilinearSeries 𝕜 E F
+x : E
+r✝ r' : ℝ≥0∞
+n m : ℕ
+r₁ : ℝ≥0∞
+hr₁ : HasFiniteFPowerSeriesOnBall f pf x n r₁
+r₂ : ℝ≥0∞
+hr₂ : HasFiniteFPowerSeriesOnBall g pg x m r₂
+r : ℝ≥0∞ := r₁ ⊓ r₂
+h_add : ∀ {y : E}, y ∈ EMetric.ball 0 r → HasSum (fun k => ((pf + pg) k) fun x => y) (f (x + y) + g (x + y))
+⊢ HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (n ⊔ m)
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

@@ -1,0 +1,250 @@
+
+1. **Informal Theorem**  
+Square of Element Greater Than or Equal to One Implies Element Greater Than or Equal to One: \( 1 \leq a^2 \to 1 \leq a \) : For any lattice-ordered group \( \alpha \) and any element \( a \in \alpha \), if \( 1 \leq a^2 \), then \( 1 \leq a \).
+
+2. **Informal Proof**  
+To prove \( 1 \leq a \), it suffices to show that \( (a \sqcap 1) \cdot (a \sqcap 1) = a \sqcap 1 \). If this is true, then by the properties of meet and multiplication, we can conclude \( 1 \leq a \).
+
+We simplify the expression \( (a \sqcap 1) \cdot (a \sqcap 1) \) step by step using the following properties:
+1. Distributivity of meet over multiplication: \( c \cdot (a \sqcap b) = (c \cdot a) \sqcap (c \cdot b) \),
+2. Distributivity of meet over multiplication: \( (a \sqcap b) \cdot c = (a \cdot c) \sqcap (b \cdot c) \),
+3. Definition of square in a monoid: \( a^2 = a \cdot a \),
+4. Multiplicative identity: \( a \cdot 1 = a \),
+5. Multiplicative identity: \( 1 \cdot a = a \),
+6. Associativity of meet: \( (a \sqcap b) \sqcap c = a \sqcap (b \sqcap c) \),
+7. Left idempotence of meet: \( a \sqcap (a \sqcap b) = a \sqcap b \),
+8. Commutativity of meet: \( a \sqcap b = b \sqcap a \),
+9. Associativity of meet: \( (a \sqcap b) \sqcap c = a \sqcap (b \sqcap c) \),
+10. Meet identity: \( 1 \leq a^2 \) implies \( 1 \sqcap a^2 = 1 \).
+
+Thus, we have:
+\[
+(a \sqcap 1) \cdot (a \sqcap 1) = (a \cdot a) \sqcap (1 \cdot a) \sqcap (a \sqcap 1) = a^2 \sqcap a \sqcap (a \sqcap 1) = a \sqcap (1 \sqcap a^2) = a \sqcap 1
+\]
+This completes the proof of the new goal, and hence \( 1 \leq a \). Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example 
+    {a : α} (ha : 1 ≤ a ^ 2) : 1 ≤ a := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Group.OrderIso
+import Mathlib.Algebra.Order.Group.Lattice
+
+
+open Function
+variable {α β : Type*}
+variable [Lattice α] [Group α]
+variable [CovariantClass α α (· * ·) (· ≤ ·)] [CovariantClass α α (swap (· * ·)) (· ≤ ·)]
+
+example 
+    {a : α} (ha : 1 ≤ a ^ 2) : 1 ≤ a := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Algebra.Order.Group.OrderIso --
+/-
+Copyright (c) 2016 Jeremy Avigad. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Jeremy Avigad, Leonardo de Moura, Mario Carneiro, Johannes Hölzl
+-/
+import Mathlib.Algebra.Group.Units.Equiv
+import Mathlib.Algebra.Order.Group.Unbundled.Basic
+import Mathlib.Order.Hom.Basic
+
+/-!
+# Inverse and multiplication as order isomorphisms in ordered groups
+
+-/
+
+open Function
+
+universe u
+
+variable {α : Type u}
+
+section Group
+
+variable [Group α]
+
+section TypeclassesLeftRightLE
+
+variable [LE α] [MulLeftMono α] [MulRightMono α] {a b : α}
+
+section
+
+variable (α)
+
+/-- `x ↦ x⁻¹` as an order-reversing equivalence. -/
+@[to_additive (attr := simps!) "`x ↦ -x` as an order-reversing equivalence."]
+def OrderIso.inv : α ≃o αᵒᵈ where
+  toEquiv := (Equiv.inv α).trans OrderDual.toDual
+  map_rel_iff' {_ _} := inv_le_inv_iff (α := α)
+
+end
+
+@[to_additive neg_le]
+theorem inv_le' : a⁻¹ ≤ b ↔ b⁻¹ ≤ a :=
+  (OrderIso.inv α).symm_apply_le
+
+alias ⟨inv_le_of_inv_le', _⟩ := inv_le'
+
+attribute [to_additive neg_le_of_neg_le] inv_le_of_inv_le'
+
+@[to_additive le_neg]
+theorem le_inv' : a ≤ b⁻¹ ↔ b ≤ a⁻¹ :=
+  (OrderIso.inv α).le_symm_apply
+
+/-- `x ↦ a / x` as an order-reversing equivalence. -/
+@[to_additive (attr := simps!) "`x ↦ a - x` as an order-reversing equivalence."]
+def OrderIso.divLeft (a : α) : α ≃o αᵒᵈ where
+  toEquiv := (Equiv.divLeft a).trans OrderDual.toDual
+  map_rel_iff' {_ _} := div_le_div_iff_left (α := α) _
+
+end TypeclassesLeftRightLE
+
+end Group
+
+alias ⟨le_inv_of_le_inv, _⟩ := le_inv'
+
+attribute [to_additive] le_inv_of_le_inv
+
+section Group
+
+variable [Group α] [LE α]
+
+section Right
+
+variable [MulRightMono α] {a : α}
+
+/-- `Equiv.mulRight` as an `OrderIso`. See also `OrderEmbedding.mulRight`. -/
+@[to_additive (attr := simps! (config := { simpRhs := true }) toEquiv apply)
+  "`Equiv.addRight` as an `OrderIso`. See also `OrderEmbedding.addRight`."]
+def OrderIso.mulRight (a : α) : α ≃o α where
+  map_rel_iff' {_ _} := mul_le_mul_iff_right a
+  toEquiv := Equiv.mulRight a
+
+@[to_additive (attr := simp)]
+theorem OrderIso.mulRight_symm (a : α) : (OrderIso.mulRight a).symm = OrderIso.mulRight a⁻¹ := by
+  ext x
+  rfl
+
+/-- `x ↦ x / a` as an order isomorphism. -/
+@[to_additive (attr := simps!) "`x ↦ x - a` as an order isomorphism."]
+def OrderIso.divRight (a : α) : α ≃o α where
+  toEquiv := Equiv.divRight a
+  map_rel_iff' {_ _} := div_le_div_iff_right a
+
+end Right
+
+section Left
+
+variable [MulLeftMono α]
+
+/-- `Equiv.mulLeft` as an `OrderIso`. See also `OrderEmbedding.mulLeft`. -/
+@[to_additive (attr := simps! (config := { simpRhs := true }) toEquiv apply)
+  "`Equiv.addLeft` as an `OrderIso`. See also `OrderEmbedding.addLeft`."]
+def OrderIso.mulLeft (a : α) : α ≃o α where
+  map_rel_iff' {_ _} := mul_le_mul_iff_left a
+  toEquiv := Equiv.mulLeft a
+
+@[to_additive (attr := simp)]
+theorem OrderIso.mulLeft_symm (a : α) : (OrderIso.mulLeft a).symm = OrderIso.mulLeft a⁻¹ := by
+  ext x
+  rfl
+
+end Left
+
+end Group
+
+-- END Mathlib.Algebra.Order.Group.OrderIso --
+
+import Mathlib.Algebra.Order.Group.OrderIso
+
+/-!
+# Lattice ordered groups
+
+Lattice ordered groups were introduced by [Birkhoff][birkhoff1942]. They form the algebraic
+underpinnings of vector lattices, Banach lattices, AL-space, AM-space etc.
+
+A lattice ordered group is a type `α` satisfying:
+* `Lattice α`
+* `CommGroup α`
+* `MulLeftMono α`
+* `MulRightMono α`
+
+This file establishes basic properties of lattice ordered groups. It is shown that when the group is
+commutative, the lattice is distributive. This also holds in the non-commutative case
+([Birkhoff][birkhoff1942],[Fuchs][fuchs1963]) but we do not yet have the machinery to establish this
+in mathlib.
+
+## References
+
+* [Birkhoff, Lattice-ordered Groups][birkhoff1942]
+* [Bourbaki, Algebra II][bourbaki1981]
+* [Fuchs, Partially Ordered Algebraic Systems][fuchs1963]
+* [Zaanen, Lectures on "Riesz Spaces"][zaanen1966]
+* [Banasiak, Banach Lattices in Applications][banasiak]
+
+## Tags
+
+lattice, order, group
+-/
+
+open Function
+
+variable {α : Type*}
+
+section Group
+variable [Lattice α] [Group α]
+
+-- Special case of Bourbaki A.VI.9 (1)
+@[to_additive]
+lemma mul_sup [MulLeftMono α] (a b c : α) :
+    c * (a ⊔ b) = c * a ⊔ c * b :=
+  (OrderIso.mulLeft _).map_sup _ _
+
+@[to_additive]
+lemma sup_mul [MulRightMono α] (a b c : α) :
+    (a ⊔ b) * c = a * c ⊔ b * c :=
+  (OrderIso.mulRight _).map_sup _ _
+
+@[to_additive]
+lemma mul_inf [MulLeftMono α] (a b c : α) :
+    c * (a ⊓ b) = c * a ⊓ c * b :=
+  (OrderIso.mulLeft _).map_inf _ _
+
+@[to_additive]
+lemma inf_mul [MulRightMono α] (a b c : α) :
+    (a ⊓ b) * c = a * c ⊓ b * c :=
+  (OrderIso.mulRight _).map_inf _ _
+
+@[to_additive]
+lemma sup_div [MulRightMono α] (a b c : α) :
+    (a ⊔ b) / c = a / c ⊔ b / c :=
+  (OrderIso.divRight _).map_sup _ _
+
+@[to_additive]
+lemma inf_div [MulRightMono α] (a b c : α) :
+    (a ⊓ b) / c = a / c ⊓ b / c :=
+  (OrderIso.divRight _).map_inf _ _
+
+section
+variable [MulLeftMono α] [MulRightMono α]
+
+@[to_additive] lemma inv_sup (a b : α) : (a ⊔ b)⁻¹ = a⁻¹ ⊓ b⁻¹ := (OrderIso.inv α).map_sup _ _
+
+@[to_additive] lemma inv_inf (a b : α) : (a ⊓ b)⁻¹ = a⁻¹ ⊔ b⁻¹ := (OrderIso.inv α).map_inf _ _
+
+@[to_additive]
+lemma div_sup (a b c : α) : c / (a ⊔ b) = c / a ⊓ c / b := (OrderIso.divLeft c).map_sup _ _
+
+@[to_additive]
+lemma div_inf (a b c : α) : c / (a ⊓ b) = c / a ⊔ c / b := (OrderIso.divLeft c).map_inf _ _
+
+-- In fact 0 ≤ n•a implies 0 ≤ a, see L. Fuchs, "Partially ordered algebraic systems"
+-- Chapter V, 1.E
+-- See also `one_le_pow_iff` for the existing version in linear orders
+@[to_additive]
+lemma pow_two_semiclosed
+    {a : α} (ha : 1 ≤ a ^ 2) : 1 ≤ a := by
+

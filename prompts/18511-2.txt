@@ -1,0 +1,15 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:18:6: error: type mismatch
+  hf.right hx hy h1 h2 h3
+has type
+  a • f x + b • f y + a * b * φ ‖x - y‖ ≤ f (a • x + b • y) : Prop
+but is expected to have type
+  a • (f + g) x + b • (f + g) y ≤ f (a • x + b • y) : Prop
+tmp.lean:19:6: error: type mismatch
+  hg.right hx hy h1 h2 h3
+has type
+  a • g x + b • g y + a * b * ψ ‖x - y‖ ≤ g (a • x + b • y) : Prop
+but is expected to have type
+  a * b * (φ + ψ) ‖x - y‖ ≤ g (a • x + b • y) : Prop
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

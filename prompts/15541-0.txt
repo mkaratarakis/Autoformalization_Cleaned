@@ -1,0 +1,64 @@
+
+1. **Informal Theorem**  
+Modulo Identity: \(x \mod (a \cdot b) = x \mod a + a \cdot (x \div a \mod b)\) : For any natural numbers \(a\), \(b\), and \(x\), the modulo operation \(x \mod (a \cdot b)\) is equal to \(x \mod a + a \cdot (x \div a \mod b)\). In other words, the remainder when \(x\) is divided by \(a \cdot b\) can be expressed as the sum of the remainder when \(x\) is divided by \(a\) and the product of \(a\) and the remainder when \(x \div a\) is divided by \(b\).
+
+2. **Informal Proof**  
+We start by using the commutativity of addition to rewrite the goal:
+\[ x \% (a \cdot b) = a \cdot (x / a \% b) + x \% a. \]
+Next, we apply the division and modulo identity:
+\[ a \cdot (x \% (a \cdot b) / a) + x \% (a \cdot b) \% a = a \cdot (x / a \% b) + x \% a. \]
+Then, we use the modulo of product modulo right argument identity to simplify the modulo operation:
+\[ a \cdot (x \% (a \cdot b) / a) + x \% a = a \cdot (x / a \% b) + x \% a. \]
+Finally, we apply the modulo and division identity to simplify the division operation:
+\[ a \cdot (x / a \% b) + x \% a = a \cdot (x / a \% b) + x \% a. \]
+Since the left-hand side and the right-hand side are now identical, the goal is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example {a b x : Nat} : x % (a * b) = x % a + a * (x / a % b) := by sorry
+
+4. **Prefix**
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example {a b x : Nat} : x % (a * b) = x % a + a * (x / a % b) := by
+
+5. **Header Information**  
+-- BEGIN Init.Omega --
+/-
+Copyright (c) 2023 Lean FRO, LLC. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kim Morrison
+-/
+module
+
+prelude
+import Init.Omega.Int
+import Init.Omega.IntList
+import Init.Omega.LinearCombo
+import Init.Omega.Constraint
+import Init.Omega.Logic
+
+-- END Init.Omega --
+
+import Init.Omega
+
+/-!
+# Further results about `mod`.
+
+This file proves some results about `mod` that are useful for bitblasting,
+in particular
+`Nat.mod_mul : x % (a * b) = x % a + a * (x / a % b)`
+and its corollary
+`Nat.mod_pow_succ : x % b ^ (k + 1) = x % b ^ k + b ^ k * ((x / b ^ k) % b)`.
+
+It contains the necessary preliminary results relating order and `*` and `/`,
+which should probably be moved to their own file.
+-/
+
+namespace Nat
+
+@[simp] protected theorem mul_lt_mul_left (a0 : 0 < a) : a * b < a * c ↔ b < c := by
+

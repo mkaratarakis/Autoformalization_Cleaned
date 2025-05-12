@@ -1,10 +1,13 @@
 import Init.ByCases
+import Init.Data.Nat.MinMax
+
+open Nat
+
+
 example (a b : Nat) : min a b ≤ b := by
   by_cases h : a ≤ b
-  · rw [Nat.min_eq_left h]
-    exact h
-  · rw [Nat.min_eq_right h]
-    exact Nat.le_refl b
+  · apply Nat.le_trans (Nat.min_le_left _ _) h
+  · exact Nat.min_eq_right h
 
 /- ACTUAL PROOF OF Nat.min_le_right -/
 

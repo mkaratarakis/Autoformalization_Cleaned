@@ -1,0 +1,11 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:11:8: error: function expected at
+  swap_swap
+term has type
+  (swap ?m.41).swap = ?m.41
+tmp.lean:14:10: error: function expected at
+  swap_swap
+term has type
+  (swap ?m.86).swap = ?m.86
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

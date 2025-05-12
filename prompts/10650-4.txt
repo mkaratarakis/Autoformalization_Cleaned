@@ -1,0 +1,56 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:14:34: error: unknown identifier 'QuadraticCharFun'
+tmp.lean:14:88: error: application type mismatch
+  zero_pow ?m.891
+argument
+  ?m.891
+has type
+  0 < 2 / 2 : Prop
+but is expected to have type
+  ?m.529 ≠ 0 : Prop
+tmp.lean:14:4: error: unsolved goals
+case pos
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : a ≡ 0 [ZMOD 2]
+⊢ ↑((quadraticChar (ZMod 2)) ↑a) = ↑a ^ (2 / 2)
+tmp.lean:16:8: error: tactic 'apply' failed, failed to unify
+  ↑1 = 1
+with
+  ↑a = 1
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : ¬a ≡ 0 [ZMOD 2]
+⊢ ↑a = 1
+tmp.lean:17:44: error: application type mismatch
+  one_pow ?m.2315
+argument
+  ?m.2315
+has type
+  0 < 2 / 2 : Prop
+but is expected to have type
+  ℕ : Type
+tmp.lean:15:4: error: unsolved goals
+case neg
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : ¬a ≡ 0 [ZMOD 2]
+this : ↑a = 1
+⊢ ↑((quadraticChar (ZMod 2)) 1) = 1 ^ (2 / 2)
+tmp.lean:19:27: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑?m.3246 = ↑?m.3247
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp : ¬p = 2
+⊢ ¬p = 2
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

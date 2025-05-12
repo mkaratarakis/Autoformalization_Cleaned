@@ -1,0 +1,11 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:11:68: error: unknown constant 'ZMod.val_bijective'
+tmp.lean:10:81: error: unsolved goals
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a b : ℤ
+⊢ legendreSym p (a * b) = legendreSym p a * legendreSym p b
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

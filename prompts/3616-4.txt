@@ -1,0 +1,16 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:10:6: error: failed to solve universe constraint
+  u_1 =?= max v ?u.120
+while trying to unify
+  lift.{v, u_1} 𝔠 : Cardinal.{max u_1 v}
+with
+  lift.{v, max v u_1} 𝔠 : Cardinal.{max v u_1}
+tmp.lean:7:0: error: (kernel) application type mismatch
+  id (congrArg (fun _a => _a = continuum) (lift_id' continuum))
+argument has type
+  (fun _a => _a = continuum) (lift.{v, max v u_1} continuum) = (fun _a => _a = continuum) continuum
+but function has type
+  (lift.{v, u_1} continuum = continuum) = (continuum = continuum) →
+    (lift.{v, u_1} continuum = continuum) = (continuum = continuum)
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

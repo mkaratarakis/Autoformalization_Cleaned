@@ -1,0 +1,24 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:19:45: error: unsolved goals
+α : Type u_1
+inst✝ : DecidableEq α
+s t : Finset α
+m✝ n a✝ b✝ : ℕ
+P : Finpartition s
+h : a✝ * m✝ + b✝ * (m✝ + 1) = #s
+hn : n ≠ 0
+hs : n ≤ #s
+hn0 : 0 < n
+hns : n ≤ #s
+m : ℕ := #s / n
+b : ℕ := #s % n
+a : ℕ := n - b
+⊢ (n - #s % n) * (#s / n) + #s % n * (#s / n + 1) = #s
+tmp.lean:24:2: error: type mismatch
+  Q.IsEquipartition
+has type
+  Prop : Type
+but is expected to have type
+  Q.IsEquipartition : Prop
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

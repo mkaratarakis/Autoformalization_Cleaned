@@ -1,0 +1,18 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:13:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  TerminatedAt ?m.564 ?m.565
+case zero
+K : Type u_1
+g : GenContFract K
+n m : ℕ
+inst✝ : DivisionRing K
+s : Stream'.Seq (Pair K)
+terminatedAt_n : s.TerminatedAt 0
+⊢ (match ↑s 0 with
+    | none => 0
+    | some gp => gp.a / (gp.b + 0)) =
+    0
+tmp.lean:17:6: error: simp made no progress
+tmp.lean:18:4: error: no goals to be solved
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

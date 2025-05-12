@@ -1,0 +1,21 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:12:4: error: tactic 'apply' failed, failed to unify
+  (swap ?o).swap = ?o
+with
+  o = o.swap.swap
+case mp
+α : Type u_1
+β : Type u_2
+o o' : Ordering
+h : o.swap = o'
+⊢ o = o.swap.swap
+tmp.lean:14:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  o'.swap
+case mpr
+α : Type u_1
+β : Type u_2
+o o' : Ordering
+h : o = o'.swap
+⊢ o.swap = o'
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

@@ -1,0 +1,28 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:13:28: error: unknown constant 'ZMod.int_cast_self'
+tmp.lean:12:2: error: unsolved goals
+case pos
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+⊢ ↑((quadraticChar (ZMod 2)) ↑a) = ↑a ^ (2 / 2)
+tmp.lean:15:27: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑?m.779 = ↑?m.780
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp : ¬p = 2
+⊢ ¬p = 2
+tmp.lean:17:54: error: application type mismatch
+  quadraticChar_eq_pow_of_char_ne_two h₀ ↑a
+argument
+  ↑a
+has type
+  ZMod p : Type
+but is expected to have type
+  ?m.904 ≠ 0 : Prop
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

@@ -1,0 +1,34 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:15:2: error: unsolved goals
+case pos
+α✝ : Type u_1
+inst✝³ : SemigroupWithZero α✝
+a : α✝
+inst✝² : CommMonoidWithZero α✝
+x y : α✝
+inst✝¹ : MonoidWithZero α✝
+α : Type u_2
+inst✝ : CancelCommMonoidWithZero α
+m n : α
+hm : IsPrimal m
+hn : IsPrimal n
+h : m = 0
+⊢ IsPrimal 0
+tmp.lean:17:61: error: application type mismatch
+  mul_dvd_mul_left m n
+argument
+  n
+has type
+  α : Type u_2
+but is expected to have type
+  ?m.512 ∣ ?m.513 : Prop
+tmp.lean:18:70: error: application type mismatch
+  dvd_mul_of_dvd_left ha₂ h
+argument
+  h
+has type
+  ¬a₁ * a₂ = 0 : Prop
+but is expected to have type
+  α : Type u_2
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

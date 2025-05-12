@@ -1,0 +1,13 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:12:23: error: invalid field notation, type is not of the form (C ...) where C is a constant
+  id
+has type
+  ?m.499 → ?m.499
+tmp.lean:14:2: error: type mismatch
+  Eq.symm (inv_eq_one_div x)
+has type
+  1 / x = x⁻¹ : Prop
+but is expected to have type
+  (id x)⁻¹ = 1 / x : Prop
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

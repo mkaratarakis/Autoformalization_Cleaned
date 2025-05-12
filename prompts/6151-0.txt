@@ -1,0 +1,384 @@
+
+1. **Informal Theorem**  
+Comparison in Dual Order Type is Reversed : For any type \( \alpha \) equipped with a less-than relation \( < \), and for any elements \( a, b \in \alpha \) and any ordering \( o \), the predicate \( o \) compares \( \text{toDual}(a) \) and \( \text{toDual}(b) \) in the dual order type \( \alpha^\mathrm{od} \) if and only if \( o \) compares \( b \) and \( a \) in the original type \( \alpha \). Specifically:
+- If \( o = \text{lt} \), then \( \text{toDual}(a) < \text{toDual}(b) \) if and only if \( b < a \).
+- If \( o = \text{eq} \), then \( \text{toDual}(a) = \text{toDual}(b) \) if and only if \( b = a \).
+- If \( o = \text{gt} \), then \( \text{toDual}(a) > \text{toDual}(b) \) if and only if \( b > a \).
+
+2. **Informal Proof**  
+We will discuss every possible case of the ordering \( o \):
+
+1. **Case \( o = \text{lt} \):**
+The statement \( \text{lt.Compares} (\text{toDual}(a)) (\text{toDual}(b)) \leftrightarrow \text{lt.Compares} b a \) is trivially true by reflexivity.
+
+2. **Case \( o = \text{eq} \):**
+The statement \( \text{eq.Compares} (\text{toDual}(a)) (\text{toDual}(b)) \leftrightarrow \text{eq.Compares} b a \) is equivalent to \( a = b \leftrightarrow b = a \), which is true by the symmetry of equality.
+
+3. **Case \( o = \text{gt} \):**
+The statement \( \text{gt.Compares} (\text{toDual}(a)) (\text{toDual}(b)) \leftrightarrow \text{gt.Compares} b a \) is trivially true by reflexivity.
+
+Thus, for each possible ordering \( o \), the comparison in the dual order type \( \alpha^\mathrm{od} \) is correctly reversed with respect to the original type \( \alpha \). This completes the proof.
+
+3. **Formal Theorem**  
+example [LT α] {a b : α} {o : Ordering} :
+    Compares o (toDual a) (toDual b) ↔ Compares o b a := by sorry
+
+4. **Prefix**
+import Mathlib.Data.Ordering.Basic
+import Mathlib.Order.Synonym
+import Mathlib.Order.Compare
+
+
+variable {α β : Type*}
+open Ordering OrderDual
+
+example [LT α] {a b : α} {o : Ordering} :
+    Compares o (toDual a) (toDual b) ↔ Compares o b a := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Data.Ordering.Basic --
+/-
+Copyright (c) 2016 Microsoft Corporation. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Leonardo de Moura
+-/
+import Batteries.Tactic.Alias
+import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.TypeStar
+
+/-!
+# Helper definitions and instances for `Ordering`
+-/
+
+universe u
+
+deriving instance Repr for Ordering
+
+namespace Ordering
+
+variable {α : Type*}
+
+/-- `Compares o a b` means that `a` and `b` have the ordering relation `o` between them, assuming
+that the relation `a < b` is defined. -/
+def Compares [LT α] : Ordering → α → α → Prop
+  | lt, a, b => a < b
+  | eq, a, b => a = b
+  | gt, a, b => a > b
+
+@[simp] lemma compares_lt [LT α] (a b : α) : Compares lt a b = (a < b) := rfl
+
+@[simp] lemma compares_eq [LT α] (a b : α) : Compares eq a b = (a = b) := rfl
+
+@[simp] lemma compares_gt [LT α] (a b : α) : Compares gt a b = (a > b) := rfl
+
+/-- `o₁.dthen fun h => o₂(h)` is like `o₁.then o₂` but `o₂` is allowed to depend on
+`h : o₁ = .eq`. -/
+@[macro_inline] def dthen :
+    (o : Ordering) → (o = .eq → Ordering) → Ordering
+  | .eq, f => f rfl
+  | o, _ => o
+
+end Ordering
+
+/--
+Lift a decidable relation to an `Ordering`,
+assuming that incomparable terms are `Ordering.eq`.
+-/
+def cmpUsing {α : Type u} (lt : α → α → Prop) [DecidableRel lt] (a b : α) : Ordering :=
+  if lt a b then Ordering.lt else if lt b a then Ordering.gt else Ordering.eq
+
+/--
+Construct an `Ordering` from a type with a decidable `LT` instance,
+assuming that incomparable terms are `Ordering.eq`.
+-/
+def cmp {α : Type u} [LT α] [DecidableLT α] (a b : α) : Ordering :=
+  cmpUsing (· < ·) a b
+
+-- END Mathlib.Data.Ordering.Basic --
+
+-- BEGIN Mathlib.Order.Synonym --
+/-
+Copyright (c) 2020 Johan Commelin, Damiano Testa. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Johan Commelin, Damiano Testa, Yaël Dillies
+-/
+import Mathlib.Logic.Equiv.Defs
+import Mathlib.Logic.Nontrivial.Defs
+import Mathlib.Order.Basic
+
+/-!
+# Type synonyms
+
+This file provides two type synonyms for order theory:
+* `OrderDual α`: Type synonym of `α` to equip it with the dual order (`a ≤ b` becomes `b ≤ a`).
+* `Lex α`: Type synonym of `α` to equip it with its lexicographic order. The precise meaning depends
+  on the type we take the lex of. Examples include `Prod`, `Sigma`, `List`, `Finset`.
+
+## Notation
+
+`αᵒᵈ` is notation for `OrderDual α`.
+
+The general rule for notation of `Lex` types is to append `ₗ` to the usual notation.
+
+## Implementation notes
+
+One should not abuse definitional equality between `α` and `αᵒᵈ`/`Lex α`. Instead, explicit
+coercions should be inserted:
+* `OrderDual`: `OrderDual.toDual : α → αᵒᵈ` and `OrderDual.ofDual : αᵒᵈ → α`
+* `Lex`: `toLex : α → Lex α` and `ofLex : Lex α → α`.
+
+## See also
+
+This file is similar to `Algebra.Group.TypeTags`.
+-/
+
+
+variable {α : Type*}
+
+/-! ### Order dual -/
+
+
+namespace OrderDual
+
+instance [h : Nontrivial α] : Nontrivial αᵒᵈ :=
+  h
+
+/-- `toDual` is the identity function to the `OrderDual` of a linear order. -/
+def toDual : α ≃ αᵒᵈ :=
+  Equiv.refl _
+
+/-- `ofDual` is the identity function from the `OrderDual` of a linear order. -/
+def ofDual : αᵒᵈ ≃ α :=
+  Equiv.refl _
+
+@[simp]
+theorem toDual_symm_eq : (@toDual α).symm = ofDual := rfl
+
+@[simp]
+theorem ofDual_symm_eq : (@ofDual α).symm = toDual := rfl
+
+@[simp]
+theorem toDual_ofDual (a : αᵒᵈ) : toDual (ofDual a) = a :=
+  rfl
+
+@[simp]
+theorem ofDual_toDual (a : α) : ofDual (toDual a) = a :=
+  rfl
+
+theorem toDual_inj {a b : α} : toDual a = toDual b ↔ a = b := by simp
+
+theorem ofDual_inj {a b : αᵒᵈ} : ofDual a = ofDual b ↔ a = b := by simp
+
+@[simp]
+theorem toDual_le_toDual [LE α] {a b : α} : toDual a ≤ toDual b ↔ b ≤ a :=
+  Iff.rfl
+
+@[simp]
+theorem toDual_lt_toDual [LT α] {a b : α} : toDual a < toDual b ↔ b < a :=
+  Iff.rfl
+
+@[simp]
+theorem ofDual_le_ofDual [LE α] {a b : αᵒᵈ} : ofDual a ≤ ofDual b ↔ b ≤ a :=
+  Iff.rfl
+
+@[simp]
+theorem ofDual_lt_ofDual [LT α] {a b : αᵒᵈ} : ofDual a < ofDual b ↔ b < a :=
+  Iff.rfl
+
+theorem le_toDual [LE α] {a : αᵒᵈ} {b : α} : a ≤ toDual b ↔ b ≤ ofDual a :=
+  Iff.rfl
+
+theorem lt_toDual [LT α] {a : αᵒᵈ} {b : α} : a < toDual b ↔ b < ofDual a :=
+  Iff.rfl
+
+theorem toDual_le [LE α] {a : α} {b : αᵒᵈ} : toDual a ≤ b ↔ ofDual b ≤ a :=
+  Iff.rfl
+
+theorem toDual_lt [LT α] {a : α} {b : αᵒᵈ} : toDual a < b ↔ ofDual b < a :=
+  Iff.rfl
+
+/-- Recursor for `αᵒᵈ`. -/
+@[elab_as_elim]
+protected def rec {C : αᵒᵈ → Sort*} (h₂ : ∀ a : α, C (toDual a)) : ∀ a : αᵒᵈ, C a :=
+  h₂
+
+@[simp]
+protected theorem «forall» {p : αᵒᵈ → Prop} : (∀ a, p a) ↔ ∀ a, p (toDual a) :=
+  Iff.rfl
+
+@[simp]
+protected theorem «exists» {p : αᵒᵈ → Prop} : (∃ a, p a) ↔ ∃ a, p (toDual a) :=
+  Iff.rfl
+
+alias ⟨_, _root_.LE.le.dual⟩ := toDual_le_toDual
+
+alias ⟨_, _root_.LT.lt.dual⟩ := toDual_lt_toDual
+
+alias ⟨_, _root_.LE.le.ofDual⟩ := ofDual_le_ofDual
+
+alias ⟨_, _root_.LT.lt.ofDual⟩ := ofDual_lt_ofDual
+
+end OrderDual
+
+/-! ### Lexicographic order -/
+
+
+/-- A type synonym to equip a type with its lexicographic order. -/
+def Lex (α : Type*) :=
+  α
+
+/-- `toLex` is the identity function to the `Lex` of a type. -/
+@[match_pattern]
+def toLex : α ≃ Lex α :=
+  Equiv.refl _
+
+/-- `ofLex` is the identity function from the `Lex` of a type. -/
+@[match_pattern]
+def ofLex : Lex α ≃ α :=
+  Equiv.refl _
+
+@[simp]
+theorem toLex_symm_eq : (@toLex α).symm = ofLex :=
+  rfl
+
+@[simp]
+theorem ofLex_symm_eq : (@ofLex α).symm = toLex :=
+  rfl
+
+@[simp]
+theorem toLex_ofLex (a : Lex α) : toLex (ofLex a) = a :=
+  rfl
+
+@[simp]
+theorem ofLex_toLex (a : α) : ofLex (toLex a) = a :=
+  rfl
+
+theorem toLex_inj {a b : α} : toLex a = toLex b ↔ a = b := by simp
+
+theorem ofLex_inj {a b : Lex α} : ofLex a = ofLex b ↔ a = b := by simp
+
+instance (α : Type*) [BEq α] : BEq (Lex α) where
+  beq a b := ofLex a == ofLex b
+
+instance (α : Type*) [BEq α] [LawfulBEq α] : LawfulBEq (Lex α) :=
+  inferInstanceAs (LawfulBEq α)
+
+instance (α : Type*) [DecidableEq α] : DecidableEq (Lex α) :=
+  inferInstanceAs (DecidableEq α)
+
+instance (α : Type*) [Inhabited α] : Inhabited (Lex α) :=
+  inferInstanceAs (Inhabited α)
+
+/-- A recursor for `Lex`. Use as `induction x`. -/
+@[elab_as_elim, induction_eliminator, cases_eliminator]
+protected def Lex.rec {β : Lex α → Sort*} (h : ∀ a, β (toLex a)) : ∀ a, β a := fun a => h (ofLex a)
+
+@[simp] lemma Lex.forall {p : Lex α → Prop} : (∀ a, p a) ↔ ∀ a, p (toLex a) := Iff.rfl
+@[simp] lemma Lex.exists {p : Lex α → Prop} : (∃ a, p a) ↔ ∃ a, p (toLex a) := Iff.rfl
+
+-- END Mathlib.Order.Synonym --
+
+import Mathlib.Data.Ordering.Basic
+import Mathlib.Order.Synonym
+
+/-!
+# Comparison
+
+This file provides basic results about orderings and comparison in linear orders.
+
+
+## Definitions
+
+* `CmpLE`: An `Ordering` from `≤`.
+* `Ordering.Compares`: Turns an `Ordering` into `<` and `=` propositions.
+* `linearOrderOfCompares`: Constructs a `LinearOrder` instance from the fact that any two
+  elements that are not one strictly less than the other either way are equal.
+-/
+
+
+variable {α β : Type*}
+
+/-- Like `cmp`, but uses a `≤` on the type instead of `<`. Given two elements `x` and `y`, returns a
+three-way comparison result `Ordering`. -/
+def cmpLE {α} [LE α] [DecidableLE α] (x y : α) : Ordering :=
+  if x ≤ y then if y ≤ x then Ordering.eq else Ordering.lt else Ordering.gt
+
+theorem cmpLE_swap {α} [LE α] [IsTotal α (· ≤ ·)] [DecidableLE α] (x y : α) :
+    (cmpLE x y).swap = cmpLE y x := by
+  by_cases xy : x ≤ y <;> by_cases yx : y ≤ x <;> simp [cmpLE, *, Ordering.swap]
+  cases not_or_intro xy yx (total_of _ _ _)
+
+theorem cmpLE_eq_cmp {α} [Preorder α] [IsTotal α (· ≤ ·)] [DecidableLE α] [DecidableLT α]
+    (x y : α) : cmpLE x y = cmp x y := by
+  by_cases xy : x ≤ y <;> by_cases yx : y ≤ x <;> simp [cmpLE, lt_iff_le_not_le, *, cmp, cmpUsing]
+  cases not_or_intro xy yx (total_of _ _ _)
+
+namespace Ordering
+
+theorem compares_swap [LT α] {a b : α} {o : Ordering} : o.swap.Compares a b ↔ o.Compares b a := by
+  cases o
+  · exact Iff.rfl
+  · exact eq_comm
+  · exact Iff.rfl
+
+alias ⟨Compares.of_swap, Compares.swap⟩ := compares_swap
+
+theorem swap_eq_iff_eq_swap {o o' : Ordering} : o.swap = o' ↔ o = o'.swap := by
+  rw [← swap_inj, swap_swap]
+
+theorem Compares.eq_lt [Preorder α] : ∀ {o} {a b : α}, Compares o a b → (o = lt ↔ a < b)
+  | lt, _, _, h => ⟨fun _ => h, fun _ => rfl⟩
+  | eq, a, b, h => ⟨fun h => by injection h, fun h' => (ne_of_lt h' h).elim⟩
+  | gt, a, b, h => ⟨fun h => by injection h, fun h' => (lt_asymm h h').elim⟩
+
+theorem Compares.ne_lt [Preorder α] : ∀ {o} {a b : α}, Compares o a b → (o ≠ lt ↔ b ≤ a)
+  | lt, _, _, h => ⟨absurd rfl, fun h' => (not_le_of_lt h h').elim⟩
+  | eq, _, _, h => ⟨fun _ => ge_of_eq h, fun _ h => by injection h⟩
+  | gt, _, _, h => ⟨fun _ => le_of_lt h, fun _ h => by injection h⟩
+
+theorem Compares.eq_eq [Preorder α] : ∀ {o} {a b : α}, Compares o a b → (o = eq ↔ a = b)
+  | lt, a, b, h => ⟨fun h => by injection h, fun h' => (ne_of_lt h h').elim⟩
+  | eq, _, _, h => ⟨fun _ => h, fun _ => rfl⟩
+  | gt, a, b, h => ⟨fun h => by injection h, fun h' => (ne_of_gt h h').elim⟩
+
+theorem Compares.eq_gt [Preorder α] {o} {a b : α} (h : Compares o a b) : o = gt ↔ b < a :=
+  swap_eq_iff_eq_swap.symm.trans h.swap.eq_lt
+
+theorem Compares.ne_gt [Preorder α] {o} {a b : α} (h : Compares o a b) : o ≠ gt ↔ a ≤ b :=
+  (not_congr swap_eq_iff_eq_swap.symm).trans h.swap.ne_lt
+
+theorem Compares.le_total [Preorder α] {a b : α} : ∀ {o}, Compares o a b → a ≤ b ∨ b ≤ a
+  | lt, h => Or.inl (le_of_lt h)
+  | eq, h => Or.inl (le_of_eq h)
+  | gt, h => Or.inr (le_of_lt h)
+
+theorem Compares.le_antisymm [Preorder α] {a b : α} : ∀ {o}, Compares o a b → a ≤ b → b ≤ a → a = b
+  | lt, h, _, hba => (not_le_of_lt h hba).elim
+  | eq, h, _, _ => h
+  | gt, h, hab, _ => (not_le_of_lt h hab).elim
+
+theorem Compares.inj [Preorder α] {o₁} :
+    ∀ {o₂} {a b : α}, Compares o₁ a b → Compares o₂ a b → o₁ = o₂
+  | lt, _, _, h₁, h₂ => h₁.eq_lt.2 h₂
+  | eq, _, _, h₁, h₂ => h₁.eq_eq.2 h₂
+  | gt, _, _, h₁, h₂ => h₁.eq_gt.2 h₂
+
+theorem compares_iff_of_compares_impl [LinearOrder α] [Preorder β] {a b : α} {a' b' : β}
+    (h : ∀ {o}, Compares o a b → Compares o a' b') (o) : Compares o a b ↔ Compares o a' b' := by
+  refine ⟨h, fun ho => ?_⟩
+  rcases lt_trichotomy a b with hab | hab | hab
+  · have hab : Compares Ordering.lt a b := hab
+    rwa [ho.inj (h hab)]
+  · have hab : Compares Ordering.eq a b := hab
+    rwa [ho.inj (h hab)]
+  · have hab : Compares Ordering.gt a b := hab
+    rwa [ho.inj (h hab)]
+
+end Ordering
+
+open Ordering OrderDual
+
+@[simp]
+theorem toDual_compares_toDual [LT α] {a b : α} {o : Ordering} :
+    Compares o (toDual a) (toDual b) ↔ Compares o b a := by
+

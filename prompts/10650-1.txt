@@ -1,0 +1,51 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:12:2: error: unsolved goals
+case pos
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+⊢ ↑((quadraticChar (ZMod 2)) ↑a) = ↑a ^ (2 / 2)
+tmp.lean:14:68: error: application type mismatch
+  ne_of_eq_of_ne hp
+argument
+  hp
+has type
+  ¬p = 2 : Prop
+but is expected to have type
+  ?m.694 = ?m.695 : Prop
+tmp.lean:14:15: error: failed to synthesize
+  Field ℤ
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+tmp.lean:14:2: error: unsolved goals
+case neg.refine_3
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp : ¬p = 2
+h₀ : ↑((quadraticChar ℤ) a) = a ^ (Fintype.card ℤ / 2)
+⊢ ↑((quadraticChar (ZMod p)) ↑a) = ↑a ^ (p / 2)
+
+case neg.refine_1
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp : ¬p = 2
+⊢ Field ℤ
+
+case neg.refine_2
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp : ¬p = 2
+⊢ Fintype ℤ
+tmp.lean:17:0: error: unexpected token; expected command
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

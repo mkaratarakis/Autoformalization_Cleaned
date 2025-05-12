@@ -1,0 +1,16 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:17:16: error: tactic 'introN' failed, insufficient number of binders
+case mpr
+n : ℕ
+F : TypeVec.{u} n → Type u_1
+q : MvQPF F
+α : TypeVec.{u} n
+x : F α
+i : Fin2 n
+u : α i
+h : ∀ (a : (P F).A) (f : (P F).B a ⟹ α), abs ⟨a, f⟩ = x → u ∈ f i '' univ
+a : (i : Fin2 n) → α i → Prop
+f : LiftP a x
+⊢ a i u
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

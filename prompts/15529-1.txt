@@ -1,0 +1,7 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:8:6: error: unknown identifier 'mul_comm'
+tmp.lean:7:55: error: unsolved goals
+m n k : Nat
+⊢ m % (k * n) / n = m / n % k
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

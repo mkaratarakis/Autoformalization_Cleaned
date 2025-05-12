@@ -1,0 +1,6 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:12:24: error: unknown identifier 'not_lt_of_ge'
+tmp.lean:12:55: error: unknown identifier 'not_lt_of_ge'
+tmp.lean:16:8: error: unknown identifier 'add_lt_add_iff_right'
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

@@ -1,0 +1,27 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:12:30: error: application type mismatch
+  Nat.not_le.mpr h'
+argument
+  h'
+has type
+  ¬b ≤ a : Prop
+but is expected to have type
+  ?m.144 < ?m.143 : Prop
+tmp.lean:15:30: error: application type mismatch
+  Nat.not_le.mpr h
+argument
+  h
+has type
+  ¬a ≤ b : Prop
+but is expected to have type
+  ?m.250 < ?m.249 : Prop
+tmp.lean:18:28: error: application type mismatch
+  Nat.lt_irrefl a h
+argument
+  h
+has type
+  ¬a ≤ b : Prop
+but is expected to have type
+  a < a : Prop
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

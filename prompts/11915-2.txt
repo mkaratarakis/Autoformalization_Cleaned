@@ -1,0 +1,11 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:11:6: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  abs (TypeVec.id <$$> MvQPF.repr x)
+n : ℕ
+F : TypeVec.{u} n → Type u_1
+q : MvQPF F
+α : TypeVec.{u} n
+x : F α
+⊢ TypeVec.id <$$> abs (MvQPF.repr x) = abs (MvQPF.repr x)
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

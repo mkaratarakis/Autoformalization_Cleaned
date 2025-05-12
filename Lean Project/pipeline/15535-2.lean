@@ -1,17 +1,18 @@
 import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
 example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
-  induction a using Nat.recOn
-  case zero =>
+  induction' a with n ih
+  · -- Base case: a = 0
     simp
-  case succ a ih =>
+  · -- Inductive step: a = n + 1
     simp [Nat.succ_mul]
-    constructor
-    · intro h
-      apply ih
-      linarith [Nat.lt_succ_of_le (le_add_left _ _)]
-    · intro h
-      apply ih
-      linarith [Nat.lt_succ_of_le (le_add_left _ _)]
+    rw [add_lt_add_iff_left]
+    apply ih
+    exact Nat.zero_lt_succ n
 
 /- ACTUAL PROOF OF Nat.mul_lt_mul_left -/
 

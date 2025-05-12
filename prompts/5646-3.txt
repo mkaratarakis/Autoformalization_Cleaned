@@ -1,0 +1,107 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:32:34: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  (aeval ((algebraMap ?m.16320 ?B) ?x)) ?p
+R✝ : Type u_1
+S✝ : Type u_2
+A✝ : Type u_3
+inst✝²⁹ : CommRing R✝
+inst✝²⁸ : Ring A✝
+inst✝²⁷ : Ring S✝
+f✝⁴ : R✝ →+* S✝
+inst✝²⁶ : Algebra R✝ A✝
+inst✝²⁵ : CommRing R✝
+inst✝²⁴ : Ring A✝
+inst✝²³ : Ring S✝
+f✝³ : R✝ →+* S✝
+inst✝²² inst✝²¹ : Algebra R✝ A✝
+R : Type u_4
+A : Type u_5
+B✝ : Type u_6
+S : Type u_7
+inst✝²⁰ : CommRing R
+inst✝¹⁹ : CommRing A
+inst✝¹⁸ : Ring B✝
+inst✝¹⁷ : CommRing S
+inst✝¹⁶ : Algebra R A
+f✝² : R →+* S
+inst✝¹⁵ : CommRing R
+inst✝¹⁴ : CommRing A
+inst✝¹³ : Ring B✝
+inst✝¹² : CommRing S
+inst✝¹¹ : Algebra R A
+f✝¹ : R →+* S
+inst✝¹⁰ : Algebra R A
+f✝ : R →+* S
+B : Type u_8
+C : Type u_9
+F : Type u_10
+inst✝⁹ : Ring B
+inst✝⁸ : Ring C
+inst✝⁷ : Algebra R B
+inst✝⁶ : Algebra A B
+inst✝⁵ : Algebra R C
+inst✝⁴ : IsScalarTower R A B
+inst✝³ : Algebra A C
+inst✝² : IsScalarTower R A C
+b : B
+inst✝¹ : FunLike F B C
+inst✝ : AlgHomClass F A B C
+f : F
+p : R[X]
+hp_monic : p.Monic
+hp_root : eval₂ (algebraMap R B) b p = 0
+⊢ (aeval (f b)) (Polynomial.map (algebraMap R A) p) = f ((aeval b) p)
+tmp.lean:33:24: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  eval₂ (algebraMap R B) b p
+R✝ : Type u_1
+S✝ : Type u_2
+A✝ : Type u_3
+inst✝²⁹ : CommRing R✝
+inst✝²⁸ : Ring A✝
+inst✝²⁷ : Ring S✝
+f✝⁴ : R✝ →+* S✝
+inst✝²⁶ : Algebra R✝ A✝
+inst✝²⁵ : CommRing R✝
+inst✝²⁴ : Ring A✝
+inst✝²³ : Ring S✝
+f✝³ : R✝ →+* S✝
+inst✝²² inst✝²¹ : Algebra R✝ A✝
+R : Type u_4
+A : Type u_5
+B✝ : Type u_6
+S : Type u_7
+inst✝²⁰ : CommRing R
+inst✝¹⁹ : CommRing A
+inst✝¹⁸ : Ring B✝
+inst✝¹⁷ : CommRing S
+inst✝¹⁶ : Algebra R A
+f✝² : R →+* S
+inst✝¹⁵ : CommRing R
+inst✝¹⁴ : CommRing A
+inst✝¹³ : Ring B✝
+inst✝¹² : CommRing S
+inst✝¹¹ : Algebra R A
+f✝¹ : R →+* S
+inst✝¹⁰ : Algebra R A
+f✝ : R →+* S
+B : Type u_8
+C : Type u_9
+F : Type u_10
+inst✝⁹ : Ring B
+inst✝⁸ : Ring C
+inst✝⁷ : Algebra R B
+inst✝⁶ : Algebra A B
+inst✝⁵ : Algebra R C
+inst✝⁴ : IsScalarTower R A B
+inst✝³ : Algebra A C
+inst✝² : IsScalarTower R A C
+b : B
+inst✝¹ : FunLike F B C
+inst✝ : AlgHomClass F A B C
+f : F
+p : R[X]
+hp_monic : p.Monic
+hp_root : eval₂ (algebraMap R B) b p = 0
+⊢ f ((aeval b) p) = f 0
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

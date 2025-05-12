@@ -9,101 +9,74 @@ from mistralai import Mistral
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-# Load API key
+# Load environment variables and initialize API client
 load_dotenv()
 client = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
+# File and directory constants
 INPUT_CSV = "dataset.csv"
 OUTPUT_CSV = "mistral_generation_results.csv"
 STATE_FILE = "pipeline_state.json"
 PROOF_DIR = "Lean Project/real_proofs"
 TMP_FILE = "Lean Project/tmp.lean"
 PIPELINE_SAVE_DIR = "Lean Project/pipeline"
+PROMPTS_DIR = "prompts"
 MAX_TRIES = 5
 
 
 def soft_clear():
-	# simulate Command+L: push previous output off the visible area but keep scrollback
-	print("\n" * 10, end="")
+    # simulate clearing the visible area
+    print("\n" * 10, end="")
 
-# Clean Mistral output
+
 def clean_mistral_code(code: str, thm_name: str | None = None) -> str:
-	"""
-	Strip ```lean fences and return the text from the beginning up to the
-	first blank line *after* the line containing ``theorem {thm_name}``.
-	If `thm_name` is None or the marker isn't found, the cleaned string is
-	returned unchanged.
-	"""
-	# 1 strip ```lean … ``` wrapper (if any)
-	cleaned = re.sub(r"^```lean\s*([\s\S]+?)\s*```$", r"\1", code.strip())
+    cleaned = re.sub(r"^```lean\s*([\s\S]+?)\s*```$", r"\1", code.strip())
+    if thm_name is None:
+        return cleaned
+    m = re.search(rf"{re.escape(thm_name)}.*", cleaned, flags=re.IGNORECASE)
+    if not m:
+        return cleaned
+    rest = cleaned[m.end():]
+    blank = re.search(r"\n\s*\n", rest)
+    if blank:
+        end_idx = m.end() + blank.start()
+        return cleaned[:end_idx]
+    return cleaned
 
-	if thm_name is None:
-		return cleaned  # nothing to look for
 
-	# 2 locate the specific theorem line
-	m = re.search(rf"{re.escape(thm_name)}.*", cleaned,
-	              flags=re.IGNORECASE)
-	if not m:
-		return cleaned  # marker absent → return whole string
-
-	# 3 find the first empty line after it
-	rest = cleaned[m.end():]
-	blank = re.search(r"\n\s*\n", rest)
-	if blank:
-		end_idx = m.end() + blank.start()
-		return cleaned[:end_idx]
-
-	return cleaned  # no blank line found
-
-# Replace `theorem name` with `example`
 def replace_theorem_with_example(proof: str) -> str:
-	return re.sub(r"(?m)^\s*theorem\s+\S+", "example", proof, count=1)
+    return re.sub(r"(?m)^\s*theorem\s+\S+", "example", proof, count=1)
+
 
 def extract_import_modules(header: str) -> list:
-	"""Extract module names from 'import Mathlib.X.Y' lines."""
-	return re.findall(r"import\s+((?:Mathlib|Init)(?:\.\w+)+)", header)
-# Updated read_lean_module_code with distinct paths for Mathlib vs core Init modules, and trimmed exclude logic
+    return re.findall(r"import\s+((?:Mathlib|Init)(?:\.\w+)+)", header)
+
 
 def read_lean_module_code(module: str,
                           mathlib_base="Lean Project/.lake/packages/mathlib",
                           lean_src_base="Lean Project/lean4/src",
                           exclude: str = None) -> str:
-    """
-    Convert a Lean module name to its file path, read its content, and optionally trim
-    up to the `exclude` marker. Uses mathlib_base for Mathlib.* modules and lean_src_base
-    for core Init.* modules.
-    """
-    import os, re
-
-    # Build relative path and select base directory
     rel_path = module.replace(".", "/") + ".lean"
     if module.startswith("Mathlib."):
         full_path = os.path.join(mathlib_base, rel_path)
     else:
         full_path = os.path.join(lean_src_base, rel_path)
-
     if not os.path.exists(full_path):
-        print(f"Warning: {full_path} not found.")
         return f"-- {module} not found. --\n"
-
     with open(full_path, "r", encoding="utf-8") as f:
-        module_text = f.read()
-
-    # If no exclude marker is provided, return entire module wrapped in comments
+        text = f.read()
     if not exclude:
-        return f"-- BEGIN {module} --\n" + module_text + f"\n-- END {module} --\n"
-
-    # Otherwise, trim lines around the exclude marker
+        return f"-- BEGIN {module} --\n" + text + f"\n-- END {module} --\n"
     pattern = re.escape(exclude)
-    trimmed_lines = []
+    lines = []
     collecting = False
     colon_mode = False
-    for line in module_text.splitlines(keepends=True):
+    for line in text.splitlines(keepends=True):
         if colon_mode:
-            trimmed_lines.append(line)
+            lines.append(line)
             break
         if not collecting:
-            trimmed_lines.append(line)
+            lines.append(line)
             if re.search(pattern, line):
                 collecting = True
                 if ":=" in line:
@@ -112,88 +85,40 @@ def read_lean_module_code(module: str,
                     else:
                         colon_mode = True
         else:
-            trimmed_lines.append(line)
+            lines.append(line)
             if ":=" in line:
                 break
-
-    # Remove leading import statements
+    # drop leading imports
     start_idx = 0
-    for ln in trimmed_lines:
+    for ln in lines:
         if ln.strip().startswith("import"):
             break
         start_idx += 1
-    trimmed_lines = trimmed_lines[start_idx:]
-
-    # Simplify any trailing ':= by ...' to just ':= by'
-    if trimmed_lines and ":= by" in trimmed_lines[-1]:
-        trimmed_lines[-1] = re.sub(r":= by.*", ":= by", trimmed_lines[-1].strip()) + "\n"
-
-    return ''.join(trimmed_lines)
+    snippet = ''.join(lines[start_idx:])
+    if snippet and ":= by" in snippet.splitlines()[-1]:
+        snippet = re.sub(r":= by.*", ":= by", snippet.strip()) + "\n"
+    return snippet
 
 
-# Updated start_of_proof to distinguish Mathlib vs core Init modules and rename non-Mathlib declarations
-def start_of_proof(header: str,
-                   name: str,
-                   formal_declaration: str) -> str:
-    """
-    Prepare the beginning of the Lean proof file:
-    1. Include all but the last import modules fully from the header.
-    2. If the last import is from Mathlib, include its declarations up to the theorem.
-    3. Otherwise (e.g., core Init.*), include only the import lines and an anonymous example declaration without name or a trailing 'sorry'.
-    """
-    import re
+def start_of_proof(header: str, name: str, formal_declaration: str) -> str:
+    decl = replace_theorem_with_example(formal_declaration)
+    decl = decl.replace("by sorry", "by")
+    return f"{header}\n{decl}"
+
+
+def prompt_for_proof(name: str,
+                     informal_theorem: str,
+                     formal_theorem: str,
+                     informal_proof: str,
+                     start: str,
+                     header: str) -> str:
     modules = extract_import_modules(header)
-    if not modules:
-        return header
-
-    # Gather imports except the last one
-    import_lines = [f"import {mod}" for mod in modules[:-1]]
-
-    last_mod = modules[-1]
-    #exclude = name.split(".", 1)[1] if "." in name else name
-    exclude = name
-
-    if last_mod.startswith("Mathlib."):
-        # Include trimmed Mathlib module snippet
-        clipped = read_lean_module_code(last_mod, exclude=exclude)
-        return "\n".join(import_lines + [clipped])
-
-    # Core module: skip loading its code to avoid duplicate definitions
-    # Rename the declaration to an anonymous 'example' to avoid clashes and drop the original name
-    # Lean syntax: 'example (args) : Prop :='
-    # Replace leading 'def <...>' or 'theorem <...>' plus module qualifiers up to '(' with 'example '
-    renamed_decl = re.sub(r'^(?:def|theorem)\s+[^\(]+', 'example ', formal_declaration)
-    # Remove any trailing 'sorry'
-    renamed_decl = re.sub(r'\s*sorry\s*$', '', renamed_decl).rstrip()
-
-    return "\n".join(import_lines + [renamed_decl])
-
-def replace_proofs_with_sorry_in_text(text: str) -> str:
-	lines = text.splitlines(keepends=True)
-	new_lines = []
-	in_proof = False
-	for line in lines:
-		if not in_proof and ":=" in line:
-			prefix, _ = line.split(":=", 1)
-			new_lines.append(prefix.strip() + " := by sorry\n")
-			in_proof = True
-		elif in_proof:
-			if line.strip() == "":
-				new_lines.append(line)
-				in_proof = False
-			# Skip lines within the proof block
-		else:
-			new_lines.append(line)
-	return "".join(new_lines)
-
-def prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, start, header):
-	# Step 1: extract all import modules from the header
-	modules = extract_import_modules(header)
-	# Step 2: read the contents of these modules
-	lemma_code = "\n".join([read_lean_module_code(m) for m in modules[:-1]])
-
-	# Step 3: build the prompt string
-	return f"""
+    exclude = name.split(".")[-1] if "." in name else name
+    full_snippets = [read_lean_module_code(m) for m in modules[:-1]]
+    last_snippet = read_lean_module_code(modules[-1], exclude=exclude) if modules else ""
+    header_info = "\n".join(full_snippets + [last_snippet])
+    formal_theorem = replace_theorem_with_example(formal_theorem)
+    return f"""
 1. **Informal Theorem**  
 {informal_theorem}
 
@@ -207,56 +132,50 @@ def prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, sta
 {start}
 
 5. **Header Information**  
-{lemma_code}
+{header_info}
 """
 
-def prompt_with_error(error_message):
-	return f"""The previous lean 4 proof has the following errors. 
+
+def prompt_with_error(error_message: str) -> str:
+    return f"""The previous lean 4 proof has the following errors. 
 6. **Error Message**
 {error_message}
 Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 """
 
-# Save proof to temporary file
-def save_tmp_file(code, path=TMP_FILE):
-	with open(path, "w", encoding="utf-8") as f:
-		f.write(code)
 
-# Run Lean check
-def run_lean_check():
-	try:
-		result = subprocess.run(
-			["lake", "env", "lean", "tmp.lean"],
-			cwd="Lean Project",
-			capture_output=True,
-			text=True,
-			timeout=20
-		)
-		success = result.returncode == 0
-		return success, (result.stdout + result.stderr).strip()
-	except subprocess.TimeoutExpired:
-		return False, "Timeout during Lean check"
-	except Exception as e:
-		return False, f"Subprocess error: {str(e)}"
-
-# Load/Save state functions are defined below
-		f.write(id + "\n")
+def save_tmp_file(code: str, path: str = TMP_FILE):
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(code)
 
 
-# ---- load_state ----
-def load_state():
+def run_lean_check() -> tuple[bool, str]:
+    try:
+        res = subprocess.run(
+            ["lake", "env", "lean", "tmp.lean"],
+            cwd="Lean Project",
+            capture_output=True,
+            text=True,
+            timeout=20
+        )
+        ok = (res.returncode == 0)
+        return ok, (res.stdout + res.stderr).strip()
+    except Exception as e:
+        return False, str(e)
+
+
+def load_state() -> tuple[set, int, int]:
     if not os.path.exists(STATE_FILE) or os.path.getsize(STATE_FILE) == 0:
         return set(), 0, 0
     try:
         with open(STATE_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-        return (set(data.get("processed_ids", [])),
-                data.get("success_count", 0),
-                data.get("total_count", 0))
+            d = json.load(f)
+        return set(d.get("processed_ids", [])), d.get("success_count", 0), d.get("total_count", 0)
     except json.JSONDecodeError:
         return set(), 0, 0
 
-def save_state(processed_ids, success_count, total_count):
+
+def save_state(processed_ids: set, success_count: int, total_count: int):
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump({
             "processed_ids": list(processed_ids),
@@ -265,126 +184,128 @@ def save_state(processed_ids, success_count, total_count):
         }, f)
 
 
-def ensure_pipeline_dir():
-	os.makedirs(PIPELINE_SAVE_DIR, exist_ok=True)
+def ensure_dir(path: str):
+    os.makedirs(path, exist_ok=True)
+
 
 def main():
-	only_id = sys.argv[1] if len(sys.argv) > 1 else None
-	single_mode = only_id is not None
-	processed_ids, success_count, total_count = (set(), 0, 0) if single_mode else load_state()
+    only_id = sys.argv[1] if len(sys.argv) > 1 else None
+    single_mode = only_id is not None
+    processed_ids, success_count, total_count = (set(), 0, 0) if single_mode else load_state()
 
-	with open(INPUT_CSV, mode="r", encoding="utf-8") as infile:
-		csv_reader = list(csv.reader(infile))
-		header_row = csv_reader[0]
-		data_rows = csv_reader[1:]
+    # prepare directories
+    ensure_dir(PIPELINE_SAVE_DIR)
+    ensure_dir(PROMPTS_DIR)
 
-	if not single_mode:
-		if not os.path.exists(OUTPUT_CSV):
-			with open(OUTPUT_CSV, "w", encoding="utf-8", newline="") as f:
-				csv.writer(f).writerow(["id", "success"])
-		ensure_pipeline_dir()
-	ensure_pipeline_dir()
+    script_dir = os.path.dirname(__file__)
+    with open(os.path.join(script_dir, "system.md"), "r", encoding="utf-8") as f:
+        system_prompt = f.read()
 
-	iterator = tqdm(data_rows, desc="🔄 Processing", ncols=100) if not single_mode else data_rows
+    with open(INPUT_CSV, "r", encoding="utf-8") as infile:
+        rows = list(csv.reader(infile))
+    header_row, data_rows = rows[0], rows[1:]
 
-	# read system prompt from system.md in the same directory
-	script_dir = os.path.dirname(__file__)
-	with open(os.path.join(script_dir, "system.md"), "r", encoding="utf-8") as _f:
-	    system_prompt = _f.read()
+    if not single_mode and not os.path.exists(OUTPUT_CSV):
+        with open(OUTPUT_CSV, "w", encoding="utf-8", newline="") as f:
+            csv.writer(f).writerow(["id", "success"])
 
-	for row in iterator:
-		id = row[0]
-		if only_id and id != only_id:
-			continue
-		if not only_id and id in processed_ids:
-			continue
+    iterator = tqdm(data_rows, desc="🔄 Processing", ncols=100) if not single_mode else data_rows
 
-		name = row[1]
-		informal_theorem = row[3]
-		formal_theorem = row[2]
-		informal_proof = row[5]
-		formal_proof = row[4]
-		header = row[7]
+    for row in iterator:
+        id_ = row[0]
+        if only_id and id_ != only_id:
+            continue
+        if not single_mode and id_ in processed_ids:
+            continue
 
-		lean_path = os.path.join(PROOF_DIR, f"{id}.lean")
-		if not os.path.exists(lean_path):
-			continue
+        name = row[1]
+        formal_theorem = row[2]
+        informal_theorem = row[3]
+        formal_proof = row[4]
+        informal_proof = row[5]
+        header = row[7]
 
-		total_count += 1
-		attempts = []
-		error_message = None
-		success = False
+        lean_path = os.path.join(PROOF_DIR, f"{id_}.lean")
+        if not os.path.exists(lean_path):
+            continue
 
-		thm_name = name
-		#thm_name = name.split(".")[-1]
-		#thm_name = name.split(".", 1)[1] if "." in name else name
+        total_count += 1
+        attempts = []
+        error_message = None
+        success = False
 
-		start = start_of_proof(header, name, formal_theorem)
-		prompt = prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, start, header)
-	
-		# print(prompt)
-		# print(start)
-		convo = [
-			{"role": "system", "content": system_prompt},
-			{"role": "user", "content": prompt},
-			{"role": "assistant","content":start,"prefix": True}
-		]
+        thm_name = name.split(".")[-1] if "." in name else name
+        start = start_of_proof(header, name, formal_theorem)
+        prompt = prompt_for_proof(name, informal_theorem, formal_theorem, informal_proof, start, header)
 
-		for attempt_num in range(1, MAX_TRIES + 1):
-			soft_clear()
-			print("="*80)
-			print(f"🔢 Processing ID {id}, {name} (data point #{total_count})")
-			print(f"🔁 Attempt {attempt_num} / {MAX_TRIES} | ✅ Success: {success_count} / Processed: {total_count - 1}")
+        convo = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt},
+            {"role": "assistant", "content": start, "prefix": True}
+        ]
 
-			try:
-				response = client.chat.complete(
-					model="mistral-large-latest",
-					messages=convo
-				)
-				raw = response.choices[0].message.content
+        for attempt_num in range(1, MAX_TRIES + 1):
+            soft_clear()
+            print("=" * 80)
+            print(f"🔢 Processing ID {id_}, {name} (data point #{total_count})")
+            print(f"🔁 Attempt {attempt_num} / {MAX_TRIES} | ✅ Success: {success_count} / Processed: {total_count - 1}")
 
-				proof = raw
-				#proof = clean_mistral_code(raw, thm_name)
-				proof = replace_theorem_with_example(proof)
+            # save prompt
+            prompt_text = prompt if attempt_num == 1 else prompt_with_error(error_message)
+            prompt_file = os.path.join(PROMPTS_DIR, f"{id_}-{attempt_num - 1}.txt")
+            with open(prompt_file, "w", encoding="utf-8") as pf:
+                pf.write(prompt_text)
 
-				attempts.append(proof)
-			except Exception as e:
-				print("❌ API ERROR:", e)
-				attempts.append(f"API ERROR: {e}")
-				break
+            try:
+                response = client.chat.complete(
+                    model="mistral-large-latest",
+                    messages=convo
+                )
+                raw = response.choices[0].message.content
+            except Exception as e:
+                raw = f"API ERROR: {e}"
 
-			print("\n📜 Generated Lean 4 proof:")
-			print(proof)
+            proof = replace_theorem_with_example(raw)
+            # proof = proof.replace("by sorry", "by")
+            attempts.append(proof)
 
-			save_tmp_file(proof)
-			time.sleep(5)
+            print("\n📜 Generated Lean 4 proof:")
+            print(proof)
 
-			ok, message = run_lean_check()
+            save_tmp_file(proof)
+            time.sleep(8)
 
-			if ok:
-				print("✅ Lean check PASSED!")
-				success = True
-				success_count += 1
-				save_tmp_file(attempts[-1] + f"\n\n/- ACTUAL PROOF OF {name} -/\n\n" + replace_theorem_with_example(formal_proof), os.path.join(PIPELINE_SAVE_DIR, f"{id}.lean"))
-				break
-			else:
-				print("❌ Lean check FAILED. Error message:")
-				print(message)
-				error_message = message
-				save_tmp_file(attempts[-1] + f"\n\n/- ACTUAL PROOF OF {name} -/\n\n" + replace_theorem_with_example(formal_proof), os.path.join(PIPELINE_SAVE_DIR, f"{id}-{attempt_num}.lean"))
-				convo.pop()
-				convo.append({"role": "assistant", "content": proof})
-				convo.append({"role": "user", "content": prompt_with_error(error_message)})
-				convo.append({"role": "assistant", "content": start, "prefix": True})
+            ok, message = run_lean_check()
 
-		if not single_mode:
-			with open(OUTPUT_CSV, "a", encoding="utf-8", newline="") as f:
-							csv.writer(f).writerow([id, "yes" if success else "no"])
-			processed_ids.add(id)
-			save_state(processed_ids, success_count, total_count)
-			save_state(processed_ids, success_count, total_count)
+            if ok:
+                print("✅ Lean check PASSED!")
+                success = True
+                success_count += 1
+                save_tmp_file(
+                    attempts[-1] + f"\n\n/- ACTUAL PROOF OF {name} -/\n\n" + replace_theorem_with_example(formal_proof),
+                    os.path.join(PIPELINE_SAVE_DIR, f"{id_}.lean")
+                )
+                break
+            else:
+                print("❌ Lean check FAILED. Error message:")
+                print(message)
+                error_message = message
+                save_tmp_file(
+                    attempts[-1] + f"\n\n/- ACTUAL PROOF OF {name} -/\n\n" + replace_theorem_with_example(formal_proof),
+                    os.path.join(PIPELINE_SAVE_DIR, f"{id_}-{attempt_num}.lean")
+                )
+                convo.pop()
+                convo.append({"role": "assistant", "content": proof})
+                convo.append({"role": "user", "content": prompt_with_error(error_message)})
+                convo.append({"role": "assistant", "content": start, "prefix": True})
 
-	print(f"🎯 Final: {success_count} successful out of {total_count} processed.")
+        if not single_mode:
+            with open(OUTPUT_CSV, "a", encoding="utf-8", newline="") as f:
+                csv.writer(f).writerow([id_, "yes" if success else "no"])
+            processed_ids.add(id_)
+            save_state(processed_ids, success_count, total_count)
+
+    print(f"🎯 Final: {success_count} successful out of {total_count} processed.")
 
 if __name__ == "__main__":
-	main()
+    main()

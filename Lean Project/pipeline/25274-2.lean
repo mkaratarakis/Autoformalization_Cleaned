@@ -1,11 +1,18 @@
 import Init.BinderPredicates
-example
+import Init.Data.Bool
+
+open Bool
+
+
 example : {b : Bool} → b = false ↔ b ≠ true := by
-  constructor
+  apply Iff.intro
   · intro h
-    cases b <;> simp [h]
+    rw [h]
+    exact false_ne_true
   · intro h
-    cases b <;> simp [h]
+    cases eq_false_or_eq_true b
+    · contradiction
+    · assumption
 
 /- ACTUAL PROOF OF Bool.eq_false_iff -/
 

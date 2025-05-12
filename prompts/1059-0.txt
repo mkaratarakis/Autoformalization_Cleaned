@@ -1,0 +1,324 @@
+
+1. **Informal Theorem**  
+Swapping Arguments in Binary Map of Optional Values : For any types \( \alpha \), \( \beta \), and \( \gamma \), and for any binary function \( f : \alpha \to \beta \to \gamma \), and for any optional values \( a : \text{Option} \, \alpha \) and \( b : \text{Option} \, \beta \), the following holds:
+\[
+\text{Option.map₂} \, f \, a \, b = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, b \, a
+\]
+In other words, swapping the arguments of the binary function \( f \) and the optional values \( a \) and \( b \) in the `Option.map₂` operation results in the same output.
+
+2. **Informal Proof**  
+To prove the theorem, we will consider every possible case for the optional values \( a \) and \( b \).
+
+1. **Case 1: \( a = \text{none} \) and \( b = \text{none} \)**
+\[
+\text{Option.map₂} \, f \, \text{none} \, \text{none} = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, \text{none} \, \text{none}
+\]
+The equality holds trivially due to the reflexive property.
+
+2. **Case 2: \( a = \text{none} \) and \( b = \text{some} \, val \)**
+\[
+\text{Option.map₂} \, f \, \text{none} \, (\text{some} \, val) = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, (\text{some} \, val) \, \text{none}
+\]
+The equality holds trivially due to the reflexive property.
+
+3. **Case 3: \( a = \text{some} \, val \) and \( b = \text{none} \)**
+\[
+\text{Option.map₂} \, f \, (\text{some} \, val) \, \text{none} = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, \text{none} \, (\text{some} \, val)
+\]
+The equality holds trivially due to the reflexive property.
+
+4. **Case 4: \( a = \text{some} \, val_1 \) and \( b = \text{some} \, val_2 \)**
+\[
+\text{Option.map₂} \, f \, (\text{some} \, val_1) \, (\text{some} \, val_2) = \text{Option.map₂} \, (fun \, a \, b \, => \, f \, b \, a) \, (\text{some} \, val_2) \, (\text{some} \, val_1)
+\]
+The equality holds trivially due to the reflexive property.
+
+Since all cases have been considered and the equality holds in each case, the theorem is proved.
+
+3. **Formal Theorem**  
+example (f : α → β → γ) (a : Option α) (b : Option β) :
+    map₂ f a b = map₂ (fun a b => f b a) b a := by sorry
+
+4. **Prefix**
+import Mathlib.Logic.Function.Defs
+import Batteries.Tactic.Init
+import Mathlib.Data.Option.NAry
+
+open Option
+open Function
+variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Option β} {c : Option γ}
+
+example (f : α → β → γ) (a : Option α) (b : Option β) :
+    map₂ f a b = map₂ (fun a b => f b a) b a := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Logic.Function.Defs --
+/-
+Copyright (c) 2014 Microsoft Corporation. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Leonardo de Moura, Jeremy Avigad, Haitao Zhang
+-/
+import Mathlib.Tactic.AdaptationNote
+import Mathlib.Tactic.Attr.Register
+import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.Eqns
+import Mathlib.Tactic.TypeStar
+import Batteries.Logic
+
+/-!
+# General operations on functions
+-/
+
+universe u₁ u₂ u₃ u₄ u₅
+
+namespace Function
+
+variable {α : Sort u₁} {β : Sort u₂} {φ : Sort u₃} {δ : Sort u₄} {ζ : Sort u₅}
+
+lemma flip_def {f : α → β → φ} : flip f = fun b a => f a b := rfl
+
+#adaptation_note /-- nightly-2024-03-16
+Because of changes in how equation lemmas are generated,
+`@[eqns]` will only work properly when used immediately after the definition
+(and when none of the default equation lemmas are needed).
+Thus this usage is no longer allowed: -/
+-- attribute [eqns flip_def] flip
+
+/-- Composition of dependent functions: `(f ∘' g) x = f (g x)`, where type of `g x` depends on `x`
+and type of `f (g x)` depends on `x` and `g x`. -/
+@[inline, reducible]
+def dcomp {β : α → Sort u₂} {φ : ∀ {x : α}, β x → Sort u₃} (f : ∀ {x : α} (y : β x), φ y)
+    (g : ∀ x, β x) : ∀ x, φ (g x) := fun x => f (g x)
+
+@[inherit_doc] infixr:80 " ∘' " => Function.dcomp
+
+/-- Given functions `f : β → β → φ` and `g : α → β`, produce a function `α → α → φ` that evaluates
+`g` on each argument, then applies `f` to the results. Can be used, e.g., to transfer a relation
+from `β` to `α`. -/
+abbrev onFun (f : β → β → φ) (g : α → β) : α → α → φ := fun x y => f (g x) (g y)
+
+@[inherit_doc onFun]
+scoped infixl:2 " on " => onFun
+
+/-- For a two-argument function `f`, `swap f` is the same function but taking the arguments
+in the reverse order. `swap f y x = f x y`. -/
+abbrev swap {φ : α → β → Sort u₃} (f : ∀ x y, φ x y) : ∀ y x, φ x y := fun y x => f x y
+
+theorem swap_def {φ : α → β → Sort u₃} (f : ∀ x y, φ x y) : swap f = fun y x => f x y := rfl
+
+@[simp, mfld_simps]
+theorem id_comp (f : α → β) : id ∘ f = f := rfl
+
+@[simp, mfld_simps]
+theorem comp_id (f : α → β) : f ∘ id = f := rfl
+
+theorem comp_assoc (f : φ → δ) (g : β → φ) (h : α → β) : (f ∘ g) ∘ h = f ∘ g ∘ h :=
+  rfl
+
+/-- A function `f : α → β` is called injective if `f x = f y` implies `x = y`. -/
+def Injective (f : α → β) : Prop :=
+  ∀ ⦃a₁ a₂⦄, f a₁ = f a₂ → a₁ = a₂
+
+theorem Injective.comp {g : β → φ} {f : α → β} (hg : Injective g) (hf : Injective f) :
+    Injective (g ∘ f) := fun _a₁ _a₂ => fun h => hf (hg h)
+
+/-- A function `f : α → β` is called surjective if every `b : β` is equal to `f a`
+for some `a : α`. -/
+def Surjective (f : α → β) : Prop :=
+  ∀ b, ∃ a, f a = b
+
+theorem Surjective.comp {g : β → φ} {f : α → β} (hg : Surjective g) (hf : Surjective f) :
+    Surjective (g ∘ f) := fun c : φ =>
+  Exists.elim (hg c) fun b hb =>
+    Exists.elim (hf b) fun a ha =>
+      Exists.intro a (show g (f a) = c from Eq.trans (congr_arg g ha) hb)
+
+/-- A function is called bijective if it is both injective and surjective. -/
+def Bijective (f : α → β) :=
+  Injective f ∧ Surjective f
+
+theorem Bijective.comp {g : β → φ} {f : α → β} : Bijective g → Bijective f → Bijective (g ∘ f)
+  | ⟨h_ginj, h_gsurj⟩, ⟨h_finj, h_fsurj⟩ => ⟨h_ginj.comp h_finj, h_gsurj.comp h_fsurj⟩
+
+/-- `LeftInverse g f` means that `g` is a left inverse to `f`. That is, `g ∘ f = id`. -/
+def LeftInverse (g : β → α) (f : α → β) : Prop :=
+  ∀ x, g (f x) = x
+
+/-- `HasLeftInverse f` means that `f` has an unspecified left inverse. -/
+def HasLeftInverse (f : α → β) : Prop :=
+  ∃ finv : β → α, LeftInverse finv f
+
+/-- `RightInverse g f` means that `g` is a right inverse to `f`. That is, `f ∘ g = id`. -/
+def RightInverse (g : β → α) (f : α → β) : Prop :=
+  LeftInverse f g
+
+/-- `HasRightInverse f` means that `f` has an unspecified right inverse. -/
+def HasRightInverse (f : α → β) : Prop :=
+  ∃ finv : β → α, RightInverse finv f
+
+theorem LeftInverse.injective {g : β → α} {f : α → β} : LeftInverse g f → Injective f :=
+  fun h a b faeqfb =>
+  calc
+    a = g (f a) := (h a).symm
+    _ = g (f b) := congr_arg g faeqfb
+    _ = b := h b
+
+theorem HasLeftInverse.injective {f : α → β} : HasLeftInverse f → Injective f := fun h =>
+  Exists.elim h fun _finv inv => inv.injective
+
+theorem rightInverse_of_injective_of_leftInverse {f : α → β} {g : β → α} (injf : Injective f)
+    (lfg : LeftInverse f g) : RightInverse f g := fun x =>
+  have h : f (g (f x)) = f x := lfg (f x)
+  injf h
+
+theorem RightInverse.surjective {f : α → β} {g : β → α} (h : RightInverse g f) : Surjective f :=
+  fun y => ⟨g y, h y⟩
+
+theorem HasRightInverse.surjective {f : α → β} : HasRightInverse f → Surjective f
+  | ⟨_finv, inv⟩ => inv.surjective
+
+theorem leftInverse_of_surjective_of_rightInverse {f : α → β} {g : β → α} (surjf : Surjective f)
+    (rfg : RightInverse f g) : LeftInverse f g := fun y =>
+  Exists.elim (surjf y) fun x hx =>
+    calc
+      f (g y) = f (g (f x)) := hx ▸ rfl
+      _ = f x := Eq.symm (rfg x) ▸ rfl
+      _ = y := hx
+
+theorem injective_id : Injective (@id α) := fun _a₁ _a₂ h => h
+
+theorem surjective_id : Surjective (@id α) := fun a => ⟨a, rfl⟩
+
+theorem bijective_id : Bijective (@id α) :=
+  ⟨injective_id, surjective_id⟩
+
+variable {f : α → β}
+
+theorem Injective.eq_iff (I : Injective f) {a b : α} : f a = f b ↔ a = b :=
+  ⟨@I _ _, congr_arg f⟩
+
+theorem Injective.beq_eq {α β : Type*} [BEq α] [LawfulBEq α] [BEq β] [LawfulBEq β] {f : α → β}
+    (I : Injective f) {a b : α} : (f a == f b) = (a == b) := by
+  by_cases h : a == b <;> simp [h] <;> simpa [I.eq_iff] using h
+
+theorem Injective.eq_iff' (I : Injective f) {a b : α} {c : β} (h : f b = c) : f a = c ↔ a = b :=
+  h ▸ I.eq_iff
+
+theorem Injective.ne (hf : Injective f) {a₁ a₂ : α} : a₁ ≠ a₂ → f a₁ ≠ f a₂ :=
+  mt fun h ↦ hf h
+
+theorem Injective.ne_iff (hf : Injective f) {x y : α} : f x ≠ f y ↔ x ≠ y :=
+  ⟨mt <| congr_arg f, hf.ne⟩
+
+theorem Injective.ne_iff' (hf : Injective f) {x y : α} {z : β} (h : f y = z) : f x ≠ z ↔ x ≠ y :=
+  h ▸ hf.ne_iff
+
+end Function
+
+namespace Function
+
+variable {α : Type u₁} {β : Type u₂}
+
+protected theorem LeftInverse.id {g : β → α} {f : α → β} (h : LeftInverse g f) : g ∘ f = id :=
+  funext h
+
+protected theorem RightInverse.id {g : β → α} {f : α → β} (h : RightInverse g f) : f ∘ g = id :=
+  funext h
+
+/-- A point `x` is a fixed point of `f : α → α` if `f x = x`. -/
+def IsFixedPt (f : α → α) (x : α) := f x = x
+
+end Function
+
+namespace Pi
+
+variable {ι : Sort*} {α β : ι → Sort*}
+
+/-- Sends a dependent function `a : ∀ i, α i` to a dependent function `Pi.map f a : ∀ i, β i`
+by applying `f i` to `i`-th component. -/
+protected def map (f : ∀ i, α i → β i) : (∀ i, α i) → (∀ i, β i) := fun a i ↦ f i (a i)
+
+@[simp]
+lemma map_apply (f : ∀ i, α i → β i) (a : ∀ i, α i) (i : ι) : Pi.map f a i = f i (a i) := rfl
+
+end Pi
+
+-- END Mathlib.Logic.Function.Defs --
+
+import Batteries.Tactic.Init
+import Mathlib.Logic.Function.Defs
+
+/-!
+# Binary map of options
+
+This file defines the binary map of `Option`. This is mostly useful to define pointwise operations
+on intervals.
+
+## Main declarations
+
+* `Option.map₂`: Binary map of options.
+
+## Notes
+
+This file is very similar to the n-ary section of `Mathlib.Data.Set.Basic`, to
+`Mathlib.Data.Finset.NAry` and to `Mathlib.Order.Filter.NAry`. Please keep them in sync.
+
+We do not define `Option.map₃` as its only purpose so far would be to prove properties of
+`Option.map₂` and casing already fulfills this task.
+-/
+
+universe u
+
+open Function
+
+namespace Option
+
+variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Option β} {c : Option γ}
+
+/-- The image of a binary function `f : α → β → γ` as a function `Option α → Option β → Option γ`.
+Mathematically this should be thought of as the image of the corresponding function `α × β → γ`. -/
+def map₂ (f : α → β → γ) (a : Option α) (b : Option β) : Option γ :=
+  a.bind fun a => b.map <| f a
+
+/-- `Option.map₂` in terms of monadic operations. Note that this can't be taken as the definition
+because of the lack of universe polymorphism. -/
+theorem map₂_def {α β γ : Type u} (f : α → β → γ) (a : Option α) (b : Option β) :
+    map₂ f a b = f <$> a <*> b := by
+  cases a <;> rfl
+
+@[simp]
+theorem map₂_some_some (f : α → β → γ) (a : α) (b : β) : map₂ f (some a) (some b) = f a b := rfl
+
+theorem map₂_coe_coe (f : α → β → γ) (a : α) (b : β) : map₂ f a b = f a b := rfl
+
+@[simp]
+theorem map₂_none_left (f : α → β → γ) (b : Option β) : map₂ f none b = none := rfl
+
+@[simp]
+theorem map₂_none_right (f : α → β → γ) (a : Option α) : map₂ f a none = none := by
+
+@[simp]
+theorem map₂_coe_left (f : α → β → γ) (a : α) (b : Option β) : map₂ f a b = b.map fun b => f a b :=
+  rfl
+
+-- Porting note: This proof was `rfl` in Lean3, but now is not.
+@[simp]
+theorem map₂_coe_right (f : α → β → γ) (a : Option α) (b : β) :
+    map₂ f a b = a.map fun a => f a b := by
+
+theorem mem_map₂_iff {c : γ} : c ∈ map₂ f a b ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by
+  simp [map₂, bind_eq_some]
+
+/-- `simp`-normal form of `mem_map₂_iff`. -/
+@[simp]
+theorem map₂_eq_some_iff {c : γ} :
+    map₂ f a b = some c ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by
+  simp [map₂, bind_eq_some]
+
+@[simp]
+theorem map₂_eq_none_iff : map₂ f a b = none ↔ a = none ∨ b = none := by
+  cases a <;> cases b <;> simp
+
+theorem map₂_swap (f : α → β → γ) (a : Option α) (b : Option β) :
+    map₂ f a b = map₂ (fun a b => f b a) b a := by
+

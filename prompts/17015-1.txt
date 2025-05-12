@@ -1,0 +1,19 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:64:55: error: application type mismatch
+  HasStrictFDerivAt.comp_hasStrictDerivAt x ?m.25062 (HasStrictFDerivAt.restrictScalars 𝕜 hh₂)
+argument
+  HasStrictFDerivAt.restrictScalars 𝕜 hh₂
+has type
+  HasStrictFDerivAt h₂ (ContinuousLinearMap.restrictScalars 𝕜 (smulRight 1 h₂')) (h x) : Prop
+but is expected to have type
+  HasStrictDerivAt ?m.24963 ?m.24964 x : Prop
+tmp.lean:64:8: error: application type mismatch
+  HasStrictFDerivAt.comp_hasStrictDerivAt x (HasStrictFDerivAt.restrictScalars 𝕜 hh)
+argument
+  HasStrictFDerivAt.restrictScalars 𝕜 hh
+has type
+  HasStrictFDerivAt h (ContinuousLinearMap.restrictScalars 𝕜 (smulRight 1 h')) x : Prop
+but is expected to have type
+  HasStrictFDerivAt ?m.24965 ?m.24966 (?m.24963 x) : Prop
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

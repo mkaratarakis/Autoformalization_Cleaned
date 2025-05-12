@@ -128,7 +128,7 @@ def main():
         excl = row.name.split('.', 1)[1] if '.' in row.name else row.name
         snippets = [read_lean_module_code(m, exclude=excl) for m in mods]
         code = '\n'.join(snippets)
-        if not code or len(code) > 5000:
+        if not code or len(code) > 10000:
             continue
 
         # Generate Lean file content at absolute path

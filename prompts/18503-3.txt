@@ -1,0 +1,36 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:11:46: error: don't know how to synthesize placeholder
+context:
+E : Type u_1
+inst✝¹ : NormedAddCommGroup E
+inst✝ : NormedSpace ℝ E
+φ ψ : ℝ → ℝ
+s : Set E
+a✝ b✝ m : ℝ
+x✝ y✝ : E
+f g : E → ℝ
+hf : UniformConcaveOn s φ f
+hg : UniformConvexOn s ψ g
+x : E
+hx : x ∈ s
+y : E
+hy : y ∈ s
+a b : ℝ
+ha : 0 ≤ a
+hb : 0 ≤ b
+hab : a + b = 1
+⊢ a • (f - g) x + b • (f - g) y + a * b * (φ + ψ) ‖x - y‖ ≤ (f - g) (a • x + b • y)
+tmp.lean:10:42: error: unsolved goals
+E : Type u_1
+inst✝¹ : NormedAddCommGroup E
+inst✝ : NormedSpace ℝ E
+φ ψ : ℝ → ℝ
+s : Set E
+a b m : ℝ
+x y : E
+f g : E → ℝ
+hf : UniformConcaveOn s φ f
+hg : UniformConvexOn s ψ g
+⊢ UniformConcaveOn s (φ + ψ) (f - g)
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

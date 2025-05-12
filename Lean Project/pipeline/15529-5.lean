@@ -1,14 +1,17 @@
 import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
 example (m n k : Nat) : m % (k * n) / n = m / n % k := by
-  rw [Nat.mul_comm]
-  have h : m = n * (m / n) + m % n := Nat.div_add_mod m n
-  rw [h]
-  rw [Nat.mul_comm]
-  rw [Nat.div_mul_right]
-  rw [Nat.div_div]
-  rw [Nat.div_self]
-  rw [Nat.mod_eq_of_lt]
-  exact h
+  rcases Nat.eq_zero_or_pos n with (rfl | hn)
+  · simp
+  rcases Nat.eq_zero_or_pos k with (rfl | hk)
+  · simp
+  rw [← mod_add_div m (k * n)]
+  rw [Nat.mul_assoc, add_mul_div_left _ _ hn, add_mul_mod_self_left]
+  rw [mod_eq_of_lt (div_lt_of_lt_mul (mod_lt _ (mul_pos hn hk)))]
 
 /- ACTUAL PROOF OF Nat.mod_mul_left_div_self -/
 

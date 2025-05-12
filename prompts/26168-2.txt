@@ -1,0 +1,13 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:12:6: error: simp made no progress
+tmp.lean:14:6: error: simp made no progress
+tmp.lean:16:31: error: application type mismatch
+  Nat.not_le_of_gt ?m.265 h'
+argument
+  h'
+has type
+  ¬b ≤ a : Prop
+but is expected to have type
+  ?m.245 ≤ ?m.246 : Prop
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.

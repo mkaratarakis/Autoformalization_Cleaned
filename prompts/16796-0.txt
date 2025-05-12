@@ -1,0 +1,1725 @@
+
+1. **Informal Theorem**  
+Derivative of Sum of Functions along a Filter: \((f + g)' = f' + g'\) : For any functions \( f, g : \mathbb{𝕜} \to F \) from a nontrivially normed field \(\mathbb{𝕜}\) to a normed space \( F \) over \(\mathbb{𝕜}\), and for any point \( x \in \mathbb{𝕜} \) and filter \( L \) on \(\mathbb{𝕜}\), if \( f \) has the derivative \( f' \) at \( x \) along the filter \( L \) and \( g \) has the derivative \( g' \) at \( x \) along the filter \( L \), then the function \( f + g \) has the derivative \( f' + g' \) at \( x \) along the filter \( L \).
+
+2. **Informal Proof**  
+We start with the given conditions that \( f \) has the derivative \( f' \) at \( x \) along the filter \( L \) and \( g \) has the derivative \( g' \) at \( x \) along the filter \( L \). By the properties of Fréchet derivatives, if \( f \) and \( g \) have Fréchet derivatives at \( x \) along the filter \( L \), then the function \( f + g \) also has a Fréchet derivative at \( x \) along the filter \( L \). Specifically, the Fréchet derivative of \( f + g \) at \( x \) is the sum of the Fréchet derivatives of \( f \) and \( g \) at \( x \).
+
+Using the fact that the Fréchet derivative of \( f + g \) at \( x \) is \( f' + g' \), we can simplify the goal. Since \( f \) has the derivative \( f' \) at \( x \) along the filter \( L \) and \( g \) has the derivative \( g' \) at \( x \) along the filter \( L \), the function \( f + g \) has the derivative \( f' + g' \) at \( x \) along the filter \( L \). This simplification shows that the goal is exactly what we need to prove, thus finishing the proof.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (hf : HasDerivAtFilter f f' x L)
+    (hg : HasDerivAtFilter g g' x L) : HasDerivAtFilter (fun y => f y + g y) (f' + g') x L := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Analysis.Calculus.FDeriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Add
+
+open HasDerivAtFilter
+open scoped Classical
+open scoped Topology Filter ENNReal
+open Asymptotics Set
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {E : Type w} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {f f₀ f₁ g : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {s t : Set 𝕜}
+variable {L : Filter 𝕜}
+variable {L : Filter 𝕜}
+
+example (hf : HasDerivAtFilter f f' x L)
+    (hg : HasDerivAtFilter g g' x L) : HasDerivAtFilter (fun y => f y + g y) (f' + g') x L := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Analysis.Calculus.Deriv.Basic --
+/-
+Copyright (c) 2019 Gabriel Ebner. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Gabriel Ebner, Sébastien Gouëzel
+-/
+import Mathlib.Analysis.Calculus.FDeriv.Basic
+import Mathlib.Analysis.NormedSpace.OperatorNorm.NormedSpace
+
+/-!
+
+# One-dimensional derivatives
+
+This file defines the derivative of a function `f : 𝕜 → F` where `𝕜` is a
+normed field and `F` is a normed space over this field. The derivative of
+such a function `f` at a point `x` is given by an element `f' : F`.
+
+The theory is developed analogously to the [Fréchet
+derivatives](./fderiv.html). We first introduce predicates defined in terms
+of the corresponding predicates for Fréchet derivatives:
+
+ - `HasDerivAtFilter f f' x L` states that the function `f` has the
+    derivative `f'` at the point `x` as `x` goes along the filter `L`.
+
+ - `HasDerivWithinAt f f' s x` states that the function `f` has the
+    derivative `f'` at the point `x` within the subset `s`.
+
+ - `HasDerivAt f f' x` states that the function `f` has the derivative `f'`
+    at the point `x`.
+
+ - `HasStrictDerivAt f f' x` states that the function `f` has the derivative `f'`
+    at the point `x` in the sense of strict differentiability, i.e.,
+   `f y - f z = (y - z) • f' + o (y - z)` as `y, z → x`.
+
+For the last two notions we also define a functional version:
+
+  - `derivWithin f s x` is a derivative of `f` at `x` within `s`. If the
+    derivative does not exist, then `derivWithin f s x` equals zero.
+
+  - `deriv f x` is a derivative of `f` at `x`. If the derivative does not
+    exist, then `deriv f x` equals zero.
+
+The theorems `fderivWithin_derivWithin` and `fderiv_deriv` show that the
+one-dimensional derivatives coincide with the general Fréchet derivatives.
+
+We also show the existence and compute the derivatives of:
+  - constants
+  - the identity function
+  - linear maps (in `Linear.lean`)
+  - addition (in `Add.lean`)
+  - sum of finitely many functions (in `Add.lean`)
+  - negation (in `Add.lean`)
+  - subtraction (in `Add.lean`)
+  - star (in `Star.lean`)
+  - multiplication of two functions in `𝕜 → 𝕜` (in `Mul.lean`)
+  - multiplication of a function in `𝕜 → 𝕜` and of a function in `𝕜 → E` (in `Mul.lean`)
+  - powers of a function (in `Pow.lean` and `ZPow.lean`)
+  - inverse `x → x⁻¹` (in `Inv.lean`)
+  - division (in `Inv.lean`)
+  - composition of a function in `𝕜 → F` with a function in `𝕜 → 𝕜` (in `Comp.lean`)
+  - composition of a function in `F → E` with a function in `𝕜 → F` (in `Comp.lean`)
+  - inverse function (assuming that it exists; the inverse function theorem is in `Inverse.lean`)
+  - polynomials (in `Polynomial.lean`)
+
+For most binary operations we also define `const_op` and `op_const` theorems for the cases when
+the first or second argument is a constant. This makes writing chains of `HasDerivAt`'s easier,
+and they more frequently lead to the desired result.
+
+We set up the simplifier so that it can compute the derivative of simple functions. For instance,
+```lean
+example (x : ℝ) :
+    deriv (fun x ↦ cos (sin x) * exp x) x = (cos (sin x) - sin (sin x) * cos x) * exp x := by
+  simp; ring
+```
+
+The relationship between the derivative of a function and its definition from a standard
+undergraduate course as the limit of the slope `(f y - f x) / (y - x)` as `y` tends to `𝓝[≠] x`
+is developed in the file `Slope.lean`.
+
+## Implementation notes
+
+Most of the theorems are direct restatements of the corresponding theorems
+for Fréchet derivatives.
+
+The strategy to construct simp lemmas that give the simplifier the possibility to compute
+derivatives is the same as the one for differentiability statements, as explained in
+`FDeriv/Basic.lean`. See the explanations there.
+-/
+
+universe u v w
+
+noncomputable section
+
+open scoped Topology ENNReal NNReal
+open Filter Asymptotics Set
+
+open ContinuousLinearMap (smulRight smulRight_one_eq_iff)
+
+section TVS
+
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [AddCommGroup F] [Module 𝕜 F] [TopologicalSpace F]
+
+section
+variable [ContinuousSMul 𝕜 F]
+/-- `f` has the derivative `f'` at the point `x` as `x` goes along the filter `L`.
+
+That is, `f x' = f x + (x' - x) • f' + o(x' - x)` where `x'` converges along the filter `L`.
+-/
+def HasDerivAtFilter (f : 𝕜 → F) (f' : F) (x : 𝕜) (L : Filter 𝕜) :=
+  HasFDerivAtFilter f (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') x L
+
+/-- `f` has the derivative `f'` at the point `x` within the subset `s`.
+
+That is, `f x' = f x + (x' - x) • f' + o(x' - x)` where `x'` converges to `x` inside `s`.
+-/
+def HasDerivWithinAt (f : 𝕜 → F) (f' : F) (s : Set 𝕜) (x : 𝕜) :=
+  HasDerivAtFilter f f' x (𝓝[s] x)
+
+/-- `f` has the derivative `f'` at the point `x`.
+
+That is, `f x' = f x + (x' - x) • f' + o(x' - x)` where `x'` converges to `x`.
+-/
+def HasDerivAt (f : 𝕜 → F) (f' : F) (x : 𝕜) :=
+  HasDerivAtFilter f f' x (𝓝 x)
+
+/-- `f` has the derivative `f'` at the point `x` in the sense of strict differentiability.
+
+That is, `f y - f z = (y - z) • f' + o(y - z)` as `y, z → x`. -/
+def HasStrictDerivAt (f : 𝕜 → F) (f' : F) (x : 𝕜) :=
+  HasStrictFDerivAt f (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') x
+
+end
+/-- Derivative of `f` at the point `x` within the set `s`, if it exists.  Zero otherwise.
+
+If the derivative exists (i.e., `∃ f', HasDerivWithinAt f f' s x`), then
+`f x' = f x + (x' - x) • derivWithin f s x + o(x' - x)` where `x'` converges to `x` inside `s`.
+-/
+def derivWithin (f : 𝕜 → F) (s : Set 𝕜) (x : 𝕜) :=
+  fderivWithin 𝕜 f s x 1
+
+/-- Derivative of `f` at the point `x`, if it exists.  Zero otherwise.
+
+If the derivative exists (i.e., `∃ f', HasDerivAt f f' x`), then
+`f x' = f x + (x' - x) • deriv f x + o(x' - x)` where `x'` converges to `x`.
+-/
+def deriv (f : 𝕜 → F) (x : 𝕜) :=
+  fderiv 𝕜 f x 1
+
+variable {f f₀ f₁ : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+
+section
+variable [ContinuousSMul 𝕜 F]
+/-- Expressing `HasFDerivAtFilter f f' x L` in terms of `HasDerivAtFilter` -/
+theorem hasFDerivAtFilter_iff_hasDerivAtFilter {f' : 𝕜 →L[𝕜] F} :
+    HasFDerivAtFilter f f' x L ↔ HasDerivAtFilter f (f' 1) x L := by simp [HasDerivAtFilter]
+
+theorem HasFDerivAtFilter.hasDerivAtFilter {f' : 𝕜 →L[𝕜] F} :
+    HasFDerivAtFilter f f' x L → HasDerivAtFilter f (f' 1) x L :=
+  hasFDerivAtFilter_iff_hasDerivAtFilter.mp
+
+/-- Expressing `HasFDerivWithinAt f f' s x` in terms of `HasDerivWithinAt` -/
+theorem hasFDerivWithinAt_iff_hasDerivWithinAt {f' : 𝕜 →L[𝕜] F} :
+    HasFDerivWithinAt f f' s x ↔ HasDerivWithinAt f (f' 1) s x :=
+  hasFDerivAtFilter_iff_hasDerivAtFilter
+
+/-- Expressing `HasDerivWithinAt f f' s x` in terms of `HasFDerivWithinAt` -/
+theorem hasDerivWithinAt_iff_hasFDerivWithinAt {f' : F} :
+    HasDerivWithinAt f f' s x ↔ HasFDerivWithinAt f (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') s x :=
+  Iff.rfl
+
+theorem HasFDerivWithinAt.hasDerivWithinAt {f' : 𝕜 →L[𝕜] F} :
+    HasFDerivWithinAt f f' s x → HasDerivWithinAt f (f' 1) s x :=
+  hasFDerivWithinAt_iff_hasDerivWithinAt.mp
+
+theorem HasDerivWithinAt.hasFDerivWithinAt {f' : F} :
+    HasDerivWithinAt f f' s x → HasFDerivWithinAt f (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') s x :=
+  hasDerivWithinAt_iff_hasFDerivWithinAt.mp
+
+/-- Expressing `HasFDerivAt f f' x` in terms of `HasDerivAt` -/
+theorem hasFDerivAt_iff_hasDerivAt {f' : 𝕜 →L[𝕜] F} : HasFDerivAt f f' x ↔ HasDerivAt f (f' 1) x :=
+  hasFDerivAtFilter_iff_hasDerivAtFilter
+
+theorem HasFDerivAt.hasDerivAt {f' : 𝕜 →L[𝕜] F} : HasFDerivAt f f' x → HasDerivAt f (f' 1) x :=
+  hasFDerivAt_iff_hasDerivAt.mp
+
+theorem hasStrictFDerivAt_iff_hasStrictDerivAt {f' : 𝕜 →L[𝕜] F} :
+    HasStrictFDerivAt f f' x ↔ HasStrictDerivAt f (f' 1) x := by
+  simp [HasStrictDerivAt, HasStrictFDerivAt]
+
+protected theorem HasStrictFDerivAt.hasStrictDerivAt {f' : 𝕜 →L[𝕜] F} :
+    HasStrictFDerivAt f f' x → HasStrictDerivAt f (f' 1) x :=
+  hasStrictFDerivAt_iff_hasStrictDerivAt.mp
+
+theorem hasStrictDerivAt_iff_hasStrictFDerivAt :
+    HasStrictDerivAt f f' x ↔ HasStrictFDerivAt f (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') x :=
+  Iff.rfl
+
+alias ⟨HasStrictDerivAt.hasStrictFDerivAt, _⟩ := hasStrictDerivAt_iff_hasStrictFDerivAt
+
+/-- Expressing `HasDerivAt f f' x` in terms of `HasFDerivAt` -/
+theorem hasDerivAt_iff_hasFDerivAt {f' : F} :
+    HasDerivAt f f' x ↔ HasFDerivAt f (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') x :=
+  Iff.rfl
+
+alias ⟨HasDerivAt.hasFDerivAt, _⟩ := hasDerivAt_iff_hasFDerivAt
+
+end
+theorem derivWithin_zero_of_not_differentiableWithinAt (h : ¬DifferentiableWithinAt 𝕜 f s x) :
+    derivWithin f s x = 0 := by
+  unfold derivWithin
+  rw [fderivWithin_zero_of_not_differentiableWithinAt h]
+  simp
+
+theorem differentiableWithinAt_of_derivWithin_ne_zero (h : derivWithin f s x ≠ 0) :
+    DifferentiableWithinAt 𝕜 f s x :=
+  not_imp_comm.1 derivWithin_zero_of_not_differentiableWithinAt h
+
+end TVS
+
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+
+variable {f f₀ f₁ : 𝕜 → F}
+variable {f' f₀' f₁' g' : F}
+variable {x : 𝕜}
+variable {s t : Set 𝕜}
+variable {L L₁ L₂ : Filter 𝕜}
+
+theorem derivWithin_zero_of_isolated (h : 𝓝[s \ {x}] x = ⊥) : derivWithin f s x = 0 := by
+  rw [derivWithin, fderivWithin_zero_of_isolated h, ContinuousLinearMap.zero_apply]
+
+theorem derivWithin_zero_of_nmem_closure (h : x ∉ closure s) : derivWithin f s x = 0 := by
+  rw [derivWithin, fderivWithin_zero_of_nmem_closure h, ContinuousLinearMap.zero_apply]
+
+theorem deriv_zero_of_not_differentiableAt (h : ¬DifferentiableAt 𝕜 f x) : deriv f x = 0 := by
+  unfold deriv
+  rw [fderiv_zero_of_not_differentiableAt h]
+  simp
+
+theorem differentiableAt_of_deriv_ne_zero (h : deriv f x ≠ 0) : DifferentiableAt 𝕜 f x :=
+  not_imp_comm.1 deriv_zero_of_not_differentiableAt h
+
+theorem UniqueDiffWithinAt.eq_deriv (s : Set 𝕜) (H : UniqueDiffWithinAt 𝕜 s x)
+    (h : HasDerivWithinAt f f' s x) (h₁ : HasDerivWithinAt f f₁' s x) : f' = f₁' :=
+  smulRight_one_eq_iff.mp <| UniqueDiffWithinAt.eq H h h₁
+
+theorem hasDerivAtFilter_iff_isLittleO :
+    HasDerivAtFilter f f' x L ↔ (fun x' : 𝕜 => f x' - f x - (x' - x) • f') =o[L] fun x' => x' - x :=
+  hasFDerivAtFilter_iff_isLittleO ..
+
+theorem hasDerivAtFilter_iff_tendsto :
+    HasDerivAtFilter f f' x L ↔
+      Tendsto (fun x' : 𝕜 => ‖x' - x‖⁻¹ * ‖f x' - f x - (x' - x) • f'‖) L (𝓝 0) :=
+  hasFDerivAtFilter_iff_tendsto
+
+theorem hasDerivWithinAt_iff_isLittleO :
+    HasDerivWithinAt f f' s x ↔
+      (fun x' : 𝕜 => f x' - f x - (x' - x) • f') =o[𝓝[s] x] fun x' => x' - x :=
+  hasFDerivAtFilter_iff_isLittleO ..
+
+theorem hasDerivWithinAt_iff_tendsto :
+    HasDerivWithinAt f f' s x ↔
+      Tendsto (fun x' => ‖x' - x‖⁻¹ * ‖f x' - f x - (x' - x) • f'‖) (𝓝[s] x) (𝓝 0) :=
+  hasFDerivAtFilter_iff_tendsto
+
+theorem hasDerivAt_iff_isLittleO :
+    HasDerivAt f f' x ↔ (fun x' : 𝕜 => f x' - f x - (x' - x) • f') =o[𝓝 x] fun x' => x' - x :=
+  hasFDerivAtFilter_iff_isLittleO ..
+
+theorem hasDerivAt_iff_tendsto :
+    HasDerivAt f f' x ↔ Tendsto (fun x' => ‖x' - x‖⁻¹ * ‖f x' - f x - (x' - x) • f'‖) (𝓝 x) (𝓝 0) :=
+  hasFDerivAtFilter_iff_tendsto
+
+theorem HasDerivAtFilter.isBigO_sub (h : HasDerivAtFilter f f' x L) :
+    (fun x' => f x' - f x) =O[L] fun x' => x' - x :=
+  HasFDerivAtFilter.isBigO_sub h
+
+nonrec theorem HasDerivAtFilter.isBigO_sub_rev (hf : HasDerivAtFilter f f' x L) (hf' : f' ≠ 0) :
+    (fun x' => x' - x) =O[L] fun x' => f x' - f x :=
+  suffices AntilipschitzWith ‖f'‖₊⁻¹ (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') from hf.isBigO_sub_rev this
+  AddMonoidHomClass.antilipschitz_of_bound (smulRight (1 : 𝕜 →L[𝕜] 𝕜) f') fun x => by
+    simp [norm_smul, ← div_eq_inv_mul, mul_div_cancel_right₀ _ (mt norm_eq_zero.1 hf')]
+
+theorem HasStrictDerivAt.hasDerivAt (h : HasStrictDerivAt f f' x) : HasDerivAt f f' x :=
+  h.hasFDerivAt
+
+theorem hasDerivWithinAt_congr_set' {s t : Set 𝕜} (y : 𝕜) (h : s =ᶠ[𝓝[{y}ᶜ] x] t) :
+    HasDerivWithinAt f f' s x ↔ HasDerivWithinAt f f' t x :=
+  hasFDerivWithinAt_congr_set' y h
+
+theorem hasDerivWithinAt_congr_set {s t : Set 𝕜} (h : s =ᶠ[𝓝 x] t) :
+    HasDerivWithinAt f f' s x ↔ HasDerivWithinAt f f' t x :=
+  hasFDerivWithinAt_congr_set h
+
+alias ⟨HasDerivWithinAt.congr_set, _⟩ := hasDerivWithinAt_congr_set
+
+@[simp]
+theorem hasDerivWithinAt_diff_singleton :
+    HasDerivWithinAt f f' (s \ {x}) x ↔ HasDerivWithinAt f f' s x :=
+  hasFDerivWithinAt_diff_singleton _
+
+@[simp]
+theorem hasDerivWithinAt_Ioi_iff_Ici [PartialOrder 𝕜] :
+    HasDerivWithinAt f f' (Ioi x) x ↔ HasDerivWithinAt f f' (Ici x) x := by
+  rw [← Ici_diff_left, hasDerivWithinAt_diff_singleton]
+
+alias ⟨HasDerivWithinAt.Ici_of_Ioi, HasDerivWithinAt.Ioi_of_Ici⟩ := hasDerivWithinAt_Ioi_iff_Ici
+
+@[simp]
+theorem hasDerivWithinAt_Iio_iff_Iic [PartialOrder 𝕜] :
+    HasDerivWithinAt f f' (Iio x) x ↔ HasDerivWithinAt f f' (Iic x) x := by
+  rw [← Iic_diff_right, hasDerivWithinAt_diff_singleton]
+
+alias ⟨HasDerivWithinAt.Iic_of_Iio, HasDerivWithinAt.Iio_of_Iic⟩ := hasDerivWithinAt_Iio_iff_Iic
+
+theorem HasDerivWithinAt.Ioi_iff_Ioo [LinearOrder 𝕜] [OrderClosedTopology 𝕜] {x y : 𝕜} (h : x < y) :
+    HasDerivWithinAt f f' (Ioo x y) x ↔ HasDerivWithinAt f f' (Ioi x) x :=
+  hasFDerivWithinAt_inter <| Iio_mem_nhds h
+
+alias ⟨HasDerivWithinAt.Ioi_of_Ioo, HasDerivWithinAt.Ioo_of_Ioi⟩ := HasDerivWithinAt.Ioi_iff_Ioo
+
+theorem hasDerivAt_iff_isLittleO_nhds_zero :
+    HasDerivAt f f' x ↔ (fun h => f (x + h) - f x - h • f') =o[𝓝 0] fun h => h :=
+  hasFDerivAt_iff_isLittleO_nhds_zero
+
+theorem HasDerivAtFilter.mono (h : HasDerivAtFilter f f' x L₂) (hst : L₁ ≤ L₂) :
+    HasDerivAtFilter f f' x L₁ :=
+  HasFDerivAtFilter.mono h hst
+
+theorem HasDerivWithinAt.mono (h : HasDerivWithinAt f f' t x) (hst : s ⊆ t) :
+    HasDerivWithinAt f f' s x :=
+  HasFDerivWithinAt.mono h hst
+
+theorem HasDerivWithinAt.mono_of_mem_nhdsWithin (h : HasDerivWithinAt f f' t x) (hst : t ∈ 𝓝[s] x) :
+    HasDerivWithinAt f f' s x :=
+  HasFDerivWithinAt.mono_of_mem_nhdsWithin h hst
+
+@[deprecated (since := "2024-10-31")]
+alias HasDerivWithinAt.mono_of_mem := HasDerivWithinAt.mono_of_mem_nhdsWithin
+
+theorem HasDerivAt.hasDerivAtFilter (h : HasDerivAt f f' x) (hL : L ≤ 𝓝 x) :
+    HasDerivAtFilter f f' x L :=
+  HasFDerivAt.hasFDerivAtFilter h hL
+
+theorem HasDerivAt.hasDerivWithinAt (h : HasDerivAt f f' x) : HasDerivWithinAt f f' s x :=
+  HasFDerivAt.hasFDerivWithinAt h
+
+theorem HasDerivWithinAt.differentiableWithinAt (h : HasDerivWithinAt f f' s x) :
+    DifferentiableWithinAt 𝕜 f s x :=
+  HasFDerivWithinAt.differentiableWithinAt h
+
+theorem HasDerivAt.differentiableAt (h : HasDerivAt f f' x) : DifferentiableAt 𝕜 f x :=
+  HasFDerivAt.differentiableAt h
+
+@[simp]
+theorem hasDerivWithinAt_univ : HasDerivWithinAt f f' univ x ↔ HasDerivAt f f' x :=
+  hasFDerivWithinAt_univ
+
+theorem HasDerivAt.unique (h₀ : HasDerivAt f f₀' x) (h₁ : HasDerivAt f f₁' x) : f₀' = f₁' :=
+  smulRight_one_eq_iff.mp <| h₀.hasFDerivAt.unique h₁
+
+theorem hasDerivWithinAt_inter' (h : t ∈ 𝓝[s] x) :
+    HasDerivWithinAt f f' (s ∩ t) x ↔ HasDerivWithinAt f f' s x :=
+  hasFDerivWithinAt_inter' h
+
+theorem hasDerivWithinAt_inter (h : t ∈ 𝓝 x) :
+    HasDerivWithinAt f f' (s ∩ t) x ↔ HasDerivWithinAt f f' s x :=
+  hasFDerivWithinAt_inter h
+
+theorem HasDerivWithinAt.union (hs : HasDerivWithinAt f f' s x) (ht : HasDerivWithinAt f f' t x) :
+    HasDerivWithinAt f f' (s ∪ t) x :=
+  hs.hasFDerivWithinAt.union ht.hasFDerivWithinAt
+
+theorem HasDerivWithinAt.hasDerivAt (h : HasDerivWithinAt f f' s x) (hs : s ∈ 𝓝 x) :
+    HasDerivAt f f' x :=
+  HasFDerivWithinAt.hasFDerivAt h hs
+
+theorem DifferentiableWithinAt.hasDerivWithinAt (h : DifferentiableWithinAt 𝕜 f s x) :
+    HasDerivWithinAt f (derivWithin f s x) s x :=
+  h.hasFDerivWithinAt.hasDerivWithinAt
+
+theorem DifferentiableAt.hasDerivAt (h : DifferentiableAt 𝕜 f x) : HasDerivAt f (deriv f x) x :=
+  h.hasFDerivAt.hasDerivAt
+
+@[simp]
+theorem hasDerivAt_deriv_iff : HasDerivAt f (deriv f x) x ↔ DifferentiableAt 𝕜 f x :=
+  ⟨fun h => h.differentiableAt, fun h => h.hasDerivAt⟩
+
+@[simp]
+theorem hasDerivWithinAt_derivWithin_iff :
+    HasDerivWithinAt f (derivWithin f s x) s x ↔ DifferentiableWithinAt 𝕜 f s x :=
+  ⟨fun h => h.differentiableWithinAt, fun h => h.hasDerivWithinAt⟩
+
+theorem DifferentiableOn.hasDerivAt (h : DifferentiableOn 𝕜 f s) (hs : s ∈ 𝓝 x) :
+    HasDerivAt f (deriv f x) x :=
+  (h.hasFDerivAt hs).hasDerivAt
+
+theorem HasDerivAt.deriv (h : HasDerivAt f f' x) : deriv f x = f' :=
+  h.differentiableAt.hasDerivAt.unique h
+
+theorem deriv_eq {f' : 𝕜 → F} (h : ∀ x, HasDerivAt f (f' x) x) : deriv f = f' :=
+  funext fun x => (h x).deriv
+
+theorem HasDerivWithinAt.derivWithin (h : HasDerivWithinAt f f' s x)
+    (hxs : UniqueDiffWithinAt 𝕜 s x) : derivWithin f s x = f' :=
+  hxs.eq_deriv _ h.differentiableWithinAt.hasDerivWithinAt h
+
+theorem fderivWithin_derivWithin : (fderivWithin 𝕜 f s x : 𝕜 → F) 1 = derivWithin f s x :=
+  rfl
+
+theorem derivWithin_fderivWithin :
+    smulRight (1 : 𝕜 →L[𝕜] 𝕜) (derivWithin f s x) = fderivWithin 𝕜 f s x := by simp [derivWithin]
+
+theorem norm_derivWithin_eq_norm_fderivWithin : ‖derivWithin f s x‖ = ‖fderivWithin 𝕜 f s x‖ := by
+  simp [← derivWithin_fderivWithin]
+
+theorem fderiv_deriv : (fderiv 𝕜 f x : 𝕜 → F) 1 = deriv f x :=
+  rfl
+
+@[simp]
+theorem fderiv_eq_smul_deriv (y : 𝕜) : (fderiv 𝕜 f x : 𝕜 → F) y = y • deriv f x := by
+  rw [← fderiv_deriv, ← ContinuousLinearMap.map_smul]
+  simp only [smul_eq_mul, mul_one]
+
+theorem deriv_fderiv : smulRight (1 : 𝕜 →L[𝕜] 𝕜) (deriv f x) = fderiv 𝕜 f x := by
+  simp only [deriv, ContinuousLinearMap.smulRight_one_one]
+
+lemma fderiv_eq_deriv_mul {f : 𝕜 → 𝕜} {x y : 𝕜} : (fderiv 𝕜 f x : 𝕜 → 𝕜) y = (deriv f x) * y := by
+  simp [mul_comm]
+
+theorem norm_deriv_eq_norm_fderiv : ‖deriv f x‖ = ‖fderiv 𝕜 f x‖ := by
+  simp [← deriv_fderiv]
+
+theorem DifferentiableAt.derivWithin (h : DifferentiableAt 𝕜 f x) (hxs : UniqueDiffWithinAt 𝕜 s x) :
+    derivWithin f s x = deriv f x := by
+  unfold _root_.derivWithin deriv
+  rw [h.fderivWithin hxs]
+
+theorem HasDerivWithinAt.deriv_eq_zero (hd : HasDerivWithinAt f 0 s x)
+    (H : UniqueDiffWithinAt 𝕜 s x) : deriv f x = 0 :=
+  (em' (DifferentiableAt 𝕜 f x)).elim deriv_zero_of_not_differentiableAt fun h =>
+    H.eq_deriv _ h.hasDerivAt.hasDerivWithinAt hd
+
+theorem derivWithin_of_mem_nhdsWithin (st : t ∈ 𝓝[s] x) (ht : UniqueDiffWithinAt 𝕜 s x)
+    (h : DifferentiableWithinAt 𝕜 f t x) : derivWithin f s x = derivWithin f t x :=
+  ((DifferentiableWithinAt.hasDerivWithinAt h).mono_of_mem_nhdsWithin st).derivWithin ht
+
+@[deprecated (since := "2024-10-31")] alias derivWithin_of_mem := derivWithin_of_mem_nhdsWithin
+
+theorem derivWithin_subset (st : s ⊆ t) (ht : UniqueDiffWithinAt 𝕜 s x)
+    (h : DifferentiableWithinAt 𝕜 f t x) : derivWithin f s x = derivWithin f t x :=
+  ((DifferentiableWithinAt.hasDerivWithinAt h).mono st).derivWithin ht
+
+theorem derivWithin_congr_set' (y : 𝕜) (h : s =ᶠ[𝓝[{y}ᶜ] x] t) :
+    derivWithin f s x = derivWithin f t x := by simp only [derivWithin, fderivWithin_congr_set' y h]
+
+theorem derivWithin_congr_set (h : s =ᶠ[𝓝 x] t) : derivWithin f s x = derivWithin f t x := by
+  simp only [derivWithin, fderivWithin_congr_set h]
+
+@[simp]
+theorem derivWithin_univ : derivWithin f univ = deriv f := by
+  ext
+  unfold derivWithin deriv
+  rw [fderivWithin_univ]
+
+theorem derivWithin_inter (ht : t ∈ 𝓝 x) : derivWithin f (s ∩ t) x = derivWithin f s x := by
+  unfold derivWithin
+  rw [fderivWithin_inter ht]
+
+theorem derivWithin_of_mem_nhds (h : s ∈ 𝓝 x) : derivWithin f s x = deriv f x := by
+  simp only [derivWithin, deriv, fderivWithin_of_mem_nhds h]
+
+theorem derivWithin_of_isOpen (hs : IsOpen s) (hx : x ∈ s) : derivWithin f s x = deriv f x :=
+  derivWithin_of_mem_nhds (hs.mem_nhds hx)
+
+lemma deriv_eqOn {f' : 𝕜 → F} (hs : IsOpen s) (hf' : ∀ x ∈ s, HasDerivWithinAt f (f' x) s x) :
+    s.EqOn (deriv f) f' := fun x hx ↦ by
+  rw [← derivWithin_of_isOpen hs hx, (hf' _ hx).derivWithin <| hs.uniqueDiffWithinAt hx]
+
+theorem deriv_mem_iff {f : 𝕜 → F} {s : Set F} {x : 𝕜} :
+    deriv f x ∈ s ↔
+      DifferentiableAt 𝕜 f x ∧ deriv f x ∈ s ∨ ¬DifferentiableAt 𝕜 f x ∧ (0 : F) ∈ s := by
+  by_cases hx : DifferentiableAt 𝕜 f x <;> simp [deriv_zero_of_not_differentiableAt, *]
+
+theorem derivWithin_mem_iff {f : 𝕜 → F} {t : Set 𝕜} {s : Set F} {x : 𝕜} :
+    derivWithin f t x ∈ s ↔
+      DifferentiableWithinAt 𝕜 f t x ∧ derivWithin f t x ∈ s ∨
+        ¬DifferentiableWithinAt 𝕜 f t x ∧ (0 : F) ∈ s := by
+  by_cases hx : DifferentiableWithinAt 𝕜 f t x <;>
+    simp [derivWithin_zero_of_not_differentiableWithinAt, *]
+
+theorem differentiableWithinAt_Ioi_iff_Ici [PartialOrder 𝕜] :
+    DifferentiableWithinAt 𝕜 f (Ioi x) x ↔ DifferentiableWithinAt 𝕜 f (Ici x) x :=
+  ⟨fun h => h.hasDerivWithinAt.Ici_of_Ioi.differentiableWithinAt, fun h =>
+    h.hasDerivWithinAt.Ioi_of_Ici.differentiableWithinAt⟩
+
+-- Golfed while splitting the file
+theorem derivWithin_Ioi_eq_Ici {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (f : ℝ → E)
+    (x : ℝ) : derivWithin f (Ioi x) x = derivWithin f (Ici x) x := by
+  by_cases H : DifferentiableWithinAt ℝ f (Ioi x) x
+  · have A := H.hasDerivWithinAt.Ici_of_Ioi
+    have B := (differentiableWithinAt_Ioi_iff_Ici.1 H).hasDerivWithinAt
+    simpa using (uniqueDiffOn_Ici x).eq left_mem_Ici A B
+  · rw [derivWithin_zero_of_not_differentiableWithinAt H,
+      derivWithin_zero_of_not_differentiableWithinAt]
+    rwa [differentiableWithinAt_Ioi_iff_Ici] at H
+
+section congr
+
+/-! ### Congruence properties of derivatives -/
+
+theorem Filter.EventuallyEq.hasDerivAtFilter_iff (h₀ : f₀ =ᶠ[L] f₁) (hx : f₀ x = f₁ x)
+    (h₁ : f₀' = f₁') : HasDerivAtFilter f₀ f₀' x L ↔ HasDerivAtFilter f₁ f₁' x L :=
+  h₀.hasFDerivAtFilter_iff hx (by simp [h₁])
+
+theorem HasDerivAtFilter.congr_of_eventuallyEq (h : HasDerivAtFilter f f' x L) (hL : f₁ =ᶠ[L] f)
+    (hx : f₁ x = f x) : HasDerivAtFilter f₁ f' x L := by rwa [hL.hasDerivAtFilter_iff hx rfl]
+
+theorem HasDerivWithinAt.congr_mono (h : HasDerivWithinAt f f' s x) (ht : ∀ x ∈ t, f₁ x = f x)
+    (hx : f₁ x = f x) (h₁ : t ⊆ s) : HasDerivWithinAt f₁ f' t x :=
+  HasFDerivWithinAt.congr_mono h ht hx h₁
+
+theorem HasDerivWithinAt.congr (h : HasDerivWithinAt f f' s x) (hs : ∀ x ∈ s, f₁ x = f x)
+    (hx : f₁ x = f x) : HasDerivWithinAt f₁ f' s x :=
+  h.congr_mono hs hx (Subset.refl _)
+
+theorem HasDerivWithinAt.congr_of_mem (h : HasDerivWithinAt f f' s x) (hs : ∀ x ∈ s, f₁ x = f x)
+    (hx : x ∈ s) : HasDerivWithinAt f₁ f' s x :=
+  h.congr hs (hs _ hx)
+
+theorem HasDerivWithinAt.congr_of_eventuallyEq (h : HasDerivWithinAt f f' s x)
+    (h₁ : f₁ =ᶠ[𝓝[s] x] f) (hx : f₁ x = f x) : HasDerivWithinAt f₁ f' s x :=
+  HasDerivAtFilter.congr_of_eventuallyEq h h₁ hx
+
+theorem Filter.EventuallyEq.hasDerivWithinAt_iff (h₁ : f₁ =ᶠ[𝓝[s] x] f) (hx : f₁ x = f x) :
+    HasDerivWithinAt f₁ f' s x ↔ HasDerivWithinAt f f' s x :=
+  ⟨fun h' ↦ h'.congr_of_eventuallyEq h₁.symm hx.symm, fun h' ↦ h'.congr_of_eventuallyEq h₁ hx⟩
+
+theorem HasDerivWithinAt.congr_of_eventuallyEq_of_mem (h : HasDerivWithinAt f f' s x)
+    (h₁ : f₁ =ᶠ[𝓝[s] x] f) (hx : x ∈ s) : HasDerivWithinAt f₁ f' s x :=
+  h.congr_of_eventuallyEq h₁ (h₁.eq_of_nhdsWithin hx)
+
+theorem Filter.EventuallyEq.hasDerivWithinAt_iff_of_mem (h₁ : f₁ =ᶠ[𝓝[s] x] f) (hx : x ∈ s) :
+    HasDerivWithinAt f₁ f' s x ↔ HasDerivWithinAt f f' s x :=
+  ⟨fun h' ↦ h'.congr_of_eventuallyEq_of_mem h₁.symm hx,
+  fun h' ↦ h'.congr_of_eventuallyEq_of_mem h₁ hx⟩
+
+theorem HasStrictDerivAt.congr_deriv (h : HasStrictDerivAt f f' x) (h' : f' = g') :
+    HasStrictDerivAt f g' x :=
+  h.congr_fderiv <| congr_arg _ h'
+
+theorem HasDerivAt.congr_deriv (h : HasDerivAt f f' x) (h' : f' = g') : HasDerivAt f g' x :=
+  HasFDerivAt.congr_fderiv h <| congr_arg _ h'
+
+theorem HasDerivWithinAt.congr_deriv (h : HasDerivWithinAt f f' s x) (h' : f' = g') :
+    HasDerivWithinAt f g' s x :=
+  HasFDerivWithinAt.congr_fderiv h <| congr_arg _ h'
+
+theorem HasDerivAt.congr_of_eventuallyEq (h : HasDerivAt f f' x) (h₁ : f₁ =ᶠ[𝓝 x] f) :
+    HasDerivAt f₁ f' x :=
+  HasDerivAtFilter.congr_of_eventuallyEq h h₁ (mem_of_mem_nhds h₁ :)
+
+theorem Filter.EventuallyEq.hasDerivAt_iff (h : f₀ =ᶠ[𝓝 x] f₁) :
+    HasDerivAt f₀ f' x ↔ HasDerivAt f₁ f' x :=
+  ⟨fun h' ↦ h'.congr_of_eventuallyEq h.symm, fun h' ↦ h'.congr_of_eventuallyEq h⟩
+
+theorem Filter.EventuallyEq.derivWithin_eq (hs : f₁ =ᶠ[𝓝[s] x] f) (hx : f₁ x = f x) :
+    derivWithin f₁ s x = derivWithin f s x := by
+  unfold derivWithin
+  rw [hs.fderivWithin_eq hx]
+
+theorem derivWithin_congr (hs : EqOn f₁ f s) (hx : f₁ x = f x) :
+    derivWithin f₁ s x = derivWithin f s x := by
+  unfold derivWithin
+  rw [fderivWithin_congr hs hx]
+
+theorem Filter.EventuallyEq.deriv_eq (hL : f₁ =ᶠ[𝓝 x] f) : deriv f₁ x = deriv f x := by
+  unfold deriv
+  rwa [Filter.EventuallyEq.fderiv_eq]
+
+protected theorem Filter.EventuallyEq.deriv (h : f₁ =ᶠ[𝓝 x] f) : deriv f₁ =ᶠ[𝓝 x] deriv f :=
+  h.eventuallyEq_nhds.mono fun _ h => h.deriv_eq
+
+end congr
+
+section id
+
+/-! ### Derivative of the identity -/
+
+variable (s x L)
+
+theorem hasDerivAtFilter_id : HasDerivAtFilter id 1 x L :=
+  (hasFDerivAtFilter_id x L).hasDerivAtFilter
+
+theorem hasDerivWithinAt_id : HasDerivWithinAt id 1 s x :=
+  hasDerivAtFilter_id _ _
+
+theorem hasDerivAt_id : HasDerivAt id 1 x :=
+  hasDerivAtFilter_id _ _
+
+theorem hasDerivAt_id' : HasDerivAt (fun x : 𝕜 => x) 1 x :=
+  hasDerivAtFilter_id _ _
+
+theorem hasStrictDerivAt_id : HasStrictDerivAt id 1 x :=
+  (hasStrictFDerivAt_id x).hasStrictDerivAt
+
+theorem deriv_id : deriv id x = 1 :=
+  HasDerivAt.deriv (hasDerivAt_id x)
+
+@[simp]
+theorem deriv_id' : deriv (@id 𝕜) = fun _ => 1 :=
+  funext deriv_id
+
+/-- Variant with `fun x => x` rather than `id` -/
+@[simp]
+theorem deriv_id'' : (deriv fun x : 𝕜 => x) = fun _ => 1 :=
+  deriv_id'
+
+theorem derivWithin_id (hxs : UniqueDiffWithinAt 𝕜 s x) : derivWithin id s x = 1 :=
+  (hasDerivWithinAt_id x s).derivWithin hxs
+
+/-- Variant with `fun x => x` rather than `id` -/
+theorem derivWithin_id' (hxs : UniqueDiffWithinAt 𝕜 s x) : derivWithin (fun x => x) s x = 1 :=
+  derivWithin_id x s hxs
+
+end id
+
+section Const
+
+/-! ### Derivative of constant functions
+
+This include the constant functions `0`, `1`, `Nat.cast n`, `Int.cast z`, and other numerals.
+-/
+
+variable (c : F) (s x L)
+
+theorem hasDerivAtFilter_const : HasDerivAtFilter (fun _ => c) 0 x L :=
+  (hasFDerivAtFilter_const c x L).hasDerivAtFilter
+
+theorem hasDerivAtFilter_zero : HasDerivAtFilter (0 : 𝕜 → F) 0 x L :=
+  hasDerivAtFilter_const _ _ _
+
+theorem hasDerivAtFilter_one [One F] : HasDerivAtFilter (1 : 𝕜 → F) 0 x L :=
+  hasDerivAtFilter_const _ _ _
+
+theorem hasDerivAtFilter_natCast [NatCast F] (n : ℕ) : HasDerivAtFilter (n : 𝕜 → F) 0 x L :=
+  hasDerivAtFilter_const _ _ _
+
+theorem hasDerivAtFilter_intCast [IntCast F] (z : ℤ) : HasDerivAtFilter (z : 𝕜 → F) 0 x L :=
+  hasDerivAtFilter_const _ _ _
+
+theorem hasDerivAtFilter_ofNat (n : ℕ) [OfNat F n] : HasDerivAtFilter (ofNat(n) : 𝕜 → F) 0 x L :=
+  hasDerivAtFilter_const _ _ _
+
+theorem hasStrictDerivAt_const : HasStrictDerivAt (fun _ => c) 0 x :=
+  (hasStrictFDerivAt_const c x).hasStrictDerivAt
+
+theorem hasStrictDerivAt_zero : HasStrictDerivAt (0 : 𝕜 → F) 0 x :=
+  hasStrictDerivAt_const _ _
+
+theorem hasStrictDerivAt_one [One F] : HasStrictDerivAt (1 : 𝕜 → F) 0 x :=
+  hasStrictDerivAt_const _ _
+
+theorem hasStrictDerivAt_natCast [NatCast F] (n : ℕ) : HasStrictDerivAt (n : 𝕜 → F) 0 x :=
+  hasStrictDerivAt_const _ _
+
+theorem hasStrictDerivAt_intCast [IntCast F] (z : ℤ) : HasStrictDerivAt (z : 𝕜 → F) 0 x :=
+  hasStrictDerivAt_const _ _
+
+theorem HasStrictDerivAt_ofNat (n : ℕ) [OfNat F n] : HasStrictDerivAt (ofNat(n) : 𝕜 → F) 0 x :=
+  hasStrictDerivAt_const _ _
+
+theorem hasDerivWithinAt_const : HasDerivWithinAt (fun _ => c) 0 s x :=
+  hasDerivAtFilter_const _ _ _
+
+theorem hasDerivWithinAt_zero : HasDerivWithinAt (0 : 𝕜 → F) 0 s x :=
+  hasDerivAtFilter_zero _ _
+
+theorem hasDerivWithinAt_one [One F] : HasDerivWithinAt (1 : 𝕜 → F) 0 s x :=
+  hasDerivWithinAt_const _ _ _
+
+theorem hasDerivWithinAt_natCast [NatCast F] (n : ℕ) : HasDerivWithinAt (n : 𝕜 → F) 0 s x :=
+  hasDerivWithinAt_const _ _ _
+
+theorem hasDerivWithinAt_intCast [IntCast F] (z : ℤ) : HasDerivWithinAt (z : 𝕜 → F) 0 s x :=
+  hasDerivWithinAt_const _ _ _
+
+theorem hasDerivWithinAt_ofNat (n : ℕ) [OfNat F n] : HasDerivWithinAt (ofNat(n) : 𝕜 → F) 0 s x :=
+  hasDerivWithinAt_const _ _ _
+
+theorem hasDerivAt_const : HasDerivAt (fun _ => c) 0 x :=
+  hasDerivAtFilter_const _ _ _
+
+theorem hasDerivAt_zero : HasDerivAt (0 : 𝕜 → F) 0 x :=
+  hasDerivAtFilter_zero _ _
+
+theorem hasDerivAt_one [One F] : HasDerivAt (1 : 𝕜 → F) 0 x :=
+  hasDerivAt_const _ _
+
+theorem hasDerivAt_natCast [NatCast F] (n : ℕ) : HasDerivAt (n : 𝕜 → F) 0 x :=
+  hasDerivAt_const _ _
+
+theorem hasDerivAt_intCast [IntCast F] (z : ℤ) : HasDerivAt (z : 𝕜 → F) 0 x :=
+  hasDerivAt_const _ _
+
+theorem hasDerivAt_ofNat (n : ℕ) [OfNat F n] : HasDerivAt (ofNat(n) : 𝕜 → F) 0 x :=
+  hasDerivAt_const _ _
+
+theorem deriv_const : deriv (fun _ => c) x = 0 :=
+  HasDerivAt.deriv (hasDerivAt_const x c)
+
+@[simp]
+theorem deriv_const' : (deriv fun _ : 𝕜 => c) = fun _ => 0 :=
+  funext fun x => deriv_const x c
+
+@[simp]
+theorem deriv_zero : deriv (0 : 𝕜 → F) = 0 := funext fun _ => deriv_const _ _
+
+@[simp]
+theorem deriv_one [One F] : deriv (1 : 𝕜 → F) = 0 := funext fun _ => deriv_const _ _
+
+@[simp]
+theorem deriv_natCast [NatCast F] (n : ℕ) : deriv (n : 𝕜 → F) = 0 := funext fun _ => deriv_const _ _
+
+@[simp]
+theorem deriv_intCast [IntCast F] (z : ℤ) : deriv (z : 𝕜 → F) = 0 := funext fun _ => deriv_const _ _
+
+@[simp low]
+theorem deriv_ofNat (n : ℕ) [OfNat F n] : deriv (ofNat(n) : 𝕜 → F) = 0 :=
+  funext fun _ => deriv_const _ _
+
+@[simp]
+theorem derivWithin_const : derivWithin (fun _ => c) s = 0 := by
+  ext; simp [derivWithin]
+
+@[simp]
+theorem derivWithin_zero : derivWithin (0 : 𝕜 → F) s = 0 := derivWithin_const _ _
+
+@[simp]
+theorem derivWithin_one [One F] : derivWithin (1 : 𝕜 → F) s = 0 := derivWithin_const _ _
+
+@[simp]
+theorem derivWithin_natCast [NatCast F] (n : ℕ) : derivWithin (n : 𝕜 → F) s = 0 :=
+  derivWithin_const _ _
+
+@[simp]
+theorem derivWithin_intCast [IntCast F] (z : ℤ) : derivWithin (z : 𝕜 → F) s = 0 :=
+  derivWithin_const _ _
+
+@[simp low]
+theorem derivWithin_ofNat (n : ℕ) [OfNat F n] : derivWithin (ofNat(n) : 𝕜 → F) s = 0 :=
+  derivWithin_const _ _
+
+end Const
+
+section Continuous
+
+/-! ### Continuity of a function admitting a derivative -/
+
+nonrec theorem HasDerivAtFilter.tendsto_nhds (hL : L ≤ 𝓝 x) (h : HasDerivAtFilter f f' x L) :
+    Tendsto f L (𝓝 (f x)) :=
+  h.tendsto_nhds hL
+
+theorem HasDerivWithinAt.continuousWithinAt (h : HasDerivWithinAt f f' s x) :
+    ContinuousWithinAt f s x :=
+  HasDerivAtFilter.tendsto_nhds inf_le_left h
+
+theorem HasDerivAt.continuousAt (h : HasDerivAt f f' x) : ContinuousAt f x :=
+  HasDerivAtFilter.tendsto_nhds le_rfl h
+
+protected theorem HasDerivAt.continuousOn {f f' : 𝕜 → F} (hderiv : ∀ x ∈ s, HasDerivAt f (f' x) x) :
+    ContinuousOn f s := fun x hx => (hderiv x hx).continuousAt.continuousWithinAt
+
+end Continuous
+
+section MeanValue
+
+/-- Converse to the mean value inequality: if `f` is differentiable at `x₀` and `C`-lipschitz
+on a neighborhood of `x₀` then its derivative at `x₀` has norm bounded by `C`. This version
+only assumes that `‖f x - f x₀‖ ≤ C * ‖x - x₀‖` in a neighborhood of `x`. -/
+theorem HasDerivAt.le_of_lip' {f : 𝕜 → F} {f' : F} {x₀ : 𝕜} (hf : HasDerivAt f f' x₀)
+    {C : ℝ} (hC₀ : 0 ≤ C) (hlip : ∀ᶠ x in 𝓝 x₀, ‖f x - f x₀‖ ≤ C * ‖x - x₀‖) :
+    ‖f'‖ ≤ C := by
+  simpa using HasFDerivAt.le_of_lip' hf.hasFDerivAt hC₀ hlip
+
+/-- Converse to the mean value inequality: if `f` is differentiable at `x₀` and `C`-lipschitz
+on a neighborhood of `x₀` then its derivative at `x₀` has norm bounded by `C`. -/
+theorem HasDerivAt.le_of_lipschitzOn {f : 𝕜 → F} {f' : F} {x₀ : 𝕜} (hf : HasDerivAt f f' x₀)
+    {s : Set 𝕜} (hs : s ∈ 𝓝 x₀) {C : ℝ≥0} (hlip : LipschitzOnWith C f s) : ‖f'‖ ≤ C := by
+  simpa using HasFDerivAt.le_of_lipschitzOn hf.hasFDerivAt hs hlip
+
+/-- Converse to the mean value inequality: if `f` is differentiable at `x₀` and `C`-lipschitz
+then its derivative at `x₀` has norm bounded by `C`. -/
+theorem HasDerivAt.le_of_lipschitz {f : 𝕜 → F} {f' : F} {x₀ : 𝕜} (hf : HasDerivAt f f' x₀)
+    {C : ℝ≥0} (hlip : LipschitzWith C f) : ‖f'‖ ≤ C := by
+  simpa using HasFDerivAt.le_of_lipschitz hf.hasFDerivAt hlip
+
+/-- Converse to the mean value inequality: if `f` is `C`-lipschitz
+on a neighborhood of `x₀` then its derivative at `x₀` has norm bounded by `C`. This version
+only assumes that `‖f x - f x₀‖ ≤ C * ‖x - x₀‖` in a neighborhood of `x`. -/
+theorem norm_deriv_le_of_lip' {f : 𝕜 → F} {x₀ : 𝕜}
+    {C : ℝ} (hC₀ : 0 ≤ C) (hlip : ∀ᶠ x in 𝓝 x₀, ‖f x - f x₀‖ ≤ C * ‖x - x₀‖) :
+    ‖deriv f x₀‖ ≤ C := by
+  simpa [norm_deriv_eq_norm_fderiv] using norm_fderiv_le_of_lip' 𝕜 hC₀ hlip
+
+/-- Converse to the mean value inequality: if `f` is `C`-lipschitz
+on a neighborhood of `x₀` then its derivative at `x₀` has norm bounded by `C`.
+Version using `deriv`. -/
+theorem norm_deriv_le_of_lipschitzOn {f : 𝕜 → F} {x₀ : 𝕜} {s : Set 𝕜} (hs : s ∈ 𝓝 x₀)
+    {C : ℝ≥0} (hlip : LipschitzOnWith C f s) : ‖deriv f x₀‖ ≤ C := by
+  simpa [norm_deriv_eq_norm_fderiv] using norm_fderiv_le_of_lipschitzOn 𝕜 hs hlip
+
+/-- Converse to the mean value inequality: if `f` is `C`-lipschitz then
+its derivative at `x₀` has norm bounded by `C`.
+Version using `deriv`. -/
+theorem norm_deriv_le_of_lipschitz {f : 𝕜 → F} {x₀ : 𝕜}
+    {C : ℝ≥0} (hlip : LipschitzWith C f) : ‖deriv f x₀‖ ≤ C := by
+  simpa [norm_deriv_eq_norm_fderiv] using norm_fderiv_le_of_lipschitz 𝕜 hlip
+
+end MeanValue
+
+-- END Mathlib.Analysis.Calculus.Deriv.Basic --
+
+-- BEGIN Mathlib.Analysis.Calculus.FDeriv.Add --
+/-
+Copyright (c) 2019 Jeremy Avigad. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Jeremy Avigad, Sébastien Gouëzel, Yury Kudryashov
+-/
+import Mathlib.Analysis.Calculus.FDeriv.Linear
+import Mathlib.Analysis.Calculus.FDeriv.Comp
+
+/-!
+# Additive operations on derivatives
+
+For detailed documentation of the Fréchet derivative,
+see the module docstring of `Analysis/Calculus/FDeriv/Basic.lean`.
+
+This file contains the usual formulas (and existence assertions) for the derivative of
+
+* sum of finitely many functions
+* multiplication of a function by a scalar constant
+* negative of a function
+* subtraction of two functions
+-/
+
+
+open Filter Asymptotics ContinuousLinearMap
+
+noncomputable section
+
+section
+
+variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
+variable {E : Type*} [NormedAddCommGroup E] [NormedSpace 𝕜 E]
+variable {F : Type*} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {f g : E → F}
+variable {f' g' : E →L[𝕜] F}
+variable {x : E}
+variable {s : Set E}
+variable {L : Filter E}
+
+section ConstSMul
+
+variable {R : Type*} [Semiring R] [Module R F] [SMulCommClass 𝕜 R F] [ContinuousConstSMul R F]
+
+/-! ### Derivative of a function multiplied by a constant -/
+
+@[fun_prop]
+theorem HasStrictFDerivAt.const_smul (h : HasStrictFDerivAt f f' x) (c : R) :
+    HasStrictFDerivAt (fun x => c • f x) (c • f') x :=
+  (c • (1 : F →L[𝕜] F)).hasStrictFDerivAt.comp x h
+
+theorem HasFDerivAtFilter.const_smul (h : HasFDerivAtFilter f f' x L) (c : R) :
+    HasFDerivAtFilter (fun x => c • f x) (c • f') x L :=
+  (c • (1 : F →L[𝕜] F)).hasFDerivAtFilter.comp x h tendsto_map
+
+@[fun_prop]
+nonrec theorem HasFDerivWithinAt.const_smul (h : HasFDerivWithinAt f f' s x) (c : R) :
+    HasFDerivWithinAt (fun x => c • f x) (c • f') s x :=
+  h.const_smul c
+
+@[fun_prop]
+nonrec theorem HasFDerivAt.const_smul (h : HasFDerivAt f f' x) (c : R) :
+    HasFDerivAt (fun x => c • f x) (c • f') x :=
+  h.const_smul c
+
+@[fun_prop]
+theorem DifferentiableWithinAt.const_smul (h : DifferentiableWithinAt 𝕜 f s x) (c : R) :
+    DifferentiableWithinAt 𝕜 (fun y => c • f y) s x :=
+  (h.hasFDerivWithinAt.const_smul c).differentiableWithinAt
+
+@[fun_prop]
+theorem DifferentiableAt.const_smul (h : DifferentiableAt 𝕜 f x) (c : R) :
+    DifferentiableAt 𝕜 (fun y => c • f y) x :=
+  (h.hasFDerivAt.const_smul c).differentiableAt
+
+@[fun_prop]
+theorem DifferentiableOn.const_smul (h : DifferentiableOn 𝕜 f s) (c : R) :
+    DifferentiableOn 𝕜 (fun y => c • f y) s := fun x hx => (h x hx).const_smul c
+
+@[fun_prop]
+theorem Differentiable.const_smul (h : Differentiable 𝕜 f) (c : R) :
+    Differentiable 𝕜 fun y => c • f y := fun x => (h x).const_smul c
+
+theorem fderivWithin_const_smul (hxs : UniqueDiffWithinAt 𝕜 s x)
+    (h : DifferentiableWithinAt 𝕜 f s x) (c : R) :
+    fderivWithin 𝕜 (fun y => c • f y) s x = c • fderivWithin 𝕜 f s x :=
+  (h.hasFDerivWithinAt.const_smul c).fderivWithin hxs
+
+/-- Version of `fderivWithin_const_smul` written with `c • f` instead of `fun y ↦ c • f y`. -/
+theorem fderivWithin_const_smul' (hxs : UniqueDiffWithinAt 𝕜 s x)
+    (h : DifferentiableWithinAt 𝕜 f s x) (c : R) :
+    fderivWithin 𝕜 (c • f) s x = c • fderivWithin 𝕜 f s x :=
+  fderivWithin_const_smul hxs h c
+
+theorem fderiv_const_smul (h : DifferentiableAt 𝕜 f x) (c : R) :
+    fderiv 𝕜 (fun y => c • f y) x = c • fderiv 𝕜 f x :=
+  (h.hasFDerivAt.const_smul c).fderiv
+
+/-- Version of `fderiv_const_smul` written with `c • f` instead of `fun y ↦ c • f y`. -/
+theorem fderiv_const_smul' (h : DifferentiableAt 𝕜 f x) (c : R) :
+    fderiv 𝕜 (c • f) x = c • fderiv 𝕜 f x :=
+  (h.hasFDerivAt.const_smul c).fderiv
+
+end ConstSMul
+
+section Add
+
+/-! ### Derivative of the sum of two functions -/
+
+
+@[fun_prop]
+nonrec theorem HasStrictFDerivAt.add (hf : HasStrictFDerivAt f f' x)
+    (hg : HasStrictFDerivAt g g' x) : HasStrictFDerivAt (fun y => f y + g y) (f' + g') x :=
+   .of_isLittleO <| (hf.isLittleO.add hg.isLittleO).congr_left fun y => by
+    simp only [LinearMap.sub_apply, LinearMap.add_apply, map_sub, map_add, add_apply]
+    abel
+
+theorem HasFDerivAtFilter.add (hf : HasFDerivAtFilter f f' x L)
+    (hg : HasFDerivAtFilter g g' x L) : HasFDerivAtFilter (fun y => f y + g y) (f' + g') x L :=
+  .of_isLittleO <| (hf.isLittleO.add hg.isLittleO).congr_left fun _ => by
+    simp only [LinearMap.sub_apply, LinearMap.add_apply, map_sub, map_add, add_apply]
+    abel
+
+@[fun_prop]
+nonrec theorem HasFDerivWithinAt.add (hf : HasFDerivWithinAt f f' s x)
+    (hg : HasFDerivWithinAt g g' s x) : HasFDerivWithinAt (fun y => f y + g y) (f' + g') s x :=
+  hf.add hg
+
+@[fun_prop]
+nonrec theorem HasFDerivAt.add (hf : HasFDerivAt f f' x) (hg : HasFDerivAt g g' x) :
+    HasFDerivAt (fun x => f x + g x) (f' + g') x :=
+  hf.add hg
+
+@[fun_prop]
+theorem DifferentiableWithinAt.add (hf : DifferentiableWithinAt 𝕜 f s x)
+    (hg : DifferentiableWithinAt 𝕜 g s x) : DifferentiableWithinAt 𝕜 (fun y => f y + g y) s x :=
+  (hf.hasFDerivWithinAt.add hg.hasFDerivWithinAt).differentiableWithinAt
+
+@[simp, fun_prop]
+theorem DifferentiableAt.add (hf : DifferentiableAt 𝕜 f x) (hg : DifferentiableAt 𝕜 g x) :
+    DifferentiableAt 𝕜 (fun y => f y + g y) x :=
+  (hf.hasFDerivAt.add hg.hasFDerivAt).differentiableAt
+
+@[fun_prop]
+theorem DifferentiableOn.add (hf : DifferentiableOn 𝕜 f s) (hg : DifferentiableOn 𝕜 g s) :
+    DifferentiableOn 𝕜 (fun y => f y + g y) s := fun x hx => (hf x hx).add (hg x hx)
+
+@[simp, fun_prop]
+theorem Differentiable.add (hf : Differentiable 𝕜 f) (hg : Differentiable 𝕜 g) :
+    Differentiable 𝕜 fun y => f y + g y := fun x => (hf x).add (hg x)
+
+theorem fderivWithin_add (hxs : UniqueDiffWithinAt 𝕜 s x) (hf : DifferentiableWithinAt 𝕜 f s x)
+    (hg : DifferentiableWithinAt 𝕜 g s x) :
+    fderivWithin 𝕜 (fun y => f y + g y) s x = fderivWithin 𝕜 f s x + fderivWithin 𝕜 g s x :=
+  (hf.hasFDerivWithinAt.add hg.hasFDerivWithinAt).fderivWithin hxs
+
+/-- Version of `fderivWithin_add` where the function is written as `f + g` instead
+of `fun y ↦ f y + g y`. -/
+theorem fderivWithin_add' (hxs : UniqueDiffWithinAt 𝕜 s x) (hf : DifferentiableWithinAt 𝕜 f s x)
+    (hg : DifferentiableWithinAt 𝕜 g s x) :
+    fderivWithin 𝕜 (f + g) s x = fderivWithin 𝕜 f s x + fderivWithin 𝕜 g s x :=
+  fderivWithin_add hxs hf hg
+
+theorem fderiv_add (hf : DifferentiableAt 𝕜 f x) (hg : DifferentiableAt 𝕜 g x) :
+    fderiv 𝕜 (fun y => f y + g y) x = fderiv 𝕜 f x + fderiv 𝕜 g x :=
+  (hf.hasFDerivAt.add hg.hasFDerivAt).fderiv
+
+/-- Version of `fderiv_add` where the function is written as `f + g` instead
+of `fun y ↦ f y + g y`. -/
+theorem fderiv_add' (hf : DifferentiableAt 𝕜 f x) (hg : DifferentiableAt 𝕜 g x) :
+    fderiv 𝕜 (f + g) x = fderiv 𝕜 f x + fderiv 𝕜 g x :=
+  fderiv_add hf hg
+
+@[simp]
+theorem hasFDerivAtFilter_add_const_iff (c : F) :
+    HasFDerivAtFilter (f · + c) f' x L ↔ HasFDerivAtFilter f f' x L := by
+  simp [hasFDerivAtFilter_iff_isLittleOTVS]
+
+alias ⟨_, HasFDerivAtFilter.add_const⟩ := hasFDerivAtFilter_add_const_iff
+
+@[simp]
+theorem hasStrictFDerivAt_add_const_iff (c : F) :
+    HasStrictFDerivAt (f · + c) f' x ↔ HasStrictFDerivAt f f' x := by
+  simp [hasStrictFDerivAt_iff_isLittleO]
+
+@[fun_prop]
+alias ⟨_, HasStrictFDerivAt.add_const⟩ := hasStrictFDerivAt_add_const_iff
+
+@[simp]
+theorem hasFDerivWithinAt_add_const_iff (c : F) :
+    HasFDerivWithinAt (f · + c) f' s x ↔ HasFDerivWithinAt f f' s x :=
+  hasFDerivAtFilter_add_const_iff c
+
+@[fun_prop]
+alias ⟨_, HasFDerivWithinAt.add_const⟩ := hasFDerivWithinAt_add_const_iff
+
+@[simp]
+theorem hasFDerivAt_add_const_iff (c : F) : HasFDerivAt (f · + c) f' x ↔ HasFDerivAt f f' x :=
+  hasFDerivAtFilter_add_const_iff c
+
+@[fun_prop]
+alias ⟨_, HasFDerivAt.add_const⟩ := hasFDerivAt_add_const_iff
+
+@[simp]
+theorem differentiableWithinAt_add_const_iff (c : F) :
+    DifferentiableWithinAt 𝕜 (fun y => f y + c) s x ↔ DifferentiableWithinAt 𝕜 f s x :=
+  exists_congr fun _ ↦ hasFDerivWithinAt_add_const_iff c
+
+@[fun_prop]
+alias ⟨_, DifferentiableWithinAt.add_const⟩ := differentiableWithinAt_add_const_iff
+
+@[simp]
+theorem differentiableAt_add_const_iff (c : F) :
+    DifferentiableAt 𝕜 (fun y => f y + c) x ↔ DifferentiableAt 𝕜 f x :=
+  exists_congr fun _ ↦ hasFDerivAt_add_const_iff c
+
+@[fun_prop]
+alias ⟨_, DifferentiableAt.add_const⟩ := differentiableAt_add_const_iff
+
+@[simp]
+theorem differentiableOn_add_const_iff (c : F) :
+    DifferentiableOn 𝕜 (fun y => f y + c) s ↔ DifferentiableOn 𝕜 f s :=
+  forall₂_congr fun _ _ ↦ differentiableWithinAt_add_const_iff c
+
+@[fun_prop]
+alias ⟨_, DifferentiableOn.add_const⟩ := differentiableOn_add_const_iff
+
+@[simp]
+theorem differentiable_add_const_iff (c : F) :
+    (Differentiable 𝕜 fun y => f y + c) ↔ Differentiable 𝕜 f :=
+  forall_congr' fun _ ↦ differentiableAt_add_const_iff c
+
+@[fun_prop]
+alias ⟨_,  Differentiable.add_const⟩ := differentiable_add_const_iff
+
+@[simp]
+theorem fderivWithin_add_const (c : F) :
+    fderivWithin 𝕜 (fun y => f y + c) s x = fderivWithin 𝕜 f s x := by
+  classical simp [fderivWithin]
+
+@[simp]
+theorem fderiv_add_const (c : F) : fderiv 𝕜 (fun y => f y + c) x = fderiv 𝕜 f x := by
+  simp only [← fderivWithin_univ, fderivWithin_add_const]
+
+@[simp]
+theorem hasFDerivAtFilter_const_add_iff (c : F) :
+    HasFDerivAtFilter (c + f ·) f' x L ↔ HasFDerivAtFilter f f' x L := by
+  simpa only [add_comm] using hasFDerivAtFilter_add_const_iff c
+
+alias ⟨_, HasFDerivAtFilter.const_add⟩ := hasFDerivAtFilter_const_add_iff
+
+@[simp]
+theorem hasStrictFDerivAt_const_add_iff (c : F) :
+    HasStrictFDerivAt (c + f ·) f' x ↔ HasStrictFDerivAt f f' x := by
+  simpa only [add_comm] using hasStrictFDerivAt_add_const_iff c
+
+@[fun_prop]
+alias ⟨_, HasStrictFDerivAt.const_add⟩ := hasStrictFDerivAt_const_add_iff
+
+@[simp]
+theorem hasFDerivWithinAt_const_add_iff (c : F) :
+    HasFDerivWithinAt (c + f ·) f' s x ↔ HasFDerivWithinAt f f' s x :=
+  hasFDerivAtFilter_const_add_iff c
+
+@[fun_prop]
+alias ⟨_, HasFDerivWithinAt.const_add⟩ := hasFDerivWithinAt_const_add_iff
+
+@[simp]
+theorem hasFDerivAt_const_add_iff (c : F) : HasFDerivAt (c + f ·) f' x ↔ HasFDerivAt f f' x :=
+  hasFDerivAtFilter_const_add_iff c
+
+@[fun_prop]
+alias ⟨_, HasFDerivAt.const_add⟩ := hasFDerivAt_const_add_iff
+
+@[simp]
+theorem differentiableWithinAt_const_add_iff (c : F) :
+    DifferentiableWithinAt 𝕜 (fun y => c + f y) s x ↔ DifferentiableWithinAt 𝕜 f s x :=
+  exists_congr fun _ ↦ hasFDerivWithinAt_const_add_iff c
+
+@[fun_prop]
+alias ⟨_, DifferentiableWithinAt.const_add⟩ := differentiableWithinAt_const_add_iff
+
+@[simp]
+theorem differentiableAt_const_add_iff (c : F) :
+    DifferentiableAt 𝕜 (fun y => c + f y) x ↔ DifferentiableAt 𝕜 f x :=
+  exists_congr fun _ ↦ hasFDerivAt_const_add_iff c
+
+@[fun_prop]
+alias ⟨_, DifferentiableAt.const_add⟩ := differentiableAt_const_add_iff
+
+@[simp]
+theorem differentiableOn_const_add_iff (c : F) :
+    DifferentiableOn 𝕜 (fun y => c + f y) s ↔ DifferentiableOn 𝕜 f s :=
+  forall₂_congr fun _ _ ↦ differentiableWithinAt_const_add_iff c
+
+@[fun_prop]
+alias ⟨_, DifferentiableOn.const_add⟩ := differentiableOn_const_add_iff
+
+@[simp]
+theorem differentiable_const_add_iff (c : F) :
+    (Differentiable 𝕜 fun y => c + f y) ↔ Differentiable 𝕜 f :=
+  forall_congr' fun _ ↦ differentiableAt_const_add_iff c
+
+@[fun_prop]
+alias ⟨_, Differentiable.const_add⟩ := differentiable_const_add_iff
+
+@[simp]
+theorem fderivWithin_const_add (c : F) :
+    fderivWithin 𝕜 (fun y => c + f y) s x = fderivWithin 𝕜 f s x := by
+  simpa only [add_comm] using fderivWithin_add_const c
+
+@[simp]
+theorem fderiv_const_add (c : F) : fderiv 𝕜 (fun y => c + f y) x = fderiv 𝕜 f x := by
+  simp only [add_comm c, fderiv_add_const]
+
+end Add
+
+section Sum
+
+/-! ### Derivative of a finite sum of functions -/
+
+
+variable {ι : Type*} {u : Finset ι} {A : ι → E → F} {A' : ι → E →L[𝕜] F}
+
+@[fun_prop]
+theorem HasStrictFDerivAt.sum (h : ∀ i ∈ u, HasStrictFDerivAt (A i) (A' i) x) :
+    HasStrictFDerivAt (fun y => ∑ i ∈ u, A i y) (∑ i ∈ u, A' i) x := by
+  simp only [hasStrictFDerivAt_iff_isLittleO] at *
+  convert IsLittleO.sum h
+  simp [Finset.sum_sub_distrib, ContinuousLinearMap.sum_apply]
+
+theorem HasFDerivAtFilter.sum (h : ∀ i ∈ u, HasFDerivAtFilter (A i) (A' i) x L) :
+    HasFDerivAtFilter (fun y => ∑ i ∈ u, A i y) (∑ i ∈ u, A' i) x L := by
+  simp only [hasFDerivAtFilter_iff_isLittleO] at *
+  convert IsLittleO.sum h
+  simp [ContinuousLinearMap.sum_apply]
+
+@[fun_prop]
+theorem HasFDerivWithinAt.sum (h : ∀ i ∈ u, HasFDerivWithinAt (A i) (A' i) s x) :
+    HasFDerivWithinAt (fun y => ∑ i ∈ u, A i y) (∑ i ∈ u, A' i) s x :=
+  HasFDerivAtFilter.sum h
+
+@[fun_prop]
+theorem HasFDerivAt.sum (h : ∀ i ∈ u, HasFDerivAt (A i) (A' i) x) :
+    HasFDerivAt (fun y => ∑ i ∈ u, A i y) (∑ i ∈ u, A' i) x :=
+  HasFDerivAtFilter.sum h
+
+@[fun_prop]
+theorem DifferentiableWithinAt.sum (h : ∀ i ∈ u, DifferentiableWithinAt 𝕜 (A i) s x) :
+    DifferentiableWithinAt 𝕜 (fun y => ∑ i ∈ u, A i y) s x :=
+  HasFDerivWithinAt.differentiableWithinAt <|
+    HasFDerivWithinAt.sum fun i hi => (h i hi).hasFDerivWithinAt
+
+@[simp, fun_prop]
+theorem DifferentiableAt.sum (h : ∀ i ∈ u, DifferentiableAt 𝕜 (A i) x) :
+    DifferentiableAt 𝕜 (fun y => ∑ i ∈ u, A i y) x :=
+  HasFDerivAt.differentiableAt <| HasFDerivAt.sum fun i hi => (h i hi).hasFDerivAt
+
+@[fun_prop]
+theorem DifferentiableOn.sum (h : ∀ i ∈ u, DifferentiableOn 𝕜 (A i) s) :
+    DifferentiableOn 𝕜 (fun y => ∑ i ∈ u, A i y) s := fun x hx =>
+  DifferentiableWithinAt.sum fun i hi => h i hi x hx
+
+@[simp, fun_prop]
+theorem Differentiable.sum (h : ∀ i ∈ u, Differentiable 𝕜 (A i)) :
+    Differentiable 𝕜 fun y => ∑ i ∈ u, A i y := fun x => DifferentiableAt.sum fun i hi => h i hi x
+
+theorem fderivWithin_sum (hxs : UniqueDiffWithinAt 𝕜 s x)
+    (h : ∀ i ∈ u, DifferentiableWithinAt 𝕜 (A i) s x) :
+    fderivWithin 𝕜 (fun y => ∑ i ∈ u, A i y) s x = ∑ i ∈ u, fderivWithin 𝕜 (A i) s x :=
+  (HasFDerivWithinAt.sum fun i hi => (h i hi).hasFDerivWithinAt).fderivWithin hxs
+
+theorem fderiv_sum (h : ∀ i ∈ u, DifferentiableAt 𝕜 (A i) x) :
+    fderiv 𝕜 (fun y => ∑ i ∈ u, A i y) x = ∑ i ∈ u, fderiv 𝕜 (A i) x :=
+  (HasFDerivAt.sum fun i hi => (h i hi).hasFDerivAt).fderiv
+
+end Sum
+
+section Neg
+
+/-! ### Derivative of the negative of a function -/
+
+
+@[fun_prop]
+theorem HasStrictFDerivAt.neg (h : HasStrictFDerivAt f f' x) :
+    HasStrictFDerivAt (fun x => -f x) (-f') x :=
+  (-1 : F →L[𝕜] F).hasStrictFDerivAt.comp x h
+
+theorem HasFDerivAtFilter.neg (h : HasFDerivAtFilter f f' x L) :
+    HasFDerivAtFilter (fun x => -f x) (-f') x L :=
+  (-1 : F →L[𝕜] F).hasFDerivAtFilter.comp x h tendsto_map
+
+@[fun_prop]
+nonrec theorem HasFDerivWithinAt.neg (h : HasFDerivWithinAt f f' s x) :
+    HasFDerivWithinAt (fun x => -f x) (-f') s x :=
+  h.neg
+
+@[fun_prop]
+nonrec theorem HasFDerivAt.neg (h : HasFDerivAt f f' x) : HasFDerivAt (fun x => -f x) (-f') x :=
+  h.neg
+
+@[fun_prop]
+theorem DifferentiableWithinAt.neg (h : DifferentiableWithinAt 𝕜 f s x) :
+    DifferentiableWithinAt 𝕜 (fun y => -f y) s x :=
+  h.hasFDerivWithinAt.neg.differentiableWithinAt
+
+@[simp]
+theorem differentiableWithinAt_neg_iff :
+    DifferentiableWithinAt 𝕜 (fun y => -f y) s x ↔ DifferentiableWithinAt 𝕜 f s x :=
+  ⟨fun h => by simpa only [neg_neg] using h.neg, fun h => h.neg⟩
+
+@[fun_prop]
+theorem DifferentiableAt.neg (h : DifferentiableAt 𝕜 f x) : DifferentiableAt 𝕜 (fun y => -f y) x :=
+  h.hasFDerivAt.neg.differentiableAt
+
+@[simp]
+theorem differentiableAt_neg_iff : DifferentiableAt 𝕜 (fun y => -f y) x ↔ DifferentiableAt 𝕜 f x :=
+  ⟨fun h => by simpa only [neg_neg] using h.neg, fun h => h.neg⟩
+
+@[fun_prop]
+theorem DifferentiableOn.neg (h : DifferentiableOn 𝕜 f s) : DifferentiableOn 𝕜 (fun y => -f y) s :=
+  fun x hx => (h x hx).neg
+
+@[simp]
+theorem differentiableOn_neg_iff : DifferentiableOn 𝕜 (fun y => -f y) s ↔ DifferentiableOn 𝕜 f s :=
+  ⟨fun h => by simpa only [neg_neg] using h.neg, fun h => h.neg⟩
+
+@[fun_prop]
+theorem Differentiable.neg (h : Differentiable 𝕜 f) : Differentiable 𝕜 fun y => -f y := fun x =>
+  (h x).neg
+
+@[simp]
+theorem differentiable_neg_iff : (Differentiable 𝕜 fun y => -f y) ↔ Differentiable 𝕜 f :=
+  ⟨fun h => by simpa only [neg_neg] using h.neg, fun h => h.neg⟩
+
+theorem fderivWithin_neg (hxs : UniqueDiffWithinAt 𝕜 s x) :
+    fderivWithin 𝕜 (fun y => -f y) s x = -fderivWithin 𝕜 f s x := by
+  classical
+  by_cases h : DifferentiableWithinAt 𝕜 f s x
+  · exact h.hasFDerivWithinAt.neg.fderivWithin hxs
+  · rw [fderivWithin_zero_of_not_differentiableWithinAt h,
+      fderivWithin_zero_of_not_differentiableWithinAt, neg_zero]
+    simpa
+
+/-- Version of `fderivWithin_neg` where the function is written `-f` instead of `fun y ↦ - f y`. -/
+theorem fderivWithin_neg' (hxs : UniqueDiffWithinAt 𝕜 s x) :
+    fderivWithin 𝕜 (-f) s x = -fderivWithin 𝕜 f s x :=
+  fderivWithin_neg hxs
+
+@[simp]
+theorem fderiv_neg : fderiv 𝕜 (fun y => -f y) x = -fderiv 𝕜 f x := by
+  simp only [← fderivWithin_univ, fderivWithin_neg uniqueDiffWithinAt_univ]
+
+/-- Version of `fderiv_neg` where the function is written `-f` instead of `fun y ↦ - f y`. -/
+theorem fderiv_neg' : fderiv 𝕜 (-f) x = -fderiv 𝕜 f x :=
+  fderiv_neg
+
+end Neg
+
+section Sub
+
+/-! ### Derivative of the difference of two functions -/
+
+
+@[fun_prop]
+theorem HasStrictFDerivAt.sub (hf : HasStrictFDerivAt f f' x) (hg : HasStrictFDerivAt g g' x) :
+    HasStrictFDerivAt (fun x => f x - g x) (f' - g') x := by
+  simpa only [sub_eq_add_neg] using hf.add hg.neg
+
+theorem HasFDerivAtFilter.sub (hf : HasFDerivAtFilter f f' x L) (hg : HasFDerivAtFilter g g' x L) :
+    HasFDerivAtFilter (fun x => f x - g x) (f' - g') x L := by
+  simpa only [sub_eq_add_neg] using hf.add hg.neg
+
+@[fun_prop]
+nonrec theorem HasFDerivWithinAt.sub (hf : HasFDerivWithinAt f f' s x)
+    (hg : HasFDerivWithinAt g g' s x) : HasFDerivWithinAt (fun x => f x - g x) (f' - g') s x :=
+  hf.sub hg
+
+@[fun_prop]
+nonrec theorem HasFDerivAt.sub (hf : HasFDerivAt f f' x) (hg : HasFDerivAt g g' x) :
+    HasFDerivAt (fun x => f x - g x) (f' - g') x :=
+  hf.sub hg
+
+@[fun_prop]
+theorem DifferentiableWithinAt.sub (hf : DifferentiableWithinAt 𝕜 f s x)
+    (hg : DifferentiableWithinAt 𝕜 g s x) : DifferentiableWithinAt 𝕜 (fun y => f y - g y) s x :=
+  (hf.hasFDerivWithinAt.sub hg.hasFDerivWithinAt).differentiableWithinAt
+
+@[simp, fun_prop]
+theorem DifferentiableAt.sub (hf : DifferentiableAt 𝕜 f x) (hg : DifferentiableAt 𝕜 g x) :
+    DifferentiableAt 𝕜 (fun y => f y - g y) x :=
+  (hf.hasFDerivAt.sub hg.hasFDerivAt).differentiableAt
+
+@[simp]
+lemma DifferentiableAt.add_iff_left (hg : DifferentiableAt 𝕜 g x) :
+    DifferentiableAt 𝕜 (fun y => f y + g y) x ↔ DifferentiableAt 𝕜 f x := by
+  refine ⟨fun h ↦ ?_, fun hf ↦ hf.add hg⟩
+  simpa only [add_sub_cancel_right] using h.sub hg
+
+@[simp]
+lemma DifferentiableAt.add_iff_right (hg : DifferentiableAt 𝕜 f x) :
+    DifferentiableAt 𝕜 (fun y => f y + g y) x ↔ DifferentiableAt 𝕜 g x := by
+  simp only [add_comm (f _), hg.add_iff_left]
+
+@[simp]
+lemma DifferentiableAt.sub_iff_left (hg : DifferentiableAt 𝕜 g x) :
+    DifferentiableAt 𝕜 (fun y => f y - g y) x ↔ DifferentiableAt 𝕜 f x := by
+  simp only [sub_eq_add_neg, differentiableAt_neg_iff, hg, add_iff_left]
+
+@[simp]
+lemma DifferentiableAt.sub_iff_right (hg : DifferentiableAt 𝕜 f x) :
+    DifferentiableAt 𝕜 (fun y => f y - g y) x ↔ DifferentiableAt 𝕜 g x := by
+  simp only [sub_eq_add_neg, hg, add_iff_right, differentiableAt_neg_iff]
+
+@[fun_prop]
+theorem DifferentiableOn.sub (hf : DifferentiableOn 𝕜 f s) (hg : DifferentiableOn 𝕜 g s) :
+    DifferentiableOn 𝕜 (fun y => f y - g y) s := fun x hx => (hf x hx).sub (hg x hx)
+
+@[simp]
+lemma DifferentiableOn.add_iff_left (hg : DifferentiableOn 𝕜 g s) :
+    DifferentiableOn 𝕜 (fun y => f y + g y) s ↔ DifferentiableOn 𝕜 f s := by
+  refine ⟨fun h ↦ ?_, fun hf ↦ hf.add hg⟩
+  simpa only [add_sub_cancel_right] using h.sub hg
+
+@[simp]
+lemma DifferentiableOn.add_iff_right (hg : DifferentiableOn 𝕜 f s) :
+    DifferentiableOn 𝕜 (fun y => f y + g y) s ↔ DifferentiableOn 𝕜 g s := by
+  simp only [add_comm (f _), hg.add_iff_left]
+
+@[simp]
+lemma DifferentiableOn.sub_iff_left (hg : DifferentiableOn 𝕜 g s) :
+    DifferentiableOn 𝕜 (fun y => f y - g y) s ↔ DifferentiableOn 𝕜 f s := by
+  simp only [sub_eq_add_neg, differentiableOn_neg_iff, hg, add_iff_left]
+
+@[simp]
+lemma DifferentiableOn.sub_iff_right (hg : DifferentiableOn 𝕜 f s) :
+    DifferentiableOn 𝕜 (fun y => f y - g y) s ↔ DifferentiableOn 𝕜 g s := by
+  simp only [sub_eq_add_neg, differentiableOn_neg_iff, hg, add_iff_right]
+
+@[simp, fun_prop]
+theorem Differentiable.sub (hf : Differentiable 𝕜 f) (hg : Differentiable 𝕜 g) :
+    Differentiable 𝕜 fun y => f y - g y := fun x => (hf x).sub (hg x)
+
+@[simp]
+lemma Differentiable.add_iff_left (hg : Differentiable 𝕜 g) :
+    Differentiable 𝕜 (fun y => f y + g y) ↔ Differentiable 𝕜 f := by
+  refine ⟨fun h ↦ ?_, fun hf ↦ hf.add hg⟩
+  simpa only [add_sub_cancel_right] using h.sub hg
+
+@[simp]
+lemma Differentiable.add_iff_right (hg : Differentiable 𝕜 f) :
+    Differentiable 𝕜 (fun y => f y + g y) ↔ Differentiable 𝕜 g := by
+  simp only [add_comm (f _), hg.add_iff_left]
+
+@[simp]
+lemma Differentiable.sub_iff_left (hg : Differentiable 𝕜 g) :
+    Differentiable 𝕜 (fun y => f y - g y) ↔ Differentiable 𝕜 f := by
+  simp only [sub_eq_add_neg, differentiable_neg_iff, hg, add_iff_left]
+
+@[simp]
+lemma Differentiable.sub_iff_right (hg : Differentiable 𝕜 f) :
+    Differentiable 𝕜 (fun y => f y - g y) ↔ Differentiable 𝕜 g := by
+  simp only [sub_eq_add_neg, differentiable_neg_iff, hg, add_iff_right]
+
+theorem fderivWithin_sub (hxs : UniqueDiffWithinAt 𝕜 s x) (hf : DifferentiableWithinAt 𝕜 f s x)
+    (hg : DifferentiableWithinAt 𝕜 g s x) :
+    fderivWithin 𝕜 (fun y => f y - g y) s x = fderivWithin 𝕜 f s x - fderivWithin 𝕜 g s x :=
+  (hf.hasFDerivWithinAt.sub hg.hasFDerivWithinAt).fderivWithin hxs
+
+/-- Version of `fderivWithin_sub` where the function is written as `f - g` instead
+of `fun y ↦ f y - g y`. -/
+theorem fderivWithin_sub' (hxs : UniqueDiffWithinAt 𝕜 s x) (hf : DifferentiableWithinAt 𝕜 f s x)
+    (hg : DifferentiableWithinAt 𝕜 g s x) :
+    fderivWithin 𝕜 (f - g) s x = fderivWithin 𝕜 f s x - fderivWithin 𝕜 g s x :=
+  fderivWithin_sub hxs hf hg
+
+theorem fderiv_sub (hf : DifferentiableAt 𝕜 f x) (hg : DifferentiableAt 𝕜 g x) :
+    fderiv 𝕜 (fun y => f y - g y) x = fderiv 𝕜 f x - fderiv 𝕜 g x :=
+  (hf.hasFDerivAt.sub hg.hasFDerivAt).fderiv
+
+/-- Version of `fderiv_sub` where the function is written as `f - g` instead
+of `fun y ↦ f y - g y`. -/
+theorem fderiv_sub' (hf : DifferentiableAt 𝕜 f x) (hg : DifferentiableAt 𝕜 g x) :
+    fderiv 𝕜 (f - g) x = fderiv 𝕜 f x - fderiv 𝕜 g x :=
+  fderiv_sub hf hg
+
+@[simp]
+theorem hasFDerivAtFilter_sub_const_iff (c : F) :
+    HasFDerivAtFilter (f · - c) f' x L ↔ HasFDerivAtFilter f f' x L := by
+  simp only [sub_eq_add_neg, hasFDerivAtFilter_add_const_iff]
+
+alias ⟨_, HasFDerivAtFilter.sub_const⟩ := hasFDerivAtFilter_sub_const_iff
+
+@[simp]
+theorem hasStrictFDerivAt_sub_const_iff (c : F) :
+    HasStrictFDerivAt (f · - c) f' x ↔ HasStrictFDerivAt f f' x := by
+  simp only [sub_eq_add_neg, hasStrictFDerivAt_add_const_iff]
+
+@[fun_prop]
+alias ⟨_, HasStrictFDerivAt.sub_const⟩ := hasStrictFDerivAt_sub_const_iff
+
+@[simp]
+theorem hasFDerivWithinAt_sub_const_iff (c : F) :
+    HasFDerivWithinAt (f · - c) f' s x ↔ HasFDerivWithinAt f f' s x :=
+  hasFDerivAtFilter_sub_const_iff c
+
+@[fun_prop]
+alias ⟨_, HasFDerivWithinAt.sub_const⟩ := hasFDerivWithinAt_sub_const_iff
+
+@[simp]
+theorem hasFDerivAt_sub_const_iff (c : F) : HasFDerivAt (f · - c) f' x ↔ HasFDerivAt f f' x :=
+  hasFDerivAtFilter_sub_const_iff c
+
+@[fun_prop]
+alias ⟨_, HasFDerivAt.sub_const⟩ := hasFDerivAt_sub_const_iff
+
+@[fun_prop]
+theorem hasStrictFDerivAt_sub_const {x : F} (c : F) : HasStrictFDerivAt (· - c) (id 𝕜 F) x :=
+  (hasStrictFDerivAt_id x).sub_const c
+
+@[fun_prop]
+theorem hasFDerivAt_sub_const {x : F} (c : F) : HasFDerivAt (· - c) (id 𝕜 F) x :=
+  (hasFDerivAt_id x).sub_const c
+
+@[fun_prop]
+theorem DifferentiableWithinAt.sub_const (hf : DifferentiableWithinAt 𝕜 f s x) (c : F) :
+    DifferentiableWithinAt 𝕜 (fun y => f y - c) s x :=
+  (hf.hasFDerivWithinAt.sub_const c).differentiableWithinAt
+
+@[simp]
+theorem differentiableWithinAt_sub_const_iff (c : F) :
+    DifferentiableWithinAt 𝕜 (fun y => f y - c) s x ↔ DifferentiableWithinAt 𝕜 f s x := by
+  simp only [sub_eq_add_neg, differentiableWithinAt_add_const_iff]
+
+@[fun_prop]
+theorem DifferentiableAt.sub_const (hf : DifferentiableAt 𝕜 f x) (c : F) :
+    DifferentiableAt 𝕜 (fun y => f y - c) x :=
+  (hf.hasFDerivAt.sub_const c).differentiableAt
+
+@[fun_prop]
+theorem DifferentiableOn.sub_const (hf : DifferentiableOn 𝕜 f s) (c : F) :
+    DifferentiableOn 𝕜 (fun y => f y - c) s := fun x hx => (hf x hx).sub_const c
+
+@[fun_prop]
+theorem Differentiable.sub_const (hf : Differentiable 𝕜 f) (c : F) :
+    Differentiable 𝕜 fun y => f y - c := fun x => (hf x).sub_const c
+
+theorem fderivWithin_sub_const (c : F) :
+    fderivWithin 𝕜 (fun y => f y - c) s x = fderivWithin 𝕜 f s x := by
+  simp only [sub_eq_add_neg, fderivWithin_add_const]
+
+theorem fderiv_sub_const (c : F) : fderiv 𝕜 (fun y => f y - c) x = fderiv 𝕜 f x := by
+  simp only [sub_eq_add_neg, fderiv_add_const]
+
+theorem HasFDerivAtFilter.const_sub (hf : HasFDerivAtFilter f f' x L) (c : F) :
+    HasFDerivAtFilter (fun x => c - f x) (-f') x L := by
+  simpa only [sub_eq_add_neg] using hf.neg.const_add c
+
+@[fun_prop]
+nonrec theorem HasStrictFDerivAt.const_sub (hf : HasStrictFDerivAt f f' x) (c : F) :
+    HasStrictFDerivAt (fun x => c - f x) (-f') x := by
+  simpa only [sub_eq_add_neg] using hf.neg.const_add c
+
+@[fun_prop]
+nonrec theorem HasFDerivWithinAt.const_sub (hf : HasFDerivWithinAt f f' s x) (c : F) :
+    HasFDerivWithinAt (fun x => c - f x) (-f') s x :=
+  hf.const_sub c
+
+@[fun_prop]
+nonrec theorem HasFDerivAt.const_sub (hf : HasFDerivAt f f' x) (c : F) :
+    HasFDerivAt (fun x => c - f x) (-f') x :=
+  hf.const_sub c
+
+@[fun_prop]
+theorem DifferentiableWithinAt.const_sub (hf : DifferentiableWithinAt 𝕜 f s x) (c : F) :
+    DifferentiableWithinAt 𝕜 (fun y => c - f y) s x :=
+  (hf.hasFDerivWithinAt.const_sub c).differentiableWithinAt
+
+@[simp]
+theorem differentiableWithinAt_const_sub_iff (c : F) :
+    DifferentiableWithinAt 𝕜 (fun y => c - f y) s x ↔ DifferentiableWithinAt 𝕜 f s x := by
+  simp [sub_eq_add_neg]
+
+@[fun_prop]
+theorem DifferentiableAt.const_sub (hf : DifferentiableAt 𝕜 f x) (c : F) :
+    DifferentiableAt 𝕜 (fun y => c - f y) x :=
+  (hf.hasFDerivAt.const_sub c).differentiableAt
+
+@[fun_prop]
+theorem DifferentiableOn.const_sub (hf : DifferentiableOn 𝕜 f s) (c : F) :
+    DifferentiableOn 𝕜 (fun y => c - f y) s := fun x hx => (hf x hx).const_sub c
+
+@[fun_prop]
+theorem Differentiable.const_sub (hf : Differentiable 𝕜 f) (c : F) :
+    Differentiable 𝕜 fun y => c - f y := fun x => (hf x).const_sub c
+
+theorem fderivWithin_const_sub (hxs : UniqueDiffWithinAt 𝕜 s x) (c : F) :
+    fderivWithin 𝕜 (fun y => c - f y) s x = -fderivWithin 𝕜 f s x := by
+  simp only [sub_eq_add_neg, fderivWithin_const_add, fderivWithin_neg, hxs]
+
+theorem fderiv_const_sub (c : F) : fderiv 𝕜 (fun y => c - f y) x = -fderiv 𝕜 f x := by
+  simp only [← fderivWithin_univ, fderivWithin_const_sub uniqueDiffWithinAt_univ]
+
+end Sub
+
+section CompAdd
+
+/-! ### Derivative of the composition with a translation -/
+
+open scoped Pointwise Topology
+
+theorem hasFDerivWithinAt_comp_add_left (a : E) :
+    HasFDerivWithinAt (fun x ↦ f (a + x)) f' s x ↔ HasFDerivWithinAt f f' (a +ᵥ s) (a + x) := by
+  have : map (a + ·) (𝓝[s] x) = 𝓝[a +ᵥ s] (a + x) := by
+    simp only [add_comm x a, nhdsWithin, Filter.map_inf (add_right_injective a)]
+    simp [← Set.image_vadd]
+  simp [HasFDerivWithinAt, hasFDerivAtFilter_iff_isLittleOTVS, ← this, Function.comp_def]
+
+theorem differentiableWithinAt_comp_add_left (a : E) :
+    DifferentiableWithinAt 𝕜 (fun x ↦ f (a + x)) s x ↔
+      DifferentiableWithinAt 𝕜 f (a +ᵥ s) (a + x) := by
+  simp [DifferentiableWithinAt, hasFDerivWithinAt_comp_add_left]
+
+theorem fderivWithin_comp_add_left (a : E) :
+    fderivWithin 𝕜 (fun x ↦ f (a + x)) s x = fderivWithin 𝕜 f (a +ᵥ s) (a + x) := by
+  classical
+  simp only [fderivWithin, hasFDerivWithinAt_comp_add_left, differentiableWithinAt_comp_add_left]
+
+theorem hasFDerivWithinAt_comp_add_right (a : E) :
+    HasFDerivWithinAt (fun x ↦ f (x + a)) f' s x ↔ HasFDerivWithinAt f f' (a +ᵥ s) (x + a) := by
+  simpa only [add_comm a] using hasFDerivWithinAt_comp_add_left a
+
+theorem differentiableWithinAt_comp_add_right (a : E) :
+    DifferentiableWithinAt 𝕜 (fun x ↦ f (x + a)) s x ↔
+      DifferentiableWithinAt 𝕜 f (a +ᵥ s) (x + a) := by
+  simp [DifferentiableWithinAt, hasFDerivWithinAt_comp_add_right]
+
+theorem fderivWithin_comp_add_right (a : E) :
+    fderivWithin 𝕜 (fun x ↦ f (x + a)) s x = fderivWithin 𝕜 f (a +ᵥ s) (x + a) := by
+  simp only [add_comm _ a, fderivWithin_comp_add_left]
+
+theorem hasFDerivAt_comp_add_right (a : E) :
+    HasFDerivAt (fun x ↦ f (x + a)) f' x ↔ HasFDerivAt f f' (x + a) := by
+  simp [← hasFDerivWithinAt_univ, hasFDerivWithinAt_comp_add_right]
+
+theorem differentiableAt_comp_add_right (a : E) :
+    DifferentiableAt 𝕜 (fun x ↦ f (x + a)) x ↔ DifferentiableAt 𝕜 f (x + a) := by
+  simp [DifferentiableAt, hasFDerivAt_comp_add_right]
+
+theorem fderiv_comp_add_right (a : E) :
+    fderiv 𝕜 (fun x ↦ f (x + a)) x = fderiv 𝕜 f (x + a) := by
+  simp [← fderivWithin_univ, fderivWithin_comp_add_right]
+
+theorem hasFDerivAt_comp_add_left (a : E) :
+    HasFDerivAt (fun x ↦ f (a + x)) f' x ↔ HasFDerivAt f f' (a + x) := by
+  simpa [add_comm a] using hasFDerivAt_comp_add_right a
+
+theorem differentiableAt_comp_add_left (a : E) :
+    DifferentiableAt 𝕜 (fun x ↦ f (a + x)) x ↔ DifferentiableAt 𝕜 f (a + x) := by
+  simp [DifferentiableAt, hasFDerivAt_comp_add_left]
+
+theorem fderiv_comp_add_left (a : E) :
+    fderiv 𝕜 (fun x ↦ f (a + x)) x = fderiv 𝕜 f (a + x) := by
+  simpa [add_comm a] using fderiv_comp_add_right a
+
+theorem hasFDerivWithinAt_comp_sub (a : E) :
+    HasFDerivWithinAt (fun x ↦ f (x - a)) f' s x ↔ HasFDerivWithinAt f f' (-a +ᵥ s) (x - a) := by
+  simpa [sub_eq_add_neg] using hasFDerivWithinAt_comp_add_right (-a)
+
+theorem differentiableWithinAt_comp_sub (a : E) :
+    DifferentiableWithinAt 𝕜 (fun x ↦ f (x - a)) s x ↔
+      DifferentiableWithinAt 𝕜 f (-a +ᵥ s) (x - a) := by
+  simp [DifferentiableWithinAt, hasFDerivWithinAt_comp_sub]
+
+theorem fderivWithin_comp_sub (a : E) :
+    fderivWithin 𝕜 (fun x ↦ f (x - a)) s x = fderivWithin 𝕜 f (-a +ᵥ s) (x - a) := by
+  simpa [sub_eq_add_neg] using fderivWithin_comp_add_right (-a)
+
+theorem hasFDerivAt_comp_sub (a : E) :
+    HasFDerivAt (fun x ↦ f (x - a)) f' x ↔ HasFDerivAt f f' (x - a) := by
+  simp [← hasFDerivWithinAt_univ, hasFDerivWithinAt_comp_sub]
+
+theorem differentiableAt_comp_sub (a : E) :
+    DifferentiableAt 𝕜 (fun x ↦ f (x - a)) x ↔ DifferentiableAt 𝕜 f (x - a) := by
+  simp [DifferentiableAt, hasFDerivAt_comp_sub]
+
+theorem fderiv_comp_sub (a : E) :
+    fderiv 𝕜 (fun x ↦ f (x - a)) x = fderiv 𝕜 f (x - a) := by
+  simp [← fderivWithin_univ, fderivWithin_comp_sub]
+
+end CompAdd
+
+end
+
+-- END Mathlib.Analysis.Calculus.FDeriv.Add --
+
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Analysis.Calculus.FDeriv.Add
+
+/-!
+# One-dimensional derivatives of sums etc
+
+In this file we prove formulas about derivatives of `f + g`, `-f`, `f - g`, and `∑ i, f i x` for
+functions from the base field to a normed space over this field.
+
+For a more detailed overview of one-dimensional derivatives in mathlib, see the module docstring of
+`Analysis/Calculus/Deriv/Basic`.
+
+## Keywords
+
+derivative
+-/
+
+universe u v w
+
+open scoped Topology Filter ENNReal
+
+open Asymptotics Set
+
+variable {𝕜 : Type u} [NontriviallyNormedField 𝕜]
+variable {F : Type v} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
+variable {f g : 𝕜 → F}
+variable {f' g' : F}
+variable {x : 𝕜} {s : Set 𝕜} {L : Filter 𝕜}
+
+section Add
+
+/-! ### Derivative of the sum of two functions -/
+
+
+nonrec theorem HasDerivAtFilter.add (hf : HasDerivAtFilter f f' x L)
+    (hg : HasDerivAtFilter g g' x L) : HasDerivAtFilter (fun y => f y + g y) (f' + g') x L := by
+

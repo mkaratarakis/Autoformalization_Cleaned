@@ -1,0 +1,15 @@
+The previous lean 4 proof has the following errors. 
+6. **Error Message**
+tmp.lean:10:4: error: tactic 'apply' failed, failed to unify
+  iunfoldr ?f ?a = (?state ?w, ?value)
+with
+  iunfoldr (fun i c => adcb x[i] y[i] c) false = (carry w x y false, x + y)
+w : Nat
+x y : BitVec w
+⊢ iunfoldr (fun i c => adcb x[i] y[i] c) false = (carry w x y false, x + y)
+tmp.lean:8:68: error: unsolved goals
+w : Nat
+x y : BitVec w
+h : iunfoldr (fun i c => adcb x[i] y[i] c) false = (carry w x y false, x + y)
+⊢ x + y = (x.adc y false).snd
+Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
