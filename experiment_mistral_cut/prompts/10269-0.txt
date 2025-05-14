@@ -1,0 +1,90 @@
+
+1. **Informal Theorem**  
+Brahmagupta-Fibonacci Identity: \((x_1^2 + x_2^2) \cdot (y_1^2 + y_2^2) = (x_1 y_1 - x_2 y_2)^2 + (x_1 y_2 + x_2 y_1)^2\) : For any commutative ring \( R \) and any elements \( x_1, x_2, y_1, y_2 \in R \), the following identity holds:
+\[
+(x_1^2 + x_2^2) \cdot (y_1^2 + y_2^2) = (x_1 y_1 - x_2 y_2)^2 + (x_1 y_2 + x_2 y_1)^2
+\]
+
+2. **Informal Proof**  
+To prove the Brahmagupta-Fibonacci identity, we start with the left-hand side of the equation:
+\[
+(x_1^2 + x_2^2) \cdot (y_1^2 + y_2^2)
+\]
+We expand this product:
+\[
+(x_1^2 + x_2^2) \cdot (y_1^2 + y_2^2) = x_1^2 y_1^2 + x_1^2 y_2^2 + x_2^2 y_1^2 + x_2^2 y_2^2
+\]
+
+Next, we consider the right-hand side of the equation:
+\[
+(x_1 y_1 - x_2 y_2)^2 + (x_1 y_2 + x_2 y_1)^2
+\]
+We expand each square term:
+\[
+(x_1 y_1 - x_2 y_2)^2 = x_1^2 y_1^2 - 2 x_1 y_1 x_2 y_2 + x_2^2 y_2^2
+\]
+\[
+(x_1 y_2 + x_2 y_1)^2 = x_1^2 y_2^2 + 2 x_1 y_2 x_2 y_1 + x_2^2 y_1^2
+\]
+
+Adding these two expanded forms together:
+\[
+(x_1 y_1 - x_2 y_2)^2 + (x_1 y_2 + x_2 y_1)^2 = (x_1^2 y_1^2 - 2 x_1 y_1 x_2 y_2 + x_2^2 y_2^2) + (x_1^2 y_2^2 + 2 x_1 y_2 x_2 y_1 + x_2^2 y_1^2)
+\]
+\[
+= x_1^2 y_1^2 + x_1^2 y_2^2 + x_2^2 y_1^2 + x_2^2 y_2^2
+\]
+
+We see that both the left-hand side and the right-hand side simplify to the same expression:
+\[
+x_1^2 y_1^2 + x_1^2 y_2^2 + x_2^2 y_1^2 + x_2^2 y_2^2
+\]
+
+Thus, we have shown that:
+\[
+(x_1^2 + x_2^2) \cdot (y_1^2 + y_2^2) = (x_1 y_1 - x_2 y_2)^2 + (x_1 y_2 + x_2 y_1)^2
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example :
+    (x₁ ^ 2 + x₂ ^ 2) * (y₁ ^ 2 + y₂ ^ 2) = (x₁ * y₁ - x₂ * y₂) ^ 2 + (x₁ * y₂ + x₂ * y₁) ^ 2 := by sorry
+
+4. **Prefix**
+import Mathlib.Tactic.Ring
+import Mathlib.Algebra.Ring.Identities
+
+
+variable {R : Type*} [CommRing R] {a b x₁ x₂ x₃ x₄ x₅ x₆ x₇ x₈ y₁ y₂ y₃ y₄ y₅ y₆ y₇ y₈ n : R}
+
+example :
+    (x₁ ^ 2 + x₂ ^ 2) * (y₁ ^ 2 + y₂ ^ 2) = (x₁ * y₁ - x₂ * y₂) ^ 2 + (x₁ * y₂ + x₂ * y₁) ^ 2 := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Tactic.Ring --
+import Mathlib.Tactic.Ring.Basic
+import Mathlib.Tactic.Ring.RingNF
+import Mathlib.Tactic.Ring.PNat
+
+-- END Mathlib.Tactic.Ring --
+
+import Mathlib.Tactic.Ring
+
+/-!
+# Identities
+
+This file contains some "named" commutative ring identities.
+-/
+
+
+variable {R : Type*} [CommRing R] {a b x₁ x₂ x₃ x₄ x₅ x₆ x₇ x₈ y₁ y₂ y₃ y₄ y₅ y₆ y₇ y₈ n : R}
+
+/-- Brahmagupta-Fibonacci identity or Diophantus identity, see
+<https://en.wikipedia.org/wiki/Brahmagupta%E2%80%93Fibonacci_identity>.
+
+This sign choice here corresponds to the signs obtained by multiplying two complex numbers.
+-/
+theorem sq_add_sq_mul_sq_add_sq :
+    (x₁ ^ 2 + x₂ ^ 2) * (y₁ ^ 2 + y₂ ^ 2) = (x₁ * y₁ - x₂ * y₂) ^ 2 + (x₁ * y₂ + x₂ * y₁) ^ 2 := by
+

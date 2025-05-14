@@ -1,0 +1,126 @@
+
+1. **Informal Theorem**  
+Pair Membership in Enumerated List: \((n + i, x) \in \text{enumFrom } n \, l \leftrightarrow l.get? \, i = \text{some } x\) : For any type \( \alpha \), natural numbers \( n \) and \( i \), and a list \( l \) of elements of type \( \alpha \), the pair \((n + i, x)\) is a member of the list `enumFrom n l` if and only if the \( i \)-th element of the list \( l \) (zero-based) is \( x \), i.e., \( l.get? i = \text{some } x \).
+
+2. **Informal Proof**  
+To prove the theorem, we use the equivalence that an element \((n + i, x)\) is a member of the list `enumFrom n l` if and only if the \( i \)-th element of the list \( l \) (zero-based) is \( x \). This equivalence is given by the theorem that states the membership of a pair in the enumerated list is equivalent to the optional element lookup in the list.
+
+Formally, the theorem states:
+\[
+(n + i, x) \in \text{enumFrom } n \, l \leftrightarrow l.get? \, i = \text{some } x
+\]
+
+By using this equivalence, we can directly conclude that the pair \((n + i, x)\) is a member of the list `enumFrom n l` if and only if the \( i \)-th element of the list \( l \) is \( x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n i : ℕ} {x : α} {l : List α} :
+    (n + i, x) ∈ enumFrom n l ↔ l.get? i = x := by sorry
+
+4. **Prefix**
+import Batteries.Tactic.Alias
+import Mathlib.Tactic.TypeStar
+import Mathlib.Data.Nat.Notation
+import Mathlib.Data.List.Enum
+
+open List
+variable {α β : Type*}
+
+example {n i : ℕ} {x : α} {l : List α} :
+    (n + i, x) ∈ enumFrom n l ↔ l.get? i = x := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Tactic.TypeStar --
+/-
+Copyright (c) 2023 Matthew Robert Ballard. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kyle Miller
+-/
+import Mathlib.Init
+import Lean.Elab.Term
+
+/-!
+# Support for `Sort*` and `Type*`.
+
+These elaborate as `Sort u` and `Type u` with a fresh implicit universe variable `u`.
+-/
+
+open Lean
+
+/-- The syntax `variable (X Y ... Z : Sort*)` creates a new distinct implicit universe variable
+for each variable in the sequence. -/
+elab "Sort*" : term => do
+  let u ← Lean.Meta.mkFreshLevelMVar
+  Elab.Term.levelMVarToParam (.sort u)
+
+/-- The syntax `variable (X Y ... Z : Type*)` creates a new distinct implicit universe variable
+`> 0` for each variable in the sequence. -/
+elab "Type*" : term => do
+  let u ← Lean.Meta.mkFreshLevelMVar
+  Elab.Term.levelMVarToParam (.sort (.succ u))
+
+-- END Mathlib.Tactic.TypeStar --
+
+-- BEGIN Mathlib.Data.Nat.Notation --
+/-
+Copyright (c) 2014 Microsoft Corporation. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Floris van Doorn, Leonardo de Moura
+-/
+
+import Mathlib.Init
+
+/-!
+# Notation `ℕ` for the natural numbers.
+-/
+
+@[inherit_doc] notation "ℕ" => Nat
+
+-- END Mathlib.Data.Nat.Notation --
+
+import Mathlib.Data.List.Basic
+
+/-!
+# Properties of `List.enum`
+
+## Deprecation note
+
+Many lemmas in this file have been replaced by theorems in Lean4,
+in terms of `xs[i]?` and `xs[i]` rather than `get` and `get?`.
+
+The deprecated results here are unused in Mathlib.
+Any downstream users who can not easily adapt may remove the deprecations as needed.
+-/
+
+namespace List
+
+variable {α : Type*}
+
+theorem forall_mem_zipIdx {l : List α} {n : ℕ} {p : α × ℕ → Prop} :
+    (∀ x ∈ l.zipIdx n, p x) ↔ ∀ (i : ℕ) (_ : i < length l), p (l[i], n + i) := by
+  simp only [forall_mem_iff_getElem, getElem_zipIdx, length_zipIdx]
+
+/-- Variant of `forall_mem_zipIdx` with the `zipIdx` argument specialized to `0`. -/
+theorem forall_mem_zipIdx' {l : List α} {p : α × ℕ → Prop} :
+    (∀ x ∈ l.zipIdx, p x) ↔ ∀ (i : ℕ) (_ : i < length l), p (l[i], i) :=
+  forall_mem_zipIdx.trans <| by simp
+
+theorem exists_mem_zipIdx {l : List α} {n : ℕ} {p : α × ℕ → Prop} :
+    (∃ x ∈ l.zipIdx n, p x) ↔ ∃ (i : ℕ) (_ : i < length l), p (l[i], n + i) := by
+  simp only [exists_mem_iff_getElem, getElem_zipIdx, length_zipIdx]
+
+/-- Variant of `exists_mem_zipIdx` with the `zipIdx` argument specialized to `0`. -/
+theorem exists_mem_zipIdx' {l : List α} {p : α × ℕ → Prop} :
+    (∃ x ∈ l.zipIdx, p x) ↔ ∃ (i : ℕ) (_ : i < length l), p (l[i], i) :=
+  exists_mem_zipIdx.trans <| by simp
+
+@[deprecated (since := "2025-01-28")]
+alias forall_mem_enumFrom := forall_mem_zipIdx
+@[deprecated (since := "2025-01-28")]
+alias forall_mem_enum := forall_mem_zipIdx'
+@[deprecated (since := "2025-01-28")]
+alias exists_mem_enumFrom := exists_mem_zipIdx
+@[deprecated (since := "2025-01-28")]
+alias exists_mem_enum := exists_mem_zipIdx'
+
+end List
+

@@ -1,0 +1,24 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:10:57: error: unsolved goals
+w x✝ y✝ z : ℝ
+x : ℝ≥0
+y : ℝ
+⊢ x ^ y = 0 ↔ x = 0 ∧ y ≠ 0
+w x✝ y✝ z : ℝ
+x : ℝ≥0
+y : ℝ
+⊢ x ^ y = 0 ↔ x = 0 ∧ y ≠ 0
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+
+open NNReal
+open scoped Classical
+open Real NNReal ENNReal ComplexConjugate
+open Finset Function Set
+variable {w x y z : ℝ}
+
+example {x : ℝ≥0} {y : ℝ} : x ^ y = 0 ↔ x = 0 ∧ y ≠ 0 := by

@@ -1,0 +1,26 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:9:9: error: unsolved goals
+case zero
+b c : Nat
+a0 : 0 < zero
+⊢ zero * b < zero * c ↔ b < c
+tmp.lean:9:2: error: alternative 'succ' has not been provided
+case zero
+b c : Nat
+a0 : 0 < zero
+⊢ zero * b < zero * c ↔ b < c
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
+  induction a using Nat.rec with
+  | zero =>
+    -- Base case: a = 0
+    -- The assumption 0 < 0 is false, so the implication is trivially true.

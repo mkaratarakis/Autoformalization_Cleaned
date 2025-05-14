@@ -1,0 +1,303 @@
+
+1. **Informal Theorem**  
+Induced Map on Sections of Free Sheaves of Modules Preserves Tautological Sections : For any types \( I \) and \( J \), and a function \( f : I \to J \), the induced map on sections of the free sheaves of modules \( \text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f) \) maps the tautological section of \( \text{free } I \) corresponding to an element \( i \in I \) to the tautological section of \( \text{free } J \) corresponding to the element \( f(i) \in J \). Formally, this is expressed as:
+\[
+\text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f)(\text{SheafOfModules.freeSection } i) = \text{SheafOfModules.freeSection } (f(i))
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we use the equivalence that the composition of the free homomorphism and the application of the free section is the same as the free section of the image. Specifically, we have:
+\[
+\text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f)(\text{SheafOfModules.freeSection } i) = \text{SheafOfModules.freeSection } (f(i))
+\]
+This equivalence allows us to simplify the proposition we want to show to the desired equality. Therefore, the induced map on sections of the free sheaves of modules \( \text{SheafOfModules.sectionsMap}(\text{SheafOfModules.freeMap } f) \) maps the tautological section of \( \text{free } I \) corresponding to an element \( i \in I \) to the tautological section of \( \text{free } J \) corresponding to the element \( f(i) \in J \). This completes the proof.
+
+3. **Formal Theorem**  
+example (i : I) :
+    sectionsMap (freeMap (R := R) f) (freeSection i) = freeSection (f i) := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Category.ModuleCat.Presheaf.Colimits
+import Mathlib.Algebra.Category.ModuleCat.Sheaf.Colimits
+import Mathlib.Algebra.Category.ModuleCat.Sheaf.Free
+
+open SheafOfModules
+open CategoryTheory Limits
+variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C} {R : Sheaf J RingCat.{u}}
+  [HasWeakSheafify J AddCommGrp.{u}] [J.WEqualsLocallyBijective AddCommGrp.{u}]
+  [J.HasSheafCompose (forget₂ RingCat.{u} AddCommGrp.{u})]
+variable {I J : Type u} (f : I → J)
+
+example (i : I) :
+    sectionsMap (freeMap (R := R) f) (freeSection i) = freeSection (f i) := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Algebra.Category.ModuleCat.Presheaf.Colimits --
+/-
+Copyright (c) 2024 Joël Riou. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Joël Riou
+-/
+import Mathlib.Algebra.Category.ModuleCat.Presheaf
+import Mathlib.Algebra.Category.ModuleCat.Colimits
+
+/-! # Colimits in categories of presheaves of modules
+
+In this file, it is shown that under suitable assumptions,
+colimits exist in the category `PresheafOfModules R`.
+
+-/
+
+universe v v₁ v₂ u₁ u₂ u u'
+
+open CategoryTheory Category Limits
+
+namespace PresheafOfModules
+
+variable {C : Type u₁} [Category.{v₁} C] {R : Cᵒᵖ ⥤ RingCat.{u}}
+  {J : Type u₂} [Category.{v₂} J]
+  (F : J ⥤ PresheafOfModules.{v} R)
+
+section Colimits
+
+variable [∀ {X Y : Cᵒᵖ} (f : X ⟶ Y), PreservesColimit (F ⋙ evaluation R Y)
+  (ModuleCat.restrictScalars (R.map f).hom)]
+
+/-- A cocone in the category `PresheafOfModules R` is colimit if it is so after the application
+of the functors `evaluation R X` for all `X`. -/
+def evaluationJointlyReflectsColimits (c : Cocone F)
+    (hc : ∀ (X : Cᵒᵖ), IsColimit ((evaluation R X).mapCocone c)) : IsColimit c where
+  desc s :=
+    { app := fun X => (hc X).desc ((evaluation R X).mapCocone s)
+      naturality := fun {X Y} f ↦ (hc X).hom_ext (fun j ↦ by
+        rw [(hc X).fac_assoc ((evaluation R X).mapCocone s) j]
+        have h₁ := (c.ι.app j).naturality f
+        have h₂ := (hc Y).fac ((evaluation R Y).mapCocone s)
+        dsimp at h₁ h₂ ⊢
+        simp only [← reassoc_of% h₁, ← Functor.map_comp, h₂, Hom.naturality]) }
+  fac s j := by
+    ext1 X
+    exact (hc X).fac ((evaluation R X).mapCocone s) j
+  uniq s m hm := by
+    ext1 X
+    apply (hc X).uniq ((evaluation R X).mapCocone s)
+    intro j
+    dsimp
+    rw [← hm]
+    rfl
+
+variable [∀ X, HasColimit (F ⋙ evaluation R X)]
+
+instance {X Y : Cᵒᵖ} (f : X ⟶ Y) :
+    HasColimit (F ⋙ evaluation R Y ⋙ (ModuleCat.restrictScalars (R.map f).hom)) :=
+  ⟨_, isColimitOfPreserves (ModuleCat.restrictScalars (R.map f).hom)
+    (colimit.isColimit (F ⋙ evaluation R Y))⟩
+
+/-- Given `F : J ⥤ PresheafOfModules.{v} R`, this is the presheaf of modules obtained by
+taking a colimit in the category of modules over `R.obj X` for all `X`. -/
+@[simps]
+noncomputable def colimitPresheafOfModules : PresheafOfModules R where
+  obj X := colimit (F ⋙ evaluation R X)
+  map {_ Y} f := colimMap (whiskerLeft F (restriction R f)) ≫
+    (preservesColimitIso (ModuleCat.restrictScalars (R.map f).hom) (F ⋙ evaluation R Y)).inv
+  map_id X := colimit.hom_ext (fun j => by
+    dsimp
+    rw [ι_colimMap_assoc, whiskerLeft_app, restriction_app]
+    -- Here we should rewrite using `Functor.assoc` but that gives a "motive is type-incorrect"
+    erw [ι_preservesColimitIso_inv (G := ModuleCat.restrictScalars (R.map (𝟙 X)).hom)]
+    rw [ModuleCat.restrictScalarsId'App_inv_naturality, map_id]
+    dsimp)
+  map_comp {X Y Z} f g := colimit.hom_ext (fun j => by
+    dsimp
+    rw [ι_colimMap_assoc, whiskerLeft_app, restriction_app, assoc, ι_colimMap_assoc]
+    -- Here we should rewrite using `Functor.assoc` but that gives a "motive is type-incorrect"
+    erw [ι_preservesColimitIso_inv (G := ModuleCat.restrictScalars (R.map (f ≫ g)).hom),
+      ι_preservesColimitIso_inv_assoc (G := ModuleCat.restrictScalars (R.map f).hom)]
+    rw [← Functor.map_comp_assoc, ι_colimMap_assoc]
+    erw [ι_preservesColimitIso_inv (G := ModuleCat.restrictScalars (R.map g).hom)]
+    rw [map_comp, ModuleCat.restrictScalarsComp'_inv_app, assoc, assoc,
+      whiskerLeft_app, whiskerLeft_app, restriction_app, restriction_app]
+    simp only [Functor.map_comp, assoc]
+    rfl)
+
+/-- The (colimit) cocone for `F : J ⥤ PresheafOfModules.{v} R` that is constructed from
+the colimit of `F ⋙ evaluation R X` for all `X`. -/
+@[simps]
+noncomputable def colimitCocone : Cocone F where
+  pt := colimitPresheafOfModules F
+  ι :=
+    { app := fun j ↦
+        { app := fun X ↦ colimit.ι (F ⋙ evaluation R X) j
+          naturality := fun {X Y} f ↦ by
+            dsimp
+            erw [colimit.ι_desc_assoc, assoc, ← ι_preservesColimitIso_inv]
+            rfl }
+      naturality := fun {X Y} f ↦ by
+        ext1 X
+        simpa using colimit.w (F ⋙ evaluation R X) f }
+
+/-- The cocone `colimitCocone F` is colimit for any `F : J ⥤ PresheafOfModules.{v} R`. -/
+noncomputable def isColimitColimitCocone : IsColimit (colimitCocone F) :=
+  evaluationJointlyReflectsColimits _ _ (fun _ => colimit.isColimit _)
+
+instance hasColimit : HasColimit F := ⟨_, isColimitColimitCocone F⟩
+
+instance evaluation_preservesColimit (X : Cᵒᵖ) :
+    PreservesColimit F (evaluation R X) :=
+  preservesColimit_of_preserves_colimit_cocone (isColimitColimitCocone F) (colimit.isColimit _)
+
+variable [∀ X, PreservesColimit F
+  (evaluation R X ⋙ forget₂ (ModuleCat (R.obj X)) AddCommGrp)]
+
+instance toPresheaf_preservesColimit :
+    PreservesColimit F (toPresheaf R) :=
+  preservesColimit_of_preserves_colimit_cocone (isColimitColimitCocone F)
+    (Limits.evaluationJointlyReflectsColimits _
+      (fun X => isColimitOfPreserves (evaluation R X ⋙ forget₂ _ AddCommGrp)
+        (isColimitColimitCocone F)))
+
+end Colimits
+
+variable (R J)
+
+section HasColimitsOfShape
+
+variable [HasColimitsOfShape J AddCommGrp.{v}]
+
+instance hasColimitsOfShape : HasColimitsOfShape J (PresheafOfModules.{v} R) where
+
+noncomputable instance evaluation_preservesColimitsOfShape (X : Cᵒᵖ) :
+    PreservesColimitsOfShape J (evaluation R X : PresheafOfModules.{v} R ⥤ _) where
+
+noncomputable instance toPresheaf_preservesColimitsOfShape :
+    PreservesColimitsOfShape J (toPresheaf.{v} R) where
+
+end HasColimitsOfShape
+
+namespace Finite
+
+instance hasFiniteColimits : HasFiniteColimits (PresheafOfModules.{v} R) :=
+  ⟨fun _ => inferInstance⟩
+
+noncomputable instance evaluation_preservesFiniteColimits (X : Cᵒᵖ) :
+    PreservesFiniteColimits (evaluation.{v} R X) where
+
+noncomputable instance toPresheaf_preservesFiniteColimits :
+    PreservesFiniteColimits (toPresheaf R) where
+
+end Finite
+
+end PresheafOfModules
+
+-- END Mathlib.Algebra.Category.ModuleCat.Presheaf.Colimits --
+
+-- BEGIN Mathlib.Algebra.Category.ModuleCat.Sheaf.Colimits --
+/-
+Copyright (c) 2024 Joël Riou. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Joël Riou
+-/
+import Mathlib.Algebra.Category.ModuleCat.Presheaf.Sheafification
+
+/-!
+# Colimits in categories of sheaves of modules
+
+In this file, we show that colimits of shape `J` exists in a category
+of sheaves of modules if it exists in the corresponding category
+of presheaves of modules.
+
+-/
+
+universe w' w v v' u' u
+
+namespace SheafOfModules
+
+open CategoryTheory Limits
+
+variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C}
+
+variable (R : Sheaf J RingCat.{u}) [HasWeakSheafify J AddCommGrp.{v}]
+  [J.WEqualsLocallyBijective AddCommGrp.{v}] (K : Type w) [Category.{w'} K]
+
+instance [HasColimitsOfShape K (PresheafOfModules.{v} R.val)] :
+    HasColimitsOfShape K (SheafOfModules.{v} R) where
+  has_colimit F := by
+    let e : F ≅ (F ⋙ forget R) ⋙ PresheafOfModules.sheafification (𝟙 R.val) :=
+      isoWhiskerLeft F (asIso (PresheafOfModules.sheafificationAdjunction (𝟙 R.val)).counit).symm
+    exact hasColimit_of_iso e
+
+end SheafOfModules
+
+-- END Mathlib.Algebra.Category.ModuleCat.Sheaf.Colimits --
+
+import Mathlib.Algebra.Category.ModuleCat.Presheaf.Colimits
+import Mathlib.Algebra.Category.ModuleCat.Sheaf.Colimits
+
+/-!
+# Free sheaves of modules
+
+In this file, we construct the functor
+`SheafOfModules.freeFunctor : Type u ⥤ SheafOfModules.{u} R` which sends
+a type `I` to the coproduct of copies indexed by `I` of `unit R`.
+
+## TODO
+
+* In case the category `C` has a terminal object `X`, promote `freeHomEquiv`
+into an adjunction between `freeFunctor` and the evaluation functor at `X`.
+(Alternatively, assuming specific universe parameters, we could show that
+`freeHomEquiv` is a left adjoint to `SheafOfModules.sectionsFunctor`.)
+
+-/
+
+universe u v' u'
+open CategoryTheory Limits
+
+variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C} {R : Sheaf J RingCat.{u}}
+  [HasWeakSheafify J AddCommGrp.{u}] [J.WEqualsLocallyBijective AddCommGrp.{u}]
+  [J.HasSheafCompose (forget₂ RingCat.{u} AddCommGrp.{u})]
+
+namespace SheafOfModules
+
+/-- The free sheaf of modules on a certain type `I`. -/
+noncomputable def free (I : Type u) : SheafOfModules.{u} R := ∐ (fun (_ : I) ↦ unit R)
+
+/-- The data of a morphism `free I ⟶ M` from a free sheaf of modules is
+equivalent to the data of a family `I → M.sections` of sections of `M`. -/
+noncomputable def freeHomEquiv (M : SheafOfModules.{u} R) {I : Type u} :
+    (free I ⟶ M) ≃ (I → M.sections) where
+  toFun f i := M.unitHomEquiv (Sigma.ι (fun (_ : I) ↦ unit R) i ≫ f)
+  invFun s := Sigma.desc (fun i ↦ M.unitHomEquiv.symm (s i))
+  left_inv s := Sigma.hom_ext _ _ (by simp)
+  right_inv f := by
+
+lemma freeHomEquiv_comp_apply {M N : SheafOfModules.{u} R} {I : Type u}
+    (f : free I ⟶ M) (p : M ⟶ N) (i : I) :
+    N.freeHomEquiv (f ≫ p) i = sectionsMap p (M.freeHomEquiv f i) := rfl
+
+lemma freeHomEquiv_symm_comp {M N : SheafOfModules.{u} R} {I : Type u} (s : I → M.sections)
+    (p : M ⟶ N) :
+    M.freeHomEquiv.symm s ≫ p = N.freeHomEquiv.symm (fun i ↦ sectionsMap p (s i)) :=
+  N.freeHomEquiv.injective (by ext; simp [freeHomEquiv_comp_apply])
+
+/-- The tautological section of `free I : SheafOfModules R` corresponding to `i : I`. -/
+noncomputable abbrev freeSection {I : Type u} (i : I) : (free (R := R) I).sections :=
+  (free (R := R) I).freeHomEquiv (𝟙 (free I)) i
+
+section
+
+variable {I J : Type u} (f : I → J)
+
+/-- The morphism of presheaves of `R`-modules `free I ⟶ free J` induced by
+a map `f : I → J`. -/
+noncomputable def freeMap : free (R := R) I ⟶ free J :=
+  (freeHomEquiv _).symm (fun i ↦ freeSection (f i))
+
+@[simp]
+lemma freeHomEquiv_freeMap :
+    (freeHomEquiv _ (freeMap (R := R) f)) = freeSection.comp f :=
+  (freeHomEquiv _).symm.injective (by simp; rfl)
+
+@[simp]
+lemma sectionMap_freeMap_freeSection (i : I) :
+    sectionsMap (freeMap (R := R) f) (freeSection i) = freeSection (f i) := by
+

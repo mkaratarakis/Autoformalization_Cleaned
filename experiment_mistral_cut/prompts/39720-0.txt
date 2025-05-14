@@ -1,0 +1,93 @@
+
+1. **Informal Theorem**  
+List Any Predicate is True if and only if Exists an Element Satisfying the Predicate: \( (l.\text{any} \, p) = \text{true} \leftrightarrow \exists a \in l, \, p(a) \) : For any type \( \alpha \) and a decidable predicate \( p : \alpha \to \text{Prop} \), a list \( l \) of elements of type \( \alpha \) satisfies the predicate \( p \) for at least one element if and only if there exists an element \( a \) in \( l \) such that \( p(a) \) holds. Formally, this is expressed as:
+\[
+(l.\text{any} \, (\lambda a, \text{decide} \, (p \, a))) = \text{true} \leftrightarrow \exists a \in l, \, p(a)
+\]
+
+2. **Informal Proof**  
+To prove the equivalence, we need to show two directions:
+
+1. **(\(\Rightarrow\)) If \( (l.\text{any} \, (\lambda a, \text{decide} \, (p \, a))) = \text{true} \), then there exists an element \( a \in l \) such that \( p(a) \) holds.**
+
+- Assume \( (l.\text{any} \, (\lambda a, \text{decide} \, (p \, a))) = \text{true} \).
+- By the definition of `List.any`, this means that there is at least one element \( a \) in the list \( l \) such that \( \text{decide} \, (p \, a) = \text{true} \).
+- Since \( \text{decide} \, (p \, a) = \text{true} \) implies \( p(a) \), we have \( p(a) \) holds for some \( a \in l \).
+
+2. **(\(\Leftarrow\)) If there exists an element \( a \in l \) such that \( p(a) \) holds, then \( (l.\text{any} \, (\lambda a, \text{decide} \, (p \, a))) = \text{true} \).**
+
+- Assume there exists an element \( a \in l \) such that \( p(a) \) holds.
+- By the definition of `List.any`, this means that \( \text{decide} \, (p \, a) = \text{true} \) for some \( a \in l \).
+- Therefore, \( (l.\text{any} \, (\lambda a, \text{decide} \, (p \, a))) = \text{true} \).
+
+Since both directions are proven, we conclude that:
+\[
+(l.\text{any} \, (\lambda a, \text{decide} \, (p \, a))) = \text{true} \leftrightarrow \exists a \in l, \, p(a)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example : (any l fun a => p a) ↔ ∃ a ∈ l, p a := by sorry
+
+4. **Prefix**
+import Batteries.Tactic.Alias
+import Mathlib.Tactic.TypeStar
+import Mathlib.Data.Bool.AllAny
+
+open List
+variable {α : Type*} {p : α → Prop} [DecidablePred p] {l : List α} {a : α}
+
+example : (any l fun a => p a) ↔ ∃ a ∈ l, p a := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Tactic.TypeStar --
+/-
+Copyright (c) 2023 Matthew Robert Ballard. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kyle Miller
+-/
+import Mathlib.Init
+import Lean.Elab.Term
+
+/-!
+# Support for `Sort*` and `Type*`.
+
+These elaborate as `Sort u` and `Type u` with a fresh implicit universe variable `u`.
+-/
+
+open Lean
+
+/-- The syntax `variable (X Y ... Z : Sort*)` creates a new distinct implicit universe variable
+for each variable in the sequence. -/
+elab "Sort*" : term => do
+  let u ← Lean.Meta.mkFreshLevelMVar
+  Elab.Term.levelMVarToParam (.sort u)
+
+/-- The syntax `variable (X Y ... Z : Type*)` creates a new distinct implicit universe variable
+`> 0` for each variable in the sequence. -/
+elab "Type*" : term => do
+  let u ← Lean.Meta.mkFreshLevelMVar
+  Elab.Term.levelMVarToParam (.sort (.succ u))
+
+-- END Mathlib.Tactic.TypeStar --
+
+import Batteries.Tactic.Alias
+import Mathlib.Tactic.TypeStar
+
+/-!
+# Boolean quantifiers
+
+This proves a few properties about `List.all` and `List.any`, which are the `Bool` universal and
+existential quantifiers. Their definitions are in core Lean.
+-/
+
+
+variable {α : Type*} {p : α → Prop} [DecidablePred p] {l : List α} {a : α}
+
+namespace List
+
+theorem all_iff_forall_prop : (all l fun a => p a) ↔ ∀ a ∈ l, p a := by
+  simp
+
+theorem any_iff_exists_prop : (any l fun a => p a) ↔ ∃ a ∈ l, p a := by
+

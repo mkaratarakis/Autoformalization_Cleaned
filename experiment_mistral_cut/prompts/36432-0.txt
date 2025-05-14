@@ -1,0 +1,241 @@
+
+1. **Informal Theorem**  
+Uniqueness of Prefunctor Lift in Pushed Quivers: \( \Phi = \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \) : For any types \( V \) and \( W \) with quiver structures, and a map \( \sigma : V \to W \), if \( \phi : V \rightarrow_q W' \) is a prefunctor and \( \tau : W \to W' \) is a map such that for every vertex \( x \in V \), \( \phi(x) = \tau(\sigma(x)) \), and if \( \Phi : \text{Push}(\sigma) \rightarrow_q W' \) is another prefunctor, then \( \Phi \) is uniquely determined by \( \tau \) and \( \phi \). Specifically, if \( \Phi \) maps each vertex \( \sigma(x) \) to \( \tau(\sigma(x)) \) and each arrow \( \sigma(v) \to \sigma(v') \) to the same arrow as \( \phi \) maps \( v \to v' \), then \( \Phi \) is equal to the prefunctor \( \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \).
+
+2. **Informal Proof**  
+We start by simplifying the goal using the definitions of `of` and `lift`. This reduces the goal to showing that the object mapping of \( \Phi \) is equal to \( \tau \) and the arrow mapping of \( \Phi \) is defined by the recursion principle on the pushed quiver.
+
+To show that \( \Phi \) is equal to \( \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \), it suffices to show that their object mappings and arrow mappings are equal. We will prove these two conditions separately.
+
+1. **Object Mapping:**
+- Let \( X \) be an arbitrary vertex in the pushed quiver \( \text{Push}(\sigma) \).
+- We need to show that \( \Phi.\text{obj}(X) = \tau(X) \).
+- Simplify the proposition we want to show. This simplifies the goal to \( \Phi.\text{obj}(X) = \tau(X) \).
+- Since \( \Phi.\text{obj} = \tau \) by assumption, we can replace \( \Phi.\text{obj}(X) \) with \( \tau(X) \). This completes the proof for the object mapping.
+
+2. **Arrow Mapping:**
+- Let \( X \) and \( Y \) be arbitrary vertices in \( V \), and let \( f : X \to Y \) be an arrow in \( V \).
+- We need to show that \( \Phi.\text{map}(\text{PushQuiver.arrow}(f)) = \text{id}(\text{Eq.recOn}(\text{Eq.recOn}(\text{Quiver.Push.lift}(\sigma, \phi, \tau, h).\text{map}(\text{PushQuiver.arrow}(f)))) \).
+- Substitute the variables to simplify the goal. This simplifies the goal to showing that \( \Phi.\text{map}(\text{PushQuiver.arrow}(f)) = \text{id}(\text{Eq.recOn}(\text{Eq.recOn}(\Phi.\text{map}((\text{Quiver.Push.of}(\sigma)).\text{map}(f)))) \).
+- Simplify the proposition we want to show using the properties of prefunctor composition and type cast identity. This simplifies the goal to \( \Phi.\text{map}(\text{PushQuiver.arrow}(f)) = \text{id}(\Phi.\text{map}((\text{Quiver.Push.of}(\sigma)).\text{map}(f))) \).
+- The current goal is trivially true due to the reflexive property. This completes the proof for the arrow mapping.
+
+Thus, we have shown that \( \Phi \) is equal to \( \text{Quiver.Push.lift}(\sigma, \phi, \tau, h) \). This completes the proof.
+
+3. **Formal Theorem**  
+example (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
+    Φ = lift σ φ τ h := by sorry
+
+4. **Prefix**
+import Mathlib.Combinatorics.Quiver.Basic
+import Mathlib.Combinatorics.Quiver.Push
+
+open Quiver
+open Push
+variable {V : Type*} [Quiver V] {W : Type*} (σ : V → W)
+variable {W' : Type*} [Quiver W'] (φ : V ⥤q W') (τ : W → W') (h : ∀ x, φ.obj x = τ (σ x))
+
+example (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
+    Φ = lift σ φ τ h := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Combinatorics.Quiver.Basic --
+/-
+Copyright (c) 2021 David Wärn. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: David Wärn, Kim Morrison
+-/
+import Mathlib.Data.Opposite
+
+/-!
+# Quivers
+
+This module defines quivers. A quiver on a type `V` of vertices assigns to every
+pair `a b : V` of vertices a type `a ⟶ b` of arrows from `a` to `b`. This
+is a very permissive notion of directed graph.
+
+## Implementation notes
+
+Currently `Quiver` is defined with `Hom : V → V → Sort v`.
+This is different from the category theory setup,
+where we insist that morphisms live in some `Type`.
+There's some balance here: it's nice to allow `Prop` to ensure there are no multiple arrows,
+but it is also results in error-prone universe signatures when constraints require a `Type`.
+-/
+
+open Opposite
+
+-- We use the same universe order as in category theory.
+-- See note [CategoryTheory universes]
+universe v v₁ v₂ u u₁ u₂
+
+/-- A quiver `G` on a type `V` of vertices assigns to every pair `a b : V` of vertices
+a type `a ⟶ b` of arrows from `a` to `b`.
+
+For graphs with no repeated edges, one can use `Quiver.{0} V`, which ensures
+`a ⟶ b : Prop`. For multigraphs, one can use `Quiver.{v+1} V`, which ensures
+`a ⟶ b : Type v`.
+
+Because `Category` will later extend this class, we call the field `Hom`.
+Except when constructing instances, you should rarely see this, and use the `⟶` notation instead.
+-/
+class Quiver (V : Type u) where
+  /-- The type of edges/arrows/morphisms between a given source and target. -/
+  Hom : V → V → Sort v
+
+/--
+Notation for the type of edges/arrows/morphisms between a given source and target
+in a quiver or category.
+-/
+infixr:10 " ⟶ " => Quiver.Hom
+
+namespace Quiver
+
+/-- `Vᵒᵖ` reverses the direction of all arrows of `V`. -/
+instance opposite {V} [Quiver V] : Quiver Vᵒᵖ :=
+  ⟨fun a b => (unop b ⟶ unop a)ᵒᵖ⟩
+
+/-- The opposite of an arrow in `V`. -/
+def Hom.op {V} [Quiver V] {X Y : V} (f : X ⟶ Y) : op Y ⟶ op X := ⟨f⟩
+
+/-- Given an arrow in `Vᵒᵖ`, we can take the "unopposite" back in `V`. -/
+def Hom.unop {V} [Quiver V] {X Y : Vᵒᵖ} (f : X ⟶ Y) : unop Y ⟶ unop X := Opposite.unop f
+
+/-- The bijection `(X ⟶ Y) ≃ (op Y ⟶ op X)`. -/
+@[simps]
+def Hom.opEquiv {V} [Quiver V] {X Y : V} :
+    (X ⟶ Y) ≃ (Opposite.op Y ⟶ Opposite.op X) where
+  toFun := Opposite.op
+  invFun := Opposite.unop
+  left_inv _ := rfl
+  right_inv _ := rfl
+
+/-- A type synonym for a quiver with no arrows. -/
+def Empty (V : Type u) : Type u := V
+
+instance emptyQuiver (V : Type u) : Quiver.{u} (Empty V) := ⟨fun _ _ => PEmpty⟩
+
+@[simp]
+theorem empty_arrow {V : Type u} (a b : Empty V) : (a ⟶ b) = PEmpty := rfl
+
+/-- A quiver is thin if it has no parallel arrows. -/
+abbrev IsThin (V : Type u) [Quiver V] : Prop := ∀ a b : V, Subsingleton (a ⟶ b)
+
+
+section
+
+variable {V : Type*} [Quiver V]
+
+/-- An arrow in a quiver can be transported across equalities between the source and target
+objects. -/
+def homOfEq {X Y : V} (f : X ⟶ Y) {X' Y' : V} (hX : X = X') (hY : Y = Y') : X' ⟶ Y' := by
+  subst hX hY
+  exact f
+
+@[simp]
+lemma homOfEq_trans {X Y : V} (f : X ⟶ Y) {X' Y' : V} (hX : X = X') (hY : Y = Y')
+    {X'' Y'' : V} (hX' : X' = X'') (hY' : Y' = Y'') :
+    homOfEq (homOfEq f hX hY) hX' hY' = homOfEq f (hX.trans hX') (hY.trans hY') := by
+  subst hX hY hX' hY'
+  rfl
+
+lemma homOfEq_injective {X X' Y Y' : V} (hX : X = X') (hY : Y = Y')
+    {f g : X ⟶ Y} (h : Quiver.homOfEq f hX hY = Quiver.homOfEq g hX hY) : f = g := by
+  subst hX hY
+  exact h
+
+@[simp]
+lemma homOfEq_rfl {X Y : V} (f : X ⟶ Y) : Quiver.homOfEq f rfl rfl = f := rfl
+
+lemma heq_of_homOfEq_ext {X Y X' Y' : V} (hX : X = X') (hY : Y = Y') {f : X ⟶ Y} {f' : X' ⟶ Y'}
+    (e : Quiver.homOfEq f hX hY = f') : HEq f f' := by
+  subst hX hY
+  rw [Quiver.homOfEq_rfl] at e
+  rw [e]
+
+end
+
+end Quiver
+
+-- END Mathlib.Combinatorics.Quiver.Basic --
+
+import Mathlib.Combinatorics.Quiver.Prefunctor
+
+/-!
+
+# Pushing a quiver structure along a map
+
+Given a map `σ : V → W` and a `Quiver` instance on `V`, this files defines a `Quiver` instance
+on `W` by associating to each arrow `v ⟶ v'` in `V` an arrow `σ v ⟶ σ v'` in `W`.
+
+-/
+
+namespace Quiver
+
+universe v v₁ v₂ u u₁ u₂
+
+variable {V : Type*} [Quiver V] {W : Type*} (σ : V → W)
+
+/-- The `Quiver` instance obtained by pushing arrows of `V` along the map `σ : V → W` -/
+@[nolint unusedArguments]
+def Push (_ : V → W) :=
+  W
+
+instance [h : Nonempty W] : Nonempty (Push σ) :=
+  h
+
+/-- The quiver structure obtained by pushing arrows of `V` along the map `σ : V → W` -/
+inductive PushQuiver {V : Type u} [Quiver.{v} V] {W : Type u₂} (σ : V → W) : W → W → Type max u u₂ v
+  | arrow {X Y : V} (f : X ⟶ Y) : PushQuiver σ (σ X) (σ Y)
+
+instance : Quiver (Push σ) :=
+  ⟨PushQuiver σ⟩
+
+namespace Push
+
+/-- The prefunctor induced by pushing arrows via `σ` -/
+def of : V ⥤q Push σ where
+  obj := σ
+  map f := PushQuiver.arrow f
+
+@[simp]
+theorem of_obj : (of σ).obj = σ :=
+  rfl
+
+variable {W' : Type*} [Quiver W'] (φ : V ⥤q W') (τ : W → W') (h : ∀ x, φ.obj x = τ (σ x))
+
+/-- Given a function `τ : W → W'` and a prefunctor `φ : V ⥤q W'`, one can extend `τ` to be
+a prefunctor `W ⥤q W'` if `τ` and `σ` factorize `φ` at the level of objects, where `W` is given
+the pushforward quiver structure `Push σ`. -/
+noncomputable def lift : Push σ ⥤q W' where
+  obj := τ
+  map :=
+    @PushQuiver.rec V _ W σ (fun X Y _ => τ X ⟶ τ Y) @fun X Y f => by
+      dsimp only
+      rw [← h X, ← h Y]
+      exact φ.map f
+
+theorem lift_obj : (lift σ φ τ h).obj = τ :=
+  rfl
+
+theorem lift_comp : (of σ ⋙q lift σ φ τ h) = φ := by
+  fapply Prefunctor.ext
+  · rintro X
+    simp only [Prefunctor.comp_obj]
+    apply Eq.symm
+    exact h X
+  · rintro X Y f
+    simp only [Prefunctor.comp_map]
+    apply eq_of_heq
+    iterate 2 apply (cast_heq _ _).trans
+    apply HEq.symm
+    apply (eqRec_heq _ _).trans
+    have : ∀ {α γ} {β : α → γ → Sort _} {a a'} (p : a = a') g (b : β a g), HEq (p ▸ b) b := by
+      intros
+      subst_vars
+      rfl
+    apply this
+
+theorem lift_unique (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
+    Φ = lift σ φ τ h := by
+

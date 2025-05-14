@@ -1,0 +1,79 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:10:41: error: unsolved goals
+case left
+E : Type u_1
+inst✝¹ : NormedAddCommGroup E
+inst✝ : NormedSpace ℝ E
+φ ψ : ℝ → ℝ
+s : Set E
+a b m : ℝ
+x y : E
+f g : E → ℝ
+hf : UniformConvexOn s φ f
+hg : UniformConvexOn s ψ g
+⊢ Convex ℝ s
+
+case right
+E : Type u_1
+inst✝¹ : NormedAddCommGroup E
+inst✝ : NormedSpace ℝ E
+φ ψ : ℝ → ℝ
+s : Set E
+a b m : ℝ
+x y : E
+f g : E → ℝ
+hf : UniformConvexOn s φ f
+hg : UniformConvexOn s ψ g
+⊢ ∀ ⦃x : E⦄,
+    x ∈ s →
+      ∀ ⦃y : E⦄,
+        y ∈ s →
+          ∀ ⦃a b : ℝ⦄,
+            0 ≤ a →
+              0 ≤ b → a + b = 1 → (f + g) (a • x + b • y) ≤ a • (f + g) x + b • (f + g) y - a * b * (φ + ψ) ‖x - y‖
+case left
+E : Type u_1
+inst✝¹ : NormedAddCommGroup E
+inst✝ : NormedSpace ℝ E
+φ ψ : ℝ → ℝ
+s : Set E
+a b m : ℝ
+x y : E
+f g : E → ℝ
+hf : UniformConvexOn s φ f
+hg : UniformConvexOn s ψ g
+⊢ Convex ℝ s
+
+case right
+E : Type u_1
+inst✝¹ : NormedAddCommGroup E
+inst✝ : NormedSpace ℝ E
+φ ψ : ℝ → ℝ
+s : Set E
+a b m : ℝ
+x y : E
+f g : E → ℝ
+hf : UniformConvexOn s φ f
+hg : UniformConvexOn s ψ g
+⊢ ∀ ⦃x : E⦄,
+    x ∈ s →
+      ∀ ⦃y : E⦄,
+        y ∈ s →
+          ∀ ⦃a b : ℝ⦄,
+            0 ≤ a →
+              0 ≤ b → a + b = 1 → (f + g) (a • x + b • y) ≤ a • (f + g) x + b • (f + g) y - a * b * (φ + ψ) ‖x - y‖
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Analysis.Convex.Strong
+
+open UniformConvexOn
+open Real
+variable {E : Type*} [NormedAddCommGroup E]
+variable [NormedSpace ℝ E] {φ ψ : ℝ → ℝ} {s : Set E} {a b m : ℝ} {x y : E} {f g : E → ℝ}
+
+example (hf : UniformConvexOn s φ f) (hg : UniformConvexOn s ψ g) :
+    UniformConvexOn s (φ + ψ) (f + g) := by
+  constructor

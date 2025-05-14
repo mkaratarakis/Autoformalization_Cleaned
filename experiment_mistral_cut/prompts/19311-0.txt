@@ -1,0 +1,236 @@
+
+1. **Informal Theorem**  
+For a real differentiable map \( f: E \to F \) and a point \( x \in E \), \( f \) is conformal at \( x \) if and only if there exists a positive scalar \( c \in \mathbb{R} \) such that for all \( u, v \in E \), the inner product of the differentials \( \langle f'(x)u, f'(x)v \rangle \) is equal to \( c \) times the inner product \( \langle u, v \rangle \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that a function \( f \) is conformal at a point \( x \) if and only if its differential at \( x \), denoted \( f'(x) \), is a conformal linear map. This equivalence is given by the theorem \( \text{conformalAt\_iff\_isConformalMap\_fderiv} \).
+
+Next, we use the characterization of a conformal linear map, which states that a linear map \( f \) is conformal if and only if there exists a positive scalar \( c \) such that for all vectors \( u, v \in E \), the inner product of \( f(u) \) and \( f(v) \) is equal to \( c \) times the inner product of \( u \) and \( v \). This characterization is given by the theorem \( \text{isConformalMap\_iff} \).
+
+Combining these two equivalences, we conclude that \( f \) is conformal at \( x \) if and only if there exists a positive scalar \( c \) such that for all \( u, v \in E \), the inner product of \( f'(x)u \) and \( f'(x)v \) is equal to \( c \) times the inner product of \( u \) and \( v \). This completes the proof.
+
+3. **Formal Theorem**  
+example {f : E → F} {x : E} : ConformalAt f x ↔
+    ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪fderiv ℝ f x u, fderiv ℝ f x v⟫ = c * ⟪u, v⟫ := by sorry
+
+4. **Prefix**
+import Mathlib.Analysis.Calculus.Conformal.NormedSpace
+import Mathlib.Analysis.InnerProductSpace.ConformalLinearMap
+import Mathlib.Analysis.Calculus.Conformal.InnerProduct
+
+
+variable {E F : Type*}
+variable [NormedAddCommGroup E] [NormedAddCommGroup F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+variable [NormedAddCommGroup E] [NormedAddCommGroup F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+open RealInnerProductSpace
+
+example {f : E → F} {x : E} : ConformalAt f x ↔
+    ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪fderiv ℝ f x u, fderiv ℝ f x v⟫ = c * ⟪u, v⟫ := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Analysis.Calculus.Conformal.NormedSpace --
+/-
+Copyright (c) 2021 Yourong Zang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yourong Zang
+-/
+import Mathlib.Analysis.NormedSpace.ConformalLinearMap
+import Mathlib.Analysis.Calculus.FDeriv.Add
+
+/-!
+# Conformal Maps
+
+A continuous linear map between real normed spaces `X` and `Y` is `ConformalAt` some point `x`
+if it is real differentiable at that point and its differential is a conformal linear map.
+
+## Main definitions
+
+* `ConformalAt`: the main definition of conformal maps
+* `Conformal`: maps that are conformal at every point
+
+## Main results
+* The conformality of the composition of two conformal maps, the identity map
+  and multiplications by nonzero constants
+* `conformalAt_iff_isConformalMap_fderiv`: an equivalent definition of the conformality of a map
+
+In `Analysis.Calculus.Conformal.InnerProduct`:
+* `conformalAt_iff`: an equivalent definition of the conformality of a map
+
+In `Geometry.Euclidean.Angle.Unoriented.Conformal`:
+* `ConformalAt.preserves_angle`: if a map is conformal at `x`, then its differential preserves
+  all angles at `x`
+
+## Tags
+
+conformal
+
+## Warning
+
+The definition of conformality in this file does NOT require the maps to be orientation-preserving.
+Maps such as the complex conjugate are considered to be conformal.
+-/
+
+
+noncomputable section
+
+variable {X Y Z : Type*} [NormedAddCommGroup X] [NormedAddCommGroup Y] [NormedAddCommGroup Z]
+  [NormedSpace ℝ X] [NormedSpace ℝ Y] [NormedSpace ℝ Z]
+
+section LocConformality
+
+open LinearIsometry ContinuousLinearMap
+
+/-- A map `f` is said to be conformal if it has a conformal differential `f'`. -/
+def ConformalAt (f : X → Y) (x : X) :=
+  ∃ f' : X →L[ℝ] Y, HasFDerivAt f f' x ∧ IsConformalMap f'
+
+theorem conformalAt_id (x : X) : ConformalAt _root_.id x :=
+  ⟨id ℝ X, hasFDerivAt_id _, isConformalMap_id⟩
+
+theorem conformalAt_const_smul {c : ℝ} (h : c ≠ 0) (x : X) : ConformalAt (fun x' : X => c • x') x :=
+  ⟨c • ContinuousLinearMap.id ℝ X, (hasFDerivAt_id x).const_smul c, isConformalMap_const_smul h⟩
+
+@[nontriviality]
+theorem Subsingleton.conformalAt [Subsingleton X] (f : X → Y) (x : X) : ConformalAt f x :=
+  ⟨0, hasFDerivAt_of_subsingleton _ _, isConformalMap_of_subsingleton _⟩
+
+/-- A function is a conformal map if and only if its differential is a conformal linear map -/
+theorem conformalAt_iff_isConformalMap_fderiv {f : X → Y} {x : X} :
+    ConformalAt f x ↔ IsConformalMap (fderiv ℝ f x) := by
+  constructor
+  · rintro ⟨f', hf, hf'⟩
+    rwa [hf.fderiv]
+  · intro H
+    by_cases h : DifferentiableAt ℝ f x
+    · exact ⟨fderiv ℝ f x, h.hasFDerivAt, H⟩
+    · nontriviality X
+      exact absurd (fderiv_zero_of_not_differentiableAt h) H.ne_zero
+
+namespace ConformalAt
+
+theorem differentiableAt {f : X → Y} {x : X} (h : ConformalAt f x) : DifferentiableAt ℝ f x :=
+  let ⟨_, h₁, _⟩ := h
+  h₁.differentiableAt
+
+theorem congr {f g : X → Y} {x : X} {u : Set X} (hx : x ∈ u) (hu : IsOpen u) (hf : ConformalAt f x)
+    (h : ∀ x : X, x ∈ u → g x = f x) : ConformalAt g x :=
+  let ⟨f', hfderiv, hf'⟩ := hf
+  ⟨f', hfderiv.congr_of_eventuallyEq ((hu.eventually_mem hx).mono h), hf'⟩
+
+theorem comp {f : X → Y} {g : Y → Z} (x : X) (hg : ConformalAt g (f x)) (hf : ConformalAt f x) :
+    ConformalAt (g ∘ f) x := by
+  rcases hf with ⟨f', hf₁, cf⟩
+  rcases hg with ⟨g', hg₁, cg⟩
+  exact ⟨g'.comp f', hg₁.comp x hf₁, cg.comp cf⟩
+
+theorem const_smul {f : X → Y} {x : X} {c : ℝ} (hc : c ≠ 0) (hf : ConformalAt f x) :
+    ConformalAt (c • f) x :=
+  (conformalAt_const_smul hc <| f x).comp x hf
+
+end ConformalAt
+
+end LocConformality
+
+section GlobalConformality
+
+/-- A map `f` is conformal if it's conformal at every point. -/
+def Conformal (f : X → Y) :=
+  ∀ x : X, ConformalAt f x
+
+theorem conformal_id : Conformal (id : X → X) := fun x => conformalAt_id x
+
+theorem conformal_const_smul {c : ℝ} (h : c ≠ 0) : Conformal fun x : X => c • x := fun x =>
+  conformalAt_const_smul h x
+
+namespace Conformal
+
+theorem conformalAt {f : X → Y} (h : Conformal f) (x : X) : ConformalAt f x :=
+  h x
+
+theorem differentiable {f : X → Y} (h : Conformal f) : Differentiable ℝ f := fun x =>
+  (h x).differentiableAt
+
+theorem comp {f : X → Y} {g : Y → Z} (hf : Conformal f) (hg : Conformal g) : Conformal (g ∘ f) :=
+  fun x => (hg <| f x).comp x (hf x)
+
+theorem const_smul {f : X → Y} (hf : Conformal f) {c : ℝ} (hc : c ≠ 0) : Conformal (c • f) :=
+  fun x => (hf x).const_smul hc
+
+end Conformal
+
+end GlobalConformality
+
+-- END Mathlib.Analysis.Calculus.Conformal.NormedSpace --
+
+-- BEGIN Mathlib.Analysis.InnerProductSpace.ConformalLinearMap --
+/-
+Copyright (c) 2021 Yourong Zang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yourong Zang
+-/
+import Mathlib.Analysis.NormedSpace.ConformalLinearMap
+import Mathlib.Analysis.InnerProductSpace.LinearMap
+
+/-!
+# Conformal maps between inner product spaces
+
+In an inner product space, a map is conformal iff it preserves inner products up to a scalar factor.
+-/
+
+
+variable {E F : Type*}
+variable [NormedAddCommGroup E] [NormedAddCommGroup F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+
+open LinearIsometry ContinuousLinearMap
+
+open RealInnerProductSpace
+
+/-- A map between two inner product spaces is a conformal map if and only if it preserves inner
+products up to a scalar factor, i.e., there exists a positive `c : ℝ` such that
+`⟪f u, f v⟫ = c * ⟪u, v⟫` for all `u`, `v`. -/
+theorem isConformalMap_iff (f : E →L[ℝ] F) :
+    IsConformalMap f ↔ ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪f u, f v⟫ = c * ⟪u, v⟫ := by
+  constructor
+  · rintro ⟨c₁, hc₁, li, rfl⟩
+    refine ⟨c₁ * c₁, mul_self_pos.2 hc₁, fun u v => ?_⟩
+    simp only [real_inner_smul_left, real_inner_smul_right, mul_assoc, coe_smul',
+      coe_toContinuousLinearMap, Pi.smul_apply, inner_map_map]
+  · rintro ⟨c₁, hc₁, huv⟩
+    obtain ⟨c, hc, rfl⟩ : ∃ c : ℝ, 0 < c ∧ c₁ = c * c :=
+      ⟨√c₁, Real.sqrt_pos.2 hc₁, (Real.mul_self_sqrt hc₁.le).symm⟩
+    refine ⟨c, hc.ne', (c⁻¹ • f : E →ₗ[ℝ] F).isometryOfInner fun u v => ?_, ?_⟩
+    · simp only [real_inner_smul_left, real_inner_smul_right, huv, mul_assoc, coe_smul,
+        inv_mul_cancel_left₀ hc.ne', LinearMap.smul_apply, ContinuousLinearMap.coe_coe]
+    · ext1 x
+      exact (smul_inv_smul₀ hc.ne' (f x)).symm
+
+-- END Mathlib.Analysis.InnerProductSpace.ConformalLinearMap --
+
+import Mathlib.Analysis.Calculus.Conformal.NormedSpace
+import Mathlib.Analysis.InnerProductSpace.ConformalLinearMap
+
+/-!
+# Conformal maps between inner product spaces
+
+A function between inner product spaces which has a derivative at `x`
+is conformal at `x` iff the derivative preserves inner products up to a scalar multiple.
+-/
+
+
+noncomputable section
+
+variable {E F : Type*}
+variable [NormedAddCommGroup E] [NormedAddCommGroup F]
+variable [InnerProductSpace ℝ E] [InnerProductSpace ℝ F]
+
+open RealInnerProductSpace
+
+/-- A real differentiable map `f` is conformal at point `x` if and only if its
+    differential `fderiv ℝ f x` at that point scales every inner product by a positive scalar. -/
+theorem conformalAt_iff' {f : E → F} {x : E} : ConformalAt f x ↔
+    ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪fderiv ℝ f x u, fderiv ℝ f x v⟫ = c * ⟪u, v⟫ := by
+

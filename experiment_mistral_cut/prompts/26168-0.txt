@@ -1,0 +1,219 @@
+
+1. **Informal Theorem**  
+Commutativity of Maximum Operation in Natural Numbers: \(\max(a, b) = \max(b, a)\) : For any natural numbers \(a\) and \(b\), the maximum of \(a\) and \(b\) is equal to the maximum of \(b\) and \(a\), i.e., \(\max(a, b) = \max(b, a)\).
+
+2. **Informal Proof**  
+We start by using the definition of the maximum function in a linear order. The maximum of \(a\) and \(b\) is defined as:
+\[
+\max(a, b) = \begin{cases}
+b & \text{if } a \leq b \\
+a & \text{if } a > b
+\end{cases}
+\]
+Similarly, the maximum of \(b\) and \(a\) is:
+\[
+\max(b, a) = \begin{cases}
+a & \text{if } b \leq a \\
+b & \text{if } b > a
+\end{cases}
+\]
+Thus, the goal \(\max(a, b) = \max(b, a)\) is equivalent to:
+\[
+(\text{if } a \leq b \text{ then } b \text{ else } a) = (\text{if } b \leq a \text{ then } a \text{ else } b)
+\]
+
+We consider two cases for \(a \leq b\) and \(b \leq a\):
+
+1. **Case 1:** Assume \(a \leq b\).
+- **Subcase 1.1:** Assume \(b \leq a\).
+- Using the antisymmetry property of the less than or equal to relation, if \(a \leq b\) and \(b \leq a\), then \(a = b\). Therefore, the goal simplifies to \(b = a\), which is true.
+- **Subcase 1.2:** Assume \(\neg (b \leq a)\).
+- Since \(a \leq b\) and \(\neg (b \leq a)\), the goal simplifies to \(b = b\), which is trivially true.
+
+2. **Case 2:** Assume \(\neg (a \leq b)\).
+- **Subcase 2.1:** Assume \(b \leq a\).
+- Since \(\neg (a \leq b)\) and \(b \leq a\), the goal simplifies to \(a = a\), which is trivially true.
+- **Subcase 2.2:** Assume \(\neg (b \leq a)\).
+- Since \(\neg (a \leq b)\) and \(\neg (b \leq a)\), we have a contradiction because the totality of the less than or equal to relation implies that either \(a \leq b\) or \(b \leq a\) must hold. Therefore, this subcase is impossible, and the goal simplifies to \(a = b\).
+
+In all cases, the goal \(\max(a, b) = \max(b, a)\) is satisfied. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Nat) : max a b = max b a := by sorry
+
+4. **Prefix**
+import Init.ByCases
+import Init.Data.Nat.MinMax
+
+open Nat
+
+
+example (a b : Nat) : max a b = max b a := by
+
+5. **Header Information**  
+-- BEGIN Init.ByCases --
+/-
+Copyright (c) 2024 Lean FRO, LLC. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Leonardo de Moura, Mario Carneiro
+-/
+module
+
+prelude
+import Init.Classical
+
+/-! # by_cases tactic and if-then-else support -/
+
+/--
+`by_cases (h :)? p` splits the main goal into two cases, assuming `h : p` in the first branch, and `h : ¬ p` in the second branch.
+-/
+syntax "by_cases " (atomic(ident " : "))? term : tactic
+
+macro_rules
+  | `(tactic| by_cases $e) => `(tactic| by_cases h : $e)
+macro_rules
+  | `(tactic| by_cases $h : $e) =>
+    `(tactic| open Classical in refine if $h:ident : $e then ?pos else ?neg)
+
+/-! ## if-then-else -/
+
+@[simp] theorem if_true {_ : Decidable True} (t e : α) : ite True t e = t := if_pos trivial
+
+@[simp] theorem if_false {_ : Decidable False} (t e : α) : ite False t e = e := if_neg id
+
+theorem ite_id [Decidable c] {α} (t : α) : (if c then t else t) = t := by split <;> rfl
+
+/-- A function applied to a `dite` is a `dite` of that function applied to each of the branches. -/
+theorem apply_dite (f : α → β) (P : Prop) [Decidable P] (x : P → α) (y : ¬P → α) :
+    f (dite P x y) = dite P (fun h => f (x h)) (fun h => f (y h)) := by
+  by_cases h : P <;> simp [h]
+
+/-- A function applied to a `ite` is a `ite` of that function applied to each of the branches. -/
+theorem apply_ite (f : α → β) (P : Prop) [Decidable P] (x y : α) :
+    f (ite P x y) = ite P (f x) (f y) :=
+  apply_dite f P (fun _ => x) (fun _ => y)
+
+/-- A `dite` whose results do not actually depend on the condition may be reduced to an `ite`. -/
+@[simp] theorem dite_eq_ite [Decidable P] :
+  (dite P (fun _ => a) (fun _ => b)) = ite P a b := rfl
+
+@[deprecated "Use `ite_eq_right_iff`" (since := "2024-09-18")]
+theorem ite_some_none_eq_none [Decidable P] :
+    (if P then some x else none) = none ↔ ¬ P := by
+  simp only [ite_eq_right_iff, reduceCtorEq]
+  rfl
+
+@[deprecated "Use `Option.ite_none_right_eq_some`" (since := "2024-09-18")]
+theorem ite_some_none_eq_some [Decidable P] :
+    (if P then some x else none) = some y ↔ P ∧ x = y := by
+  split <;> simp_all
+
+@[deprecated "Use `dite_eq_right_iff" (since := "2024-09-18")]
+theorem dite_some_none_eq_none [Decidable P] {x : P → α} :
+    (if h : P then some (x h) else none) = none ↔ ¬P := by
+  simp
+
+@[deprecated "Use `Option.dite_none_right_eq_some`" (since := "2024-09-18")]
+theorem dite_some_none_eq_some [Decidable P] {x : P → α} {y : α} :
+    (if h : P then some (x h) else none) = some y ↔ ∃ h : P, x h = y := by
+  by_cases h : P <;> simp [h]
+
+-- END Init.ByCases --
+
+import Init.ByCases
+
+namespace Nat
+
+/-! # min lemmas -/
+
+protected theorem min_eq_min (a : Nat) : Nat.min a b = min a b := rfl
+
+@[simp] protected theorem zero_min (a : Nat) : min 0 a = 0 := by
+  simp [Nat.min_def]
+
+@[simp] protected theorem min_zero (a : Nat) : min a 0 = 0 := by
+  simp [Nat.min_def]
+
+@[simp] protected theorem add_min_add_right (a b c : Nat) : min (a + c) (b + c) = min a b + c := by
+  rw [Nat.min_def, Nat.min_def]
+  simp only [Nat.add_le_add_iff_right]
+  split <;> simp
+
+@[simp] protected theorem add_min_add_left (a b c : Nat) : min (a + b) (a + c) = a + min b c := by
+  rw [Nat.min_def, Nat.min_def]
+  simp only [Nat.add_le_add_iff_left]
+  split <;> simp
+
+@[simp] protected theorem mul_min_mul_right (a b c : Nat) : min (a * c) (b * c) = min a b * c := by
+  by_cases h : 0 < c
+  · rw [Nat.min_def, Nat.min_def]
+    simp only [Nat.mul_le_mul_right_iff h]
+    split <;> simp
+  · replace h : c = 0 := by
+    subst h
+    simp
+
+@[simp] protected theorem mul_min_mul_left (a b c : Nat) : min (a * b) (a * c) = a * min b c := by
+  rw [Nat.mul_comm a, Nat.mul_comm a, Nat.mul_min_mul_right, Nat.mul_comm]
+
+protected theorem min_comm (a b : Nat) : min a b = min b a := by
+  match Nat.lt_trichotomy a b with
+  | .inl h => simp [Nat.min_def, h, Nat.le_of_lt, Nat.not_le_of_lt]
+  | .inr (.inl h) => simp [Nat.min_def, h]
+  | .inr (.inr h) => simp [Nat.min_def, h, Nat.le_of_lt, Nat.not_le_of_lt]
+instance : Std.Commutative (α := Nat) min := ⟨Nat.min_comm⟩
+
+protected theorem min_le_right (a b : Nat) : min a b ≤ b := by
+  by_cases (a ≤ b) <;> simp [Nat.min_def, *]
+protected theorem min_le_left (a b : Nat) : min a b ≤ a :=
+  Nat.min_comm .. ▸ Nat.min_le_right ..
+
+@[simp] protected theorem min_eq_left {a b : Nat} (h : a ≤ b) : min a b = a := if_pos h
+@[simp] protected theorem min_eq_right {a b : Nat} (h : b ≤ a) : min a b = b :=
+  Nat.min_comm .. ▸ Nat.min_eq_left h
+
+protected theorem le_min_of_le_of_le {a b c : Nat} : a ≤ b → a ≤ c → a ≤ min b c := by
+  intros; cases Nat.le_total b c with
+  | inl h => rw [Nat.min_eq_left h]; assumption
+  | inr h => rw [Nat.min_eq_right h]; assumption
+
+protected theorem le_min {a b c : Nat} : a ≤ min b c ↔ a ≤ b ∧ a ≤ c :=
+  ⟨fun h => ⟨Nat.le_trans h (Nat.min_le_left ..), Nat.le_trans h (Nat.min_le_right ..)⟩,
+   fun ⟨h₁, h₂⟩ => Nat.le_min_of_le_of_le h₁ h₂⟩
+
+protected theorem lt_min {a b c : Nat} : a < min b c ↔ a < b ∧ a < c := Nat.le_min
+
+/-! # max lemmas -/
+
+protected theorem max_eq_max (a : Nat) : Nat.max a b = max a b := rfl
+
+@[simp] protected theorem zero_max (a : Nat) : max 0 a = a := by
+  simp [Nat.max_def]
+
+@[simp] protected theorem max_zero (a : Nat) : max a 0 = a := by
+  simp +contextual [Nat.max_def]
+
+@[simp] protected theorem add_max_add_right (a b c : Nat) : max (a + c) (b + c) = max a b + c := by
+  rw [Nat.max_def, Nat.max_def]
+  simp only [Nat.add_le_add_iff_right]
+  split <;> simp
+
+@[simp] protected theorem add_max_add_left (a b c : Nat) : max (a + b) (a + c) = a + max b c := by
+  rw [Nat.max_def, Nat.max_def]
+  simp only [Nat.add_le_add_iff_left]
+  split <;> simp
+
+@[simp] protected theorem mul_max_mul_right (a b c : Nat) : max (a * c) (b * c) = max a b * c := by
+  by_cases h : 0 < c
+  · rw [Nat.max_def, Nat.max_def]
+    simp only [Nat.mul_le_mul_right_iff h]
+    split <;> simp
+  · replace h : c = 0 := by
+    subst h
+    simp
+
+@[simp] protected theorem mul_max_mul_left (a b c : Nat) : max (a * b) (a * c) = a * max b c := by
+  rw [Nat.mul_comm a, Nat.mul_comm a, Nat.mul_max_mul_right, Nat.mul_comm]
+
+protected theorem max_comm (a b : Nat) : max a b = max b a := by
+

@@ -1,0 +1,106 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:17:2: error: unsolved goals
+case pos
+X : Type u_1
+Y : Type u_2
+Z : Type u_3
+inst✝² : TopologicalSpace X
+inst✝¹ : TopologicalSpace Y
+inst✝ : TopologicalSpace Z
+g : Y → Z
+f : X → Y
+s : Set X
+t : Set Y
+h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
+x : X
+hx : x ∈ s
+e : PartialHomeomorph X Y
+hxe : x ∈ e.source
+he : Set.EqOn f (↑e) e.source
+y : X
+hy : y ∈ e.source
+⊢ f y = ↑e y
+
+case neg
+X : Type u_1
+Y : Type u_2
+Z : Type u_3
+inst✝² : TopologicalSpace X
+inst✝¹ : TopologicalSpace Y
+inst✝ : TopologicalSpace Z
+g : Y → Z
+f : X → Y
+s : Set X
+t : Set Y
+h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
+x : X
+hx : x ∈ s
+e : PartialHomeomorph X Y
+hxe : x ∈ e.source
+he : Set.EqOn f (↑e) e.source
+y : X
+hy : y ∉ e.source
+⊢ f y = ↑e y
+case pos
+X : Type u_1
+Y : Type u_2
+Z : Type u_3
+inst✝² : TopologicalSpace X
+inst✝¹ : TopologicalSpace Y
+inst✝ : TopologicalSpace Z
+g : Y → Z
+f : X → Y
+s : Set X
+t : Set Y
+h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
+x : X
+hx : x ∈ s
+e : PartialHomeomorph X Y
+hxe : x ∈ e.source
+he : Set.EqOn f (↑e) e.source
+y : X
+hy : y ∈ e.source
+⊢ f y = ↑e y
+
+case neg
+X : Type u_1
+Y : Type u_2
+Z : Type u_3
+inst✝² : TopologicalSpace X
+inst✝¹ : TopologicalSpace Y
+inst✝ : TopologicalSpace Z
+g : Y → Z
+f : X → Y
+s : Set X
+t : Set Y
+h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
+x : X
+hx : x ∈ s
+e : PartialHomeomorph X Y
+hxe : x ∈ e.source
+he : Set.EqOn f (↑e) e.source
+y : X
+hy : y ∉ e.source
+⊢ f y = ↑e y
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Mathlib.Topology.PartialHomeomorph
+import Mathlib.Topology.SeparatedMap
+import Mathlib.Topology.IsLocalHomeomorph
+
+open IsLocalHomeomorphOn
+open Topology
+variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z] (g : Y → Z)
+  (f : X → Y) (s : Set X) (t : Set Y)
+
+example (h : ∀ x ∈ s, ∃ e : PartialHomeomorph X Y, x ∈ e.source ∧ Set.EqOn f e e.source) :
+    IsLocalHomeomorphOn f s := by
+  intro x hx
+  obtain ⟨e, hxe, he⟩ := h x hx
+  use e
+  constructor
+  · exact hxe
+  · ext y
+    by_cases hy : y ∈ e.source

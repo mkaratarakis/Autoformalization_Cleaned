@@ -1,0 +1,286 @@
+
+1. **Informal Theorem**  
+ω-limit Subset under Tending Function in Filters : For any types \( \tau \), \( \alpha \), and \( \beta \) where \( \beta \) is a topological space, and for any function \( \phi : \tau \to \alpha \to \beta \) and set \( s \subseteq \alpha \), if \( m : \tau \to \tau \) is a function such that \( m \) tends to \( f_2 \) along the filter \( f_1 \) (denoted as \( m \to f_2 \) as \( t \to f_1 \)), then the ω-limit of \( s \) under the function \( \phi \circ m \) with respect to the filter \( f_1 \) is a subset of the ω-limit of \( s \) under \( \phi \) with respect to the filter \( f_2 \). Formally, this is expressed as:
+\[
+\text{If } m \to f_2 \text{ as } t \to f_1, \text{ then } \omega\text{-limit}(f_1, \phi \circ m, s) \subseteq \omega\text{-limit}(f_2, \phi, s).
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the ω-limit of \( s \) under \( \phi \circ m \) with respect to the filter \( f_1 \) is a subset of the ω-limit of \( s \) under \( \phi \) with respect to the filter \( f_2 \).
+
+1. **Monotonicity of Double Indexed Intersection:**
+We use the monotonicity of the double indexed intersection of sets. For any set \( u \in f_2 \), we need to show that the closure of the image of \( s \) under \( \phi \circ m \) in \( m^{-1}(u) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \). This reduces to showing that \( m^{-1}(u) \in f_1 \) and that the closure of the image of \( s \) under \( \phi \circ m \) in \( m^{-1}(u) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \).
+
+2. **Rewriting the Goal:**
+We use the property of the binary image of sets under function composition to rewrite the goal. Specifically, the binary image of \( s \) and \( m^{-1}(u) \) under \( \phi \circ m \) is equal to the binary image of \( s \) and \( m^{-1}(u) \) under the function \( (t, x) \mapsto \phi(m(t), x) \). This simplifies our goal to showing that the closure of the image of \( s \) under \( \phi \) in \( m(m^{-1}(u)) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \).
+
+3. **Monotonicity of Closure and Subset Relation:**
+We use the monotonicity of the closure and the subset relation to complete the proof. Specifically, since \( m(m^{-1}(u)) \subseteq u \) (by the property of the image of the preimage), the image of \( s \) under \( \phi \) in \( m(m^{-1}(u)) \) is a subset of the image of \( s \) under \( \phi \) in \( u \). Therefore, the closure of the image of \( s \) under \( \phi \) in \( m(m^{-1}(u)) \) is a subset of the closure of the image of \( s \) under \( \phi \) in \( u \).
+
+Thus, we have shown that the ω-limit of \( s \) under \( \phi \circ m \) with respect to the filter \( f_1 \) is a subset of the ω-limit of \( s \) under \( \phi \) with respect to the filter \( f_2 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m : τ → τ} {f₁ f₂ : Filter τ} (hf : Tendsto m f₁ f₂) :
+    ω f₁ (fun t x ↦ ϕ (m t) x) s ⊆ ω f₂ ϕ s := by sorry
+
+4. **Prefix**
+import Mathlib.Dynamics.Flow
+import Mathlib.Tactic.Monotonicity
+import Mathlib.Dynamics.OmegaLimit
+
+
+open Set Function Filter Topology
+variable {τ : Type*} {α : Type*} {β : Type*} {ι : Type*}
+variable [TopologicalSpace β]
+variable (f : Filter τ) (ϕ : τ → α → β) (s s₁ s₂ : Set α)
+variable (f : Filter τ) (ϕ : τ → α → β) (s s₁ s₂ : Set α)
+open omegaLimit
+
+example {m : τ → τ} {f₁ f₂ : Filter τ} (hf : Tendsto m f₁ f₂) :
+    ω f₁ (fun t x ↦ ϕ (m t) x) s ⊆ ω f₂ ϕ s := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Dynamics.Flow --
+/-
+Copyright (c) 2020 Jean Lo. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Jean Lo
+-/
+import Mathlib.Logic.Function.Iterate
+import Mathlib.Topology.Algebra.Monoid
+import Mathlib.Topology.Algebra.Group.Defs
+
+/-!
+# Flows and invariant sets
+
+This file defines a flow on a topological space `α` by a topological
+monoid `τ` as a continuous monoid-action of `τ` on `α`. Anticipating the
+cases where `τ` is one of `ℕ`, `ℤ`, `ℝ⁺`, or `ℝ`, we use additive
+notation for the monoids, though the definition does not require
+commutativity.
+
+A subset `s` of `α` is invariant under a family of maps `ϕₜ : α → α`
+if `ϕₜ s ⊆ s` for all `t`. In many cases `ϕ` will be a flow on
+`α`. For the cases where `ϕ` is a flow by an ordered (additive,
+commutative) monoid, we additionally define forward invariance, where
+`t` ranges over those elements which are nonnegative.
+
+Additionally, we define such constructions as the restriction of a
+flow onto an invariant subset, and the time-reversal of a flow by a
+group.
+-/
+
+
+open Set Function Filter
+
+/-!
+### Invariant sets
+-/
+section Invariant
+
+variable {τ : Type*} {α : Type*}
+
+/-- A set `s ⊆ α` is invariant under `ϕ : τ → α → α` if
+    `ϕ t s ⊆ s` for all `t` in `τ`. -/
+def IsInvariant (ϕ : τ → α → α) (s : Set α) : Prop :=
+  ∀ t, MapsTo (ϕ t) s s
+
+variable (ϕ : τ → α → α) (s : Set α)
+
+theorem isInvariant_iff_image : IsInvariant ϕ s ↔ ∀ t, ϕ t '' s ⊆ s := by
+  simp_rw [IsInvariant, mapsTo']
+
+/-- A set `s ⊆ α` is forward-invariant under `ϕ : τ → α → α` if
+    `ϕ t s ⊆ s` for all `t ≥ 0`. -/
+def IsFwInvariant [Preorder τ] [Zero τ] (ϕ : τ → α → α) (s : Set α) : Prop :=
+  ∀ ⦃t⦄, 0 ≤ t → MapsTo (ϕ t) s s
+
+theorem IsInvariant.isFwInvariant [Preorder τ] [Zero τ] {ϕ : τ → α → α} {s : Set α}
+    (h : IsInvariant ϕ s) : IsFwInvariant ϕ s := fun t _ht => h t
+
+/-- If `τ` is a `CanonicallyOrderedAdd` monoid (e.g., `ℕ` or `ℝ≥0`), then the notions
+`IsFwInvariant` and `IsInvariant` are equivalent. -/
+theorem IsFwInvariant.isInvariant [AddMonoid τ] [PartialOrder τ] [CanonicallyOrderedAdd τ]
+    {ϕ : τ → α → α} {s : Set α}
+    (h : IsFwInvariant ϕ s) : IsInvariant ϕ s := fun t => h (zero_le t)
+
+/-- If `τ` is a `CanonicallyOrderedAdd` monoid (e.g., `ℕ` or `ℝ≥0`), then the notions
+`IsFwInvariant` and `IsInvariant` are equivalent. -/
+theorem isFwInvariant_iff_isInvariant [AddMonoid τ] [PartialOrder τ] [CanonicallyOrderedAdd τ]
+    {ϕ : τ → α → α} {s : Set α} :
+    IsFwInvariant ϕ s ↔ IsInvariant ϕ s :=
+  ⟨IsFwInvariant.isInvariant, IsInvariant.isFwInvariant⟩
+
+end Invariant
+
+/-!
+### Flows
+-/
+
+/-- A flow on a topological space `α` by an additive topological
+    monoid `τ` is a continuous monoid action of `τ` on `α`. -/
+structure Flow (τ : Type*) [TopologicalSpace τ] [AddMonoid τ] [ContinuousAdd τ] (α : Type*)
+  [TopologicalSpace α] where
+  /-- The map `τ → α → α` underlying a flow of `τ` on `α`. -/
+  toFun : τ → α → α
+  cont' : Continuous (uncurry toFun)
+  map_add' : ∀ t₁ t₂ x, toFun (t₁ + t₂) x = toFun t₁ (toFun t₂ x)
+  map_zero' : ∀ x, toFun 0 x = x
+
+namespace Flow
+
+variable {τ : Type*} [AddMonoid τ] [TopologicalSpace τ] [ContinuousAdd τ]
+  {α : Type*} [TopologicalSpace α] (ϕ : Flow τ α)
+
+instance : Inhabited (Flow τ α) :=
+  ⟨{  toFun := fun _ x => x
+      cont' := continuous_snd
+      map_add' := fun _ _ _ => rfl
+      map_zero' := fun _ => rfl }⟩
+
+instance : CoeFun (Flow τ α) fun _ => τ → α → α := ⟨Flow.toFun⟩
+
+@[ext]
+theorem ext : ∀ {ϕ₁ ϕ₂ : Flow τ α}, (∀ t x, ϕ₁ t x = ϕ₂ t x) → ϕ₁ = ϕ₂
+  | ⟨f₁, _, _, _⟩, ⟨f₂, _, _, _⟩, h => by
+    congr
+    funext
+    exact h _ _
+
+@[continuity, fun_prop]
+protected theorem continuous {β : Type*} [TopologicalSpace β] {t : β → τ} (ht : Continuous t)
+    {f : β → α} (hf : Continuous f) : Continuous fun x => ϕ (t x) (f x) :=
+  ϕ.cont'.comp (ht.prodMk hf)
+
+alias _root_.Continuous.flow := Flow.continuous
+
+theorem map_add (t₁ t₂ : τ) (x : α) : ϕ (t₁ + t₂) x = ϕ t₁ (ϕ t₂ x) := ϕ.map_add' _ _ _
+
+@[simp]
+theorem map_zero : ϕ 0 = id := funext ϕ.map_zero'
+
+theorem map_zero_apply (x : α) : ϕ 0 x = x := ϕ.map_zero' x
+
+/-- Iterations of a continuous function from a topological space `α`
+    to itself defines a semiflow by `ℕ` on `α`. -/
+def fromIter {g : α → α} (h : Continuous g) : Flow ℕ α where
+  toFun n x := g^[n] x
+  cont' := continuous_prod_of_discrete_left.mpr (Continuous.iterate h)
+  map_add' := iterate_add_apply _
+  map_zero' _x := rfl
+
+/-- Restriction of a flow onto an invariant set. -/
+def restrict {s : Set α} (h : IsInvariant ϕ s) : Flow τ (↥s) where
+  toFun t := (h t).restrict _ _ _
+  cont' := (ϕ.continuous continuous_fst continuous_subtype_val.snd').subtype_mk _
+  map_add' _ _ _ := Subtype.ext (map_add _ _ _ _)
+  map_zero' _ := Subtype.ext (map_zero_apply _ _)
+
+end Flow
+
+namespace Flow
+
+variable {τ : Type*} [AddCommGroup τ] [TopologicalSpace τ] [IsTopologicalAddGroup τ]
+  {α : Type*} [TopologicalSpace α] (ϕ : Flow τ α)
+
+theorem isInvariant_iff_image_eq (s : Set α) : IsInvariant ϕ s ↔ ∀ t, ϕ t '' s = s :=
+  (isInvariant_iff_image _ _).trans
+    (Iff.intro
+      (fun h t => Subset.antisymm (h t) fun _ hx => ⟨_, h (-t) ⟨_, hx, rfl⟩, by simp [← map_add]⟩)
+      fun h t => by rw [h t])
+
+/-- The time-reversal of a flow `ϕ` by a (commutative, additive) group
+    is defined `ϕ.reverse t x = ϕ (-t) x`. -/
+def reverse : Flow τ α where
+  toFun t := ϕ (-t)
+  cont' := ϕ.continuous continuous_fst.neg continuous_snd
+  map_add' _ _ _ := by rw [neg_add, map_add]
+  map_zero' _ := by rw [neg_zero, map_zero_apply]
+
+@[continuity, fun_prop]
+theorem continuous_toFun (t : τ) : Continuous (ϕ.toFun t) := by
+  fun_prop
+
+/-- The map `ϕ t` as a homeomorphism. -/
+def toHomeomorph (t : τ) : (α ≃ₜ α) where
+  toFun := ϕ t
+  invFun := ϕ (-t)
+  left_inv x := by rw [← map_add, neg_add_cancel, map_zero_apply]
+  right_inv x := by rw [← map_add, add_neg_cancel, map_zero_apply]
+
+theorem image_eq_preimage (t : τ) (s : Set α) : ϕ t '' s = ϕ (-t) ⁻¹' s :=
+  (ϕ.toHomeomorph t).toEquiv.image_eq_preimage s
+
+end Flow
+
+-- END Mathlib.Dynamics.Flow --
+
+-- BEGIN Mathlib.Tactic.Monotonicity --
+import Mathlib.Tactic.Monotonicity.Basic
+import Mathlib.Tactic.Monotonicity.Lemmas
+
+-- END Mathlib.Tactic.Monotonicity --
+
+import Mathlib.Dynamics.Flow
+import Mathlib.Tactic.Monotonicity
+
+/-!
+# ω-limits
+
+For a function `ϕ : τ → α → β` where `β` is a topological space, we
+define the ω-limit under `ϕ` of a set `s` in `α` with respect to
+filter `f` on `τ`: an element `y : β` is in the ω-limit of `s` if the
+forward images of `s` intersect arbitrarily small neighbourhoods of
+`y` frequently "in the direction of `f`".
+
+In practice `ϕ` is often a continuous monoid-act, but the definition
+requires only that `ϕ` has a coercion to the appropriate function
+type. In the case where `τ` is `ℕ` or `ℝ` and `f` is `atTop`, we
+recover the usual definition of the ω-limit set as the set of all `y`
+such that there exist sequences `(tₙ)`, `(xₙ)` such that `ϕ tₙ xₙ ⟶ y`
+as `n ⟶ ∞`.
+
+## Notations
+
+The `omegaLimit` locale provides the localised notation `ω` for
+`omegaLimit`, as well as `ω⁺` and `ω⁻` for `omegaLimit atTop` and
+`omegaLimit atBot` respectively for when the acting monoid is
+endowed with an order.
+-/
+
+
+open Set Function Filter Topology
+
+/-!
+### Definition and notation
+-/
+section omegaLimit
+
+variable {τ : Type*} {α : Type*} {β : Type*} {ι : Type*}
+
+/-- The ω-limit of a set `s` under `ϕ` with respect to a filter `f` is `⋂ u ∈ f, cl (ϕ u s)`. -/
+def omegaLimit [TopologicalSpace β] (f : Filter τ) (ϕ : τ → α → β) (s : Set α) : Set β :=
+  ⋂ u ∈ f, closure (image2 ϕ u s)
+
+@[inherit_doc]
+scoped[omegaLimit] notation "ω" => omegaLimit
+
+/-- The ω-limit w.r.t. `Filter.atTop`. -/
+scoped[omegaLimit] notation "ω⁺" => omegaLimit Filter.atTop
+
+/-- The ω-limit w.r.t. `Filter.atBot`. -/
+scoped[omegaLimit] notation "ω⁻" => omegaLimit Filter.atBot
+
+variable [TopologicalSpace β]
+variable (f : Filter τ) (ϕ : τ → α → β) (s s₁ s₂ : Set α)
+
+/-!
+### Elementary properties
+-/
+open omegaLimit
+
+theorem omegaLimit_def : ω f ϕ s = ⋂ u ∈ f, closure (image2 ϕ u s) := rfl
+
+theorem omegaLimit_subset_of_tendsto {m : τ → τ} {f₁ f₂ : Filter τ} (hf : Tendsto m f₁ f₂) :
+    ω f₁ (fun t x ↦ ϕ (m t) x) s ⊆ ω f₂ ϕ s := by
+

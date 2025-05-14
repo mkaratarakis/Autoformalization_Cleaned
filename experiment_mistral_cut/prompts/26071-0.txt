@@ -1,0 +1,249 @@
+
+1. **Informal Theorem**  
+Addition of One Preserves Inequality in Natural Numbers with Bottom Element : For any elements \( n \) and \( m \) in the type \( \mathbb{N} \sqcup \{\bot\} \) (natural numbers with a bottom element), if \( n < m \), then \( n + 1 \leq m \).
+
+2. **Informal Proof**  
+We need to show that for any \( n, m \in \mathbb{N} \sqcup \{\bot\} \), if \( n < m \), then \( n + 1 \leq m \).
+
+1. **Case 1: \( n = \bot \)**
+- We use the fact that the addition of the bottom element with any element is the bottom element itself, and the bottom element is less than or equal to any element. Therefore, \( \bot + 1 \leq m \) holds trivially.
+
+2. **Case 2: \( n = a \) for some \( a \in \mathbb{N} \)**
+- We will consider every possible case of \( m \):
+- **Subcase 2.1: \( m = \bot \)**
+- We use the fact that no element in \( \mathbb{N} \) is less than the bottom element. Therefore, the assumption \( a < \bot \) leads to a contradiction, and the goal is vacuously true.
+- **Subcase 2.2: \( m = b \) for some \( b \in \mathbb{N} \)**
+- We use the following equivalences:
+1. The canonical map preserves strict inequality: \( a < b \) if and only if \( \text{WithBot.some}(a) < \text{WithBot.some}(b) \).
+2. The inequality \( a + 1 \leq b \) is equivalent to \( a < b \).
+3. The canonical map preserves the less-than-or-equal relation: \( a + 1 \leq b \) if and only if \( \text{WithBot.some}(a + 1) \leq \text{WithBot.some}(b) \).
+4. The canonical map preserves addition: \( \text{WithBot.some}(a + 1) = \text{WithBot.some}(a) + \text{WithBot.some}(1) \).
+5. The canonical map preserves the multiplicative identity: \( \text{WithBot.some}(1) = 1 \).
+
+Using these equivalences, we can rewrite the assumption \( a < b \) to \( a + 1 \leq b \), which is exactly what we need to show.
+
+Therefore, in all cases, we have shown that if \( n < m \), then \( n + 1 \leq m \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by sorry
+
+4. **Prefix**
+import Mathlib.Algebra.Order.Ring.Nat
+import Mathlib.Algebra.Order.Monoid.WithTop
+import Mathlib.Data.Nat.Cast.WithTop
+import Mathlib.Data.Nat.WithBot
+
+open Nat
+open WithBot
+
+
+example {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Algebra.Order.Ring.Nat --
+/-
+Copyright (c) 2014 Floris van Doorn (c) 2016 Microsoft Corporation. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Floris van Doorn, Leonardo de Moura, Jeremy Avigad, Mario Carneiro
+-/
+import Mathlib.Algebra.Order.Group.Nat
+import Mathlib.Algebra.Order.GroupWithZero.Canonical
+import Mathlib.Algebra.Order.Ring.Defs
+import Mathlib.Algebra.Ring.Parity
+import Mathlib.Data.Set.Basic
+
+/-!
+# The natural numbers form an ordered semiring
+
+This file contains the commutative linear orderded semiring instance on the natural numbers.
+
+See note [foundational algebra order theory].
+-/
+
+namespace Nat
+
+/-! ### Instances -/
+
+instance instIsStrictOrderedRing : IsStrictOrderedRing ℕ where
+  add_le_add_left := @Nat.add_le_add_left
+  le_of_add_le_add_left := @Nat.le_of_add_le_add_left
+  zero_le_one := Nat.le_of_lt (Nat.zero_lt_succ 0)
+  mul_lt_mul_of_pos_left := @Nat.mul_lt_mul_of_pos_left
+  mul_lt_mul_of_pos_right := @Nat.mul_lt_mul_of_pos_right
+  exists_pair_ne := ⟨0, 1, ne_of_lt Nat.zero_lt_one⟩
+
+instance instLinearOrderedCommMonoidWithZero : LinearOrderedCommMonoidWithZero ℕ where
+  zero_le_one := zero_le_one
+  mul_le_mul_left _ _ h c := Nat.mul_le_mul_left c h
+
+/-! ### Miscellaneous lemmas -/
+
+lemma isCompl_even_odd : IsCompl { n : ℕ | Even n } { n | Odd n } := by
+  simp only [← Set.compl_setOf, isCompl_compl, ← not_even_iff_odd]
+
+end Nat
+
+-- END Mathlib.Algebra.Order.Ring.Nat --
+
+-- BEGIN Mathlib.Algebra.Order.Monoid.WithTop --
+/-
+Copyright (c) 2016 Jeremy Avigad. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Jeremy Avigad, Leonardo de Moura, Mario Carneiro, Johannes Hölzl
+-/
+import Mathlib.Algebra.Order.Monoid.Unbundled.WithTop
+import Mathlib.Algebra.Order.Monoid.Canonical.Defs
+
+/-! # Adjoining top/bottom elements to ordered monoids.
+-/
+
+universe u
+
+variable {α : Type u}
+
+open Function
+
+namespace WithTop
+
+instance isOrderedAddMonoid [AddCommMonoid α] [PartialOrder α] [IsOrderedAddMonoid α] :
+    IsOrderedAddMonoid (WithTop α) where
+  add_le_add_left _ _ := add_le_add_left
+
+instance canonicallyOrderedAdd [Add α] [Preorder α] [CanonicallyOrderedAdd α] :
+    CanonicallyOrderedAdd (WithTop α) :=
+  { WithTop.existsAddOfLE with
+    le_self_add := fun a b =>
+      match a, b with
+      | ⊤, ⊤ => le_rfl
+      | (a : α), ⊤ => le_top
+      | (a : α), (b : α) => WithTop.coe_le_coe.2 le_self_add
+      | ⊤, (b : α) => le_rfl }
+
+end WithTop
+
+namespace WithBot
+
+instance isOrderedAddMonoid [AddCommMonoid α] [PartialOrder α] [IsOrderedAddMonoid α] :
+    IsOrderedAddMonoid (WithBot α) :=
+  { add_le_add_left := fun _ _ h c => add_le_add_left h c }
+
+protected theorem le_self_add [Add α] [LE α] [CanonicallyOrderedAdd α]
+    {x : WithBot α} (hx : x ≠ ⊥) (y : WithBot α) :
+    y ≤ y + x := by
+  induction x
+  · simp at hx
+  induction y
+  · simp
+  · rw [← WithBot.coe_add, WithBot.coe_le_coe]
+    exact _root_.le_self_add (α := α)
+
+protected theorem le_add_self [AddCommMagma α] [LE α] [CanonicallyOrderedAdd α]
+    {x : WithBot α} (hx : x ≠ ⊥) (y : WithBot α) :
+    y ≤ x + y := by
+  induction x
+  · simp at hx
+  induction y
+  · simp
+  · rw [← WithBot.coe_add, WithBot.coe_le_coe]
+    exact _root_.le_add_self (α := α)
+
+end WithBot
+
+-- END Mathlib.Algebra.Order.Monoid.WithTop --
+
+-- BEGIN Mathlib.Data.Nat.Cast.WithTop --
+/-
+Copyright (c) 2014 Mario Carneiro. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Mario Carneiro
+-/
+import Mathlib.Algebra.Ring.Nat
+import Mathlib.Algebra.Order.Monoid.Unbundled.WithTop
+
+/-!
+# Lemma about the coercion `ℕ → WithBot ℕ`.
+
+An orphaned lemma about casting from `ℕ` to `WithBot ℕ`,
+exiled here during the port to minimize imports of `Algebra.Order.Ring.Rat`.
+-/
+
+instance : WellFoundedRelation (WithTop ℕ) where
+  rel := (· < ·)
+  wf := IsWellFounded.wf
+
+theorem Nat.cast_withTop (n : ℕ) : Nat.cast n = WithTop.some n :=
+  rfl
+
+theorem Nat.cast_withBot (n : ℕ) : Nat.cast n = WithBot.some n :=
+  rfl
+
+-- END Mathlib.Data.Nat.Cast.WithTop --
+
+import Mathlib.Algebra.Order.Group.Nat
+import Mathlib.Algebra.Order.GroupWithZero.Canonical
+import Mathlib.Data.Nat.Cast.WithTop
+
+/-!
+# `WithBot ℕ`
+
+Lemmas about the type of natural numbers with a bottom element adjoined.
+-/
+
+
+namespace Nat
+
+namespace WithBot
+
+instance : WellFoundedRelation (WithBot ℕ) where
+  rel := (· < ·)
+  wf := IsWellFounded.wf
+
+theorem add_eq_zero_iff {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by
+  cases n
+  · simp [WithBot.bot_add]
+  cases m
+  · simp [WithBot.add_bot]
+  simp [← WithBot.coe_add, add_eq_zero_iff_of_nonneg]
+
+theorem add_eq_one_iff {n m : WithBot ℕ} : n + m = 1 ↔ n = 0 ∧ m = 1 ∨ n = 1 ∧ m = 0 := by
+  cases n
+  · simp only [WithBot.bot_add, WithBot.bot_ne_one, WithBot.bot_ne_zero, false_and, or_self]
+  cases m
+  · simp [WithBot.add_bot]
+  simp [← WithBot.coe_add, Nat.add_eq_one_iff]
+
+theorem add_eq_two_iff {n m : WithBot ℕ} :
+    n + m = 2 ↔ n = 0 ∧ m = 2 ∨ n = 1 ∧ m = 1 ∨ n = 2 ∧ m = 0 := by
+  cases n
+  · simp [WithBot.bot_add]
+  cases m
+  · simp [WithBot.add_bot]
+  simp [← WithBot.coe_add, Nat.add_eq_two_iff]
+
+theorem add_eq_three_iff {n m : WithBot ℕ} :
+    n + m = 3 ↔ n = 0 ∧ m = 3 ∨ n = 1 ∧ m = 2 ∨ n = 2 ∧ m = 1 ∨ n = 3 ∧ m = 0 := by
+  cases n
+  · simp [WithBot.bot_add]
+  cases m
+  · simp [WithBot.add_bot]
+  simp [← WithBot.coe_add, Nat.add_eq_three_iff]
+
+theorem coe_nonneg {n : ℕ} : 0 ≤ (n : WithBot ℕ) := by
+  rw [← WithBot.coe_zero, cast_withBot, WithBot.coe_le_coe]
+  exact n.zero_le
+
+@[simp]
+theorem lt_zero_iff {n : WithBot ℕ} : n < 0 ↔ n = ⊥ := WithBot.lt_coe_bot
+
+theorem one_le_iff_zero_lt {x : WithBot ℕ} : 1 ≤ x ↔ 0 < x := by
+  refine ⟨zero_lt_one.trans_le, fun h => ?_⟩
+  cases x
+  · exact (not_lt_bot h).elim
+  · rwa [← WithBot.coe_zero, WithBot.coe_lt_coe, ← Nat.add_one_le_iff, zero_add,
+      ← WithBot.coe_le_coe, WithBot.coe_one] at h
+
+theorem lt_one_iff_le_zero {x : WithBot ℕ} : x < 1 ↔ x ≤ 0 :=
+  not_iff_not.mp (by simpa using one_le_iff_zero_lt)
+
+theorem add_one_le_of_lt {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by
+

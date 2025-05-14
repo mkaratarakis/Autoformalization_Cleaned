@@ -1,0 +1,138 @@
+
+1. **Informal Theorem**  
+Equivalence of Option Elimination Principles: $\text{Option.elim'}(b, f, a) = a.\text{elim}(b, f)$ : For any types $\alpha$ and $\beta$, a default value $b \in \beta$, and a function $f : \alpha \to \beta$, the elimination principle `Option.elim'` applied to an `Option` value $a$ of type `Option α` is equal to the elimination principle `Option.elim` applied to the same `Option` value $a$, the default value $b$, and the function $f$. In other words, for any `Option` value $a$, the following holds:
+\[ \text{Option.elim'}(b, f, a) = a.\text{elim}(b, f) \]
+
+2. **Informal Proof**  
+We will consider every possible case of the `Option` value $a$.
+
+1. **Case 1: $a = \text{none}$**
+- The goal is to show that $\text{Option.elim'}(b, f, \text{none}) = \text{none}.\text{elim}(b, f)$.
+- By the definition of `Option.elim'` and `Option.elim`, both sides of the equation are equal to $b$.
+- Therefore, the equality holds trivially due to the reflexive property.
+
+2. **Case 2: $a = \text{some val}$**
+- The goal is to show that $\text{Option.elim'}(b, f, \text{some val}) = (\text{some val}).\text{elim}(b, f)$.
+- By the definition of `Option.elim'` and `Option.elim`, both sides of the equation are equal to $f(val)$.
+- Therefore, the equality holds trivially due to the reflexive property.
+
+Since both cases are covered and the equality holds in each case, the theorem is proved. $\blacksquare$
+
+3. **Formal Theorem**  
+example {α β : Type*} (b : β) (f : α → β) (a : Option α) :
+    Option.elim' b f a = Option.elim a b f := by sorry
+
+4. **Prefix**
+import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.TypeStar
+import Mathlib.Data.Option.Defs
+
+open Option
+variable {α : Type*} {β : Type*}
+
+example {α β : Type*} (b : β) (f : α → β) (a : Option α) :
+    Option.elim' b f a = Option.elim a b f := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Tactic.Lemma --
+/-
+Copyright (c) 2021 Mario Carneiro. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Mario Carneiro, Kyle Miller
+-/
+import Mathlib.Init
+import Lean.Parser.Command
+
+/-!
+# Support for `lemma` as a synonym for `theorem`.
+-/
+
+open Lean
+
+-- higher priority to override the one in Batteries
+/-- `lemma` means the same as `theorem`. It is used to denote "less important" theorems -/
+syntax (name := lemma) (priority := default + 1) declModifiers
+  group("lemma " declId ppIndent(declSig) declVal) : command
+
+/-- Implementation of the `lemma` command, by macro expansion to `theorem`. -/
+@[macro «lemma»] def expandLemma : Macro := fun stx =>
+  -- Not using a macro match, to be more resilient against changes to `lemma`.
+  -- This implementation ensures that any future changes to `theorem` are reflected in `lemma`
+  let stx := stx.modifyArg 1 fun stx =>
+    let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
+    stx.setKind ``Parser.Command.theorem
+  pure <| stx.setKind ``Parser.Command.declaration
+
+-- END Mathlib.Tactic.Lemma --
+
+-- BEGIN Mathlib.Tactic.TypeStar --
+/-
+Copyright (c) 2023 Matthew Robert Ballard. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kyle Miller
+-/
+import Mathlib.Init
+import Lean.Elab.Term
+
+/-!
+# Support for `Sort*` and `Type*`.
+
+These elaborate as `Sort u` and `Type u` with a fresh implicit universe variable `u`.
+-/
+
+open Lean
+
+/-- The syntax `variable (X Y ... Z : Sort*)` creates a new distinct implicit universe variable
+for each variable in the sequence. -/
+elab "Sort*" : term => do
+  let u ← Lean.Meta.mkFreshLevelMVar
+  Elab.Term.levelMVarToParam (.sort u)
+
+/-- The syntax `variable (X Y ... Z : Type*)` creates a new distinct implicit universe variable
+`> 0` for each variable in the sequence. -/
+elab "Type*" : term => do
+  let u ← Lean.Meta.mkFreshLevelMVar
+  Elab.Term.levelMVarToParam (.sort (.succ u))
+
+-- END Mathlib.Tactic.TypeStar --
+
+import Mathlib.Tactic.Lemma
+import Mathlib.Tactic.TypeStar
+
+/-!
+# Extra definitions on `Option`
+
+This file defines more operations involving `Option α`. Lemmas about them are located in other
+files under `Mathlib.Data.Option`.
+Other basic operations on `Option` are defined in the core library.
+-/
+
+namespace Option
+
+/-- Traverse an object of `Option α` with a function `f : α → F β` for an applicative `F`. -/
+protected def traverse.{u, v}
+    {F : Type u → Type v} [Applicative F] {α : Type*} {β : Type u} (f : α → F β) :
+    Option α → F (Option β)
+  | none => pure none
+  | some x => some <$> f x
+
+variable {α : Type*} {β : Type*}
+
+/-- An elimination principle for `Option`. It is a nondependent version of `Option.rec`. -/
+protected def elim' (b : β) (f : α → β) : Option α → β
+  | some a => f a
+  | none => b
+
+@[simp]
+theorem elim'_none (b : β) (f : α → β) : Option.elim' b f none = b := rfl
+
+@[simp]
+theorem elim'_some {a : α} (b : β) (f : α → β) : Option.elim' b f (some a) = f a := rfl
+
+@[simp]
+theorem elim'_none_some (f : Option α → β) : (Option.elim' (f none) (f ∘ some)) = f :=
+  funext fun o ↦ by cases o <;> rfl
+
+lemma elim'_eq_elim {α β : Type*} (b : β) (f : α → β) (a : Option α) :
+    Option.elim' b f a = Option.elim a b f := by
+

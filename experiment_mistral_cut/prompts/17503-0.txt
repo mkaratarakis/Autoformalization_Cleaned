@@ -1,0 +1,323 @@
+
+1. **Informal Theorem**  
+Element in Centralizer if and only if Commutator Equals Identity: \( g \in \text{centralizer}(S) \leftrightarrow \forall h \in S, h * g * h^{-1} * g^{-1} = 1 \) : For any group \( G \) and any subset \( S \subseteq G \), an element \( g \in G \) is in the centralizer of \( S \) if and only if for all \( h \in S \), the commutator \( h * g * h^{-1} * g^{-1} \) is equal to the identity element \( 1 \). Formally, \( g \in \text{centralizer}(S) \) if and only if \( \forall h \in S, h * g * h^{-1} * g^{-1} = 1 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the centralizer and the properties of group elements. Specifically, we use the following steps:
+
+1. **Simplification:**
+- We use the definition of the centralizer, which states that \( g \in \text{centralizer}(S) \) if and only if for all \( h \in S \), \( h \cdot g \cdot h^{-1} = g \).
+- We also use the property that \( a \cdot b^{-1} = c \) if and only if \( a = c \cdot b \).
+- Additionally, we use the property that \( 1 \cdot a = a \).
+
+2. **Equivalence:**
+- Using these properties, we can simplify the condition \( h \cdot g \cdot h^{-1} = g \) to \( h \cdot g \cdot h^{-1} \cdot g^{-1} = 1 \).
+
+3. **Conclusion:**
+- Therefore, \( g \in \text{centralizer}(S) \) if and only if for all \( h \in S \), \( h \cdot g \cdot h^{-1} \cdot g^{-1} = 1 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {g : G} {s : Set G} :
+    g ∈ centralizer s ↔ ∀ h ∈ s, h * g * h⁻¹ * g⁻¹ = 1 := by sorry
+
+4. **Prefix**
+import Mathlib.GroupTheory.Subgroup.Center
+import Mathlib.GroupTheory.Submonoid.Centralizer
+import Mathlib.GroupTheory.Subgroup.Centralizer
+
+open Subgroup
+variable {G : Type*} [Group G]
+variable {H K : Subgroup G}
+
+example {g : G} {s : Set G} :
+    g ∈ centralizer s ↔ ∀ h ∈ s, h * g * h⁻¹ * g⁻¹ = 1 := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.GroupTheory.Subgroup.Center --
+/-
+Copyright (c) 2020 Kexing Ying. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kexing Ying
+-/
+import Mathlib.Algebra.Group.Subgroup.Basic
+import Mathlib.GroupTheory.Submonoid.Center
+
+/-!
+# Centers of subgroups
+
+-/
+
+assert_not_exists MonoidWithZero Multiset
+
+variable {G : Type*} [Group G]
+
+namespace Subgroup
+
+variable (G)
+
+/-- The center of a group `G` is the set of elements that commute with everything in `G` -/
+@[to_additive
+      "The center of an additive group `G` is the set of elements that commute with
+      everything in `G`"]
+def center : Subgroup G :=
+  { Submonoid.center G with
+    carrier := Set.center G
+    inv_mem' := Set.inv_mem_center }
+
+@[to_additive]
+theorem coe_center : ↑(center G) = Set.center G :=
+  rfl
+
+@[to_additive (attr := simp)]
+theorem center_toSubmonoid : (center G).toSubmonoid = Submonoid.center G :=
+  rfl
+
+instance center.isMulCommutative : IsMulCommutative (center G) :=
+  ⟨⟨fun a b => Subtype.ext (b.2.comm a).symm⟩⟩
+
+@[deprecated (since := "2025-04-09")] alias center.isCommutative := Subgroup.center.isMulCommutative
+
+variable {G} in
+/-- The center of isomorphic groups are isomorphic. -/
+@[to_additive (attr := simps!) "The center of isomorphic additive groups are isomorphic."]
+def centerCongr {H} [Group H] (e : G ≃* H) : center G ≃* center H := Submonoid.centerCongr e
+
+/-- The center of a group is isomorphic to the center of its opposite. -/
+@[to_additive (attr := simps!)
+"The center of an additive group is isomorphic to the center of its opposite."]
+def centerToMulOpposite : center G ≃* center Gᵐᵒᵖ := Submonoid.centerToMulOpposite
+
+variable {G}
+
+@[to_additive]
+theorem mem_center_iff {z : G} : z ∈ center G ↔ ∀ g, g * z = z * g := by
+  rw [← Semigroup.mem_center_iff]
+  exact Iff.rfl
+
+instance decidableMemCenter (z : G) [Decidable (∀ g, g * z = z * g)] : Decidable (z ∈ center G) :=
+  decidable_of_iff' _ mem_center_iff
+
+@[to_additive]
+instance centerCharacteristic : (center G).Characteristic := by
+  refine characteristic_iff_comap_le.mpr fun ϕ g hg => ?_
+  rw [mem_center_iff]
+  intro h
+  rw [← ϕ.injective.eq_iff, map_mul, map_mul]
+  exact (hg.comm (ϕ h)).symm
+
+theorem _root_.CommGroup.center_eq_top {G : Type*} [CommGroup G] : center G = ⊤ := by
+  rw [eq_top_iff']
+  intro x
+  rw [Subgroup.mem_center_iff]
+  intro y
+  exact mul_comm y x
+
+/-- A group is commutative if the center is the whole group -/
+def _root_.Group.commGroupOfCenterEqTop (h : center G = ⊤) : CommGroup G :=
+  { ‹Group G› with
+    mul_comm := by
+      rw [eq_top_iff'] at h
+      intro x y
+      apply Subgroup.mem_center_iff.mp _ x
+      exact h y
+  }
+
+variable {H : Subgroup G}
+
+section Normalizer
+
+@[to_additive]
+theorem center_le_normalizer : center G ≤ H.normalizer := fun x hx y => by
+  simp [← mem_center_iff.mp hx y, mul_assoc]
+
+end Normalizer
+
+end Subgroup
+
+namespace IsConj
+
+variable {M : Type*} [Monoid M]
+
+theorem eq_of_left_mem_center {g h : M} (H : IsConj g h) (Hg : g ∈ Set.center M) : g = h := by
+  rcases H with ⟨u, hu⟩; rwa [← u.mul_left_inj, Hg.comm u]
+
+theorem eq_of_right_mem_center {g h : M} (H : IsConj g h) (Hh : h ∈ Set.center M) : g = h :=
+  (H.symm.eq_of_left_mem_center Hh).symm
+
+end IsConj
+
+namespace ConjClasses
+
+theorem mk_bijOn (G : Type*) [Group G] :
+    Set.BijOn ConjClasses.mk (↑(Subgroup.center G)) (noncenter G)ᶜ := by
+  refine ⟨fun g hg ↦ ?_, fun x hx y _ H ↦ ?_, ?_⟩
+  · simp only [mem_noncenter, Set.compl_def, Set.mem_setOf, Set.not_nontrivial_iff]
+    intro x hx y hy
+    simp only [mem_carrier_iff_mk_eq, mk_eq_mk_iff_isConj] at hx hy
+    rw [hx.eq_of_right_mem_center hg, hy.eq_of_right_mem_center hg]
+  · rw [mk_eq_mk_iff_isConj] at H
+    exact H.eq_of_left_mem_center hx
+  · rintro ⟨g⟩ hg
+    refine ⟨g, ?_, rfl⟩
+    simp only [mem_noncenter, Set.compl_def, Set.mem_setOf, Set.not_nontrivial_iff] at hg
+    rw [SetLike.mem_coe, Subgroup.mem_center_iff]
+    intro h
+    rw [← mul_inv_eq_iff_eq_mul]
+    refine hg ?_ mem_carrier_mk
+    rw [mem_carrier_iff_mk_eq]
+    apply mk_eq_mk_iff_isConj.mpr
+    rw [isConj_comm, isConj_iff]
+    exact ⟨h, rfl⟩
+
+end ConjClasses
+
+-- END Mathlib.GroupTheory.Subgroup.Center --
+
+-- BEGIN Mathlib.GroupTheory.Submonoid.Centralizer --
+/-
+Copyright (c) 2021 Thomas Browning. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Thomas Browning
+-/
+import Mathlib.GroupTheory.Subsemigroup.Centralizer
+import Mathlib.GroupTheory.Submonoid.Center
+
+/-!
+# Centralizers of magmas and monoids
+
+## Main definitions
+
+* `Submonoid.centralizer`: the centralizer of a subset of a monoid
+* `AddSubmonoid.centralizer`: the centralizer of a subset of an additive monoid
+
+We provide `Subgroup.centralizer`, `AddSubgroup.centralizer` in other files.
+-/
+
+-- Guard against import creep
+assert_not_exists Finset
+
+variable {M : Type*} {S T : Set M}
+
+namespace Submonoid
+
+section
+
+variable [Monoid M] (S)
+
+/-- The centralizer of a subset of a monoid `M`. -/
+@[to_additive "The centralizer of a subset of an additive monoid."]
+def centralizer : Submonoid M where
+  carrier := S.centralizer
+  one_mem' := S.one_mem_centralizer
+  mul_mem' := Set.mul_mem_centralizer
+
+@[to_additive (attr := simp, norm_cast)]
+theorem coe_centralizer : ↑(centralizer S) = S.centralizer :=
+  rfl
+
+theorem centralizer_toSubsemigroup : (centralizer S).toSubsemigroup = Subsemigroup.centralizer S :=
+  rfl
+
+theorem _root_.AddSubmonoid.centralizer_toAddSubsemigroup {M} [AddMonoid M] (S : Set M) :
+    (AddSubmonoid.centralizer S).toAddSubsemigroup = AddSubsemigroup.centralizer S :=
+  rfl
+
+attribute [to_additive existing AddSubmonoid.centralizer_toAddSubsemigroup]
+  Submonoid.centralizer_toSubsemigroup
+
+variable {S}
+
+@[to_additive]
+theorem mem_centralizer_iff {z : M} : z ∈ centralizer S ↔ ∀ g ∈ S, g * z = z * g :=
+  Iff.rfl
+
+@[to_additive]
+theorem center_le_centralizer (s) : center M ≤ centralizer s :=
+  s.center_subset_centralizer
+
+@[to_additive]
+instance decidableMemCentralizer (a) [Decidable <| ∀ b ∈ S, b * a = a * b] :
+    Decidable (a ∈ centralizer S) :=
+  decidable_of_iff' _ mem_centralizer_iff
+
+@[to_additive]
+theorem centralizer_le (h : S ⊆ T) : centralizer T ≤ centralizer S :=
+  Set.centralizer_subset h
+
+@[to_additive (attr := simp)]
+theorem centralizer_eq_top_iff_subset {s : Set M} : centralizer s = ⊤ ↔ s ⊆ center M :=
+  SetLike.ext'_iff.trans Set.centralizer_eq_top_iff_subset
+
+variable (M)
+
+@[to_additive (attr := simp)]
+theorem centralizer_univ : centralizer Set.univ = center M :=
+  SetLike.ext' (Set.centralizer_univ M)
+
+@[to_additive]
+lemma le_centralizer_centralizer {s : Submonoid M} : s ≤ centralizer (centralizer (s : Set M)) :=
+  Set.subset_centralizer_centralizer
+
+@[to_additive (attr := simp)]
+lemma centralizer_centralizer_centralizer {s : Set M} :
+    centralizer s.centralizer.centralizer = centralizer s := by
+  apply SetLike.coe_injective
+  simp only [coe_centralizer, Set.centralizer_centralizer_centralizer]
+
+variable {M} in
+@[to_additive]
+lemma closure_le_centralizer_centralizer (s : Set M) :
+    closure s ≤ centralizer (centralizer s) :=
+  closure_le.mpr Set.subset_centralizer_centralizer
+
+/-- If all the elements of a set `s` commute, then `closure s` is a commutative monoid. -/
+@[to_additive
+      "If all the elements of a set `s` commute, then `closure s` forms an additive
+      commutative monoid."]
+abbrev closureCommMonoidOfComm {s : Set M} (hcomm : ∀ a ∈ s, ∀ b ∈ s, a * b = b * a) :
+    CommMonoid (closure s) :=
+  { (closure s).toMonoid with
+    mul_comm := fun ⟨_, h₁⟩ ⟨_, h₂⟩ ↦
+      have := closure_le_centralizer_centralizer s
+      Subtype.ext <| Set.centralizer_centralizer_comm_of_comm hcomm _ (this h₁) _ (this h₂) }
+
+end
+
+end Submonoid
+
+-- END Mathlib.GroupTheory.Submonoid.Centralizer --
+
+import Mathlib.Algebra.Group.Action.End
+import Mathlib.GroupTheory.Subgroup.Center
+import Mathlib.GroupTheory.Submonoid.Centralizer
+
+/-!
+# Centralizers of subgroups
+-/
+
+assert_not_exists MonoidWithZero
+
+variable {G G' : Type*} [Group G] [Group G']
+
+namespace Subgroup
+
+variable {H K : Subgroup G}
+
+/-- The `centralizer` of `s` is the subgroup of `g : G` commuting with every `h : s`. -/
+@[to_additive
+      "The `centralizer` of `s` is the additive subgroup of `g : G` commuting with every `h : s`."]
+def centralizer (s : Set G) : Subgroup G :=
+  { Submonoid.centralizer s with
+    carrier := Set.centralizer s
+    inv_mem' := Set.inv_mem_centralizer }
+
+@[to_additive]
+theorem mem_centralizer_iff {g : G} {s : Set G} : g ∈ centralizer s ↔ ∀ h ∈ s, h * g = g * h :=
+  Iff.rfl
+
+@[to_additive]
+theorem mem_centralizer_iff_commutator_eq_one {g : G} {s : Set G} :
+    g ∈ centralizer s ↔ ∀ h ∈ s, h * g * h⁻¹ * g⁻¹ = 1 := by
+

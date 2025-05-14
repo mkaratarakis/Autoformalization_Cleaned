@@ -1,0 +1,15 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:8:28: error: alternative 'zero' has not been provided
+tmp.lean:8:28: error: alternative 'succ' has not been provided
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
+  induction a using Nat.rec with

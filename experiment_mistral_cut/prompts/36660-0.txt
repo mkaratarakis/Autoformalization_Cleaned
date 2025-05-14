@@ -1,0 +1,222 @@
+
+1. **Informal Theorem**  
+Traverse on First Argument of Bitraversable Type with Pure Embedding : For any bitraversable type \( t \) and any lawful bitraversable instance, and for any types \( \alpha \), \( \alpha' \), and \( \beta \), if \( f : \alpha \to \alpha' \) is a function, then for any element \( x \) of type \( t \, \alpha \, \beta \), the following equality holds:
+\[
+\text{tfst}(\text{pure} \circ f)(x) = \text{pure}(\text{fst} \, f \, x)
+\]
+Here, \(\text{tfst}\) is the function that traverses the first functor argument of a bitraversable type, and \(\text{pure}\) is the function that embeds a value into a monadic context. The function \(\text{fst}\) applies the function \( f \) to the first type argument of a bifunctor while keeping the second type argument fixed.
+
+2. **Informal Proof**  
+To prove the equality \(\text{tfst}(\text{pure} \circ f)(x) = \text{pure}(\text{fst} \, f \, x)\), we use the theorem that for any bitraversable and lawful bitraversable type \( t \), and for any functions \( f : \alpha \to \alpha' \) and \( f' : \alpha' \to \beta' \), the `bitraverse` function applied to the pure embeddings of \( f \) and \( f' \) on an element \( x \) of type \( t \alpha \alpha' \) is equal to the pure embedding of the result of applying the `bimap` function to \( f \) and \( f' \) on \( x \). Specifically, we have:
+\[
+\text{bitraverse} (\text{pure} \circ f) (\text{pure} \circ \text{id}) x = \text{pure} (\text{bimap} f \, \text{id} \, x).
+\]
+Since \(\text{tfst}(\text{pure} \circ f)(x)\) is defined as \(\text{bitraverse} (\text{pure} \circ f) (\text{pure} \circ \text{id}) x\) and \(\text{bimap} f \, \text{id} \, x\) is equivalent to \(\text{fst} f x\), the theorem directly implies the desired equality:
+\[
+\text{tfst}(\text{pure} \circ f)(x) = \text{pure}(\text{fst} \, f \, x).
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {α α' β} (f : α → α') (x : t α β) :
+    tfst (F := Id) (pure ∘ f) x = pure (fst f x) := by sorry
+
+4. **Prefix**
+import Mathlib.Control.Bitraversable.Basic
+import Mathlib.Control.Bitraversable.Lemmas
+
+open Bitraversable
+variable {t : Type u → Type u → Type u} [Bitraversable t]
+variable {β : Type u}
+variable {β : Type u}
+open Functor LawfulApplicative
+variable {F G : Type u → Type u} [Applicative F] [Applicative G]
+variable [LawfulBitraversable t] [LawfulApplicative F] [LawfulApplicative G]
+open Bifunctor
+open Function
+
+example {α α' β} (f : α → α') (x : t α β) :
+    tfst (F := Id) (pure ∘ f) x = pure (fst f x) := by
+
+5. **Header Information**  
+-- BEGIN Mathlib.Control.Bitraversable.Basic --
+/-
+Copyright (c) 2018 Simon Hudon. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Simon Hudon
+-/
+import Mathlib.Control.Bifunctor
+import Mathlib.Control.Traversable.Basic
+
+/-!
+# Bitraversable type class
+
+Type class for traversing bifunctors.
+
+Simple examples of `Bitraversable` are `Prod` and `Sum`. A more elaborate example is
+to define an a-list as:
+
+```
+def AList (key val : Type) := List (key × val)
+```
+
+Then we can use `f : key → IO key'` and `g : val → IO val'` to manipulate the `AList`'s key
+and value respectively with `Bitraverse f g : AList key val → IO (AList key' val')`.
+
+## Main definitions
+
+* `Bitraversable`: Bare typeclass to hold the `Bitraverse` function.
+* `LawfulBitraversable`: Typeclass for the laws of the `Bitraverse` function. Similar to
+  `LawfulTraversable`.
+
+## References
+
+The concepts and laws are taken from
+<https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Bitraversable.html>
+
+## Tags
+
+traversable bitraversable iterator functor bifunctor applicative
+-/
+
+
+universe u
+
+/-- Lawless bitraversable bifunctor. This only holds data for the bimap and bitraverse. -/
+class Bitraversable (t : Type u → Type u → Type u) extends Bifunctor t where
+  bitraverse :
+    ∀ {m : Type u → Type u} [Applicative m] {α α' β β'},
+      (α → m α') → (β → m β') → t α β → m (t α' β')
+
+export Bitraversable (bitraverse)
+
+/-- A bitraversable functor commutes with all applicative functors. -/
+def bisequence {t m} [Bitraversable t] [Applicative m] {α β} : t (m α) (m β) → m (t α β) :=
+  bitraverse id id
+
+open Functor
+
+/-- Bifunctor. This typeclass asserts that a lawless bitraversable bifunctor is lawful. -/
+class LawfulBitraversable (t : Type u → Type u → Type u) [Bitraversable t] : Prop
+  extends LawfulBifunctor t where
+  -- Porting note: need to specify `m := Id` because `id` no longer has a `Monad` instance
+  id_bitraverse : ∀ {α β} (x : t α β), bitraverse (m := Id) pure pure x = pure x
+  comp_bitraverse :
+    ∀ {F G} [Applicative F] [Applicative G] [LawfulApplicative F] [LawfulApplicative G]
+      {α α' β β' γ γ'} (f : β → F γ) (f' : β' → F γ') (g : α → G β) (g' : α' → G β') (x : t α α'),
+      bitraverse (Comp.mk ∘ map f ∘ g) (Comp.mk ∘ map f' ∘ g') x =
+        Comp.mk (bitraverse f f' <$> bitraverse g g' x)
+  bitraverse_eq_bimap_id :
+    ∀ {α α' β β'} (f : α → β) (f' : α' → β') (x : t α α'),
+      bitraverse (m := Id) (pure ∘ f) (pure ∘ f') x = pure (bimap f f' x)
+  binaturality :
+    ∀ {F G} [Applicative F] [Applicative G] [LawfulApplicative F] [LawfulApplicative G]
+      (η : ApplicativeTransformation F G) {α α' β β'} (f : α → F β) (f' : α' → F β') (x : t α α'),
+      η (bitraverse f f' x) = bitraverse (@η _ ∘ f) (@η _ ∘ f') x
+
+export LawfulBitraversable (id_bitraverse comp_bitraverse bitraverse_eq_bimap_id)
+
+open LawfulBitraversable
+
+attribute [higher_order bitraverse_id_id] id_bitraverse
+
+attribute [higher_order bitraverse_comp] comp_bitraverse
+
+attribute [higher_order] binaturality bitraverse_eq_bimap_id
+
+export LawfulBitraversable (bitraverse_id_id bitraverse_comp)
+
+-- END Mathlib.Control.Bitraversable.Basic --
+
+import Mathlib.Control.Bitraversable.Basic
+
+/-!
+# Bitraversable Lemmas
+
+## Main definitions
+  * tfst - traverse on first functor argument
+  * tsnd - traverse on second functor argument
+
+## Lemmas
+
+Combination of
+  * bitraverse
+  * tfst
+  * tsnd
+
+with the applicatives `id` and `comp`
+
+## References
+
+ * Hackage: <https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-Bitraversable.html>
+
+## Tags
+
+traversable bitraversable functor bifunctor applicative
+
+
+-/
+
+
+universe u
+
+variable {t : Type u → Type u → Type u} [Bitraversable t]
+variable {β : Type u}
+
+namespace Bitraversable
+
+open Functor LawfulApplicative
+
+variable {F G : Type u → Type u} [Applicative F] [Applicative G]
+
+/-- traverse on the first functor argument -/
+abbrev tfst {α α'} (f : α → F α') : t α β → F (t α' β) :=
+  bitraverse f pure
+
+/-- traverse on the second functor argument -/
+abbrev tsnd {α α'} (f : α → F α') : t β α → F (t β α') :=
+  bitraverse pure f
+
+variable [LawfulBitraversable t] [LawfulApplicative F] [LawfulApplicative G]
+
+@[higher_order tfst_id]
+theorem id_tfst : ∀ {α β} (x : t α β), tfst (F := Id) pure x = pure x :=
+  id_bitraverse
+
+@[higher_order tsnd_id]
+theorem id_tsnd : ∀ {α β} (x : t α β), tsnd (F := Id) pure x = pure x :=
+  id_bitraverse
+
+@[higher_order tfst_comp_tfst]
+theorem comp_tfst {α₀ α₁ α₂ β} (f : α₀ → F α₁) (f' : α₁ → G α₂) (x : t α₀ β) :
+    Comp.mk (tfst f' <$> tfst f x) = tfst (Comp.mk ∘ map f' ∘ f) x := by
+  rw [← comp_bitraverse]
+  simp only [Function.comp_def, tfst, map_pure, Pure.pure]
+
+@[higher_order tfst_comp_tsnd]
+theorem tfst_tsnd {α₀ α₁ β₀ β₁} (f : α₀ → F α₁) (f' : β₀ → G β₁) (x : t α₀ β₀) :
+    Comp.mk (tfst f <$> tsnd f' x)
+      = bitraverse (Comp.mk ∘ pure ∘ f) (Comp.mk ∘ map pure ∘ f') x := by
+  rw [← comp_bitraverse]
+  simp only [Function.comp_def, map_pure]
+
+@[higher_order tsnd_comp_tfst]
+theorem tsnd_tfst {α₀ α₁ β₀ β₁} (f : α₀ → F α₁) (f' : β₀ → G β₁) (x : t α₀ β₀) :
+    Comp.mk (tsnd f' <$> tfst f x)
+      = bitraverse (Comp.mk ∘ map pure ∘ f) (Comp.mk ∘ pure ∘ f') x := by
+  rw [← comp_bitraverse]
+  simp only [Function.comp_def, map_pure]
+
+@[higher_order tsnd_comp_tsnd]
+theorem comp_tsnd {α β₀ β₁ β₂} (g : β₀ → F β₁) (g' : β₁ → G β₂) (x : t α β₀) :
+    Comp.mk (tsnd g' <$> tsnd g x) = tsnd (Comp.mk ∘ map g' ∘ g) x := by
+  rw [← comp_bitraverse]
+  simp only [Function.comp_def, map_pure]
+  rfl
+
+open Bifunctor Function
+
+@[higher_order]
+theorem tfst_eq_fst_id {α α' β} (f : α → α') (x : t α β) :
+    tfst (F := Id) (pure ∘ f) x = pure (fst f x) := by
+
