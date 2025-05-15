@@ -9,17 +9,16 @@ variable [NormedSpace ℝ E] {φ ψ : ℝ → ℝ} {s : Set E} {a b m : ℝ} {x 
 example (hf : UniformConvexOn s φ f) (hg : UniformConvexOn s ψ g) :
     UniformConvexOn s (φ + ψ) (f + g) := by
   constructor
-  · exact hf.1.add hg.1
-  · intros x hx y hy a b ha hb hab
-    specialize hf.2 hx hy ha hb hab
-    specialize hg.2 hx hy ha hb hab
-    calc
-      (f + g) (a • x + b • y) = f (a • x + b • y) + g (a • x + b • y) := rfl
-      _ ≤ a • f x + b • f y - a * b * φ ‖x - y‖ := hf.2 hx hy ha hb hab
-      _ ≤ a • f x + b • f y - a * b * φ ‖x - y‖ + (a • g x + b • g y - a * b * ψ ‖x - y‖) :=
-        (add_le_add (hf.2 hx hy ha hb hab) (hg.2 hx hy ha hb hab))
-      _ = a • (f x + g x) + b • (f y + g y) - a * b * (φ ‖x - y‖ + ψ ‖x - y‖) := by ring
-      _ = a • (f + g) x + b • (f + g) y - a * b * (φ + ψ) ‖x - y‖ := rfl
+  · exact hf.left
+  intros x hx y hy a b ha hb hab
+  calc
+    (f + g) (a • x + b • y) = f (a • x + b • y) + g (a • x + b • y) := rfl
+    _ ≤ a • f x + b • f y - a * b * φ ‖x - y‖ + (a • g x + b • g y - a * b * ψ ‖x - y‖) :=
+      add_le_add (hf.right hx hy ha hb hab) (hg.right hx hy ha hb hab)
+    _ = a • f x + b • f y + a • g x + b • g y - a * b * (φ ‖x - y‖ + ψ ‖x - y‖) := by ring
+    _ = a • (f x + g x) + b • (f y + g y) - a * b * (φ + ψ) ‖x - y‖ := by
+      rw [add_sub_assoc]
+      ring
 
 /- ACTUAL PROOF OF UniformConvexOn.add -/
 

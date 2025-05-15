@@ -8,9 +8,8 @@ variable {𝕜 𝕜': Type*} [NontriviallyNormedField 𝕜] [NontriviallyNormedF
   [NormedAlgebra 𝕜 𝕜']
 
 example (x : 𝕜) : logDeriv id x = 1 / x := by
-  unfold logDeriv
-  simp
-  exact (hasDerivAt_id x).deriv
+  rw [logDeriv_apply]
+  simp [deriv_id]
 
 /- ACTUAL PROOF OF logDeriv_id -/
 

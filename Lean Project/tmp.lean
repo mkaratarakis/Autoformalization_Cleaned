@@ -9,5 +9,5 @@ open Function Option
 
 example (f : α ≃. β) {a₁ a₂ : α} {b : β} (h₁ : b ∈ f a₁) (h₂ : b ∈ f a₂) :
     a₁ = a₂ := by
-  have h₁' : a₁ ∈ invFun f b := by
+  have h3 : a₁ ∈ f.symm b := by
   trace_state

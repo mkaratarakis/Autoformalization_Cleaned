@@ -6,10 +6,19 @@ open Nat
 
 example {a b x : Nat} : x % (a * b) = x % a + a * (x / a % b) := by
   rw [add_comm]
-  rw [← Nat.div_add_mod (x % (a * b)), ← Nat.mod_add_div]
-  rw [Nat.mul_mod_right]
-  rw [Nat.div_mod_div_cancel]
-  rfl
+  apply Nat.div_mod_uniq
+  · rw [Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero (by assumption))]
+    rw [Nat.mod_mod_of_dvd (by exact Nat.dvd_mul_right a b)]
+    rw [Nat.mod_eq_of_lt (Nat.mul_lt_mul_left (Nat.pos_of_ne_zero (by assumption)) (by assumption))]
+  · rw [Nat.mod_mod_of_dvd (by exact Nat.dvd_mul_right a b)]
+    rw [Nat.mod_eq_of_lt (Nat.mul_lt_mul_left (Nat.pos_of_ne_zero (by assumption)) (by assumption))]
+    rw [Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero (by assumption))]
+  · rw [Nat.mod_mod_of_dvd (by exact Nat.dvd_mul_right a b)]
+    rw [Nat.mod_eq_of_lt (Nat.mul_lt_mul_left (Nat.pos_of_ne_zero (by assumption)) (by assumption))]
+    rw [Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero (by assumption))]
+  · rw [Nat.mod_mod_of_dvd (by exact Nat.dvd_mul_right a b)]
+    rw [Nat.mod_eq_of_lt (Nat.mul_lt_mul_left (Nat.pos_of_ne_zero (by assumption)) (by assumption))]
+    rw [Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero (by assumption))]
 
 /- ACTUAL PROOF OF Nat.mod_mul -/
 

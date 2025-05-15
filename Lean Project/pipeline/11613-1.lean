@@ -11,11 +11,13 @@ variable {𝕜}
 
 example (hs : IsClosed ((↑) ⁻¹' s : Set <| affineSpan 𝕜 s)) :
     intrinsicClosure 𝕜 s = s := by
-  have h : (↑) '' ((↑) ⁻¹' s) = s := by
-    ext y
-    simp
-  rw [intrinsicClosure, ← h, hs.closure_eq]
-  simp
+  apply le_antisymm
+  · exact intrinsicClosure_subset 𝕜 s
+  · rw [intrinsicClosure, ← image_univ, ← image_preimage_eq_inter_range]
+    exact subset_preimage_image _ _
+    apply image_subset_range
+    rw [← @closure_minimal _ _ _ _ ((↑) ⁻¹' s) hs]
+    exact subset_closure
 
 /- ACTUAL PROOF OF IsClosed.intrinsicClosure -/
 

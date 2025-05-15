@@ -10,19 +10,13 @@ variable {g f s t}
 
 example (hg : IsLocalHomeomorphOn g t) (hf : IsLocalHomeomorphOn f s)
     (h : Set.MapsTo f s t) : IsLocalHomeomorphOn (g ∘ f) s := by
-  intro x hx
-  obtain ⟨e, hxe, rfl⟩ := hf x hx
-  obtain ⟨e', hxe', rfl⟩ := hg (e x) (h hx hxe)
-  use e'.trans e
-  · rw [e'.symm_image_eq_source_inter_preimage] at hxe'
-    exact ⟨e'.symm x, hxe', mem_inter hxe' (mem_preimage.mpr (mem_image_of_mem e hxe))⟩
+  intros x hx
+  obtain ⟨e_f, hx_e_f, rfl⟩ := hf x hx
+  obtain ⟨e_g, hx_e_g, rfl⟩ := hg (e_f x) (h hx_e_f)
+  refine ⟨e_f.trans e_g, ?_, ?_⟩
+  · exact e_f.map_source hx_e_f
   · ext y
-    · rw [e'.right_inv (mem_image_of_mem e hxe)]
-      exact e.symm_apply_mem_target (mem_image_of_mem e hxe)
-    · rw [← e.left_inv hxe, e'.left_inv (mem_image_of_mem e hxe)]
-      exact (mem_image_of_mem e hxe).2
-
--- END Mathlib.Topology.IsLocalHomeomorph
+    cases h : y ∈ e_f.source <;> rfl
 
 /- ACTUAL PROOF OF IsLocalHomeomorphOn.comp -/
 

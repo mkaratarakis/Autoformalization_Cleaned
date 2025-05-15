@@ -8,8 +8,15 @@ variable (l : List α) (x : α)
 example (y : α) (hxy : x ∈ y :: l) (hx : x = y) :
     prev (y :: l) x hxy = getLast (y :: l) (cons_ne_nil _ _) := by
   cases l
-  · simp [*, getLast_cons]
-  · simp [*, hx, prev, getLast_cons]
+  · simp [hx]
+  · simp [hx]
+    cases h : l
+    · simp
+    · simp [prev, hx]
+      congr
+      · rw [getLast_cons]
+        simp
+      · simp
 
 /- ACTUAL PROOF OF List.prev_getLast_cons' -/
 

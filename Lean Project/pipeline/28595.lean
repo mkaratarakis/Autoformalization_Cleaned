@@ -6,7 +6,9 @@ open LSeries
 
 example {f : ℕ → ℂ} {s a : ℂ} (hf : LSeriesHasSum f s a) :
     LSeriesHasSum (-f) s (-a) := by
-  apply LSeriesHasSum.neg hf
+  rw [LSeriesHasSum, HasSum] at hf ⊢
+  simp [term_neg]
+  exact hf.neg
 
 /- ACTUAL PROOF OF LSeriesHasSum.neg -/
 

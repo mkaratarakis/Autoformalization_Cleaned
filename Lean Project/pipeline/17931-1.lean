@@ -8,10 +8,8 @@ variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
 
 example (X : SimplicialObject A) :
     PInfty ≫ PInftyToNormalizedMooreComplex X = PInftyToNormalizedMooreComplex X := by
-  funext
-  dsimp [PInfty, PInftyToNormalizedMooreComplex]
-  rw [CategoryTheory.Functor.comp_map]
-  rfl
+  rw [← cancel_mono (NormalizedMooreComplex.objX X).arrow]
+  simp
 
 /- ACTUAL PROOF OF AlgebraicTopology.DoldKan.PInfty_comp_PInftyToNormalizedMooreComplex -/
 

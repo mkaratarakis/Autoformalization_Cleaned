@@ -11,13 +11,13 @@ example (hf : UniformConcaveOn s φ f) (hg : UniformConvexOn s ψ g) :
   constructor
   · exact hf.1
   · intros x hx y hy a b ha hb hab
+    have h1 : a • (f - g) x + b • (f - g) y + a * b * (φ + ψ) ‖x - y‖
+      = (a • f x + b • f y + a * b * φ ‖x - y‖) - (a • g x + b • g y)
     calc
       a • (f - g) x + b • (f - g) y + a * b * (φ + ψ) ‖x - y‖
-        = a • f x + b • f y - a • g x - b • g y + a * b * φ ‖x - y‖ + a * b * ψ ‖x - y‖ : by rw [sub_smul, sub_smul, Pi.sub_apply, Pi.sub_apply]
-      _ ≤ a • f x + b • f y - (a • g x + b • g y - a * b * ψ ‖x - y‖) + a * b * φ ‖x - y‖ : by exact add_le_add_left (hg.2 hx hy ha hb hab) _
-      _ = a • f x + b • f y - a • g x - b • g y + a * b * φ ‖x - y‖ : by rw [sub_sub, sub_eq_add_neg, add_comm]
-      _ ≤ f (a • x + b • y) - g (a • x + b • y) : by exact add_le_add_left (hf.2 hx hy ha hb hab) _
-      _ = (f - g) (a • x + b • y) : by rw [Pi.sub_apply, Pi.sub_apply]
+        = (a • f x + b • f y + a * b * φ ‖x - y‖) - (a • g x + b • g y) : by {simp [sub_smul, smul_sub]}
+      _ ≤ f (a • x + b • y) - (a • g x + b • g y + a * b * ψ ‖x - y‖) : by {apply hf.2 hx hy ha hb hab}
+      _ ≤ (f - g) (a • x + b • y) : by {apply hg.2 hx hy ha hb hab}
 
 /- ACTUAL PROOF OF UniformConcaveOn.sub -/
 

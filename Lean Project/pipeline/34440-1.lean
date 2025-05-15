@@ -11,7 +11,8 @@ variable {I J : Type u} (f : I → J)
 
 example (i : I) :
     sectionsMap (freeMap (R := R) f) (freeSection i) = freeSection (f i) := by
-  rw [sectionsMap_freeMap_freeSection]
+  rw [← freeHomEquiv_freeMap]
+  exact rfl
 
 /- ACTUAL PROOF OF SheafOfModules.sectionMap_freeMap_freeSection -/
 

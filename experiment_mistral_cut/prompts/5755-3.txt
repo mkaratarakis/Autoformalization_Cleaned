@@ -1,11 +1,23 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:21:0: error: unexpected end of input; expected ':='
-tmp.lean:20:6: error: unknown identifier 'trace_state'
-tmp.lean:20:6: error: invalid 'calc' step, left-hand side is
-  true : Bool
-but previous right-hand side is
-  (n - b) * m + b * (m + 1) : ℕ
+tmp.lean:23:5: error: unknown tactic
+tmp.lean:22:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  m
+case a
+α : Type u_1
+inst✝ : DecidableEq α
+s t : Finset α
+m✝ n a✝ b✝ : ℕ
+P : Finpartition s
+h : a✝ * m✝ + b✝ * (m✝ + 1) = #s
+hn : n ≠ 0
+hs : n ≤ #s
+hn0 h₁ : 0 < n
+m : ℕ := #s / n
+b : ℕ := #s % n
+a : ℕ := n - b
+hm_eq_zero : m = 0
+⊢ False
 tmp.lean:13:66: error: unsolved goals
 α : Type u_1
 inst✝ : DecidableEq α
@@ -15,10 +27,43 @@ P : Finpartition s
 h : a✝ * m✝ + b✝ * (m✝ + 1) = #s
 hn : n ≠ 0
 hs : n ≤ #s
+hn0 h₁ : 0 < n
 m : ℕ := #s / n
 b : ℕ := #s % n
 a : ℕ := n - b
-hc : a * m + b * (m + 1) = #s
+hm : 0 < m
+⊢ ∃ P, P.IsEquipartition ∧ #P.parts = n
+tmp.lean:22:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  m
+case a
+α : Type u_1
+inst✝ : DecidableEq α
+s t : Finset α
+m✝ n a✝ b✝ : ℕ
+P : Finpartition s
+h : a✝ * m✝ + b✝ * (m✝ + 1) = #s
+hn : n ≠ 0
+hs : n ≤ #s
+hn0 h₁ : 0 < n
+m : ℕ := #s / n
+b : ℕ := #s % n
+a : ℕ := n - b
+hm_eq_zero : m = 0
+⊢ False
+tmp.lean:13:66: error: unsolved goals
+α : Type u_1
+inst✝ : DecidableEq α
+s t : Finset α
+m✝ n a✝ b✝ : ℕ
+P : Finpartition s
+h : a✝ * m✝ + b✝ * (m✝ + 1) = #s
+hn : n ≠ 0
+hs : n ≤ #s
+hn0 h₁ : 0 < n
+m : ℕ := #s / n
+b : ℕ := #s % n
+a : ℕ := n - b
+hm : 0 < m
 ⊢ ∃ P, P.IsEquipartition ∧ #P.parts = n
 
 4. **New Prefix**  
@@ -36,9 +81,12 @@ variable (s)
 
 example (hn : n ≠ 0) (hs : n ≤ s.card) :
     ∃ P : Finpartition s, P.IsEquipartition ∧ P.parts.card = n := by
+  have hn0 : 0 < n := Nat.pos_of_ne_zero hn
+  have h₁ : 0 < n := hn0
   let m := s.card / n
   let b := s.card % n
   let a := n - b
-  have hc : a * m + b * (m + 1) = s.card := by
-    calc
-      a * m + b * (m + 1) = (n - b) * m + b * (m + 1) := by rw [a]
+  have hm : 0 < m := by
+    apply Nat.pos_of_ne_zero
+    intro hm_eq_zero
+    rw [hm_eq_zero] at h₁

@@ -5,8 +5,8 @@ open Bool
 
 
 example : ∀(a b : Bool), ((a && b) = b) ↔ (b → a) := by
-  intro a b
-  cases b <;> simp [and_eq_right_iff_imp]
+  intros a b
+  cases a <;> cases b <;> simp [and, implies]
 
 /- ACTUAL PROOF OF Bool.and_iff_right_iff_imp -/
 

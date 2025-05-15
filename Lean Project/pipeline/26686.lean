@@ -7,8 +7,7 @@ open NumberTheorySymbols
 
 example (a : ℤ) : J(a | 0) = 1 := by
   rw [jacobiSym]
-  simp only [primeFactorsList_zero, List.pmap, List.prod_nil]
-  exact one_zmod 1
+  simp only [Nat.primeFactorsList_zero, List.pmap, List.prod_nil]
 
 /- ACTUAL PROOF OF jacobiSym.zero_right -/
 

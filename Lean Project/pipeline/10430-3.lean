@@ -7,15 +7,10 @@ open scoped Topology BigOperators Classical
 variable {𝕜 𝕜': Type*} [NontriviallyNormedField 𝕜] [NontriviallyNormedField 𝕜']
   [NormedAlgebra 𝕜 𝕜']
 
-example (x : 𝕜) (n : ℤ) : logDeriv (· ^ n) x = n / x :=
-  if h : x = 0 then by simp [h]
-  else
-    if hn : n = 0 then by simp [hn]
-    else
-      calc
-        logDeriv (· ^ n) x = deriv (· ^ n) x / (x ^ n) := logDeriv_apply _ _
-        _ = ((n : 𝕜) * x ^ (n - 1)) / (x ^ n) := by rw [deriv_zpow]
-        _ = (n : 𝕜) / x := by field_simp [zpow_ne_zero h]
+example (x : 𝕜) (n : ℤ) : logDeriv (· ^ n) x = n / x := by
+  rw [logDeriv_apply]
+  convert (deriv_zpow n x).symm using 1
+  rw [mul_div_cancel_left _ (zpow_ne_zero _ (differentiableAt_zpow.mp (by simp [x.ne_zero_iff])))].
 
 /- ACTUAL PROOF OF logDeriv_zpow -/
 

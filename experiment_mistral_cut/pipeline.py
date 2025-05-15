@@ -297,6 +297,8 @@ def main():
 					os.path.join(PIPELINE_SAVE_DIR, f"{id_}-{attempt_num}.lean")
 				)
 
+				error_message = message
+
 				convo.pop()
 				convo.append({"role": "assistant", "content": proof})
  
@@ -328,7 +330,7 @@ def main():
 				else:
 					print("❌ Lean check FAILED. Error message:")
 					print(message)
-					error_message = message
+					error_message = error_message + "\n" + message
 
 					convo.append({"role": "user", "content": prompt_with_error(error_message, start)})
 					convo.append({"role": "assistant", "content": start, "prefix": True})

@@ -5,14 +5,11 @@ open Nat
 
 
 example ( a b : Nat) : a ≤ max a b := by
-
   by_cases h : a ≤ b
-
-  · simp [max_def, h]
-    exact h
-
-  · simp [max_def, h]
-    exact le_rfl
+  · rw [max_def]
+    simp [h]
+  · rw [max_def]
+    simp [h]
 
 /- ACTUAL PROOF OF Nat.le_max_left -/
 

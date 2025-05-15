@@ -5,12 +5,10 @@ open Cardinal
 open Cardinal
 
 example : lift.{v} 𝔠 = 𝔠 := by
-  rw [← two_power_aleph0]
-  rw [Cardinal.lift_pow]
+  rw [continuum]
+  rw [Cardinal.lift_power]
   rw [Cardinal.lift_aleph0]
-  rw [Cardinal.lift_two]
   rw [← two_power_aleph0]
-  rfl
 
 /- ACTUAL PROOF OF Cardinal.lift_continuum -/
 

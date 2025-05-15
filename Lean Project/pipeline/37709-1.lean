@@ -13,88 +13,43 @@ variable {𝕜}
 example (hf : HasFiniteFPowerSeriesAt f pf x n)
     (hg : HasFiniteFPowerSeriesAt g pg x m) :
     HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (max n m) := by
-  -- Let's denote the common radius of convergence by r.
-  let r := ENNReal.min (hasFiniteFPowerSeriesAt.radius hf) (hasFiniteFPowerSeriesAt.radius hg)
-  have hr1 : 0 < r :=
-  begin
-    apply lt_min,
-    { apply HasFiniteFPowerSeriesAt.radius_pos, exact hf, },
-    { apply HasFiniteFPowerSeriesAt.radius_pos, exact hg, },
-  end
-  have hr2 : 0 < r :=
-  begin
-    apply lt_min,
-    { apply HasFiniteFPowerSeriesAt.radius_pos, exact hf, },
-    { apply HasFiniteFPowerSeriesAt.radius_pos, exact hg, },
-  end
+  -- 1. **Existence of a Common Radius:**
+  rcases hf with ⟨r, hfr⟩
+  rcases hg with ⟨r', hgr⟩
+  use min r r'
+  constructor
 
-  -- Define the formal finite power series for f and g.
-  let pf_series := FormalMultilinearSeries.partialSum pf n
-  let pg_series := FormalMultilinearSeries.partialSum pg m
-
-  -- Define the formal finite power series for f + g.
-  let pfg_series := pf_series + pg_series
-
-  -- We need to show that the sum function f + g has a finite formal power series representation at x up to degree max n m.
-  have h : ∀ y ∈ EMetric.ball x r, HasSum (fun k => (pfg_series k) fun _ => y - x) ((f + g) y) :=
-  begin
-    intros y hy,
-    have hyf : ∀ k, 0 ≤ k → k ≤ n → (pf k) fun _ => y - x = (pf_series k) fun _ => y - x :=
-    begin
-      intros k hk hk',
-      rw [FormalMultilinearSeries.partialSum_apply],
-      simp only [Finset.sum_range_one, Finset.sum_range_succ, add_zero, Finset.mem_range],
-      apply Finset.sum_eq_single_of_mem,
-      { exact Finset.mem_range.mpr hk', },
-      { intros k' hk'',
-        simp only [Ne.def, not_false_iff, Finset.mem_range] at hk'',
-        exfalso,
-        apply hk,
-        exact le_of_lt hk'', },
-    end
-    have hyg : ∀ k, 0 ≤ k → k ≤ m → (pg k) fun _ => y - x = (pg_series k) fun _ => y - x :=
-    begin
-      intros k hk hk',
-      rw [FormalMultilinearSeries.partialSum_apply],
-      simp only [Finset.sum_range_one, Finset.sum_range_succ, add_zero, Finset.mem_range],
-      apply Finset.sum_eq_single_of_mem,
-      { exact Finset.mem_range.mpr hk', },
-      { intros k' hk'',
-        simp only [Ne.def, not_false_iff, Finset.mem_range] at hk'',
-        exfalso,
-        apply hk,
-        exact le_of_lt hk'', },
-    end
-    have hyfg : ∀ k, 0 ≤ k → k ≤ max n m → (pfg_series k) fun _ => y - x = (pf k + pg k) fun _ => y - x :=
-    begin
-      intros k hk hk',
-      rw [FormalMultilinearSeries.add_apply, pi_add_apply, hyf k hk (le_max_left n m ▸ hk'), hyg k hk (le_max_right n m ▸ hk')],
-    end
-    have hyf_sum : HasSum (fun k => (pf k) fun _ => y - x) (f y) :=
-    begin
-      apply HasFiniteFPowerSeriesAt.hasSum,
-      { exact hf, },
-      { exact hy, },
-    end
-    have hyg_sum : HasSum (fun k => (pg k) fun _ => y - x) (g y) :=
-    begin
-      apply HasFiniteFPowerSeriesAt.hasSum,
-      { exact hg, },
-      { exact hy, },
-    end
-    have hyfg_sum : HasSum (fun k => (pfg_series k) fun _ => y - x) ((f + g) y) :=
-    begin
-      apply HasSum.add hyf_sum hyg_sum,
-      { intros k hk,
-        rw [FormalMultilinearSeries.add_apply, pi_add_apply],
-        exact hyfg k hk (le_max_left n m ▸ hk), },
-      { exact (add_comm _ _).symm, },
-    end
-    exact hyfg_sum,
-  end
-
-  -- Conclude that f + g has a finite formal power series representation at x up to degree max n m.
-  exact ⟨r, hr1, hr2, h⟩
+  -- 2. **Sum of Finite Formal Power Series:**
+  unfold HasFiniteFPowerSeriesAt at hfr hgr ⊢
+  constructor
+  · exact ⟨
+    min_le_left _ _,
+    min_le_right _ _,
+    fun z hz => by
+      have hfr' : HasFiniteFPowerSeriesOnBall f pf x r := hf.1
+      have hgr' : HasFiniteFPowerSeriesOnBall g pg x r' := hg.1
+      have hz' : ∀ (z : E), z ∈ EMetric.ball (0 : E) (min r r') → z ∈ EMetric.ball (0 : E) r ∩ EMetric.ball (0 : E) r' := by
+        simp only [EMetric.mem_ball, edist_eq_enorm_sub, norm_zero, norm_nonneg]
+        intro z hz
+        exact ⟨hz, hz⟩
+      have hz'' : ∀ (z : E), z ∈ EMetric.ball (0 : E) (min r r') → z ∈ EMetric.ball (0 : E) r := by
+        intro z hz
+        exact (hz' z hz).1
+      have hz''' : ∀ (z : E), z ∈ EMetric.ball (0 : E) (min r r') → z ∈ EMetric.ball (0 : E) r' := by
+        intro z hz
+        exact (hz' z hz).2
+      have hfz : ∀ (z : E), z ∈ EMetric.ball (0 : E) (min r r') → HasSum (fun n : ℕ => pf n fun _ : Fin n => z) (f (x + z)) := by
+        intro z hz
+        exact hfr'.2.2 (hz'' z hz)
+      have hgz : ∀ (z : E), z ∈ EMetric.ball (0 : E) (min r r') → HasSum (fun n : ℕ => pg n fun _ : Fin n => z) (g (x + z)) := by
+        intro z hz
+        exact hgr'.2.2 (hz''' z hz)
+      have hfz_add_hgz : ∀ (z : E), z ∈ EMetric.ball (0 : E) (min r r') → HasSum (fun n : ℕ => (pf + pg) n fun _ : Fin n => z) (f (x + z) + g (x + z)) := by
+        intro z hz
+        apply HasSum.add
+        exact hfz z hz
+        exact hgz z hz
+      exact hfz_add_hgz z hz⟩
 
 /- ACTUAL PROOF OF HasFiniteFPowerSeriesAt.add -/
 

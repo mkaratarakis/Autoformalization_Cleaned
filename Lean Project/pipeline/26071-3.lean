@@ -9,11 +9,12 @@ open WithBot
 
 example {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by
   cases n
-  · exact bot_le
+  · simp
   cases m
-  · exact h
-  simp only [WithBot.coe_lt_coe, WithBot.coe_add, WithBot.coe_one, Nat.add_one_le_iff] at h
-  exact h
+  · exact False.elim (not_lt_bot _ h)
+  · rw [WithBot.coe_lt_coe] at h
+    rw [WithBot.coe_add, WithBot.coe_le_coe]
+    exact Nat.lt_add_one_iff.mp h
 
 /- ACTUAL PROOF OF Nat.WithBot.add_one_le_of_lt -/
 

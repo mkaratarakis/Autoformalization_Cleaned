@@ -5,21 +5,13 @@ open Nat
 
 
 example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
-  induction a using Nat.rec with
+  induction a using Nat.strong_induction_on with
   | zero =>
-    -- Base case: a = 0
-    -- The assumption 0 < 0 is false, so the implication is trivially true.
     simp
   | succ n ih =>
-    -- Inductive step: a = n + 1
-    -- We need to show (n + 1) * b < (n + 1) * c ↔ b < c
-    simp [Nat.succ_eq_add_one, Nat.add_mul, Nat.mul_add]
-    -- Now the goal is n * b + b < n * c + c ↔ b < c
-    apply ih
-    -- The inductive hypothesis gives us n * b < n * c ↔ b < c
-    -- Adding b to both sides preserves the inequality
-    simp [Nat.add_lt_add_iff_left]
-    -- The goal is now trivially true by the inductive hypothesis
+    simp at a0
+    cases a0
+    simp [Nat.mul_succ, Nat.add_lt_add_iff_left]
     exact ih
 
 /- ACTUAL PROOF OF Nat.mul_lt_mul_left -/

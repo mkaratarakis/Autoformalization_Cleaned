@@ -61,11 +61,10 @@ variable {𝕜' 𝔸 : Type*} [NormedField 𝕜'] [NormedRing 𝔸] [NormedAlgeb
 
 example (hc : HasStrictDerivAt c c' x) (hd : HasStrictDerivAt d d' x) :
     HasStrictDerivAt (fun y => c y * d y) (c' * d x + c x * d') x := by
-  rw [hasStrictFDerivAt_mul']
-  simp only [smul_eq_mul, mul_comm, mul_add]
-  apply HasStrictFDerivAt.congr_fderiv _
-  ext z
-  apply mul_comm
+  rw [isBoundedBilinearMap_smul.hasStrictFDerivAt (c x, d x)]
+  convert (HasStrictDerivAt.hasStrictFDerivAt hc).mul hd
+  ext
+  simp [ContinuousLinearMap.add_apply]
 
 /- ACTUAL PROOF OF HasStrictDerivAt.mul -/
 

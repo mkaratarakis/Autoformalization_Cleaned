@@ -11,23 +11,31 @@ variable (s)
 
 example (hn : n ≠ 0) (hs : n ≤ s.card) :
     ∃ P : Finpartition s, P.IsEquipartition ∧ P.parts.card = n := by
+  have hn0 : 0 < n := Nat.pos_of_ne_zero hn
+  have h₁ : 0 < n := hn0
   let m := s.card / n
   let b := s.card % n
   let a := n - b
-  have hc : a * m + b * (m + 1) = s.card := by
-    calc
-      a * m + b * (m + 1) = (n - b) * m + b * (m + 1) := by rw [a]
-      _ = n * m + b := by ring
-      _ = s.card := by rw [Nat.div_add_mod]
-  let P := (⊥ : Finpartition s).equitabilise hc
-  use P
+  have hm : 0 < m := by
+    apply Nat.pos_of_ne_zero
+    intro hm_eq_zero
+    rw [hm_eq_zero] at h₁
+    exact Nat.not_le_of_gt h₁ (Nat.le_of_lt_succ (Nat.mod_lt _ hn0))
+  have hb : b < n := Nat.mod_lt _ hn
+  have ha : a + b = n := by
+    rw [a, add_tsub_cancel_of_le (Nat.mod_le _ _)]
+  have hs_card : a * m + b * (m + 1) = s.card := by
+    rw [a, Nat.sub_add_cancel (Nat.le_of_lt_succ h₁)]
+    exact (Nat.mul_add_mul_left_cancel (Nat.pos_of_ne_zero hn) (s.card % n) m).symm
+  obtain ⟨Q, hQ⟩ := equitabilise_aux hs_card
+  exists Q
   constructor
-  · apply Finpartition.IsEquipartition.mk
-    · exact P.parts.card_eq_of_equitabilise hc
-    · exact P.parts.card_eq_of_equitabilise hc
-  · calc
-      P.parts.card = a + b := by rw [Finpartition.card_parts_equitabilise]
-      _ = n := by rw [a, add_comm, Nat.sub_add_cancel]
+  · exact fun p hp ↦ Or.inl (hQ.1 p hp)
+  · have h₂ : Q.parts.card = a + b := by
+      rw [← Nat.add_sub_of_le (Nat.le_add_right a b)]
+      exact hQ.2.2
+    rw [h₂]
+    exact ha
 
 /- ACTUAL PROOF OF Finpartition.exists_equipartition_card_eq -/
 

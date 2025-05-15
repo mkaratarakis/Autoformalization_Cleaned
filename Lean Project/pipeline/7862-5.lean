@@ -5,12 +5,12 @@ open Nat
 
 
 example (n k m : ℕ) : dist (n * k) (m * k) = dist n m * k := by
-  rw [dist]
-  rw [dist]
-  rw [mul_sub_left_distrib, mul_sub_left_distrib]
-  rw [add_mul]
-  rw [mul_add]
-  rw [←mul_add]
+  rw [dist, dist]
+  rw [Nat.sub_eq_add_neg, Nat.sub_eq_add_neg, Nat.sub_eq_add_neg, Nat.sub_eq_add_neg]
+  rw [Nat.mul_add, Nat.mul_add, Nat.mul_neg, Nat.mul_neg]
+  rw [←Nat.add_assoc, ←Nat.add_assoc, Nat.add_comm (m * k), Nat.add_comm (n * k)]
+  rw [Nat.add_assoc, Nat.add_assoc, Nat.add_comm (m * k), Nat.add_comm (n * k)]
+  rw [Nat.mul_add]
   rfl
 
 /- ACTUAL PROOF OF Nat.dist_mul_right -/

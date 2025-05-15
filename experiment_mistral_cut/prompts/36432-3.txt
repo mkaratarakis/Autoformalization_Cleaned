@@ -1,6 +1,19 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:10:24: error: unsolved goals
+tmp.lean:13:8: error: tactic 'rewrite' failed, motive is not type correct:
+  fun _a => ∀ (Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
+Error: application type mismatch
+  Eq (Φ.map f)
+argument
+  Φ.map f
+has type
+  Φ.obj X ⟶ Φ.obj Y : Sort u_5
+but is expected to have type
+  _a X ⟶ _a Y : Sort u_5
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
 case h_map
 V : Type u_1
 inst✝¹ : Quiver V
@@ -14,8 +27,41 @@ h : ∀ (x : V), φ.obj x = τ (σ x)
 Φ : Push σ ⥤q W'
 Φ₀ : Φ.obj = τ
 Φcomp : of σ ⋙q Φ = φ
-⊢ ∀ (X Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
-
+X : Push σ
+⊢ ∀ (Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
+tmp.lean:14:13: error: tactic 'introN' failed, insufficient number of binders
+case h_obj
+V : Type u_1
+inst✝¹ : Quiver V
+W : Type u_2
+σ : V → W
+W' : Type u_3
+inst✝ : Quiver W'
+φ : V ⥤q W'
+τ : W → W'
+h : ∀ (x : V), φ.obj x = τ (σ x)
+Φ : Push σ ⥤q W'
+Φ₀ : Φ.obj = τ
+Φcomp : of σ ⋙q Φ = φ
+X : Push σ
+⊢ Φ.obj X = (lift σ φ τ h).obj X
+tmp.lean:12:2: error: unsolved goals
+case h_map
+V : Type u_1
+inst✝¹ : Quiver V
+W : Type u_2
+σ : V → W
+W' : Type u_3
+inst✝ : Quiver W'
+φ : V ⥤q W'
+τ : W → W'
+h : ∀ (x : V), φ.obj x = τ (σ x)
+Φ : Push σ ⥤q W'
+Φ₀ : Φ.obj = τ
+Φcomp : of σ ⋙q Φ = φ
+X : Push σ
+⊢ ∀ (Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
+tmp.lean:10:24: error: unsolved goals
 case h_obj
 V : Type u_1
 inst✝¹ : Quiver V
@@ -30,21 +76,6 @@ h : ∀ (x : V), φ.obj x = τ (σ x)
 Φ₀ : Φ.obj = τ
 Φcomp : of σ ⋙q Φ = φ
 ⊢ ∀ (X : Push σ), Φ.obj X = (lift σ φ τ h).obj X
-case h_map
-V : Type u_1
-inst✝¹ : Quiver V
-W : Type u_2
-σ : V → W
-W' : Type u_3
-inst✝ : Quiver W'
-φ : V ⥤q W'
-τ : W → W'
-h : ∀ (x : V), φ.obj x = τ (σ x)
-Φ : Push σ ⥤q W'
-Φ₀ : Φ.obj = τ
-Φcomp : of σ ⋙q Φ = φ
-⊢ ∀ (X Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
-
 case h_obj
 V : Type u_1
 inst✝¹ : Quiver V
@@ -73,3 +104,4 @@ variable {W' : Type*} [Quiver W'] (φ : V ⥤q W') (τ : W → W') (h : ∀ x, �
 example (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
     Φ = lift σ φ τ h := by
   apply Prefunctor.ext
+  · rintro X

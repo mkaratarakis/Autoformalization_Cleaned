@@ -10,14 +10,19 @@ open MvFunctor (LiftP LiftR)
 
 example {α : TypeVec n} (x : F α) (i) (u : α i) :
     u ∈ supp x i ↔ ∀ a f, abs ⟨a, f⟩ = x → u ∈ f i '' univ := by
+  unfold supp
   constructor
-  · intro huf
-    intros a f hx
-    rw [supp_eq] at huf
-    exact huf a f hx
-  · intro h
-    rw [supp_eq]
-    exact h _ _ rfl
+  · intro h a f hab
+    apply h
+    · use a, f
+      exact hab
+    · intro j
+      exact mem_image_of_mem _ (mem_univ _)
+  · intro h P hx
+    apply hx
+    · exact h _ _ _
+    · intro i j
+      exact (h _ _ _).2
 
 /- ACTUAL PROOF OF MvQPF.mem_supp -/
 

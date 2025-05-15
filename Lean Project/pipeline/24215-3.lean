@@ -7,12 +7,15 @@ open scoped UpperHalfPlane Topology
 
 example (z : ℂ) :
     cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by
-  rw [cot_eq_ratio]
-  simp only [sin_eq_exp, cos_eq_exp]
+  have h1 : exp (z * I) + exp (-z * I) = exp (-z * I) * (exp (2 * I * z) + 1) := by
+    rw [Complex.exp_add, Complex.exp_neg, Complex.exp_add, ←mul_assoc]
+    ring
+  have h2 : (exp (-z * I) - exp (z * I)) * I = exp (-z * I) * (I * (1 - exp (2 * I * z))) := by
+    rw [Complex.exp_add, Complex.exp_neg, Complex.exp_add, ←mul_assoc]
+    ring
+  rw [cot_def, sin_eq_of_real, cos_eq_of_real, h1, h2]
   field_simp
-  ring_nf
-  rw [div_eq_mul_inv, mul_assoc, ← mul_div_assoc, div_self (ne_of_gt (norm_pos_iff.2 (Complex.exp_pos _).ne'))]
-  simp
+  ring
 
 /- ACTUAL PROOF OF Complex.cot_eq_exp_ratio -/
 

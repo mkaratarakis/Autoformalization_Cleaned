@@ -8,8 +8,16 @@ variable {𝕜 𝕜': Type*} [NontriviallyNormedField 𝕜] [NontriviallyNormedF
   [NormedAlgebra 𝕜 𝕜']
 
 example (x : 𝕜) (n : ℤ) : logDeriv (· ^ n) x = n / x := by
-  rw [logDeriv_fun_zpow differentiableAt_id]
-  simp [logDeriv_id]
+  rw [logDeriv_apply]
+  convert (deriv_zpow n x).symm using 1
+  rw [mul_div_cancel_left _ (zpow_ne_zero _ (mt differentiableAt_zpow.1 (by simp [x.ne_zero_iff])))]
+
+variable (n : ℤ) (x : 𝕜)
+
+example : logDeriv (· ^ n) x = n / x := by
+  rw [logDeriv_apply]
+  convert (deriv_zpow n x).symm using 1
+  rw [mul_div_cancel_left _ (zpow_ne_zero _ (mt differentiableAt_zpow.1 (by simp [x.ne_zero_iff])))]
 
 /- ACTUAL PROOF OF logDeriv_zpow -/
 

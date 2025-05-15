@@ -11,12 +11,11 @@ variable (M)
 example (x : List α) : M.evalFrom ∅ x = ∅ := by
   induction x with
   | nil =>
-    rw [evalFrom]
-    rw [εClosure_empty]
+    rw [evalFrom_nil]
+    exact εClosure_empty
   | cons a x ih =>
-    rw [evalFrom]
-    rw [ih]
-    rw [stepSet_empty]
+    rw [evalFrom_append_singleton]
+    exact stepSet_empty _
 
 /- ACTUAL PROOF OF εNFA.evalFrom_empty -/
 

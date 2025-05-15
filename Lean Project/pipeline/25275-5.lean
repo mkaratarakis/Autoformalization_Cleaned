@@ -5,15 +5,18 @@ open Bool
 
 
 example : {b : Bool} → b ≠ false ↔ b = true := by
-  intro b
-  constructor
-  · intro h
-    by_cases hb : b = true
-    · exact hb
-    · have : b = false := by simpa [hb] using eq_false_or_eq_true b
+  intro h
+  apply Iff.intro
+  · intro hb
+    by_cases hb' : h = true
+    · exact hb'
+    · have hb'' : h = false := by
+        cases h
+        · contradiction
+        · exact rfl
       contradiction
-  · intro h
-    rw [h]
+  · intro hb
+    rw [hb]
     exact false_ne_true
 
 /- ACTUAL PROOF OF Bool.ne_false_iff -/

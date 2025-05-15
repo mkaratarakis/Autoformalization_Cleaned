@@ -9,18 +9,16 @@ variable [CovariantClass α α (· * ·) (· ≤ ·)] [CovariantClass α α (swa
 
 example 
     {a : α} (ha : 1 ≤ a ^ 2) : 1 ≤ a := by
-  have h : (a ⊓ 1) * (a ⊓ 1) = a ⊓ 1 := by
-    calc
-      (a ⊓ 1) * (a ⊓ 1)
-        = (a * a) ⊓ (1 * a) ⊓ (a ⊓ 1) := by rw [inf_mul, inf_mul, mul_assoc]
-      ... = a ^ 2 ⊓ a ⊓ (a ⊓ 1) := by rw [sq, one_mul]
-      ... = a ⊓ (1 ⊓ a ^ 2) := by rw [inf_assoc, inf_comm]
-      ... = a ⊓ 1 := by rw [ha, inf_idem]
-  exact le_of_eq h
+  rw [← one_mul (a ⊓ 1), ← one_mul (a ⊓ 1), ← mul_assoc, ← mul_assoc]
+  apply le_of_eq
+  calc
+    (a ⊓ 1) * (a ⊓ 1) = a * (a ⊓ 1) ⊓ 1 * (a ⊓ 1) := by rw [mul_inf]
+    _ = a * (a ⊓ 1) ⊓ (1 * a ⊓ 1 * 1) := by rw [mul_one]
+    _ = a * (a ⊓ 1) ⊓ (a ⊓ 1) := by rw [one_mul]
+    _ = a ⊓ (a ⊓ 1) := by rw [mul_inf, inf_idem]
+    _ = a ⊓ 1 := by rw [inf_idem]
 
-6. **Error Message and Proof State**
-
-None
+  exact le_of_eq this
 
 /- ACTUAL PROOF OF pow_two_semiclosed -/
 

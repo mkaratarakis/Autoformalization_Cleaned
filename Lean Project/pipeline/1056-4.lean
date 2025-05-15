@@ -11,18 +11,11 @@ example
     {a : α} (ha : 1 ≤ a ^ 2) : 1 ≤ a := by
   have h : (a ⊓ 1) * (a ⊓ 1) = a ⊓ 1 := by
     calc
-      (a ⊓ 1) * (a ⊓ 1)
-        = (a * (a ⊓ 1)) ⊓ (1 * (a ⊓ 1)) := by rw [mul_inf, mul_inf]
-      ... = (a * a ⊓ a * 1) ⊓ (1 * a ⊓ 1 * 1) := by rw [mul_inf, mul_inf, one_mul]
-      ... = (a ^ 2 ⊓ a) ⊓ (a ⊓ 1) := by rw [sq, one_mul]
-      ... = a ⊓ (1 ⊓ a ^ 2) := by rw [inf_left_comm, inf_assoc]
-      ... = a ⊓ 1 := by rw [ha, inf_idem]
-  have : a ⊓ 1 = 1 := by
-    apply le_antisymm
-    · exact inf_le_right
-    · rw [h]
-      apply le_inf (le_inf (le_of_mul_le_one_right ha) le_rfl) le_rfl
-  exact this
+      (a ⊓ 1) * (a ⊓ 1) = a * (a ⊓ 1) ⊓ (a ⊓ 1) := by rw [mul_inf, inf_assoc, mul_one]
+      _ = a ⊓ (a ⊓ (a * a)) := by rw [mul_inf, mul_inf, pow_two, inf_assoc]
+      _ = a ⊓ (a ⊓ a ^ 2) := by rw [inf_assoc]
+      _ = a ⊓ 1 := by rw [inf_of_le_right ha, inf_idem]
+  exact le_of_eq h
 
 /- ACTUAL PROOF OF pow_two_semiclosed -/
 

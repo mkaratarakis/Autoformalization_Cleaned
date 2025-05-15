@@ -1,26 +1,19 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:9:2: error: unsolved goals
-case pos
-a b : Nat
-h : a ≤ b
-h' : b ≤ a
-⊢ max a b = max b a
-
+tmp.lean:16:51: error: application type mismatch
+  Nat.not_le_of_lt (Nat.lt_of_not_ge h₂) h₁
+argument
+  h₁
+has type
+  ¬a ≤ b : Prop
+but is expected to have type
+  b ≤ a : Prop
+tmp.lean:15:4: error: unsolved goals
 case neg
 a b : Nat
-h : a ≤ b
-h' : ¬b ≤ a
-⊢ max a b = max b a
-tmp.lean:7:43: error: unsolved goals
-case neg
-a b : Nat
-h : ¬a ≤ b
-⊢ max a b = max b a
-case neg
-a b : Nat
-h : ¬a ≤ b
-⊢ max a b = max b a
+h₁ : ¬a ≤ b
+h₂ : ¬b ≤ a
+⊢ False
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -31,5 +24,11 @@ open Nat
 
 
 example (a b : Nat) : max a b = max b a := by
-  by_cases h : a ≤ b
-  · by_cases h' : b ≤ a
+  by_cases h₁ : a ≤ b
+  · by_cases h₂ : b ≤ a
+    · have : a = b := Nat.le_antisymm h₁ h₂
+      simp [Nat.max_def, h₁, h₂, this]
+    · simp [Nat.max_def, h₁, h₂]
+  · by_cases h₂ : b ≤ a
+    · simp [Nat.max_def, h₁, h₂]
+    · exfalso

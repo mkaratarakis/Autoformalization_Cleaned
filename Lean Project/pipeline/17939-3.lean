@@ -9,14 +9,14 @@ variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
 example (X : SimplicialObject A) :
     inclusionOfMooreComplexMap X ≫ PInfty = inclusionOfMooreComplexMap X := by
   ext n
+  dsimp [inclusionOfMooreComplexMap, PInfty]
+  cases n
   · -- Component at degree 0
-    simp only [inclusionOfMooreComplexMap_f_0, PInfty_f_0, comp_id]
-  · -- Component at degree n + 1
-    simp only [inclusionOfMooreComplexMap_f_succ, PInfty_f_succ]
-    dsimp
-    simp only [HigherFacesVanish.inclusionOfMooreComplexMap, factorThru_arrow]
-    rw [← cancel_mono (NormalizedMooreComplex.objX X n).arrow]
     simp
+  · -- Component at degree n + 1
+    simp
+    rw [← Category.id_comp (inclusionOfMooreComplexMap X).f (n + 1)]
+    exact HigherFacesVanish.inclusionOfMooreComplexMap _ _
 
 /- ACTUAL PROOF OF AlgebraicTopology.DoldKan.inclusionOfMooreComplexMap_comp_PInfty -/
 

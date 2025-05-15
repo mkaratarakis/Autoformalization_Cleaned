@@ -11,11 +11,12 @@ example (hf : UniformConcaveOn s φ f) (hg : UniformConvexOn s ψ g) :
   constructor
   · exact hf.1
   · intros x hx y hy a b ha hb hab
+    rw [sub_smul, smul_sub]
     calc
-      a • (f - g) x + b • (f - g) y + a * b * (φ + ψ) ‖x - y‖
-        = a • f x + b • f y - (a • g x + b • g y) + a * b * φ ‖x - y‖ + a * b * ψ ‖x - y‖ : by rw [sub_smul, sub_smul, add_comm (a * b * ψ ‖x - y‖)]
-      _ ≤ f (a • x + b • y) - g (a • x + b • y) : by gcongr; exact (hf.2 hx hy ha hb hab).trans (hg.2 hx hy ha hb hab)
-      _ = (f - g) (a • x + b • y) : by rw [Pi.sub_apply, Pi.sub_apply]
+      a • (f x - g x) + b • (f y - g y) + a * b * (φ + ψ) ‖x - y‖
+        = (a • f x + b • f y + a * b * φ ‖x - y‖) - (a • g x + b • g y) : by ring
+      _ ≤ f (a • x + b • y) - (a • g x + b • g y + a * b * ψ ‖x - y‖) : by apply hf.2 hx hy ha hb hab
+      _ ≤ (f - g) (a • x + b • y) : by apply hg.2 hx hy ha hb hab
 
 /- ACTUAL PROOF OF UniformConcaveOn.sub -/
 

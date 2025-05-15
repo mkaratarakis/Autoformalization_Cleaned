@@ -6,8 +6,13 @@ open Bool
 
 example (b : Bool) : (false = b) = (b = false) := by
   cases b
-  · rfl
-  · rw [false_ne_true, ne_comm]
+  · -- Case: b = false
+    rfl
+  · -- Case: b = true
+    show false = true = true = false
+    rw [false_ne_true]
+    rw [false_ne_true]
+    rfl
 
 /- ACTUAL PROOF OF Bool.false_eq -/
 

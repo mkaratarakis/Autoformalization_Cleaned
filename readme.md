@@ -10,7 +10,7 @@ This repository contains the data and scripts used for our Lean formalization pi
 
 * **Lean Project/**: Local Lean 4 project environment for running `lake` and verifying generated proofs.
 
-* **experiment\_header\_contents\_5\_iterations/**: Results from a 5-iteration experiment run:
+* **eexperiment\_mistral\_baseline/**: Results from a baseline experiment run:
 
    * **pipeline.py**: Main orchestration script. Reads `dataset.csv`, generates proof attempts via the Mistral model, saves prompts and results, and performs local Lean checks.
    * **system.md**: The system prompt used for the pipeline, defining the assistant’s role and instructions.
@@ -19,7 +19,10 @@ This repository contains the data and scripts used for our Lean formalization pi
    * **mistral\_generation\_results.csv**: Boolean success flag for each sample ("yes" or "no").
    * **pipeline\_state.json**: Checkpoint file tracking processed IDs, success count, and total count for resuming interrupted runs.
 
-* **experiment\_baseline/**: Results from a 5-iteration experiment run:
+* **experiment\_mistral\_header\_contents\_5\_iterations/**: Results from another run:
+   Same as above.
+
+* **experiment\_mistral\_cut/**: Results from another run:
    Same as above.
 
 

@@ -1,5 +1,13 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:16:4: error: 'calc' expression has type
+  (a • (f + g) x + b • (f + g) y + a * b * (φ + ψ) ‖x - y‖ =
+      a • f x + b • f y + a * b * φ ‖x - y‖ + (a • g x + b • g y + a * b * ψ ‖x - y‖)) =
+    (a • (f + g) x + b • (f + g) y + a * b * (φ + ψ) ‖x - y‖ =
+      a • f x + b • f y + a * b * φ ‖x - y‖ + (a • g x + b • g y + a * b * ψ ‖x - y‖)) : Prop
+but is expected to have type
+  a • (f + g) x + b • (f + g) y + a * b * (φ + ψ) ‖x - y‖ ≤ (f + g) (a • x + b • y) : Prop
+tmp.lean:18:90: error: unexpected token ':'; expected command
 tmp.lean:13:2: error: unsolved goals
 case right
 E : Type u_1
@@ -20,6 +28,30 @@ a b : ℝ
 ha : 0 ≤ a
 hb : 0 ≤ b
 hab : a + b = 1
+h1 : a • f x + b • f y + a * b * φ ‖x - y‖ ≤ f (a • x + b • y)
+h2 : a • g x + b • g y + a * b * ψ ‖x - y‖ ≤ g (a • x + b • y)
+⊢ a • (f + g) x + b • (f + g) y + a * b * (φ + ψ) ‖x - y‖ ≤ (f + g) (a • x + b • y)
+case right
+E : Type u_1
+inst✝¹ : NormedAddCommGroup E
+inst✝ : NormedSpace ℝ E
+φ ψ : ℝ → ℝ
+s : Set E
+a✝ b✝ m : ℝ
+x✝ y✝ : E
+f g : E → ℝ
+hf : UniformConcaveOn s φ f
+hg : UniformConcaveOn s ψ g
+x : E
+hx : x ∈ s
+y : E
+hy : y ∈ s
+a b : ℝ
+ha : 0 ≤ a
+hb : 0 ≤ b
+hab : a + b = 1
+h1 : a • f x + b • f y + a * b * φ ‖x - y‖ ≤ f (a • x + b • y)
+h2 : a • g x + b • g y + a * b * ψ ‖x - y‖ ≤ g (a • x + b • y)
 ⊢ a • (f + g) x + b • (f + g) y + a * b * (φ + ψ) ‖x - y‖ ≤ (f + g) (a • x + b • y)
 
 4. **New Prefix**  
@@ -37,3 +69,5 @@ example (hf : UniformConcaveOn s φ f) (hg : UniformConcaveOn s ψ g) :
   constructor
   · exact hf.1
   · intros x hx y hy a b ha hb hab
+    have h1 : a • f x + b • f y + a * b * φ ‖x - y‖ ≤ f (a • x + b • y) := hf.2 hx hy ha hb hab
+    have h2 : a • g x + b • g y + a * b * ψ ‖x - y‖ ≤ g (a • x + b • y) := hg.2 hx hy ha hb hab

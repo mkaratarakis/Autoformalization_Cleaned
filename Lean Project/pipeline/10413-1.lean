@@ -8,9 +8,10 @@ variable {𝕜 𝕜': Type*} [NontriviallyNormedField 𝕜] [NontriviallyNormedF
   [NormedAlgebra 𝕜 𝕜']
 
 example (a : 𝕜') : logDeriv (fun _ : 𝕜 ↦ a) = 0 := by
-  have : deriv (fun _ : 𝕜 ↦ a) = 0 := by
-    simp only [deriv_const]
-  simp only [logDeriv, this, div_zero]
+  intro x
+  rw [logDeriv_apply]
+  simp [deriv_const]
+  rw [zero_div]
 
 /- ACTUAL PROOF OF logDeriv_const -/
 

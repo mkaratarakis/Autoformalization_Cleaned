@@ -1,0 +1,30 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:11:6: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ?a ^ 2
+m n : ℕ
+hm : Odd m
+hn : Odd n
+⊢ J(χ₄ ↑m | n) = J(χ₄ ↑n | m)
+tmp.lean:9:73: error: unsolved goals
+m n : ℕ
+hm : Odd m
+hn : Odd n
+⊢ J(χ₄ ↑m | n) = J(χ₄ ↑n | m)
+m n : ℕ
+hm : Odd m
+hn : Odd n
+⊢ J(χ₄ ↑m | n) = J(χ₄ ↑n | m)
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+
+open qrSign
+open Nat ZMod
+open NumberTheorySymbols
+open jacobiSym
+
+example {m n : ℕ} (hm : Odd m) (hn : Odd n) : qrSign m n = qrSign n m := by
+  rw [qrSign, qrSign]

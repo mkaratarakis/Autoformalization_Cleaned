@@ -11,11 +11,13 @@ example (hf : UniformConcaveOn s φ f) (hg : UniformConcaveOn s ψ g) :
   constructor
   · exact hf.1
   · intros x hx y hy a b ha hb hab
-    specialize hf.2 hx hy ha.le hb.le hab
-    specialize hg.2 hx hy ha.le hb.le hab
-    rw [add_mul, add_mul, ←add_assoc, ←add_assoc (a • f x), ←add_assoc (b • f y),
-      ←add_assoc (a * b * (φ ‖x - y‖))]
-    exact add_le_add hf.2 hg.2
+    have h1 : a • f x + b • f y + a * b * φ ‖x - y‖ ≤ f (a • x + b • y) := hf.2 hx hy ha hb hab
+    have h2 : a • g x + b • g y + a * b * ψ ‖x - y‖ ≤ g (a • x + b • y) := hg.2 hx hy ha hb hab
+    calc
+      a • (f + g) x + b • (f + g) y + a * b * (φ + ψ) ‖x - y‖
+        = a • f x + b • f y + a * b * φ ‖x - y‖ + (a • g x + b • g y + a * b * ψ ‖x - y‖) : by ring
+      _ ≤ f (a • x + b • y) + g (a • x + b • y) : by linarith [h1, h2]
+      _ = (f + g) (a • x + b • y) : rfl
 
 /- ACTUAL PROOF OF UniformConcaveOn.add -/
 

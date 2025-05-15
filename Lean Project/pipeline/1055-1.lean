@@ -9,13 +9,18 @@ variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Optio
 example {c : γ} : c ∈ map₂ f a b ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by
   constructor
   · intro h
-    rcases a with (⟨a'⟩ | none)
-    · rcases b with (⟨b'⟩ | none)
-      · exact ⟨a', b', rfl, rfl, rfl⟩
-      · contradiction
+    cases a
     · contradiction
-  · rintro ⟨a', b', ha', hb', rfl⟩
-    exact mem_of_mem_some ⟨_, ha', hb'⟩
+    · cases b
+      · contradiction
+      · existsi a_a, a_b
+        simp [h]
+  · rintro ⟨a', a'_mem, b', b'_mem, rfl⟩
+    cases a
+    · contradiction
+    · cases b
+      · contradiction
+      · simp [a'_mem, b'_mem]
 
 /- ACTUAL PROOF OF Option.mem_map₂_iff -/
 

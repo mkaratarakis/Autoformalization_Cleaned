@@ -8,22 +8,23 @@ variable {p : ℕ} [Fact p.Prime]
 open ZMod
 
 example (hp : p ≠ 2) : IsSquare (-2 : ZMod p) ↔ p % 8 = 1 ∨ p % 8 = 3 := by
-  have hp_odd : 2 < p := by
-    apply lt_of_ne_of_le
-    · intro h
-      rw [h] at hp
-      exact hp rfl
-    · exact two_le_of_ne_two_of_prime (Ne.symm hp) (Fact.out p.Prime)
-  rw [FiniteField.isSquare_neg_two_iff]
-  rw [not_and_or]
-  rw [not_not]
-  rw [Ne.def]
-  rw [Ne.def]
+  rw [← FiniteField.isSquare_neg_two_iff]
+  simp only [card p]
+  rw [← not_iff_not]
   push_neg
-  rw [or_and_distrib_right]
-  rw [and_self_iff]
-  rw [or_false_iff]
-  exact Iff.rfl
+  rw [← not_or_distrib]
+  push_neg
+  rw [← not_or_distrib]
+  push_neg
+  rw [← Nat.Prime.ne_two_iff_even]
+  · simp only [Ne.def, Nat.even_iff, not_or, Nat.Prime.mod_two_ne_zero hp]
+  · rw [← Nat.odd_iff_not_even]
+    simp only [Nat.odd_iff_mod_two_eq_one]
+    exact Nat.Prime.mod_two_ne_zero hp
+  · exact Nat.Prime.mod_two_ne_zero hp
+  · exact Nat.Prime.mod_two_ne_zero hp
+  · exact Nat.Prime.mod_two_ne_zero hp
+  · exact Nat.Prime.mod_two_ne_zero hp
 
 /- ACTUAL PROOF OF ZMod.exists_sq_eq_neg_two_iff -/
 

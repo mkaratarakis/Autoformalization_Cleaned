@@ -8,16 +8,16 @@ open jacobiSym
 
 example {a b : ℕ} (ha : a % 4 = 1) (hb : Odd b) :
     J(a | b) = J(b | a) := by
+  have hb_ne_zero : b ≠ 0 := by simpa using hb
   rw [jacobiSym.quadratic_reciprocity]
-  have h : (-1) ^ ((a / 2) * (b / 2)) = 1 := by
-    { rw [pow_mul]
-      have : (-1) ^ (a / 2) = 1 := by
-        { rw [neg_one_pow_div_two_of_one_mod_four ha] }
-      rw [this, one_pow, one_mul] }
-  rw [h]
-  have : (-1) ^ ((a / 2) * (b / 2)) * J(↑b | a) = J(↑b | a) := by
-    { rw [mul_one] }
-  rw [this]
+  have : (-1 : ℤ) ^ ((a - 1) / 2 * (b - 1) / 2) = 1 := by
+    rw [pow_eq_one_iff]
+    apply And.intro
+    · have : 2 ∣ (a - 1) := by
+      rw [← ha]
+      exact dvd_sub (dvd_mul_right _ _) (dvd_refl _)
+    · exact ⟨Nat.mod_two_eq_one_iff.mpr hb, rfl⟩
+  rw [this, one_mul]
 
 /- ACTUAL PROOF OF jacobiSym.quadratic_reciprocity_one_mod_four -/
 

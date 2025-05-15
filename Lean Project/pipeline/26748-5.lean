@@ -7,17 +7,19 @@ open NumberTheorySymbols
 open jacobiSym
 
 example (a : ℤ) {b : ℕ} (hb : Odd b) : J(a | b) = J(a | b % (4 * a.natAbs)) := by
-  by_cases ha : a = a.natAbs
-  · exact jacobiSym.mod_right a.natAbs b hb
-  · push_neg at ha
-    rw [Int.natAbs_eq_of_neg ha]
-    have h_odd : Odd (b % (4 * a.natAbs)) := by
-      rw [Nat.odd_iff]
-      exact Nat.mod_two_eq_one_iff.mpr (hb.mod_cast.symm.mod_cast)
-    rw [jacobiSym.neg_right, jacobiSym.neg_right, ← Int.natAbs_eq_of_neg ha]
-    rw [jacobiSym.mod_right a.natAbs b hb, jacobiSym.mod_right a.natAbs (b % (4 * a.natAbs)) h_odd]
-    rw [χ₄.mod_four, Nat.mod_mod_of_dvd _ (dvd_mul_right _ _), χ₄.mod_four, Nat.mod_mod_of_dvd _ (dvd_mul_right _ _)]
-    rfl
+  cases h : a
+  · rw [jacobiSym.mod_right]
+    exact hb
+  · rw [Int.natAbs_neg]
+    have hodd : Odd (b % (4 * a.natAbs)) := by
+      rw [Nat.mod_mod_of_dvd (dvd_mul_right _ _)]
+      exact hb
+    rw [jacobiSym.neg_right a hb, jacobiSym.mod_right, jacobiSym.mod_right]
+    congr
+    rw [χ₄_eq_χ₄_mod a.natAbs (Nat.mod_mod_of_dvd (dvd_mul_right _ _))]
+    rw [Nat.mod_mod_of_dvd (dvd_mul_right _ _)]
+    congr
+    exact χ₄_eq_χ₄_mod a.natAbs (Nat.mod_mod_of_dvd (dvd_mul_right _ _))
 
 /- ACTUAL PROOF OF jacobiSym.mod_right -/
 

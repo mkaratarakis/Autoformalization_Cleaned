@@ -14,7 +14,7 @@ open RealInnerProductSpace
 example {f : E → F} {x : E} : ConformalAt f x ↔
     ∃ c : ℝ, 0 < c ∧ ∀ u v : E, ⟪fderiv ℝ f x u, fderiv ℝ f x v⟫ = c * ⟪u, v⟫ := by
   rw [conformalAt_iff_isConformalMap_fderiv]
-  exact @isConformalMap_iff _ _ _ _ _ _ (fderiv ℝ f x)
+  exact isConformalMap_iff (fderiv ℝ f x)
 
 /- ACTUAL PROOF OF conformalAt_iff' -/
 

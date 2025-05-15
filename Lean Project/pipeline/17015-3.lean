@@ -49,36 +49,12 @@ variable {𝕜' : Type*} [NontriviallyNormedField 𝕜'] [NormedAlgebra 𝕜 �
 
 example (hh₂ : HasStrictDerivAt h₂ h₂' (h x)) (hh : HasStrictDerivAt h h' x) :
     HasStrictDerivAt (h₂ ∘ h) (h₂' * h') x := by
-    intros
-    rw [HasStrictDerivAt, HasFDerivAtFilter, HasFDerivAt, hasFDerivAtFilter_iff_tendsto]
-    have h₁ : ContinuousLinearMap 𝕜 F 𝕜' (smulRight (1 : 𝕜 →L[𝕜] 𝕜) (h₂' * h')) := by
-      apply ContinuousLinearMap.smulRight_one_eq_iff.mpr
-      have h₂ : ContinuousLinearMap 𝕜 𝕜' 𝕜' (smulRight (1 : 𝕜 →L[𝕜] 𝕜) h₂') := by
-        apply ContinuousLinearMap.smulRight_one_eq_iff.mpr
-        exact (smul_eq_mul h₂' 1).symm
-      have h₃ : ContinuousLinearMap 𝕜 𝕜' 𝕜' (smulRight (1 : 𝕜 →L[𝕜] 𝕜) h') := by
-        apply ContinuousLinearMap.smulRight_one_eq_iff.mpr
-        exact (smul_eq_mul h' 1).symm
-      exact ContinuousLinearMap.comp h₂ h₃
-    apply HasFDerivAtFilter.comp _ _ _
-    · exact hh₂
-    · exact hh
-    · exact Tendsto.const_nhds
-    · exact h₁
-    · exact ContinuousLinearMap.smulRight_one_eq_iff.mpr (smul_eq_mul _ _).symm
-    exact hh₂.hasFDerivAt.hasStrictFDerivAt.hasStrictDerivAt
-    exact hh.hasFDerivAt.hasStrictFDerivAt.hasStrictDerivAt
-    apply HasStrictFDerivAt.comp
-    apply HasStrictFDerivAt.comp
-    exact hh₂.hasFDerivAt.hasStrictFDerivAt
-    exact hh.hasFDerivAt.hasStrictFDerivAt
-    exact Tendsto.const_nhds
-    exact ContinuousLinearMap.smulRight_one_eq_iff.mpr (smul_eq_mul _ _).symm
-    apply hh₂.hasStrictFDerivAt.restrictScalars
-    apply hh.hasStrictFDerivAt.restrictScalars
-    exact (hasStrictFDerivAt_const _ _).hasStrictDerivAt.symm
-    exact (hasStrictFDerivAt_const _ _).hasStrictDerivAt.symm
-    exact ContinuousLinearMap.smulRight_one_eq_iff.mpr (smul_eq_mul _ _).symm
+  rw [HasStrictDerivAt] at hh hh₂ ⊢
+  rw [HasStrictFDerivAt] at hh hh₂ ⊢
+  apply HasStrictFDerivAt.comp
+  · apply (hh₂.hasStrictFDerivAt.restrictScalars)
+  · apply hh.hasStrictFDerivAt
+  · exact hh.continuousAt
 
 /- ACTUAL PROOF OF HasStrictDerivAt.comp -/
 

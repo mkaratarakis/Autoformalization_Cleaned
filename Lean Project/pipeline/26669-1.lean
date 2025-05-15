@@ -6,8 +6,16 @@ variable {α : Type*}
 variable [Preorder α] [LocallyFiniteOrder α] {a b x : α}
 
 example : x ∈ Ioo a b ↔ a < x ∧ x < b := by
-  rw [mem_Ioo]
-  exact Iff.rfl
+  rw [Ioo, mem_Ioo, Finset.mem_Ioo]
+  constructor
+  · rintro ⟨h1, h2⟩
+    constructor
+    · apply h1
+    · apply h2
+  · rintro ⟨h1, h2⟩
+    constructor
+    · apply h1
+    · apply h2
 
 /- ACTUAL PROOF OF Multiset.mem_Ioo -/
 

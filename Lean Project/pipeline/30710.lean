@@ -7,9 +7,11 @@ open MeasurableSpace Set
 open MeasureTheory
 
 example {α} (S : Set α) : IsPiSystem ({S} : Set (Set α)) := by
-  rintro _ ⟨rfl⟩ _ ⟨rfl⟩ ⟨x, hx⟩
-  rw [inter_self]
-  apply Set.mem_singleton
+  rintro s hs t ht h_nonempty
+  have hs_eq : s = S := Set.eq_of_mem_singleton hs
+  have ht_eq : t = S := Set.eq_of_mem_singleton ht
+  rw [hs_eq, ht_eq, inter_self]
+  exact Set.mem_singleton S
 
 /- ACTUAL PROOF OF IsPiSystem.singleton -/
 

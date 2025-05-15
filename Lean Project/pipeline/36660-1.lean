@@ -13,8 +13,8 @@ open Function
 
 example {α α' β} (f : α → α') (x : t α β) :
     tfst (F := Id) (pure ∘ f) x = pure (fst f x) := by
-  rw [Bitraversable.tfst_eq_fst_id]
-  apply bitraverse_eq_bimap_id
+  rw [tfst_eq_fst_id]
+  exact bitraverse_eq_bimap_id (f := f) (f' := id) x
 
 /- ACTUAL PROOF OF Bitraversable.tfst_eq_fst_id -/
 

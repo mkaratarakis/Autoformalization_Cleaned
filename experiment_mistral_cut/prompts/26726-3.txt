@@ -1,28 +1,86 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:13:2: error: expected '{' or indented tactic sequence
-tmp.lean:12:45: error: unsolved goals
+tmp.lean:17:6: error: expected '{' or indented tactic sequence
+tmp.lean:11:32: error: type mismatch, term
+  hb
+after simplification has type
+  Odd b : Prop
+but is expected to have type
+  ¬b = 0 : Prop
+tmp.lean:14:8: error: failed to synthesize
+  MulLeftMono ℤ
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+tmp.lean:15:4: error: tactic 'apply' failed, failed to unify
+  ?a ∧ ?b
+with
+  -1 = 1
 a b : ℕ
 ha : a % 4 = 1
 hb : Odd b
-⊢ (-1) ^ (a / 2 * (b / 2)) = 1
+hb_ne_zero : b ≠ 0
+⊢ -1 = 1
 tmp.lean:10:27: error: unsolved goals
 a b : ℕ
 ha : a % 4 = 1
 hb : Odd b
-h : (-1) ^ (a / 2 * (b / 2)) = 1
+hb_ne_zero : b ≠ 0
+this : (-1) ^ ((a - 1) / 2 * (b - 1) / 2) = 1
 ⊢ (-1) ^ (a / 2 * (b / 2)) * J(↑b | a) = J(↑b | a)
 
 case ha
 a b : ℕ
 ha : a % 4 = 1
 hb : Odd b
+hb_ne_zero : b ≠ 0
 ⊢ Odd a
 
 case hb
 a b : ℕ
 ha : a % 4 = 1
 hb : Odd b
+hb_ne_zero : b ≠ 0
+⊢ Odd b
+tmp.lean:17:4: error: expected '{' or indented tactic sequence
+tmp.lean:11:32: error: type mismatch, term
+  hb
+after simplification has type
+  Odd b : Prop
+but is expected to have type
+  ¬b = 0 : Prop
+tmp.lean:14:8: error: failed to synthesize
+  MulLeftMono ℤ
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+tmp.lean:15:4: error: tactic 'apply' failed, failed to unify
+  ?a ∧ ?b
+with
+  -1 = 1
+a b : ℕ
+ha : a % 4 = 1
+hb : Odd b
+hb_ne_zero : b ≠ 0
+⊢ -1 = 1
+tmp.lean:10:27: error: unsolved goals
+a b : ℕ
+ha : a % 4 = 1
+hb : Odd b
+hb_ne_zero : b ≠ 0
+this : (-1) ^ ((a - 1) / 2 * (b - 1) / 2) = 1
+⊢ (-1) ^ (a / 2 * (b / 2)) * J(↑b | a) = J(↑b | a)
+
+case ha
+a b : ℕ
+ha : a % 4 = 1
+hb : Odd b
+hb_ne_zero : b ≠ 0
+⊢ Odd a
+
+case hb
+a b : ℕ
+ha : a % 4 = 1
+hb : Odd b
+hb_ne_zero : b ≠ 0
 ⊢ Odd b
 
 4. **New Prefix**  
@@ -37,5 +95,9 @@ open jacobiSym
 
 example {a b : ℕ} (ha : a % 4 = 1) (hb : Odd b) :
     J(a | b) = J(b | a) := by
+  have hb_ne_zero : b ≠ 0 := by simpa using hb
   rw [jacobiSym.quadratic_reciprocity]
-  have h : (-1) ^ ((a / 2) * (b / 2)) = 1 := by
+  have : (-1 : ℤ) ^ ((a - 1) / 2 * (b - 1) / 2) = 1 := by
+    rw [pow_eq_one_iff]
+    apply And.intro
+    · have : 2 ∣ (a - 1) := by

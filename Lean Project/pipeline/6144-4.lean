@@ -11,7 +11,7 @@ example {o o' : Ordering} : o.swap = o' ↔ o = o'.swap := by
     rw [← h]
     exact swap_swap o
   · intro h
-    rw [h]
+    rw [← h]
     exact swap_swap o'
 
 /- ACTUAL PROOF OF Ordering.swap_eq_iff_eq_swap -/

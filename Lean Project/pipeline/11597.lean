@@ -10,8 +10,7 @@ variable (𝕜) [Ring 𝕜] [AddCommGroup V] [Module 𝕜 V] [TopologicalSpace P
 variable {𝕜}
 
 example : intrinsicInterior 𝕜 (∅ : Set P) = ∅ := by
-  unfold intrinsicInterior
-  simp
+  rw [intrinsicInterior_empty]
 
 /- ACTUAL PROOF OF intrinsicInterior_empty -/
 

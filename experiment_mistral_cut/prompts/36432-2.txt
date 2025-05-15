@@ -1,6 +1,28 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:10:24: error: unsolved goals
+tmp.lean:13:4: error: type mismatch
+  congr_fun Φ₀ X
+has type
+  Φ.obj X = τ X : Prop
+but is expected to have type
+  ∀ (Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f)) : Prop
+tmp.lean:14:13: error: tactic 'introN' failed, insufficient number of binders
+case h_obj
+V : Type u_1
+inst✝¹ : Quiver V
+W : Type u_2
+σ : V → W
+W' : Type u_3
+inst✝ : Quiver W'
+φ : V ⥤q W'
+τ : W → W'
+h : ∀ (x : V), φ.obj x = τ (σ x)
+Φ : Push σ ⥤q W'
+Φ₀ : Φ.obj = τ
+Φcomp : of σ ⋙q Φ = φ
+X : Push σ
+⊢ Φ.obj X = (lift σ φ τ h).obj X
+tmp.lean:12:2: error: unsolved goals
 case h_map
 V : Type u_1
 inst✝¹ : Quiver V
@@ -14,8 +36,9 @@ h : ∀ (x : V), φ.obj x = τ (σ x)
 Φ : Push σ ⥤q W'
 Φ₀ : Φ.obj = τ
 Φcomp : of σ ⋙q Φ = φ
-⊢ ∀ (X Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
-
+X : Push σ
+⊢ ∀ (Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
+tmp.lean:10:24: error: unsolved goals
 case h_obj
 V : Type u_1
 inst✝¹ : Quiver V
@@ -30,21 +53,6 @@ h : ∀ (x : V), φ.obj x = τ (σ x)
 Φ₀ : Φ.obj = τ
 Φcomp : of σ ⋙q Φ = φ
 ⊢ ∀ (X : Push σ), Φ.obj X = (lift σ φ τ h).obj X
-case h_map
-V : Type u_1
-inst✝¹ : Quiver V
-W : Type u_2
-σ : V → W
-W' : Type u_3
-inst✝ : Quiver W'
-φ : V ⥤q W'
-τ : W → W'
-h : ∀ (x : V), φ.obj x = τ (σ x)
-Φ : Push σ ⥤q W'
-Φ₀ : Φ.obj = τ
-Φcomp : of σ ⋙q Φ = φ
-⊢ ∀ (X Y : Push σ) (f : X ⟶ Y), Φ.map f = Eq.recOn ⋯ (Eq.recOn ⋯ ((lift σ φ τ h).map f))
-
 case h_obj
 V : Type u_1
 inst✝¹ : Quiver V
@@ -73,3 +81,4 @@ variable {W' : Type*} [Quiver W'] (φ : V ⥤q W') (τ : W → W') (h : ∀ x, �
 example (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
     Φ = lift σ φ τ h := by
   apply Prefunctor.ext
+  · rintro X

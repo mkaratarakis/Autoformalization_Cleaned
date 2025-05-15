@@ -1,14 +1,24 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:13:2: error: expected '{' or indented tactic sequence
-tmp.lean:12:2: error: unsolved goals
-case h
+tmp.lean:15:8: error: unknown identifier 'PInfty_f_zero'
+tmp.lean:18:8: error: unknown identifier 'PInfty_f_succ'
+tmp.lean:15:2: error: expected '{' or indented tactic sequence
+tmp.lean:14:2: error: unsolved goals
+case h.zero
 A : Type u_1
 inst✝¹ : Category.{u_2, u_1} A
 inst✝ : Abelian A
 X✝ X : SimplicialObject A
-n : ℕ
-⊢ (inclusionOfMooreComplexMap X ≫ PInfty).f n = (inclusionOfMooreComplexMap X).f n
+⊢ (NormalizedMooreComplex.objX X 0).arrow ≫ (P 0).f 0 = (NormalizedMooreComplex.objX X 0).arrow
+tmp.lean:10:76: error: unsolved goals
+case h.succ
+A : Type u_1
+inst✝¹ : Category.{u_2, u_1} A
+inst✝ : Abelian A
+X✝ X : SimplicialObject A
+n✝ : ℕ
+⊢ (NormalizedMooreComplex.objX X (n✝ + 1)).arrow ≫ (P (n✝ + 1)).f (n✝ + 1) =
+    (NormalizedMooreComplex.objX X (n✝ + 1)).arrow
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -23,4 +33,6 @@ variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
 example (X : SimplicialObject A) :
     inclusionOfMooreComplexMap X ≫ PInfty = inclusionOfMooreComplexMap X := by
   ext n
+  dsimp [inclusionOfMooreComplexMap, PInfty]
+  cases n
   · -- Component at degree 0

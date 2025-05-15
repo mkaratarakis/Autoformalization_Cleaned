@@ -6,8 +6,11 @@ open Bool
 
 example (b : Bool) : (false = b) = (b = false) := by
   cases b
-  · rfl
-  · exact false_ne_true.symm.trans false_ne_true
+  · -- Case: b = false
+    rfl
+  · -- Case: b = true
+    show False = False
+    rfl
 
 /- ACTUAL PROOF OF Bool.false_eq -/
 

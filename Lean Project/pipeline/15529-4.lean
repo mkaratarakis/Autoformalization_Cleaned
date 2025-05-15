@@ -8,8 +8,12 @@ example (m n k : Nat) : m % (k * n) / n = m / n % k := by
   rcases Nat.eq_zero_or_pos n with (rfl | hn); simp [mod_zero]
   rcases Nat.eq_zero_or_pos k with (rfl | hk); simp [mod_zero]
   conv => rhs; rw [← mod_add_div m (k * n)]
-  rw [← Nat.mul_assoc, add_mul_div_left _ _ hn, add_mul_mod_self_left, Nat.mul_comm k n]
-  rw [mod_eq_of_lt (Nat.div_lt_of_lt_mul (mod_lt _ (Nat.mul_pos hk hn)))]
+  rw [← Nat.mul_assoc, Nat.add_mul_div_left _ _ hn, Nat.add_mul_mod_self_left, Nat.mod_eq_of_lt]
+  apply Nat.div_lt_of_lt_mul
+  apply mod_lt
+  apply Nat.mul_pos
+  exact hn
+  exact hk
 
 /- ACTUAL PROOF OF Nat.mod_mul_left_div_self -/
 

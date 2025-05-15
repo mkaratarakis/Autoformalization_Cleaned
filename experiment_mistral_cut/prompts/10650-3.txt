@@ -7,8 +7,55 @@ inst✝¹ : Fact (Nat.Prime p)
 a : ℤ
 inst✝ : Fact (Nat.Prime 2)
 ha : a ≡ 0 [ZMOD 2]
+⊢ ↑(legendreSym 2 a) = ↑a
+tmp.lean:19:8: error: no goals to be solved
+tmp.lean:15:4: error: unsolved goals
+case neg
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : ¬a ≡ 0 [ZMOD 2]
+ha' : a ≠ 0
 ⊢ ↑(quadraticCharFun (ZMod 2) ↑a) = ↑a
+tmp.lean:24:27: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑?m.3380 = ↑?m.3381
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp2 : ¬p = 2
+h : p = 2
+⊢ p = 2
+tmp.lean:27:6: error: simp made no progress
+tmp.lean:31:12: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑a
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp2 : ¬p = 2
+hodd : ringChar (ZMod p) ≠ 2
+ha : ¬a ≡ 0 [ZMOD ↑p]
+h : ↑a = 0
+⊢ a ≡ 0 [ZMOD ↑p]
+tmp.lean:34:6: error: type mismatch
+  Eq.symm (ZMod.cast_one ?m.4479)
+has type
+  1 = ZMod.cast 1 : Prop
+but is expected to have type
+  ↑(if ↑a ^ (Fintype.card (ZMod p) / 2) = 1 then 1 else -1) = ↑a ^ (p / 2) : Prop
 tmp.lean:12:2: error: unsolved goals
+case pos
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : a ≡ 0 [ZMOD 2]
+⊢ ↑(legendreSym 2 a) = ↑a ^ (2 / 2)
+
 case neg
 p : ℕ
 inst✝¹ : Fact (Nat.Prime p)
@@ -25,6 +72,14 @@ inst✝ : Fact (Nat.Prime p)
 a : ℤ
 hp2 : ¬p = 2
 ⊢ ↑(legendreSym p a) = ↑a ^ (p / 2)
+case pos
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : a ≡ 0 [ZMOD 2]
+⊢ ↑(legendreSym 2 a) = ↑a ^ (2 / 2)
+
 case neg
 p : ℕ
 inst✝¹ : Fact (Nat.Prime p)
@@ -48,4 +103,3 @@ example (a : ℤ) : (legendreSym p a : ZMod p) = (a : ZMod p) ^ (p / 2) := by
   by_cases hp2 : p = 2
   · subst hp2
     by_cases ha : a ≡ 0 [ZMOD 2]
-    · simp [ha, legendreSym]

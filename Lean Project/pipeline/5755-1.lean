@@ -11,17 +11,20 @@ variable (s)
 
 example (hn : n ≠ 0) (hs : n ≤ s.card) :
     ∃ P : Finpartition s, P.IsEquipartition ∧ P.parts.card = n := by
-  let P := s.indiscrete (Finset.card_ne_zero_iff_nonempty.mpr (hn.bot_lt.trans_le hs))
-  have hP : P.IsEquipartition := indiscrete_isEquipartition P.2
-  have hc : (s.card % n + n - s.card % n = n) := by simp [Nat.add_sub_cancel']
-  let Q := P.equitabilise hc
-  have hQ : Q.IsEquipartition := by
-    rw [IsEquipartition]
-    exact Set.equitableOn_iff_exists_eq_eq_add_one.2 ⟨n, by simp⟩
-  have hcard : Q.parts.card = n := by
-    rw [← Nat.sub_add_cancel (s.card % n)]
-    exact hc
-  exact ⟨Q, hQ, hcard⟩
+  have hn0 : 0 < n := Nat.pos_of_ne_zero hn
+  have h₁ : 0 < n := hn0
+  obtain ⟨a, b, m, h₁, rfl⟩ := exists_a_b_m_eq_s_card_of_le hs
+  obtain ⟨Q, hQ⟩ := equitabilise_aux h₁
+  exists Q
+  constructor
+  · exact fun p hp ↦ Or.inl (hQ.1 p hp)
+  · have h₂ : Q.parts.card = a + b := by
+      rw [← Nat.add_sub_of_le (Nat.le_add_right a b)]
+      exact hQ.2.2
+    rw [h₂]
+    calc
+      a + b = n - s.card % n + s.card % n := by rw [Nat.add_sub_cancel']
+      _ = n := by rw [Nat.sub_add_cancel (Nat.le_of_lt_succ h₁)]
 
 /- ACTUAL PROOF OF Finpartition.exists_equipartition_card_eq -/
 

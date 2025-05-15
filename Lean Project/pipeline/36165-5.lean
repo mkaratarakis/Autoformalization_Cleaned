@@ -8,15 +8,26 @@ variable {ι K V : Type*} [DivisionRing K] [AddCommGroup V] [Module K V] {f : ι
 example : Independent f ↔ LinearIndependent K (Projectivization.rep ∘ f) := by
   constructor
   · intro h
-    rcases h with ⟨g, hg, hl⟩
-    have : ∀ i, ∃ a : Kˣ, a • g i = (mk K (g i) (hg i)).rep := fun i =>
-      (Projectivization.mk_eq_mk_iff K _ _ (hg i) _).1 (Projectivization.mk_rep _)
-    choose a ha using this
-    exact LinearIndependent.units_smul_iff.2 (fun i => (a i).inv) hl
-    exact fun i => by rwa [Units.inv_smul_val, ha i]
-  · intro hl
-    have hg : ∀ i, (f i).rep ≠ 0 := fun i => Projectivization.rep_nonzero _
-    exact Independent.mk (Projectivization.rep ∘ f) hg hl
+    rcases h with ⟨g, hg, hg_lin_ind⟩
+    have hg_rep : ∀ i, (Projectivization.rep ∘ fun i => mk K (g i) (hg i)) i ≠ 0 := fun i => Projectivization.rep_nonzero (mk K (g i) (hg i))
+    apply LinearIndependent.of_comp_injective
+    · intro i
+      exact (Projectivization.mk_rep (mk K (g i) (hg i))).symm
+    · intro i j hij
+      rw [Function.comp_apply, Function.comp_apply] at hij
+      apply (Projectivization.mk_eq_mk_iff' K _ _ (hg i) (hg j)).mp
+      exact hij
+    · exact hg_lin_ind
+  · intro h
+    choose a ha using fun i => exists_smul_eq_mk_rep (f i).rep (Projectivization.rep_nonzero (f i))
+    refine Independent.mk (fun i => a i • (Projectivization.rep ∘ f) i) (fun i => _) (h.of_comp_injective _ _)
+    · exact (Units.mk0_ne_zero _).1 (ha i).1
+    · intro i j hij
+      rw [Function.comp_apply, Function.comp_apply] at hij
+      apply (Projectivization.mk_eq_mk_iff' K _ _ (Projectivization.rep_nonzero (f i)) (Projectivization.rep_nonzero (f j))).mp
+      exact hij
+    · intro i
+      exact (ha i).2
 
 /- ACTUAL PROOF OF Projectivization.independent_iff -/
 

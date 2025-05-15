@@ -1,5 +1,15 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:14:22: error: function expected at
+  not_lt_bot ?m.751
+term has type
+  False
+tmp.lean:16:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑(?a + ?b)
+case coe.coe
+a✝¹ a✝ : ℕ
+h : a✝¹ < a✝
+⊢ ↑a✝¹ + 1 ≤ ↑a✝
 tmp.lean:10:53: error: unsolved goals
 case coe.bot
 a✝ : ℕ
@@ -33,5 +43,5 @@ open WithBot
 
 example {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by
   cases n
-  · exact bot_le
+  · simp
   cases m

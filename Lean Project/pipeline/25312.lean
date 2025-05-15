@@ -5,10 +5,12 @@ open Bool
 
 
 example : ∀(a b : Bool), ((a && b) = b) ↔ (b → a) := by
-  intro a b
-  by_cases hb : b
-  · simp [hb]
-  · simp [hb]
+  intros a b
+  cases b
+  · simp
+  · cases a
+    · simp
+    · simp
 
 /- ACTUAL PROOF OF Bool.and_iff_right_iff_imp -/
 

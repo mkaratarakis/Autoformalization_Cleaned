@@ -8,7 +8,6 @@ variable {α : Type u}
 example [Monoid α] (a b : α) [Invertible a] [Invertible b] (h : a = b) :
     ⅟a = ⅟b := by
   rw [h]
-  exact rfl
 
 /- ACTUAL PROOF OF Invertible.congr -/
 

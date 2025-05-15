@@ -8,40 +8,8 @@ variable {H K : Subgroup G}
 
 example {g : G} {s : Set G} :
     g ∈ centralizer s ↔ ∀ h ∈ s, h * g * h⁻¹ * g⁻¹ = 1 := by
-  simp only [Set.mem_setOf_eq, centralizer, id, Submonoid.mem_carrier, Submonoid.coe_mk,
-    Submonoid.coe_carrier, Submonoid.coe_carrier, Submonoid.mem_carrier, Set.mem_setOf_eq,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier, Submonoid.mem_carrier,
-    Submon
+  rw [mem_centralizer_iff]
+  exact forall_congr' fun h => by rw [← mul_inv_eq_iff_eq_mul, inv_inv, ← mul_assoc, ← mul_assoc]
 
 /- ACTUAL PROOF OF Subgroup.mem_centralizer_iff_commutator_eq_one -/
 

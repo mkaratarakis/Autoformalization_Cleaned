@@ -7,15 +7,23 @@ open scoped UpperHalfPlane Topology
 
 example (z : ℂ) :
     cot z = (Complex.exp (2 * I * z) + 1) / (I * (1 - Complex.exp (2 * I * z))) := by
-  rw [cot_eq_ratio]
-  simp only [sin_eq_exp, cos_eq_exp]
-  have h1 : I * (exp (-I * z) - exp (I * z)) = I * exp (-I * z) * (1 - exp (2 * I * z)) := by
-    ring
-  have h2 : exp (I * z) + exp (-I * z) = exp (-I * z) * (exp (2 * I * z) + 1) := by
-    ring
+  have h1 : exp (z * I) + exp (-z * I) = exp (-z * I) * (exp (2 * I * z) + 1) := by
+    calc
+      exp (z * I) + exp (-z * I)
+        = exp (z * I) + exp (-z * I) : by rfl
+      ... = exp (-z * I) * (exp (z * I) * exp (z * I) + 1) : by rw [Complex.exp_add, Complex.exp_neg]
+      ... = exp (-z * I) * (exp (2 * I * z) + 1) : by rw [Complex.exp_add, ←mul_assoc]
+  have h2 : (exp (-z * I) - exp (z * I)) * I = exp (-z * I) * (I * (1 - exp (2 * I * z))) := by
+    calc
+      (exp (-z * I) - exp (z * I)) * I
+        = (exp (-z * I) - exp (z * I)) * I : by rfl
+      ... = exp (-z * I) * (I * (1 - exp (z * I) * exp (z * I))) : by rw [Complex.exp_add, Complex.exp_neg]
+      ... = exp (-z * I) * (I * (1 - exp (2 * I * z))) : by rw [Complex.exp_add, ←mul_assoc]
+  rw [Complex.cot_eq_div]
+  rw [Complex.sin_eq, Complex.cos_eq]
   rw [h1, h2]
   field_simp
-  rw [mul_div_cancel_left _ (ne_of_gt (norm_pos_iff.2 (exp_pos _).ne'))]
+  ring
 
 /- ACTUAL PROOF OF Complex.cot_eq_exp_ratio -/
 

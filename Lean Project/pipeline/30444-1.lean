@@ -12,15 +12,16 @@ open omegaLimit
 
 example {m : τ → τ} {f₁ f₂ : Filter τ} (hf : Tendsto m f₁ f₂) :
     ω f₁ (fun t x ↦ ϕ (m t) x) s ⊆ ω f₂ ϕ s := by
-  rw [omegaLimit_def, omegaLimit_def]
-  apply iInter₂_subset_iInter₂
-  intros u hu
-  rcases mem_map.mp (mem_of_mem_sets_of_tendsto hu hf) with ⟨v, hv, hvu⟩
-  rw [image2_subset_iff, image2_subset_iff]
+  simp only [omegaLimit_def]
+  apply iInter_mono
+  rintro u hu
+  have : u ∈ f₂ := hf hu
+  simp only [omegaLimit_def, mem_iInter_iff]
   apply closure_mono
-  rw [← image2_comp_left, image2_comp_left]
-  exact image2_subset (s := s) (fun h => hvu h)
-  exact hv
+  rw [image2_subset_iff]
+  rintro x hx t ht
+  exact ⟨m t, hx, ht⟩
+  exact this
 
 /- ACTUAL PROOF OF omegaLimit_subset_of_tendsto -/
 

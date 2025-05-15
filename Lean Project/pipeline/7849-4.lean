@@ -6,12 +6,14 @@ open Nat
 
 example (n m : ℕ) : n ≤ dist n m + m := by
   rw [dist_comm]
-  by_cases h : n ≤ m
-  · rw [dist_eq_sub_of_le h]
-    exact Nat.le_add_left _ _
-  · push_neg at h
-    rw [dist_eq_sub_of_le_right (not_lt.mp h)]
-    exact Nat.le_add_left _ _
+  unfold dist
+  cases le_total n m with
+  | inl h =>
+    rw [dist_eq_sub_of_le h]
+    apply Nat.le_add_right
+  | inr h =>
+    rw [dist_eq_sub_of_le_right h]
+    apply Nat.le_add_right
 
 /- ACTUAL PROOF OF Nat.dist_tri_left' -/
 

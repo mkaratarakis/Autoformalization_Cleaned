@@ -11,16 +11,32 @@ variable [MonoidWithZero α]
 
 example {α} [CancelCommMonoidWithZero α] {m n : α}
     (hm : IsPrimal m) (hn : IsPrimal n) : IsPrimal (m * n) := by
+  intros b c h
   by_cases hm0 : m = 0
-  · simp [hm0]
+  · simp only [hm0, zero_mul]
+    exact ⟨0, 0, (dvd_zero 0).symm, dvd_zero 0, by rw [zero_mul]⟩
 
-  · intro b c h
-    obtain ⟨a₁, a₂, ha₁, ha₂, rfl⟩ := hm (Dvd.trans (Dvd.intro m rfl) h)
-    rw [← ha₂] at h
-    obtain ⟨a₃, a₄, ha₃, ha₄, rfl⟩ := hn (Dvd.trans (Dvd.intro n (mul_right_inj' ha₂)) h)
-    refine' ⟨a₁ * a₃, a₂ * a₄, _, _, by rw [mul_assoc, mul_assoc, mul_comm (a₂ * a₄), ←mul_assoc, ←mul_assoc, mul_left_comm, ←mul_assoc, mul_comm a₂]⟩
-    · exact Dvd.trans ha₁ (Dvd.intro _ (mul_assoc _ _ _).symm)
-    · exact Dvd.trans ha₄ (Dvd.intro _ (mul_assoc _ _ _).symm)
+  · have hn0 : n ≠ 0 := by
+      intro hn0
+      apply hm0
+      rw [hn0, zero_mul] at h
+      exact (zero_dvd_iff α).mp h
+
+    obtain ⟨k, hk⟩ := h
+    have hmn : m * n ∣ b * c := ⟨k, hk⟩
+    obtain ⟨a₁, a₂, ha₁, ha₂, rfl⟩ := hm hmn
+    obtain ⟨b₁, b₂, hb₁, hb₂, hmn⟩ := hn (mul_ne_zero hm0 hn0).symm ▸ hmn
+    use a₁ * b₁, a₂ * b₂
+    rw [mul_assoc, ← hmn, mul_assoc, ← mul_assoc a₂, ← hmn, mul_assoc, mul_assoc]
+
+    constructor
+    · exact mul_dvd_mul_left _ (ha₁.trans (dvd_mul_right _ _))
+
+    · exact mul_dvd_mul_left _ (ha₂.trans (dvd_mul_right _ _))
+
+    · exact mul_dvd_mul_left _ (hb₁.trans (dvd_mul_left _ _))
+
+    · exact mul_dvd_mul_left _ (hb₂.trans (dvd_mul_left _ _))
 
 /- ACTUAL PROOF OF IsPrimal.mul -/
 

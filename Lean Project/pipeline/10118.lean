@@ -7,7 +7,7 @@ open Function (Commute)
 variable (f : α → α)
 
 example (m n : ℕ) (x : α) : f^[m + n] x = f^[m] (f^[n] x) := by
-  rw [iterate_add]
+  rw [iterate_add f m n]
   exact rfl
 
 /- ACTUAL PROOF OF Function.iterate_add_apply -/

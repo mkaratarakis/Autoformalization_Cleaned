@@ -11,18 +11,10 @@ inst✝ : J✝.HasSheafCompose (forget₂ RingCat AddCommGrp)
 I J : Type u
 f : I → J
 i : I
-⊢ sectionsMap (freeMap f) (freeSection i) = freeSection (f i)
-C : Type u'
-inst✝³ : Category.{v', u'} C
-J✝ : GrothendieckTopology C
-R : Sheaf J✝ RingCat
-inst✝² : HasWeakSheafify J✝ AddCommGrp
-inst✝¹ : J✝.WEqualsLocallyBijective AddCommGrp
-inst✝ : J✝.HasSheafCompose (forget₂ RingCat AddCommGrp)
-I J : Type u
-f : I → J
-i : I
-⊢ sectionsMap (freeMap f) (freeSection i) = freeSection (f i)
+⊢ sectionsMap ((free J).freeHomEquiv.symm fun i => (free J).freeHomEquiv (𝟙 (free J)) (f i))
+      ((free I).freeHomEquiv (𝟙 (free I)) i) =
+    (free J).freeHomEquiv (𝟙 (free J)) (f i)
+tmp.lean:14:0: error: unexpected end of input; expected ':=', 'where' or '|'
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -38,4 +30,3 @@ variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C} {R : Sheaf
 variable {I J : Type u} (f : I → J)
 
 example (i : I) :
-    sectionsMap (freeMap (R := R) f) (freeSection i) = freeSection (f i) := by

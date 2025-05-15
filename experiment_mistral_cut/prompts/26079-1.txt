@@ -1,17 +1,22 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:15:6: error: no goals to be solved
+tmp.lean:20:8: error: simp made no progress
 tmp.lean:12:2: error: unsolved goals
-case mp
-n m : WithBot ℕ
-h : n + m = 0
-⊢ n = 0 ∧ m = 0
+case mp.coe
+m : WithBot ℕ
+a✝ : ℕ
+h : ↑a✝ + m = 0
+⊢ ↑a✝ = 0 ∧ m = 0
 tmp.lean:10:57: error: unsolved goals
 case mpr
 n m : WithBot ℕ
 ⊢ n = 0 ∧ m = 0 → n + m = 0
-case mpr
-n m : WithBot ℕ
-⊢ n = 0 ∧ m = 0 → n + m = 0
+case mp.coe
+m : WithBot ℕ
+a✝ : ℕ
+h : ↑a✝ + m = 0
+⊢ ↑a✝ = 0 ∧ m = 0
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -27,3 +32,5 @@ open WithBot
 example {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by
   constructor
   · intro h
+    cases n
+    · simp at h

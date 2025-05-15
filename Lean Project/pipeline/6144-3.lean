@@ -9,10 +9,10 @@ example {o o' : Ordering} : o.swap = o' ↔ o = o'.swap := by
   constructor
   · intro h
     rw [← h]
-    apply swap_swap
+    rfl
   · intro h
-    rw [h]
-    apply swap_swap
+    rw [← h]
+    rfl
 
 /- ACTUAL PROOF OF Ordering.swap_eq_iff_eq_swap -/
 

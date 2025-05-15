@@ -9,11 +9,14 @@ example : {b : Bool} → b ≠ false ↔ b = true := by
   · intro h
     by_cases hb : b = true
     · exact hb
-    · have : b = false := by simpa [hb] using @eq_false_or_eq_true b
+    · have hb' : b = false := by
+        apply eq_false_or_eq_true b
+        intro hb_true
+        contradiction
       contradiction
   · intro h
     rw [h]
-    exact Bool.false_ne_true
+    exact false_ne_true
 
 /- ACTUAL PROOF OF Bool.ne_false_iff -/
 

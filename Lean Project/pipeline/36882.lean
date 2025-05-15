@@ -7,8 +7,11 @@ variable {α : Type*} [DecidableEq α]
 example (xs : List α) (y x d : α) (h : x ≠ y) :
     nextOr (y :: xs) x d = nextOr xs x d := by
   cases xs
-  · simp
-  · simp only [nextOr, if_neg h]
+  · rfl
+  · case cons z zs =>
+    simp only [nextOr, ite_eq_right_iff]
+    intro h'
+    contradiction
 
 /- ACTUAL PROOF OF List.nextOr_cons_of_ne -/
 

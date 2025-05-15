@@ -10,13 +10,18 @@ open WithBot
 example {n m : WithBot ℕ} : n + m = 0 ↔ n = 0 ∧ m = 0 := by
   constructor
   · intro h
-    cases n <;> cases m <;> try {refl}
-    . simp at h
-    . simp at h
-    . simp at h
-    . simp at h
+    cases n
+    · simp at h
+      cases m
+      · simp at h
+      · simp at h
+    · cases m
+      · simp at h
+      · simp at h
+        apply Nat.eq_zero_of_add_eq_zero_left
+        exact h
   · rintro ⟨rfl, rfl⟩
-    rfl
+    simp
 
 /- ACTUAL PROOF OF Nat.WithBot.add_eq_zero_iff -/
 

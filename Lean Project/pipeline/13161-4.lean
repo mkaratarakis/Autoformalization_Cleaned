@@ -7,8 +7,14 @@ open List
 variable {α β : Type*}
 
 example {n i : ℕ} {x : α} {l : List α} :
-    (n + i, x) ∈ enumFrom n l ↔ l.get? i = some x := by
-  simp only [mem_enumFrom, Prod.mk.injEq, get?_eq_iff, exists_prop, true_and]
+    (n + i, x) ∈ l.zipIdx ↔ l[i]? = some x := by
+  constructor
+  · intro h
+    rw [mem_zipIdx] at h
+    exact h
+  · intro h
+    rw [mem_zipIdx]
+    exact h
 
 /- ACTUAL PROOF OF List.mk_add_mem_enumFrom_iff_get? -/
 

@@ -22,12 +22,11 @@ example {B C F : Type*} [Ring B] [Ring C] [Algebra R B] [Algebra A B] [Algebra R
     [IsScalarTower R A B] [Algebra A C] [IsScalarTower R A C] {b : B}
     [FunLike F B C] [AlgHomClass F A B C] (f : F)
     (hb : IsIntegral R b) : IsIntegral R (f b) := by
-  rcases hb with ⟨P, hPmonic, hPeval⟩
+  obtain ⟨P, hP_monic, hP_root⟩ := hb
   use P
   constructor
-  exact hPmonic
-  rw [← aeval_def, ← Polynomial.map_algebraMap_eq_aeval, ← aeval_map_algebraMap, algHom_map_algebraMap_eq, hPeval]
-  rfl
+  · exact hP_monic
+  · rw [← aeval_def, ← aeval_map_algebraMap, aeval_algebraMap_apply, hP_root, map_zero]
 
 /- ACTUAL PROOF OF IsIntegral.map -/
 

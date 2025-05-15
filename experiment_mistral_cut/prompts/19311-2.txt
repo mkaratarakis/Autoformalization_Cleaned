@@ -1,5 +1,7 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:17:8: error: typeclass instance problem is stuck, it is often due to metavariables
+  InnerProductSpace ℝ ?m.3309
 tmp.lean:15:81: error: unsolved goals
 E : Type u_1
 F : Type u_2

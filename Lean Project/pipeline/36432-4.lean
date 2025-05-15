@@ -9,45 +9,14 @@ variable {W' : Type*} [Quiver W'] (φ : V ⥤q W') (τ : W → W') (h : ∀ x, �
 example (Φ : Push σ ⥤q W') (Φ₀ : Φ.obj = τ) (Φcomp : (of σ ⋙q Φ) = φ) :
     Φ = lift σ φ τ h := by
   apply Prefunctor.ext
-  · exact Φ₀
+  · rintro X
+    rw [Φ₀]
   · rintro X Y f
-    apply PushQuiver.rec
-    · intro X Y f
-      simp only [Φcomp, Prefunctor.comp_map, lift_comp]
-      apply congr_arg
-      apply congr_arg
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-      apply Eq.symm
-
+    induction f using PushQuiver.rec
+    case arrow X₁ X₂ f' =>
+      simp only [Prefunctor.comp_map, Prefunctor.id_map, Prefunctor.comp_obj] at Φcomp
+      rw [← Φcomp.map (PushQuiver.arrow f'), lift_map, PushQuiver.rec_arrow]
+      rfl
 
 /- ACTUAL PROOF OF Quiver.Push.lift_unique -/
 

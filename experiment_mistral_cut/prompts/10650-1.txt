@@ -1,5 +1,47 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:14:4: error: unsolved goals
+case pos
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : a ≡ 0 [ZMOD 2]
+⊢ ↑(legendreSym 2 a) = ↑a
+tmp.lean:19:8: error: no goals to be solved
+tmp.lean:15:4: error: unsolved goals
+case neg
+p : ℕ
+inst✝¹ : Fact (Nat.Prime p)
+a : ℤ
+inst✝ : Fact (Nat.Prime 2)
+ha : ¬a ≡ 0 [ZMOD 2]
+ha' : a ≠ 0
+⊢ ↑(quadraticCharFun (ZMod 2) ↑a) = ↑a
+tmp.lean:24:27: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑?m.3380 = ↑?m.3381
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp2 : ¬p = 2
+h : p = 2
+⊢ p = 2
+tmp.lean:27:6: error: simp made no progress
+tmp.lean:32:8: error: no goals to be solved
+tmp.lean:28:4: error: unsolved goals
+case neg
+p✝ : ℕ
+inst✝¹ : Fact (Nat.Prime p✝)
+p : ℕ
+inst✝ : Fact (Nat.Prime p)
+a : ℤ
+hp2 : ¬p = 2
+hodd : ringChar (ZMod p) ≠ 2
+ha : ¬a ≡ 0 [ZMOD ↑p]
+ha' : a ≠ 0
+⊢ ↑(quadraticCharFun (ZMod p) ↑a) = ↑a ^ (p / 2)
 tmp.lean:12:2: error: unsolved goals
 case pos
 p : ℕ

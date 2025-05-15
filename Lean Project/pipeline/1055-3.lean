@@ -9,19 +9,17 @@ variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Optio
 example {c : γ} : c ∈ map₂ f a b ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by
   constructor
   · intro h
-    rcases a with (⟨a'⟩ | none)
-    · rcases b with (⟨b'⟩ | none)
-      · exact ⟨a', b', rfl, rfl, rfl⟩
-      · exfalso
-        exact h
-    · exfalso
-      exact h
-  · rintro ⟨a', b', ha', hb', rfl⟩
-    rcases ha' with (rfl | h)
-    · rcases hb' with (rfl | h)
-      · exact mem_some.mpr rfl
-      · contradiction
+    cases a
     · contradiction
+    · cases b
+      · contradiction
+      · exact ⟨a_a, a_b, Option.mem_some_iff.2 rfl, Option.mem_some_iff.2 rfl, h⟩
+  · rintro ⟨a', a'_mem, b', b'_mem, rfl⟩
+    cases a
+    · contradiction
+    · cases b
+      · contradiction
+      · exact Option.mem_some_iff.1 (Option.mem_map₂_iff.2 ⟨a', b', a'_mem, b'_mem, rfl⟩)
 
 /- ACTUAL PROOF OF Option.mem_map₂_iff -/
 

@@ -7,20 +7,24 @@ variable [DivisionRing K]
 
 example {s : Stream'.Seq <| Pair K}
     (terminatedAt_n : s.TerminatedAt n) : convs'Aux s (n + 1) = convs'Aux s n := by
-  induction n with
+  cases n with
   | zero =>
-    -- Base Case
-    simp [convs'Aux_succ_none terminatedAt_n]
-  | succ n ih =>
-    -- Inductive Step
-    cases h : s.head
-    · -- Case 1: The head of the sequence `s` is `none`
-      simp [convs'Aux_succ_none h]
-    · -- Case 2: The head of the sequence `s` is `some gp_head`
-      simp [convs'Aux_succ_some h]
-      have : s.tail.TerminatedAt n :=
-        Stream'.Seq.TerminatedAt.tail terminatedAt_n
-      rw [ih this]
+    simp [convs'Aux_succ_none, zeroth_conv'Aux_eq_zero, terminatedAt_iff_s_none, terminatedAt_n]
+  | succ n =>
+    rw [terminatedAt_iff_s_none] at terminatedAt_n
+    cases h : s.head with
+    | none =>
+      simp [convs'Aux_succ_none, h, terminatedAt_n]
+    | some gp =>
+      have tail_terminated : s.tail.TerminatedAt n := by
+        rw [←terminatedAt_iff_s_none] at terminatedAt_n
+        rw [Stream'.Seq.get?_tail]
+        simp [terminatedAt_n]
+      rw [convs'Aux_succ_some, h]
+      have ih : convs'Aux s.tail (n + 1) = convs'Aux s.tail n :=
+        convs'Aux_stable_step_of_terminated tail_terminated
+      rw [ih]
+  done
 
 /- ACTUAL PROOF OF GenContFract.convs'Aux_stable_step_of_terminated -/
 

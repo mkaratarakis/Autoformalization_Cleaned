@@ -1,7 +1,7 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:13:2: error: expected '{' or indented tactic sequence
-tmp.lean:12:32: error: unsolved goals
+tmp.lean:13:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  b ∈ f.toFun a₁
 α : Type u
 β : Type v
 γ : Type w
@@ -11,7 +11,48 @@ a₁ a₂ : α
 b : β
 h₁ : b ∈ f a₁
 h₂ : b ∈ f a₂
-⊢ a₁ ∈ f.invFun b
+⊢ a₁ ∈ f.symm b
+tmp.lean:16:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  b ∈ f.toFun a₂
+α : Type u
+β : Type v
+γ : Type w
+δ : Type x
+f : α ≃. β
+a₁ a₂ : α
+b : β
+h₁ : b ∈ f a₁
+h₂ : b ∈ f a₂
+h3 : a₁ ∈ f.symm b
+⊢ a₂ ∈ f.symm b
+tmp.lean:18:30: error: application type mismatch
+  some_injective (eq_of_mem_of_mem h3 ?m.518)
+argument
+  eq_of_mem_of_mem h3 ?m.518
+has type
+  f.symm b = ?m.475 : Prop
+but is expected to have type
+  Type ?u.470 : Type (?u.470 + 1)
+tmp.lean:18:58: error: application type mismatch
+  eq_of_mem_of_mem h3 h4
+argument
+  h4
+has type
+  a₂ ∈ f.symm b : Prop
+but is expected to have type
+  a₁ ∈ ?m.475 : Prop
+tmp.lean:13:2: error: expected '{' or indented tactic sequence
+tmp.lean:12:29: error: unsolved goals
+α : Type u
+β : Type v
+γ : Type w
+δ : Type x
+f : α ≃. β
+a₁ a₂ : α
+b : β
+h₁ : b ∈ f a₁
+h₂ : b ∈ f a₂
+⊢ a₁ ∈ f.symm b
 tmp.lean:11:15: error: unsolved goals
 α : Type u
 β : Type v
@@ -22,7 +63,7 @@ a₁ a₂ : α
 b : β
 h₁ : b ∈ f a₁
 h₂ : b ∈ f a₂
-h₁' : a₁ ∈ f.invFun b
+h3 : a₁ ∈ f.symm b
 ⊢ a₁ = a₂
 
 4. **New Prefix**  
@@ -38,4 +79,4 @@ open Function Option
 
 example (f : α ≃. β) {a₁ a₂ : α} {b : β} (h₁ : b ∈ f a₁) (h₂ : b ∈ f a₂) :
     a₁ = a₂ := by
-  have h₁' : a₁ ∈ invFun f b := by
+  have h3 : a₁ ∈ f.symm b := by

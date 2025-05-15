@@ -1,22 +1,53 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:16:10: error: function expected at
+  h
+term has type
+  Minimal (fun x => P x ∨ Q x) x
+tmp.lean:18:13: error: application type mismatch
+  And.intro hPx
+argument
+  hPx
+has type
+  ¬P x : Prop
+but is expected to have type
+  Q x : Prop
+tmp.lean:20:10: error: function expected at
+  h
+term has type
+  Minimal (fun x => P x ∨ Q x) x
+tmp.lean:13:2: error: unsolved goals
+case pos.h
+α : Type u_1
+P Q : α → Prop
+a x y✝ : α
+inst✝ : LE α
+h : Minimal (fun x => P x ∨ Q x) x
+hPx : P x
+y : α
+hyPQ : P y
+hle : y ≤ x
+⊢ x ≤ y
 tmp.lean:11:75: error: unsolved goals
-case intro
+case neg
 α : Type u_1
 P Q : α → Prop
 a x y : α
 inst✝ : LE α
-left✝ : (fun x => P x ∨ Q x) x
-right✝ : ∀ ⦃y : α⦄, (fun x => P x ∨ Q x) y → y ≤ x → x ≤ y
+h : Minimal (fun x => P x ∨ Q x) x
+hPx : ¬P x
 ⊢ Minimal P x ∨ Minimal Q x
-case intro
+case pos.h
 α : Type u_1
 P Q : α → Prop
-a x y : α
+a x y✝ : α
 inst✝ : LE α
-left✝ : (fun x => P x ∨ Q x) x
-right✝ : ∀ ⦃y : α⦄, (fun x => P x ∨ Q x) y → y ≤ x → x ≤ y
-⊢ Minimal P x ∨ Minimal Q x
+h : Minimal (fun x => P x ∨ Q x) x
+hPx : P x
+y : α
+hyPQ : P y
+hle : y ≤ x
+⊢ x ≤ y
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -31,4 +62,7 @@ variable {α : Type*} {P Q : α → Prop} {a x y : α}
 variable [LE α]
 
 example (h : Minimal (fun x ↦ P x ∨ Q x) x) : Minimal P x ∨ Minimal Q x := by
-  cases h
+  by_cases hPx : P x
+  · left
+    refine' ⟨hPx, _⟩
+    rintro y hyPQ hle

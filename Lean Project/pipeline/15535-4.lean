@@ -5,18 +5,15 @@ open Nat
 
 
 example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
-  induction a using Nat.rec with
+  induction a with
   | zero =>
     simp
+    exact fun h => False.elim (not_lt_zero _ h)
   | succ n ih =>
-    simp [Nat.succ_eq_add_one, Nat.add_mul, Nat.mul_add]
-    constructor
-    . intros h
-      cases Nat.eq_zero_or_pos n with
-      . hn rfl
-      . exact lt_of_add_lt_add_left (Nat.mul_lt_mul_of_pos_left h hn)
-    . intros h
-      exact Nat.add_lt_add_left (Nat.mul_lt_mul_of_pos_left h n.succ_pos) _
+    simp at a0
+    cases a0
+    simp [Nat.mul_succ, Nat.add_lt_add_iff_left]
+    exact ih
 
 /- ACTUAL PROOF OF Nat.mul_lt_mul_left -/
 

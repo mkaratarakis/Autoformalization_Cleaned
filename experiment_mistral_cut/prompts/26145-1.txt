@@ -1,6 +1,15 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:17:2: error: unsolved goals
+tmp.lean:17:10: error: invalid field 'eq', the environment does not contain 'Set.EqOn.eq'
+  heq
+has type
+  Set.EqOn f (↑e) e.source
+tmp.lean:17:10: error: invalid field notation, type is not of the form (C ...) where C is a constant
+  heq
+has type
+  ?m.470 ∈ e.source → f ?m.470 = ↑e ?m.470
+tmp.lean:18:4: error: simp made no progress
+tmp.lean:11:31: error: unsolved goals
 case pos
 X : Type u_1
 Y : Type u_2
@@ -16,8 +25,8 @@ h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
 x : X
 hx : x ∈ s
 e : PartialHomeomorph X Y
-hxe : x ∈ e.source
-he : Set.EqOn f (↑e) e.source
+hx_e : x ∈ e.source
+heq : Set.EqOn f (↑e) e.source
 y : X
 hy : y ∈ e.source
 ⊢ f y = ↑e y
@@ -37,8 +46,8 @@ h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
 x : X
 hx : x ∈ s
 e : PartialHomeomorph X Y
-hxe : x ∈ e.source
-he : Set.EqOn f (↑e) e.source
+hx_e : x ∈ e.source
+heq : Set.EqOn f (↑e) e.source
 y : X
 hy : y ∉ e.source
 ⊢ f y = ↑e y
@@ -57,8 +66,8 @@ h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
 x : X
 hx : x ∈ s
 e : PartialHomeomorph X Y
-hxe : x ∈ e.source
-he : Set.EqOn f (↑e) e.source
+hx_e : x ∈ e.source
+heq : Set.EqOn f (↑e) e.source
 y : X
 hy : y ∈ e.source
 ⊢ f y = ↑e y
@@ -78,8 +87,8 @@ h : ∀ x ∈ s, ∃ e, x ∈ e.source ∧ Set.EqOn f (↑e) e.source
 x : X
 hx : x ∈ s
 e : PartialHomeomorph X Y
-hxe : x ∈ e.source
-he : Set.EqOn f (↑e) e.source
+hx_e : x ∈ e.source
+heq : Set.EqOn f (↑e) e.source
 y : X
 hy : y ∉ e.source
 ⊢ f y = ↑e y
@@ -97,10 +106,8 @@ variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalS
 
 example (h : ∀ x ∈ s, ∃ e : PartialHomeomorph X Y, x ∈ e.source ∧ Set.EqOn f e e.source) :
     IsLocalHomeomorphOn f s := by
-  intro x hx
-  obtain ⟨e, hxe, he⟩ := h x hx
-  use e
-  constructor
-  · exact hxe
-  · ext y
-    by_cases hy : y ∈ e.source
+  intros x hx
+  obtain ⟨e, hx_e, heq⟩ := h x hx
+  refine ⟨e, hx_e, funext ?_⟩
+  intro y
+  by_cases hy : y ∈ e.source

@@ -5,7 +5,12 @@ open Cardinal
 open Cardinal
 
 example {c : Cardinal.{u}} : 𝔠 < lift.{v} c ↔ 𝔠 < c := by
-  rw [continuum_lt_lift]
+  rw [← lift_continuum.{v, u}, lift_lt]
+  constructor
+  · intro h
+    exact h
+  · intro h
+    exact h
 
 /- ACTUAL PROOF OF Cardinal.continuum_lt_lift -/
 

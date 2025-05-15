@@ -7,10 +7,12 @@ variable {n : ℕ} {F : TypeVec.{u} n → Type*} [q : MvQPF F]
 open MvFunctor (LiftP LiftR)
 
 example {α : TypeVec n} (x : F α) : TypeVec.id <$$> x = x := by
-  rw [← q.abs_repr]
-  rw [MvQPF.abs_map q (TypeVec.id : α ⟹ α)]
-  rw [MvPFunctor.id_map]
-  rw [q.abs_repr]
+  calc
+    TypeVec.id <$$> x
+      = abs (repr (TypeVec.id <$$> x)) : by rw [q.abs_repr]
+    ... = abs (TypeVec.id <$$> repr x) : by rw [q.map_id]
+    ... = abs (repr x) : by rw [MvPFunctor.id_map]
+    ... = x : by rw [q.abs_repr]
 
 /- ACTUAL PROOF OF MvQPF.id_map -/
 

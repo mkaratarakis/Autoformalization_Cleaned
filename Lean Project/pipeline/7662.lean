@@ -6,8 +6,8 @@ open Int
 
 
 example (n : Nat) : (0 : Int) >>> n = 0 := by
-  rw [shiftRight_eq_div_pow]
-  simp
+    rw [shiftRight_eq_div_pow]
+    simp
 
 /- ACTUAL PROOF OF Int.zero_shiftRight -/
 

@@ -11,16 +11,13 @@ variable {𝕜}
 
 example (hs : IsClosed ((↑) ⁻¹' s : Set <| affineSpan 𝕜 s)) :
     intrinsicClosure 𝕜 s = s := by
-  rw [intrinsicClosure]
-  ext y
-  constructor
-  · rintro ⟨z, hz1, hz2⟩
-    exact Subtype.coe_injective hz2 ▸ hs.closure_subset hz1
-  · intro hy
-    obtain ⟨z, hz⟩ : ∃ z, z ∈ (↑) ⁻¹' s ∧ (↑) z = y := by
-      use ⟨y, hy⟩
-      simp
-    refine ⟨z, hs.closure_subset hz.1, hz.2.symm⟩
+  apply le_antisymm
+  · intro x hx
+    exact subset_intrinsicClosure hx
+  · rw [intrinsicClosure]
+    apply subset.trans (image_subset_range _ _)
+    rw [← hs.closure_eq]
+    exact Subtype.range_coe_subtype
 
 /- ACTUAL PROOF OF IsClosed.intrinsicClosure -/
 

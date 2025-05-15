@@ -9,18 +9,15 @@ variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalS
 
 example (h : ∀ x ∈ s, ∃ e : PartialHomeomorph X Y, x ∈ e.source ∧ Set.EqOn f e e.source) :
     IsLocalHomeomorphOn f s := by
-  intro x hx
-  obtain ⟨e, hxe, he⟩ := h x hx
-  use e
-  constructor
-  · exact hxe
-  · ext y
-    by_cases hy : y ∈ e.source
-    · apply he.eqOn
-      exact hy
-    · simp [hy]
-      rw [dif_neg hy]
-      exact (he.eqOn (e.map_source hxe)).symm
+  intros x hx
+  obtain ⟨e, hx_e, heq⟩ := h x hx
+  refine ⟨e, hx_e, funext ?_⟩
+  intro y
+  by_cases hy : y ∈ e.source
+  · exact heq hy
+  · have : y ∉ e.source := hy
+    rw [dif_neg this]
+    exact (e.left_inv hy).symm
 
 /- ACTUAL PROOF OF IsLocalHomeomorphOn.mk -/
 

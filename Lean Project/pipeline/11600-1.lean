@@ -10,8 +10,8 @@ variable (𝕜) [Ring 𝕜] [AddCommGroup V] [Module 𝕜 V] [TopologicalSpace P
 variable {𝕜}
 
 example : intrinsicFrontier 𝕜 (∅ : Set P) = ∅ := by
-  unfold intrinsicFrontier
-  simp only [frontier_empty, image_empty]
+  rw [intrinsicFrontier, image_empty]
+  exact frontier_empty
 
 /- ACTUAL PROOF OF intrinsicFrontier_empty -/
 

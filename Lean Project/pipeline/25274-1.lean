@@ -10,9 +10,9 @@ example : {b : Bool} → b = false ↔ b ≠ true := by
     rw [h]
     exact false_ne_true
   · intro h
-    exact eq_false_or_eq_true b
-    rw [h]
-    exact (false_ne_true).symm
+    cases (eq_false_or_eq_true b) with
+    | inl h' => contradiction
+    | inr h' => exact h'
 
 /- ACTUAL PROOF OF Bool.eq_false_iff -/
 

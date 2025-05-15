@@ -5,15 +5,17 @@ open Nat
 
 
 example (a b : Nat) : max a b = max b a := by
-  by_cases h : a ≤ b
-  · by_cases h' : b ≤ a
-    · have : a = b := le_antisymm h h'
-      simp [this]
-    · simp [h, max]
-  · by_cases h' : b ≤ a
-    · simp [h', max]
+  by_cases h₁ : a ≤ b
+  · by_cases h₂ : b ≤ a
+    · have : a = b := Nat.le_antisymm h₁ h₂
+      simp [Nat.max_def, h₁, h₂, this]
+    · simp [Nat.max_def, h₁, h₂]
+  · by_cases h₂ : b ≤ a
+    · simp [Nat.max_def, h₁, h₂]
     · exfalso
-      exact not_le_of_gt h' h
+      apply Nat.le_total a b
+      exact h₁
+      exact h₂
 
 /- ACTUAL PROOF OF Nat.max_comm -/
 

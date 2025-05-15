@@ -1,26 +1,34 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:14:22: error: function expected at
+  not_lt_bot ?m.751
+term has type
+  False
+tmp.lean:15:28: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ↑(?a + ?b)
+case coe.coe
+a✝¹ a✝ : ℕ
+h : a✝¹ < a✝
+⊢ ↑a✝¹ + 1 ≤ ↑a✝
 tmp.lean:10:53: error: unsolved goals
-case bot
-m : WithBot ℕ
-h : ⊥ < m
-⊢ ⊥ + 1 ≤ m
-
-case coe
-m : WithBot ℕ
+case coe.bot
 a✝ : ℕ
-h : ↑a✝ < m
-⊢ ↑a✝ + 1 ≤ m
-case bot
-m : WithBot ℕ
-h : ⊥ < m
-⊢ ⊥ + 1 ≤ m
+h : ↑a✝ < ⊥
+⊢ ↑a✝ + 1 ≤ ⊥
 
-case coe
-m : WithBot ℕ
+case coe.coe
+a✝¹ a✝ : ℕ
+h : ↑a✝¹ < ↑a✝
+⊢ ↑a✝¹ + 1 ≤ ↑a✝
+case coe.bot
 a✝ : ℕ
-h : ↑a✝ < m
-⊢ ↑a✝ + 1 ≤ m
+h : ↑a✝ < ⊥
+⊢ ↑a✝ + 1 ≤ ⊥
+
+case coe.coe
+a✝¹ a✝ : ℕ
+h : ↑a✝¹ < ↑a✝
+⊢ ↑a✝¹ + 1 ≤ ↑a✝
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -35,3 +43,5 @@ open WithBot
 
 example {n m : WithBot ℕ} (h : n < m) : n + 1 ≤ m := by
   cases n
+  · simp
+  cases m

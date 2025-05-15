@@ -9,34 +9,17 @@ variable {α : Type*} {P Q : α → Prop} {a x y : α}
 variable [LE α]
 
 example (h : Minimal (fun x ↦ P x ∨ Q x) x) : Minimal P x ∨ Minimal Q x := by
-  cases h
-  case inl hPQ =>
-    apply Or.inl
-    intros y hx hy
-    apply hPQ
-    left
-    exact ⟨hy, hx⟩
-  case inr hPQ =>
-    apply Or.inr
-    intros y hx hy
-    apply hPQ
-    right
-    exact ⟨hy, hx⟩
-  intros y hy
-  simp at hy
-  cases hy
-  case inl hyP =>
-    apply Or.inl
-    intros z hxz hzx
-    apply hPQ
-    left
-    exact ⟨hxz, hzx⟩
-  case inr hyQ =>
-    apply Or.inr
-    intros z hxz hzx
-    apply hPQ
-    right
-    exact ⟨hxz, hzx⟩
+  by_cases hPx : P x
+  · left
+    apply Minimal.of_subpred (fun y hyPQ hle => (hyPQ.resolve_left hPx).elim)
+    refine' ⟨hPx, _⟩
+    rintro y hyPQ hle
+    exact h hle (Or.inl hyPQ)
+  · right
+    apply Minimal.of_subpred (fun y hyPQ hle => (hyPQ.resolve_right hPx).elim)
+    refine' ⟨hPx, _⟩
+    rintro y hyPQ hle
+    exact h hle (Or.inr hyPQ)
 
 /- ACTUAL PROOF OF Minimal.or -/
 

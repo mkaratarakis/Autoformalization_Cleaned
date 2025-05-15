@@ -6,8 +6,7 @@ open Nat
 
 example (n : ℕ) : dist n n = 0 := by
   rw [dist]
-  simp [sub_self]
-  rw [add_zero]
+  simp [Nat.sub_self n]
 
 /- ACTUAL PROOF OF Nat.dist_self -/
 

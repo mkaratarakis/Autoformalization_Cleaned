@@ -11,22 +11,33 @@ variable (s)
 
 example (hn : n ≠ 0) (hs : n ≤ s.card) :
     ∃ P : Finpartition s, P.IsEquipartition ∧ P.parts.card = n := by
+  have hn0 : 0 < n := Nat.pos_of_ne_zero hn
+  have h₁ : 0 < n := hn0
   let m := s.card / n
   let b := s.card % n
   let a := n - b
-  have hc : a * m + b * (m + 1) = s.card := by
+  have hm : 0 < m := by
+    apply Nat.pos_of_ne_zero
+    intro hm_eq_zero
+    rw [hm_eq_zero] at h₁
+    linarith
+  have hb : b < n := Nat.mod_lt _ hn
+  have ha : a + b = n := by
+    rw [a, add_tsub_cancel_of_le (Nat.mod_le _ _)]
+  have hs_card : a * m + b * (m + 1) = s.card := by
+    rw [a, Nat.sub_add_cancel h]
+    rfl
+  obtain ⟨Q, hQ⟩ := equitabilise_aux hs_card
+  exists Q
+  constructor
+  · exact fun p hp ↦ Or.inl (hQ.1 p hp)
+  · have h₂ : Q.parts.card = a + b := by
+      rw [← Nat.add_sub_of_le (Nat.le_add_right a b)]
+      exact hQ.2.2
+    rw [h₂]
     calc
-      a * m + b * (m + 1) = (n - b) * m + b * (m + 1) := by rw [a]
-      _ = n * m + b := by ring
-      _ = s.card := by rw [Nat.div_add_mod]
-  let Q := P.equitabilise hc
-  have hQ : Q.IsEquipartition := by
-    rw [IsEquipartition]
-    exact Set.equitableOn_iff_exists_eq_eq_add_one.2 ⟨n, by simp⟩
-  have hcard : Q.parts.card = n := by
-    rw [← Nat.sub_add_cancel (s.card % n)]
-    exact hc
-  exact ⟨Q, hQ, hcard⟩
+      a + b = n - s.card % n + s.card % n := by rw [Nat.add_sub_cancel']
+      _ = n := by rw [Nat.sub_add_cancel (Nat.le_of_lt_succ h₁)]
 
 /- ACTUAL PROOF OF Finpartition.exists_equipartition_card_eq -/
 

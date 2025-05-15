@@ -1,14 +1,28 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:13:2: error: expected '{' or indented tactic sequence
-tmp.lean:12:2: error: unsolved goals
+tmp.lean:13:2: error: tactic 'split_ifs' failed, no if-then-else conditions to split
 case h
 A : Type u_1
 inst✝¹ : Category.{u_2, u_1} A
 inst✝ : Abelian A
 X✝ X : SimplicialObject A
 n : ℕ
-⊢ (inclusionOfMooreComplexMap X ≫ PInfty).f n = (inclusionOfMooreComplexMap X).f n
+⊢ (NormalizedMooreComplex.objX X n).arrow ≫ (P n).f n = (NormalizedMooreComplex.objX X n).arrow
+tmp.lean:10:76: error: unsolved goals
+case h
+A : Type u_1
+inst✝¹ : Category.{u_2, u_1} A
+inst✝ : Abelian A
+X✝ X : SimplicialObject A
+n : ℕ
+⊢ (NormalizedMooreComplex.objX X n).arrow ≫ (P n).f n = (NormalizedMooreComplex.objX X n).arrow
+case h
+A : Type u_1
+inst✝¹ : Category.{u_2, u_1} A
+inst✝ : Abelian A
+X✝ X : SimplicialObject A
+n : ℕ
+⊢ (NormalizedMooreComplex.objX X n).arrow ≫ (P n).f n = (NormalizedMooreComplex.objX X n).arrow
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -23,4 +37,4 @@ variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
 example (X : SimplicialObject A) :
     inclusionOfMooreComplexMap X ≫ PInfty = inclusionOfMooreComplexMap X := by
   ext n
-  · -- Component at degree 0
+  dsimp [inclusionOfMooreComplexMap, PInfty]

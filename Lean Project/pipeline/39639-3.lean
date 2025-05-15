@@ -15,8 +15,14 @@ variable {X}
 variable {F : Set X}
 
 example (h : JoinedIn F x y) : x ∈ F ∧ y ∈ F := by
-  rcases h with ⟨γ, hγ⟩
-  exact ⟨hγ 0, hγ 1⟩
+  obtain ⟨γ, hγ⟩ := h
+  have hx : x ∈ F := by
+    convert hγ 0
+    exact γ.source
+  have hy : y ∈ F := by
+    convert hγ 1
+    exact γ.target
+  exact ⟨hx, hy⟩
 
 /- ACTUAL PROOF OF JoinedIn.mem -/
 

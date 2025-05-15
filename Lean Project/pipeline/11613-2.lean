@@ -11,24 +11,13 @@ variable {𝕜}
 
 example (hs : IsClosed ((↑) ⁻¹' s : Set <| affineSpan 𝕜 s)) :
     intrinsicClosure 𝕜 s = s := by
-  rw [intrinsicClosure]
-  have h_sub : s ⊆ (↑) '' ((↑) ⁻¹' s) := by
-    intro x
-    simp
-  have h_eq : ((↑) '' ((↑) ⁻¹' s)) ⊆ s := by
-    intro x
-    simp
-  have h_closure : closure ((↑) ⁻¹' s : Set (affineSpan 𝕜 s)) = ((↑) ⁻¹' s) := hs.closure_eq
-  rw [h_closure]
-  ext y
-  constructor
-  · intro hy
-    rw [mem_image] at hy
-    rcases hy with ⟨z, hz1, hz2⟩
-    exact hz2
-  · intro hy
-    use y
-    simp
+  apply le_antisymm
+  · intro x hx
+    exact ⟨x, hx, Subtype.eta _ _⟩
+  · rintro x ⟨y, hy, rfl⟩
+    rw [intrinsicClosure, Subtype.range_coe_subtype, Subtype.coe_eta]
+    rw [← hs.closure_eq] at hy
+    exact hy
 
 /- ACTUAL PROOF OF IsClosed.intrinsicClosure -/
 

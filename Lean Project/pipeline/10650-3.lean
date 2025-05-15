@@ -11,22 +11,27 @@ example (a : ℤ) : (legendreSym p a : ZMod p) = (a : ZMod p) ^ (p / 2) := by
   by_cases hp2 : p = 2
   · subst hp2
     by_cases ha : a ≡ 0 [ZMOD 2]
-    · simp [ha, legendreSym]
-      rw [ZMod.int_cast_zmod_int_cast]
-      norm_num
-    · have ha' : a ≡ 1 [ZMOD 2] := by
-        apply ZMod.int_cast_zmod_int_cast_injective
-        rw [ha]
-        tauto
-      simp [ha', legendreSym]
-      rw [ZMod.int_cast_zmod_int_cast]
-      norm_num
-  · have hp_odd : ¬ringChar (ZMod p) = 2 := by
+    · simp [ha]
+    · have ha' : a ≠ 0 := by
+        intro h
+        apply ha
+        rw [h]
+        exact (ZMod.cast_zero 2).symm
+      simp [ha', legendreSym, quadraticChar_eq_one_of_char_two, ZMod.cast_one]
+  · have hodd : ringChar (ZMod p) ≠ 2 := by
       intro h
-      have := @Fintype.card_zmod_eq (ZMod p) _ _
-      rw [h, Fintype.card_zmod_eq_two] at this
-      norm_num at this
-    simp [legendreSym, quadraticChar_eq_pow_of_char_ne_two' hp_odd a]
+      apply hp2
+      rw [ringChar_zmod_n, Nat.cast_inj] at h
+      exact h.symm
+    by_cases ha : a ≡ 0 [ZMOD p]
+    · simp [ha]
+    · have ha' : (a : ZMod p) ≠ 0 := by
+        intro h
+        apply ha
+        rw [h]
+        exact (ZMod.cast_zero p).symm
+      rw [legendreSym, quadraticChar_eq_pow_of_char_ne_two hodd ha']
+      exact (ZMod.cast_one _).symm
 
 /- ACTUAL PROOF OF legendreSym.eq_pow -/
 

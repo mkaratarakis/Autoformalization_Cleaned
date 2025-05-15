@@ -9,15 +9,13 @@ open Function Option
 
 example (f : α ≃. β) {a₁ a₂ : α} {b : β} (h₁ : b ∈ f a₁) (h₂ : b ∈ f a₂) :
     a₁ = a₂ := by
-  have h₁' : a₁ ∈ invFun f b := by
-    rw [← mem_map_of_injective (Option.some.inj)] at h₁
+  have h3 : a₁ ∈ f.symm b := by
+    rw [← f.inv a₁ b]
     exact h₁
-  have h₂' : a₂ ∈ invFun f b := by
-    rw [← mem_map_of_injective (Option.some.inj)] at h₂
+  have h4 : a₂ ∈ f.symm b := by
+    rw [← f.inv a₂ b]
     exact h₂
-  rw [← inv f a₁ b, h₁']
-  rw [← inv f a₂ b, h₂']
-  exact h₁'
+  rw [eq_of_mem_of_mem h3 h4]
 
 /- ACTUAL PROOF OF PEquiv.inj -/
 

@@ -6,7 +6,7 @@ variable {R : Type*} [CommRing R] {a b x₁ x₂ x₃ x₄ x₅ x₆ x₇ x₈ y
 
 example :
     (x₁ ^ 2 + x₂ ^ 2) * (y₁ ^ 2 + y₂ ^ 2) = (x₁ * y₁ - x₂ * y₂) ^ 2 + (x₁ * y₂ + x₂ * y₁) ^ 2 := by
-  apply sq_add_sq_mul_sq_add_sq
+  ring
 
 /- ACTUAL PROOF OF sq_add_sq_mul_sq_add_sq -/
 

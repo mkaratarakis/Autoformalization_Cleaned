@@ -8,7 +8,7 @@ variable {A : Type*} [Category A] [Abelian A] {X : SimplicialObject A}
 
 example (X : SimplicialObject A) :
     PInftyToNormalizedMooreComplex X ≫ inclusionOfMooreComplexMap X = PInfty := by
-  exact PInftyToNormalizedMooreComplex_comp_inclusionOfMooreComplexMap X
+  apply PInftyToNormalizedMooreComplex_comp_inclusionOfMooreComplexMap
 
 /- ACTUAL PROOF OF AlgebraicTopology.DoldKan.PInftyToNormalizedMooreComplex_comp_inclusionOfMooreComplexMap -/
 

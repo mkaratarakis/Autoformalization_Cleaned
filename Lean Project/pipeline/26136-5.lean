@@ -6,9 +6,9 @@ open Nat
 
 example (a b : Nat) : min a b ≤ b := by
   by_cases h : a ≤ b
-  · simp [min_def]
+  · rw [min_eq_left h]
     exact h
-  · simp [min_def]
+  · rw [min_eq_right h]
     exact le_rfl
 
 /- ACTUAL PROOF OF Nat.min_le_right -/

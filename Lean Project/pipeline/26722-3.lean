@@ -7,10 +7,11 @@ open NumberTheorySymbols
 open jacobiSym
 
 example (m₁ m₂ n : ℕ) : qrSign (m₁ * m₂) n = qrSign m₁ n * qrSign m₂ n := by
-  rw [qrSign, qrSign, qrSign]
-  simp only [ZMod.val_mul, ZMod.val_cast, ZMod.val_int_cast]
-  rw [← ZMod.val_mul (χ₄ m₁) (χ₄ m₂)]
-  exact jacobiSym.mul_left (χ₄ m₁) (χ₄ m₂) n
+  unfold qrSign
+  rw [ZMod.nat_cast_mul]
+  rw [map_mul]
+  congr
+  apply Nat.cast_mul
 
 /- ACTUAL PROOF OF qrSign.mul_left -/
 

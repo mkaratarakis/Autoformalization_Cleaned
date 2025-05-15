@@ -1,6 +1,9 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
+tmp.lean:23:9: error: tactic 'unfold' failed to unfold 'HasFiniteFPowerSeriesAt' at
+  HasFiniteFPowerSeriesOnBall f pf x n r
 tmp.lean:15:61: error: unsolved goals
+case h.toHasFPowerSeriesOnBall
 𝕜 : Type u_1
 E : Type u_2
 F : Type u_3
@@ -15,11 +18,15 @@ inst✝ : NormedSpace 𝕜 G
 f g : E → F
 p pf pg : FormalMultilinearSeries 𝕜 E F
 x : E
-r r' : ℝ≥0∞
+r✝ r'✝ : ℝ≥0∞
 n m : ℕ
-hf : HasFiniteFPowerSeriesAt f pf x n
-hg : HasFiniteFPowerSeriesAt g pg x m
-⊢ HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (n ⊔ m)
+r : ℝ≥0∞
+hfr : HasFiniteFPowerSeriesOnBall f pf x n r
+r' : ℝ≥0∞
+hgr : HasFiniteFPowerSeriesOnBall g pg x m r'
+⊢ HasFPowerSeriesOnBall (f + g) (pf + pg) x (r ⊓ r')
+
+case h.finite
 𝕜 : Type u_1
 E : Type u_2
 F : Type u_3
@@ -34,11 +41,58 @@ inst✝ : NormedSpace 𝕜 G
 f g : E → F
 p pf pg : FormalMultilinearSeries 𝕜 E F
 x : E
-r r' : ℝ≥0∞
+r✝ r'✝ : ℝ≥0∞
 n m : ℕ
-hf : HasFiniteFPowerSeriesAt f pf x n
-hg : HasFiniteFPowerSeriesAt g pg x m
-⊢ HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (n ⊔ m)
+r : ℝ≥0∞
+hfr : HasFiniteFPowerSeriesOnBall f pf x n r
+r' : ℝ≥0∞
+hgr : HasFiniteFPowerSeriesOnBall g pg x m r'
+⊢ ∀ (m_1 : ℕ), n ⊔ m ≤ m_1 → (pf + pg) m_1 = 0
+case h.toHasFPowerSeriesOnBall
+𝕜 : Type u_1
+E : Type u_2
+F : Type u_3
+G : Type u_4
+inst✝⁶ : NontriviallyNormedField 𝕜
+inst✝⁵ : NormedAddCommGroup E
+inst✝⁴ : NormedSpace 𝕜 E
+inst✝³ : NormedAddCommGroup F
+inst✝² : NormedSpace 𝕜 F
+inst✝¹ : NormedAddCommGroup G
+inst✝ : NormedSpace 𝕜 G
+f g : E → F
+p pf pg : FormalMultilinearSeries 𝕜 E F
+x : E
+r✝ r'✝ : ℝ≥0∞
+n m : ℕ
+r : ℝ≥0∞
+hfr : HasFiniteFPowerSeriesOnBall f pf x n r
+r' : ℝ≥0∞
+hgr : HasFiniteFPowerSeriesOnBall g pg x m r'
+⊢ HasFPowerSeriesOnBall (f + g) (pf + pg) x (r ⊓ r')
+
+case h.finite
+𝕜 : Type u_1
+E : Type u_2
+F : Type u_3
+G : Type u_4
+inst✝⁶ : NontriviallyNormedField 𝕜
+inst✝⁵ : NormedAddCommGroup E
+inst✝⁴ : NormedSpace 𝕜 E
+inst✝³ : NormedAddCommGroup F
+inst✝² : NormedSpace 𝕜 F
+inst✝¹ : NormedAddCommGroup G
+inst✝ : NormedSpace 𝕜 G
+f g : E → F
+p pf pg : FormalMultilinearSeries 𝕜 E F
+x : E
+r✝ r'✝ : ℝ≥0∞
+n m : ℕ
+r : ℝ≥0∞
+hfr : HasFiniteFPowerSeriesOnBall f pf x n r
+r' : ℝ≥0∞
+hgr : HasFiniteFPowerSeriesOnBall g pg x m r'
+⊢ ∀ (m_1 : ℕ), n ⊔ m ≤ m_1 → (pf + pg) m_1 = 0
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -57,4 +111,10 @@ variable {𝕜}
 example (hf : HasFiniteFPowerSeriesAt f pf x n)
     (hg : HasFiniteFPowerSeriesAt g pg x m) :
     HasFiniteFPowerSeriesAt (f + g) (pf + pg) x (max n m) := by
-  -- Let's denote the common radius of convergence by r.
+  -- 1. **Existence of a Common Radius:**
+  rcases hf with ⟨r, hfr⟩
+  rcases hg with ⟨r', hgr⟩
+  use min r r'
+  constructor
+
+  -- 2. **Sum of Finite Formal Power Series:**

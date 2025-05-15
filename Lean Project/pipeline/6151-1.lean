@@ -9,9 +9,9 @@ open Ordering OrderDual
 example [LT α] {a b : α} {o : Ordering} :
     Compares o (toDual a) (toDual b) ↔ Compares o b a := by
   cases o
-  · simp [Compares, toDual_lt_toDual]
-  · simp [Compares, toDual_inj]
-  · simp [Compares, toDual_gt_toDual]
+  · simp [toDual_lt_toDual]
+  · simp
+  · simp [toDual_lt_toDual]
 
 /- ACTUAL PROOF OF toDual_compares_toDual -/
 
