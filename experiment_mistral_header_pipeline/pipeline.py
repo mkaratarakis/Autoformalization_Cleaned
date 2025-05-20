@@ -21,7 +21,7 @@ PROOF_DIR = "../Lean Project/real_proofs"
 TMP_FILE = "../Lean Project/tmp.lean"
 PIPELINE_SAVE_DIR = "../Lean Project/proofs"
 PROMPTS_DIR = "prompts"
-MAX_TRIES = 1
+MAX_TRIES = 5
 
 
 def soft_clear():
@@ -130,12 +130,15 @@ def prompt_for_proof(name: str,
 
 4. **Prefix**
 {start}
+
+5. **Header Information**  
+{header_info}
 """
 
 
 def prompt_with_error(error_message: str) -> str:
     return f"""The previous lean 4 proof has the following errors. 
-5. **Error Message**
+6. **Error Message**
 {error_message}
 Please revise the proof accordingly - but always pick up exactly where the given prefix ends. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 """

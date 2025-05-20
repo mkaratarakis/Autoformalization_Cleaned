@@ -1,13 +1,17 @@
-import Mathlib.Data.Option.Basic
-import Mathlib.Data.Set.Basic
-import Batteries.Tactic.Congr
-import Mathlib.Data.PEquiv
+import Mathlib.Logic.Function.Defs
+import Batteries.Tactic.Init
+import Mathlib.Data.Option.NAry
 
-open PEquiv
-variable {α : Type u} {β : Type v} {γ : Type w} {δ : Type x}
-open Function Option
+open Option
+open Function
+variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Option β} {c : Option γ}
 
-example (f : α ≃. β) {a₁ a₂ : α} {b : β} (h₁ : b ∈ f a₁) (h₂ : b ∈ f a₂) :
-    a₁ = a₂ := by
-  have h3 : a₁ ∈ f.symm b := by
-  trace_state
+example {c : γ} : c ∈ map₂ f a b ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by
+  constructor
+  · intro h
+    cases a <;> cases b <;> try {exfalso; exact h rfl}
+    · exact ⟨_, _, mem_some_self _, mem_some_self _, rfl⟩
+  · rintro ⟨a', b', ha', hb', rfl⟩
+    rcases ha' with ⟨rfl⟩
+    rcases hb' with ⟨rfl⟩
+    exact mem_some_self (f a' b')
