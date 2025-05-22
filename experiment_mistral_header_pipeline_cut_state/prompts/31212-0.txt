@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Right Addition Cancellation for Less Than or Equal in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), if \(a + b \leq c + b\), then \(a \leq c\).
+
+2. **Informal Proof**  
+We start with the assumption that \(a + b \leq c + b\). Using the commutativity of addition, we can rewrite this as \(b + a \leq b + c\). To prove that \(a \leq c\), we use the theorem that states if \(a + b \leq a + c\), then \(b \leq c\). Applying this theorem to our rewritten assumption, we get that \(b + a \leq b + c\) implies \(a \leq c\). Therefore, the original assumption \(a + b \leq c + b\) implies \(a \leq c\). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b c : Nat} : a + b ≤ c + b → a ≤ c := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {a b c : Nat} : a + b ≤ c + b → a ≤ c := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

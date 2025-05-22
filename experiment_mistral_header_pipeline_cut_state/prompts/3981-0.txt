@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Left Multiplication Preserves Divisibility in Natural Numbers : For any natural numbers \( k, m, \) and \( n \), if \( k > 0 \) and \( k \cdot m \) divides \( k \cdot n \), then \( m \) divides \( n \).
+
+2. **Informal Proof**  
+Assume \( k > 0 \) and \( k \cdot m \) divides \( k \cdot n \). This means there exists a natural number \( l \) such that \( k \cdot n = k \cdot m \cdot l \). Using the associativity of multiplication, we can rewrite this equation as \( k \cdot n = k \cdot (m \cdot l) \). Since \( k > 0 \), by the cancellation property of multiplication in natural numbers, we have \( n = m \cdot l \). Therefore, \( m \) divides \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example 
+    (kpos : 0 < k) (H : k * m ∣ k * n) : m ∣ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example 
+    (kpos : 0 < k) (H : k * m ∣ k * n) : m ∣ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

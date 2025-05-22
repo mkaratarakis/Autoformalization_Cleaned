@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Least Common Multiple with Zero: \(\text{lcm}(m, 0) = 0\) : For any natural number \( m \), the least common multiple (LCM) of \( m \) and \( 0 \) is \( 0 \), i.e., \(\text{lcm}(m, 0) = 0\).
+
+2. **Informal Proof**  
+To prove that \(\text{lcm}(m, 0) = 0\) for any natural number \( m \), we use the definition of the least common multiple (LCM). The LCM of two natural numbers \( m \) and \( n \) is the smallest natural number that is a multiple of both \( m \) and \( n \). When \( n = 0 \), the LCM of \( m \) and \( 0 \) is \( 0 \) because \( 0 \) is a multiple of any natural number. Therefore, \(\text{lcm}(m, 0) = 0\). This completes the proof.
+
+3. **Formal Theorem**  
+example (m : Nat) : lcm m 0 = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (m : Nat) : lcm m 0 = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Gcd not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Lcm not found. --
+

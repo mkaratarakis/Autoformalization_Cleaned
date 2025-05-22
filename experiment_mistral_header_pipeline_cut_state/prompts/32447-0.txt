@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Left Factor Positivity from Product Positivity in Natural Numbers : For any natural numbers \( a \) and \( b \), if the product \( a \times b \) is strictly greater than zero, then \( b \) is strictly greater than zero.
+
+2. **Informal Proof**  
+To prove that \( 0 < b \), we assume the negation, i.e., \( \neg (0 < b) \), and show that this leads to a contradiction. Let \( a \) and \( b \) be natural numbers, and assume \( 0 < a \times b \). Suppose, for the sake of contradiction, that \( \neg (0 < b) \). This means \( b \leq 0 \). Since \( b \) is a natural number, the only possibility is \( b = 0 \).
+
+Now, consider the product \( a \times b \). Since \( b = 0 \), we have \( a \times b = a \times 0 = 0 \). This contradicts the assumption that \( 0 < a \times b \). Therefore, our assumption \( \neg (0 < b) \) must be false, and hence \( 0 < b \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} (h : 0 < a * b) : 0 < b := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a b : Nat} (h : 0 < a * b) : 0 < b := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

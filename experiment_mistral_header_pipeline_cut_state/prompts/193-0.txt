@@ -1,0 +1,25 @@
+
+1. **Informal Theorem**  
+Erasing Beyond List Length Leaves List Unchanged: \( l.\text{eraseIdx}(k) = l \) if \( \text{length}(l) \leq k \) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( k \), if the length of \( l \) is less than or equal to \( k \), then removing the element at index \( k \) from \( l \) results in the list \( l \) itself, i.e., \( l.\text{eraseIdx}(k) = l \).
+
+2. **Informal Proof**  
+We are given a list \( l \) of elements of type \( \alpha \) and a natural number \( k \) such that \( \text{length}(l) \leq k \). According to the theorem that states \( l.\text{eraseIdx}(k) = l \) if and only if \( \text{length}(l) \leq k \), and since we have the assumption \( \text{length}(l) \leq k \), we can directly conclude that \( l.\text{eraseIdx}(k) = l \). This is because the condition \( \text{length}(l) \leq k \) is satisfied, and thus the list remains unchanged when we attempt to remove an element at an index that is beyond its length. Therefore, the goal \( l.\text{eraseIdx}(k) = l \) is equivalent to \( l = l \), which is trivially true by the reflexive property of equality. This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} {k : Nat} (h : length l ≤ k) : eraseIdx l k = l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example {l : List α} {k : Nat} (h : length l ≤ k) : eraseIdx l k = l := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

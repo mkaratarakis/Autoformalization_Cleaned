@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Right Addition and Subtraction Identity in Natural Numbers : For any natural numbers \(a\) and \(b\), the expression \(a + b - b\) is equal to \(a\), i.e., \(a + b - b = a\).
+
+2. **Informal Proof**  
+To prove that \(a + b - b = a\) for any natural numbers \(a\) and \(b\), we start by using the commutativity of addition. The commutativity of addition states that \(a + b = b + a\). Therefore, we can rewrite the expression \(a + b - b\) as \(b + a - b\).
+
+Next, we apply the theorem that for any natural numbers \(x\) and \(y\), \(x + y - y = x\). In our case, this theorem tells us that \(b + a - b = a\).
+
+Thus, we have shown that \(a + b - b = a\), completing the proof.
+
+3. **Formal Theorem**  
+example (a b : Nat) : (a + b) - b = a := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (a b : Nat) : (a + b) - b = a := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

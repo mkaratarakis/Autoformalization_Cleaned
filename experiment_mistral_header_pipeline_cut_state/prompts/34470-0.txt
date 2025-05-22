@@ -1,0 +1,78 @@
+
+1. **Informal Theorem**  
+Pairwise Relation on Reversed List: \(\text{Pairwise } R \, (l.\text{reverse}) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, l\) : For any type \(\alpha\) and any relation \(R\) on \(\alpha\), a list \(l\) of elements of type \(\alpha\) satisfies the pairwise relation \(R\) on its reverse, \(l.\text{reverse}\), if and only if the list \(l\) satisfies the pairwise relation \(R\) with the order of the elements reversed, i.e., \(\text{Pairwise } R \, (l.\text{reverse}) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, l\).
+
+2. **Informal Proof**  
+We perform induction on the list \( l \).
+
+**Base Case:**
+For the empty list \( l = [] \), we need to show that:
+\[
+\text{Pairwise } R \, (l.\text{reverse}) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, l
+\]
+Since the reverse of the empty list is the empty list itself, we have:
+\[
+\text{Pairwise } R \, [] \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, []
+\]
+Both sides of the equivalence are trivially true because the pairwise relation on an empty list is always true. Therefore, the base case holds.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for any list \( \text{tail} \) of elements of type \(\alpha\), the pairwise relation \( R \) holds for the reverse of the tail if and only if it holds for the tail with the order of elements reversed:
+\[
+\text{Pairwise } R \, (\text{tail}.\text{reverse}) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, \text{tail}
+\]
+We need to show that for any element \( \text{head} \) and list \( \text{tail} \), the pairwise relation \( R \) holds for the reverse of the entire list \( \text{head} :: \text{tail} \) if and only if it holds for the entire list with the order of elements reversed:
+\[
+\text{Pairwise } R \, ((\text{head} :: \text{tail}).\text{reverse}) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, (\text{head} :: \text{tail})
+\]
+Using the property of the reverse of a cons list, we have:
+\[
+(\text{head} :: \text{tail}).\text{reverse} = \text{tail}.\text{reverse} \, ++ \, [\text{head}]
+\]
+Thus, the goal becomes:
+\[
+\text{Pairwise } R \, (\text{tail}.\text{reverse} \, ++ \, [\text{head}]) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, (\text{head} :: \text{tail})
+\]
+We simplify the left-hand side using the definition of pairwise relations and the inductive hypothesis. The pairwise relation on the concatenation of two lists is equivalent to the pairwise relation on each list and the relation between the last element of the first list and the first element of the second list. Therefore, we have:
+\[
+\text{Pairwise } R \, (\text{tail}.\text{reverse} \, ++ \, [\text{head}]) \leftrightarrow \text{Pairwise } R \, (\text{tail}.\text{reverse}) \land R \, (\text{last}(\text{tail}.\text{reverse})) \, \text{head}
+\]
+Using the inductive hypothesis, this becomes:
+\[
+\text{Pairwise } R \, (\text{tail}.\text{reverse}) \land R \, (\text{last}(\text{tail}.\text{reverse})) \, \text{head} \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, \text{tail} \land R \, (\text{last}(\text{tail}.\text{reverse})) \, \text{head}
+\]
+Since \(\text{last}(\text{tail}.\text{reverse})\) is the first element of \(\text{tail}\), we have:
+\[
+\text{Pairwise } R \, (\text{tail}.\text{reverse}) \land R \, (\text{first}(\text{tail})) \, \text{head} \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, \text{tail} \land R \, (\text{first}(\text{tail})) \, \text{head}
+\]
+This is equivalent to:
+\[
+\text{Pairwise } (R \, \text{reversed}) \, \text{tail} \land (R \, \text{reversed}) \, \text{head} \, \text{first}(\text{tail}) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, \text{tail} \land R \, \text{head} \, \text{first}(\text{tail})
+\]
+By the commutativity of conjunction, this is:
+\[
+\text{Pairwise } (R \, \text{reversed}) \, \text{tail} \land R \, \text{head} \, \text{first}(\text{tail}) \leftrightarrow \text{Pairwise } (R \, \text{reversed}) \, \text{tail} \land R \, \text{head} \, \text{first}(\text{tail})
+\]
+Thus, the inductive step holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} :
+    l.reverse.Pairwise R ↔ l.Pairwise (fun a b => R b a) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example {l : List α} :
+    l.reverse.Pairwise R ↔ l.Pairwise (fun a b => R b a) := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

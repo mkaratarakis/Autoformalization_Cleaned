@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Size of Thunk is One Plus Size of Forced Value : For any type \( \alpha \) with a `SizeOf` instance, and for any thunk \( a \) of type \( \alpha \), the size of the thunk \( a \) is equal to one plus the size of the value obtained by forcing the thunk \( a \), i.e., \(\text{sizeOf}(a) = 1 + \text{sizeOf}(a.\text{get})\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by considering the structure of a thunk \( a \). A thunk is a delayed computation that, when forced, produces a value of type \( \alpha \). By the definition of the size of a thunk, the size of \( a \) is defined as one plus the size of the value obtained by forcing the thunk. Therefore, the size of the thunk \( a \) is \(\text{sizeOf}(a) = 1 + \text{sizeOf}(a.\text{get})\). This equality is a direct consequence of the definition of the size of a thunk. Hence, the theorem is proved.
+
+3. **Formal Theorem**  
+example [SizeOf α] (a : Thunk α) : sizeOf a = 1 + sizeOf a.get := by sorry
+
+4. **Prefix**
+import Init.Prelude
+import Init.SizeOf
+import Init.Core
+
+open Thunk
+
+
+example [SizeOf α] (a : Thunk α) : sizeOf a = 1 + sizeOf a.get := by
+
+5. **Header Information**  
+-- Init.Prelude not found. --
+
+-- Init.SizeOf not found. --
+
+-- Init.Core not found. --
+

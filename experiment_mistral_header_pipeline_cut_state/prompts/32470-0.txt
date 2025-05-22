@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Exponentiation Preserves Order in Natural Numbers: \(a^n \leq a^m\) if \(n \leq m\) : For any natural numbers \(a\), \(n\), and \(m\) such that \(1 < a\) and \(n \leq m\), it holds that \(a^n \leq a^m\).
+
+2. **Informal Proof**  
+We start by considering the assumption \( n \leq m \). We will discuss every possible case of this inequality.
+
+**Case 1: \( n < m \)**
+In this case, we use the fact that if \( 1 < a \) and \( n < m \), then \( a^n < a^m \). Since \( a^n < a^m \) implies \( a^n \leq a^m \), we have \( a^n \leq a^m \).
+
+**Case 2: \( n = m \)**
+In this case, we substitute \( n \) with \( m \) in the goal, which simplifies the goal to \( a^n \leq a^n \). This is true by the reflexivity of the less than or equal to relation, i.e., \( a^n \leq a^n \) holds for any natural number \( a^n \).
+
+Since both cases are covered, we conclude that for any natural numbers \(a\), \(n\), and \(m\) such that \(1 < a\) and \(n \leq m\), it holds that \(a^n \leq a^m\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a n m : Nat} (h : 1 < a) (w : n ≤ m) : a ^ n ≤ a ^ m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a n m : Nat} (h : 1 < a) (w : n ≤ m) : a ^ n ≤ a ^ m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

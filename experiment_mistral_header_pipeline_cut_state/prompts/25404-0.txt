@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Conditional Expression with Identical Branches Equals the Value : For any boolean condition $c$ and any value $t$ of type $\alpha$, the expression `bif c then t else t` is equal to $t$, i.e., $(\text{if } c \text{ then } t \text{ else } t) = t$.
+
+2. **Informal Proof**  
+We need to show that for any boolean condition $c$ and any value $t$ of type $\alpha$, the expression $(\text{if } c \text{ then } t \text{ else } t)$ is equal to $t$. We will consider every possible case of the boolean condition $c$.
+
+1. **Case 1: $c = \text{false}$**
+- The expression $(\text{if } \text{false} \text{ then } t \text{ else } t)$ simplifies to $t$.
+- This is trivially true because both sides of the equality are $t$.
+
+2. **Case 2: $c = \text{true}$**
+- The expression $(\text{if } \text{true} \text{ then } t \text{ else } t)$ simplifies to $t$.
+- This is also trivially true because both sides of the equality are $t$.
+
+Since both cases are trivially true, we conclude that for any boolean condition $c$ and any value $t$ of type $\alpha$, the expression $(\text{if } c \text{ then } t \text{ else } t)$ is equal to $t$. This completes the proof.
+
+3. **Formal Theorem**  
+example (c : Bool) (t : α) : cond c t t = t := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (c : Bool) (t : α) : cond c t t = t := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

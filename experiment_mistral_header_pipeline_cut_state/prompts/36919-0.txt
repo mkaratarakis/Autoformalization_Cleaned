@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Existence or Universal Negation: \((\exists a, P(a)) \lor (\forall a, \neg P(a))\) : For any type \( \alpha \) and any predicate \( P : \alpha \to \text{Prop} \), either there exists an element \( a \in \alpha \) such that \( P(a) \) holds, or for all elements \( a \in \alpha \), \( P(a) \) does not hold. This can be expressed as:
+\[
+(\exists a \in \alpha, P(a)) \lor (\forall a \in \alpha, \neg P(a))
+\]
+
+2. **Informal Proof**  
+To prove the statement \((\exists a \in \alpha, P(a)) \lor (\forall a \in \alpha, \neg P(a))\), we start by using the equivalence that the negation of the existence of an element \(a\) such that \(P(a)\) holds is equivalent to the universal statement that for all \(a \in \alpha\), \(P(a)\) does not hold. This transforms our goal into proving:
+\[
+\neg (\forall a \in \alpha, \neg P(a)) \lor (\forall a \in \alpha, \neg P(a))
+\]
+By the law of excluded middle, which states that for any proposition \(Q\), either \(Q\) or \(\neg Q\) is true, the above statement is always true. Therefore, the original statement \((\exists a \in \alpha, P(a)) \lor (\forall a \in \alpha, \neg P(a))\) is also true. This completes the proof.
+
+3. **Formal Theorem**  
+example (P : α → Prop) : (∃ a, P a) ∨ ∀ a, ¬ P a := by sorry
+
+4. **Prefix**
+import Init.PropLemmas
+import Init.Classical
+
+open Classical
+
+
+example (P : α → Prop) : (∃ a, P a) ∨ ∀ a, ¬ P a := by
+
+5. **Header Information**  
+-- Init.PropLemmas not found. --
+
+-- Init.Classical not found. --
+

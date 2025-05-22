@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Subtraction Inequality for Natural Numbers: \( j - 1 - (i + 1) < j - i \) : For any natural numbers \( i \) and \( j \) such that \( i < j \), it holds that \( j - 1 - (i + 1) < j - i \).
+
+2. **Informal Proof**  
+We start with the goal of proving \( j - 1 - (i + 1) < j - i \). First, we use the identity \( a - b - c = a - (b + c) \) to rewrite the goal as \( j - (1 + (i + 1)) < j - i \). Then, we use the commutativity of addition \( a + b = b + a \) to further rewrite the goal as \( j - (i + 1 + 1) < j - i \).
+
+To prove \( j - (i + 1 + 1) < j - i \), we use the transitivity of less-than-or-equal and less-than. Specifically, we show that \( j - (i + 2) \leq j - (i + 1) \) and \( j - (i + 1) < j - i \). The first inequality \( j - (i + 2) \leq j - (i + 1) \) holds because the predecessor of any natural number is less than or equal to the number itself. The second inequality \( j - (i + 1) < j - i \) holds because subtracting the successor of a number from another number preserves the strict inequality. Since \( i < j \), we have \( j - (i + 1) < j - i \). Therefore, by transitivity, \( j - (i + 2) < j - i \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {i j : Nat} (h : i < j) : j - 1 - (i + 1) < j - i := by sorry
+
+4. **Prefix**
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Fin.Basic
+import Init.Data.UInt.Basic
+import Init.Data.Repr
+import Init.Data.ToString.Basic
+import Init.GetElem
+import Init.Data.Array.Basic
+
+open Array
+open reverse
+variable {α : Type u}
+
+example {i j : Nat} (h : i < j) : j - 1 - (i + 1) < j - i := by
+
+5. **Header Information**  
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Fin.Basic not found. --
+
+-- Init.Data.UInt.Basic not found. --
+
+-- Init.Data.Repr not found. --
+
+-- Init.Data.ToString.Basic not found. --
+
+-- Init.GetElem not found. --
+
+-- Init.Data.Array.Basic not found. --
+

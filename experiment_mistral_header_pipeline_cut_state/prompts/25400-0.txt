@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Conditional Expression Evaluates to Second Argument if Condition is False: $(\text{if } b \text{ then } a \text{ else } a') = a'$ if $b = \text{false}$ : For any type $\alpha$ and any boolean condition $b$, if $b$ is false, then the conditional expression `bif b then a else a'` evaluates to $a'$, i.e., $(\text{if } b \text{ then } a \text{ else } a') = a'$.
+
+2. **Informal Proof**  
+We start with the assumption that $b = \text{false}$. We need to show that the conditional expression $(\text{if } b \text{ then } a \text{ else } a')$ evaluates to $a'$. By substituting $b$ with $\text{false}$ in the conditional expression, we get $(\text{if } \text{false} \text{ then } a \text{ else } a')$. According to the property of the conditional function, $\text{cond}(\text{false}, a, a') = a'$, the expression simplifies to $a'$. Therefore, $(\text{if } b \text{ then } a \text{ else } a') = a'$, which is trivially true by the reflexivity of equality. This completes the proof.
+
+3. **Formal Theorem**  
+example {b : Bool} {a a' : α} (h : b = false) : (bif b then a else a') = a' := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example {b : Bool} {a a' : α} (h : b = false) : (bif b then a else a') = a' := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

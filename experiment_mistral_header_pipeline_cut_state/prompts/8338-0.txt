@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Boolean Not-Equal is True if Equality is False in Natural Numbers : For any natural numbers \(a\) and \(b\), if \(a = b\) is false, then \(a \neq b\) is true.
+
+2. **Informal Proof**  
+We start with the assumption that \(a = b\) is false. By the definition of the boolean not-equal function `bne`, \(a \neq b\) is true if and only if \(a == b\) is false. According to the theorem that if \(a = b\) is false, then \(a == b\) is also false, we have that \(a == b\) is false. Therefore, \(a \neq b\) is true. This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} (p : (a = b) = False) : (a != b) = true := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example {a b : Nat} (p : (a = b) = False) : (a != b) = true := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Greatest Common Divisor Divides Both Arguments: \(\gcd(m, n) \mid m \land \gcd(m, n) \mid n\) : For any natural numbers \( m \) and \( n \), the greatest common divisor \(\gcd(m, n)\) divides both \( m \) and \( n \), i.e., \(\gcd(m, n) \mid m\) and \(\gcd(m, n) \mid n\).
+
+2. **Informal Proof**  
+We prove this by induction on \( m \).
+
+1. **Base Case: \( m = 0 \)**
+- By the property of the greatest common divisor, \(\gcd(0, n) = n\).
+- Therefore, we need to show that \( n \mid 0 \) and \( n \mid n \).
+- Since any number divides zero and any number divides itself, this is trivially true.
+
+2. **Inductive Step: \( m > 0 \)**
+- By the recurrence property of the greatest common divisor, \(\gcd(m, n) = \gcd(n \mod m, m)\).
+- Assume the induction hypothesis that \(\gcd(n \mod m, m) \mid n \mod m\) and \(\gcd(n \mod m, m) \mid m\).
+- We need to show that \(\gcd(m, n) \mid m\) and \(\gcd(m, n) \mid n\).
+- Since \(\gcd(m, n) = \gcd(n \mod m, m)\), we have \(\gcd(m, n) \mid m\) by the induction hypothesis.
+- To show \(\gcd(m, n) \mid n\), we use the property that if \( k \mid n \) and \( k \mid (m \mod n) \), then \( k \mid m \). Since \(\gcd(m, n) \mid n \mod m\) and \(\gcd(m, n) \mid m\), it follows that \(\gcd(m, n) \mid n\).
+
+Thus, by induction, \(\gcd(m, n) \mid m\) and \(\gcd(m, n) \mid n\) for all natural numbers \( m \) and \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n : Nat) : (gcd m n ∣ m) ∧ (gcd m n ∣ n) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (m n : Nat) : (gcd m n ∣ m) ∧ (gcd m n ∣ n) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

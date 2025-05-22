@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Bitvector to Integer Conversion is Injective: \( x.\text{toInt} \neq y.\text{toInt} \leftrightarrow x \neq y \) : For any natural number \( n \) and any bitvectors \( x \) and \( y \) of length \( n \), the integers \( x.\text{toInt} \) and \( y.\text{toInt} \) are not equal if and only if the bitvectors \( x \) and \( y \) are not equal, i.e., \( x.\text{toInt} \neq y.\text{toInt} \leftrightarrow x \neq y \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of inequality. The statement \( x.\text{toInt} \neq y.\text{toInt} \) is equivalent to \( \neg (x.\text{toInt} = y.\text{toInt}) \). Next, we use the injectivity of the bitvector to integer conversion, which states that \( x.\text{toInt} = y.\text{toInt} \) if and only if \( x = y \). Therefore, the goal \( \neg (x.\text{toInt} = y.\text{toInt}) \) is equivalent to \( \neg (x = y) \), which is the same as \( x \neq y \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec n) : x.toInt ≠ y.toInt ↔ x ≠ y := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec n) : x.toInt ≠ y.toInt ↔ x ≠ y := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,97 @@
+
+1. **Informal Theorem**  
+TakeWhile of Concatenated Lists: \(\text{takeWhile } p \, (xs ++ ys)\) : For any type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), and for any lists \( xs \) and \( ys \) of elements of type \( \alpha \), the longest initial segment of the concatenated list \( xs ++ ys \) for which \( p \) returns `true` is given by:
+\[ \text{takeWhile } p \, (xs ++ ys) = 
+  \begin{cases} 
+   xs ++ \text{takeWhile } p \, ys & \text{if } \text{length}(\text{takeWhile } p \, xs) = \text{length}(xs) \\
+   \text{takeWhile } p \, xs & \text{otherwise}
+  \end{cases}
+\]
+
+2. **Informal Proof**  
+We prove this theorem by induction on the list \( xs \).
+
+1. **Base Case: \( xs = [] \)**
+- We need to show that \(\text{takeWhile } p \, ([] ++ ys) = \text{takeWhile } p \, ys\).
+- Using the properties of list concatenation, we have \(\text{takeWhile } p \, ([] ++ ys) = \text{takeWhile } p \, ys\).
+- This is trivially true.
+
+2. **Inductive Step: \( xs = x :: xs' \)**
+- Assume the proposition holds for the list \( xs' \), i.e., \(\text{takeWhile } p \, (xs' ++ ys) = \text{takeWhile } p \, xs' \) if \(\text{length}(\text{takeWhile } p \, xs') = \text{length}(xs')\), and \(\text{takeWhile } p \, xs'\) otherwise.
+- We need to show that \(\text{takeWhile } p \, (x :: xs' ++ ys) = \text{takeWhile } p \, (x :: xs')\) if \(\text{length}(\text{takeWhile } p \, (x :: xs')) = \text{length}(x :: xs')\), and \(\text{takeWhile } p \, (x :: xs')\) otherwise.
+- Using the properties of the `takeWhile` function, we have:
+\[
+\text{takeWhile } p \, (x :: xs' ++ ys) =
+\begin{cases}
+x :: \text{takeWhile } p \, (xs' ++ ys) & \text{if } p(x) = \text{true} \\
+[] & \text{if } p(x) = \text{false}
+\end{cases}
+\]
+- We consider two cases based on the value of \( p(x) \):
+
+- **Case 1: \( p(x) = \text{true} \)**
+- We need to show that:
+\[
+x :: \text{takeWhile } p \, (xs' ++ ys) =
+\begin{cases}
+x :: (xs' ++ \text{takeWhile } p \, ys) & \text{if } \text{length}(\text{takeWhile } p \, xs') = \text{length}(xs') \\
+x :: \text{takeWhile } p \, xs' & \text{otherwise}
+\end{cases}
+\]
+- Using the inductive hypothesis, we have:
+\[
+\text{takeWhile } p \, (xs' ++ ys) =
+\begin{cases}
+xs' ++ \text{takeWhile } p \, ys & \text{if } \text{length}(\text{takeWhile } p \, xs') = \text{length}(xs') \\
+\text{takeWhile } p \, xs' & \text{otherwise}
+\end{cases}
+\]
+- Therefore, the goal reduces to:
+\[
+x :: \text{takeWhile } p \, (xs' ++ ys) =
+\begin{cases}
+x :: (xs' ++ \text{takeWhile } p \, ys) & \text{if } \text{length}(\text{takeWhile } p \, xs') = \text{length}(xs') \\
+x :: \text{takeWhile } p \, xs' & \text{otherwise}
+\end{cases}
+\]
+- This is trivially true.
+
+- **Case 2: \( p(x) = \text{false} \)**
+- We need to show that:
+\[
+[] =
+\begin{cases}
+x :: (xs' ++ \text{takeWhile } p \, ys) & \text{if } \text{length}(\text{takeWhile } p \, xs') = \text{length}(xs') \\
+[] & \text{otherwise}
+\end{cases}
+\]
+- Since \( p(x) = \text{false} \), the condition \(\text{length}(\text{takeWhile } p \, (x :: xs')) = \text{length}(x :: xs')\) is false.
+- Therefore, the goal reduces to:
+\[
+[] = []
+\]
+- This is trivially true.
+
+Thus, by induction, the theorem holds for all lists \( xs \) and \( ys \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {xs ys : List α} :
+    (xs ++ ys).takeWhile p =
+      if (xs.takeWhile p).length = xs.length then xs ++ ys.takeWhile p else xs.takeWhile p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {xs ys : List α} :
+    (xs ++ ys).takeWhile p =
+      if (xs.takeWhile p).length = xs.length then xs ++ ys.takeWhile p else xs.takeWhile p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

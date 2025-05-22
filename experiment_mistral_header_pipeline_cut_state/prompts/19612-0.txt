@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Valid Unicode Scalar Value is Less Than \( 2^{32} \) : For any natural number \( n \), if \( n \) is a valid Unicode scalar value, then \( n \) is strictly less than \( 2^{32} \), i.e., \( n < 4294967296 \).
+
+2. **Informal Proof**  
+We need to show that for any natural number \( n \) that is a valid Unicode scalar value, \( n < 2^{32} \). A valid Unicode scalar value \( n \) satisfies one of the following conditions:
+1. \( n < 55296 \)
+2. \( 57343 < n \) and \( n < 1114112 \)
+
+**Case 1: \( n < 55296 \)**
+- We need to show that \( n < 2^{32} \).
+- Since \( 55296 < 2^{32} \) (which is a straightforward computation), by the transitivity of the less-than relation, \( n < 55296 \) implies \( n < 2^{32} \).
+
+**Case 2: \( 57343 < n \) and \( n < 1114112 \)**
+- We need to show that \( n < 2^{32} \).
+- Since \( 1114112 < 2^{32} \) (which is a straightforward computation), by the transitivity of the less-than relation, \( n < 1114112 \) implies \( n < 2^{32} \).
+
+In both cases, we have shown that \( n < 2^{32} \). Therefore, for any valid Unicode scalar value \( n \), \( n < 2^{32} \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) (h : isValidCharNat n) : n < UInt32.size := by sorry
+
+4. **Prefix**
+import Init.Data.UInt.Basic
+import Init.Data.Char.Basic
+
+open Char
+
+
+example (n : Nat) (h : isValidCharNat n) : n < UInt32.size := by
+
+5. **Header Information**  
+-- Init.Data.UInt.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+

@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Sublist of Mapped List Equivalence : For any lists \( l_1 \) and \( l_2 \) of types \( \beta \) and \( \alpha \) respectively, and for any function \( f : \alpha \to \beta \), the list \( l_1 \) is a sublist of the list \( \text{List.map } f \, l_2 \) if and only if there exists a list \( l' \) such that \( l' \) is a sublist of \( l_2 \) and \( l_1 = \text{List.map } f \, l' \).
+
+2. **Informal Proof**  
+To prove the equivalence, we use the following steps:
+
+1. **Simplification:**
+We use the equivalence that the filter map of a list is equal to the map of the list and the fact that a list is a sublist of the filter map of another list if and only if it is a sublist of the map of that list. This allows us to simplify the proposition we want to show. Specifically, the statement \( l_1 \) is a sublist of \( \text{List.map } f \, l_2 \) is equivalent to the existence of a list \( l' \) such that \( l' \) is a sublist of \( l_2 \) and \( l_1 = \text{List.map } f \, l' \).
+
+2. **Conclusion:**
+Therefore, the original statement \( l_1 \) is a sublist of \( \text{List.map } f \, l_2 \) is true if and only if there exists a list \( l' \) such that \( l' \) is a sublist of \( l_2 \) and \( l_1 = \text{List.map } f \, l' \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l₁ : List β} {f : α → β} :
+    l₁ <+ l₂.map f ↔ ∃ l', l' <+ l₂ ∧ l₁ = l'.map f := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {l₁ : List β} {f : α → β} :
+    l₁ <+ l₂.map f ↔ ∃ l', l' <+ l₂ ∧ l₁ = l'.map f := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Bit Test for Natural Numbers Less Than \( 2^i \) : For any natural numbers \( x \) and \( i \), if \( x \) is less than \( 2^i \), then the \( i \)-th bit of \( x \) in its binary representation is `false`.
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \( x \) and \( i \), if \( x < 2^i \), then \( x.testBit i = false \).
+
+1. **Case 1: \( x.testBit i = false \)**
+- If the \( i \)-th bit of \( x \) is `false`, then the statement \( x.testBit i = false \) is trivially true.
+
+2. **Case 2: \( x.testBit i = true \)**
+- Assume the \( i \)-th bit of \( x \) is `true`.
+- By the property of the bit test, if the \( i \)-th bit of \( x \) is `true`, then \( x \ge 2^i \).
+- However, we are given that \( x < 2^i \).
+- This leads to a contradiction because \( x \) cannot be both less than \( 2^i \) and greater than or equal to \( 2^i \).
+- Therefore, the assumption that the \( i \)-th bit of \( x \) is `true` must be false.
+
+Since both cases lead to \( x.testBit i = false \), we conclude that if \( x < 2^i \), then \( x.testBit i = false \). This completes the proof.
+
+3. **Formal Theorem**  
+example {x i : Nat} (lt : x < 2^i) : x.testBit i = false := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example {x i : Nat} (lt : x < 2^i) : x.testBit i = false := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

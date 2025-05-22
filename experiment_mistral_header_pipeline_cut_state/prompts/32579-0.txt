@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Negation of False is True : The negation of the boolean value `false` is `true`, i.e., $\text{not}(\text{false}) = \text{true}$.
+
+2. **Informal Proof**  
+To prove that the negation of the boolean value `false` is `true`, we directly evaluate the expression $\text{not}(\text{false})$. By the definition of the negation operation on boolean values, $\text{not}(\text{false})$ is equal to $\text{true}$. Therefore, we have $\text{not}(\text{false}) = \text{true}$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example : (!false) = true := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example : (!false) = true := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

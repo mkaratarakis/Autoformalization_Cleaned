@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Negation Identity: \( \neg a = \neg b \leftrightarrow a = b \) : For any boolean values \( a \) and \( b \), the negation of \( a \) is equal to the negation of \( b \) if and only if \( a \) is equal to \( b \), i.e., \( \neg a = \neg b \leftrightarrow a = b \).
+
+2. **Informal Proof**  
+To prove the statement \( \neg a = \neg b \leftrightarrow a = b \) for any boolean values \( a \) and \( b \), we can directly evaluate all possible cases for \( a \) and \( b \) since there are only two boolean values: `true` and `false`.
+
+1. **Case 1: \( a = \text{true} \) and \( b = \text{true} \)**
+- \( \neg a = \neg \text{true} = \text{false} \)
+- \( \neg b = \neg \text{true} = \text{false} \)
+- Therefore, \( \neg a = \neg b \) and \( a = b \).
+
+2. **Case 2: \( a = \text{true} \) and \( b = \text{false} \)**
+- \( \neg a = \neg \text{true} = \text{false} \)
+- \( \neg b = \neg \text{false} = \text{true} \)
+- Therefore, \( \neg a \neq \neg b \) and \( a \neq b \).
+
+3. **Case 3: \( a = \text{false} \) and \( b = \text{true} \)**
+- \( \neg a = \neg \text{false} = \text{true} \)
+- \( \neg b = \neg \text{true} = \text{false} \)
+- Therefore, \( \neg a \neq \neg b \) and \( a \neq b \).
+
+4. **Case 4: \( a = \text{false} \) and \( b = \text{false} \)**
+- \( \neg a = \neg \text{false} = \text{true} \)
+- \( \neg b = \neg \text{false} = \text{true} \)
+- Therefore, \( \neg a = \neg b \) and \( a = b \).
+
+In all cases, we see that \( \neg a = \neg b \) if and only if \( a = b \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {a b : Bool}, ¬a = !b ↔ a = b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {a b : Bool}, ¬a = !b ↔ a = b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

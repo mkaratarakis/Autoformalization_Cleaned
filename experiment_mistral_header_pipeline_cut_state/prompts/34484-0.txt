@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+First Element of `dropWhile` Result is Not Satisfying Predicate : For any type $\alpha$ and any predicate $p : \alpha \to \text{Bool}$, if the list $l : \text{List} \, \alpha$ is non-empty after applying `List.dropWhile p` to it, then the first element of the resulting list satisfies $p(x) = \text{false}$. If the resulting list is empty, the statement is trivially true.
+
+2. **Informal Proof**  
+We proceed by induction on the list \( l \).
+
+1. **Base Case:**
+- If the list \( l \) is empty, the result is trivially true because the `head?` of an empty list is `none`, and the statement \( p(x) = \text{false} \) is vacuously true.
+
+2. **Inductive Step:**
+- Suppose the list \( l \) is non-empty and can be written as \( x :: xs \). We use the induction hypothesis \( ih \) which states that the result holds for the list \( xs \).
+
+- We consider two cases based on the condition \( p(x) = \text{true} \) or \( p(x) = \text{false} \):
+- **Case 1: \( p(x) = \text{true} \)**
+- In this case, the result of `dropWhile p (x :: xs)` is `dropWhile p xs`.
+- By the induction hypothesis \( ih \), the first element of `dropWhile p xs` satisfies \( p(x) = \text{false} \).
+
+- **Case 2: \( p(x) = \text{false} \)**
+- In this case, the result of `dropWhile p (x :: xs)` is \( x :: xs \).
+- The first element of \( x :: xs \) is \( x \), and by the condition \( p(x) = \text{false} \), the statement holds.
+
+In both cases, the result follows from the properties of the `dropWhile` function and the induction hypothesis. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : α → Bool) (l : List α) :
+    match (l.dropWhile p).head? with | some x => p x = false | none => True := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) (l : List α) :
+    match (l.dropWhile p).head? with | some x => p x = false | none => True := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

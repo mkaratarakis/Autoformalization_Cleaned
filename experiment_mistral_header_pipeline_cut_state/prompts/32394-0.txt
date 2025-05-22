@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Left Addition Preserves Strict Inequality in Natural Numbers : For any natural numbers \( k \), \( m \), and \( n \), if \( n + k < n + m \), then \( k < m \).
+
+2. **Informal Proof**  
+We start with the assumption that \( n + k < n + m \). Using the commutativity of addition, we can rewrite this as \( k + n < m + n \). By the property that if \( k + n < m + n \), then \( k < m \), we conclude that \( k < m \). This completes the proof.
+
+3. **Formal Theorem**  
+example {n : Nat} : n + k < n + m → k < m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {n : Nat} : n + k < n + m → k < m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

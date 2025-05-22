@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Left Conjunction Commutativity: \( a \land b \land c \leftrightarrow (a \land b) \land a \land c \) : For any propositions \( a \), \( b \), and \( c \), the conjunction \( a \land b \land c \) is logically equivalent to \( (a \land b) \land a \land c \), i.e., \( a \land b \land c \leftrightarrow (a \land b) \land a \land c \).
+
+2. **Informal Proof**  
+We start by using the commutativity of conjunction in four propositions, which states that \((a \land b) \land c \land d \leftrightarrow (a \land c) \land b \land d\). Applying this to our goal, we rewrite \(a \land b \land c \leftrightarrow (a \land b) \land a \land c\) as \(a \land b \land c \leftrightarrow (a \land a) \land b \land c\). Next, we use the idempotence of conjunction, which states that \(p \land p = p\). Applying this to \((a \land a) \land b \land c\), we simplify it to \(a \land b \land c\). Thus, our goal simplifies to \(a \land b \land c \leftrightarrow a \land b \land c\), which is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example : a ∧ (b ∧ c) ↔ (a ∧ b) ∧ a ∧ c := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : a ∧ (b ∧ c) ↔ (a ∧ b) ∧ a ∧ c := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

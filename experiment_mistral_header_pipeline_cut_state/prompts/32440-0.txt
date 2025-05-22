@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Maximum of Two Numbers Less Than or Equal to a Third Number : For any natural numbers \(a\), \(b\), and \(c\), if \(a \leq c\) and \(b \leq c\), then \(\max(a, b) \leq c\).
+
+2. **Informal Proof**  
+Let \(a\), \(b\), and \(c\) be natural numbers. Assume \(a \leq c\) and \(b \leq c\). We need to show that \(\max(a, b) \leq c\).
+
+By the total order property of natural numbers, either \(a \leq b\) or \(b \leq a\). We will consider these two cases separately.
+
+1. **Case 1: \(a \leq b\)**
+
+By the property of the maximum function, \(\max(a, b) = b\) when \(a \leq b\). Therefore, the goal reduces to showing \(b \leq c\). Since \(b \leq c\) is already given as an assumption, this case is proved.
+
+2. **Case 2: \(b \leq a\)**
+
+By the property of the maximum function, \(\max(a, b) = a\) when \(b \leq a\). Therefore, the goal reduces to showing \(a \leq c\). Since \(a \leq c\) is already given as an assumption, this case is also proved.
+
+Since both cases are proved, we conclude that \(\max(a, b) \leq c\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Nat} : a ≤ c → b ≤ c → max a b ≤ c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a b c : Nat} : a ≤ c → b ≤ c → max a b ≤ c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

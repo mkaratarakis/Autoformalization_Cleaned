@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Irreflexivity of Strict Inequality: \( a < b \to a \neq b \) : For any strings \( a \) and \( b \), if \( a < b \), then \( a \neq b \).
+
+2. **Informal Proof**  
+We start by noting that the irreflexivity of the less-than relation for strings implies that \( a < a \) is false. We denote this fact as \( \neg (a < a) \).
+
+Assume, for the sake of contradiction, that \( a = b \). Substituting \( a \) for \( b \) in the assumption \( a < b \), we get \( a < a \). However, we already know that \( \neg (a < a) \) is true, which leads to a contradiction. Therefore, our assumption \( a = b \) must be false, and hence \( a \neq b \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : String} (h : a < b) : a ≠ b := by sorry
+
+4. **Prefix**
+import Init.Data.Char.Lemmas
+import Init.Data.String.Lemmas
+
+open String
+
+
+example {a b : String} (h : a < b) : a ≠ b := by
+
+5. **Header Information**  
+-- Init.Data.Char.Lemmas not found. --
+
+-- Init.Data.String.Lemmas not found. --
+

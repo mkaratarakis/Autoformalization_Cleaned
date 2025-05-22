@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Right-Commutativity of Exclusive Or in Boolean Logic: $\text{xor}(\text{xor}(x, y), z) = \text{xor}(\text{xor}(x, z), y)$ : For any boolean values $x$, $y$, and $z$, the expression $\text{xor}(\text{xor}(x, y), z)$ is equal to $\text{xor}(\text{xor}(x, z), y)$. This theorem demonstrates the right-commutativity property of the exclusive or (XOR) operation.
+
+2. **Informal Proof**  
+To prove the right-commutativity of the exclusive or (XOR) operation, we use a decision procedure to check the equality for all possible boolean values of $x$, $y$, and $z$. This decision procedure exhaustively evaluates the expression $\text{xor}(\text{xor}(x, y), z) = \text{xor}(\text{xor}(x, z), y)$ for all combinations of $x, y, z \in \{\text{true}, \text{false}\}$ and confirms that the equality holds in every case. Therefore, the right-commutativity of the XOR operation is established. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), xor (xor x y) z = xor (xor x z) y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), xor (xor x y) z = xor (xor x z) y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

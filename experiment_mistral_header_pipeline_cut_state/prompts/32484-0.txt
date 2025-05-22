@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Remainder Divided by Divisor is Zero in Natural Numbers : For any natural numbers \( m \) and \( n \), the result of dividing the remainder of \( m \) divided by \( n \) by \( n \) is zero, i.e., \( m \% n / n = 0 \).
+
+2. **Informal Proof**  
+We will consider two cases for \( n \).
+
+1. **Case 1: \( n = 0 \)**
+- We need to show that \( m \% 0 / 0 = 0 \).
+- By the property of division by zero in a group with an adjoined zero element, \( a / 0 = 0 \) for any element \( a \).
+- Therefore, \( m \% 0 / 0 = 0 \).
+
+2. **Case 2: \( n = k + 1 \) where \( k \) is a natural number**
+- We need to show that \( m \% (k + 1) / (k + 1) = 0 \).
+- By the property of the modulo operation, \( m \% (k + 1) < k + 1 \).
+- Since \( k + 1 > 0 \), we have \( m \% (k + 1) < k + 1 \).
+- By the property of division of a smaller natural number by a larger natural number, \( a / b = 0 \) if \( a < b \).
+- Therefore, \( m \% (k + 1) / (k + 1) = 0 \).
+
+In both cases, we have shown that \( m \% n / n = 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n : Nat) : m % n / n = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (m n : Nat) : m % n / n = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

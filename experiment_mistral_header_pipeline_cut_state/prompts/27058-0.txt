@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Right Fold on ZipWith Equals Right Fold on Zip with Function Applied : For any types $\alpha$, $\beta$, $\gamma$, and $\delta$, and for any lists $l_1 : \text{List } \alpha$ and $l_2 : \text{List } \beta$, and for any functions $f : \alpha \to \beta \to \gamma$ and $g : \gamma \to \delta \to \delta$, and for any initial value $i : \delta$, the following equality holds:
+\[ \text{foldr } g \, i \, (\text{zipWith } f \, l_1 \, l_2) = \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, (l_1 \text{.zip } l_2) \]
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l_1 \) and generalize over \( l_2 \).
+
+**Base Case:**
+1. **Case 1: \( l_1 = [] \) and \( l_2 = [] \)**
+- The left-hand side is:
+\[ \text{foldr } g \, i \, (\text{zipWith } f \, [] \, []) = \text{foldr } g \, i \, [] = i \]
+- The right-hand side is:
+\[ \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, ([].zip []) = \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, [] = i \]
+- Therefore, the base case holds.
+
+2. **Case 2: \( l_1 = [] \) and \( l_2 = \text{head} \, l_2 :: \text{tail} \, l_2 \)**
+- The left-hand side is:
+\[ \text{foldr } g \, i \, (\text{zipWith } f \, [] \, (\text{head} \, l_2 :: \text{tail} \, l_2)) = \text{foldr } g \, i \, [] = i \]
+- The right-hand side is:
+\[ \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, ([].zip (\text{head} \, l_2 :: \text{tail} \, l_2)) = \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, [] = i \]
+- Therefore, the base case holds.
+
+**Inductive Step:**
+Assume the property holds for the tails of the lists \( l_1 \) and \( l_2 \). We need to show that it holds for the lists \( l_1 = \text{head} \, l_1 :: \text{tail} \, l_1 \) and \( l_2 = \text{head} \, l_2 :: \text{tail} \, l_2 \).
+
+1. **Case 1: \( l_1 = \text{head} \, l_1 :: \text{tail} \, l_1 \) and \( l_2 = [] \)**
+- The left-hand side is:
+\[ \text{foldr } g \, i \, (\text{zipWith } f \, (\text{head} \, l_1 :: \text{tail} \, l_1) \, []) = \text{foldr } g \, i \, [] = i \]
+- The right-hand side is:
+\[ \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, ((\text{head} \, l_1 :: \text{tail} \, l_1).zip []) = \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, [] = i \]
+- Therefore, the inductive step holds.
+
+2. **Case 2: \( l_1 = \text{head} \, l_1 :: \text{tail} \, l_1 \) and \( l_2 = \text{head} \, l_2 :: \text{tail} \, l_2 \)**
+- The left-hand side is:
+\[ \text{foldr } g \, i \, (\text{zipWith } f \, (\text{head} \, l_1 :: \text{tail} \, l_1) \, (\text{head} \, l_2 :: \text{tail} \, l_2)) = \text{foldr } g \, i \, (f (\text{head} \, l_1) (\text{head} \, l_2) :: \text{zipWith } f \, (\text{tail} \, l_1) \, (\text{tail} \, l_2)) \]
+- By the inductive hypothesis:
+\[ \text{foldr } g \, i \, (f (\text{head} \, l_1) (\text{head} \, l_2) :: \text{zipWith } f \, (\text{tail} \, l_1) \, (\text{tail} \, l_2)) = g (f (\text{head} \, l_1) (\text{head} \, l_2)) (\text{foldr } g \, i \, (\text{zipWith } f \, (\text{tail} \, l_1) \, (\text{tail} \, l_2))) \]
+- The right-hand side is:
+\[ \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, ((\text{head} \, l_1 :: \text{tail} \, l_1).zip (\text{head} \, l_2 :: \text{tail} \, l_2)) = \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, ((\text{head} \, l_1, \text{head} \, l_2) :: (\text{tail} \, l_1).zip (\text{tail} \, l_2)) \]
+- By the inductive hypothesis:
+\[ \text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, ((\text{head} \, l_1, \text{head} \, l_2) :: (\text{tail} \, l_1).zip (\text{tail} \, l_2)) = g (f (\text{head} \, l_1) (\text{head} \, l_2)) (\text{foldr } (\lambda p \, r. \, g (f (p.1) (p.2)) \, r) \, i \, ((\text{tail} \, l_1).zip (\text{tail} \, l_2))) \]
+- Therefore, the inductive step holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {f : α → β → γ} (i : δ):
+    (zipWith f l₁ l₂).foldr g i = (zip l₁ l₂).foldr (fun p r => g (f p.1 p.2) r) i := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {f : α → β → γ} (i : δ):
+    (zipWith f l₁ l₂).foldr g i = (zip l₁ l₂).foldr (fun p r => g (f p.1 p.2) r) i := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

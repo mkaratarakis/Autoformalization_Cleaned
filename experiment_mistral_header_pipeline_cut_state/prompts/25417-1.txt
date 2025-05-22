@@ -1,0 +1,24 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:9:6: error: unknown identifier 'decidable_of_iff_decidable'
+tmp.lean:10:0: error: no goals to be solved
+tmp.lean:8:70: error: unsolved goals
+p : Prop
+h : Decidable p
+b c : Bool
+⊢ (¬if p then b = true else c = true) ↔ if p then b = false else c = false
+p : Prop
+h : Decidable p
+b c : Bool
+⊢ (¬if p then b = true else c = true) ↔ if p then b = false else c = false
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (b c : Bool) :
+  ¬(ite p (b = true) (c = true)) ↔ (ite p (b = false) (c = false)) := by

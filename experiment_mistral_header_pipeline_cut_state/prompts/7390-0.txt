@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+First Element of Dropped List Equals \( n \)-th Element of Original List (Optional Version) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( n \), the first element of the list obtained by dropping the first \( n \) elements of \( l \) is equal to the \( n \)-th element of \( l \), when both are considered as optional values. Formally, this is expressed as:
+\[
+\text{For any list } l \text{ of type } \alpha \text{ and natural number } n, \text{ we have } (\text{List.drop } n \, l).\text{head?} = l[n]?
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal of showing that the first element of the list obtained by dropping the first \( n \) elements of \( l \) is equal to the \( n \)-th element of \( l \) as optional values. Formally, we need to show:
+\[
+(\text{List.drop } n \, l).\text{head?} = l[n]?
+\]
+
+1. **Step 1:**
+We use the fact that the optional head of a list is equal to the optional element at index 0. This transforms our goal to:
+\[
+(\text{List.drop } n \, l)[0]? = l[n]?
+\]
+
+2. **Step 2:**
+Next, we use the property that the optional element at index \( j \) in the list obtained by dropping the first \( i \) elements is equal to the optional element at index \( i + j \) in the original list. This transforms our goal to:
+\[
+l[n + 0]? = l[n]?
+\]
+
+3. **Step 3:**
+Finally, we use the property that adding zero to any natural number \( n \) results in \( n \). This simplifies our goal to:
+\[
+l[n]? = l[n]?
+\]
+which is trivially true.
+
+Thus, we have shown that:
+\[
+(\text{List.drop } n \, l).\text{head?} = l[n]?
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (l : List α) (n : Nat) :
+    (l.drop n).head? = l[n]? := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example (l : List α) (n : Nat) :
+    (l.drop n).head? = l[n]? := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

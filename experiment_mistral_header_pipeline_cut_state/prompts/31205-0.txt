@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Distributive Property of Multiplication over Addition in Natural Numbers (Right) : For any natural numbers \( n \), \( m \), and \( k \), the following equality holds:
+\[ (n + m) \cdot k = n \cdot k + m \cdot k. \]
+
+2. **Informal Proof**  
+To prove the distributive property of multiplication over addition in natural numbers, we start with the expression \((n + m) \cdot k\). Using the commutative property of multiplication, we can rewrite this as:
+\[ (n + m) \cdot k = k \cdot (n + m). \]
+
+Next, we apply the left distributive property of multiplication over addition, which states that for any natural numbers \(a\), \(b\), and \(c\), \(a \cdot (b + c) = a \cdot b + a \cdot c\). Applying this property, we get:
+\[ k \cdot (n + m) = k \cdot n + k \cdot m. \]
+
+Finally, we use the commutative property of multiplication again to rewrite \(k \cdot n + k \cdot m\) as:
+\[ k \cdot n + k \cdot m = n \cdot k + m \cdot k. \]
+
+Thus, we have shown that:
+\[ (n + m) \cdot k = n \cdot k + m \cdot k. \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (n m k : Nat) : (n + m) * k = n * k + m * k := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m k : Nat) : (n + m) * k = n * k + m * k := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

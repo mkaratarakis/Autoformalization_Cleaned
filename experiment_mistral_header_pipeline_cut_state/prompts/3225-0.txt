@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Multiplication and Division Identity: \( \frac{n \cdot m}{k \cdot m} = \frac{n}{k} \) for \( m > 0 \) : For any natural numbers \( n \) and \( k \), and for any natural number \( m \) such that \( m > 0 \), the division of the product \( n \cdot m \) by the product \( k \cdot m \) is equal to the division of \( n \) by \( k \), i.e., \( \frac{n \cdot m}{k \cdot m} = \frac{n}{k} \).
+
+2. **Informal Proof**  
+We start by using the commutativity of multiplication in natural numbers. Specifically, we rewrite \( n \cdot m \) as \( m \cdot n \) and \( k \cdot m \) as \( m \cdot k \). This transforms the expression \( \frac{n \cdot m}{k \cdot m} \) into \( \frac{m \cdot n}{m \cdot k} \).
+
+Next, we apply the cancellation property of multiplication and division in natural numbers, which states that for any \( m > 0 \), \( \frac{m \cdot n}{m \cdot k} = \frac{n}{k} \). This property allows us to cancel the common factor \( m \) in the numerator and the denominator, resulting in the expression \( \frac{n}{k} \).
+
+Thus, we have shown that \( \frac{n \cdot m}{k \cdot m} = \frac{n}{k} \), which completes the proof.
+
+3. **Formal Theorem**  
+example {m : Nat} (n k : Nat) (H : 0 < m) :
+    n * m / (k * m) = n / k := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example {m : Nat} (n k : Nat) (H : 0 < m) :
+    n * m / (k * m) = n / k := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

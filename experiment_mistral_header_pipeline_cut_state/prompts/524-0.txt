@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Membership in List After Erasing First Element Satisfying Predicate: $p(a) = \text{false} \to (a \in \text{eraseP}(p, l) \leftrightarrow a \in l)$ : For any type $\alpha$, any predicate $p : \alpha \to \text{Bool}$, and any element $a \in \alpha$, if $p(a)$ is false, then $a$ is a member of the list obtained by removing the first element that satisfies $p$ from $l$ if and only if $a$ is a member of the original list $l$. Formally, if $p(a) = \text{false}$, then $a \in \text{eraseP}(p, l) \leftrightarrow a \in l$.
+
+2. **Informal Proof**  
+To prove that $a \in \text{eraseP}(p, l) \leftrightarrow a \in l$, we need to show two implications:
+1. If $a \in \text{eraseP}(p, l)$, then $a \in l$.
+2. If $a \in l$, then $a \in \text{eraseP}(p, l)$.
+
+**First Implication:**
+The first implication is given by the theorem that if $a$ is a member of the list obtained by removing the first element that satisfies $p$ from $l$, then $a$ is also a member of the original list $l$. Formally, if $a \in \text{eraseP}(p, l)$, then $a \in l$.
+
+**Second Implication:**
+Now we need to show the second implication. Assume $a \in l$. We will consider the structure of the list $l$ and the properties of the elements in $l$.
+
+- **Case 1: $a \in l_1$**
+If $a \in l_1$, then by the definition of list concatenation, $a \in l_1 \cup (c :: l_2)$. Since $\text{eraseP}(p, l) = l_1 \cup l_2$, it follows that $a \in l_1 \cup l_2$. Therefore, $a \in \text{eraseP}(p, l)$.
+
+- **Case 2: $a \in c :: l_2$**
+If $a \in c :: l_2$, we need to show that $a \in l_1 \cup l_2$. Since $a \in l_1 \cup (c :: l_2)$ and $l = l_1 \cup (c :: l_2)$, we can substitute $l$ with $l_1 \cup (c :: l_2)$ in the assumption. This simplifies our goal to showing that $a \in l_1 \cup l_2$.
+
+- **Subcase: $a = c$**
+If $a = c$, then $p(a) = p(c) = \text{true}$, which contradicts our assumption that $p(a) = \text{false}$. Therefore, $a \neq c$.
+
+- **Subcase: $a \neq c$**
+Since $a \neq c$ and $a \in c :: l_2$, it follows that $a \in l_2$. By the definition of $\text{eraseP}(p, l)$, which removes the first element that satisfies $p$ from $l$, and since $p(c) = \text{true}$, the element $c$ is removed from $l$. Thus, $\text{eraseP}(p, l) = l_1 \cup l_2$. Since $a \in l_2$, it follows that $a \in l_1 \cup l_2$. Therefore, $a \in \text{eraseP}(p, l)$.
+
+Combining both cases, we have shown that if $a \in l$, then $a \in \text{eraseP}(p, l)$. This completes the proof of the second implication.
+
+Since both implications are proven, we conclude that $a \in \text{eraseP}(p, l) \leftrightarrow a \in l$.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} (pa : ¬p a) : a ∈ l.eraseP p ↔ a ∈ l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example {l : List α} (pa : ¬p a) : a ∈ l.eraseP p ↔ a ∈ l := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

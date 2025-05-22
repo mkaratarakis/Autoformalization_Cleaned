@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Multiplication by Predecessor: \( n \cdot \text{pred}(m) = n \cdot m - n \) : For any natural numbers \( n \) and \( m \), the product of \( n \) and the predecessor of \( m \) is equal to the product of \( n \) and \( m \) minus \( n \). In other words, \( n \cdot \text{pred}(m) = n \cdot m - n \).
+
+2. **Informal Proof**  
+We start with the goal of proving that \( n \cdot \text{pred}(m) = n \cdot m - n \) for any natural numbers \( n \) and \( m \).
+
+1. **Step 1:**
+Using the commutativity of multiplication, we rewrite the goal:
+\[
+n \cdot \text{pred}(m) = n \cdot m - n
+\]
+as:
+\[
+\text{pred}(m) \cdot n = n \cdot m - n
+\]
+
+2. **Step 2:**
+We use the theorem that the product of the predecessor of \( m \) and \( n \) is equal to the product of \( m \) and \( n \) minus \( n \):
+\[
+\text{pred}(m) \cdot n = m \cdot n - n
+\]
+
+3. **Step 3:**
+Using the commutativity of multiplication again, we rewrite \( m \cdot n - n \) as:
+\[
+n \cdot m - n
+\]
+
+Thus, the goal is now:
+\[
+n \cdot m - n = n \cdot m - n
+\]
+which is trivially true by the properties of equality. Therefore, we have shown that \( n \cdot \text{pred}(m) = n \cdot m - n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m : Nat) : n * pred m = n * m - n := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m : Nat) : n * pred m = n * m - n := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Greatest Common Divisor of Natural Number and Zero: \(\text{gcd}(n, 0) = n\) : For any natural number \( n \), the greatest common divisor of \( n \) and \( 0 \) is equal to \( n \), i.e., \(\text{gcd}(n, 0) = n\).
+
+2. **Informal Proof**  
+We prove this by induction on \( n \).
+
+**Base Case:**
+For \( n = 0 \), we need to show that \(\gcd(0, 0) = 0\). Using the theorem that for any natural numbers \( x \) and \( y \), \(\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)\), we simplify the expression to \(\gcd(0, 0) = 0\).
+
+**Inductive Step:**
+Assume that for some natural number \( k \), \(\gcd(k, 0) = k\). We need to show that \(\gcd(k + 1, 0) = k + 1\).
+
+Using the theorem that for any natural numbers \( x \) and \( y \), \(\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)\), we rewrite the goal \(\gcd(k + 1, 0)\) to \(\gcd(0 \mod (k + 1), k + 1)\). Since \(0 \mod (k + 1) = 0\), this simplifies to \(\gcd(0, k + 1)\).
+
+By the theorem that the greatest common divisor of \(0\) and any natural number \(a\) is equal to \(a\), we have \(\gcd(0, k + 1) = k + 1\).
+
+Thus, by induction, for any natural number \( n \), \(\gcd(n, 0) = n\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n : Nat) : gcd n 0 = n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (n : Nat) : gcd n 0 = n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

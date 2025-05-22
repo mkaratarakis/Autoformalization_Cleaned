@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Negation of True is False: $\neg \text{True} = \text{False}$ : The negation of the true proposition is equal to the false proposition, i.e., $\neg \text{True} = \text{False}$.
+
+2. **Informal Proof**  
+We need to show that the negation of the true proposition is equal to the false proposition. By the decidability of the equality of propositions, we directly conclude that $\neg \text{True} = \text{False}$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example : (¬ True) = False := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example : (¬ True) = False := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

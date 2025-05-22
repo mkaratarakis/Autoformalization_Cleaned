@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Equality of `unzip` and `unzipTR` Functions for Lists of Pairs : For any list of pairs `l : List (α × β)`, the function `unzip` that separates the list into two lists, one containing the first components and the other containing the second components, is equal to the tail-recursive function `unzipTR` that performs the same operation. Formally, for a list of pairs \([(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)]\), both `unzip l` and `unzipTR l` return the pair of lists \([x_1, x_2, \ldots, x_n]\) and \([y_1, y_2, \ldots, y_n]\).
+
+2. **Informal Proof**  
+To prove that the function `unzip` is equal to the function `unzipTR` for any list of pairs, we use function extensionality. This means we need to show that for any types `α` and `β` and any list `l` of pairs of type `α × β`, the result of `unzip l` is equal to the result of `unzipTR l`.
+
+1. **Base Case:**
+- Consider the empty list `[]`.
+- By the definition of `unzip`, `unzip []` returns the pair of empty lists `([], [])`.
+- By the definition of `unzipTR`, `unzipTR []` also returns the pair of empty lists `([], [])`.
+- Therefore, `unzip [] = unzipTR []`.
+
+2. **Inductive Step:**
+- Assume that for a list `l` of pairs, `unzip l = unzipTR l`.
+- Consider a non-empty list `l' = (x, y) :: l`, where `(x, y)` is a pair and `l` is a list of pairs.
+- By the definition of `unzip`, `unzip ((x, y) :: l)` returns the pair of lists `([x] ++ (fst (unzip l)), [y] ++ (snd (unzip l)))`.
+- By the definition of `unzipTR`, `unzipTR ((x, y) :: l)` returns the pair of lists `([x] ++ (fst (unzipTR l)), [y] ++ (snd (unzipTR l)))`.
+- By the inductive hypothesis, `unzip l = unzipTR l`.
+- Therefore, `unzip ((x, y) :: l) = unzipTR ((x, y) :: l)`.
+
+By induction, we have shown that for any list `l` of pairs, `unzip l = unzipTR l`. This completes the proof.
+
+3. **Formal Theorem**  
+example : @unzip = @unzipTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @unzip = @unzipTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

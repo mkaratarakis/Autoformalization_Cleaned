@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Left Addition Preserves Division in Natural Numbers: \(\frac{z + x}{z} = \frac{x}{z} + 1\) : For any natural numbers \( x \) and \( z \), if \( z \) is strictly greater than zero, then the division of the sum \( z + x \) by \( z \) is equal to the sum of the division of \( x \) by \( z \) and 1, i.e., \(\frac{z + x}{z} = \frac{x}{z} + 1\).
+
+2. **Informal Proof**  
+We start by using the commutativity of addition in natural numbers, which allows us to rewrite \( z + x \) as \( x + z \). Given that \( z > 0 \), we can then apply the theorem that \(\frac{x + z}{z} = \frac{x}{z} + 1\). This simplifies our goal to \(\frac{x}{z} + 1 = \frac{x}{z} + 1\), which is trivially true. Therefore, we have shown that \(\frac{z + x}{z} = \frac{x}{z} + 1\).
+
+3. **Formal Theorem**  
+example (x : Nat) {z : Nat} (H : 0 < z) : (z + x) / z = (x / z) + 1 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (x : Nat) {z : Nat} (H : 0 < z) : (z + x) / z = (x / z) + 1 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Signed Less-Than Equals XOR of MSB Inequality and Unsigned Less-Than for Bit Vectors : For any bit vectors \( x \) and \( y \) of the same length \( w \), the signed less-than comparison \( x.\text{slt} y \) is equal to the exclusive or (XOR) of the inequality of their most significant bits (MSBs) and the unsigned less-than comparison \( x.\text{ult} y \). In other words, \( x.\text{slt} y = (x.\text{msb} \neq y.\text{msb}) \oplus (x.\text{ult} y) \).
+
+2. **Informal Proof**  
+We consider two cases based on the equality of the most significant bits (MSBs) of \( x \) and \( y \).
+
+1. **Case 1: \( x.\text{msb} = y.\text{msb} \)**
+- If the most significant bits of \( x \) and \( y \) are equal, then the signed less-than comparison \( x.\text{slt} y \) is equivalent to the unsigned less-than comparison \( x.\text{ult} y \). Therefore, the expression \( x.\text{slt} y = (x.\text{msb} \neq y.\text{msb}) \oplus (x.\text{ult} y) \) simplifies to \( x.\text{ult} y = \text{false} \oplus (x.\text{ult} y) \), which is true. This completes the proof for the first case.
+
+2. **Case 2: \( x.\text{msb} \neq y.\text{msb} \)**
+- If the most significant bits of \( x \) and \( y \) are different, we construct a new hypothesis that \( x.\text{msb} \neq y.\text{msb} \) is true. Using the fact that if the most significant bits of \( x \) and \( y \) are different, then the signed less-than comparison \( x.\text{slt} y \) is equivalent to the negation of the unsigned less-than comparison \( x.\text{ult} y \), we simplify the expression \( x.\text{slt} y = (x.\text{msb} \neq y.\text{msb}) \oplus (x.\text{ult} y) \) to \( !x.\text{ult} y = \text{true} \oplus (x.\text{ult} y) \), which is true. This completes the proof for the second case.
+
+Since both cases are covered, the theorem is proved.
+
+3. **Formal Theorem**  
+example (x y : BitVec w) :
+    x.slt y = (x.msb != y.msb).xor (x.ult y) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x y : BitVec w) :
+    x.slt y = (x.msb != y.msb).xor (x.ult y) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

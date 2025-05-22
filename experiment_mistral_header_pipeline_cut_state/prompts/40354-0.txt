@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Associativity of List Append: \((\text{as} \oplus \text{bs}) \oplus \text{cs} = \text{as} \oplus (\text{bs} \oplus \text{cs})\) : For any type \( \alpha \) and any lists \( \text{as}, \text{bs}, \text{cs} \) of elements of type \( \alpha \), the append operation is associative, i.e., \((\text{as} \oplus \text{bs}) \oplus \text{cs} = \text{as} \oplus (\text{bs} \oplus \text{cs})\), where \( \oplus \) denotes the append operation.
+
+2. **Informal Proof**  
+We prove the associativity of the append operation by induction on the list `as`.
+
+1. **Base Case:**
+- Consider the case where `as` is the empty list, i.e., `as = nil`.
+- The goal is to show that `nil ++ bs ++ cs = nil ++ (bs ++ cs)`.
+- Since the empty list `nil` appended to any list is the list itself, both sides of the equation are equal to `bs ++ cs`.
+- Therefore, the equality holds trivially due to the reflexive property.
+
+2. **Inductive Case:**
+- Consider the case where `as` is a non-empty list, i.e., `as = a :: as'` for some element `a` and list `as'`.
+- The goal is to show that `a :: as' ++ bs ++ cs = a :: (as' ++ (bs ++ cs))`.
+- By the inductive hypothesis, we know that `as' ++ bs ++ cs = as' ++ (bs ++ cs)`.
+- Using this hypothesis, we can simplify the left-hand side of the goal to `a :: (as' ++ bs ++ cs)`, which is equal to `a :: (as' ++ (bs ++ cs))` by the definition of the append operation.
+- Therefore, the equality holds.
+
+By induction, the associativity of the append operation is proven for all lists `as`, `bs`, and `cs`. This completes the proof.
+
+3. **Formal Theorem**  
+example (as bs cs : List α) : (as ++ bs) ++ cs = as ++ (bs ++ cs) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (as bs cs : List α) : (as ++ bs) ++ cs = as ++ (bs ++ cs) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

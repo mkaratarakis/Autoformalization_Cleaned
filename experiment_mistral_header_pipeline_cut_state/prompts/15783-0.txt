@@ -1,0 +1,64 @@
+
+1. **Informal Theorem**  
+Left Shift and Test Bit Relationship in Natural Numbers : For any natural numbers \( i \) and \( j \), and for any natural number \( x \), the \((j+1)\)-th least significant bit of the natural number \( x \) left-shifted by \( i \) positions is equal to the boolean value given by the expression \(\text{decide}(j \ge i) \land x.\text{testBit}(j - i)\). In other words, \((x <<< i).\text{testBit}(j) = \text{decide}(j \ge i) \land x.\text{testBit}(j - i)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of left shift. For any natural numbers \( x \) and \( i \), the left shift of \( x \) by \( i \) positions, denoted as \( x <<< i \), is equal to \( x \cdot 2^i \). This can be written as:
+\[
+x <<< i = x \cdot 2^i
+\]
+
+Next, we need to determine the \((j+1)\)-th least significant bit of \( x <<< i \). By the property of testing bits in a number multiplied by a power of two, we have:
+\[
+(x <<< i).\text{testBit}(j) = (2^i \cdot x).\text{testBit}(j)
+\]
+
+Using the property of testing bits in a number multiplied by a power of two, we know:
+\[
+(2^i \cdot x).\text{testBit}(j) = \text{decide}(j \ge i) \land x.\text{testBit}(j - i)
+\]
+
+This property states that if \( j \ge i \), then the \((j+1)\)-th bit of \( 2^i \cdot x \) is the same as the \((j - i + 1)\)-th bit of \( x \); otherwise, it is 0. Therefore, we have:
+\[
+(x <<< i).\text{testBit}(j) = \text{decide}(j \ge i) \land x.\text{testBit}(j - i)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x : Nat) : testBit (x <<< i) j =
+    (decide (j ≥ i) && testBit x (j-i)) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x : Nat) : testBit (x <<< i) j =
+    (decide (j ≥ i) && testBit x (j-i)) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

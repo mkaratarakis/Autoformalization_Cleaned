@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Multiplication and Division Cancellation: \( n \mid m \to \frac{m}{n} \times n = m \) : For any natural numbers \( n \) and \( m \), if \( n \) divides \( m \), then the division of \( m \) by \( n \) followed by multiplication of the result by \( n \) yields \( m \). In other words, if \( n \mid m \), then \( \frac{m}{n} \times n = m \).
+
+2. **Informal Proof**  
+Given that \( n \) divides \( m \), we need to show that \( \frac{m}{n} \times n = m \). By the commutativity of multiplication, we can rewrite this as \( n \times \left( \frac{m}{n} \right) = m \). Since \( n \) divides \( m \), the cancellation property of multiplication and division in natural numbers ensures that \( n \times \left( \frac{m}{n} \right) = m \). Therefore, \( \frac{m}{n} \times n = m \), completing the proof.
+
+3. **Formal Theorem**  
+example {n m : Nat} (H : n ∣ m) : m / n * n = m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example {n m : Nat} (H : n ∣ m) : m / n * n = m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

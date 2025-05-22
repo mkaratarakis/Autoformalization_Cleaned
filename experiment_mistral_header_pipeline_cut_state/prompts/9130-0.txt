@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Pairwise Relation on List Elements via Indices : For any type \( \alpha \), a relation \( R \) on \( \alpha \), and a list \( l \) of elements of type \( \alpha \), the predicate `List.Pairwise R l` holds if and only if for all natural numbers \( i \) and \( j \) such that \( i < j \), and both \( i \) and \( j \) are valid indices for the list \( l \) (i.e., \( i < l.\text{length} \) and \( j < l.\text{length} \)), the relation \( R \) holds between the elements at these indices in the list, i.e., \( R \, l[i] \, l[j] \).
+
+2. **Informal Proof**  
+To prove the equivalence, we need to show both directions.
+
+1. **Forward Direction:**
+- Assume the pairwise relation on the list \( l \) holds, i.e., \( \text{List.Pairwise } R \, l \).
+- We need to show that for all \( i, j \) such that \( i < j \) and both \( i \) and \( j \) are valid indices for the list \( l \), the relation \( R \, l[i] \, l[j] \) holds.
+- Fix arbitrary natural numbers \( i \) and \( j \) such that \( i < j \) and both \( i \) and \( j \) are valid indices for the list \( l \).
+- By the hypothesis \( \text{List.Pairwise } R \, l \), it suffices to show that \([l[i], l[j]]\) is a sublist of \( l \).
+- Using the lemma that the list obtained by mapping the function \( l[x] \) over the indices \([i, j]\) is a sublist of \( l \), we have \([l[i], l[j]]\) is a sublist of \( l \).
+- Therefore, \( R \, l[i] \, l[j] \) holds.
+
+2. **Backward Direction:**
+- Assume for all \( i, j \) such that \( i < j \) and both \( i \) and \( j \) are valid indices for the list \( l \), the relation \( R \, l[i] \, l[j] \) holds.
+- We need to show that the pairwise relation on the list \( l \) holds, i.e., \( \text{List.Pairwise } R \, l \).
+- Fix arbitrary elements \( a \) and \( b \) in the list \( l \) such that \([a, b]\) is a sublist of \( l \).
+- By the lemma, there exists a sequence of indices \( is \) such that \([a, b] = \text{List.map } (fun \, x \, => \, l[x]) \, is \) and the indices in \( is \) are strictly increasing.
+- Consider the cases for the sequence of indices \( is \):
+- If \( is \) is empty, the goal is trivial.
+- If \( is \) has one element \( a' \), the goal is also trivial.
+- If \( is \) has two elements \( a' \) and \( b' \), we have \( a = l[↑a'] \) and \( b = l[↑b'] \).
+- Using the hypothesis that for all \( i, j \) such that \( i < j \) and both \( i \) and \( j \) are valid indices for the list \( l \), the relation \( R \, l[i] \, l[j] \) holds, and since \( a' < b' \), it follows that \( R \, a \, b \).
+- Therefore, \( \text{List.Pairwise } R \, l \) holds.
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : Pairwise R l ↔
+    ∀ (i j : Nat) (_hi : i < l.length) (_hj : j < l.length) (_hij : i < j), R l[i] l[j] := by sorry
+
+4. **Prefix**
+import Init.Data.Fin.Lemmas
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Pairwise
+
+open List
+
+
+example : Pairwise R l ↔
+    ∀ (i j : Nat) (_hi : i < l.length) (_hj : j < l.length) (_hij : i < j), R l[i] l[j] := by
+
+5. **Header Information**  
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Pairwise not found. --
+

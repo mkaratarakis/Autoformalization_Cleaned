@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Right-Commutativity of Exponentiation in Natural Numbers : For any natural numbers \( a \), \( m \), and \( n \), the power of a power is commutative with respect to the exponents, i.e., \((a^m)^n = (a^n)^m\).
+
+2. **Informal Proof**  
+To prove that \((a^m)^n = (a^n)^m\) for any natural numbers \( a \), \( m \), and \( n \), we start by using the properties of exponentiation in monoids. Specifically, we use the property that for any monoid \( M \) and any element \( a \in M \), and for any natural numbers \( m \) and \( n \), the following equalities hold:
+1. \( a^{m \cdot n} = (a^m)^n \)
+2. \( a^{m \cdot n} = (a^n)^m \)
+
+Using the first property, we rewrite the left-hand side of the goal:
+\[
+(a^m)^n = a^{m \cdot n}
+\]
+
+Using the second property, we rewrite the right-hand side of the goal:
+\[
+(a^n)^m = a^{m \cdot n}
+\]
+
+Thus, the goal \((a^m)^n = (a^n)^m\) is equivalent to:
+\[
+a^{m \cdot n} = a^{m \cdot n}
+\]
+
+This is trivially true by the properties of equality. Therefore, we have shown that \((a^m)^n = (a^n)^m\), completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a m n : Nat) : (a ^ m) ^ n = (a ^ n) ^ m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a m n : Nat) : (a ^ m) ^ n = (a ^ n) ^ m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

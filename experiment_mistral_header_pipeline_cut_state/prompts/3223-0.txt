@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Multiplication and Division Identity: \( \frac{m \cdot n}{m \cdot k} = \frac{n}{k} \) for \( m > 0 \) : For any natural numbers \( m, n, \) and \( k \), if \( m > 0 \), then the division of the product \( m \cdot n \) by the product \( m \cdot k \) is equal to the division of \( n \) by \( k \), i.e., \( \frac{m \cdot n}{m \cdot k} = \frac{n}{k} \).
+
+2. **Informal Proof**  
+We start by using the property that dividing \( m \cdot n \) by \( m \) and then by \( k \) is equivalent to dividing \( m \cdot n \) by \( m \cdot k \). This transforms our goal from \( \frac{m \cdot n}{m \cdot k} = \frac{n}{k} \) to \( \frac{m \cdot n}{m} / k = \frac{n}{k} \). Next, we use the fact that for any natural number \( m \) greater than \( 0 \), \( \frac{m \cdot n}{m} = n \). This simplifies our goal to \( n / k = n / k \), which is trivially true. Therefore, \( \frac{m \cdot n}{m \cdot k} = \frac{n}{k} \) holds for any natural numbers \( m, n, \) and \( k \) with \( m > 0 \).
+
+3. **Formal Theorem**  
+example {m : Nat} (n k : Nat) (H : 0 < m) :
+    m * n / (m * k) = n / k := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example {m : Nat} (n k : Nat) (H : 0 < m) :
+    m * n / (m * k) = n / k := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Finding the First Non-`None` Result in a Replicated List : For any types \(\alpha\) and \(\alpha_1\), and for any function \(f : \alpha \to \text{Option } \alpha_1\), if \(f(a)\) is `some` for some \(a : \alpha\), then the result of `List.findSome? f (List.replicate n a)` is `none` if \(n = 0\) and \(f(a)\) otherwise.
+
+2. **Informal Proof**  
+We start with the given function \( f : \alpha \to \text{Option } \alpha_1 \) and an element \( a : \alpha \) such that \( f(a) \) is `some`. We need to show that the result of \(\text{List.findSome? } f \, (\text{List.replicate } n \, a)\) is `none` if \( n = 0 \) and \( f(a) \) otherwise.
+
+Using the theorem that the first non-`none` result of applying \( f \) to the elements of a list containing \( n \) copies of an element \( a \) is:
+\[
+\text{List.findSome? } f \, (\text{List.replicate } n \, a) =
+\begin{cases}
+\text{none} & \text{if } n = 0 \\
+f(a) & \text{if } n > 0
+\end{cases}
+\]
+we can directly conclude the desired result. Therefore, the result of \(\text{List.findSome? } f \, (\text{List.replicate } n \, a)\) is `none` if \( n = 0 \) and \( f(a) \) otherwise. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (_ : (f a).isSome) : findSome? f (replicate n a) = if n = 0 then none else f a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (_ : (f a).isSome) : findSome? f (replicate n a) = if n = 0 then none else f a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

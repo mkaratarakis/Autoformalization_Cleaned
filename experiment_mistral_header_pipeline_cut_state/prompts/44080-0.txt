@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Zero Extension of Bitvector with Proof Equals Zero Extension : For any natural numbers \( w \) and \( v \) such that \( w \leq v \), and for any bitvector \( x \) of width \( w \), the zero extension of \( x \) to width \( v \) using the function `BitVec.zeroExtend'` is equal to the zero extension of \( x \) to width \( v \) using the function `BitVec.zeroExtend`.
+
+2. **Informal Proof**  
+To prove that the zero extension of \( x \) to width \( v \) using `BitVec.zeroExtend'` is equal to the zero extension of \( x \) to width \( v \) using `BitVec.zeroExtend`, it suffices to show that their underlying natural numbers are equal. In other words, we need to show that \((\text{zeroExtend}'(h, x)).\text{toNat} = (\text{zeroExtend}(v, x)).\text{toNat}\).
+
+Using the theorems that the underlying natural number of the zero-extended bitvector \(\text{zeroExtend}(v, x)\) is equal to \( x.\text{toNat} \mod 2^v \) and the underlying natural number of the zero-extended bitvector \(\text{zeroExtend}'(h, x)\) is equal to \( x.\text{toNat} \), we can rewrite our goal. Therefore, our goal is now to show that \( x.\text{toNat} = x.\text{toNat} \mod 2^v \).
+
+Using the theorem that for any natural numbers \( a \) and \( b \), if \( a < b \), then \( a \mod b = a \), we can further simplify our goal. Therefore, our goal is now to show that \( x.\text{toNat} < 2^v \).
+
+To show that \( x.\text{toNat} < 2^v \), we use the fact that \( x.\text{toNat} < 2^w \) (since \( x \) is a bitvector of width \( w \)) and the fact that \( w \leq v \). By the transitivity of less-than and less-than-or-equal, and the property that \( 0 < 2 \) and exponentiation preserves order, we have \( 2^w \leq 2^v \). Therefore, \( x.\text{toNat} < 2^v \) holds, and this completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec w} (h : w ≤ v) : x.zeroExtend' h = x.zeroExtend v := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec w} (h : w ≤ v) : x.zeroExtend' h = x.zeroExtend v := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

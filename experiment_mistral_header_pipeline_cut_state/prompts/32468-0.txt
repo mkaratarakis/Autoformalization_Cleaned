@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Divisibility of Natural Number by a Power Implies Divisibility by the Base: \( p^k \mid m \to p \mid m \) for \( k \geq 1 \) : For any natural numbers \( p \), \( k \), and \( m \) such that \( k \geq 1 \) and \( p^k \mid m \), it holds that \( p \mid m \).
+
+2. **Informal Proof**  
+To prove that \( p \mid m \) given \( k \geq 1 \) and \( p^k \mid m \), we start by noting that \( p^1 = p \). Therefore, the statement \( p^1 \mid m \) is equivalent to \( p \mid m \). We then use the theorem that if \( k \geq 1 \) and \( p^k \mid m \), then \( p \mid m \). Since we have \( 1 \leq k \) and \( p^k \mid m \), this theorem directly implies that \( p \mid m \). This completes the proof.
+
+3. **Formal Theorem**  
+example {p k m : Nat} (hk : 1 ≤ k) (hpk : p ^ k ∣ m) : p ∣ m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {p k m : Nat} (hk : 1 ≤ k) (hpk : p ^ k ∣ m) : p ∣ m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

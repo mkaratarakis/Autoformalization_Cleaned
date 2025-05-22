@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Decide Equality to False is Boolean Negation: \(\text{decide}(b = \text{false}) = \neg b\) : For any boolean value \( b \), if the proposition \( b = \text{false} \) is decidable, then the function `decide` applied to \( b = \text{false} \) returns the negation of \( b \), i.e., \(\text{decide}(b = \text{false}) = \neg b\).
+
+2. **Informal Proof**  
+We need to show that for any boolean value \( b \), the function \(\text{decide}(b = \text{false})\) returns the negation of \( b \). We will consider every possible case of \( b \).
+
+- **Case 1:** If \( b = \text{false} \), we need to show that \(\text{decide}(b = \text{false}) = \neg b\). Since \( b = \text{false} \), we have \(\text{decide}(\text{false} = \text{false}) = \neg \text{false}\). Simplifying, we get \(\text{decide}(\text{true}) = \text{true}\), which is true.
+- **Case 2:** If \( b = \text{true} \), we need to show that \(\text{decide}(b = \text{false}) = \neg b\). Since \( b = \text{true} \), we have \(\text{decide}(\text{true} = \text{false}) = \neg \text{true}\). Simplifying, we get \(\text{decide}(\text{false}) = \text{false}\), which is true.
+
+In both cases, the proposition holds. Therefore, for any boolean value \( b \), \(\text{decide}(b = \text{false}) = \neg b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {b : Bool} [Decidable (b = false)] : decide (b = false) = !b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example {b : Bool} [Decidable (b = false)] : decide (b = false) = !b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

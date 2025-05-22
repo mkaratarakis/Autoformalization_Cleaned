@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Last Element of Cons List with Fallback Equals Last Element of Tail with New Fallback : For any type \( \alpha \), and for any elements \( a, b \in \alpha \) and list \( l \) of elements of type \( \alpha \), the last element of the list \( b :: l \) with fallback \( a \) is equal to the last element of the list \( l \) with fallback \( b \). In other words, \((b :: l). \text{getLastD}(a) = l. \text{getLastD}(b)\).
+
+2. **Informal Proof**  
+We will consider every possible case of the list \( l \).
+
+**Case 1:**
+If \( l \) is the empty list \( \text{nil} \), then the list \( b :: \text{nil} \) is a list with a single element \( b \). The last element of \( b :: \text{nil} \) with fallback \( a \) is \( b \). Similarly, the last element of \( \text{nil} \) with fallback \( b \) is \( b \). Therefore, \((b :: \text{nil}).\text{getLastD}(a) = \text{nil}.\text{getLastD}(b)\) holds trivially.
+
+**Case 2:**
+If \( l \) is a non-empty list \( \text{head} :: \text{tail} \), then the list \( b :: \text{head} :: \text{tail} \) has \( b \) as the first element and \(\text{head} :: \text{tail}\) as the rest. The last element of \( b :: \text{head} :: \text{tail} \) with fallback \( a \) is the same as the last element of \(\text{head} :: \text{tail}\) with fallback \( b \). Therefore, \((b :: \text{head} :: \text{tail}).\text{getLastD}(a) = (\text{head} :: \text{tail}).\text{getLastD}(b)\) holds trivially.
+
+In both cases, the equality holds, thus completing the proof.
+
+3. **Formal Theorem**  
+example (a b l) : @getLastD α (b::l) a = getLastD l b := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (a b l) : @getLastD α (b::l) a = getLastD l b := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

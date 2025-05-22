@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Sublist Equals to Map of Get with Strictly Increasing Indices : For any lists \( l' \) and \( l \) of elements of type \( \alpha \), if \( l' \) is a sublist of \( l \), then there exists a sequence of indices \( is \) such that \( l' \) is equal to the list obtained by applying the function `l.get` to each index in \( is \), and the indices in \( is \) are strictly increasing. Formally, if \( l' \) is a sublist of \( l \), then there exists a sequence of indices \( is \) such that \( l' = \text{List.map } (l.\text{get}) \, is \) and \( \text{List.Pairwise } (fun \, x \, x_1 \, => \, x < x_1) \, is \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the hypothesis that \( l' \) is a sublist of \( l \). By the theorem that if \( l' \) is a sublist of \( l \), then there exists a sequence of indices \( is \) such that \( l' \) is equal to the list obtained by applying the function \( l[x] \) to each index in \( is \), and the indices in \( is \) are strictly increasing, we can simplify our goal. Specifically, using the hypothesis \( h \) that \( l' \) is a sublist of \( l \), we can show that there exists a sequence of indices \( is \) such that \( l' = \text{List.map } (l.\text{get}) \, is \) and \( \text{List.Pairwise } (fun \, x \, x_1 \, => \, x < x_1) \, is \). This completes the proof.
+
+3. **Formal Theorem**  
+example (h : l' <+ l) : ∃ is : List (Fin l.length),
+    l' = map (get l) is ∧ is.Pairwise (· < ·) := by sorry
+
+4. **Prefix**
+import Init.Data.Fin.Lemmas
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Pairwise
+
+open List
+
+
+example (h : l' <+ l) : ∃ is : List (Fin l.length),
+    l' = map (get l) is ∧ is.Pairwise (· < ·) := by
+
+5. **Header Information**  
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Pairwise not found. --
+

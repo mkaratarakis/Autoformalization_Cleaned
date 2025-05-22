@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Pairwise Relation on Appended Lists : For any type \( \alpha \) and any relation \( R : \alpha \to \alpha \to \text{Prop} \), the list \( l_1 \) appended with the list \( l_2 \) (denoted as \( l_1 ++ l_2 \)) satisfies the pairwise relation \( R \) if and only if:
+1. \( l_1 \) satisfies the pairwise relation \( R \),
+2. \( l_2 \) satisfies the pairwise relation \( R \), and
+3. For any elements \( a \) in \( l_1 \) and \( b \) in \( l_2 \), the relation \( R a b \) holds.
+
+2. **Informal Proof**  
+We perform induction on the list \( l_1 \).
+
+**Base Case:**
+When \( l_1 \) is the empty list, we need to show that the pairwise relation \( R \) holds for the empty list appended with \( l_2 \) if and only if the pairwise relation \( R \) holds for \( l_2 \) and for any elements \( a \) in the empty list and \( b \) in \( l_2 \), the relation \( R a b \) holds. Since the empty list has no elements, the condition \( a \in \text{empty list} \) is always false, making the implication \( a \in \text{empty list} \to R a b \) vacuously true. Therefore, the pairwise relation \( R \) holds for the empty list appended with \( l_2 \) if and only if the pairwise relation \( R \) holds for \( l_2 \).
+
+**Inductive Step:**
+Assume \( l_1 = \text{head} :: \text{tail} \). By the inductive hypothesis, the pairwise relation \( R \) holds for \( \text{tail} \) appended with \( l_2 \) if and only if the pairwise relation \( R \) holds for \( \text{tail} \) and \( l_2 \), and for any elements \( a \) in \( \text{tail} \) and \( b \) in \( l_2 \), the relation \( R a b \) holds. We need to show that the pairwise relation \( R \) holds for \( \text{head} :: \text{tail} \) appended with \( l_2 \) if and only if the pairwise relation \( R \) holds for \( \text{head} :: \text{tail} \), \( l_2 \), and for any elements \( a \) in \( \text{head} :: \text{tail} \) and \( b \) in \( l_2 \), the relation \( R a b \) holds.
+
+Using the properties of logical conjunction and disjunction, we simplify the goal. The pairwise relation \( R \) holds for \( \text{head} :: \text{tail} \) if and only if \( R \) holds for \( \text{head} \) and all elements in \( \text{tail} \), and \( R \) holds for all elements in \( \text{tail} \). Therefore, the pairwise relation \( R \) holds for \( \text{head} :: \text{tail} \) appended with \( l_2 \) if and only if:
+1. \( R \) holds for \( \text{head} \) and all elements in \( \text{tail} \),
+2. \( R \) holds for all elements in \( \text{tail} \),
+3. \( R \) holds for all elements in \( l_2 \),
+4. For any elements \( a \) in \( \text{head} :: \text{tail} \) and \( b \) in \( l_2 \), the relation \( R a b \) holds.
+
+By the inductive hypothesis, the pairwise relation \( R \) holds for \( \text{tail} \) appended with \( l_2 \) if and only if the pairwise relation \( R \) holds for \( \text{tail} \) and \( l_2 \), and for any elements \( a \) in \( \text{tail} \) and \( b \) in \( l_2 \), the relation \( R a b \) holds. Therefore, the pairwise relation \( R \) holds for \( \text{head} :: \text{tail} \) appended with \( l_2 \) if and only if the pairwise relation \( R \) holds for \( \text{head} :: \text{tail} \), \( l_2 \), and for any elements \( a \) in \( \text{head} :: \text{tail} \) and \( b \) in \( l_2 \), the relation \( R a b \) holds.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} :
+    (l₁ ++ l₂).Pairwise R ↔ l₁.Pairwise R ∧ l₂.Pairwise R ∧ ∀ a ∈ l₁, ∀ b ∈ l₂, R a b := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example {l₁ l₂ : List α} :
+    (l₁ ++ l₂).Pairwise R ↔ l₁.Pairwise R ∧ l₂.Pairwise R ∧ ∀ a ∈ l₁, ∀ b ∈ l₂, R a b := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

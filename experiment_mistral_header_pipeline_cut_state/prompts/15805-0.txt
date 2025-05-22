@@ -1,0 +1,58 @@
+
+1. **Informal Theorem**  
+Bit Test for Multiplication by Power of Two in Natural Numbers: \((2^i \cdot a).\text{testBit}(j) = \text{decide}(j \ge i) \ \text{and} \ a.\text{testBit}(j - i)\) : For any natural numbers \( i \), \( a \), and \( j \), the \((j+1)\)-th least significant bit in the binary representation of \( 2^i \cdot a \) is equal to the result of the boolean expression \( \text{decide}(j \ge i) \ \text{and} \ a.\text{testBit}(j - i) \). Specifically, if \( j \ge i \), then the \((j+1)\)-th bit of \( 2^i \cdot a \) is the same as the \((j - i + 1)\)-th bit of \( a \); otherwise, it is 0.
+
+2. **Informal Proof**  
+We start by constructing a lemma that states for any natural numbers \( a \), \( i \), and \( j \), the \((j+1)\)-th least significant bit in the binary representation of \( 2^i \cdot a + 0 \) is equal to:
+- \( 0 \)’s \((j+1)\)-th least significant bit if \( j < i \),
+- \( a \)’s \((j+1 - i)\)-th least significant bit if \( j \geq i \).
+
+Using this lemma, we simplify the expression to get:
+\[ (2^i \cdot a).testBit(j) = (\neg \text{decide}(j < i) \land a.testBit(j - i)) \]
+
+We then replace the goal with:
+\[ (\neg \text{decide}(j < i) \land a.testBit(j - i)) = (\text{decide}(j \ge i) \land a.testBit(j - i)) \]
+
+We consider two cases for \( j \):
+1. If \( j < i \), then \(\text{decide}(j < i)\) is true, and \(\neg \text{decide}(j < i)\) is false. Therefore, the left-hand side is false, and the right-hand side is also false because \(\text{decide}(j \ge i)\) is false.
+2. If \( j \ge i \), then \(\text{decide}(j < i)\) is false, and \(\neg \text{decide}(j < i)\) is true. Therefore, the left-hand side is \(\text{true} \land a.testBit(j - i)\), and the right-hand side is also \(\text{true} \land a.testBit(j - i)\).
+
+In both cases, the equality holds, thus completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example :
+    testBit (2 ^ i * a) j = (decide (j ≥ i) && testBit a (j-i)) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example :
+    testBit (2 ^ i * a) j = (decide (j ≥ i) && testBit a (j-i)) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

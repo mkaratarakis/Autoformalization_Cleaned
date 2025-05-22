@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+Pairwise Relation on Replicated List: \( \text{Pairwise } R \, (\text{replicate } n \, a) \leftrightarrow n \leq 1 \lor R \, a \, a \) : For any type \(\alpha\), any relation \(R\) on \(\alpha\), any natural number \(n\), and any element \(a \in \alpha\), the list `replicate n a` satisfies the pairwise relation \(R\) if and only if \(n \leq 1\) or \(R a a\) holds.
+
+2. **Informal Proof**  
+We prove the theorem by induction on \(n\).
+
+1. **Base Case: \(n = 0\)**
+
+- The list `replicate 0 a` is the empty list.
+- The pairwise relation \(R\) on the empty list is trivially true.
+- Therefore, `Pairwise R (replicate 0 a)` is equivalent to \(0 \leq 1 \lor R a a\), which is true because \(0 \leq 1\) is always true.
+
+2. **Inductive Step: \(n = k + 1\)**
+
+- Assume the inductive hypothesis: `Pairwise R (replicate k a) ↔ k ≤ 1 ∨ R a a`.
+- We need to show that `Pairwise R (replicate (k + 1) a) ↔ (k + 1) ≤ 1 ∨ R a a`.
+
+- **Forward Direction:**
+- We need to show that \((\neg k = 0 \to R a a) \land (k \leq 1 \lor R a a) \to (k + 1) \leq 1 \lor R a a\).
+- Consider two cases:
+- **Case 1: \(k = 0\)**:
+- If \(k = 0\), then \(k + 1 = 1\).
+- Therefore, \((k + 1) \leq 1\) is true.
+- **Case 2: \(k \neq 0\)**:
+- If \(k \neq 0\), then \(\neg k = 0\).
+- By the inductive hypothesis, \(R a a\) holds.
+- Therefore, \(R a a\) implies \((k + 1) \leq 1 \lor R a a\).
+
+- **Backward Direction:**
+- We need to show that \((k + 1) \leq 1 \lor R a a \to (\neg k = 0 \to R a a) \land (k \leq 1 \lor R a a)\).
+- Consider two cases:
+- **Case 1: \((k + 1) \leq 1\)**:
+- If \((k + 1) \leq 1\), then \(k \leq 0\).
+- Since \(k\) is a natural number, \(k = 0\).
+- Therefore, \(\neg 0 = 0 \to R a a\) is trivially true, and \(0 \leq 1 \lor R a a\) is true.
+- **Case 2: \(R a a\)**:
+- If \(R a a\) holds, then \(\neg k = 0 \to R a a\) is true, and \(k \leq 1 \lor R a a\) is true.
+
+By induction, the theorem holds for all natural numbers \(n\). Therefore, the list `replicate n a` satisfies the pairwise relation \(R\) if and only if \(n \leq 1\) or \(R a a\) holds. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n : Nat} {a : α} :
+    (replicate n a).Pairwise R ↔ n ≤ 1 ∨ R a a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example {n : Nat} {a : α} :
+    (replicate n a).Pairwise R ↔ n ≤ 1 ∨ R a a := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

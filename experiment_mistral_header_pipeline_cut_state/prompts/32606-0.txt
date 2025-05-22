@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Negation of Boolean Value Equals True if and only if Value is False: \(\text{not } b = \text{true} \iff b = \text{false}\) : For any boolean value \( b \), the negation of \( b \) is equal to `true` if and only if \( b \) is equal to `false`, i.e., \(\text{not } b = \text{true} \iff b = \text{false}\).
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value $b$.
+
+**Case 1: $b = \text{false}$**
+We need to show that $(\text{not } \text{false}) = \text{true}$ is equivalent to $\text{false} = \text{false}$. Simplifying the left-hand side, we get $\text{true} = \text{true}$, which is trivially true. Therefore, the left-hand side is equivalent to the right-hand side, which is $\text{false} = \text{false}$, and this is also trivially true.
+
+**Case 2: $b = \text{true}$**
+We need to show that $(\text{not } \text{true}) = \text{true}$ is equivalent to $\text{true} = \text{false}$. Simplifying the left-hand side, we get $\text{false} = \text{true}$, which is false. Therefore, the left-hand side is equivalent to the right-hand side, which is $\text{true} = \text{false}$, and this is also false.
+
+In both cases, the equivalence holds. Therefore, for any boolean value $b$, the negation of $b$ is equal to `true` if and only if $b$ is equal to `false`. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example (b : Bool) : ((!b) = true) = (b = false) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : ((!b) = true) = (b = false) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

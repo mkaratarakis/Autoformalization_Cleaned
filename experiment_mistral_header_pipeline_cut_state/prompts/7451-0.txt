@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Left Rotation of a Replicated List is the List Itself : For any type $\alpha$, natural numbers $m$ and $n$, and element $a \in \alpha$, the left rotation of a list containing $m$ copies of $a$ by $n$ positions is equal to the original list, i.e., $(\text{replicate } m \, a). \text{rotateLeft } n = \text{replicate } m \, a$.
+
+2. **Informal Proof**  
+We proceed by induction on \( n \).
+
+1. **Base Case: \( n = 0 \)**
+- By the definition of left rotation, rotating a list by 0 positions results in the same list. Therefore, \((\text{replicate } m \, a). \text{rotateLeft } 0 = \text{replicate } m \, a\).
+
+2. **Inductive Step: \( n = k + 1 \)**
+- Assume \( 1 < m \). We need to show that \((\text{replicate } m \, a). \text{rotateLeft } (k + 1) = \text{replicate } m \, a\).
+- By the properties of the modulo operation, \((n + 1) \% m < m\).
+- Therefore, \(\min((n + 1) \% m, m) = (n + 1) \% m\).
+- The goal simplifies to \( m - (n + 1) \% m + (n + 1) \% m = m \).
+- Since \((n + 1) \% m < m\), the expression \( m - (n + 1) \% m + (n + 1) \% m \) simplifies to \( m \).
+
+Thus, by induction, the left rotation of a list containing \(m\) copies of \(a\) by \(n\) positions is equal to the original list. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n) (a : α) : rotateLeft (replicate m a) n = replicate m a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example (n) (a : α) : rotateLeft (replicate m a) n = replicate m a := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+De Morgan's Law: \(\neg (x \lor y) = \neg x \land \neg y\) : For any boolean values \( x \) and \( y \), the negation of their disjunction is equal to the conjunction of their negations, i.e., \(\neg (x \lor y) = \neg x \land \neg y\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( x \) and \( y \), the equation \(\neg (x \lor y) = \neg x \land \neg y\) holds. We can verify this by checking all possible combinations of \( x \) and \( y \):
+
+1. **Case 1: \( x = \text{true} \) and \( y = \text{true} \)**
+- \(\neg (x \lor y) = \neg (\text{true} \lor \text{true}) = \neg \text{true} = \text{false}\)
+- \(\neg x \land \neg y = \neg \text{true} \land \neg \text{true} = \text{false} \land \text{false} = \text{false}\)
+- Thus, \(\neg (x \lor y) = \neg x \land \neg y\).
+
+2. **Case 2: \( x = \text{true} \) and \( y = \text{false} \)**
+- \(\neg (x \lor y) = \neg (\text{true} \lor \text{false}) = \neg \text{true} = \text{false}\)
+- \(\neg x \land \neg y = \neg \text{true} \land \neg \text{false} = \text{false} \land \text{true} = \text{false}\)
+- Thus, \(\neg (x \lor y) = \neg x \land \neg y\).
+
+3. **Case 3: \( x = \text{false} \) and \( y = \text{true} \)**
+- \(\neg (x \lor y) = \neg (\text{false} \lor \text{true}) = \neg \text{true} = \text{false}\)
+- \(\neg x \land \neg y = \neg \text{false} \land \neg \text{true} = \text{true} \land \text{false} = \text{false}\)
+- Thus, \(\neg (x \lor y) = \neg x \land \neg y\).
+
+4. **Case 4: \( x = \text{false} \) and \( y = \text{false} \)**
+- \(\neg (x \lor y) = \neg (\text{false} \lor \text{false}) = \neg \text{false} = \text{true}\)
+- \(\neg x \land \neg y = \neg \text{false} \land \neg \text{false} = \text{true} \land \text{true} = \text{true}\)
+- Thus, \(\neg (x \lor y) = \neg x \land \neg y\).
+
+Since the equation holds for all possible combinations of \( x \) and \( y \), we conclude that \(\neg (x \lor y) = \neg x \land \neg y\) for any boolean values \( x \) and \( y \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), (!(x || y)) = (!x && !y) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (!(x || y)) = (!x && !y) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

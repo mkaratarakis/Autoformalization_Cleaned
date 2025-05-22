@@ -1,0 +1,11 @@
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+
+example {a b c : Int} (h : a - c ≤ b) : a ≤ b + c := by
+  have h := Int.add_le_add_right h c
+  rwa [Int.sub_add_cancel] at h

@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Enumerating a Cons List from Initial Index: \((n, x) :: \text{List.map} \left( \text{Prod.map} \left( \lambda x. x + 1, \text{id} \right) \right) \left( \text{List.enumFrom}(n, xs) \right)\) : For any type \( \alpha \), any natural number \( n \), any element \( x \in \alpha \), and any list \( xs \) of elements of type \( \alpha \), the following equality holds:
+\[
+\text{List.enumFrom}(n, x :: xs) = (n, x) :: \text{List.map} \left( \text{Prod.map} \left( \lambda x. x + 1, \text{id} \right) \right) \left( \text{List.enumFrom}(n, xs) \right)
+\]
+In other words, if we enumerate the list \( x :: xs \) starting from \( n \), the result is the list starting with the pair \( (n, x) \) followed by the list obtained by mapping the function \( \lambda (i, y). (i + 1, y) \) over the enumerated list \( \text{List.enumFrom}(n, xs) \).
+
+2. **Informal Proof**  
+We start by using the definition of the function `List.enumFrom` applied to a cons list. Specifically, we know that:
+\[
+\text{List.enumFrom}(n, x :: xs) = (n, x) :: \text{List.enumFrom}(n + 1, xs)
+\]
+Next, we use the commutativity of addition in natural numbers to rewrite the index in the second part of the list:
+\[
+\text{List.enumFrom}(n + 1, xs) = \text{List.enumFrom}(1 + n, xs)
+\]
+Finally, we apply the theorem that states:
+\[
+\text{List.map} \left( \text{Prod.map} \left( \lambda x. x + 1, \text{id} \right) \right) \left( \text{List.enumFrom}(n, xs) \right) = \text{List.enumFrom}(1 + n, xs)
+\]
+This gives us:
+\[
+\text{List.enumFrom}(n, x :: xs) = (n, x) :: \text{List.map} \left( \text{Prod.map} \left( \lambda x. x + 1, \text{id} \right) \right) \left( \text{List.enumFrom}(n, xs) \right)
+\]
+Thus, the theorem is proved.
+
+3. **Formal Theorem**  
+example (n : Nat) (x : α) (xs : List α) :
+    enumFrom n (x :: xs) = (n, x) :: (enumFrom n xs).map (Prod.map (· + 1) id) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (n : Nat) (x : α) (xs : List α) :
+    enumFrom n (x :: xs) = (n, x) :: (enumFrom n xs).map (Prod.map (· + 1) id) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

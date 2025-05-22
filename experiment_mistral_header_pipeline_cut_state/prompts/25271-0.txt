@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Value is True or False: \( b = \text{true} \lor b = \text{false} \) : For any boolean value \( b \), it holds that \( b = \text{true} \) or \( b = \text{false} \).
+
+2. **Informal Proof**  
+To prove that for any boolean value \( b \), \( b = \text{true} \) or \( b = \text{false} \), we use the fact that the boolean type is decidable. This means that for any boolean value \( b \), there are only two possible values: \( \text{true} \) and \( \text{false} \). Therefore, \( b \) must be either \( \text{true} \) or \( \text{false} \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : (b : Bool) → b = true ∨ b = false := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : (b : Bool) → b = true ∨ b = false := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

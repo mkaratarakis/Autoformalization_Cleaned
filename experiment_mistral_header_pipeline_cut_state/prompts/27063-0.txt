@@ -1,0 +1,84 @@
+
+1. **Informal Theorem**  
+Mapping Preserves `zipWithAll` Operation in Lists: \( \text{map} \, f \, (\text{zipWithAll} \, g \, l \, l') = \text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, l \, l' \) : For any types \( \alpha \), \( \beta \), \( \gamma \), and \( \delta \), and for any function \( f : \alpha \to \beta \) and a function \( g : \text{Option} \, \gamma \to \text{Option} \, \delta \to \alpha \), and lists \( l : \text{List} \, \gamma \) and \( l' : \text{List} \, \delta \), the following holds:
+\[
+\text{map} \, f \, (\text{zipWithAll} \, g \, l \, l') = \text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, l \, l'
+\]
+In other words, applying the function \( f \) to each element of the list obtained by zipping \( l \) and \( l' \) using \( g \) is the same as zipping \( l \) and \( l' \) using a modified version of \( g \) that applies \( f \) to the result of \( g \) before zipping.
+
+2. **Informal Proof**  
+We will prove this by induction on the list \( l \).
+
+**Base Case:**
+Consider the case where \( l \) is the empty list. We need to show that:
+\[
+\text{map} \, f \, (\text{zipWithAll} \, g \, [] \, l') = \text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, [] \, l'
+\]
+Using the properties of the `zipWithAll` and `map` functions, this simplifies to:
+\[
+\text{map} \, f \, [] = []
+\]
+which is trivially true.
+
+**Inductive Step:**
+Assume the statement holds for a list \( tl \), i.e., for any list \( l' \):
+\[
+\text{map} \, f \, (\text{zipWithAll} \, g \, tl \, l') = \text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, tl \, l'
+\]
+We need to show that the statement holds for the list \( l = \text{cons} \, \text{hd} \, \text{tl} \). We will consider two cases for \( l' \):
+
+- **Case 1: \( l' \) is the empty list.**
+Using the properties of the `zipWithAll` and `map` functions, we can simplify the proposition to show that:
+\[
+\text{map} \, f \, (\text{zipWithAll} \, g \, (hd :: tl) \, []) = \text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, (hd :: tl) \, []
+\]
+This simplifies to:
+\[
+\text{map} \, f \, [] = []
+\]
+which is trivially true.
+
+- **Case 2: \( l' \) is a non-empty list, specifically \( l' = \text{cons} \, \text{head} \, \text{tail} \).**
+Using the properties of the `zipWithAll` and `map` functions, we can simplify the proposition to show that:
+\[
+\text{map} \, f \, (\text{zipWithAll} \, g \, (hd :: tl) \, (head :: tail)) = \text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, (hd :: tl) \, (head :: tail)
+\]
+This simplifies to:
+\[
+\text{map} \, f \, (\text{cons} \, (g \, (\text{some} \, hd) \, (\text{some} \, head)) \, (\text{zipWithAll} \, g \, tl \, tail)) = \text{cons} \, (f \, (g \, (\text{some} \, hd) \, (\text{some} \, head))) \, (\text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, tl \, tail)
+\]
+By the induction hypothesis, we know that:
+\[
+\text{map} \, f \, (\text{zipWithAll} \, g \, tl \, tail) = \text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, tl \, tail
+\]
+Therefore, the left-hand side simplifies to:
+\[
+\text{cons} \, (f \, (g \, (\text{some} \, hd) \, (\text{some} \, head))) \, (\text{map} \, f \, (\text{zipWithAll} \, g \, tl \, tail))
+\]
+which is equal to the right-hand side:
+\[
+\text{cons} \, (f \, (g \, (\text{some} \, hd) \, (\text{some} \, head))) \, (\text{zipWithAll} \, (\lambda x \, y, \, f \, (g \, x \, y)) \, tl \, tail)
+\]
+This completes the proof for this case.
+
+By induction, the statement holds for all lists \( l \). Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {δ : Type _} (f : α → β) (g : Option γ → Option δ → α) (l : List γ) (l' : List δ) :
+    map f (zipWithAll g l l') = zipWithAll (fun x y => f (g x y)) l l' := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {δ : Type _} (f : α → β) (g : Option γ → Option δ → α) (l : List γ) (l' : List δ) :
+    map f (zipWithAll g l l') = zipWithAll (fun x y => f (g x y)) l l' := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

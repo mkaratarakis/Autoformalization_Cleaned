@@ -1,0 +1,83 @@
+
+1. **Informal Theorem**  
+Composition of Map Functions on Optional Values: \(\text{Option.map } h \, (\text{Option.map } g \, x) = \text{Option.map } (h \circ g) \, x\) : For any types \( \alpha \), \( \beta \), and \( \gamma \), and any functions \( g : \alpha \to \beta \) and \( h : \beta \to \gamma \), the following equality holds for any optional value \( x : \text{Option } \alpha \):
+\[
+\text{Option.map } h \, (\text{Option.map } g \, x) = \text{Option.map } (h \circ g) \, x
+\]
+This means that applying the function \( h \) to the result of applying \( g \) to the value inside \( x \) (if it is present) is the same as applying the composition \( h \circ g \) directly to the value inside \( x \).
+
+2. **Informal Proof**  
+We will consider every possible case of the optional value \( x \).
+
+1. **Case 1: \( x = \text{none} \)**
+- We need to show:
+\[
+\text{Option.map } h \, (\text{Option.map } g \, \text{none}) = \text{Option.map } (h \circ g) \, \text{none}
+\]
+- By the definition of `Option.map` for `none`, we have:
+\[
+\text{Option.map } g \, \text{none} = \text{none}
+\]
+- Therefore:
+\[
+\text{Option.map } h \, (\text{Option.map } g \, \text{none}) = \text{Option.map } h \, \text{none} = \text{none}
+\]
+- Similarly:
+\[
+\text{Option.map } (h \circ g) \, \text{none} = \text{none}
+\]
+- Hence, the equality holds for \( x = \text{none} \).
+
+2. **Case 2: \( x = \text{some } val \) for some value \( val \)**
+- We need to show:
+\[
+\text{Option.map } h \, (\text{Option.map } g \, (\text{some } val)) = \text{Option.map } (h \circ g) \, (\text{some } val)
+\]
+- By the definition of `Option.map` for `some`, we have:
+\[
+\text{Option.map } g \, (\text{some } val) = \text{some } (g \, val)
+\]
+- Therefore:
+\[
+\text{Option.map } h \, (\text{Option.map } g \, (\text{some } val)) = \text{Option.map } h \, (\text{some } (g \, val)) = \text{some } (h \, (g \, val))
+\]
+- Similarly:
+\[
+\text{Option.map } (h \circ g) \, (\text{some } val) = \text{some } ((h \circ g) \, val) = \text{some } (h \, (g \, val))
+\]
+- Hence, the equality holds for \( x = \text{some } val \).
+
+Since the equality holds in both cases, we conclude that:
+\[
+\text{Option.map } h \, (\text{Option.map } g \, x) = \text{Option.map } (h \circ g) \, x
+\]
+for any optional value \( x \). This completes the proof.
+
+3. **Formal Theorem**  
+example (h : β → γ) (g : α → β) (x : Option α) :
+    (x.map g).map h = x.map (h ∘ g) := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (h : β → γ) (g : α → β) (x : Option α) :
+    (x.map g).map h = x.map (h ∘ g) := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

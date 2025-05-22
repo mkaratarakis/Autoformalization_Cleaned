@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Negation of If-Then-Else Equals False is Equivalent to If-Then-Else Equals True : For any proposition \( p \) and boolean values \( b \) and \( c \), the negation of the if-then-else expression \( \text{if } p \text{ then } b = \text{false} \text{ else } c = \text{false} \) is logically equivalent to the if-then-else expression \( \text{if } p \text{ then } b = \text{true} \text{ else } c = \text{true} \). In other words, \( \neg (\text{if } p \text{ then } b = \text{false} \text{ else } c = \text{false}) \leftrightarrow (\text{if } p \text{ then } b = \text{true} \text{ else } c = \text{true}) \).
+
+2. **Informal Proof**  
+We will consider the two possible cases for the decidable proposition \( p \).
+
+1. **Case 1: \( p \) is true.**
+- The if-then-else expression \( \text{if } p \text{ then } b = \text{false} \text{ else } c = \text{false} \) simplifies to \( b = \text{false} \).
+- The negation of \( b = \text{false} \) is \( b \neq \text{false} \), which is equivalent to \( b = \text{true} \).
+- The right-hand side of the equivalence, \( \text{if } p \text{ then } b = \text{true} \text{ else } c = \text{true} \), simplifies to \( b = \text{true} \).
+- Therefore, the equivalence \( \neg (\text{if } p \text{ then } b = \text{false} \text{ else } c = \text{false}) \leftrightarrow (\text{if } p \text{ then } b = \text{true} \text{ else } c = \text{true}) \) holds in this case.
+
+2. **Case 2: \( p \) is false.**
+- The if-then-else expression \( \text{if } p \text{ then } b = \text{false} \text{ else } c = \text{false} \) simplifies to \( c = \text{false} \).
+- The negation of \( c = \text{false} \) is \( c \neq \text{false} \), which is equivalent to \( c = \text{true} \).
+- The right-hand side of the equivalence, \( \text{if } p \text{ then } b = \text{true} \text{ else } c = \text{true} \), simplifies to \( c = \text{true} \).
+- Therefore, the equivalence \( \neg (\text{if } p \text{ then } b = \text{false} \text{ else } c = \text{false}) \leftrightarrow (\text{if } p \text{ then } b = \text{true} \text{ else } c = \text{true}) \) holds in this case.
+
+Since the equivalence holds in both cases, the theorem is proved.
+
+3. **Formal Theorem**  
+example (p : Prop) [h : Decidable p] (b c : Bool) :
+  ¬(ite p (b = false) (c = false)) ↔ (ite p (b = true) (c = true)) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (b c : Bool) :
+  ¬(ite p (b = false) (c = false)) ↔ (ite p (b = true) (c = true)) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

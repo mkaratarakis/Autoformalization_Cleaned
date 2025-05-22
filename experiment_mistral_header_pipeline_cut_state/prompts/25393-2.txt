@@ -1,0 +1,61 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:10:2: error: unsolved goals
+case false
+α : Sort u_1
+p : Prop
+inst✝ : Decidable p
+t e : α
+h : decide p = false
+⊢ e = if p then t else e
+tmp.lean:11:2: error: unsolved goals
+case true
+α : Sort u_1
+p : Prop
+inst✝ : Decidable p
+t e : α
+h : decide p = true
+⊢ t = if p then t else e
+tmp.lean:8:48: error: unsolved goals
+case false
+α : Sort u_1
+p : Prop
+inst✝ : Decidable p
+t e : α
+h : decide p = false
+⊢ (bif false then t else e) = if p then t else e
+
+case true
+α : Sort u_1
+p : Prop
+inst✝ : Decidable p
+t e : α
+h : decide p = true
+⊢ (bif true then t else e) = if p then t else e
+case false
+α : Sort u_1
+p : Prop
+inst✝ : Decidable p
+t e : α
+h : decide p = false
+⊢ (bif false then t else e) = if p then t else e
+
+case true
+α : Sort u_1
+p : Prop
+inst✝ : Decidable p
+t e : α
+h : decide p = true
+⊢ (bif true then t else e) = if p then t else e
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example {α} (p : Prop) [Decidable p] (t e : α) :
+    cond (decide p) t e = if p then t else e := by
+  cases h : decide p

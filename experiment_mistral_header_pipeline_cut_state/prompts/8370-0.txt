@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Equation \(a + b = c + d\) Implies \(a = c + (d - b)\) in Natural Numbers : For any natural numbers \(a\), \(c\), \(b\), and \(d\), if \(b \leq d\), then the equation \(a + b = c + d\) holds if and only if \(a = c + (d - b)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by constructing a new lemma \( g \) that states \( b \leq c + d \). This follows from the transitivity of the less than or equal to relation, using the given hypothesis \( h : b \leq d \) and the fact that \( d \leq d + c \) (since adding a non-negative number to \( d \) does not decrease it).
+
+Next, we rewrite the goal step by step using the following theorems:
+1. Since the associativity of addition and subtraction holds, \( a + b - d = a + (b - d) \).
+2. By the symmetry of equality, \( a + b = c + d \) is equivalent to \( c + d = a + b \).
+3. Using the lemma \( g : b \leq c + d \), we know that \( c + d - b = a \) if and only if \( c + d = a + b \).
+4. Again, by the symmetry of equality, \( c + d = a + b \) is equivalent to \( a + b = c + d \).
+
+Thus, the goal \( (a + b = c + d) = (a = c + (d - b)) \) is equivalent to \( (a + b = c + d) = (a + b = c + d) \), which is trivially true. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a c : Nat) {b d : Nat} (h : b ≤ d) : (a + b = c + d) = (a = c + (d - b)) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example (a c : Nat) {b d : Nat} (h : b ≤ d) : (a + b = c + d) = (a = c + (d - b)) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

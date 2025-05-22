@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+At Least Two with Right False Argument is Equivalent to Boolean And: \( \text{atLeastTwo}(a, b, \text{false}) = a \land b \) : For any boolean values \( a \) and \( b \), the function `atLeastTwo` returns `true` if at least two out of the three boolean values \( a, b, \text{false} \) are `true`. This is equivalent to the boolean value \( a \) and \( b \) being `true`, i.e., \( a \land b \).
+
+2. **Informal Proof**  
+To prove that \( a.\text{atLeastTwo}(b, \text{false}) = (a \land b) \), we use the definition of the `atLeastTwo` function. The function `atLeastTwo` checks if at least two out of the three boolean values \( a, b, \text{false} \) are `true`. Since one of the values is `false`, the condition simplifies to checking if both \( a \) and \( b \) are `true`. This is exactly the boolean "and" operation \( a \land b \). Therefore, the proposition \( a.\text{atLeastTwo}(b, \text{false}) = (a \land b) \) is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example : atLeastTwo a b false = (a && b) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open Bool
+open Nat Bool
+
+example : atLeastTwo a b false = (a && b) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

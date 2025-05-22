@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Conversion of Boolean True to Bitvector One : The function `BitVec.ofBool` applied to the boolean value `true` results in the bitvector `1` of length 1, i.e., \(\text{BitVec.ofBool}(\text{true}) = 1\).
+
+2. **Informal Proof**  
+The proof is straightforward. By the definition of the function `BitVec.ofBool`, we have that \(\text{BitVec.ofBool}(\text{true}) = 1\). Therefore, the equality \(\text{BitVec.ofBool}(\text{true}) = 1\) holds by definition. This completes the proof.
+
+3. **Formal Theorem**  
+example : ofBool true  = 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Fin.Basic
+import Init.Data.Nat.Bitwise.Lemmas
+import Init.Data.Nat.Power2
+import Init.Data.Int.Bitwise
+import Init.Data.BitVec.Basic
+
+open BitVec
+
+
+example : ofBool true  = 1 := by
+
+5. **Header Information**  
+-- Init.Data.Fin.Basic not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Data.Int.Bitwise not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+

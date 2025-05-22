@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Commutativity of LCM: \(\text{lcm}(m, n) = \text{lcm}(n, m)\) : For any natural numbers \( m \) and \( n \), the least common multiple (LCM) of \( m \) and \( n \) is equal to the LCM of \( n \) and \( m \), i.e., \(\text{lcm}(m, n) = \text{lcm}(n, m)\).
+
+2. **Informal Proof**  
+To prove that \(\text{lcm}(m, n) = \text{lcm}(n, m)\), we start by using the definition of the least common multiple (LCM). The LCM of two natural numbers \( m \) and \( n \) is defined as:
+\[
+\text{lcm}(m, n) = \frac{m \cdot n}{\gcd(m, n)}
+\]
+Applying this definition to both sides of the equation, we get:
+\[
+\frac{m \cdot n}{\gcd(m, n)} = \frac{n \cdot m}{\gcd(n, m)}
+\]
+Next, we use the commutativity of multiplication, which states that \( m \cdot n = n \cdot m \), to rewrite the right-hand side:
+\[
+\frac{m \cdot n}{\gcd(m, n)} = \frac{m \cdot n}{\gcd(n, m)}
+\]
+Finally, we use the commutativity of the greatest common divisor (GCD), which states that \(\gcd(m, n) = \gcd(n, m)\), to rewrite the right-hand side again:
+\[
+\frac{m \cdot n}{\gcd(m, n)} = \frac{m \cdot n}{\gcd(m, n)}
+\]
+Since both sides of the equation are now identical, the equality holds. Therefore, we have shown that \(\text{lcm}(m, n) = \text{lcm}(n, m)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n : Nat) : lcm m n = lcm n m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (m n : Nat) : lcm m n = lcm n m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Gcd not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Lcm not found. --
+

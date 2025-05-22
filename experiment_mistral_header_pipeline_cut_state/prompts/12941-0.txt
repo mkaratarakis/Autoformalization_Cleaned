@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Count of Elements Satisfying a Predicate in Cons List: \(\text{countP}(p, a :: l) = \text{countP}(p, l) + 1\) if \( p(a) = \text{true} \) : For any type \( \alpha \), a predicate \( p : \alpha \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), if \( p(a) = \text{true} \) for some element \( a \in \alpha \), then the count of elements in the list \( a :: l \) that satisfy \( p \) is equal to the count of elements in \( l \) that satisfy \( p \) plus one, i.e., \(\text{countP}(p, a :: l) = \text{countP}(p, l) + 1\).
+
+2. **Informal Proof**  
+We start by constructing a lemma that states \(\text{countP.go}(p, a :: l, 0) = \text{countP.go}(p, l, 1)\). This is because, by the definition of the conditional function `cond`, if \( p(a) = \text{true} \), then \(\text{countP.go}(p, a :: l, 0)\) is equivalent to \(\text{countP.go}(p, l, 0 + 1)\), which simplifies to \(\text{countP.go}(p, l, 1)\).
+
+Next, we expand the definition of \(\text{countP}\). By definition, \(\text{countP}(p, a :: l)\) is equivalent to \(\text{countP.go}(p, a :: l, 0)\), and \(\text{countP}(p, l)\) is equivalent to \(\text{countP.go}(p, l, 0)\). Therefore, the goal \(\text{countP}(p, a :: l) = \text{countP}(p, l) + 1\) is equivalent to \(\text{countP.go}(p, a :: l, 0) = \text{countP.go}(p, l, 0) + 1\).
+
+We now use the lemma we constructed in the first step, which states \(\text{countP.go}(p, a :: l, 0) = \text{countP.go}(p, l, 1)\). Substituting this into the goal, we get \(\text{countP.go}(p, l, 1) = \text{countP.go}(p, l, 0) + 1\). By the commutativity of addition, \(\text{countP.go}(p, l, 1) = 1 + \text{countP.go}(p, l, 0)\). Finally, using the theorem \(\text{countP.go}(p, l, n) = n + \text{countP.go}(p, l, 0)\), we see that \(\text{countP.go}(p, l, 1) = 1 + \text{countP.go}(p, l, 0)\) is trivially true. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (l) (pa : p a) : countP p (a :: l) = countP p l + 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example (l) (pa : p a) : countP p (a :: l) = countP p l + 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

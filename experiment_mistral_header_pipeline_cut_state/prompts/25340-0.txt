@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Boolean Equality Reflexivity: \( a == (a == b) = b \) : For any boolean values \( a \) and \( b \), the boolean equality \( a == (a == b) \) is equal to \( b \), i.e., \( a == (a == b) = b \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( a \) and \( b \), the expression \( a == (a == b) \) is equal to \( b \). Since boolean values are decidable, we can evaluate the expression for all possible combinations of \( a \) and \( b \):
+
+1. **Case 1: \( a = \text{true} \) and \( b = \text{true} \)**
+\[
+a == (a == b) = \text{true} == (\text{true} == \text{true}) = \text{true} == \text{true} = \text{true}
+\]
+Thus, \( a == (a == b) = b \).
+
+2. **Case 2: \( a = \text{true} \) and \( b = \text{false} \)**
+\[
+a == (a == b) = \text{true} == (\text{true} == \text{false}) = \text{true} == \text{false} = \text{false}
+\]
+Thus, \( a == (a == b) = b \).
+
+3. **Case 3: \( a = \text{false} \) and \( b = \text{true} \)**
+\[
+a == (a == b) = \text{false} == (\text{false} == \text{true}) = \text{false} == \text{false} = \text{true}
+\]
+Thus, \( a == (a == b) = b \).
+
+4. **Case 4: \( a = \text{false} \) and \( b = \text{false} \)**
+\[
+a == (a == b) = \text{false} == (\text{false} == \text{false}) = \text{false} == \text{true} = \text{false}
+\]
+Thus, \( a == (a == b) = b \).
+
+Since the equality holds for all possible values of \( a \) and \( b \), we conclude that for any boolean values \( a \) and \( b \), the boolean equality \( a == (a == b) \) is equal to \( b \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), (a == (a == b)) = b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), (a == (a == b)) = b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

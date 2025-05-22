@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+One Raised to Any Natural Number Equals One: \( 1^n = 1 \) : For any natural number \( n \), the expression \( 1^n \) is equal to 1, i.e., \( 1^n = 1 \).
+
+2. **Informal Proof**  
+We will prove this by induction on \( n \).
+
+1. **Base Case:**
+- Consider \( n = 0 \). The goal is to show that \( 1^0 = 1 \). This is trivially true by the definition of exponentiation, as any number raised to the power of 0 is 1.
+
+2. **Inductive Step:**
+- Assume the inductive hypothesis that for some natural number \( k \), \( 1^k = 1 \). We need to show that \( 1^{k+1} = 1 \).
+- By the definition of exponentiation, \( 1^{k+1} = 1^k \cdot 1 \).
+- Using the inductive hypothesis \( 1^k = 1 \), we have \( 1^{k+1} = 1 \cdot 1 \).
+- By the property of the multiplicative identity, \( 1 \cdot 1 = 1 \).
+- Therefore, \( 1^{k+1} = 1 \).
+
+By the principle of mathematical induction, the statement \( 1^n = 1 \) holds for all natural numbers \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : 1 ^ n = 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n : Nat) : 1 ^ n = 1 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

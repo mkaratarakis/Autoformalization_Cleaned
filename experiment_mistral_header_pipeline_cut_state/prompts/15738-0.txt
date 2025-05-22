@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+Test Bit of Zero is Always False : For any natural number \( i \), the \( i \)-th bit in the binary representation of 0 is false, i.e., \( \text{testBit}(0, i) = \text{false} \).
+
+2. **Informal Proof**  
+To prove that the \( i \)-th bit in the binary representation of 0 is false for any natural number \( i \), we use the following properties and definitions:
+
+1. **Right Shift of Zero is Zero:**
+For any natural number \( n \), the right shift of zero by \( n \) positions is zero, i.e., \( 0 \>>> n = 0 \).
+
+2. **Conjunction with Zero:**
+For any natural number \( x \), the conjunction of \( x \) and \( 0 \) is equal to \( 0 \), i.e., \( x \&&& 0 = 0 \).
+
+3. **Boolean Not-Equal Function Returns False for Equal Elements:**
+For any type \( \alpha \) with a `BEq` instance and a `LawfulBEq` instance, and for any element \( a \in \alpha \), the boolean not-equal function \( a != a \) returns `false`.
+
+Using these properties, we can simplify the expression \( \text{testBit}(0, i) \):
+
+- The `testBit` function checks if the \( i \)-th bit of a number is 1. This is done by right-shifting the number by \( i \) positions and then performing a conjunction with 1.
+- Since the right shift of zero by any natural number \( i \) is zero, we have \( 0 \>>> i = 0 \).
+- The conjunction of zero with 1 is zero, i.e., \( 0 \&&& 1 = 0 \).
+- The boolean not-equal function \( 0 != 0 \) returns `false`.
+
+Therefore, \( \text{testBit}(0, i) = \text{false} \) for any natural number \( i \). This completes the proof.
+
+3. **Formal Theorem**  
+example (i : Nat) : testBit 0 i = false := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (i : Nat) : testBit 0 i = false := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Boolean Inequality Identity: \( a \neq (a \neq b) = b \) : For any boolean values \( a \) and \( b \), the boolean expression \( a \neq (a \neq b) \) is equal to \( b \), i.e., \( a \neq (a \neq b) = b \).
+
+2. **Informal Proof**  
+To prove the statement \( \forall (a, b : \text{Bool}), (a \neq (a \neq b)) = b \), we evaluate the boolean expression for all possible values of \( a \) and \( b \). The boolean values \( a \) and \( b \) can each be either `true` or `false`. We check each combination:
+
+1. **Case 1: \( a = \text{true} \) and \( b = \text{true} \)**
+\[
+a \neq (a \neq b) = \text{true} \neq (\text{true} \neq \text{true}) = \text{true} \neq \text{false} = \text{true}
+\]
+This matches \( b = \text{true} \).
+
+2. **Case 2: \( a = \text{true} \) and \( b = \text{false} \)**
+\[
+a \neq (a \neq b) = \text{true} \neq (\text{true} \neq \text{false}) = \text{true} \neq \text{true} = \text{false}
+\]
+This matches \( b = \text{false} \).
+
+3. **Case 3: \( a = \text{false} \) and \( b = \text{true} \)**
+\[
+a \neq (a \neq b) = \text{false} \neq (\text{false} \neq \text{true}) = \text{false} \neq \text{true} = \text{true}
+\]
+This matches \( b = \text{true} \).
+
+4. **Case 4: \( a = \text{false} \) and \( b = \text{false} \)**
+\[
+a \neq (a \neq b) = \text{false} \neq (\text{false} \neq \text{false}) = \text{false} \neq \text{false} = \text{false}
+\]
+This matches \( b = \text{false} \).
+
+Since the expression \( a \neq (a \neq b) \) equals \( b \) in all possible cases, the theorem is proven. Therefore, for any boolean values \( a \) and \( b \), the boolean expression \( a \neq (a \neq b) \) is equal to \( b \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), (a != (a != b)) = b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), (a != (a != b)) = b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,76 @@
+
+1. **Informal Theorem**  
+Right-Commutativity of Boolean AND Operation: $x \land y \land z = x \land z \land y$ : For any boolean values $x$, $y$, and $z$, the boolean "and" operation is right-commutative, i.e., $x \land y \land z = x \land z \land y$.
+
+2. **Informal Proof**  
+To prove that for any boolean values $x$, $y$, and $z$, the boolean "and" operation is right-commutative, we need to show that $x \land y \land z = x \land z \land y$. Since there are only two possible boolean values (true and false), we can evaluate all possible combinations of $x$, $y$, and $z$ to verify the equality.
+
+We consider the following cases:
+
+1. **Case 1: $x = \text{true}$, $y = \text{true}$, $z = \text{true}$**
+\[
+\text{true} \land \text{true} \land \text{true} = \text{true} \land \text{true} \land \text{true}
+\]
+Both sides are true, so the equality holds.
+
+2. **Case 2: $x = \text{true}$, $y = \text{true}$, $z = \text{false}$**
+\[
+\text{true} \land \text{true} \land \text{false} = \text{true} \land \text{false} \land \text{true}
+\]
+Both sides are false, so the equality holds.
+
+3. **Case 3: $x = \text{true}$, $y = \text{false}$, $z = \text{true}$**
+\[
+\text{true} \land \text{false} \land \text{true} = \text{true} \land \text{true} \land \text{false}
+\]
+Both sides are false, so the equality holds.
+
+4. **Case 4: $x = \text{true}$, $y = \text{false}$, $z = \text{false}$**
+\[
+\text{true} \land \text{false} \land \text{false} = \text{true} \land \text{false} \land \text{false}
+\]
+Both sides are false, so the equality holds.
+
+5. **Case 5: $x = \text{false}$, $y = \text{true}$, $z = \text{true}$**
+\[
+\text{false} \land \text{true} \land \text{true} = \text{false} \land \text{true} \land \text{true}
+\]
+Both sides are false, so the equality holds.
+
+6. **Case 6: $x = \text{false}$, $y = \text{true}$, $z = \text{false}$**
+\[
+\text{false} \land \text{true} \land \text{false} = \text{false} \land \text{false} \land \text{true}
+\]
+Both sides are false, so the equality holds.
+
+7. **Case 7: $x = \text{false}$, $y = \text{false}$, $z = \text{true}$**
+\[
+\text{false} \land \text{false} \land \text{true} = \text{false} \land \text{true} \land \text{false}
+\]
+Both sides are false, so the equality holds.
+
+8. **Case 8: $x = \text{false}$, $y = \text{false}$, $z = \text{false}$**
+\[
+\text{false} \land \text{false} \land \text{false} = \text{false} \land \text{false} \land \text{false}
+\]
+Both sides are false, so the equality holds.
+
+Since the equality $x \land y \land z = x \land z \land y$ holds for all possible combinations of $x$, $y$, and $z$, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), ((x && y) && z) = ((x && z) && y) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), ((x && y) && z) = ((x && z) && y) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Left Addition and Multiplication Distribute Over Division in Natural Numbers : For any natural numbers \( x \) and \( z \), and for any natural number \( y \) such that \( y > 0 \), the following equality holds:
+\[ \frac{x + y \cdot z}{y} = \frac{x}{y} + z. \]
+
+2. **Informal Proof**  
+We proceed by induction on \( z \).
+
+**Base Case:**
+For \( z = 0 \), we have:
+\[ \frac{x + y \cdot 0}{y} = \frac{x + 0}{y} = \frac{x}{y} = \frac{x}{y} + 0. \]
+This directly simplifies to \( x / y = x / y \), which is trivially true.
+
+**Inductive Step:**
+Assume the inductive hypothesis \( (x + y \cdot z) / y = x / y + z \) holds for some \( z \). We need to show that it holds for \( z + 1 \).
+
+Consider \( z + 1 \):
+\[ \frac{x + y \cdot (z + 1)}{y} = \frac{x + y \cdot z + y}{y}. \]
+Using the property of multiplication by successor, \( y \cdot (z + 1) = y \cdot z + y \), we get:
+\[ \frac{x + y \cdot z + y}{y}. \]
+By the associativity of addition, this can be rewritten as:
+\[ \frac{x + (y \cdot z + y)}{y}. \]
+Applying the property that \( (x + y) / y = x / y + 1 \) when \( y > 0 \), we get:
+\[ \frac{x + y \cdot z + y}{y} = \frac{x + y \cdot z}{y} + 1. \]
+Using the inductive hypothesis \( (x + y \cdot z) / y = x / y + z \), we substitute:
+\[ \frac{x + y \cdot z}{y} + 1 = x / y + z + 1. \]
+Thus, we have:
+\[ \frac{x + y \cdot (z + 1)}{y} = x / y + (z + 1). \]
+This completes the inductive step, and by induction, the theorem holds for all natural numbers \( z \).
+
+3. **Formal Theorem**  
+example (x z : Nat) {y : Nat} (H : 0 < y) : (x + y * z) / y = x / y + z := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (x z : Nat) {y : Nat} (H : 0 < y) : (x + y * z) / y = x / y + z := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

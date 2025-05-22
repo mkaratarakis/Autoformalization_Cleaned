@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Boolean Not-Equal Function is Invariant under Negation: \((\text{not } x) \neq (\text{not } y) = x \neq y\) : For any boolean values \( x \) and \( y \), the boolean not-equal function `!=` satisfies the property that \((\text{not } x) \neq (\text{not } y) = x \neq y\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( x \) and \( y \), the equality \((\text{not } x) \neq (\text{not } y) = x \neq y\) holds. We will consider all possible combinations of \( x \) and \( y \):
+
+1. **Case 1: \( x = \text{true} \) and \( y = \text{true} \)**
+- \((\text{not } \text{true}) \neq (\text{not } \text{true}) = \text{false} \neq \text{false} = \text{false}\)
+- \( x \neq y = \text{true} \neq \text{true} = \text{false}\)
+- Both sides are \(\text{false}\), so the equality holds.
+
+2. **Case 2: \( x = \text{true} \) and \( y = \text{false} \)**
+- \((\text{not } \text{true}) \neq (\text{not } \text{false}) = \text{false} \neq \text{true} = \text{true}\)
+- \( x \neq y = \text{true} \neq \text{false} = \text{true}\)
+- Both sides are \(\text{true}\), so the equality holds.
+
+3. **Case 3: \( x = \text{false} \) and \( y = \text{true} \)**
+- \((\text{not } \text{false}) \neq (\text{not } \text{true}) = \text{true} \neq \text{false} = \text{true}\)
+- \( x \neq y = \text{false} \neq \text{true} = \text{true}\)
+- Both sides are \(\text{true}\), so the equality holds.
+
+4. **Case 4: \( x = \text{false} \) and \( y = \text{false} \)**
+- \((\text{not } \text{false}) \neq (\text{not } \text{false}) = \text{true} \neq \text{true} = \text{false}\)
+- \( x \neq y = \text{false} \neq \text{false} = \text{false}\)
+- Both sides are \(\text{false}\), so the equality holds.
+
+Since the equality \((\text{not } x) \neq (\text{not } y) = x \neq y\) holds for all possible combinations of \( x \) and \( y \), the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), ((!x) != (!y)) = (x != y) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), ((!x) != (!y)) = (x != y) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

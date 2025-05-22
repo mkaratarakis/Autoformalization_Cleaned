@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Equality of List Replacement Functions: `List.replace = List.replaceTR` : For any type \( \alpha \) equipped with a binary equality operation, and for any list \( l \) of elements of type \( \alpha \), and for any elements \( b \) and \( c \) of type \( \alpha \), the function `List.replace` that replaces the first occurrence of \( b \) in \( l \) with \( c \) is equal to the tail-recursive function `List.replaceTR` that performs the same operation.
+
+2. **Informal Proof**  
+To prove that the function `List.replace` is equal to the tail-recursive function `List.replaceTR`, we use the principle of function extensionality. This means we need to show that for all possible arguments \( \alpha \), \( l \), \( b \), and \( c \), the functions yield the same result. Specifically, we need to show that:
+\[ l.replace \, b \, c = \text{replaceTR.go} \, l \, b \, c \, l \, \#[] \]
+
+We will perform induction on the list \( l \).
+
+**Base Case:**
+For the base case where \( l = [] \), we need to show:
+\[ \text{replaceTR.go} \, [] \, b \, c \, [] \, \#[] = \#[] \]
+Using the definitions of `List.replace` and `List.replaceTR.go`, both functions return the empty list when the input list is empty. Therefore, the base case is trivially true.
+
+**Inductive Step:**
+For the inductive step, assume \( l = x :: xs \) for some \( x \) and \( xs \). We need to show:
+\[ \text{replaceTR.go} \, (x :: xs) \, b \, c \, (x :: xs) \, \#[] = (x :: xs).replace \, b \, c \]
+
+We will consider two cases based on the condition \( b == x \).
+
+**Case 1: \( b == x \) is true**
+In this case, we need to show:
+\[ (x :: xs).replace \, b \, c = c :: xs \]
+Using the definition of `List.replace`, if \( b == x \) is true, then the first occurrence of \( b \) in \( x :: xs \) is replaced by \( c \), resulting in \( c :: xs \). Therefore, the goal is trivially true.
+
+**Case 2: \( b == x \) is false**
+In this case, we need to show:
+\[ \text{replaceTR.go} \, (x :: xs) \, b \, c \, (x :: xs) \, \#[] = x :: xs.replace \, b \, c \]
+Using the definition of `List.replaceTR.go`, if \( b == x \) is false, the function calls itself recursively with the list \( xs \) and the array \( \#[] \) extended by \( x \). By the inductive hypothesis, we have:
+\[ \text{replaceTR.go} \, l \, b \, c \, xs \, (\#[] \, \text{push} \, x) = (\#[] \, \text{push} \, x).data ++ xs.replace \, b \, c \]
+Since \( (\#[] \, \text{push} \, x).data = [x] \), the goal simplifies to:
+\[ x :: \text{replaceTR.go} \, l \, b \, c \, xs \, \#[] = x :: xs.replace \, b \, c \]
+By the inductive hypothesis, this is true. Therefore, the inductive step is also satisfied.
+
+By induction, we have shown that for any list \( l \) and elements \( b \) and \( c \), the function `List.replace` is equal to the tail-recursive function `List.replaceTR`. This completes the proof.
+
+3. **Formal Theorem**  
+example : @List.replace = @replaceTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @List.replace = @replaceTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

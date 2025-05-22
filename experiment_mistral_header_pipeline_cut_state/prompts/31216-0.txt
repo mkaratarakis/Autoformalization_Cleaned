@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Subtraction is Less Than or Equal to Minuend in Natural Numbers : For any natural numbers \( n \) and \( m \), the subtraction \( n - m \) is less than or equal to \( n \), i.e., \( n - m \leq n \).
+
+2. **Informal Proof**  
+We prove this by induction on \( m \).
+
+1. **Base Case:**
+- Consider \( m = 0 \). We need to show that \( n - 0 \leq n \).
+- Since \( n - 0 = n \), this is equivalent to showing \( n \leq n \).
+- This is true by the reflexivity of the less than or equal to relation.
+
+2. **Inductive Step:**
+- Assume the inductive hypothesis that for some \( m' \), \( n - m' \leq n \).
+- We need to show that \( n - (m' + 1) \leq n \).
+- By the definition of subtraction, \( n - (m' + 1) = \text{pred}(n - m') \).
+- Using the fact that the predecessor of any natural number is less than or equal to the number itself, we have \( \text{pred}(n - m') \leq n - m' \).
+- By the inductive hypothesis, \( n - m' \leq n \).
+- Therefore, by the transitivity of the less than or equal to relation, we have \( \text{pred}(n - m') \leq n \).
+
+By induction, the theorem holds for all natural numbers \( m \). Therefore, for any natural numbers \( n \) and \( m \), \( n - m \leq n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m : Nat) : n - m ≤ n := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m : Nat) : n - m ≤ n := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

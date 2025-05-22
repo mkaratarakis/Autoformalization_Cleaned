@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Asymmetry of the Less-Than Relation on Boolean Values: \( x < y \) implies \( \neg (y < x) \) : For any boolean values \( x \) and \( y \), if \( x < y \), then it is not the case that \( y < x \). In other words, the less-than relation on boolean values is asymmetric.
+
+2. **Informal Proof**  
+To prove the asymmetry of the less-than relation on boolean values, we need to show that for any boolean values \( x \) and \( y \), if \( x < y \), then \( \neg (y < x) \).
+
+The less-than relation on boolean values is defined as follows:
+- \( \text{false} < \text{true} \)
+- No other comparisons hold.
+
+Given \( x < y \), we have:
+- \( x = \text{false} \) and \( y = \text{true} \).
+
+Now, we need to check if \( y < x \):
+- \( y = \text{true} \) and \( x = \text{false} \).
+
+By the definition of the less-than relation, \( \text{true} < \text{false} \) is false. Therefore, \( y < x \) is false, which means \( \neg (y < x) \) is true.
+
+Thus, if \( x < y \), then \( \neg (y < x) \) holds. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x < y → ¬ y < x := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x < y → ¬ y < x := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -37,39 +37,7 @@ open Nat
 example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
 
 5. **Header Information**  
--- BEGIN Init.Omega --
-/-
-Copyright (c) 2023 Lean FRO, LLC. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Kim Morrison
--/
-module
+-- Init.Omega not found. --
 
-prelude
-import Init.Omega.Int
-import Init.Omega.IntList
-import Init.Omega.LinearCombo
-import Init.Omega.Constraint
-import Init.Omega.Logic
-
--- END Init.Omega --
-
-import Init.Omega
-
-/-!
-# Further results about `mod`.
-
-This file proves some results about `mod` that are useful for bitblasting,
-in particular
-`Nat.mod_mul : x % (a * b) = x % a + a * (x / a % b)`
-and its corollary
-`Nat.mod_pow_succ : x % b ^ (k + 1) = x % b ^ k + b ^ k * ((x / b ^ k) % b)`.
-
-It contains the necessary preliminary results relating order and `*` and `/`,
-which should probably be moved to their own file.
--/
-
-namespace Nat
-
-@[simp] protected theorem mul_lt_mul_left (a0 : 0 < a) : a * b < a * c ↔ b < c := by
+-- Init.Data.Nat.Mod not found. --
 

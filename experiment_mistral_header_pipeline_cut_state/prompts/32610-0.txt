@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Congruence of Universal Quantifiers over Propositional Domains : For any propositions $p_1$ and $p_2$, and any functions $q_1 : p_1 \to \text{Prop}$ and $q_2 : p_2 \to \text{Prop}$, if $p_1 = p_2$, and for all $a \in p_2$, $q_1(a) = q_2(a)$, then it holds that $\forall a \in p_1, q_1(a) = \forall a \in p_2, q_2(a)$.
+
+2. **Informal Proof**  
+We start with the assumption that $p_1 = p_2$. Using this equality, we can substitute $p_1$ with $p_2$ in the context and the goal. This simplifies our goal to showing that $\forall a \in p_2, q_1(a) = \forall a \in p_2, q_2(a)$.
+
+Next, we use the pointwise equality of functions $q_1$ and $q_2$, which states that for all $a \in p_2$, $q_1(a) = q_2(a)$. This allows us to simplify the goal to $\forall a \in p_2, q_1(a) = \forall a \in p_2, q_2(a)$. Since the two universal quantifications are over the same domain and the functions are equal pointwise, this is trivially true.
+
+Therefore, we have shown that $\forall a \in p_1, q_1(a) = \forall a \in p_2, q_2(a)$. This completes the proof.
+
+3. **Formal Theorem**  
+example {p₁ p₂ : Prop} {q₁ : p₁ → Prop} {q₂ : p₂ → Prop}
+    (h₁ : p₁ = p₂)
+    (h₂ : ∀ a : p₂, q₁ (h₁.substr a) = q₂ a)
+    : (∀ a : p₁, q₁ a) = (∀ a : p₂, q₂ a) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example {p₁ p₂ : Prop} {q₁ : p₁ → Prop} {q₂ : p₂ → Prop}
+    (h₁ : p₁ = p₂)
+    (h₂ : ∀ a : p₂, q₁ (h₁.substr a) = q₂ a)
+    : (∀ a : p₁, q₁ a) = (∀ a : p₂, q₂ a) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

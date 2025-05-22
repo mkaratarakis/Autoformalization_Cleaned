@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+First \( n \) Elements of Concatenated List Equal to \( l_1 \) if \( |l_1| = n \) : For any type \( \alpha \) and any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), if the length of \( l_1 \) is equal to \( n \), then the first \( n \) elements of the concatenated list \( l_1 ++ l_2 \) are equal to \( l_1 \). Mathematically, this can be expressed as:
+\[ \text{If } |l_1| = n, \text{ then } \text{take } n \ (l_1 ++ l_2) = l_1. \]
+
+2. **Informal Proof**  
+We start with the assumption that the length of \( l_1 \) is \( n \), i.e., \( |l_1| = n \). We need to show that the first \( n \) elements of the concatenated list \( l_1 ++ l_2 \) are equal to \( l_1 \).
+
+1. Using the assumption \( |l_1| = n \), we rewrite the goal to show that the first \( l_1 \).length elements of \( l_1 ++ l_2 \) are equal to \( l_1 \).
+2. By the theorem that states the first \( l_1 \).length elements of \( l_1 ++ l_2 \) are indeed \( l_1 \), we conclude that \( \text{take } n \ (l_1 ++ l_2) = l_1 \).
+
+Thus, the theorem is proved.
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} {n} (h : length l₁ = n) : take n (l₁ ++ l₂) = l₁ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l₁ l₂ : List α} {n} (h : length l₁ = n) : take n (l₁ ++ l₂) = l₁ := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

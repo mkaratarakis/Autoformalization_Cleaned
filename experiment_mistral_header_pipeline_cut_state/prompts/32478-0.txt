@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Power of Product Equals Power of Power in Natural Numbers : For any natural numbers \(a\), \(m\), and \(n\), the power of \(a\) raised to the product of \(m\) and \(n\) is equal to the power of \(a\) raised to \(m\) and then raised to \(n\), i.e., \(a^{m \cdot n} = (a^m)^n\).
+
+2. **Informal Proof**  
+We prove this by induction on \( n \).
+
+**Base Case:**
+Consider \( n = 0 \). We need to show that \( a^{m \cdot 0} = (a^m)^0 \). Using the properties of multiplication by zero and the power of zero, we have:
+\[
+a^{m \cdot 0} = a^0 = 1
+\]
+and
+\[
+(a^m)^0 = 1
+\]
+Thus, the base case holds.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some natural number \( k \), \( a^{m \cdot k} = (a^m)^k \). We need to show that \( a^{m \cdot (k + 1)} = (a^m)^{k + 1} \). Using the properties of multiplication by successor, the power of a sum, and the power of a successor, we have:
+\[
+a^{m \cdot (k + 1)} = a^{m \cdot k + m} = a^{m \cdot k} \cdot a^m
+\]
+By the inductive hypothesis, \( a^{m \cdot k} = (a^m)^k \), so:
+\[
+a^{m \cdot k} \cdot a^m = (a^m)^k \cdot a^m
+\]
+Using the property of the power of a successor, we get:
+\[
+(a^m)^k \cdot a^m = (a^m)^{k + 1}
+\]
+Thus, the inductive step holds.
+
+By the principle of mathematical induction, the theorem is true for all natural numbers \( n \). Therefore, for any natural numbers \(a\), \(m\), and \(n\), we have:
+\[
+a^{m \cdot n} = (a^m)^n
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a m n : Nat) : a ^ (m * n) = (a ^ m) ^ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a m n : Nat) : a ^ (m * n) = (a ^ m) ^ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

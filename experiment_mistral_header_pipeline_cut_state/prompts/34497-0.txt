@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+DropWhile on Replicated List: \(\text{dropWhile } p \, (\text{replicate } n \, a) = \text{if } p(a) = \text{true then } [] \text{ else } \text{replicate } n \, a\) : For any type \( \alpha \), natural number \( n \), and element \( a \in \alpha \), the function `List.dropWhile p` applied to the list `List.replicate n a` results in the empty list if the predicate \( p \) is true for \( a \), and the original list `List.replicate n a` otherwise. In other words, if \( p(a) = \text{true} \), then `List.dropWhile p (List.replicate n a) = []`; otherwise, `List.dropWhile p (List.replicate n a) = List.replicate n a`.
+
+2. **Informal Proof**  
+We start by using the fact that `List.dropWhile p (List.replicate n a)` is equivalent to `List.filter (not p) (List.replicate n a)`. We also use the fact that `List.filter p (List.replicate n a)` is `List.replicate n a` if \( p a \) is true and `[]` otherwise. This simplifies our goal to:
+\[
+\text{if } (\neg p a) = \text{true} \text{ then } \text{replicate } n \, a \text{ else } [] = \text{if } p a = \text{true} \text{ then } [] \text{ else } \text{replicate } n \, a
+\]
+
+We discuss by cases based on the condition \((\neg p a) = \text{true}\):
+
+1. **Case 1: \((\neg p a) = \text{true}\)**
+- In this case, the left-hand side of the equation is \(\text{replicate } n \, a\).
+- The right-hand side of the equation is \(\text{if } p a = \text{true} \text{ then } [] \text{ else } \text{replicate } n \, a\).
+- Since \((\neg p a) = \text{true}\), it follows that \(p a = \text{false}\).
+- Therefore, the right-hand side simplifies to \(\text{replicate } n \, a\).
+- Hence, the equation holds: \(\text{replicate } n \, a = \text{replicate } n \, a\).
+
+2. **Case 2: \((\neg p a) = \text{false}\)**
+- In this case, the left-hand side of the equation is \([]\).
+- The right-hand side of the equation is \(\text{if } p a = \text{true} \text{ then } [] \text{ else } \text{replicate } n \, a\).
+- Since \((\neg p a) = \text{false}\), it follows that \(p a = \text{true}\).
+- Therefore, the right-hand side simplifies to \([]\).
+- Hence, the equation holds: \([] = []\).
+
+In both cases, the equation holds, thus completing the proof.
+
+3. **Formal Theorem**  
+example (p : α → Bool) :
+    (replicate n a).dropWhile p = if p a then [] else replicate n a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) :
+    (replicate n a).dropWhile p = if p a then [] else replicate n a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Prefix Preservation under List Element Removal at Same Index : For any lists \( l \) and \( l' \) of elements of type \( \alpha \), if \( l \) is a prefix of \( l' \), then for any natural number \( k \), the list obtained by removing the element at index \( k \) from \( l \) is a prefix of the list obtained by removing the element at index \( k \) from \( l' \). In other words, if \( l \) is a prefix of \( l' \), then \( l \setminus \{l[k]\} \) is a prefix of \( l' \setminus \{l'[k]\} \).
+
+2. **Informal Proof**  
+Given that \( l \) is a prefix of \( l' \), we can write \( l' \) as \( l \) concatenated with some list \( t \). Therefore, the goal is to show that removing the element at index \( k \) from \( l \) results in a list that is a prefix of the list obtained by removing the element at index \( k \) from \( l \) concatenated with \( t \).
+
+Consider the following cases:
+
+1. **Case 1: \( k \) is less than the length of \( l \):**
+- In this case, removing the element at index \( k \) from \( l \) results in a list that is a prefix of the list obtained by removing the element at index \( k \) from \( l \) concatenated with \( t \). This is because the prefix relationship is preserved when removing elements at the same index from both lists.
+
+2. **Case 2: \( k \) is greater than or equal to the length of \( l \):**
+- Since \( k \) is not less than the length of \( l \), it follows that \( k \) is greater than or equal to the length of \( l \). Using this, we can simplify the goal by noting that removing the element at index \( k \) from \( l \) results in \( l \) itself, and removing the element at index \( k \) from \( l \) concatenated with \( t \) results in \( l \) concatenated with the list obtained by removing the element at index \( k - \text{length}(l) \) from \( t \). Therefore, the goal is to show that \( l \) is a prefix of \( l \) concatenated with the list obtained by removing the element at index \( k - \text{length}(l) \) from \( t \), which is trivially true.
+
+In both cases, the goal is satisfied, and thus the theorem is proved.
+
+3. **Formal Theorem**  
+example {l l' : List α} (h : l <+: l') (k : Nat) :
+    eraseIdx l k <+: eraseIdx l' k := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open IsPrefix
+open Nat
+variable [BEq α]
+
+example {l l' : List α} (h : l <+: l') (k : Nat) :
+    eraseIdx l k <+: eraseIdx l' k := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

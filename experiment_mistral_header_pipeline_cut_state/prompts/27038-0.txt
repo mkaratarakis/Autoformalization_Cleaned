@@ -1,0 +1,79 @@
+
+1. **Informal Theorem**  
+ZipWith Preserves Mapping on Right List: \(\text{zipWith } g \, l_1 \, (\text{map } f \, l_2) = \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, l_1 \, l_2\) : For any lists \( l_1 \) of type \( \alpha \) and \( l_2 \) of type \( \beta \), and for any functions \( f : \beta \to \beta' \) and \( g : \alpha \to \beta' \to \gamma \), the following equality holds:
+\[ \text{zipWith } g \, l_1 \, (\text{map } f \, l_2) = \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, l_1 \, l_2 \]
+
+2. **Informal Proof**  
+We will prove this theorem by induction on the list \( l_1 \) while generalizing over \( l_2 \).
+
+**Base Case:**
+Consider the case where \( l_1 \) is the empty list, i.e., \( l_1 = [] \).
+
+- If \( l_2 \) is also the empty list, i.e., \( l_2 = [] \), then:
+\[
+\text{zipWith } g \, [] \, (\text{map } f \, []) = \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, [] \, []
+\]
+This simplifies to:
+\[
+[] = []
+\]
+which is trivially true.
+
+- If \( l_2 \) is a non-empty list, i.e., \( l_2 = [head \, :: \, tail] \), then:
+\[
+\text{zipWith } g \, [] \, (\text{map } f \, [head \, :: \, tail]) = \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, [] \, [head \, :: \, tail]
+\]
+This simplifies to:
+\[
+[] = []
+\]
+which is trivially true.
+
+**Inductive Step:**
+Assume the theorem holds for a list \( l_1 = [head \, :: \, tail] \). We need to show that it holds for \( l_1 = [head \, :: \, tail] \).
+
+- If \( l_2 \) is the empty list, i.e., \( l_2 = [] \), then:
+\[
+\text{zipWith } g \, [head \, :: \, tail] \, (\text{map } f \, []) = \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, [head \, :: \, tail] \, []
+\]
+This simplifies to:
+\[
+[] = []
+\]
+which is trivially true.
+
+- If \( l_2 \) is a non-empty list, i.e., \( l_2 = [head' \, :: \, tail'] \), then:
+\[
+\text{zipWith } g \, [head \, :: \, tail] \, (\text{map } f \, [head' \, :: \, tail']) = \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, [head \, :: \, tail] \, [head' \, :: \, tail']
+\]
+This simplifies to:
+\[
+g \, head \, (f \, head') \, :: \, \text{zipWith } g \, tail \, (\text{map } f \, tail') = g \, head \, (f \, head') \, :: \, \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, tail \, tail'
+\]
+By the inductive hypothesis, we know that:
+\[
+\text{zipWith } g \, tail \, (\text{map } f \, tail') = \text{zipWith } (\lambda a \, b, \, g \, a \, (f \, b)) \, tail \, tail'
+\]
+Thus, the equality holds.
+
+Therefore, by induction, the theorem is true for all lists \( l_1 \) and \( l_2 \). This completes the proof.
+
+3. **Formal Theorem**  
+example (l₁ : List α) (l₂ : List β) (f : β → β') (g : α → β' → γ) :
+    zipWith g l₁ (l₂.map f) = zipWith (fun a b => g a (f b)) l₁ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example (l₁ : List α) (l₂ : List β) (f : β → β') (g : α → β' → γ) :
+    zipWith g l₁ (l₂.map f) = zipWith (fun a b => g a (f b)) l₁ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

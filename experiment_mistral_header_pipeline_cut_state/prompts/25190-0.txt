@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Composition of `Option.map` Functions Equals `Option.map` of Composition : For any types \( \alpha \), \( \beta \), and \( \gamma \), and any functions \( f : \alpha \to \beta \) and \( g : \beta \to \gamma \), the composition of the `Option.map` functions applied to \( f \) and \( g \) is equal to the `Option.map` function applied to the composition of \( f \) and \( g \). Formally, for any \( x : \text{Option } \alpha \):
+\[
+\text{Option.map } g \circ \text{Option.map } f \, x = \text{Option.map } (g \circ f) \, x
+\]
+
+2. **Informal Proof**  
+To prove the equality of the functions \(\text{Option.map } g \circ \text{Option.map } f\) and \(\text{Option.map } (g \circ f)\), we use the principle of function extensionality. This principle states that two functions are equal if they yield the same result for all possible arguments. Therefore, it suffices to show that for all \( x \in \text{Option } \alpha \), the following holds:
+\[
+(\text{Option.map } g \circ \text{Option.map } f) \, x = \text{Option.map } (g \circ f) \, x
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (f : α → β) (g : β → γ) :
+    Option.map g ∘ Option.map f = Option.map (g ∘ f) := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (g : β → γ) :
+    Option.map g ∘ Option.map f = Option.map (g ∘ f) := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

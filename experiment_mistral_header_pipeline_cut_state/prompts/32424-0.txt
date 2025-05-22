@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Successor Subtraction Identity: \( (n + 1) - m - (k + 1) = n - m - k \) : For any natural numbers \( n, m, \) and \( k \), the expression \( (n + 1) - m - (k + 1) \) is equal to \( n - m - k \).
+
+2. **Informal Proof**  
+We start with the expression \( (n + 1) - m - (k + 1) \). Using the identity \( a - b - c = a - (b + c) \) twice, we can rewrite this as:
+\[ (n + 1) - m - (k + 1) = (n + 1) - (m + (k + 1)) \]
+Next, we use the identity \( n + (m + 1) = (n + m) + 1 \) to rewrite \( m + (k + 1) \) as \( (m + k) + 1 \):
+\[ (n + 1) - (m + (k + 1)) = (n + 1) - ((m + k) + 1) \]
+Finally, we use the identity \( (n + 1) - (m + 1) = n - m \) to rewrite \( (n + 1) - ((m + k) + 1) \) as \( n - (m + k) \):
+\[ (n + 1) - ((m + k) + 1) = n - (m + k) \]
+Thus, we have shown that:
+\[ (n + 1) - m - (k + 1) = n - m - k \]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (n m k) : succ n - m - succ k = n - m - k := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n m k) : succ n - m - succ k = n - m - k := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

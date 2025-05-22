@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Most Significant Bit of Zero-Length Bitvector is False : For any bitvector \( x \) of length 0, the most significant bit of \( x \) is `false`, i.e., \( x.\text{msb} = \text{false} \).
+
+2. **Informal Proof**  
+To prove that the most significant bit (msb) of any bitvector \( x \) of length 0 is `false`, we start by using the definition of the most significant bit and the fact that any bitvector of width 0 is equal to the bitvector \( 0\#0 \). Specifically, for any bitvector \( x \) of width 0, we have \( x = 0\#0 \). Since \( 0\#0 \) has no bits, its most significant bit is trivially `false`. Therefore, \( x.\text{msb} = \text{false} \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec 0) : x.msb = false := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec 0) : x.msb = false := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

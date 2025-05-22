@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Monadic Map Over Cons List Equals Monadic Action on Head Followed by Monadic Map on Tail : For any monad \( m \) and any function \( f : \alpha \to m \beta \), and for any element \( a \) of type \( \alpha \) and any list \( l \) of elements of type \( \alpha \), the monadic map of \( f \) over the list \( a :: l \) (i.e., the list with \( a \) as the first element and \( l \) as the tail) is equal to the monadic action of \( f \) on \( a \) followed by the monadic map of \( f \) over \( l \), i.e.,
+\[
+\text{List.mapM } f \ (a :: l) = \text{do} \ \{ \text{let } \text{result}_1 \leftarrow f(a); \ \text{let } \text{result}_2 \leftarrow \text{List.mapM } f \ l; \ \text{pure } (\text{result}_1 :: \text{result}_2) \}
+\]
+where `::` denotes the cons operation, which adds an element to the front of a list.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that `List.mapM` is equal to `List.mapM'` and the definition of `List.mapM'`. The function `List.mapM'` is defined to handle the cons operation by applying the function \( f \) to the head of the list and then recursively applying the function to the tail of the list. Therefore, we can simplify the proposition we want to show as follows:
+
+1. **Simplification:**
+Using the equivalence \( \text{List.mapM } f \ (a :: l) = \text{List.mapM' } f \ (a :: l) \) and the definition of `List.mapM'`, we have:
+\[
+\text{List.mapM' } f \ (a :: l) = \text{do} \ \{ \text{let } \text{result}_1 \leftarrow f(a); \ \text{let } \text{result}_2 \leftarrow \text{List.mapM' } f \ l; \ \text{pure } (\text{result}_1 :: \text{result}_2) \}
+\]
+
+2. **Conclusion:**
+Since `List.mapM'` is defined to handle the cons operation in this way, the monadic map of \( f \) over the list \( a :: l \) is indeed equal to the monadic action of \( f \) on \( a \) followed by the monadic map of \( f \) over \( l \). Therefore, we have:
+\[
+\text{List.mapM } f \ (a :: l) = \text{do} \ \{ \text{let } \text{result}_1 \leftarrow f(a); \ \text{let } \text{result}_2 \leftarrow \text{List.mapM } f \ l; \ \text{pure } (\text{result}_1 :: \text{result}_2) \}
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example [Monad m] [LawfulMonad m] (f : α → m β) :
+    (a :: l).mapM f = (return (← f a) :: (← l.mapM f)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Monadic
+
+open List
+open Nat
+
+example [Monad m] [LawfulMonad m] (f : α → m β) :
+    (a :: l).mapM f = (return (← f a) :: (← l.mapM f)) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Monadic not found. --
+

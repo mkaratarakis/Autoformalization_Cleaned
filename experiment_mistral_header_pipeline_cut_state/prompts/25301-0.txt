@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Decide True Equals Boolean Value: $\text{decide}(\text{true} = b) = b$ : For any boolean value \( b \), if the proposition \( \text{true} = b \) is decidable, then the function `decide` applied to \( \text{true} = b \) returns \( b \). In other words, \( \text{decide}(\text{true} = b) = b \).
+
+2. **Informal Proof**  
+We need to show that for any boolean value \( b \), the function `decide` applied to \( \text{true} = b \) returns \( b \). We will consider the two possible cases for \( b \).
+
+1. **Case 1: \( b = \text{false} \)**
+- We need to show that \( \text{decide}(\text{true} = \text{false}) = \text{false} \).
+- Since \( \text{true} \neq \text{false} \), the function `decide` evaluates \( \text{true} = \text{false} \) to \(\text{false}\).
+- Therefore, \( \text{decide}(\text{true} = \text{false}) = \text{false} \) is trivially true.
+
+2. **Case 2: \( b = \text{true} \)**
+- We need to show that \( \text{decide}(\text{true} = \text{true}) = \text{true} \).
+- Since \( \text{true} = \text{true} \), the function `decide` evaluates \( \text{true} = \text{true} \) to \(\text{true}\).
+- Therefore, \( \text{decide}(\text{true} = \text{true}) = \text{true} \) is trivially true.
+
+Since both cases are true, we conclude that for any boolean value \( b \), \( \text{decide}(\text{true} = b) = b \). This completes the proof.
+
+3. **Formal Theorem**  
+example {b : Bool} [Decidable (true = b)]  : decide (true  = b) =  b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example {b : Bool} [Decidable (true = b)]  : decide (true  = b) =  b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

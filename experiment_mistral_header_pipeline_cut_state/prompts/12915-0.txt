@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Count of Element in List Concatenated with Itself Increases by One : For any type \( \alpha \) with a `BEq` instance and a `LawfulBEq` instance, and for any element \( a \in \alpha \) and list \( l \) of elements of type \( \alpha \), the number of occurrences of \( a \) in the list \( l \) concatenated with \( a \) (i.e., \( l ++ [a] \)) is equal to the number of occurrences of \( a \) in \( l \) plus one. Mathematically, this can be expressed as:
+\[
+\text{count}(a, l \text{.concat } a) = \text{count}(a, l) + 1
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that the concatenation of an element \( a \) to a list \( l \) is equivalent to appending \( a \) as a singleton list to \( l \). Formally, this is expressed as:
+\[
+l.concat(a) = l ++ [a]
+\]
+Next, we use the properties of the `count` function, which counts the number of occurrences of an element in a list. Specifically, the `count` function satisfies the property that the number of occurrences of \( a \) in \( l ++ [a] \) is the sum of the number of occurrences of \( a \) in \( l \) and the number of occurrences of \( a \) in the singleton list \([a]\). Since the singleton list \([a]\) contains exactly one occurrence of \( a \), we have:
+\[
+\text{count}(a, l ++ [a]) = \text{count}(a, l) + \text{count}(a, [a])
+\]
+Given that \(\text{count}(a, [a]) = 1\), we can simplify the above equation to:
+\[
+\text{count}(a, l ++ [a]) = \text{count}(a, l) + 1
+\]
+Thus, we have shown that:
+\[
+\text{count}(a, l \text{.concat } a) = \text{count}(a, l) + 1
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a : α) (l : List α) :
+    count a (concat l a) = (count a l) + 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+variable [LawfulBEq α]
+
+example (a : α) (l : List α) :
+    count a (concat l a) = (count a l) + 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

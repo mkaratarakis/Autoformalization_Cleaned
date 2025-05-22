@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+If-then-else with True on the Right: \((\text{if } p \text{ then } q \text{ else } \text{True}) \leftrightarrow (p \rightarrow q)\) : For any propositions \( p \) and \( q \), if \( p \) is true, then the expression \((\text{if } p \text{ then } q \text{ else } \text{True})\) is logically equivalent to \( p \rightarrow q \). In other words, \((\text{if } p \text{ then } q \text{ else } \text{True})\) holds if and only if \( p \) implies \( q \).
+
+2. **Informal Proof**  
+We start by considering the two possible cases for the decidability of \( p \):
+
+1. **Case 1: \( p \) is false.**
+In this case, the expression \((\text{if } p \text{ then } q \text{ else } \text{True})\) simplifies to \(\text{True}\). Since \( p \) is false, \( p \rightarrow q \) is also \(\text{True}\). Thus, the equivalence holds.
+
+2. **Case 2: \( p \) is true.**
+In this case, the expression \((\text{if } p \text{ then } q \text{ else } \text{True})\) simplifies to \( q \). Since \( p \) is true, \( p \rightarrow q \) is equivalent to \( q \). Thus, the equivalence holds.
+
+Since both cases establish the equivalence, we conclude that \((\text{if } p \text{ then } q \text{ else } \text{True}) \leftrightarrow (p \rightarrow q)\) holds for any propositions \( p \) and \( q \).
+
+3. **Formal Theorem**  
+example [h : Decidable p] :
+    ite p q True ↔ p → q := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example [h : Decidable p] :
+    ite p q True ↔ p → q := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+First Component of Iterative Unfolding Equals Final State: \((\text{BitVec.iunfoldr } f \, s).1 = \text{state}(w)\) : For any natural number \( w \) and any type \( \alpha \), given a function \( f : \text{Fin } w \to \alpha \to \alpha \times \text{Bool} \) and a state function \( \text{state} : \mathbb{N} \to \alpha \), if the initial state \( s \) is equal to \( \text{state}(0) \) and for every step \( i \) in the range \( \text{Fin } w \), the first component of \( f(i, \text{state}(i)) \) is equal to \( \text{state}(i + 1) \), then the first component of the result of `BitVec.iunfoldr f s` is equal to \( \text{state}(w) \).
+
+2. **Informal Proof**  
+We start by expanding the definition of `BitVec.iunfoldr`, which iteratively applies the function `f` to the state `s` for `w` steps, producing a sequence of state values and a bitvector of width `w`.
+
+To prove that the first component of the result of `BitVec.iunfoldr f s` is equal to `state w`, we use the heterogeneous iteration elimination theorem. This theorem states that if we can show that the first component of the state at each step `i` is equal to `state i`, then the first component of the final state after `w` steps will be equal to `state w`.
+
+We discuss by cases. For the initial case, we need to show that the first component of the initial state `(s, nil)` is equal to `state 0`. This is exactly the assumption `init` that `s = state 0`.
+
+For the step case, let `i` be an arbitrary element of `Fin w`, and let `(s, v)` be a pair where `s` is the state and `v` is the bitvector at step `i`. Assume `p` that the first component of `(s, v)` is equal to `state i`. Using the induction hypothesis `ind i`, which states that the first component of `f i (state i)` is equal to `state (i + 1)`, we simplify the goal to show that the first component of the next state is equal to `state (i + 1)`. This completes the proof.
+
+Thus, the first component of the result of `BitVec.iunfoldr f s` is indeed equal to `state w`.
+
+3. **Formal Theorem**  
+example 
+    {f : Fin w → α → α × Bool} (state : Nat → α) (s : α)
+    (init : s = state 0)
+    (ind : ∀(i : Fin w), (f i (state i.val)).fst = state (i.val+1)) :
+    (iunfoldr f s).fst = state w := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Fin.Iterate
+import Init.Data.BitVec.Folds
+
+open BitVec
+open iunfoldr
+
+
+example 
+    {f : Fin w → α → α × Bool} (state : Nat → α) (s : α)
+    (init : s = state 0)
+    (ind : ∀(i : Fin w), (f i (state i.val)).fst = state (i.val+1)) :
+    (iunfoldr f s).fst = state w := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Fin.Iterate not found. --
+
+-- Init.Data.BitVec.Folds not found. --
+

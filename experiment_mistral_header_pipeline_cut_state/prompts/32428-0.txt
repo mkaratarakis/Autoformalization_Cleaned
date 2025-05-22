@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Subtraction Identity: \( n - m = n - \min(n, m) \) : For any natural numbers \( n \) and \( m \), the expression \( n - m \) is equal to \( n - \min(n, m) \), i.e., \( n - m = n - \min(n, m) \).
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \( n \) and \( m \), the equation \( n - m = n - \min(n, m) \) holds. We consider two cases based on the relationship between \( n \) and \( m \).
+
+1. **Case 1: \( m \leq n \)**
+- By the property of the minimum function, \(\min(n, m) = m\).
+- Therefore, the goal \( n - m = n - \min(n, m) \) simplifies to \( n - m = n - m \), which is trivially true.
+
+2. **Case 2: \( n \leq m \)**
+- By the property of the minimum function, \(\min(n, m) = n\).
+- Therefore, the goal \( n - m = n - \min(n, m) \) simplifies to \( n - m = n - n \).
+- Since \( n \leq m \), we know that \( n - m = 0 \) by the property of subtraction in natural numbers.
+- Also, \( n - n = 0 \) by the property that subtracting a number from itself gives zero.
+- Thus, the goal \( n - m = n - n \) simplifies to \( 0 = 0 \), which is trivially true.
+
+In both cases, the equation \( n - m = n - \min(n, m) \) holds. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m : Nat) : n - m = n - min n m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n m : Nat) : n - m = n - min n m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

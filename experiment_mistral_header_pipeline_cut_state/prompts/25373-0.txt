@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Antisymmetry of Boolean 'Less Than or Equal To' Relation: $x \leq y \land y \leq x \to x = y$ : For any boolean values $x$ and $y$, if $x \leq y$ and $y \leq x$, then $x = y$.
+
+2. **Informal Proof**  
+To prove the antisymmetry of the boolean 'less than or equal to' relation, we need to show that for any boolean values $x$ and $y$, if $x \leq y$ and $y \leq x$, then $x = y$. Since the boolean values are finite and the relation $\leq$ is decidable, we can directly check all possible cases for $x$ and $y$.
+
+1. **Case 1: $x = \text{false}$ and $y = \text{false}$**
+- $x \leq y$ is true because $\text{false} \leq \text{false}$.
+- $y \leq x$ is true because $\text{false} \leq \text{false}$.
+- Therefore, $x = y$ is true because $\text{false} = \text{false}$.
+
+2. **Case 2: $x = \text{false}$ and $y = \text{true}$**
+- $x \leq y$ is true because $\text{false} \leq \text{true}$.
+- $y \leq x$ is false because $\text{true} \leq \text{false}$ is false.
+- This case does not satisfy the condition $y \leq x$, so it does not need to be considered.
+
+3. **Case 3: $x = \text{true}$ and $y = \text{false}$**
+- $x \leq y$ is false because $\text{true} \leq \text{false}$ is false.
+- $y \leq x$ is true because $\text{false} \leq \text{true}$.
+- This case does not satisfy the condition $x \leq y$, so it does not need to be considered.
+
+4. **Case 4: $x = \text{true}$ and $y = \text{true}$**
+- $x \leq y$ is true because $\text{true} \leq \text{true}$.
+- $y \leq x$ is true because $\text{true} \leq \text{true}$.
+- Therefore, $x = y$ is true because $\text{true} = \text{true}$.
+
+In all valid cases, we have shown that if $x \leq y$ and $y \leq x$, then $x = y$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x ≤ y → y ≤ x → x = y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x ≤ y → y ≤ x → x = y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

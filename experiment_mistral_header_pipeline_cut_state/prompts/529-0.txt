@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Erasure in Concatenated Lists: \(\text{List.eraseP } p \, (l_1 ++ l_2) = \text{if } l_1.\text{any } p \, \text{then } \text{List.eraseP } p \, l_1 ++ l_2 \, \text{else } l_1 ++ \text{List.eraseP } p \, l_2\) : For any type \( \alpha \), lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), and a predicate \( p : \alpha \to \text{Bool} \), the following holds:
+\[ \text{List.eraseP } p \, (l_1 ++ l_2) = \begin{cases} 
+\text{List.eraseP } p \, l_1 ++ l_2 & \text{if } \exists a \in l_1, \, p(a) = \text{true} \\
+l_1 ++ \text{List.eraseP } p \, l_2 & \text{otherwise}
+\end{cases} \]
+This theorem states that when erasing the first element in the concatenated list \( l_1 ++ l_2 \) that satisfies the predicate \( p \), if any element in \( l_1 \) satisfies \( p \), then the first such element is removed from \( l_1 \) and the result is concatenated with \( l_2 \). If no element in \( l_1 \) satisfies \( p \), then the first element satisfying \( p \) is removed from \( l_2 \) and the result is concatenated with \( l_1 \).
+
+2. **Informal Proof**  
+We need to show that the result of removing the first element in the concatenated list \( l_1 ++ l_2 \) that satisfies the predicate \( p \) is as described in the theorem. We discuss by cases based on the condition \( l_1.\text{any } p = \text{true} \).
+
+1. **Case 1: \( l_1.\text{any } p = \text{true} \)**
+- Using the equivalence that \( l_1.\text{any } p = \text{true} \) is equivalent to \( \exists x \in l_1, \, p(x) = \text{true} \), we can reformulate the hypothesis to \( \exists x \in l_1, \, p(x) = \text{true} \).
+- Assume \( x \in l_1 \) and \( p(x) = \text{true} \).
+- By the theorem that if \( p(x) = \text{true} \) and \( x \in l_1 \), then \( \text{List.eraseP } p \, (l_1 ++ l_2) = \text{List.eraseP } p \, l_1 ++ l_2 \), we can replace the goal \( \text{List.eraseP } p \, (l_1 ++ l_2) = \text{List.eraseP } p \, l_1 ++ l_2 \) with \( \text{List.eraseP } p \, l_1 ++ l_2 = \text{List.eraseP } p \, l_1 ++ l_2 \), which is trivially true.
+
+2. **Case 2: \( \neg l_1.\text{any } p = \text{true} \)**
+- Using the equivalence that \( \neg l_1.\text{any } p = \text{true} \) is equivalent to \( \neg \exists x \in l_1, \, p(x) = \text{true} \), we can reformulate the hypothesis to \( \neg \exists x \in l_1, \, p(x) = \text{true} \).
+- By the theorem that if no element in \( l_1 \) satisfies \( p \), then \( \text{List.eraseP } p \, (l_1 ++ l_2) = l_1 ++ \text{List.eraseP } p \, l_2 \), we can replace the goal \( \text{List.eraseP } p \, (l_1 ++ l_2) = l_1 ++ \text{List.eraseP } p \, l_2 \) with \( l_1 ++ \text{List.eraseP } p \, l_2 = l_1 ++ \text{List.eraseP } p \, l_2 \), which is trivially true.
+
+Thus, in both cases, the goal is satisfied, and the theorem is proved.
+
+3. **Formal Theorem**  
+example (l₁ l₂ : List α) :
+    (l₁ ++ l₂).eraseP p = if l₁.any p then l₁.eraseP p ++ l₂ else l₁ ++ l₂.eraseP p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example (l₁ l₂ : List α) :
+    (l₁ ++ l₂).eraseP p = if l₁.any p then l₁.eraseP p ++ l₂ else l₁ ++ l₂.eraseP p := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

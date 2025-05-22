@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Product of Successors Equals Sum of Products and Successors in Natural Numbers : For any natural numbers \(a\) and \(b\), the product of \(a + 1\) and \(b + 1\) is equal to \(a \cdot b + a + b + 1\), i.e., \((a + 1) \cdot (b + 1) = a \cdot b + a + b + 1\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the left-hand side of the equation \((a + 1) \cdot (b + 1)\). Using the distributive properties of addition and multiplication, we can expand this expression as follows:
+\[
+(a + 1) \cdot (b + 1) = (a + 1) \cdot b + (a + 1) \cdot 1
+\]
+Next, we apply the distributive property again to each term:
+\[
+(a + 1) \cdot b = a \cdot b + 1 \cdot b = a \cdot b + b
+\]
+\[
+(a + 1) \cdot 1 = a \cdot 1 + 1 \cdot 1 = a + 1
+\]
+Combining these results, we get:
+\[
+(a + 1) \cdot (b + 1) = (a \cdot b + b) + (a + 1) = a \cdot b + a + b + 1
+\]
+Thus, the left-hand side of the equation is equal to the right-hand side, and we have:
+\[
+(a + 1) \cdot (b + 1) = a \cdot b + a + b + 1
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a b : Nat) : (a + 1) * (b + 1) = a * b + a + b + 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b : Nat) : (a + 1) * (b + 1) = a * b + a + b + 1 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

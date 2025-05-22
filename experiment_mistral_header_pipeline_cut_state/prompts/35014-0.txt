@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Suffix of Cons List: \( l_1 \text{ is a suffix of } a :: l_2 \iff l_1 = a :: l_2 \lor l_1 \text{ is a suffix of } l_2 \) : For any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \) and any element \( a \) of type \( \alpha \), the list \( l_1 \) is a suffix of the list \( a :: l_2 \) if and only if \( l_1 \) is equal to \( a :: l_2 \) or \( l_1 \) is a suffix of \( l_2 \). This can be written as:
+\[ l_1 \text{ is a suffix of } a :: l_2 \iff l_1 = a :: l_2 \lor l_1 \text{ is a suffix of } l_2. \]
+
+2. **Informal Proof**  
+To prove the equivalence, we need to show both directions of the implication.
+
+1. **(\(\Rightarrow\)) If \( l_1 \) is a suffix of \( a :: l_2 \), then \( l_1 = a :: l_2 \) or \( l_1 \) is a suffix of \( l_2 \):**
+- Assume \( l_1 \) is a suffix of \( a :: l_2 \). This means there exist lists \( \text{hd} \) and \( \text{tl} \) such that \( \text{hd} :: \text{tl} ++ l_1 = a :: l_2 \).
+- Simplify the equation to \( \text{hd} :: (\text{tl} ++ l_1) = a :: l_2 \).
+- By the injectivity of the cons operation, we have \( \text{hd} = a \) and \( \text{tl} ++ l_1 = l_2 \).
+- Therefore, \( l_1 = a :: l_2 \) or \( l_1 \) is a suffix of \( l_2 \).
+
+2. **(\(\Leftarrow\)) If \( l_1 = a :: l_2 \) or \( l_1 \) is a suffix of \( l_2 \), then \( l_1 \) is a suffix of \( a :: l_2 \):**
+- **Case 1:** If \( l_1 = a :: l_2 \), then \( l_1 \) is a suffix of \( a :: l_2 \) by the reflexivity of the suffix relation.
+- **Case 2:** If \( l_1 \) is a suffix of \( l_2 \), then \( l_1 \) is a suffix of \( a :: l_2 \) by the transitivity of the suffix relation, since \( l_2 \) is a suffix of \( a :: l_2 \).
+
+Thus, we have shown both directions of the equivalence, completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : l₁ <:+ a :: l₂ ↔ l₁ = a :: l₂ ∨ l₁ <:+ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example : l₁ <:+ a :: l₂ ↔ l₁ = a :: l₂ ∨ l₁ <:+ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

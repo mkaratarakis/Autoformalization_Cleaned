@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Division of Smaller Natural Number by Larger Natural Number is Zero: \( a < b \to a / b = 0 \) : For any natural numbers \( a \) and \( b \), if \( a < b \), then \( a / b = 0 \).
+
+2. **Informal Proof**  
+We start by using the definition of division for natural numbers, which states that \( a / b \) is \( 0 \) unless \( b > 0 \) and \( b \le a \). Given our assumption \( a < b \), the condition \( 0 < b \land b \le a \) is false. Therefore, the if-then-else function returns \( 0 \), and we rewrite \( a / b \) to \( 0 \).
+
+Next, assume for contradiction that there exists a proposition \( h₁ \) such that \( 0 < b \land b \le a \). However, since \( a < b \), we know that \( \neg (b \le a) \). This contradicts \( h₁ \), which states \( b \le a \). Thus, our assumption must be false, and \( a / b \) must indeed be \( 0 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (h₀ : a < b) : a / b = 0 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (h₀ : a < b) : a / b = 0 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

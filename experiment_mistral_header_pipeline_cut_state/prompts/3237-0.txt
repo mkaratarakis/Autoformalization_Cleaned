@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Multiplication and Subtraction Identity: \(\frac{n \cdot p - (x + 1)}{n} = p - \left( \frac{x}{n} + 1 \right)\) : For any natural numbers \( x \), \( n \), and \( p \), if \( x < n \cdot p \), then the division of the difference \( n \cdot p - (x + 1) \) by \( n \) is equal to \( p - \left( \frac{x}{n} + 1 \right) \), i.e., \(\frac{n \cdot p - (x + 1)}{n} = p - \left( \frac{x}{n} + 1 \right)\).
+
+2. **Informal Proof**  
+First, we show that \( n \) is positive. Since \( n \) is either zero or positive, and if \( n \) were zero, then \( n \cdot p \) would also be zero, contradicting the assumption that \( x < n \cdot p \). Therefore, \( n \) must be positive.
+
+To prove the division identity, it suffices to show that \( (p - (x / n + 1)) \cdot n \leq n \cdot p - (x + 1) \) and \( n \cdot p - (x + 1) < (p - (x / n + 1) + 1) \cdot n \).
+
+First, we focus on showing that \( (p - (x / n + 1)) \cdot n \leq n \cdot p - (x + 1) \). Using the distributive property of multiplication over subtraction and the commutativity of multiplication, we rewrite the goal as \( n \cdot p - (x / n + 1) \cdot n \leq n \cdot p - (x + 1) \). Since \( x / n \cdot n \leq x \) by the property of division, it follows that \( n \cdot p - (x / n + 1) \cdot n \leq n \cdot p - (x + 1) \).
+
+Next, we focus on showing that \( n \cdot p - (x + 1) < (p - (x / n + 1) + 1) \cdot n \). We rewrite the goal using the properties of the successor and predecessor functions for positive numbers, which simplifies to \( n \cdot p - x < (p - x / n) \cdot n \). Using the distributive property and commutativity of multiplication, we rewrite the goal as \( p \cdot n - x < p \cdot n - x / n \cdot n \). Since \( x / n \cdot n \leq x \), it follows that \( p \cdot n - x \leq p \cdot n - x / n \cdot n \). Finally, we use the division inequality to show that \( x / n < p \), which completes the proof.
+
+Thus, we have shown that \(\frac{n \cdot p - (x + 1)}{n} = p - \left( \frac{x}{n} + 1 \right)\).
+
+3. **Formal Theorem**  
+example (x n p : Nat) (h₁ : x < n*p) : (n * p - (x + 1)) / n = p - ((x / n) + 1) := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (x n p : Nat) (h₁ : x < n*p) : (n * p - (x + 1)) / n = p - ((x / n) + 1) := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

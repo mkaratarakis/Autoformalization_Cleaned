@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Pairwise Relation on a Singleton List: \([a]\) is Pairwise \( R \) : For any type \( \alpha \) and any binary relation \( R \) on \( \alpha \), the list \([a]\) consisting of a single element \( a \) satisfies the pairwise relation \( R \). In other words, the list \([a]\) is pairwise \( R \)-related.
+
+2. **Informal Proof**  
+To prove that the list \([a]\) is pairwise \( R \)-related, we need to show that for any two distinct elements \( x \) and \( y \) in the list, \( R(x, y) \) holds. However, the list \([a]\) contains only one element \( a \), and there are no pairs of distinct elements to check. Therefore, the pairwise relation \( R \) is trivially satisfied. Hence, the list \([a]\) is pairwise \( R \)-related. This completes the proof.
+
+3. **Formal Theorem**  
+example (R) (a : α) : Pairwise R [a] := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example (R) (a : α) : Pairwise R [a] := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

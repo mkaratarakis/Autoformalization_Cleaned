@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Mapping and Getting with Default in Option Type: \((\text{Option.map } f \, o).getD (f \, x) = f (o.getD \, x)\) : For any types \( \alpha \) and \( \beta \), any function \( f : \alpha \to \beta \), any element \( x : \alpha \), and any optional value \( o : \text{Option } \alpha \), the following holds:
+\[
+(\text{Option.map } f \, o).getD (f \, x) = f (o.getD \, x)
+\]
+This means that applying the function \( f \) to the value obtained from the optional value \( o \) using the default value \( x \) is the same as first mapping \( f \) over \( o \) and then getting the value with the default \( f \, x \).
+
+2. **Informal Proof**  
+We will consider every possible case of the optional value \( o \). There are two cases: \( o \) is `none` or \( o \) is `some val` for some \( val \in \alpha \).
+
+1. **Case 1: \( o = \text{none} \)**
+- The goal is to show that \((\text{Option.map } f \, \text{none}).\text{getD} (f \, x) = f (\text{none}.\text{getD} \, x)\).
+- Since \(\text{Option.map } f \, \text{none} = \text{none}\) and \(\text{none}.\text{getD} \, x = x\), the left-hand side becomes \(\text{none}.\text{getD} (f \, x) = f \, x\).
+- The right-hand side is \(f (\text{none}.\text{getD} \, x) = f \, x\).
+- Therefore, both sides are equal, and the goal is trivially true due to the reflexive property.
+
+2. **Case 2: \( o = \text{some } val \)**
+- The goal is to show that \((\text{Option.map } f \, (\text{some } val)).\text{getD} (f \, x) = f ((\text{some } val).\text{getD} \, x)\).
+- Since \(\text{Option.map } f \, (\text{some } val) = \text{some } (f \, val)\) and \((\text{some } val).\text{getD} \, x = val\), the left-hand side becomes \((\text{some } (f \, val)).\text{getD} (f \, x) = f \, val\).
+- The right-hand side is \(f ((\text{some } val).\text{getD} \, x) = f \, val\).
+- Therefore, both sides are equal, and the goal is trivially true due to the reflexive property.
+
+Thus, the theorem holds in both cases, and the proof is complete.
+
+3. **Formal Theorem**  
+example (f : α → β) (x : α) (o : Option α) :
+  (o.map f).getD (f x) = f (getD o x) := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (x : α) (o : Option α) :
+  (o.map f).getD (f x) = f (getD o x) := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

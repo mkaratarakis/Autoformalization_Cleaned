@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Unsigned Less-Than Relation for Bitvectors is Equivalent to No Carry in Complement Addition : For any natural number \( w \) and any bitvectors \( x \) and \( y \) of length \( w \), the unsigned less-than relation \( x < y \) holds if and only if the carry bit at position \( w \) is false when computing the sum of \( x \) and the complement of \( y \) with an initial carry bit of `true`. In other words, \( x < y \) if and only if \( \text{carry}(w, x, \sim y, \text{true}) = \text{false} \).
+
+2. **Informal Proof**  
+We start by using the definitions and properties of bitvector operations to simplify the goal. Specifically, we use the definitions of the unsigned less-than relation for bitvectors, the carry bit in bitvector addition, the modulo cancellation property, the complement of a bitvector, the conversion of a bitvector to a natural number, the equivalence of greater-than-or-equal and less-than-or-equal relations, the negation of a decidable proposition, and the decidability equivalence. After simplification, the goal becomes:
+\[ x.\text{toNat} < y.\text{toNat} \leftrightarrow x.\text{toNat} + (2^w - 1 - y.\text{toNat}) \mod 2^w + 1 < 2^w \]
+
+Next, we use the modulo identity for natural numbers. Since \( 2^w - 1 - y.\text{toNat} < 2^w \) (which is true by the properties of natural numbers and the fact that \( y.\text{toNat} \) is a natural number less than \( 2^w \)), we can simplify the expression:
+\[ x.\text{toNat} < y.\text{toNat} \leftrightarrow x.\text{toNat} + (2^w - 1 - y.\text{toNat}) + 1 < 2^w \]
+
+Finally, we use the omega tactic to automatically verify the inequality. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y : BitVec w) : x.ult y = !carry w x (~~~y) true := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x y : BitVec w) : x.ult y = !carry w x (~~~y) true := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

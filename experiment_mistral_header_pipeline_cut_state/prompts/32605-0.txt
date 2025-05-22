@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Boolean Equality Implies True if and only if Elements are Equal: \( (a == b) = \text{true} \leftrightarrow a = b \) : For any boolean values \( a \) and \( b \), the boolean equality \( a == b \) is true if and only if \( a \) is equal to \( b \), i.e., \( (a == b) = \text{true} \) if and only if \( a = b \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( a \) and \( b \), the boolean equality \( a == b \) is true if and only if \( a \) is equal to \( b \). This can be expressed as \((a == b) = \text{true} \leftrightarrow a = b\).
+
+To prove this, we use the properties of boolean equality and the equivalence of true propositions. Specifically, we use the fact that if a proposition \( p \) is equal to `True`, then \( p \) holds. This is formalized by the theorem \( p = \text{True} \implies p \).
+
+By applying these properties, we can simplify the proposition \((a == b) = \text{true} \leftrightarrow a = b\) to a trivially true statement. Therefore, the boolean equality \( a == b \) is true if and only if \( a \) is equal to \( b \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Bool) : (a == b) = (a = b) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (a b : Bool) : (a == b) = (a = b) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

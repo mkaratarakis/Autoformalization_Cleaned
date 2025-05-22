@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Right Distributive Property of AND over OR in Boolean Logic: $(x \land y) \lor z = (x \lor z) \land (y \lor z)$ : For any boolean values $x$, $y$, and $z$, the expression $(x \land y) \lor z$ is equal to $(x \lor z) \land (y \lor z)$. This theorem demonstrates the right distributive property of the boolean "and" operation over the boolean "or" operation.
+
+2. **Informal Proof**  
+To prove the right distributive property of the boolean "and" operation over the boolean "or" operation, we need to show that for any boolean values $x$, $y$, and $z$, the expression $(x \land y) \lor z$ is equal to $(x \lor z) \land (y \lor z)$. We use a decision procedure to verify this equality. The decision procedure checks all possible combinations of $x$, $y$, and $z$ and confirms that the equality holds in each case. Therefore, the right distributive property of the boolean "and" operation over the boolean "or" operation is established. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), (x && y || z) = ((x || z) && (y || z)) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), (x && y || z) = ((x || z) && (y || z)) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

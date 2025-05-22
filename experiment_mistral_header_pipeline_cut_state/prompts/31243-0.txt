@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Associativity of Addition and Subtraction in Natural Numbers: \( n + m - k = n + (m - k) \) : For any natural numbers \( m \) and \( k \) such that \( k \leq m \), and for any natural number \( n \), the expression \( n + m - k \) is equal to \( n + (m - k) \), i.e., \( n + m - k = n + (m - k) \).
+
+2. **Informal Proof**  
+We start by considering the case where \( k \leq m \). By the definition of the natural number inequality, there exists a natural number \( l \) such that \( k + l = m \).
+
+To prove \( n + m - k = n + (m - k) \), we will simplify the left-hand side step by step:
+1. Substitute \( m \) with \( k + l \) in the left-hand side:
+\[
+n + m - k = n + (k + l) - k
+\]
+2. By the property of left addition and subtraction cancellation in additive commutative groups, \( k + l - k = l \):
+\[
+n + (k + l) - k = n + l
+\]
+3. Using the commutativity of addition, \( k + l = l + k \):
+\[
+n + (l + k) - k = n + l
+\]
+4. By the associativity of addition, \( n + (l + k) = (n + l) + k \):
+\[
+(n + l) + k - k = n + l
+\]
+5. Finally, using the property of addition and subtraction cancellation, \( (n + l) + k - k = n + l \):
+\[
+n + l = n + l
+\]
+This is trivially true. Therefore, we have shown that \( n + m - k = n + (m - k) \).
+
+Hence, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m k : Nat} (h : k ≤ m) (n : Nat) : n + m - k = n + (m - k) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {m k : Nat} (h : k ≤ m) (n : Nat) : n + m - k = n + (m - k) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Proof Irrelevance in Heterogeneous Equality : For any propositions \( p \) and \( q \), and for any proofs \( hp \) of \( p \) and \( hq \) of \( q \), the proofs \( hp \) and \( hq \) are equal up to a type cast, i.e., \( \text{HEq}(hp, hq) \).
+
+2. **Informal Proof**  
+Given that both \( p \) and \( q \) are true, we can establish the equivalence \( p \iff q \). By the principle of proof irrelevance, any two proofs of the same proposition are equal. Since \( p \) and \( q \) are now equivalent, we can conclude that \( \text{HEq}(hp, hq) \) by reflexivity. This completes the proof.
+
+3. **Formal Theorem**  
+example {p q : Prop} (hp : p) (hq : q) : HEq hp hq := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example {p q : Prop} (hp : p) (hq : q) : HEq hp hq := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Equivalence of If-then-else and Conditional Expressions: $(\text{if } p \text{ then } x \text{ else } y) = (\text{if } a \text{ then } u \text{ else } v) \leftrightarrow (\text{if } p \text{ then } x \text{ else } y) = (\text{if } a = \text{true} \text{ then } u \text{ else } v)$ : For any type $\alpha$, any proposition $p$ that is decidable, and any boolean value $a$, the following equivalence holds:
+\[
+(\text{if } p \text{ then } x \text{ else } y) = (\text{if } a \text{ then } u \text{ else } v) \leftrightarrow (\text{if } p \text{ then } x \text{ else } y) = (\text{if } a = \text{true} \text{ then } u \text{ else } v)
+\]
+where $x, y, u, v \in \alpha$.
+
+2. **Informal Proof**  
+We need to show that the equivalence \((\text{if } p \text{ then } x \text{ else } y) = (\text{if } a \text{ then } u \text{ else } v)\) is equivalent to \((\text{if } p \text{ then } x \text{ else } y) = (\text{if } a = \text{true} \text{ then } u \text{ else } v)\).
+
+To do this, we use the fact that the conditional function `cond` (or `bif b then t else e`) is equivalent to the if-then-else function `ite` (or `if b = true then t else e`). Specifically, for any boolean value $a$, the expression `bif a then u else v` is equivalent to `if a = true then u else v`.
+
+Therefore, the original equivalence \((\text{if } p \text{ then } x \text{ else } y) = (\text{if } a \text{ then } u \text{ else } v)\) is equivalent to \((\text{if } p \text{ then } x \text{ else } y) = (\text{if } a = \text{true} \text{ then } u \text{ else } v)\).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p : Prop) [h : Decidable p] (a : Bool) (x y u v : α) :
+  (ite p x y = cond a u v) ↔ ite p x y = ite a u v := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (a : Bool) (x y u v : α) :
+  (ite p x y = cond a u v) ↔ ite p x y = ite a u v := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

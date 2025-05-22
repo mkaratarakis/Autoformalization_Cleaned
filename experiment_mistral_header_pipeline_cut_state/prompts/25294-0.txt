@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Distributivity of Boolean OR over AND: $(x \lor y) \land z = (x \land z) \lor (y \land z)$ : For any boolean values $x$, $y$, and $z$, the boolean expression $(x \lor y) \land z$ is equal to $(x \land z) \lor (y \land z)$, i.e., $(x \lor y) \land z = (x \land z) \lor (y \land z)$.
+
+2. **Informal Proof**  
+To prove the distributivity of Boolean OR over AND, we need to show that for any boolean values $x$, $y$, and $z$, the expression $(x \lor y) \land z$ is equal to $(x \land z) \lor (y \land z)$. We use a decision procedure to check the equality for all possible boolean values of $x$, $y$, and $z$. The decision procedure confirms that the equality holds for all combinations of $x$, $y$, and $z$. Therefore, the distributivity of Boolean OR over AND is established. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), ((x || y) && z) = (x && z || y && z) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), ((x || y) && z) = (x && z || y && z) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Conditional Expression Evaluates to First Argument if True: $(\text{if } c \text{ then } c \text{ else } b) = (c \lor b)$ : For any boolean values $c$ and $b$, the conditional expression `bif c then c else b` is equal to the boolean OR operation `c || b`, i.e., $(\text{if } c \text{ then } c \text{ else } b) = (c \lor b)$.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values $c$ and $b$, the conditional expression $(\text{if } c \text{ then } c \text{ else } b)$ is equal to the boolean OR operation $(c \lor b)$. We will consider all possible values of $c$ and $b$:
+
+1. **Case 1: $c = \text{true}$ and $b = \text{true}$**
+- The conditional expression $(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{true})$ evaluates to $\text{true}$.
+- The boolean OR operation $(\text{true} \lor \text{true})$ also evaluates to $\text{true}$.
+- Therefore, $(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{true}) = (\text{true} \lor \text{true})$.
+
+2. **Case 2: $c = \text{true}$ and $b = \text{false}$**
+- The conditional expression $(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{false})$ evaluates to $\text{true}$.
+- The boolean OR operation $(\text{true} \lor \text{false})$ also evaluates to $\text{true}$.
+- Therefore, $(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{false}) = (\text{true} \lor \text{false})$.
+
+3. **Case 3: $c = \text{false}$ and $b = \text{true}$**
+- The conditional expression $(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{true})$ evaluates to $\text{true}$.
+- The boolean OR operation $(\text{false} \lor \text{true})$ also evaluates to $\text{true}$.
+- Therefore, $(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{true}) = (\text{false} \lor \text{true})$.
+
+4. **Case 4: $c = \text{false}$ and $b = \text{false}$**
+- The conditional expression $(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{false})$ evaluates to $\text{false}$.
+- The boolean OR operation $(\text{false} \lor \text{false})$ also evaluates to $\text{false}$.
+- Therefore, $(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{false}) = (\text{false} \lor \text{false})$.
+
+Since the equality holds in all possible cases, we conclude that for any boolean values $c$ and $b$, the conditional expression $(\text{if } c \text{ then } c \text{ else } b)$ is equal to the boolean OR operation $(c \lor b)$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c b : Bool), cond c c b = (c || b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c b : Bool), cond c c b = (c || b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

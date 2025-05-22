@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Multiplication and Division Cancellation on the Left in Natural Numbers: \( m \cdot n / n = m \) : For any natural numbers \( m \) and \( n \) such that \( n > 0 \), it holds that \( m \cdot n / n = m \).
+
+2. **Informal Proof**  
+We start by using the commutativity of multiplication, which states that for any natural numbers \( m \) and \( n \), \( m \cdot n = n \cdot m \). Applying this, we rewrite \( m \cdot n \) as \( n \cdot m \). Next, we use the property that for any natural numbers \( n \) and \( m \) such that \( m > 0 \), it holds that \( m \cdot n / m = n \). Applying this property with \( m = n \) and \( n = m \), we simplify \( n \cdot m / n \) to \( m \). Thus, we have shown that \( m \cdot n / n = m \).
+
+3. **Formal Theorem**  
+example (m : Nat) {n : Nat} (H : 0 < n) : m * n / n = m := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (m : Nat) {n : Nat} (H : 0 < n) : m * n / n = m := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

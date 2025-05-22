@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Prefix of Cons List: \( l_1 <+: a :: l_2 \leftrightarrow l_1 = [] \lor \exists t, l_1 = a :: t \land t <+: l_2 \) : For any lists \( l_1 \) and \( l_2 \) of type \( \alpha \) and any element \( a \) of type \( \alpha \), the list \( l_1 \) is a prefix of the list \( a :: l_2 \) if and only if \( l_1 \) is the empty list or there exists a list \( t \) such that \( l_1 = a :: t \) and \( t \) is a prefix of \( l_2 \).
+
+2. **Informal Proof**  
+We need to show that \( l_1 <+: a :: l_2 \) if and only if \( l_1 = [] \lor \exists t, l_1 = a :: t \land t <+: l_2 \).
+
+1. **Case 1: \( l_1 = [] \)**
+- If \( l_1 = [] \), then \( [] <+: a :: l_2 \) is true by definition.
+- The right-hand side \( [] = [] \lor \exists t, [] = a :: t \land t <+: l_2 \) is also true because \( [] = [] \) is true.
+- Therefore, the equivalence holds in this case.
+
+2. **Case 2: \( l_1 = a' :: l_1 \)**
+- Assume \( l_1 = a' :: l_1 \).
+- We need to show both directions of the equivalence:
+- **Direction 1: \( a' :: l_1 <+: a :: l_2 \) implies \( a' :: l_1 = [] \lor \exists t, a' :: l_1 = a :: t \land t <+: l_2 \)**
+- Assume \( a' :: l_1 <+: a :: l_2 \).
+- By the definition of prefix, there exists a list \( t \) such that \( a' :: l_1 ++ t = a :: l_2 \).
+- Simplifying, we get \( a' = a \) and \( l_1 ++ t = l_2 \).
+- Therefore, \( a' :: l_1 = a :: l_1 \) and \( l_1 <+: l_1 ++ t \).
+- Hence, \( a' :: l_1 = a :: l_1 \) and \( l_1 <+: l_2 \), so the right-hand side is true.
+- **Direction 2: \( a' :: l_1 = [] \lor \exists t, a' :: l_1 = a :: t \land t <+: l_2 \) implies \( a' :: l_1 <+: a :: l_2 \)**
+- Consider the two sub-cases:
+- **Sub-case 1: \( a' :: l_1 = [] \)**
+- If \( a' :: l_1 = [] \), then \( [] <+: a :: l_2 \) is true by definition.
+- **Sub-case 2: \( \exists t, a' :: l_1 = a :: t \land t <+: l_2 \)**
+- Assume there exists a list \( t \) such that \( a' :: l_1 = a :: t \) and \( t <+: l_2 \).
+- Using the hypothesis \( a' :: l_1 = a :: t \), we need to show \( a :: t <+: a :: l_2 \).
+- Since \( t <+: l_2 \), there exists a list \( s \) such that \( t ++ s = l_2 \).
+- Therefore, \( a :: t <+: a :: l_2 \) is true.
+
+Thus, the equivalence \( l_1 <+: a :: l_2 \leftrightarrow l_1 = [] \lor \exists t, l_1 = a :: t \land t <+: l_2 \) holds in all cases. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : l₁ <+: a :: l₂ ↔ l₁ = [] ∨ ∃ t, l₁ = a :: t ∧ t <+: l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example : l₁ <+: a :: l₂ ↔ l₁ = [] ∨ ∃ t, l₁ = a :: t ∧ t <+: l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

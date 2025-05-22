@@ -1,0 +1,45 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:11:6: error: type mismatch, term
+  h
+after simplification has type
+  l₁.any p = true : Prop
+but is expected to have type
+  ∃ x, x ∈ l₁ ∧ p x = true : Prop
+tmp.lean:13:8: error: unknown identifier 'eraseP_append_of_mem'
+tmp.lean:15:8: error: unknown identifier 'eraseP_append_of_not_mem'
+tmp.lean:11:2: error: expected '{' or indented tactic sequence
+tmp.lean:10:35: error: unsolved goals
+α : Type u_1
+p : α → Bool
+l₁ l₂ : List α
+h : l₁.any p = true
+⊢ ∃ x, x ∈ l₁ ∧ p x = true
+tmp.lean:10:2: error: unsolved goals
+case pos
+α : Type u_1
+p : α → Bool
+l₁ l₂ : List α
+h : l₁.any p = true
+hp : ∃ x, x ∈ l₁ ∧ p x = true
+⊢ eraseP p (l₁ ++ l₂) = if l₁.any p = true then eraseP p l₁ ++ l₂ else l₁ ++ eraseP p l₂
+tmp.lean:8:87: error: unsolved goals
+case neg
+α : Type u_1
+p : α → Bool
+l₁ l₂ : List α
+h : ¬l₁.any p = true
+⊢ eraseP p (l₁ ++ l₂) = if l₁.any p = true then eraseP p l₁ ++ l₂ else l₁ ++ eraseP p l₂
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example (l₁ l₂ : List α) :
+    (l₁ ++ l₂).eraseP p = if l₁.any p then l₁.eraseP p ++ l₂ else l₁ ++ l₂.eraseP p := by
+  by_cases h : l₁.any p
+  · have hp : ∃ x, x ∈ l₁ ∧ p x := by

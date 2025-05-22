@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Pairwise Relation on a Two-Element List: \([a, b]\) is Pairwise \( R \) if and only if \( R(a, b) \) : For any type \( \alpha \) and any binary relation \( R \) on \( \alpha \), the list \([a, b]\) satisfies the pairwise relation \( R \) if and only if \( R(a, b) \) holds. In other words, the list \([a, b]\) is pairwise \( R \) if and only if \( a \) and \( b \) are related by \( R \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the list \([a, b]\) satisfies the pairwise relation \( R \) if and only if \( R(a, b) \) holds.
+
+1. **Simplification:**
+Using the simplification rules for the pairwise relation on lists, we can simplify the proposition we want to show. Specifically, the pairwise relation on the list \([a, b]\) is equivalent to the relation \( R(a, b) \). Therefore, the goal is to show that \( \text{Pairwise } R [a, b] \) is equivalent to \( R(a, b) \).
+
+2. **Conclusion:**
+Since the simplification rules directly give us the equivalence, we conclude that the list \([a, b]\) satisfies the pairwise relation \( R \) if and only if \( R(a, b) \) holds.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : α} : Pairwise R [a, b] ↔ R a b := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example {a b : α} : Pairwise R [a, b] ↔ R a b := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

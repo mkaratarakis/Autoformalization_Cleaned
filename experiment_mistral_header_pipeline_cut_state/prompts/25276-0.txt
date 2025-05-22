@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean AND Identity: $a \land (a \land b) = a \land b$ : For any boolean values $a$ and $b$, the expression $(a \land (a \land b))$ is equal to $(a \land b)$, i.e., $a \land (a \land b) = a \land b$.
+
+2. **Informal Proof**  
+To prove the statement for all boolean values $a$ and $b$, we use a decision procedure that automatically checks all possible cases for $a$ and $b$. Since there are only four possible combinations of $a$ and $b$ (both true, both false, $a$ true and $b$ false, $a$ false and $b$ true), the decision procedure verifies that the equation $(a \land (a \land b)) = (a \land b)$ holds in each case. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), (a && (a && b)) = (a && b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), (a && (a && b)) = (a && b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

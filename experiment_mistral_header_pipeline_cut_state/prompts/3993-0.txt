@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Modulo Identity: \(a \% b \% c = a \% c\) when \(c \mid b\) : For any natural numbers \(a\), \(b\), and \(c\), if \(c\) divides \(b\), then the remainder of \(a\) modulo \(b\) modulo \(c\) is equal to the remainder of \(a\) modulo \(c\), i.e., \(a \% b \% c = a \% c\).
+
+2. **Informal Proof**  
+We start by rewriting the goal using the identity \( a \% b = a \% b + b \cdot (a / b) \). This transforms the goal from \( a \% b \% c = a \% c \) to \( a \% b \% c = (a \% b + b \cdot (a / b)) \% c \).
+
+Given that \( c \) divides \( b \), we can express \( b \) as \( c \cdot x \) for some natural number \( x \). We introduce \( x \) and the equation \( b = c \cdot x \) as a new hypothesis.
+
+Next, we substitute \( b \) with \( c \cdot x \) in the goal, which changes the goal to \( a \% (c \cdot x) \% c = (a \% (c \cdot x) + c \cdot x \cdot (a / (c \cdot x))) \% c \).
+
+We then use the associativity of multiplication to rewrite \( c \cdot x \cdot (a / (c \cdot x)) \) as \( c \cdot (x \cdot (a / (c \cdot x))) \). Finally, we use the property that adding a multiple of \( c \) to \( a \% (c \cdot x) \) does not change the remainder when divided by \( c \). This simplifies the goal to \( a \% (c \cdot x) \% c = a \% (c \cdot x) \% c \), which is trivially true.
+
+Thus, we have shown that \( a \% b \% c = a \% c \) when \( c \) divides \( b \).
+
+3. **Formal Theorem**  
+example (a : Nat) (h : c ∣ b) : a % b % c = a % c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example (a : Nat) (h : c ∣ b) : a % b % c = a % c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

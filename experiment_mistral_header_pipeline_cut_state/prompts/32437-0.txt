@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Right Commutativity of Multiplication in Natural Numbers: \( n \cdot m \cdot k = n \cdot k \cdot m \) : For any natural numbers \( n, m, k \), the equation \( n \cdot m \cdot k = n \cdot k \cdot m \) holds. This theorem demonstrates the commutativity of the middle term in a product of three natural numbers.
+
+2. **Informal Proof**  
+To prove \( n \cdot m \cdot k = n \cdot k \cdot m \), we start by using the associativity of multiplication. This allows us to rewrite the left-hand side as:
+\[
+n \cdot m \cdot k = n \cdot (m \cdot k)
+\]
+Next, we use the commutativity of multiplication to swap \( m \) and \( k \) in the product:
+\[
+n \cdot (m \cdot k) = n \cdot (k \cdot m)
+\]
+Finally, we use the associativity of multiplication again to rewrite the expression:
+\[
+n \cdot (k \cdot m) = n \cdot k \cdot m
+\]
+Thus, we have shown that:
+\[
+n \cdot m \cdot k = n \cdot k \cdot m
+\]
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m k : Nat) : n * m * k = n * k * m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n m k : Nat) : n * m * k = n * k * m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

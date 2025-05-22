@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Length of Take Equals \( n \) if \( n \leq \text{length}(l) \) : For any natural number \( n \) and any list \( l \) of elements of type \( \alpha \), if \( n \) is less than or equal to the length of \( l \), then the length of the list obtained by taking the first \( n \) elements of \( l \) is equal to \( n \). Mathematically, this can be expressed as:
+\[
+n \leq \text{length}(l) \implies \text{length}(\text{take}(n, l)) = n
+\]
+
+2. **Informal Proof**  
+Given a natural number \( n \) and a list \( l \) of elements of type \( \alpha \), assume that \( n \leq \text{length}(l) \). We need to show that the length of the list obtained by taking the first \( n \) elements of \( l \) is equal to \( n \).
+
+By the definition of the `take` function, \(\text{take}(n, l)\) returns the first \( n \) elements of \( l \). The length of this resulting list is given by \(\text{length}(\text{take}(n, l))\).
+
+Using the property of the minimum function, we know that for any two natural numbers \(a\) and \(b\), if \(a \leq b\), then \(\min(a, b) = a\). Given our assumption \(n \leq \text{length}(l)\), we have:
+\[
+\min(n, \text{length}(l)) = n
+\]
+
+The length of the list obtained by taking the first \( n \) elements of \( l \) is defined as \(\min(n, \text{length}(l))\). Therefore, we have:
+\[
+\text{length}(\text{take}(n, l)) = \min(n, \text{length}(l)) = n
+\]
+
+Thus, the length of the list obtained by taking the first \( n \) elements of \( l \) is indeed \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (h : n ≤ length l) : length (take n l) = n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example (h : n ≤ length l) : length (take n l) = n := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

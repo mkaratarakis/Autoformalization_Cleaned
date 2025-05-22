@@ -1,0 +1,82 @@
+
+1. **Informal Theorem**  
+Evaluation of Inserted Monomial in Polynomial: \(\text{denote}(\text{ctx}, \text{insertSorted}(k, m, p)) = \text{denote}(\text{ctx}, p) + k \cdot \text{denote}(\text{ctx}, m)\) : For any context \( \text{ctx} \) of type `Nat.Linear.Context`, any natural number \( k \), any monomial \( m \) of type `Nat.SOM.Mon`, and any polynomial \( p \) of type `Nat.SOM.Poly`, the evaluation of the polynomial obtained by inserting the monomial \( (k, m) \) into \( p \) in a sorted manner is equal to the evaluation of \( p \) plus the product of \( k \) and the evaluation of \( m \) in the context \( \text{ctx} \). Mathematically, this can be expressed as:
+\[
+\text{denote}(\text{ctx}, \text{insertSorted}(k, m, p)) = \text{denote}(\text{ctx}, p) + k \cdot \text{denote}(\text{ctx}, m)
+\]
+
+2. **Informal Proof**  
+We need to show that for any context \( \text{ctx} \), any natural number \( k \), any monomial \( m \), and any polynomial \( p \), the evaluation of the polynomial obtained by inserting the monomial \( (k, m) \) into \( p \) in a sorted manner is equal to the evaluation of \( p \) plus the product of \( k \) and the evaluation of \( m \) in the context \( \text{ctx} \).
+
+1. **Base Case:**
+- If the polynomial \( p \) is empty, then the expression simplifies directly to the desired result. Specifically, the evaluation of the empty polynomial is \( 0 \), and the evaluation of the inserted monomial \( (k, m) \) is \( k \cdot \text{denote}(\text{ctx}, m) \). Therefore, we have:
+\[
+\text{denote}(\text{ctx}, \text{insertSorted}(k, m, [])) = k \cdot \text{denote}(\text{ctx}, m) = 0 + k \cdot \text{denote}(\text{ctx}, m)
+\]
+which is the desired result.
+
+2. **Inductive Step:**
+- If the polynomial \( p \) is non-empty and can be written as \( (k', m') :: p \), we proceed with the proof by considering two cases based on the comparison of \( m \) and \( m' \).
+
+- **Case 1: \( m < m' \)**
+- In this case, the monomial \( (k, m) \) is inserted before \( (k', m') \) in the sorted list. The evaluation of the polynomial \( \text{insertSorted}(k, m, (k', m') :: p) \) is:
+\[
+\text{denote}(\text{ctx}, (k, m) :: (k', m') :: p) = k \cdot \text{denote}(\text{ctx}, m) + \text{denote}(\text{ctx}, (k', m') :: p)
+\]
+By the inductive hypothesis, we have:
+\[
+\text{denote}(\text{ctx}, (k', m') :: p) = \text{denote}(\text{ctx}, p) + k' \cdot \text{denote}(\text{ctx}, m')
+\]
+Therefore, the evaluation of the inserted polynomial is:
+\[
+k \cdot \text{denote}(\text{ctx}, m) + \text{denote}(\text{ctx}, p) + k' \cdot \text{denote}(\text{ctx}, m')
+\]
+which is equal to:
+\[
+\text{denote}(\text{ctx}, p) + k \cdot \text{denote}(\text{ctx}, m)
+\]
+as required.
+
+- **Case 2: \( m \ge m' \)**
+- In this case, the monomial \( (k, m) \) is inserted after \( (k', m') \) in the sorted list. The evaluation of the polynomial \( \text{insertSorted}(k, m, (k', m') :: p) \) is:
+\[
+\text{denote}(\text{ctx}, (k', m') :: \text{insertSorted}(k, m, p)) = k' \cdot \text{denote}(\text{ctx}, m') + \text{denote}(\text{ctx}, \text{insertSorted}(k, m, p))
+\]
+By the inductive hypothesis, we have:
+\[
+\text{denote}(\text{ctx}, \text{insertSorted}(k, m, p)) = \text{denote}(\text{ctx}, p) + k \cdot \text{denote}(\text{ctx}, m)
+\]
+Therefore, the evaluation of the inserted polynomial is:
+\[
+k' \cdot \text{denote}(\text{ctx}, m') + \text{denote}(\text{ctx}, p) + k \cdot \text{denote}(\text{ctx}, m)
+\]
+which is equal to:
+\[
+\text{denote}(\text{ctx}, p) + k \cdot \text{denote}(\text{ctx}, m)
+\]
+as required.
+
+In both cases, the desired result holds. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (ctx : Context) (k : Nat) (m : Mon) (p : Poly) : (p.insertSorted k m).denote ctx = p.denote ctx + k * m.denote ctx := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.List.BasicAux
+import Init.Data.Nat.SOM
+
+open Nat
+open SOM
+open Poly
+open Linear (Var hugeFuel Context Var.denote)
+
+example (ctx : Context) (k : Nat) (m : Mon) (p : Poly) : (p.insertSorted k m).denote ctx = p.denote ctx + k * m.denote ctx := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.List.BasicAux not found. --
+
+-- Init.Data.Nat.SOM not found. --
+

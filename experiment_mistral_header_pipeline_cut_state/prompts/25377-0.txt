@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+Equivalence of \( a = \text{false} \leftrightarrow b = \text{false} \) and \( \neg a = \neg b \) : For any boolean values \( a \) and \( b \), the statement \( a = \text{false} \leftrightarrow b = \text{false} \) is equivalent to \( \neg a = \neg b \).
+
+2. **Informal Proof**  
+To prove the equivalence \( (a = \text{false} \leftrightarrow b = \text{false}) \leftrightarrow (\neg a = \neg b) \) for any boolean values \( a \) and \( b \), we consider all possible combinations of \( a \) and \( b \):
+
+1. **Case 1: \( a = \text{true} \) and \( b = \text{true} \)**
+- \( a = \text{false} \) is false.
+- \( b = \text{false} \) is false.
+- Therefore, \( a = \text{false} \leftrightarrow b = \text{false} \) is true.
+- \( \neg a = \text{false} \) is false.
+- \( \neg b = \text{false} \) is false.
+- Therefore, \( \neg a = \neg b \) is true.
+- Hence, \( (a = \text{false} \leftrightarrow b = \text{false}) \leftrightarrow (\neg a = \neg b) \) holds.
+
+2. **Case 2: \( a = \text{true} \) and \( b = \text{false} \)**
+- \( a = \text{false} \) is false.
+- \( b = \text{false} \) is true.
+- Therefore, \( a = \text{false} \leftrightarrow b = \text{false} \) is false.
+- \( \neg a = \text{false} \) is false.
+- \( \neg b = \text{false} \) is true.
+- Therefore, \( \neg a = \neg b \) is false.
+- Hence, \( (a = \text{false} \leftrightarrow b = \text{false}) \leftrightarrow (\neg a = \neg b) \) holds.
+
+3. **Case 3: \( a = \text{false} \) and \( b = \text{true} \)**
+- \( a = \text{false} \) is true.
+- \( b = \text{false} \) is false.
+- Therefore, \( a = \text{false} \leftrightarrow b = \text{false} \) is false.
+- \( \neg a = \text{false} \) is true.
+- \( \neg b = \text{false} \) is false.
+- Therefore, \( \neg a = \neg b \) is false.
+- Hence, \( (a = \text{false} \leftrightarrow b = \text{false}) \leftrightarrow (\neg a = \neg b) \) holds.
+
+4. **Case 4: \( a = \text{false} \) and \( b = \text{false} \)**
+- \( a = \text{false} \) is true.
+- \( b = \text{false} \) is true.
+- Therefore, \( a = \text{false} \leftrightarrow b = \text{false} \) is true.
+- \( \neg a = \text{false} \) is true.
+- \( \neg b = \text{false} \) is true.
+- Therefore, \( \neg a = \neg b \) is true.
+- Hence, \( (a = \text{false} \leftrightarrow b = \text{false}) \leftrightarrow (\neg a = \neg b) \) holds.
+
+Since the equivalence holds in all possible cases, we conclude that for any boolean values \( a \) and \( b \), the statement \( a = \text{false} \leftrightarrow b = \text{false} \) is equivalent to \( \neg a = \neg b \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), (a = false ↔ b = false) ↔ (!a) = (!b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), (a = false ↔ b = false) ↔ (!a) = (!b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

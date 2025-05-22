@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Subtraction of Sum Preserves Strict Inequality: \( n - (m + k) < n - m \) if \( m + k \leq n \) and \( 0 < k \) : For any natural numbers \( m \), \( k \), and \( n \), if \( m + k \leq n \) and \( 0 < k \), then \( n - (m + k) < n - m \).
+
+2. **Informal Proof**  
+We need to show that \( n - (m + k) < n - m \) given that \( m + k \leq n \) and \( 0 < k \).
+
+1. First, we use the property of subtraction that \( n - (m + k) \) is equivalent to \( n - m - k \). This is because subtracting a sum is the same as subtracting each term individually.
+2. Next, we need to show that \( n - m - k < n - m \).
+3. Since \( 0 < k \), we know that \( k \) is a positive natural number.
+4. Given \( m + k \leq n \), we can rewrite this as \( k \leq n - m \) by subtracting \( m \) from both sides.
+5. Therefore, \( n - m - k < n - m \) because subtracting a positive number \( k \) from \( n - m \) results in a smaller number.
+6. Hence, we have shown that \( n - (m + k) < n - m \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (h₁ : m + k ≤ n) (h₂ : 0 < k) : n - (m + k) < n - m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (h₁ : m + k ≤ n) (h₂ : 0 < k) : n - (m + k) < n - m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

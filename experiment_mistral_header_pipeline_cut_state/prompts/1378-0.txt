@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+Swapping Comparison Results in Natural Numbers : For any natural numbers \( a \) and \( b \), the result of swapping the comparison between \( a \) and \( b \) is the same as the comparison between \( b \) and \( a \). In other words, if \( \text{compare}(a, b) \) returns an ordering, then \( \text{compare}(a, b). \text{swap} \) is equal to \( \text{compare}(b, a) \).
+
+2. **Informal Proof**  
+We start by using the definition of the comparison function for natural numbers, which states:
+\[
+\text{compare}(a, b) =
+\begin{cases}
+\text{Ordering.eq} & \text{if } a \le b \text{ and } b \le a \\
+\text{Ordering.lt} & \text{if } a \le b \text{ and } \neg b \le a \\
+\text{Ordering.gt} & \text{if } \neg a \le b
+\end{cases}
+\]
+We need to show that:
+\[
+\text{compare}(a, b). \text{swap} = \text{compare}(b, a)
+\]
+We will discuss by cases based on the conditions \(a \le b\) and \(b \le a\).
+
+1. **Case 1:** \(a \le b\) and \(b \le a\)
+- In this case, \(\text{compare}(a, b) = \text{Ordering.eq}\).
+- Therefore, \(\text{compare}(a, b). \text{swap} = \text{Ordering.eq.swap} = \text{Ordering.eq}\).
+- Since \(\text{compare}(b, a) = \text{Ordering.eq}\), the equality holds trivially.
+
+2. **Case 2:** \(a \le b\) and \(\neg b \le a\)
+- In this case, \(\text{compare}(a, b) = \text{Ordering.lt}\).
+- Therefore, \(\text{compare}(a, b). \text{swap} = \text{Ordering.lt.swap} = \text{Ordering.gt}\).
+- Since \(\text{compare}(b, a) = \text{Ordering.gt}\), the equality holds trivially.
+
+3. **Case 3:** \(\neg a \le b\) and \(b \le a\)
+- In this case, \(\text{compare}(a, b) = \text{Ordering.gt}\).
+- Therefore, \(\text{compare}(a, b). \text{swap} = \text{Ordering.gt.swap} = \text{Ordering.lt}\).
+- Since \(\text{compare}(b, a) = \text{Ordering.lt}\), the equality holds trivially.
+
+4. **Case 4:** \(\neg a \le b\) and \(\neg b \le a\)
+- In this case, \(\text{compare}(a, b) = \text{Ordering.gt}\).
+- Therefore, \(\text{compare}(a, b). \text{swap} = \text{Ordering.gt.swap} = \text{Ordering.gt}\).
+- Since \(\text{compare}(b, a) = \text{Ordering.gt}\), the equality holds trivially.
+
+In each case, the equality \(\text{compare}(a, b). \text{swap} = \text{compare}(b, a)\) holds due to the reflexive property of equality. This completes the proof.
+
+3. **Formal Theorem**  
+example (a b : Nat) : (compare a b).swap = compare b a := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example (a b : Nat) : (compare a b).swap = compare b a := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.Data.Ord not found. --
+
+-- Init.Data.Nat.Compare not found. --
+

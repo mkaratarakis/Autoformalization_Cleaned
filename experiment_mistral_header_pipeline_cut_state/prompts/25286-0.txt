@@ -1,0 +1,26 @@
+
+1. **Informal Theorem**  
+Boolean Identity: \( b = (a \lor b) \leftrightarrow (a = \text{true} \to b = \text{true}) \) : For any boolean values \( a \) and \( b \), \( b = (a \lor b) \) if and only if \( a = \text{true} \) implies \( b = \text{true} \).
+
+2. **Informal Proof**  
+To prove the boolean identity \( b = (a \lor b) \leftrightarrow (a = \text{true} \to b = \text{true}) \), we use the `decide` tactic. This tactic evaluates the boolean expressions and checks the equivalence directly. It confirms that for all boolean values \( a \) and \( b \), the statement holds true. Therefore, the theorem is proven.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), (b = (a || b)) ↔ (a → b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), (b = (a || b)) ↔ (a → b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+At Least Two of Three Booleans with Middle False is Equivalent to AND of the Other Two: \( a \text{ and } c \) : For any boolean values \( a \) and \( c \), the function `atLeastTwo` returns `true` if at least two out of the three boolean values \( a, \text{false}, c \) are `true`. This is equivalent to the boolean value \( a \) and \( c \) being `true`, i.e., \( a \text{ and } c \).
+
+2. **Informal Proof**  
+To prove that \( a.\text{atLeastTwo} \, \text{false} \, c = (a \land c) \), we use the definition of the `atLeastTwo` function. The function `atLeastTwo` checks if at least two out of the three boolean values are `true`. Given that the middle value is `false`, the function simplifies as follows:
+
+1. The function `atLeastTwo` for the values \( a, \text{false}, c \) can be broken down into the following cases:
+- If \( a \) is `false`, then the function returns `false` because there is only one `true` value (if \( c \) is `true`).
+- If \( a \) is `true`, then the function returns the value of \( c \) because \( a \) and \( c \) are the two values being checked.
+
+2. Therefore, \( a.\text{atLeastTwo} \, \text{false} \, c \) simplifies to \( a \land c \).
+
+Thus, we have shown that \( a.\text{atLeastTwo} \, \text{false} \, c = (a \land c) \). This completes the proof.
+
+3. **Formal Theorem**  
+example : atLeastTwo a false c = (a && c) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open Bool
+open Nat Bool
+
+example : atLeastTwo a false c = (a && c) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

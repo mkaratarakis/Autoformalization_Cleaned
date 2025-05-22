@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Boolean Conjunction of Decidable Propositions: \(\text{decide}(p \land q) = \text{decide}(p) \land \text{decide}(q)\) : For any decidable propositions \( p \) and \( q \), the boolean value of the conjunction \( p \land q \) is equal to the boolean "and" operation of the boolean values of \( p \) and \( q \), i.e., \(\text{decide}(p \land q) = \text{decide}(p) \land \text{decide}(q)\).
+
+2. **Informal Proof**  
+We need to show that for any decidable propositions \( p \) and \( q \), the boolean value of \( p \land q \) is equal to the boolean "and" of the boolean values of \( p \) and \( q \).
+
+We will consider the two possible cases for the decidable proposition \( p \):
+
+1. **Case 1: \( p \) is true.**
+- Since \( p \) is true, the boolean value of \( p \) is `true`.
+- The boolean value of \( p \land q \) is the same as the boolean value of \( q \).
+- Therefore, the goal is to show that the boolean value of \( q \) is equal to the boolean "and" of `true` and the boolean value of \( q \).
+- This is trivially true because \(\text{true} \land q = q\).
+
+2. **Case 2: \( p \) is false.**
+- Since \( p \) is false, the boolean value of \( p \) is `false`.
+- The boolean value of \( p \land q \) is `false` regardless of the boolean value of \( q \).
+- Therefore, the goal is to show that `false` is equal to the boolean "and" of `false` and the boolean value of \( q \).
+- This is trivially true because \(\text{false} \land q = \text{false}\).
+
+In both cases, the goal is satisfied, thus proving the theorem. Therefore, \(\text{decide}(p \land q) = \text{decide}(p) \land \text{decide}(q)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p q : Prop) [dpq : Decidable (p ∧ q)] [dp : Decidable p] [dq : Decidable q] :
+    decide (p ∧ q) = (p && q) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p q : Prop) [dpq : Decidable (p ∧ q)] [dp : Decidable p] [dq : Decidable q] :
+    decide (p ∧ q) = (p && q) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

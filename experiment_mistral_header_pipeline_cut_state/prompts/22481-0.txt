@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Subtraction of Bitvector from All Ones Yields Complement: \( \text{allOnes}(w) - x = \sim x \) : For any natural number \( w \) and any bitvector \( x \) of width \( w \), subtracting \( x \) from the bitvector of all ones (i.e., \( \text{allOnes}(w) \)) is equivalent to taking the complement of \( x \), i.e., \( \text{allOnes}(w) - x = \sim x \).
+
+2. **Informal Proof**  
+To prove that \( \text{allOnes}(w) - x = \sim x \), we start by using the fact that the sum of a bitvector \( x \) and its complement \( \sim x \) is the all ones bitvector, i.e., \( x + \sim x = \text{allOnes}(w) \). This allows us to rewrite the goal as:
+\[
+\text{allOnes}(w) - x = \sim x \implies x + \sim x - x = \sim x
+\]
+
+Next, we use the commutativity of addition to rewrite the left-hand side:
+\[
+x + \sim x - x = \sim x + x - x
+\]
+
+Finally, we use the property that addition and subtraction cancel in an additive commutative group, i.e., \( a + (b - a) = b \), to simplify the expression:
+\[
+\sim x + x - x = \sim x
+\]
+
+Thus, we have shown that \( \text{allOnes}(w) - x = \sim x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec w) : allOnes w - x = ~~~x := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x : BitVec w) : allOnes w - x = ~~~x := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+List with No Duplicates if and only if \( n \leq 1 \) in `replicate` Function : For any type \( \alpha \) and any natural number \( n \), the list `replicate n a` has no duplicate elements if and only if \( n \leq 1 \). In other words, the list containing \( n \) copies of the element \( a \) has no duplicates if and only if \( n \) is less than or equal to 1.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the list `replicate n a` has no duplicate elements if and only if \( n \leq 1 \).
+
+1. **Simplification:**
+Using the definition of `Nodup`, we simplify the proposition we want to show. The list `replicate n a` has no duplicate elements if and only if \( n \leq 1 \).
+
+2. **Case Analysis:**
+- **Case 1: \( n = 0 \)**
+- If \( n = 0 \), the list `replicate 0 a` is the empty list `[]`.
+- The empty list has no duplicate elements by definition.
+- Therefore, `replicate 0 a` has no duplicate elements, and \( 0 \leq 1 \) is true.
+- **Case 2: \( n = 1 \)**
+- If \( n = 1 \), the list `replicate 1 a` is the list `[a]`.
+- The list `[a]` has no duplicate elements because it contains only one element.
+- Therefore, `replicate 1 a` has no duplicate elements, and \( 1 \leq 1 \) is true.
+- **Case 3: \( n > 1 \)**
+- If \( n > 1 \), the list `replicate n a` contains at least two elements, all of which are \( a \).
+- Since the list contains at least two identical elements, it has duplicate elements.
+- Therefore, `replicate n a` has duplicate elements, and \( n \leq 1 \) is false.
+
+3. **Conclusion:**
+From the above cases, we see that the list `replicate n a` has no duplicate elements if and only if \( n \leq 1 \).
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n : Nat} {a : α} :
+    (replicate n a).Nodup ↔ n ≤ 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example {n : Nat} {a : α} :
+    (replicate n a).Nodup ↔ n ≤ 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

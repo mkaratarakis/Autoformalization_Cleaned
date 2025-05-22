@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Invalid Index Returns None in Element Retrieval : For any collection `c` of type `cont`, any index `i` of type `idx`, and any element type `elem`, if the index `i` is not valid for the collection `c` (i.e., `¬dom c i` holds), and if the validity of the index is decidable (i.e., `Decidable (dom c i)` holds), then the function `getElem?` returns `none` when applied to `c` and `i`, i.e., `getElem? c i = none`.
+
+2. **Informal Proof**  
+We start by using the definition of `getElem?`. According to this definition, `getElem? c i` is equivalent to the expression:
+\[
+\text{if } h : \text{dom} \, c \, i \text{ then } \text{some} \, (\text{getElem} \, c \, i \, h) \text{ else } \text{none}
+\]
+Given that \( \neg \text{dom} \, c \, i \) (i.e., the index \( i \) is not valid for the collection \( c \)), the condition `dom c i` is false. Therefore, the if-then-else construct evaluates to the else branch, which is `none`. Hence, we have:
+\[
+\text{getElem?} \, c \, i = \text{none}
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example [GetElem? cont idx elem dom] [LawfulGetElem cont idx elem dom]
+    (c : cont) (i : idx) (h : ¬dom c i) [Decidable (dom c i)] : c[i]? = none := by sorry
+
+4. **Prefix**
+import Init.Util
+import Init.GetElem
+
+
+
+
+example [GetElem? cont idx elem dom] [LawfulGetElem cont idx elem dom]
+    (c : cont) (i : idx) (h : ¬dom c i) [Decidable (dom c i)] : c[i]? = none := by
+
+5. **Header Information**  
+-- Init.Util not found. --
+
+-- Init.GetElem not found. --
+

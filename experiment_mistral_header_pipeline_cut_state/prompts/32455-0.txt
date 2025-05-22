@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Left Multiplication Cancellation in Natural Numbers: \( n \cdot m = n \cdot k \to m = k \) for \( n \neq 0 \) : For any natural numbers \( n \), \( m \), and \( k \), if \( n \neq 0 \) and \( n \cdot m = n \cdot k \), then \( m = k \).
+
+2. **Informal Proof**  
+We start by assuming \( n \neq 0 \) and \( n \cdot m = n \cdot k \). We need to show that \( m = k \).
+
+1. **Case 1: \( m < k \)**
+- Assume \( m < k \).
+- Since \( n > 0 \), by the property that left multiplication by a positive element preserves strict inequality, we have \( n \cdot m < n \cdot k \).
+- However, we also have \( n \cdot m = n \cdot k \) by assumption.
+- This leads to a contradiction, as \( n \cdot m < n \cdot m \) is false.
+- Therefore, \( m < k \) cannot hold.
+
+2. **Case 2: \( k < m \)**
+- Assume \( k < m \).
+- Since \( n > 0 \), by the property that left multiplication by a positive element preserves strict inequality, we have \( n \cdot k < n \cdot m \).
+- However, we also have \( n \cdot m = n \cdot k \) by assumption.
+- This leads to a contradiction, as \( n \cdot k < n \cdot k \) is false.
+- Therefore, \( k < m \) cannot hold.
+
+Since both \( m < k \) and \( k < m \) lead to contradictions, the only possibility left is \( m = k \).
+
+Thus, we have shown that if \( n \neq 0 \) and \( n \cdot m = n \cdot k \), then \( m = k \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m k : Nat} (np : 0 < n) (h : n * m = n * k) : m = k := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {n m k : Nat} (np : 0 < n) (h : n * m = n * k) : m = k := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

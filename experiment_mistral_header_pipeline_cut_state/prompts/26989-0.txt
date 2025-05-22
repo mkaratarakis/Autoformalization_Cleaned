@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Right Mapping Preserves Zip Operation in Lists : For any types \( \alpha \), \( \beta \), and \( \gamma \), and for any function \( f : \beta \to \gamma \), lists \( l_1 : \text{List } \alpha \) and \( l_2 : \text{List } \beta \), the following holds:
+\[ l_1 \text{.zip} (f \text{.map } l_2) = (f \text{.map } \text{Prod.map id } f) (l_1 \text{.zip } l_2) \]
+In other words, zipping a list \( l_1 \) with the result of applying \( f \) to each element of \( l_2 \) is the same as applying the function \( \text{Prod.map id } f \) to each pair in the zipped list of \( l_1 \) and \( l_2 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal:
+\[
+l_1. \text{zip } (f. \text{map } l_2) = (f. \text{map } \text{Prod.map id } f) (l_1. \text{zip } l_2).
+\]
+First, we use the theorem that zipping the results of applying a function to each element of two lists is the same as applying the function to the pairs in the zipped list. Specifically, for any types \( \alpha \), \( \beta \), \( \gamma \), and \( \delta \), and for any functions \( f : \alpha \to \gamma \) and \( g : \beta \to \delta \), and for any lists \( l_1 : \text{List } \alpha \) and \( l_2 : \text{List } \beta \), the following equality holds:
+\[
+(\text{map } f \, l_1). \text{zip } (\text{map } g \, l_2) = \text{map } (\text{Prod.map } f \, g) \, (l_1. \text{zip } l_2).
+\]
+Applying this theorem in the reverse direction to the left-hand side of our goal, we get:
+\[
+l_1. \text{zip } (\text{map } f \, l_2) = (\text{map } \text{id} \, l_1). \text{zip } (\text{map } f \, l_2).
+\]
+Next, we use the theorem that applying the identity function to each element of a list results in the same list. Specifically, for any list \( l \) of elements of type \( \alpha \), the following equality holds:
+\[
+\text{map } \text{id} \, l = l.
+\]
+Applying this theorem to the right-hand side of our goal, we get:
+\[
+l_1. \text{zip } (\text{map } f \, l_2) = l_1. \text{zip } (\text{map } f \, l_2).
+\]
+Since the left-hand side and the right-hand side are now identical, the goal is trivially true by the reflexive property of equality. This completes the proof.
+
+3. **Formal Theorem**  
+example (f : β → γ) (l₁ : List α) (l₂ : List β) :
+    zip l₁ (l₂.map f) = (zip l₁ l₂).map (Prod.map id f) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example (f : β → γ) (l₁ : List α) (l₂ : List β) :
+    zip l₁ (l₂.map f) = (zip l₁ l₂).map (Prod.map id f) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

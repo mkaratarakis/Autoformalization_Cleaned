@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Product of Natural Numbers is Nonzero if and only if Both Factors are Nonzero: \( n \times m \neq 0 \leftrightarrow n \neq 0 \land m \neq 0 \) : For any natural numbers \( n \) and \( m \), the product \( n \times m \) is not equal to zero if and only if both \( n \) and \( m \) are not equal to zero, i.e., \( n \times m \neq 0 \leftrightarrow n \neq 0 \land m \neq 0 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \( n \times m \neq 0 \leftrightarrow n \neq 0 \land m \neq 0 \).
+
+1. **Step 1:**
+We use the equivalence that \( n \neq 0 \) is the same as \( \neg (n = 0) \). This transforms the goal into:
+\[
+\neg (n \times m = 0) \leftrightarrow \neg (n = 0) \land \neg (m = 0)
+\]
+
+2. **Step 2:**
+Next, we use the fact that \( n \times m = 0 \) if and only if \( n = 0 \) or \( m = 0 \). This transforms the goal into:
+\[
+\neg (n = 0 \lor m = 0) \leftrightarrow \neg (n = 0) \land \neg (m = 0)
+\]
+
+3. **Step 3:**
+Finally, we use the equivalence that the negation of a disjunction is the conjunction of the negations. This transforms the goal into:
+\[
+\neg (n = 0) \land \neg (m = 0) \leftrightarrow \neg (n = 0) \land \neg (m = 0)
+\]
+This is trivially true by the properties of logical equivalences.
+
+Thus, we have shown that \( n \times m \neq 0 \leftrightarrow n \neq 0 \land m \neq 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : n * m ≠ 0 ↔ n ≠ 0 ∧ m ≠ 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example : n * m ≠ 0 ↔ n ≠ 0 ∧ m ≠ 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

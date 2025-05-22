@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Division of Division Equals Division by Product: \(\frac{m}{n} / k = \frac{m}{n \cdot k}\) : For any natural numbers \( m \), \( n \), and \( k \), the division of \( m \) by \( n \) and then by \( k \) is equal to the division of \( m \) by the product of \( n \) and \( k \), i.e., \( \frac{m}{n} / k = \frac{m}{n \cdot k} \).
+
+2. **Informal Proof**  
+We start by considering the possible values of \( k \):
+- If \( k = 0 \), then \( k \cdot n = 0 \), and both \( \frac{m}{n} / 0 \) and \( \frac{m}{0} \) are zero, making the equality trivially true.
+- If \( k > 0 \), we proceed to show the equality.
+
+Next, we consider the possible values of \( n \):
+- If \( n = 0 \), then \( n \cdot k = 0 \), and both \( \frac{m}{0} / k \) and \( \frac{m}{0} \) are zero, making the equality trivially true.
+- If \( n > 0 \), we proceed to show the equality.
+
+Now, assuming \( k > 0 \) and \( n > 0 \), we need to prove \( \frac{m}{n} / k = \frac{m}{n \cdot k} \).
+
+To prove this, we use the antisymmetry of the less-than-or-equal-to relation:
+- First, we show \( \frac{m}{n} / k \leq \frac{m}{n \cdot k} \). This is equivalent to showing \( \frac{m}{n} / k \cdot (n \cdot k) \leq m \). By the commutativity and associativity of multiplication, this simplifies to \( \frac{m}{n} / k \cdot k \cdot n \leq m \). Using the property that if \( a \leq c / b \) then \( a \cdot b \leq c \), we get \( \frac{m}{n} / k \cdot k \leq \frac{m}{n} \), which is trivially true by the reflexivity of the less-than-or-equal-to relation.
+
+- Next, we show \( \frac{m}{n \cdot k} \leq \frac{m}{n} / k \). This is equivalent to showing \( \frac{m}{n \cdot k} \cdot k \leq \frac{m}{n} \). By the commutativity and associativity of multiplication, this simplifies to \( \frac{m}{n \cdot k} \cdot k \cdot n \leq m \). Using the property that if \( a \leq c / b \) then \( a \cdot b \leq c \), we get \( \frac{m}{n \cdot k} \cdot (k \cdot n) \leq m \), which is trivially true by the reflexivity of the less-than-or-equal-to relation.
+
+Since both inequalities hold, we have \( \frac{m}{n} / k = \frac{m}{n \cdot k} \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (m n k : Nat) : m / n / k = m / (n * k) := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (m n k : Nat) : m / n / k = m / (n * k) := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

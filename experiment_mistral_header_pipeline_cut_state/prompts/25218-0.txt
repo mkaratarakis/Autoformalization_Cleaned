@@ -1,0 +1,61 @@
+
+1. **Informal Theorem**  
+Commutativity of Option Bind Operation: $(a \bind (\lambda x, b \bind (f x))) = (b \bind (\lambda y, a \bind (\lambda x, f x y)))$ : For any types $\alpha$, $\beta$, and $\gamma$, and for any function $f : \alpha \to \beta \to \text{Option } \gamma$, and optional values $a : \text{Option } \alpha$ and $b : \text{Option } \beta$, the following equality holds:
+\[
+(a \bind (\lambda x, b \bind (f x))) = (b \bind (\lambda y, a \bind (\lambda x, f x y)))
+\]
+This theorem states that the bind operation on optional values is commutative with respect to the function $f$. In other words, the order in which the optional values $a$ and $b$ are bound to the function $f$ does not affect the result.
+
+2. **Informal Proof**  
+To prove the theorem, we will consider every possible case for the optional values $a$ and $b$ and show that the equality holds in each case.
+
+1. **Case 1: $a = \text{none}$ and $b = \text{none}$**
+- The left-hand side is $(\text{none} \bind (\lambda x, \text{none} \bind (f x))) = \text{none}$.
+- The right-hand side is $(\text{none} \bind (\lambda y, \text{none} \bind (\lambda x, f x y))) = \text{none}$.
+- Both sides are equal, so the equality holds.
+
+2. **Case 2: $a = \text{none}$ and $b = \text{some } y$**
+- The left-hand side is $(\text{none} \bind (\lambda x, \text{some } y \bind (f x))) = \text{none}$.
+- The right-hand side is $(\text{some } y \bind (\lambda y, \text{none} \bind (\lambda x, f x y))) = \text{none}$.
+- Both sides are equal, so the equality holds.
+
+3. **Case 3: $a = \text{some } x$ and $b = \text{none}$**
+- The left-hand side is $(\text{some } x \bind (\lambda x, \text{none} \bind (f x))) = \text{none}$.
+- The right-hand side is $(\text{none} \bind (\lambda y, \text{some } x \bind (\lambda x, f x y))) = \text{none}$.
+- Both sides are equal, so the equality holds.
+
+4. **Case 4: $a = \text{some } x$ and $b = \text{some } y$**
+- The left-hand side is $(\text{some } x \bind (\lambda x, \text{some } y \bind (f x))) = \text{some } y \bind (f x y)$.
+- The right-hand side is $(\text{some } y \bind (\lambda y, \text{some } x \bind (\lambda x, f x y))) = \text{some } x \bind (\lambda x, f x y)$.
+- Both sides are equal, so the equality holds.
+
+In each case, the equality holds due to the definition of the bind operation on optional values. Therefore, the theorem is proved. $\blacksquare$
+
+3. **Formal Theorem**  
+example {f : α → β → Option γ} (a : Option α) (b : Option β) :
+    (a.bind fun x => b.bind (f x)) = b.bind fun y => a.bind fun x => f x y := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {f : α → β → Option γ} (a : Option α) (b : Option β) :
+    (a.bind fun x => b.bind (f x)) = b.bind fun y => a.bind fun x => f x y := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

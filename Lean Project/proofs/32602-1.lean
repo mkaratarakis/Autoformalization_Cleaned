@@ -1,0 +1,13 @@
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example [BEq α] [LawfulBEq α] (a : α) : (a != a) = false := by
+simp only [Ne.def, not_true_eq_false, eq_self_eq_true]
+
+/- ACTUAL PROOF OF bne_self_eq_false -/
+
+example [BEq α] [LawfulBEq α] (a : α) : (a != a) = false := by
+  simp [bne]

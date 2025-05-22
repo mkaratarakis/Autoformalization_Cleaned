@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Greatest Common Divisor of a Number and Its Product with Another Number: \(\gcd(n, n \cdot m) = n\) : For any natural numbers \( m \) and \( n \), the greatest common divisor of \( n \) and \( n \cdot m \) is equal to \( n \), i.e., \(\gcd(n, n \cdot m) = n\).
+
+2. **Informal Proof**  
+To prove that \(\gcd(n, n \cdot m) = n\) for any natural numbers \( m \) and \( n \), we start by using the commutativity property of the greatest common divisor. Specifically, we know that \(\gcd(a, b) = \gcd(b, a)\) for any natural numbers \(a\) and \(b\). Therefore, we can rewrite \(\gcd(n, n \cdot m)\) as \(\gcd(n \cdot m, n)\).
+
+Next, we use the property that \(\gcd(n \cdot m, n) = n\) for any natural numbers \(m\) and \(n\). This property states that the greatest common divisor of \(n \cdot m\) and \(n\) is \(n\). Thus, the goal \(\gcd(n, n \cdot m) = n\) is equivalent to \(n = n\), which is trivially true.
+
+Therefore, we have shown that \(\gcd(n, n \cdot m) = n\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n : Nat) : gcd n (n * m) = n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (m n : Nat) : gcd n (n * m) = n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

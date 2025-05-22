@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+List Find Returns None if and Only if No Element Satisfies Predicate : For any list \( l \) of elements of type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), the function `List.find? p l` returns `none` if and only if for every element \( x \) in \( l \), \( p(x) \) is `false`. In other words, `List.find? p l = none` if and only if \( \forall x \in l, \neg p(x) \).
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l \).
+
+- **Base Case:** Consider the empty list \( l = [] \). We need to show that `List.find? p [] = none` if and only if for every element \( x \) in \( [] \), \( p(x) \) is `false`. Since the empty list contains no elements, the right-hand side of the equivalence is vacuously true. Therefore, `List.find? p [] = none` is true.
+
+- **Inductive Step:** Assume the property holds for the list \( l \), i.e., `List.find? p l = none` if and only if for every element \( x \) in \( l \), \( p(x) \) is `false`. We need to show that `List.find? p (a :: l) = none` if and only if for every element \( x \) in \( a :: l \), \( p(x) \) is `false`.
+
+- If \( p(a) \) is `true`, then `List.find? p (a :: l) = some a`, which means `List.find? p (a :: l) ≠ none`. Therefore, the left-hand side of the equivalence is false, and the right-hand side is also false because \( p(a) \) is `true`.
+- If \( p(a) \) is `false`, then `List.find? p (a :: l) = List.find? p l`. By the induction hypothesis, `List.find? p l = none` if and only if for every element \( x \) in \( l \), \( p(x) \) is `false`. Therefore, `List.find? p (a :: l) = none` if and only if for every element \( x \) in \( a :: l \), \( p(x) \) is `false`.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : find? p l = none ↔ ∀ x ∈ l, ¬ p x := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example : find? p l = none ↔ ∀ x ∈ l, ¬ p x := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

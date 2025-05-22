@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Least Significant Bit of One is True : The function `testBit` applied to the natural number 1 and the index 0 returns `true`. In other words, the least significant bit (0th bit) in the binary representation of the natural number 1 is 1.
+\[
+\text{testBit}(1, 0) = \text{true}
+\]
+
+2. **Informal Proof**  
+The proof is straightforward. The least significant bit (0th bit) in the binary representation of the natural number 1 is 1, which is equivalent to `true`. Therefore, the function `testBit` applied to 1 and 0 returns `true`. This completes the proof.
+
+3. **Formal Theorem**  
+example : testBit 1 0 = true := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example : testBit 1 0 = true := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

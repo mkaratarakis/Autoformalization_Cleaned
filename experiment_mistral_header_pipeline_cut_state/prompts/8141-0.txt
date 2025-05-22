@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Size of Next Iterator Position is Less Than Current Size if Iterator has Next Position : For any string iterator \( i \), if \( i \) has a next position (i.e., \( i.\text{hasNext} = \text{true} \)), then the size of the next position of the iterator is strictly less than the size of the current position, i.e., \(\text{sizeOf}(i.\text{next}) < \text{sizeOf}(i)\).
+
+2. **Informal Proof**  
+We start by considering the structure of the string iterator \( i \). By breaking down \( i \) into its components, we can rename the string and the position within the string as \( s \) and \( pos \), respectively. The goal is to show that the size of the next position of the iterator is less than the size of the current position, i.e., \(\text{sizeOf}(i.\text{next}) < \text{sizeOf}(i)\).
+
+Using the definitions of `Iterator.next` and `Iterator.sizeOf_eq`, we simplify the goal to:
+\[
+s.\text{utf8ByteSize} - (s.\text{next}(pos)).\text{byteIdx} < s.\text{utf8ByteSize} - pos.\text{byteIdx}
+\]
+
+We also simplify the hypothesis \( h \) using the definition of `Iterator.hasNext`, which tells us that:
+\[
+pos.\text{byteIdx} < s.\text{endPos}.\text{byteIdx}
+\]
+
+Next, we use the theorem `String.lt_next`, which states that for any valid byte position \( pos \) in the string \( s \), the byte index of \( pos \) is strictly less than the byte index of the next valid byte position \( s.\text{next}(pos) \):
+\[
+pos.\text{byteIdx} < (s.\text{next}(pos)).\text{byteIdx}
+\]
+
+Given that \( pos.\text{byteIdx} < s.\text{endPos}.\text{byteIdx} \), we can apply the theorem `Nat.sub_lt_sub_left` to conclude:
+\[
+s.\text{utf8ByteSize} - (s.\text{next}(pos)).\text{byteIdx} < s.\text{utf8ByteSize} - pos.\text{byteIdx}
+\]
+
+Thus, the size of the next position of the iterator is strictly less than the size of the current position. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (i : String.Iterator) (h : i.hasNext) : sizeOf i.next < sizeOf i := by sorry
+
+4. **Prefix**
+import Init.Data.ByteArray
+import Init.Data.String.Extra
+
+open String
+open Iterator
+
+
+example (i : String.Iterator) (h : i.hasNext) : sizeOf i.next < sizeOf i := by
+
+5. **Header Information**  
+-- Init.Data.ByteArray not found. --
+
+-- Init.Data.String.Extra not found. --
+

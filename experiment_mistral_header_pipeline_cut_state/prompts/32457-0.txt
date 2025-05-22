@@ -1,0 +1,87 @@
+
+1. **Informal Theorem**  
+Minimum of Products with a Common Factor in Natural Numbers: \(\min(a \cdot c, b \cdot c) = \min(a, b) \cdot c\) : For any natural numbers \(a\), \(b\), and \(c\), the minimum of the products \(a \cdot c\) and \(b \cdot c\) is equal to the product of the minimum of \(a\) and \(b\) with \(c\), i.e., \(\min(a \cdot c, b \cdot c) = \min(a, b) \cdot c\).
+
+2. **Informal Proof**  
+We will prove the theorem by induction on \( b \).
+
+**Base Case: \( b = 0 \)**
+We need to show that \(\min(a \cdot c, 0 \cdot c) = \min(a, 0) \cdot c\).
+
+Using the property that the minimum of any natural number and zero is zero, we have:
+\[
+\min(a \cdot c, 0 \cdot c) = \min(a \cdot c, 0) = 0
+\]
+and
+\[
+\min(a, 0) \cdot c = 0 \cdot c = 0
+\]
+Thus, the base case holds.
+
+**Inductive Step: \( b = n + 1 \)**
+Assume the statement holds for \( b = n \), i.e., \(\min(a \cdot c, n \cdot c) = \min(a, n) \cdot c\). We need to show that \(\min(a \cdot c, (n + 1) \cdot c) = \min(a, n + 1) \cdot c\).
+
+Using the property of successor multiplication, we have:
+\[
+(n + 1) \cdot c = n \cdot c + c
+\]
+Thus, the goal becomes:
+\[
+\min(a \cdot c, n \cdot c + c) = \min(a, n + 1) \cdot c
+\]
+
+Using the distributive property of minimum over addition, we have:
+\[
+\min(a \cdot c, n \cdot c + c) = \min(a \cdot c, n \cdot c) + c
+\]
+
+By the induction hypothesis, we know:
+\[
+\min(a \cdot c, n \cdot c) = \min(a, n) \cdot c
+\]
+
+Substituting this into the equation, we get:
+\[
+\min(a \cdot c, n \cdot c + c) = \min(a, n) \cdot c + c
+\]
+
+Using the property of minimum, we have:
+\[
+\min(a, n + 1) = \min(a, n + 1)
+\]
+
+Thus:
+\[
+\min(a, n + 1) \cdot c = \min(a, n) \cdot c + c
+\]
+
+Therefore, the inductive step holds.
+
+By induction, the theorem is true for all natural numbers \( b \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c : Nat) : min (a * c) (b * c) = min a b * c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) : min (a * c) (b * c) = min a b * c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

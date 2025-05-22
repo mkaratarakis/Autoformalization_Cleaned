@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Total Order Property of Boolean 'Less Than or Equal To' Relation: \( x \leq y \lor y \leq x \) : For any boolean values \( x \) and \( y \), either \( x \leq y \) or \( y \leq x \) holds. This property is known as the total order property of the boolean 'less than or equal to' relation.
+
+2. **Informal Proof**  
+To prove that for any boolean values \( x \) and \( y \), either \( x \leq y \) or \( y \leq x \) holds, we can use the fact that the boolean type is decidable. This means that for any boolean values \( x \) and \( y \), we can determine whether \( x \leq y \) or \( y \leq x \) holds. Since the boolean type is finite and has only two values, \( \text{true} \) and \( \text{false} \), we can check all possible combinations of \( x \) and \( y \):
+
+1. If \( x = \text{true} \) and \( y = \text{true} \), then \( x \leq y \) holds.
+2. If \( x = \text{true} \) and \( y = \text{false} \), then \( y \leq x \) holds.
+3. If \( x = \text{false} \) and \( y = \text{true} \), then \( x \leq y \) holds.
+4. If \( x = \text{false} \) and \( y = \text{false} \), then \( x \leq y \) holds.
+
+In all cases, either \( x \leq y \) or \( y \leq x \) holds. Therefore, the total order property of the boolean 'less than or equal to' relation is satisfied. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), x ≤ y ∨ y ≤ x := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), x ≤ y ∨ y ≤ x := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

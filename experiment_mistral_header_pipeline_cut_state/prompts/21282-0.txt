@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Tail-Recursive Filter Loop Equals Reverse Concatenation with Filtered List : For any type \( \alpha \), predicate \( p : \alpha \to \text{Bool} \), and lists \( \text{as}, \text{bs} : \text{List} \, \alpha \), the tail-recursive filter loop function `List.filterTR.loop` applied to \( p \), \( \text{as} \), and \( \text{bs} \) returns a list that is the reverse of \( \text{bs} \) concatenated with the list of elements from \( \text{as} \) that satisfy the predicate \( p \). In other words, \( \text{List.filterTR.loop} \, p \, \text{as} \, \text{bs} = \text{bs.reverse} \, ++ \, \text{List.filter} \, p \, \text{as} \).
+
+2. **Informal Proof**  
+We proceed by induction on the structure of the list `as`.
+
+1. **Base Case:**
+When `as` is the empty list, we simplify the goal using the definitions of `filterTR.loop` and `filter`. This results in the expression `filterTR.loop p [] bs = bs.reverse ++ filter p []`, which simplifies to `bs.reverse = bs.reverse`, which is trivially true.
+
+2. **Inductive Step:**
+When `as` is of the form `a :: as`, we use the induction hypothesis `ih` which states that for any list `bs`, `filterTR.loop p as bs = bs.reverse ++ filter p as`.
+
+We simplify the goal using the definitions of `filterTR.loop` and `filter`. This results in the expression:
+\[
+\text{match } p \, a \text{ with}
+\begin{cases}
+\text{true} & \Rightarrow \text{filterTR.loop } p \, \text{as} \, (a :: \text{bs}) \\
+\text{false} & \Rightarrow \text{filterTR.loop } p \, \text{as} \, \text{bs}
+\end{cases}
+=
+\text{bs.reverse} \, ++ \,
+\begin{cases}
+\text{true} & \Rightarrow a :: \text{filter } p \, \text{as} \\
+\text{false} & \Rightarrow \text{filter } p \, \text{as}
+\end{cases}
+\]
+
+We split the goal into two cases based on the value of `p a`:
+1. If `p a` is `true`, we simplify the goal to `filterTR.loop p as (a :: bs) = bs.reverse ++ a :: filter p as`.
+2. If `p a` is `false`, we simplify the goal to `filterTR.loop p as bs = bs.reverse ++ filter p as`.
+
+For each case, we use the induction hypothesis `ih` to simplify the expressions, resulting in the goals being trivially true.
+
+Thus, by induction, we have shown that `List.filterTR.loop p as bs = bs.reverse ++ List.filter p as` for any list `as` and `bs`.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p : α → Bool) (as bs : List α) :
+    filterTR.loop p as bs = bs.reverse ++ filter p as := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example (p : α → Bool) (as bs : List α) :
+    filterTR.loop p as bs = bs.reverse ++ filter p as := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

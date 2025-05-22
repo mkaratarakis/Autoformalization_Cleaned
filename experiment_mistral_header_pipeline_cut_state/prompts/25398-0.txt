@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Distributive Property of Conditional Function with False Outcome : For any boolean values $c$, $t$, and $f$, the equation $(\text{bif } c \text{ then } t \text{ else } f) = \text{false}$ holds if and only if $c = \text{true}$ implies $t = \text{false}$, and $c = \text{false}$ implies $f = \text{false}$.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the equation $(\text{bif } c \text{ then } t \text{ else } f) = \text{false}$ holds if and only if the following conditions are satisfied:
+1. If $c = \text{true}$, then $t = \text{false}$.
+2. If $c = \text{false}$, then $f = \text{false}$.
+
+We will consider all possible values of $c$, $t$, and $f$ and verify the statement in each case.
+
+1. **Case 1: $c = \text{true}$**
+- If $c = \text{true}$, then $(\text{bif } c \text{ then } t \text{ else } f) = t$.
+- Therefore, $(\text{bif } c \text{ then } t \text{ else } f) = \text{false}$ if and only if $t = \text{false}$.
+
+2. **Case 2: $c = \text{false}$**
+- If $c = \text{false}$, then $(\text{bif } c \text{ then } t \text{ else } f) = f$.
+- Therefore, $(\text{bif } c \text{ then } t \text{ else } f) = \text{false}$ if and only if $f = \text{false}$.
+
+Since the statement holds in both cases, we conclude that the equation $(\text{bif } c \text{ then } t \text{ else } f) = \text{false}$ is true if and only if $c = \text{true}$ implies $t = \text{false}$, and $c = \text{false}$ implies $f = \text{false}$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c t f : Bool),
+    (cond c t f = false) = ite (c = true) (t = false) (f = false) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c t f : Bool),
+    (cond c t f = false) = ite (c = true) (t = false) (f = false) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

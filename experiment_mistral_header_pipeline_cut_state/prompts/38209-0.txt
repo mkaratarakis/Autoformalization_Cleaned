@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Byte Index of Position is Less Than Byte Index of Next Codepoint in Substring : For any substring \( s \) and any byte position \( i \) in \( s \), if the byte index of \( i \) is strictly less than the byte size of \( s \), then the byte index of \( i \) is strictly less than the byte index of the next codepoint position in \( s \). In other words, if \( i \) is a valid position in \( s \) (i.e., \( i \) is not at the end of \( s \)), then \( i \) is strictly less than the position of the next codepoint.
+
+2. **Informal Proof**  
+We start by simplifying the goal using the definition of `Substring.next`. This definition states that the next position in the substring is either the current position \( i \) if \( s.\text{startPos} + i = s.\text{stopPos} \), or the position obtained by advancing the current position in the original string and adjusting for the starting position of the substring. Since the condition \( s.\text{startPos} + i = s.\text{stopPos} \) is false, we can replace the goal with the else branch of the if-then-else expression. This simplifies the goal to showing that \( i.\text{byteIdx} < (s.\text{str.next}(s.\text{startPos} + i)).\text{byteIdx} - s.\text{startPos}.\text{byteIdx} \).
+
+Next, we consider the case where \( s.\text{startPos} + i \neq s.\text{stopPos} \). To show this, we use the fact that if two byte positions are equal, their byte indices are also equal. We need to show that \( (s.\text{startPos} + i).\text{byteIdx} \neq s.\text{stopPos}.\text{byteIdx} \). This is equivalent to showing that \( (s.\text{startPos} + i).\text{byteIdx} < s.\text{stopPos}.\text{byteIdx} \). Using the commutativity of addition and the given hypothesis \( i.\text{byteIdx} < s.\text{bsize} \), we can show that \( (s.\text{startPos} + i).\text{byteIdx} < s.\text{stopPos}.\text{byteIdx} \).
+
+To prove the current goal \( i.\text{byteIdx} < (s.\text{str.next}(s.\text{startPos} + i)).\text{byteIdx} - s.\text{startPos}.\text{byteIdx} \), we use the theorem that if \( a + b < c \), then \( a < c - b \). Therefore, it suffices to show that \( i.\text{byteIdx} + s.\text{startPos}.\text{byteIdx} < (s.\text{str.next}(s.\text{startPos} + i)).\text{byteIdx} \).
+
+We use the commutativity of addition to rewrite the goal as \( s.\text{startPos}.\text{byteIdx} + i.\text{byteIdx} < (s.\text{str.next}(s.\text{startPos} + i)).\text{byteIdx} \). Then, we apply the theorem that for any string \( s \) and any valid byte position \( i \) in \( s \), the byte index of \( i \) is strictly less than the byte index of the next valid byte position \( s.\text{next}(i) \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (s : Substring) (i : String.Pos) (h : i.1 < s.bsize) :
+    i.1 < (s.next i).1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Basic
+import Init.Data.Char.Basic
+import Init.Data.Option.Basic
+import Init.Data.String.Basic
+
+open Substring
+
+
+example (s : Substring) (i : String.Pos) (h : i.1 < s.bsize) :
+    i.1 < (s.next i).1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.Option.Basic not found. --
+
+-- Init.Data.String.Basic not found. --
+

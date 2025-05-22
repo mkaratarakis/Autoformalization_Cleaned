@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Bitvector Conversion and Truncation Equivalence: \( \text{BitVec.ofNat}(m, x.\text{toNat}) = \text{BitVec.truncate}(m, x) \) : For any natural number \( n \) and any bitvector \( x \) of width \( n \), the bitvector obtained by converting the underlying natural number of \( x \) to a bitvector of width \( m \) is equal to the bitvector obtained by truncating \( x \) to width \( m \). In other words, for any \( m \) and \( x \), \( \text{BitVec.ofNat}(m, x.\text{toNat}) = \text{BitVec.truncate}(m, x) \).
+
+2. **Informal Proof**  
+To prove that \(\text{BitVec.ofNat}(m, x.\text{toNat}) = \text{BitVec.truncate}(m, x)\), it suffices to show that the natural number representation of \(\text{BitVec.ofNat}(m, x.\text{toNat})\) is equal to the natural number representation of \(\text{BitVec.truncate}(m, x)\). This is because if the natural number representations of two bitvectors are equal, then the bitvectors themselves are equal.
+
+Using the properties of bitvector operations, we can simplify the proposition we want to show. Specifically, we use the fact that the natural number representation of \(\text{BitVec.ofNat}(m, x.\text{toNat})\) is equal to \(x.\text{toNat} \mod 2^m\) and the natural number representation of \(\text{BitVec.truncate}(m, x)\) is also equal to \(x.\text{toNat} \mod 2^m\). Therefore, the natural number representations of \(\text{BitVec.ofNat}(m, x.\text{toNat})\) and \(\text{BitVec.truncate}(m, x)\) are equal, which completes the proof.
+
+3. **Formal Theorem**  
+example (m : Nat) (x : BitVec n) : BitVec.ofNat m x.toNat = truncate m x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (m : Nat) (x : BitVec n) : BitVec.ofNat m x.toNat = truncate m x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

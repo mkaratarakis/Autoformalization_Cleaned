@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Boolean Equality with True: \(\text{true} == b = b\) : For any boolean value \( b \), the boolean equality \( \text{true} == b \) is equal to \( b \), i.e., \( \text{true} == b = b \).
+
+2. **Informal Proof**  
+To prove the theorem, we consider the two possible values of \( b \):
+
+1. **Case 1: \( b = \text{true} \)**
+- We evaluate \(\text{true} == \text{true}\).
+- By the definition of boolean equality, \(\text{true} == \text{true} = \text{true}\).
+- Therefore, \(\text{true} == \text{true} = \text{true}\).
+
+2. **Case 2: \( b = \text{false} \)**
+- We evaluate \(\text{true} == \text{false}\).
+- By the definition of boolean equality, \(\text{true} == \text{false} = \text{false}\).
+- Therefore, \(\text{true} == \text{false} = \text{false}\).
+
+Since both cases hold, we conclude that for any boolean value \( b \), \(\text{true} == b = b\). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀b, (true  == b) =  b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀b, (true  == b) =  b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Filtering Preserves Pairwise Relation if and only if Original List Satisfies Filtered Pairwise Relation : For any type \(\alpha\) and any relation \(R : \alpha \to \alpha \to \text{Prop}\), if \(p : \alpha \to \text{Prop}\) is a decidable predicate, then the list obtained by filtering a list \(l\) of elements of type \(\alpha\) using the predicate \(p\) is pairwise \(R\)-related if and only if the original list \(l\) is pairwise \((p x \to p y \to R x y)\)-related. In other words, if \(l\) is pairwise \(R\)-related, then \(\text{filter} \, p \, l\) is pairwise \(R\)-related, and conversely, if \(\text{filter} \, p \, l\) is pairwise \(R\)-related, then \(l\) is pairwise \((p x \to p y \to R x y)\)-related.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that the `filterMap` operation applied to the function `Option.guard p` is the same as the `filter` operation applied to the predicate \( p \). This allows us to rewrite the goal as follows:
+\[
+\text{Pairwise } R (\text{filter } p \, l) \leftrightarrow \text{Pairwise } (\forall b \in \text{Option.guard } p \, a, \forall b' \in \text{Option.guard } p \, a', R \, b \, b') \, l
+\]
+Next, we use the theorem that the pairwise relation on the filtered and mapped list is equivalent to the pairwise relation on the original list with a modified relation. Specifically, the list obtained by filtering \( l \) using \( p \) is pairwise \( R \)-related if and only if the original list \( l \) is pairwise \((\forall b \in \text{Option.guard } p \, a, \forall b' \in \text{Option.guard } p \, a', R \, b \, b')\)-related.
+
+Finally, we simplify the proposition we want to show. The simplification process uses the properties of the `Option.guard` function and the decidable predicate \( p \) to reduce the goal to the desired form:
+\[
+\text{Pairwise } R (\text{filter } p \, l) \leftrightarrow \text{Pairwise } (p \, x \to p \, y \to R \, x \, y) \, l
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p : α → Prop) [DecidablePred p] {l : List α} :
+    Pairwise R (filter p l) ↔ Pairwise (fun x y => p x → p y → R x y) l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example (p : α → Prop) [DecidablePred p] {l : List α} :
+    Pairwise R (filter p l) ↔ Pairwise (fun x y => p x → p y → R x y) l := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

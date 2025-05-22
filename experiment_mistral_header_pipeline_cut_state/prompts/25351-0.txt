@@ -1,0 +1,100 @@
+
+1. **Informal Theorem**  
+Right-Commutativity of Boolean Or Operation: $x \lor y \lor z = x \lor z \lor y$ : For any boolean values $x$, $y$, and $z$, the boolean "or" operation is right-commutative, i.e., $x \lor y \lor z = x \lor z \lor y$.
+
+2. **Informal Proof**  
+To prove that for any boolean values $x$, $y$, and $z$, the boolean "or" operation is right-commutative, we need to show that $x \lor y \lor z = x \lor z \lor y$. We can directly evaluate all possible combinations of $x$, $y$, and $z$ to verify the equality. Since there are only two boolean values (true and false), we can check each case individually.
+
+Let's consider all possible combinations of $x$, $y$, and $z$:
+
+1. If $x = \text{true}$, $y = \text{true}$, and $z = \text{true}$:
+\[
+x \lor y \lor z = \text{true} \lor \text{true} \lor \text{true} = \text{true}
+\]
+\[
+x \lor z \lor y = \text{true} \lor \text{true} \lor \text{true} = \text{true}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+2. If $x = \text{true}$, $y = \text{true}$, and $z = \text{false}$:
+\[
+x \lor y \lor z = \text{true} \lor \text{true} \lor \text{false} = \text{true}
+\]
+\[
+x \lor z \lor y = \text{true} \lor \text{false} \lor \text{true} = \text{true}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+3. If $x = \text{true}$, $y = \text{false}$, and $z = \text{true}$:
+\[
+x \lor y \lor z = \text{true} \lor \text{false} \lor \text{true} = \text{true}
+\]
+\[
+x \lor z \lor y = \text{true} \lor \text{true} \lor \text{false} = \text{true}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+4. If $x = \text{true}$, $y = \text{false}$, and $z = \text{false}$:
+\[
+x \lor y \lor z = \text{true} \lor \text{false} \lor \text{false} = \text{true}
+\]
+\[
+x \lor z \lor y = \text{true} \lor \text{false} \lor \text{false} = \text{true}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+5. If $x = \text{false}$, $y = \text{true}$, and $z = \text{true}$:
+\[
+x \lor y \lor z = \text{false} \lor \text{true} \lor \text{true} = \text{true}
+\]
+\[
+x \lor z \lor y = \text{false} \lor \text{true} \lor \text{true} = \text{true}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+6. If $x = \text{false}$, $y = \text{true}$, and $z = \text{false}$:
+\[
+x \lor y \lor z = \text{false} \lor \text{true} \lor \text{false} = \text{true}
+\]
+\[
+x \lor z \lor y = \text{false} \lor \text{false} \lor \text{true} = \text{true}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+7. If $x = \text{false}$, $y = \text{false}$, and $z = \text{true}$:
+\[
+x \lor y \lor z = \text{false} \lor \text{false} \lor \text{true} = \text{true}
+\]
+\[
+x \lor z \lor y = \text{false} \lor \text{true} \lor \text{false} = \text{true}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+8. If $x = \text{false}$, $y = \text{false}$, and $z = \text{false}$:
+\[
+x \lor y \lor z = \text{false} \lor \text{false} \lor \text{false} = \text{false}
+\]
+\[
+x \lor z \lor y = \text{false} \lor \text{false} \lor \text{false} = \text{false}
+\]
+Thus, $x \lor y \lor z = x \lor z \lor y$.
+
+Since the equality $x \lor y \lor z = x \lor z \lor y$ holds for all possible combinations of $x$, $y$, and $z$, we conclude that the boolean "or" operation is right-commutative. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), ((x || y) || z) = ((x || z) || y) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), ((x || y) || z) = ((x || z) || y) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

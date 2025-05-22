@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Bit Representation of \( 2^n - 1 \) in Natural Numbers: \((2^n - 1).\text{testBit}(i) = \text{decide}(i < n)\) : For any natural numbers \( n \) and \( i \), the \((i+1)\)-th least significant bit in the binary representation of \( 2^n - 1 \) is equal to the boolean value \(\text{decide}(i < n)\). In other words, the \((i+1)\)-th bit of \( 2^n - 1 \) is 1 if and only if \( i < n \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that for any natural numbers \( x \) and \( n \) such that \( x < 2^n \), and for any natural number \( i \), the \((i+1)\)-th least significant bit in the binary representation of \( 2^n - (x + 1) \) is equal to the boolean value \(\text{decide}(i < n) \land \neg x.\text{testBit}(i)\). By setting \( x = 0 \), we can rewrite the goal \((2^n - 1).\text{testBit}(i) = \text{decide}(i < n)\) as \((\text{decide}(i < n) \land \neg 0.\text{testBit}(i)) = \text{decide}(i < n)\).
+
+Next, we simplify the expression \((\text{decide}(i < n) \land \neg 0.\text{testBit}(i)) = \text{decide}(i < n)\). Since the \((i+1)\)-th bit of \(0\) is always \(0\), \(\neg 0.\text{testBit}(i)\) is always true. Therefore, the expression simplifies to \(\text{decide}(i < n) = \text{decide}(i < n)\), which is trivially true.
+
+Finally, we need to show that \(0 < 2^n\). This is true because for any natural number \( n \), \(2^n\) is always greater than 0. This is a known property of the natural numbers and the power function.
+
+Thus, we have shown that \((2^n - 1).\text{testBit}(i) = \text{decide}(i < n)\) for any natural numbers \( n \) and \( i \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n i : Nat) : testBit (2^n-1) i = decide (i < n) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (n i : Nat) : testBit (2^n-1) i = decide (i < n) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

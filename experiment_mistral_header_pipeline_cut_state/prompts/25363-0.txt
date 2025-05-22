@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Transitivity of Less-Than and Less-Than-or-Equal in Boolean Type : For any boolean values \( x, y, z \), if \( x < y \) and \( y \le z \), then \( x < z \).
+
+2. **Informal Proof**  
+To prove the transitivity of the less-than and less-than-or-equal relations in the boolean type, we use the decidability of the boolean type. The boolean type has only two values: `true` and `false`. The relations \( < \) and \( \le \) are well-defined and decidable for these values. We need to show that if \( x < y \) and \( y \le z \), then \( x < z \).
+
+We can verify this by checking all possible combinations of \( x, y, \) and \( z \):
+
+1. If \( x = \text{false} \) and \( y = \text{true} \), then \( x < y \) is true.
+2. If \( y = \text{true} \) and \( z = \text{true} \), then \( y \le z \) is true.
+3. In this case, \( x = \text{false} \) and \( z = \text{true} \), so \( x < z \) is true.
+
+Since the boolean type has only two values, and the relations \( < \) and \( \le \) are well-defined, the proposition holds for all possible combinations. Therefore, the statement \( x < y \) and \( y \le z \) implies \( x < z \) is true. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y z : Bool}, x < y → y ≤ z → x < z := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y z : Bool}, x < y → y ≤ z → x < z := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+First \( m \) Elements of `List.range n` Equal to `List.range (min(m, n))` : For any natural numbers \( m \) and \( n \), the first \( m \) elements of the list `List.range n` are equal to the list `List.range (min(m, n))`. In other words, `List.take m (List.range n)` is the list of natural numbers from \( 0 \) to \( \min(m, n) - 1 \).
+
+2. **Informal Proof**  
+To prove that the first \( m \) elements of the list `List.range n` are equal to the list `List.range (min(m, n))`, we use the fact that two lists are equal if and only if their lengths are equal and their corresponding elements are equal for all indices within the bounds of the lists.
+
+1. **Lengths of the Lists:**
+We need to show that the lengths of `List.take m (List.range n)` and `List.range (min(m, n))` are equal. The length of `List.range n` is \( n \), and the length of `List.take m (List.range n)` is \( \min(m, n) \). Similarly, the length of `List.range (min(m, n))` is \( \min(m, n) \). Therefore, the lengths of both lists are equal to \( \min(m, n) \).
+
+2. **Elementwise Equality:**
+Next, we need to show that for every natural number \( n_1 \) such that \( n_1 < \min(m, n) \), the \( n_1 \)-th element of `List.take m (List.range n)` is equal to the \( n_1 \)-th element of `List.range (min(m, n))`. The \( n_1 \)-th element of `List.take m (List.range n)` is the same as the \( n_1 \)-th element of `List.range n` for \( n_1 < m \). Since \( n_1 < \min(m, n) \) implies \( n_1 < n \), the \( n_1 \)-th element of `List.range n` is \( n_1 \). Similarly, the \( n_1 \)-th element of `List.range (min(m, n))` is \( n_1 \). Therefore, the \( n_1 \)-th elements of both lists are equal for all \( n_1 < \min(m, n) \).
+
+Since both the lengths and the corresponding elements of the lists are equal, we conclude that `List.take m (List.range n)` is equal to `List.range (min(m, n))`. This completes the proof.
+
+3. **Formal Theorem**  
+example (m n : Nat) : take m (range n) = range (min m n) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (m n : Nat) : take m (range n) = range (min m n) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

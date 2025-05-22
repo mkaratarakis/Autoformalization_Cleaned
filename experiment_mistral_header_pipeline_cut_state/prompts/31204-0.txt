@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Right Addition Commutativity in Natural Numbers: \( n + m + k = n + k + m \) : For any natural numbers \( n \), \( m \), and \( k \), the equation \( n + m + k = n + k + m \) holds. This theorem demonstrates the commutativity of addition when the first term is fixed and the other two terms are permuted.
+
+2. **Informal Proof**  
+To prove that \( n + m + k = n + k + m \) for any natural numbers \( n \), \( m \), and \( k \), we proceed as follows:
+
+1. **Step 1: Use Associativity of Addition**
+By the associativity of addition, we can rewrite \( n + m + k \) as \( n + (m + k) \). Therefore, the goal \( n + m + k = n + k + m \) is equivalent to \( n + (m + k) = n + k + m \).
+
+2. **Step 2: Use Commutativity of Addition**
+By the commutativity of addition, we can rewrite \( m + k \) as \( k + m \). Therefore, the goal \( n + (m + k) = n + k + m \) is equivalent to \( n + (k + m) = n + k + m \).
+
+3. **Step 3: Use Associativity of Addition Again**
+By the associativity of addition, we can rewrite \( n + (k + m) \) as \( n + k + m \). Therefore, the goal \( n + (k + m) = n + k + m \) is equivalent to \( n + k + m = n + k + m \).
+
+4. **Step 4: Reflexive Property of Equality**
+The equation \( n + k + m = n + k + m \) is trivially true by the reflexive property of equality.
+
+Thus, we have shown that \( n + m + k = n + k + m \) for any natural numbers \( n \), \( m \), and \( k \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m k : Nat) : (n + m) + k = (n + k) + m := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m k : Nat) : (n + m) + k = (n + k) + m := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

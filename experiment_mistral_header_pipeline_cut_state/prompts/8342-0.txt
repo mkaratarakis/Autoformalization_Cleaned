@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Boolean Equality is False if Standard Equality is False in Natural Numbers : For any natural numbers \(a\) and \(b\), if the equality \(a = b\) is false, then the boolean equality \(a == b\) is also false.
+
+2. **Informal Proof**  
+We start with the assumption that the equality \(a = b\) is false. We need to show that the boolean equality \(a == b\) is also false.
+
+By the definition of boolean equality, \(a == b\) is equivalent to the boolean value obtained by deciding the proposition \(a = b\), i.e., \(a == b = \text{decide}(a = b)\). Given that \(a = b\) is false, the boolean value \(\text{decide}(a = b)\) is \(\text{false}\). Therefore, \((a == b) = \text{false}\).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} (p : (a = b) = False) : (a == b) = false := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example {a b : Nat} (p : (a = b) = False) : (a == b) = false := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

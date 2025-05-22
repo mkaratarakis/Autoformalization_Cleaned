@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Taking First \( |l_1| + i \) Elements of Concatenated Lists Equals Appending First \( i \) Elements of Second List to First List : For any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \) and any natural number \( i \), taking the first \( |l_1| + i \) elements of the concatenated list \( l_1 ++ l_2 \) is the same as appending the first \( i \) elements of \( l_2 \) to the list \( l_1 \). Mathematically, this can be expressed as:
+\[
+\text{take}(|l_1| + i, l_1 ++ l_2) = l_1 ++ \text{take}(i, l_2)
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that taking the first \( n \) elements of the concatenation of two lists \( l_1 \) and \( l_2 \) is the same as concatenating the first \( n \) elements of \( l_1 \) and the first \( n - \text{length } l_1 \) elements of \( l_2 \). This gives us:
+\[
+\text{take}(|l_1| + i, l_1 ++ l_2) = \text{take}(|l_1| + i, l_1) ++ \text{take}((|l_1| + i) - |l_1|, l_2)
+\]
+Next, we use the fact that the length of \( l_1 \) is less than or equal to \( |l_1| + i \). This implies that taking the first \( |l_1| + i \) elements of \( l_1 \) is just \( l_1 \) itself. Therefore, we have:
+\[
+\text{take}(|l_1| + i, l_1) = l_1
+\]
+Substituting this into our equation, we get:
+\[
+l_1 ++ \text{take}((|l_1| + i) - |l_1|, l_2)
+\]
+Finally, we use the property of natural numbers that \( a + b - a = b \) to simplify \( (|l_1| + i) - |l_1| \) to \( i \). This gives us:
+\[
+l_1 ++ \text{take}(i, l_2)
+\]
+Thus, we have shown that:
+\[
+\text{take}(|l_1| + i, l_1 ++ l_2) = l_1 ++ \text{take}(i, l_2)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} (i : Nat) :
+    take (l₁.length + i) (l₁ ++ l₂) = l₁ ++ take i l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l₁ l₂ : List α} (i : Nat) :
+    take (l₁.length + i) (l₁ ++ l₂) = l₁ ++ take i l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

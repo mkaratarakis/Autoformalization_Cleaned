@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+ZipWith Produces Empty List if and only if One Input List is Empty: \( \text{zipWith } f \, l \, l' = [] \leftrightarrow l = [] \lor l' = [] \) : For any types \( \alpha \), \( \beta \), and \( \gamma \), and any function \( f : \alpha \to \beta \to \gamma \), the result of `zipWith f l l'` is the empty list if and only if at least one of the lists \( l \) or \( l' \) is the empty list. In other words, \( \text{zipWith } f \, l \, l' = [] \) if and only if \( l = [] \) or \( l' = [] \).
+
+2. **Informal Proof**  
+We will consider every possible case for the lists \( l \) and \( l' \).
+
+1. **Case 1: Both \( l \) and \( l' \) are empty lists.**
+- The `zipWith` function applied to two empty lists results in an empty list.
+- Therefore, \( \text{zipWith } f \, [] \, [] = [] \).
+- This is equivalent to \( [] = [] \lor [] = [] \), which is true.
+
+2. **Case 2: \( l \) is the empty list and \( l' \) is a non-empty list.**
+- The `zipWith` function applied to an empty list and a non-empty list results in an empty list.
+- Therefore, \( \text{zipWith } f \, [] \, (head \, \text{::} \, tail) = [] \).
+- This is equivalent to \( [] = [] \lor (head \, \text{::} \, tail) = [] \), which is true.
+
+3. **Case 3: \( l \) is a non-empty list and \( l' \) is the empty list.**
+- The `zipWith` function applied to a non-empty list and an empty list results in an empty list.
+- Therefore, \( \text{zipWith } f \, (head \, \text{::} \, tail) \, [] = [] \).
+- This is equivalent to \( (head \, \text{::} \, tail) = [] \lor [] = [] \), which is true.
+
+4. **Case 4: Both \( l \) and \( l' \) are non-empty lists.**
+- The `zipWith` function applied to two non-empty lists results in a non-empty list.
+- Therefore, \( \text{zipWith } f \, (head_1 \, \text{::} \, tail_1) \, (head_2 \, \text{::} \, tail_2) \neq [] \).
+- This is equivalent to \( (head_1 \, \text{::} \, tail_1) = [] \lor (head_2 \, \text{::} \, tail_2) = [] \), which is false.
+
+In all cases, the result of `zipWith f l l'` is the empty list if and only if at least one of the lists \( l \) or \( l' \) is the empty list. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {f : α → β → γ} {l l'} : zipWith f l l' = [] ↔ l = [] ∨ l' = [] := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {f : α → β → γ} {l l'} : zipWith f l l' = [] ↔ l = [] ∨ l' = [] := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

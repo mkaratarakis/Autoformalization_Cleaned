@@ -1,0 +1,72 @@
+
+1. **Informal Theorem**  
+Removal of Predicate-Satisfying Element from Filtered List : For any type \( \alpha \), a predicate \( p \) on \( \alpha \), and a predicate \( f \) on \( \alpha \), the result of removing the first element satisfying \( p \) from the list filtered by \( f \) is the same as filtering the list by \( f \) and then removing the first element that satisfies both \( p \) and \( f \). Formally, for any list \( l \) of elements of \( \alpha \),
+\[
+\text{eraseP } p (\text{filter } f \, l) = \text{filter } f (\text{eraseP } (p \land f) \, l).
+\]
+
+2. **Informal Proof**  
+We start by using the equivalence that the `filterMap` operation with `Option.guard` is the same as the `filter` operation. This allows us to rewrite the goal as:
+\[
+\text{filterMap } (Option.guard \, f) \, (\text{eraseP } (fun x => p x \land f x) \, l) = \text{filterMap } (Option.guard \, f) \, (\text{eraseP } (fun x => p x \land f x) \, l).
+\]
+It suffices to show this new goal.
+
+Next, we decompose the equality to prove that the function applied to the list on both sides of the equation is the same. This reduces our goal to showing:
+\[
+(fun x => p x \land f x) = (fun x => p x \land f x).
+\]
+
+To prove this, we introduce a new variable \( x \) into the context to reason about the expression, allowing us to consider cases or instances involving \( x \). This reduces our goal to showing:
+\[
+\text{match } (if f x = \text{true} \, \text{then } some \, x \, \text{else } none) \, \text{with} \\
+\text{| some } y \, \text{=> } p y \\
+\text{| none } \, \text{=> } \text{false} \\
+\text{end} = (p x \land f x).
+\]
+
+Using the definition of `Option.guard`, we can simplify the expression to:
+\[
+\text{match } (if f x = \text{true} \, \text{then } some \, x \, \text{else } none) \, \text{with} \\
+\text{| some } y \, \text{=> } p y \\
+\text{| none } \, \text{=> } \text{false} \\
+\text{end} = (p x \land f x).
+\]
+
+We now discuss by cases based on the condition \( f x = \text{true} \):
+- If \( f x = \text{true} \), then the expression simplifies to:
+\[
+p y = (p x \land f x)
+\]
+where \( y = x \). Since \( y = x \), this reduces to:
+\[
+p x = (p x \land f x)
+\]
+which is true because \( f x = \text{true} \).
+- If \( f x = \text{false} \), then the expression simplifies to:
+\[
+\text{false} = (p x \land f x)
+\]
+which is true because \( f x = \text{false} \).
+
+Thus, the original goal is established, and the proof is complete.
+
+3. **Formal Theorem**  
+example (f : α → Bool) (l : List α) :
+    (filter f l).eraseP p = filter f (l.eraseP (fun x => p x && f x)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example (f : α → Bool) (l : List α) :
+    (filter f l).eraseP p = filter f (l.eraseP (fun x => p x && f x)) := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

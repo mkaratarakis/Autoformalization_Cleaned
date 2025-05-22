@@ -1,0 +1,23 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:4: error: no goals to be solved
+tmp.lean:21:6: error: no goals to be solved
+tmp.lean:24:6: error: no goals to be solved
+tmp.lean:7:71: error: unsolved goals
+case true
+y : Bool
+⊢ (true && y) = false ↔ true = true → y = false
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (x && y) = false ↔ (x = true → y = false) := by
+  intros x y
+  cases x
+  · -- Case where x = false
+    simp

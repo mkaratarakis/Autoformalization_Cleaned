@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+ZipWith Distributes Over List Concatenation with Equal Lengths : For any types $\alpha$, $\beta$, and $\gamma$, and for any function $f : \alpha \to \beta \to \gamma$, and any lists $l, l_a : \text{List} \, \alpha$ and $l', l_b : \text{List} \, \beta$, if the lengths of $l$ and $l'$ are equal, then the list obtained by applying `zipWith` to the concatenation of $l$ and $l_a$ with the concatenation of $l'$ and $l_b$ is equal to the concatenation of the lists obtained by applying `zipWith` to $l$ and $l'$ and to $l_a$ and $l_b$. In other words, if $|l| = |l'|$, then:
+\[ \text{zipWith } f \, (l \, ++ \, l_a) \, (l' \, ++ \, l_b) = (\text{zipWith } f \, l \, l') \, ++ \, (\text{zipWith } f \, l_a \, l_b) \]
+
+2. **Informal Proof**  
+We prove this by induction on the list \(l\).
+
+**Base Case:**
+Consider the case where \(l\) is the empty list \([]\). We need to show:
+\[ \text{zipWith } f \, ([] \, ++ \, l_a) \, (l' \, ++ \, l_b) = (\text{zipWith } f \, [] \, l') \, ++ \, (\text{zipWith } f \, l_a \, l_b) \]
+
+Since the length of \(l\) is zero, the length of \(l'\) must also be zero. Therefore, \(l'\) is the empty list \([]\). Simplifying both sides, we get:
+\[ \text{zipWith } f \, l_a \, (l_b) = \text{zipWith } f \, l_a \, l_b \]
+which is trivially true.
+
+**Inductive Step:**
+Assume the statement holds for a list \(tl\) of length \(n\). We need to show it holds for a list \(hl :: tl\) of length \(n + 1\). Consider the list \(l = hl :: tl\). We need to show:
+\[ \text{zipWith } f \, ((hl :: tl) \, ++ \, l_a) \, (l' \, ++ \, l_b) = (\text{zipWith } f \, (hl :: tl) \, l') \, ++ \, (\text{zipWith } f \, l_a \, l_b) \]
+
+Since the lengths of \(l\) and \(l'\) are equal, \(l'\) must be of the form \(head :: tail\) where the lengths of \(tl\) and \(tail\) are equal. Using the induction hypothesis, we have:
+\[ \text{zipWith } f \, (tl \, ++ \, l_a) \, (tail \, ++ \, l_b) = (\text{zipWith } f \, tl \, tail) \, ++ \, (\text{zipWith } f \, l_a \, l_b) \]
+
+Simplifying the left-hand side, we get:
+\[ \text{zipWith } f \, (hl :: (tl \, ++ \, l_a)) \, (head :: (tail \, ++ \, l_b)) = f(hl, head) :: (\text{zipWith } f \, (tl \, ++ \, l_a) \, (tail \, ++ \, l_b)) \]
+
+Using the induction hypothesis, this becomes:
+\[ f(hl, head) :: ((\text{zipWith } f \, tl \, tail) \, ++ \, (\text{zipWith } f \, l_a \, l_b)) \]
+
+Simplifying the right-hand side, we get:
+\[ (\text{zipWith } f \, (hl :: tl) \, (head :: tail)) \, ++ \, (\text{zipWith } f \, l_a \, l_b) = (f(hl, head) :: (\text{zipWith } f \, tl \, tail)) \, ++ \, (\text{zipWith } f \, l_a \, l_b) \]
+
+Both sides are equal, thus completing the inductive step.
+
+Therefore, by induction, the theorem holds for all lists \(l\) and \(l'\) of equal length. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : α → β → γ) (l la : List α) (l' lb : List β)
+    (h : l.length = l'.length) :
+    zipWith f (l ++ la) (l' ++ lb) = zipWith f l l' ++ zipWith f la lb := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example (f : α → β → γ) (l la : List α) (l' lb : List β)
+    (h : l.length = l'.length) :
+    zipWith f (l ++ la) (l' ++ lb) = zipWith f l l' ++ zipWith f la lb := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

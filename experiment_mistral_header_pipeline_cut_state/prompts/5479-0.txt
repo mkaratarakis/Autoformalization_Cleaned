@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Disjunction Rotation: \( a \lor b \lor c \leftrightarrow b \lor c \lor a \) : For any propositions \( a \), \( b \), and \( c \), the disjunction \( a \lor b \lor c \) is logically equivalent to \( b \lor c \lor a \), i.e., \( a \lor b \lor c \leftrightarrow b \lor c \lor a \).
+
+2. **Informal Proof**  
+We start by applying the left commutativity of disjunction, which states that \( a \lor b \lor c \leftrightarrow b \lor a \lor c \). Next, we use the commutativity of disjunction, which states that \( a \lor b \leftrightarrow b \lor a \). Combining these, we can rearrange the terms to show that \( a \lor b \lor c \) is equivalent to \( b \lor c \lor a \). This completes the proof.
+
+3. **Formal Theorem**  
+example : a ∨ b ∨ c ↔ b ∨ c ∨ a := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : a ∨ b ∨ c ↔ b ∨ c ∨ a := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

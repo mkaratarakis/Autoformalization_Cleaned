@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Greatest Common Divisor Characterization: \(\gcd(a, b) = g\) if and only if \( g \mid a \) and \( g \mid b \) and \( c \mid a \) and \( c \mid b \) implies \( c \mid g \) : For any natural numbers \( g, a, \) and \( b \), the greatest common divisor \(\gcd(a, b)\) is equal to \( g \) if and only if \( g \) divides both \( a \) and \( b \), and for any natural number \( c \), if \( c \) divides both \( a \) and \( b \), then \( c \) also divides \( g \). In other words, \(\gcd(a, b) = g\) if and only if \( g \mid a \) and \( g \mid b \), and for all \( c \), \( c \mid a \) and \( c \mid b \) implies \( c \mid g \).
+
+2. **Informal Proof**  
+To prove the equivalence, we need to show both directions.
+
+1. **First Direction:**
+- Assume \(\gcd(a, b) = g\).
+- By the definition of the greatest common divisor, \(g \mid a\) and \(g \mid b\).
+- For any \(c\), if \(c \mid a\) and \(c \mid b\), then \(c \mid \gcd(a, b)\) by the property of the greatest common divisor.
+- Therefore, \(c \mid g\).
+
+2. **Second Direction:**
+- Assume \(g \mid a\), \(g \mid b\), and for any \(c\), if \(c \mid a\) and \(c \mid b\), then \(c \mid g\).
+- To show \(\gcd(a, b) = g\), we use the antisymmetry of divisibility.
+- It suffices to show that \(\gcd(a, b) \mid g\) and \(g \mid \gcd(a, b)\).
+- Since \(g \mid a\) and \(g \mid b\), by the assumption \(hc\), we have \(\gcd(a, b) \mid g\).
+- By the definition of the greatest common divisor, \(\gcd(a, b) \mid a\) and \(\gcd(a, b) \mid b\).
+- Therefore, \(g \mid \gcd(a, b)\).
+
+Since both directions are proven, we conclude that \(\gcd(a, b) = g\) if and only if \(g \mid a\), \(g \mid b\), and for any \(c\), if \(c \mid a\) and \(c \mid b\), then \(c \mid g\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Nat) :
+    gcd a b = g ↔ g ∣ a ∧ g ∣ b ∧ (∀ c, c ∣ a → c ∣ b → c ∣ g) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (a b : Nat) :
+    gcd a b = g ↔ g ∣ a ∧ g ∣ b ∧ (∀ c, c ∣ a → c ∣ b → c ∣ g) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

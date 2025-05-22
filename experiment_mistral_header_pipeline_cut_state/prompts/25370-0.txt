@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Negation of Exclusive Or: $\text{xor}(\neg x, y) = \neg \text{xor}(x, y)$ : For any boolean values $x$ and $y$, the exclusive or of the negation of $x$ and $y$ is equal to the negation of the exclusive or of $x$ and $y$, i.e., $\text{xor}(\neg x, y) = \neg \text{xor}(x, y)$.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values $x$ and $y$, the equality $\text{xor}(\neg x, y) = \neg \text{xor}(x, y)$ holds. We can verify this by checking all possible combinations of $x$ and $y$:
+
+1. **Case 1: $x = 0$ and $y = 0$**
+- $\text{xor}(\neg 0, 0) = \text{xor}(1, 0) = 1$
+- $\neg \text{xor}(0, 0) = \neg 0 = 1$
+- Thus, $\text{xor}(\neg 0, 0) = \neg \text{xor}(0, 0)$.
+
+2. **Case 2: $x = 0$ and $y = 1$**
+- $\text{xor}(\neg 0, 1) = \text{xor}(1, 1) = 0$
+- $\neg \text{xor}(0, 1) = \neg 1 = 0$
+- Thus, $\text{xor}(\neg 0, 1) = \neg \text{xor}(0, 1)$.
+
+3. **Case 3: $x = 1$ and $y = 0$**
+- $\text{xor}(\neg 1, 0) = \text{xor}(0, 0) = 0$
+- $\neg \text{xor}(1, 0) = \neg 1 = 0$
+- Thus, $\text{xor}(\neg 1, 0) = \neg \text{xor}(1, 0)$.
+
+4. **Case 4: $x = 1$ and $y = 1$**
+- $\text{xor}(\neg 1, 1) = \text{xor}(0, 1) = 1$
+- $\neg \text{xor}(1, 1) = \neg 0 = 1$
+- Thus, $\text{xor}(\neg 1, 1) = \neg \text{xor}(1, 1)$.
+
+Since the equality holds for all possible combinations of $x$ and $y$, we conclude that for any boolean values $x$ and $y$, the exclusive or of the negation of $x$ and $y$ is equal to the negation of the exclusive or of $x$ and $y$, i.e., $\text{xor}(\neg x, y) = \neg \text{xor}(x, y)$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), xor (!x) y = !(xor x y) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), xor (!x) y = !(xor x y) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

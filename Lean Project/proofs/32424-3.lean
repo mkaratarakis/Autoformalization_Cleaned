@@ -1,0 +1,20 @@
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n m k) : succ n - m - succ k = n - m - k := by
+  rw [Nat.sub_sub, Nat.sub_sub]
+  rw [Nat.add_succ, Nat.sub_succ]
+  rw [←Nat.add_assoc, Nat.add_comm (m + k) 1, Nat.add_succ]
+  rw [Nat.sub_add_eq_sub]
+  rw [Nat.sub_sub]
+
+/- ACTUAL PROOF OF Nat.succ_sub_sub_succ -/
+
+example (n m k) : succ n - m - succ k = n - m - k := by
+  rw [Nat.sub_sub, Nat.sub_sub, add_succ, succ_sub_succ]

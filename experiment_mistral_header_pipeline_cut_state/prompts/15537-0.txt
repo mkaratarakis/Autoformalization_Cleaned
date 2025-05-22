@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Left Multiplication Cancellation in Natural Numbers: \(a \cdot b < a \cdot c \to b < c\) : For any natural numbers \(a\), \(b\), and \(c\), if \(a \neq 0\) and \(a \cdot b < a \cdot c\), then \(b < c\).
+
+2. **Informal Proof**  
+We need to show that if \(a \cdot b < a \cdot c\) for natural numbers \(a\), \(b\), and \(c\), and \(a \neq 0\), then \(b < c\).
+
+1. **Case 1: \(a = 0\)**
+
+If \(a = 0\), the hypothesis \(a \cdot b < a \cdot c\) becomes \(0 \cdot b < 0 \cdot c\), which simplifies to \(0 < 0\). This is a contradiction, so this case is impossible.
+
+2. **Case 2: \(a \neq 0\)**
+
+If \(a \neq 0\), we can write \(a\) as \(a = n + 1\) for some natural number \(n\). The hypothesis \(a \cdot b < a \cdot c\) becomes \((n + 1) \cdot b < (n + 1) \cdot c\). Since \(n + 1\) is a positive natural number, we can cancel it from both sides of the inequality, which gives us \(b < c\).
+
+Therefore, in the only possible case where \(a \neq 0\), we have \(b < c\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Nat} (h : a * b < a * c) : b < c := by sorry
+
+4. **Prefix**
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example {a b c : Nat} (h : a * b < a * c) : b < c := by
+
+5. **Header Information**  
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Mod not found. --
+

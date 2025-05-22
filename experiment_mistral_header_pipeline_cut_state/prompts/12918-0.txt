@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Count of Elements Satisfying a Predicate in Concatenated Lists: \(\text{countP}(p, l_1 \oplus l_2) = \text{countP}(p, l_1) + \text{countP}(p, l_2)\) : For any type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), the count of elements in the list \( l_1 \) that satisfy \( p \) plus the count of elements in the list \( l_2 \) that satisfy \( p \) is equal to the count of elements in the concatenated list \( l_1 \oplus l_2 \) that satisfy \( p \). In other words, for lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), the following holds:
+\[
+\text{countP}(p, l_1 \oplus l_2) = \text{countP}(p, l_1) + \text{countP}(p, l_2)
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of \(\text{countP}\) and the properties of list operations. Specifically, we use the following facts:
+1. The count of elements satisfying a predicate \( p \) in a list \( l \) is equal to the length of the filtered list \(\text{filter}(p, l)\). Formally, \(\text{countP}(p, l) = \text{length}(\text{filter}(p, l))\).
+2. The filter of a concatenated list is the concatenation of the filters. Formally, \(\text{filter}(p, l_1 \oplus l_2) = \text{filter}(p, l_1) \oplus \text{filter}(p, l_2)\).
+3. The length of a concatenated list is the sum of the lengths of the individual lists. Formally, \(\text{length}(l_1 \oplus l_2) = \text{length}(l_1) + \text{length}(l_2)\).
+
+Using these properties, we can simplify the left-hand side of the equation:
+\[
+\text{countP}(p, l_1 \oplus l_2) = \text{length}(\text{filter}(p, l_1 \oplus l_2))
+\]
+By the second property, this becomes:
+\[
+\text{length}(\text{filter}(p, l_1) \oplus \text{filter}(p, l_2))
+\]
+By the third property, this further simplifies to:
+\[
+\text{length}(\text{filter}(p, l_1)) + \text{length}(\text{filter}(p, l_2))
+\]
+Using the first property again, we get:
+\[
+\text{countP}(p, l_1) + \text{countP}(p, l_2)
+\]
+
+Thus, we have shown that:
+\[
+\text{countP}(p, l_1 \oplus l_2) = \text{countP}(p, l_1) + \text{countP}(p, l_2)
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (l₁ l₂) : countP p (l₁ ++ l₂) = countP p l₁ + countP p l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example (l₁ l₂) : countP p (l₁ ++ l₂) = countP p l₁ + countP p l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

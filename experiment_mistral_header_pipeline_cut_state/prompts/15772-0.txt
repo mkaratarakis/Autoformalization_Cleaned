@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Equality of Natural Numbers from Bitwise Equality: \( x = y \) if \( x \) and \( y \) have the same bits for all \( i \) : For any natural numbers \( x \) and \( y \), if for all natural numbers \( i \), the \( i \)-th bit of \( x \) is equal to the \( i \)-th bit of \( y \), then \( x \) is equal to \( y \). In other words, if \( x \) and \( y \) have the same bits at every position, then \( x = y \).
+
+2. **Informal Proof**  
+To prove that \( x = y \) given that for all natural numbers \( i \), \( x.testBit i = y.testBit i \), we proceed by contradiction. Assume \( x \neq y \). By the theorem that if \( x \neq y \), then there exists a natural number \( i \) such that the \( i \)-th bit of \( x \) is different from the \( i \)-th bit of \( y \), we can find such an \( i \) and a corresponding bit difference \( x.testBit i \neq y.testBit i \). Let \( p \) be the predecessor of \( i \). This leads to a contradiction because we assumed that for all \( i \), \( x.testBit i = y.testBit i \). Therefore, our assumption \( x \neq y \) must be false, and thus \( x = y \). This completes the proof.
+
+3. **Formal Theorem**  
+example {x y : Nat} (pred : ∀i, testBit x i = testBit y i) : x = y := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example {x y : Nat} (pred : ∀i, testBit x i = testBit y i) : x = y := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

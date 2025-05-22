@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Element Retrieval in `zipWith` Result List : For any types \(\alpha\), \(\beta\), and \(\gamma\), and for any function \(f : \alpha \to \beta \to \gamma\), given lists \(l : \text{List } \alpha\) and \(l' : \text{List } \beta\), and a natural number \(i\) such that \(i\) is less than the length of the list obtained by applying `List.zipWith` to \(l\) and \(l'\), the element at index \(i\) in the resulting list from `List.zipWith` is equal to the result of applying \(f\) to the elements at index \(i\) in \(l\) and \(l'\). In other words:
+\[ (\text{zipWith } f \, l \, l')[i] = f(l[i], l'[i]) \]
+
+2. **Informal Proof**  
+We start by using the injectivity of the `some` constructor and the equivalence between element retrieval with a valid index and optional element retrieval. This allows us to transform the goal \((\text{zipWith } f \, l \, l')[i] = f(l[i], l'[i])\) into the equivalent goal:
+\[ \exists x \, y, \, l[i]? = \text{some } x \, \land \, l'[i]? = \text{some } y \, \land \, f(x, y) = f(l[i], l'[i]) \]
+
+To prove this, we construct the elements \(x\) and \(y\) as follows:
+- Since \(i < \text{length}(\text{zipWith } f \, l \, l')\), it follows from the properties of `zipWith` that \(i < \text{length}(l)\) and \(i < \text{length}(l')\).
+- Therefore, \(l[i]? = \text{some } l[i]\) and \(l'[i]? = \text{some } l'[i]\).
+- By the definition of `zipWith`, \(f(l[i], l'[i]) = f(l[i], l'[i])\), which is trivially true by the reflexivity of equality.
+
+Thus, we have shown that:
+\[ (\text{zipWith } f \, l \, l')[i] = f(l[i], l'[i]) \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {f : α → β → γ} {l : List α} {l' : List β}
+    {i : Nat} {h : i < (zipWith f l l').length} :
+    (zipWith f l l')[i] =
+      f (l[i]'(lt_length_left_of_zipWith h))
+        (l'[i]'(lt_length_right_of_zipWith h)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {f : α → β → γ} {l : List α} {l' : List β}
+    {i : Nat} {h : i < (zipWith f l l').length} :
+    (zipWith f l l')[i] =
+      f (l[i]'(lt_length_left_of_zipWith h))
+        (l'[i]'(lt_length_right_of_zipWith h)) := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

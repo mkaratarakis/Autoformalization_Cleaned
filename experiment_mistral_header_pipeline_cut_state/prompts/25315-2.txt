@@ -1,0 +1,35 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:4: error: type mismatch
+  Or.inl h
+has type
+  y = true ∨ ?m.180 : Prop
+but is expected to have type
+  y = true : Prop
+tmp.lean:10:2: error: unsolved goals
+case mp.false
+y : Bool
+h : y = true
+⊢ y = true
+tmp.lean:7:67: error: unsolved goals
+case mpr
+x y : Bool
+⊢ x = true ∨ y = true → (x || y) = true
+case mp.false
+y : Bool
+h : y = true
+⊢ y = true
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (x || y) = true ↔ x = true ∨ y = true := by
+  intro x y
+  apply Iff.intro
+  . intro h
+    cases x <;> simp [*] at *

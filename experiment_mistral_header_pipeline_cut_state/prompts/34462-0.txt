@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Element Retrieval in Sublist Equals Element Retrieval in Original List : For any type \(\alpha\), any list \(l\) of elements of type \(\alpha\), and any natural numbers \(m\) and \(n\) such that \(m < n\), the \(m\)-th element of the list obtained by taking the first \(n\) elements of \(l\) is equal to the \(m\)-th element of \(l\) itself, i.e., \((\text{take } n \, l)[m]? = l[m]?\).
+
+2. **Informal Proof**  
+We prove this by induction on the natural number \( n \).
+
+**Base Case:**
+For \( n = 0 \), we need to show that \((\text{take } 0 \, l)[m]? = l[m]?\). Since \( m < 0 \) is impossible (as \( m \) is a natural number and \( 0 \leq m \)), the goal is vacuously true.
+
+**Inductive Step:**
+Assume the statement holds for \( n = n' \), i.e., for any list \( l \) and any natural number \( m \) such that \( m < n' \), \((\text{take } n' \, l)[m]? = l[m]?\). We need to show that the statement holds for \( n = n' + 1 \).
+
+**Case 1:**
+If \( l \) is the empty list, then \((\text{take } (n' + 1) \, \text{nil})[m]? = \text{nil}[m]?\). Since taking any number of elements from an empty list results in an empty list, this is trivially true.
+
+**Case 2:**
+If \( l \) is a non-empty list, i.e., \( l = \text{hd} :: \text{tl} \), we perform case analysis on \( m \).
+
+- **Subcase 1:**
+If \( m = 0 \), we need to show that \((\text{take } (n' + 1) \, (\text{hd} :: \text{tl}))[0]? = (\text{hd} :: \text{tl})[0]?\). This is trivially true because the first element of the list is \( \text{hd} \).
+
+- **Subcase 2:**
+If \( m = m' + 1 \), we need to show that \((\text{take } (n' + 1) \, (\text{hd} :: \text{tl}))[m' + 1]? = (\text{hd} :: \text{tl})[m' + 1]?\). Using the fact that if \( m' + 1 < n' + 1 \), then \( m' < n' \), and by the induction hypothesis, we have \((\text{take } n' \, \text{tl})[m']? = \text{tl}[m']?\). Therefore, \((\text{take } (n' + 1) \, (\text{hd} :: \text{tl}))[m' + 1]? = (\text{hd} :: \text{tl})[m' + 1]?\).
+
+By induction, the statement holds for all natural numbers \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} {n m : Nat} (h : m < n) : (l.take n)[m]? = l[m]? := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} {n m : Nat} (h : m < n) : (l.take n)[m]? = l[m]? := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

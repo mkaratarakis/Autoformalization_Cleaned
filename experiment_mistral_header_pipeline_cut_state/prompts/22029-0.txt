@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Last Element of Partial Map is the Image of the Last Element: \((\text{pmap } f \, l \, hl_1).\text{getLast} = f (l.\text{getLast} \, hl_2)\) : For any types \( \alpha \) and \( \beta \), a predicate \( p : \alpha \to \text{Prop} \), a partial function \( f : \Pi a, p a \to \beta \), a non-empty list \( l \) of elements of type \( \alpha \) such that all elements of \( l \) satisfy \( p \), and proofs \( hl_1 \) and \( hl_2 \) that all elements of \( l \) satisfy \( p \) and that \( l \) is non-empty, respectively, the last element of the partial map of \( l \) under \( f \) and \( hl_1 \) is equal to the application of \( f \) to the last element of \( l \) and the proof \( hl_2 \). In other words, if \( l \neq [] \) and \( \forall a \in l, p a \), then \((\text{pmap } f \, l \, hl_1).\text{getLast} \, \cdots = f (l.\text{getLast} \, hl_2) \, \cdots\).
+
+2. **Informal Proof**  
+We need to show that the last element of the partial map of a list \( l \) under a partial function \( f \) and a proof \( hl_1 \) is equal to the application of \( f \) to the last element of \( l \) and a proof \( hl_2 \).
+
+1. **Base Case:**
+- Consider the case where the list \( l \) is empty.
+- Since \( l \) is non-empty by assumption, this case is impossible.
+- Therefore, we can use the principle of explosion to conclude the goal trivially.
+
+2. **Inductive Step:**
+- Consider the case where the list \( l \) is non-empty and can be written as the head element \( l_{\text{hd}} \) followed by the tail \( l_{\text{tl}} \).
+- We split the proof into two cases:
+- **Case 1: The tail \( l_{\text{tl}} \) is empty.**
+- Using the property that the last element of a list with a prepended element is the same as the last element of the original list, we simplify our goal to show that the last element of the partial map of the list is the application of the function to the head element of the list.
+- Since the tail is empty, the list is just the head element, and the goal is trivially satisfied.
+- **Case 2: The tail \( l_{\text{tl}} \) is non-empty.**
+- Using the definition of the partial map, we simplify the goal to show that the last element of the partial map of the tail is the application of the function to the last element of the tail.
+- We use the property that the last element of a list with a prepended element is the same as the last element of the original list, and the induction hypothesis to simplify the goal.
+- This reduces our goal to showing that the last element of the partial map of the tail is the application of the function to the last element of the tail, which is exactly what the induction hypothesis states.
+- Finally, we use the property that the last element of a list with a prepended element is the same as the last element of the original list to simplify the goal and complete the proof.
+
+Thus, we have shown that the last element of the partial map of \( l \) under \( f \) and \( hl_1 \) is equal to the application of \( f \) to the last element of \( l \) and the proof \( hl_2 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : α → Prop) (f : ∀ a, p a → β) (l : List α)
+    (hl₁ : ∀ a ∈ l, p a) (hl₂ : l ≠ []) :
+    (l.pmap f hl₁).getLast (mt List.pmap_eq_nil.1 hl₂) =
+      f (l.getLast hl₂) (hl₁ _ (List.getLast_mem hl₂)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.Subtype
+import Init.Data.List.Attach
+
+open List
+
+
+example (p : α → Prop) (f : ∀ a, p a → β) (l : List α)
+    (hl₁ : ∀ a ∈ l, p a) (hl₂ : l ≠ []) :
+    (l.pmap f hl₁).getLast (mt List.pmap_eq_nil.1 hl₂) =
+      f (l.getLast hl₂) (hl₁ _ (List.getLast_mem hl₂)) := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.Subtype not found. --
+
+-- Init.Data.List.Attach not found. --
+

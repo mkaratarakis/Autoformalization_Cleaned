@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Conjunction Equivalence Implies Propositional Equivalence: \( (a \land c \leftrightarrow b \land c) \leftrightarrow (c \to (a \leftrightarrow b)) \) : For any propositions \( a \), \( b \), and \( c \), the conjunctions \( a \land c \) and \( b \land c \) are logically equivalent if and only if \( c \) implies that \( a \) and \( b \) are logically equivalent, i.e., \( a \land c \leftrightarrow b \land c \) if and only if \( c \to (a \leftrightarrow b) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \( (a \land c \leftrightarrow b \land c) \leftrightarrow (c \to (a \leftrightarrow b)) \).
+
+1. **Step 1:**
+We use the commutativity of conjunction to rewrite the goal. Specifically, we apply the commutativity of conjunction to both sides of the bi-implication \( a \land c \leftrightarrow b \land c \), which transforms it into \( c \land a \leftrightarrow c \land b \). This step is justified by the theorem that states \( a \land b \leftrightarrow b \land a \) for any propositions \( a \) and \( b \).
+
+2. **Step 2:**
+Next, we use the theorem that states \( (a \land b) \leftrightarrow (a \land c) \) if and only if \( a \to (b \leftrightarrow c) \) to rewrite the goal again. This theorem allows us to transform the goal \( (c \land a \leftrightarrow c \land b) \) into \( c \to (a \leftrightarrow b) \).
+
+3. **Step 3:**
+After these transformations, the goal becomes \( (c \land a \leftrightarrow c \land b) \leftrightarrow (c \to (a \leftrightarrow b)) \). Since the left-hand side of the bi-implication is now the same as the right-hand side, the goal is trivially true by reflexivity.
+
+Thus, we have shown that \( (a \land c \leftrightarrow b \land c) \leftrightarrow (c \to (a \leftrightarrow b)) \), completing the proof.
+
+3. **Formal Theorem**  
+example : (a ∧ c ↔ b ∧ c) ↔ c → (a ↔ b) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example : (a ∧ c ↔ b ∧ c) ↔ c → (a ↔ b) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

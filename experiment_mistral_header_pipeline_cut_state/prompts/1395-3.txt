@@ -1,0 +1,76 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:15:28: error: unexpected token '·'; expected '|'
+tmp.lean:12:4: error: unsolved goals
+case pos
+a b : Nat
+h : compareOfLessAndEq a b = Ordering.eq
+h1 : a < b
+⊢ a = b
+tmp.lean:14:6: error: unsolved goals
+case pos
+a b : Nat
+h : compareOfLessAndEq a b = Ordering.eq
+h1 : ¬a < b
+h2 : b < a
+⊢ a = b
+tmp.lean:15:8: error: missing cases:
+tmp.lean:15:6: error: unsolved goals
+case neg
+a b : Nat
+h : compare a b = Ordering.eq
+h1 : ¬a < b
+h2 : ¬b < a
+this : a ≤ b ∧ b ≤ a
+⊢ a = b
+tmp.lean:8:51: error: unsolved goals
+case mpr
+a b : Nat
+⊢ a = b → compare a b = Ordering.eq
+tmp.lean:12:4: error: unsolved goals
+case pos
+a b : Nat
+h : compareOfLessAndEq a b = Ordering.eq
+h1 : a < b
+⊢ a = b
+tmp.lean:14:6: error: unsolved goals
+case pos
+a b : Nat
+h : compareOfLessAndEq a b = Ordering.eq
+h1 : ¬a < b
+h2 : b < a
+⊢ a = b
+tmp.lean:13:4: error: unsolved goals
+case neg
+a b : Nat
+h : compare a b = Ordering.eq
+h1 : ¬a < b
+h2 : ¬b < a
+⊢ a = b
+tmp.lean:8:51: error: unsolved goals
+case mpr
+a b : Nat
+⊢ a = b → compare a b = Ordering.eq
+case neg
+a b : Nat
+h : compare a b = Ordering.eq
+h1 : ¬a < b
+h2 : ¬b < a
+⊢ a = b
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b = .eq ↔ a = b := by
+  constructor
+  · intro h
+    by_cases h1 : a < b
+    · simp [compare, h1] at h
+    · by_cases h2 : b < a
+      · simp [compare, h2] at h

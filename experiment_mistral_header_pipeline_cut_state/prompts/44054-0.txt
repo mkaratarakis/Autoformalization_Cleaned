@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Underlying Natural Number of Bitvector from Natural Number Modulo \( 2^w \) : For any natural numbers \( x \) and \( w \), the underlying natural number of the bitvector `BitVec.ofNat w x` is equal to \( x \mod 2^w \), i.e., \((\text{BitVec.ofNat } w \, x).toNat = x \mod 2^w\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions of the functions involved. Specifically, we use the definitions of `BitVec.toNat`, `BitVec.ofNat`, and `Fin.ofNat'`.
+
+1. **Definition of `BitVec.ofNat`:**
+- The function `BitVec.ofNat w x` constructs a bitvector of width \( w \) from the natural number \( x \). This bitvector is represented as a natural number \( x \) reduced modulo \( 2^w \).
+
+2. **Definition of `BitVec.toNat`:**
+- The function `BitVec.toNat` extracts the underlying natural number from a bitvector. For a bitvector of width \( w \) constructed from \( x \), this underlying natural number is \( x \mod 2^w \).
+
+3. **Definition of `Fin.ofNat'`:**
+- The function `Fin.ofNat'` ensures that the natural number \( x \) is reduced modulo \( 2^w \) when constructing the bitvector. This means that the bitvector is effectively \( x \mod 2^w \).
+
+By combining these definitions, we see that the underlying natural number of the bitvector \(\text{BitVec.ofNat } w \, x\) is exactly \( x \mod 2^w \). Therefore, the proposition \((\text{BitVec.ofNat } w \, x).toNat = x \mod 2^w\) holds true.
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x w : Nat) : (BitVec.ofNat w x).toNat = x % 2^w := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x w : Nat) : (BitVec.ofNat w x).toNat = x % 2^w := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

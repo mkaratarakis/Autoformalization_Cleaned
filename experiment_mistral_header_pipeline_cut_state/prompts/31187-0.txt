@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Boolean Negation of Equality Coincides with Logical Inequality in Natural Numbers : For any natural numbers \(a\) and \(b\), the boolean negation of the equality \(a == b\) is true if and only if the logical negation of the equality \(a = b\) holds. In other words, \((!a == b) = \text{true}\) if and only if \(a \neq b\).
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \(a\) and \(b\), the boolean negation of the equality \(a == b\) being true is equivalent to the logical negation of the equality \(a = b\).
+
+Using the properties of equality and logical negation, we can simplify the proposition \((!a == b) = \text{true} = \neg a = b\). The boolean negation of the equality \(a == b\) being true is equivalent to the logical negation of the equality \(a = b\). This is a direct consequence of the definition of logical negation and the properties of equality.
+
+Thus, \((!a == b) = \text{true}\) if and only if \(a \neq b\). This completes the proof.
+
+3. **Formal Theorem**  
+example (a b : Nat) : ((!(a == b)) = true) = ¬(a = b) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (a b : Nat) : ((!(a == b)) = true) = ¬(a = b) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

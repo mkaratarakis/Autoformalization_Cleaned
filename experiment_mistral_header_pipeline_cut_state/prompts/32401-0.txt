@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Addition Preserves Strict Inequality: \( b < c - a \) Implies \( a + b < c \) : For any natural numbers \( a \), \( b \), and \( c \), if \( b < c - a \), then \( a + b < c \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the given inequality \( b < c - a \). We need to show that \( a + b < c \).
+
+1. By the commutativity of addition, we can rewrite \( a + b \) as \( b + a \). Thus, the goal is to show \( b + a < c \).
+2. We use the theorem that states if \( b < c - a \), then \( b + a < c \). This theorem directly applies to our situation, and thus we have \( b + a < c \).
+
+Therefore, we have shown that if \( b < c - a \), then \( a + b < c \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b c : Nat} : b < c - a → a + b < c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a b c : Nat} : b < c - a → a + b < c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

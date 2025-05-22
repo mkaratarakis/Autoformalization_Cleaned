@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Modulo Operation Preserves Less Than or Equal Relation in Natural Numbers : For any natural numbers \( x \) and \( y \), the remainder when \( x \) is divided by \( y \) is less than or equal to \( x \), i.e., \( x \% y \leq x \).
+
+2. **Informal Proof**  
+We consider two main cases based on the relationship between \( x \) and \( y \):
+
+1. **Case 1: \( x < y \)**
+If \( x \) is less than \( y \), then by the definition of the modulo operation, \( x \% y = x \). Since \( x \) is equal to itself, it is trivially less than or equal to \( x \).
+
+2. **Case 2: \( x ≥ y \)**
+If \( x \) is greater than or equal to \( y \), we further consider two sub-cases for \( y \):
+
+- **Sub-case 2.1: \( y = 0 \)**
+If \( y \) is zero, then by the definition of the modulo operation, \( x \% 0 = x \). Since \( x \) is equal to itself, it is trivially less than or equal to \( x \).
+
+- **Sub-case 2.2: \( y > 0 \)**
+If \( y \) is positive, then by the property of the modulo operation, \( x \% y < y \). Since \( y \leq x \) (from the assumption \( x ≥ y \)), we can use the transitivity of the less than or equal relation to conclude that \( x \% y \leq x \).
+
+Thus, in all cases, we have shown that \( x \% y \leq x \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : Nat) : x % y ≤ x := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (x y : Nat) : x % y ≤ x := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

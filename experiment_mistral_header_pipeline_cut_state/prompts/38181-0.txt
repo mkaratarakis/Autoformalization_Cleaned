@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Length of String After Appending Character Repeatedly: \(\text{length}(s \text{.pushn } c \text{ } n) = \text{length}(s) + n\) : For any string \( s \), character \( c \), and natural number \( n \), the length of the string obtained by appending \( c \) repeated \( n \) times to \( s \) is equal to the length of \( s \) plus \( n \). Formally, this can be written as:
+\[
+\text{length}(s \text{.pushn } c \text{ } n) = \text{length}(s) + n
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we first unfold the definition of `pushn` to understand how the string is constructed by appending the character \( c \) repeated \( n \) times to \( s \). We then use induction on \( n \).
+
+**Base Case:**
+For \( n = 0 \), the string \( s \text{.pushn } c \text{ } 0 \) is simply \( s \). Therefore, the length of \( s \text{.pushn } c \text{ } 0 \) is the length of \( s \). This gives us:
+\[
+\text{length}(s \text{.pushn } c \text{ } 0) = \text{length}(s) + 0 = \text{length}(s)
+\]
+which is true.
+
+**Inductive Step:**
+Assume the statement is true for some \( n = k \), i.e.,
+\[
+\text{length}(s \text{.pushn } c \text{ } k) = \text{length}(s) + k
+\]
+We need to show that the statement holds for \( n = k + 1 \). By the definition of `pushn`, we have:
+\[
+s \text{.pushn } c \text{ } (k + 1) = (s \text{.pushn } c \text{ } k) \text{.push } c
+\]
+The length of the resulting string is:
+\[
+\text{length}((s \text{.pushn } c \text{ } k) \text{.push } c) = \text{length}(s \text{.pushn } c \text{ } k) + 1
+\]
+Using the inductive hypothesis, we substitute \(\text{length}(s \text{.pushn } c \text{ } k)\) with \(\text{length}(s) + k\):
+\[
+\text{length}((s \text{.pushn } c \text{ } k) \text{.push } c) = (\text{length}(s) + k) + 1 = \text{length}(s) + (k + 1)
+\]
+Thus, the statement holds for \( n = k + 1 \).
+
+By the principle of mathematical induction, the statement is true for all natural numbers \( n \). Therefore, for any string \( s \), character \( c \), and natural number \( n \), the length of the string obtained by appending \( c \) repeated \( n \) times to \( s \) is:
+\[
+\text{length}(s \text{.pushn } c \text{ } n) = \text{length}(s) + n
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (c : Char) (n : Nat) : (pushn s c n).length = s.length + n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Basic
+import Init.Data.Char.Basic
+import Init.Data.Option.Basic
+import Init.Data.String.Basic
+
+open String
+
+
+example (c : Char) (n : Nat) : (pushn s c n).length = s.length + n := by
+
+5. **Header Information**  
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.Option.Basic not found. --
+
+-- Init.Data.String.Basic not found. --
+

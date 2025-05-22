@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Equality of List Length Functions: \(\text{length} = \text{lengthTR}\) : For any list `as` of elements of type `α`, the length of the list computed by the standard `List.length` function is equal to the length of the list computed by the tail-recursive `List.lengthTR` function, i.e., \(\text{length}(as) = \text{lengthTR}(as)\).
+
+2. **Informal Proof**  
+To prove that the standard `List.length` function is equal to the tail-recursive `List.lengthTR` function, we use function extensionality. This means we need to show that for any type `α` and any list `as` of elements of type `α`, the length of `as` computed by `List.length` is equal to the length of `as` computed by `List.lengthTR`.
+
+1. Let `α` be an arbitrary type and `as` be an arbitrary list of elements of type `α`.
+2. We need to show that `as.length = as.lengthTR`.
+3. Using the definition of `List.lengthTR`, which is given by the tail-recursive auxiliary function `List.lengthTRAux`, and the lemma `length_add_eq_lengthTRAux`, which states that the length of a list computed by `List.length` is equal to the length computed by `List.lengthTRAux` with an initial value of `0`, we can simplify the expression `as.length = as.lengthTR`.
+4. Therefore, the equality `as.length = as.lengthTR` holds.
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : @List.length = @List.lengthTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @List.length = @List.lengthTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

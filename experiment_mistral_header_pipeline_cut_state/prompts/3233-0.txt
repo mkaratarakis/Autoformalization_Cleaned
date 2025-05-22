@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Division of Natural Number by Greater Than One is Less Than the Number : For any natural numbers \( n \) and \( k \) such that \( n > 0 \) and \( k > 1 \), the division of \( n \) by \( k \) is strictly less than \( n \), i.e., \( n / k < n \).
+
+2. **Informal Proof**  
+We start by rewriting the division \( n / k \) using the definition of natural number division, which states that \( n / k = \begin{cases} \frac{n - k}{k} + 1 & \text{if } k > 0 \text{ and } k \le n, \\ 0 & \text{otherwise}. \end{cases} \)
+
+We consider two cases based on the condition \( 0 < k \land k \le n \):
+
+1. **Case where the condition is false:**
+If \( 0 < k \land k \le n \) is false, then \( n / k = 0 \). Since \( 0 < n \) by assumption, the goal \( 0 < n \) is trivially true.
+
+2. **Case where the condition is true:**
+If \( 0 < k \land k \le n \) is true, we extract the parts \( 0 < k \) and \( k \le n \), denoting the latter as \( hKN \).
+
+It suffices to show that \( (n - k) / k + 1 < n \). If we can prove this, then using the true condition \( 0 < k \land k \le n \) and simplifying, we will have \( (n - k) / k + 1 < n \), which directly implies \( n / k < n \).
+
+We show that \( (n - k) / k \le n - k \) using the property that division by a number greater than or equal to one does not increase the value in a linear ordered semifield. Specifically, since \( k \ge 1 \), we have \( (n - k) / k \le n - k \).
+
+Using the fact that \( k \le n \) and \( (n - k) / k \le n - k \), we deduce that \( (n - k) / k + k \le n \) by the property of addition and subtraction inequality.
+
+Finally, we use the transitivity of less-than and less-than-or-equal to show that \( (n - k) / k + 1 < n \). Since \( 1 < k \) and \( (n - k) / k + k \le n \), we have \( (n - k) / k + 1 < n \).
+
+Thus, in both cases, we have shown that \( n / k < n \), completing the proof.
+
+3. **Formal Theorem**  
+example {n k : Nat} (hLtN : 0 < n) (hLtK : 1 < k) : n / k < n := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example {n k : Nat} (hLtN : 0 < n) (hLtK : 1 < k) : n / k < n := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

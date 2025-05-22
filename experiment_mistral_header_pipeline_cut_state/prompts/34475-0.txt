@@ -1,0 +1,59 @@
+
+1. **Informal Theorem**  
+First Element of `takeWhile` Result is the First Element of Original List: $(\text{List.takeWhile} \, p \, l).head = l.head$ : For any type $\alpha$ and any predicate $p : \alpha \to \text{Bool}$, if the list $l : \text{List} \, \alpha$ is non-empty after applying `List.takeWhile p` to it, then the first element of the resulting list is equal to the first element of the original list $l$. Formally, if $w : \text{List.takeWhile} \, p \, l \neq \text{nil}$, then $(\text{List.takeWhile} \, p \, l).head \, w = l.head$.
+
+2. **Informal Proof**  
+We need to show that for any list \( l \) and predicate \( p \), if the list \( \text{List.takeWhile} \, p \, l \) is non-empty, then the head of this list is equal to the head of the original list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, the goal is trivially true because both sides of the equality are definitionally equal to the head of the empty list, which is undefined (or the goal is vacuously true).
+
+2. **Inductive Step:**
+- Suppose \( l \) is a non-empty list, which can be written as \( x :: xs \).
+- We need to show that the head of the list \(\text{List.takeWhile} \, p \, (x :: xs)\) is equal to the head of the original list \( x :: xs \).
+
+3. **Simplification:**
+- Using the definition of `List.takeWhile`, we have:
+\[
+\text{List.takeWhile} \, p \, (x :: xs) =
+\begin{cases}
+x :: \text{List.takeWhile} \, p \, xs & \text{if } p(x) = \text{true} \\
+\text{nil} & \text{if } p(x) = \text{false}
+\end{cases}
+\]
+- Using the definition of `List.head`, we have:
+\[
+\text{List.head} \, (x :: xs) = x
+\]
+
+4. **Case Analysis:**
+- **Case 1: \( p(x) = \text{true} \)**
+- In this case, \(\text{List.takeWhile} \, p \, (x :: xs) = x :: \text{List.takeWhile} \, p \, xs\).
+- Therefore, \(\text{List.head} \, (\text{List.takeWhile} \, p \, (x :: xs)) = x\).
+- This matches the head of the original list \( x :: xs \), which is \( x \).
+
+- **Case 2: \( p(x) = \text{false} \)**
+- In this case, \(\text{List.takeWhile} \, p \, (x :: xs) = \text{nil}\).
+- However, the assumption \( w : \text{List.takeWhile} \, p \, (x :: xs) \neq \text{nil} \) contradicts this, so this case is not possible.
+
+Thus, in both cases, the head of the list \(\text{List.takeWhile} \, p \, l\) is equal to the head of the original list \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : α → Bool) (l : List α) (w) :
+    (l.takeWhile p).head w = l.head (by rintro rfl; simp_all) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) (l : List α) (w) :
+    (l.takeWhile p).head w = l.head (by rintro rfl; simp_all) := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+GCD of Zero and Any Natural Number Equals the Number: \(\gcd(0, y) = y\) : For any natural number \( y \), the greatest common divisor of \( 0 \) and \( y \) is equal to \( y \), i.e., \(\gcd(0, y) = y\).
+
+2. **Informal Proof**  
+To prove that \(\gcd(0, y) = y\) for any natural number \( y \), we start by using the definition of the greatest common divisor (gcd). The gcd of two numbers \(a\) and \(b\) is the largest natural number that divides both \(a\) and \(b\). In this case, we are considering \(\gcd(0, y)\).
+
+By the definition of gcd, \(\gcd(0, y)\) is the largest natural number that divides both \(0\) and \(y\). Since any natural number \(y\) divides \(0\) (as \(0 = y \cdot 0\)), the largest number that divides both \(0\) and \(y\) is \(y\) itself. Therefore, \(\gcd(0, y) = y\).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (y : Nat) : gcd 0 y = y := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (y : Nat) : gcd 0 y = y := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

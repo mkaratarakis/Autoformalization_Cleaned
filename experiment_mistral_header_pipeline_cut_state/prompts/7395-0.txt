@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Left List Length Inequality in `zipWith` Operation: \(i < \text{length}(\text{zipWith } f \, l \, l') \to i < \text{length}(l)\) : For any types \(\alpha\), \(\beta\), and \(\gamma\), and for any function \(f : \alpha \to \beta \to \gamma\), if \(i\) is a natural number such that \(i\) is less than the length of the list obtained by applying `List.zipWith` to lists \(l : \text{List } \alpha\) and \(l' : \text{List } \beta\), then \(i\) is also less than the length of \(l\).
+
+2. **Informal Proof**  
+We start with the assumption that \( i < \text{length}(\text{zipWith } f \, l \, l') \). By the property of the `List.zipWith` operation, the length of the resulting list is equal to the minimum of the lengths of the input lists \( l \) and \( l' \). Therefore, we can rewrite the assumption as \( i < \min(\text{length}(l), \text{length}(l')) \).
+
+Next, we use the property of the minimum function, which states that if a number is less than the minimum of two numbers, it is less than each of those numbers. Hence, \( i < \min(\text{length}(l), \text{length}(l')) \) implies \( i < \text{length}(l) \).
+
+Thus, we have shown that if \( i < \text{length}(\text{zipWith } f \, l \, l') \), then \( i < \text{length}(l) \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {f : α → β → γ} {i : Nat} {l : List α} {l' : List β}
+    (h : i < (zipWith f l l').length) : i < l.length := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {f : α → β → γ} {i : Nat} {l : List α} {l' : List β}
+    (h : i < (zipWith f l l').length) : i < l.length := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

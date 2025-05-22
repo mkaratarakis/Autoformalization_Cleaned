@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Negation is Injective in Boolean Values: $\neg x = \neg y \iff x = y$ : For any boolean values $x$ and $y$, the negation of $x$ is equal to the negation of $y$ if and only if $x$ is equal to $y$. In other words, $\neg x = \neg y \iff x = y$.
+
+2. **Informal Proof**  
+To prove the statement, we consider all possible values of $x$ and $y$ in the boolean domain, which are $\{ \text{true}, \text{false} \}$. We will check the equivalence $\neg x = \neg y \iff x = y$ for each combination of $x$ and $y$.
+
+1. **Case 1: $x = \text{true}$ and $y = \text{true}$**
+- $\neg x = \neg \text{true} = \text{false}$
+- $\neg y = \neg \text{true} = \text{false}$
+- Therefore, $\neg x = \neg y$ and $x = y$.
+
+2. **Case 2: $x = \text{true}$ and $y = \text{false}$**
+- $\neg x = \neg \text{true} = \text{false}$
+- $\neg y = \neg \text{false} = \text{true}$
+- Therefore, $\neg x \neq \neg y$ and $x \neq y$.
+
+3. **Case 3: $x = \text{false}$ and $y = \text{true}$**
+- $\neg x = \neg \text{false} = \text{true}$
+- $\neg y = \neg \text{true} = \text{false}$
+- Therefore, $\neg x \neq \neg y$ and $x \neq y$.
+
+4. **Case 4: $x = \text{false}$ and $y = \text{false}$**
+- $\neg x = \neg \text{false} = \text{true}$
+- $\neg y = \neg \text{false} = \text{true}$
+- Therefore, $\neg x = \neg y$ and $x = y$.
+
+In all cases, we have verified that $\neg x = \neg y$ if and only if $x = y$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, (!x) = (!y) ↔ x = y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, (!x) = (!y) ↔ x = y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

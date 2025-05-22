@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Underlying Natural Number of Zero Bitvector is Zero : For any natural number \( n \), the underlying natural number of the bitvector \( 0^n \) (a bitvector of width \( n \) with all bits set to 0) is 0, i.e., \((0^n).toNat = 0\).
+
+2. **Informal Proof**  
+To prove that the underlying natural number of the bitvector \(0^n\) is 0, we note that \(0^n\) is a bitvector of width \( n \) with all bits set to 0. By the definition of the `toNat` function for bitvectors, the natural number representation of a bitvector with all bits set to 0 is 0. Therefore, \((0^n).toNat = 0\). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : (0#n).toNat = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (n : Nat) : (0#n).toNat = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

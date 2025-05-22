@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Filtering by Boolean Equality Yields Replicated Count of Element: \(\text{filter} (x == a) \, l = \text{replicate} (\text{count}(a, l)) \, a\) : For any list \( l \) of elements of type \( \alpha \) and any element \( a \) of type \( \alpha \), the list obtained by filtering \( l \) to keep only the elements equal to \( a \) using the `BEq` equality relation is equal to the list containing \( \text{count}(a, l) \) copies of \( a \). In other words, if \( l \) is a list and \( a \) is an element, then:
+\[
+\text{filter} (x == a) \, l = \text{replicate} (\text{count}(a, l)) \, a
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions and properties of the functions involved. Specifically, we use the following properties:
+1. The function `count` counts the number of occurrences of an element \( a \) in a list \( l \).
+2. The function `countP_eq_length_filter` states that the number of elements in \( l \) that satisfy a predicate \( p \) is equal to the length of the list obtained by filtering \( l \) with \( p \).
+3. The function `eq_replicate` states that a list containing \( n \) copies of an element \( a \) is equal to the list `replicate n a`.
+4. The function `mem_filter` states that an element \( b \) is in the filtered list if and only if \( b \) is in the original list and satisfies the predicate.
+5. The function `beq_iff_eq` states that the boolean equality \( a == b \) is `true` if and only if \( a \) is equal to \( b \).
+
+Using these properties, we simplify the goal to show that for any element \( b \) in the list \( l \), if \( b \) is equal to \( a \), then \( b \) is equal to \( a \). This simplification results in the goal:
+\[
+\text{True} \land \forall (b : \alpha), b \in l \land b = a \to b = a
+\]
+
+The first part, \(\text{True}\), is trivially true. For the second part, we need to show that for any \( b \) in \( l \) such that \( b = a \), \( b \) is indeed equal to \( a \). This is trivial because the hypothesis \( b = a \) directly implies \( b = a \). Therefore, the goal is satisfied, and the theorem is proved.
+
+3. **Formal Theorem**  
+example (l : List α) (a : α) : l.filter (· == a) = replicate (count a l) a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+variable [LawfulBEq α]
+
+example (l : List α) (a : α) : l.filter (· == a) = replicate (count a l) a := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

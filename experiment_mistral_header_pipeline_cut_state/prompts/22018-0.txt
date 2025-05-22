@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Length of Partial Map of List Equals Original List Length: \((\text{pmap } f \, l \, H). \text{length} = l. \text{length}\) : For any list \( l \) of elements of type \( \alpha \) and a predicate \( P : \alpha \to \text{Prop} \), if \( f : \Pi a, P a \to \beta \) is a partial function that can be applied to elements of \( l \) that satisfy \( P \), then the length of the list obtained by applying \( f \) to each element of \( l \) that satisfies \( P \) is equal to the length of \( l \). In other words, if \( l \) is a list and \( H \) is a proof that all elements of \( l \) satisfy \( P \), then the length of \( \text{pmap } f \, l \, H \) is the same as the length of \( l \).
+
+2. **Informal Proof**  
+We perform induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, we need to show that \((\text{pmap } f \, [] \, H). \text{length} = []. \text{length}\).
+- By the definition of `pmap`, \(\text{pmap } f \, [] \, H\) is the empty list.
+- Therefore, \((\text{pmap } f \, [] \, H). \text{length} = 0\) and \([]. \text{length} = 0\).
+- Hence, the base case is trivially true.
+
+2. **Inductive Step:**
+- Assume \( l \) is a non-empty list of the form \( a :: l' \).
+- We need to show that \((\text{pmap } f \, (a :: l') \, H). \text{length} = (a :: l'). \text{length}\).
+- By the definition of `pmap`, \(\text{pmap } f \, (a :: l') \, H\) is the list \( f(a, H(a)) :: \text{pmap } f \, l' \, H' \), where \( H' \) is the proof that all elements of \( l' \) satisfy \( P \).
+- By the definition of `length`, the length of \( f(a, H(a)) :: \text{pmap } f \, l' \, H' \) is \(1 + (\text{pmap } f \, l' \, H'). \text{length}\).
+- By the inductive hypothesis, \((\text{pmap } f \, l' \, H'). \text{length} = l'. \text{length}\).
+- Therefore, \(1 + (\text{pmap } f \, l' \, H'). \text{length} = 1 + l'. \text{length}\).
+- Since \((a :: l'). \text{length} = 1 + l'. \text{length}\), the inductive step is proved.
+
+By induction, the theorem holds for all lists \( l \). This completes the proof.
+
+3. **Formal Theorem**  
+example {p : α → Prop} {f : ∀ a, p a → β} {l H} : length (pmap f l H) = length l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.Subtype
+import Init.Data.List.Attach
+
+open List
+
+
+example {p : α → Prop} {f : ∀ a, p a → β} {l H} : length (pmap f l H) = length l := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.Subtype not found. --
+
+-- Init.Data.List.Attach not found. --
+

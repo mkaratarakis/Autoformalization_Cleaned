@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Comparison of Natural Numbers Returns Equality if and only if \( a = b \) : For any natural numbers \( a \) and \( b \), the comparison \( \text{compare}(a, b) \) returns `Ordering.eq` if and only if \( a = b \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the comparison function for natural numbers. The comparison \( \text{compare}(a, b) \) is defined as follows:
+- If \( a < b \), then \( \text{compare}(a, b) = \text{Ordering.lt} \).
+- If \( b < a \), then \( \text{compare}(a, b) = \text{Ordering.gt} \).
+- If neither \( a < b \) nor \( b < a \), then \( \text{compare}(a, b) = \text{Ordering.eq} \).
+
+We need to show that \( \text{compare}(a, b) = \text{Ordering.eq} \) if and only if \( a = b \).
+
+1. **Case 1: \( a < b \)**
+- If \( a < b \), then \( \text{compare}(a, b) = \text{Ordering.lt} \). Therefore, \( \text{compare}(a, b) \neq \text{Ordering.eq} \). Hence, \( \text{compare}(a, b) = \text{Ordering.eq} \) is false, and so is \( a = b \). This case is trivially true.
+
+2. **Case 2: \( b < a \)**
+- If \( b < a \), then \( \text{compare}(a, b) = \text{Ordering.gt} \). Therefore, \( \text{compare}(a, b) \neq \text{Ordering.eq} \). Hence, \( \text{compare}(a, b) = \text{Ordering.eq} \) is false, and so is \( a = b \). This case is also trivially true.
+
+3. **Case 3: Neither \( a < b \) nor \( b < a \)**
+- If neither \( a < b \) nor \( b < a \), then \( \text{compare}(a, b) = \text{Ordering.eq} \). This means \( a \) and \( b \) are not strictly less than each other. By the properties of natural numbers, this implies \( a \leq b \) and \( b \leq a \). By the antisymmetry of the less than or equal to relation, we have \( a = b \).
+
+Thus, we have shown that \( \text{compare}(a, b) = \text{Ordering.eq} \) if and only if \( a = b \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} : compare a b = .eq ↔ a = b := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b = .eq ↔ a = b := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.Data.Ord not found. --
+
+-- Init.Data.Nat.Compare not found. --
+

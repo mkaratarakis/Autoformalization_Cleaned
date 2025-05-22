@@ -1,0 +1,77 @@
+
+1. **Informal Theorem**  
+Successor Multiplication Identity: \((n + 1) \cdot m = n \cdot m + m\) : For any natural numbers \( n \) and \( m \), the successor of \( n \) multiplied by \( m \) is equal to \( n \) multiplied by \( m \) plus \( m \), i.e., \((n + 1) \cdot m = n \cdot m + m\).
+
+2. **Informal Proof**  
+We prove this by induction on \( m \).
+
+1. **Base Case: \( m = 0 \)**
+\[
+n \cdot 0 = n \cdot 0 + 0
+\]
+This is trivially true because both sides are definitionally equal to \( 0 \).
+
+2. **Inductive Step: \( m = m' + 1 \)**
+Assume the inductive hypothesis:
+\[
+n \cdot m' = n \cdot m' + m'
+\]
+We need to show:
+\[
+n \cdot (m' + 1) = n \cdot m' + n + (m' + 1)
+\]
+
+- Using the definition of multiplication by successor:
+\[
+n \cdot (m' + 1) = n \cdot m' + n
+\]
+- Using the definition of addition by successor:
+\[
+n \cdot m' + n = (n \cdot m' + n) + 1
+\]
+- Applying the inductive hypothesis:
+\[
+(n \cdot m' + n) + 1 = (n \cdot m' + m') + n + 1
+\]
+- Using the definition of multiplication by successor again:
+\[
+(n \cdot m' + m') + n + 1 = n \cdot m' + n + (m' + 1)
+\]
+- Using the right commutativity of addition:
+\[
+n \cdot m' + n + (m' + 1) = n \cdot m' + (m' + 1) + n
+\]
+- Simplifying the expression:
+\[
+n \cdot m' + (m' + 1) + n = (n \cdot m' + m' + n) + 1
+\]
+- Using the inductive hypothesis again:
+\[
+(n \cdot m' + m' + n) + 1 = (n \cdot m' + n + m') + 1
+\]
+- Simplifying the final expression:
+\[
+(n \cdot m' + n + m') + 1 = (n \cdot m' + n + m') + 1
+\]
+
+Thus, the inductive step is complete, and by induction, the theorem holds for all natural numbers \( m \).
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m : Nat) : (succ n) * m = (n * m) + m := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m : Nat) : (succ n) * m = (n * m) + m := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

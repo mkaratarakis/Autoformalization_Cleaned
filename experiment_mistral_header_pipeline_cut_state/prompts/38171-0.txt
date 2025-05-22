@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Byte Index of Zero Plus Character Equals UTF-8 Size of Character : For any Unicode character \( c \), the byte index of the byte position resulting from adding \( c \) to the byte position `0` is equal to the UTF-8 size of \( c \), i.e., \((0 + c).byteIdx = c.\text{utf8Size}\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal of showing that \((0 + c).byteIdx = c.\text{utf8Size}\) for any Unicode character \( c \).
+
+1. **Simplification:**
+Using the definitions and properties of the byte index of a character, the byte index of zero, and the identity property of zero in addition, we can simplify the proposition. Specifically:
+- The byte index of zero is zero, i.e., \(0.byteIdx = 0\).
+- Adding zero to any natural number \( n \) results in \( n \) itself, i.e., \(0 + n = n\).
+
+Therefore, we have:
+\[
+(0 + c).byteIdx = c.byteIdx
+\]
+
+2. **UTF-8 Size:**
+By the definition of the byte index of a character, \( c.byteIdx \) is equal to the UTF-8 size of \( c \), i.e., \( c.byteIdx = c.\text{utf8Size} \).
+
+3. **Conclusion:**
+Combining these results, we get:
+\[
+(0 + c).byteIdx = c.\text{utf8Size}
+\]
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (c : Char) : ((0 : Pos) + c).byteIdx = c.utf8Size := by sorry
+
+4. **Prefix**
+import Init.Data.List.Basic
+import Init.Data.Char.Basic
+import Init.Data.Option.Basic
+import Init.Data.String.Basic
+
+open String
+open Pos
+
+
+example (c : Char) : ((0 : Pos) + c).byteIdx = c.utf8Size := by
+
+5. **Header Information**  
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.Option.Basic not found. --
+
+-- Init.Data.String.Basic not found. --
+

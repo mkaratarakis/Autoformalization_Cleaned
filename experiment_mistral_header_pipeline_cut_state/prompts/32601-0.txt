@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Not-Equal Function Returns False for Equal Elements: $a \neq a = \text{false}$ : For any type $\alpha$ with a decidable equality relation, and for any element $a \in \alpha$, the boolean not-equal function `a != a` returns `false`. In other words, for any element $a$ in the type $\alpha$, the boolean expression `a != a` is always `false`.
+
+2. **Informal Proof**  
+We need to show that for any element $a \in \alpha$, the boolean expression $(a \neq a) = \text{false}$ holds. Using the properties of decidable equality and the definition of the boolean not-equal function, we can simplify the proposition $(a \neq a) = \text{false}$. The boolean not-equal function `a != a` is defined such that it returns `false` when `a` is equal to `a`, which is always true by the definition of equality. Therefore, the proposition $(a \neq a) = \text{false}$ is trivially true. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example [DecidableEq α] (a : α) : (a != a) = false := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example [DecidableEq α] (a : α) : (a != a) = false := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

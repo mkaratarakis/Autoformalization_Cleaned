@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Previous Byte Position is Less Than Current Position in a String : For any string \( s \) and any byte position \( i \) in \( s \) such that \( i \neq 0 \), the byte index of the position immediately before \( i \) is strictly less than the byte index of \( i \). In other words, if \( i \) is a valid byte position in \( s \) and \( i \neq 0 \), then \(\text{byteIdx}(s.\text{prev}(i)) < \text{byteIdx}(i)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the `prev` function and the assumption that \( i \neq 0 \). The `prev` function returns the byte position immediately before \( i \) in the string \( s \). If \( i = 0 \), the function returns \( 0 \). Since \( i \neq 0 \), we can simplify the goal to show that the byte index of the position immediately before \( i \) in the string \( s \) is less than the byte index of \( i \). Specifically, we need to show that \((\text{utf8PrevAux}(s.\text{data}, 0, i)).\text{byteIdx} < i.\text{byteIdx}\).
+
+We use the theorem that for any list of characters \( cs \) and any valid byte positions \( i \) and \( p \) in a string, if \( p \neq 0 \), then the byte index of the position returned by the helper function `utf8PrevAux` applied to \( cs \), \( i \), and \( p \) is strictly less than the byte index of \( p \). Since \( i \neq 0 \), this theorem directly implies that \((\text{utf8PrevAux}(s.\text{data}, 0, i)).\text{byteIdx} < i.\text{byteIdx}\).
+
+Therefore, the byte index of the position immediately before \( i \) in the string \( s \) is strictly less than the byte index of \( i \), completing the proof.
+
+3. **Formal Theorem**  
+example (s : String) (i : Pos) (h : i ≠ 0) : (s.prev i).1 < i.1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Basic
+import Init.Data.Char.Basic
+import Init.Data.Option.Basic
+import Init.Data.String.Basic
+
+open String
+
+
+example (s : String) (i : Pos) (h : i ≠ 0) : (s.prev i).1 < i.1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.Option.Basic not found. --
+
+-- Init.Data.String.Basic not found. --
+

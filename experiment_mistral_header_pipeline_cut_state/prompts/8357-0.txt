@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Addition and Subtraction in Inequality: \( a + b \leq c \) if and only if \( a \leq c - b \) : For any natural numbers \( a, b, \) and \( c \), if \( b \leq c \), then the inequality \( a + b \leq c \) holds if and only if \( a \leq c - b \).
+
+2. **Informal Proof**  
+We start by using the lemma that for any natural numbers \(a\), \(c\), \(b\), and \(d\) such that \(b \leq d\), the inequality \(a + b \leq c + d\) holds if and only if \(a \leq c + (d - b)\). Applying this lemma with \(a\), \(0\), and \(h : b \leq c\), we get the intermediate result:
+\[
+(a + b \leq 0 + c) = (a \leq 0 + (c - b))
+\]
+
+Next, we simplify this intermediate result using the property that the sum of zero and any natural number \(a\) is equal to \(a\). This simplification transforms the intermediate result into:
+\[
+(a + b \leq c) = (a \leq c - b)
+\]
+
+Thus, the current goal \( (a + b \leq c) = (a \leq c - b) \) is exactly proved by the simplified intermediate result. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : Nat) {b c : Nat} (h : b ≤ c) : (a + b ≤ c) = (a ≤ c - b) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example (a : Nat) {b c : Nat} (h : b ≤ c) : (a + b ≤ c) = (a ≤ c - b) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

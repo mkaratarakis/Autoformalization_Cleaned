@@ -1,13 +1,17 @@
 Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
 6. **Error Message and Proof State**
-tmp.lean:9:9: error: unsolved goals
-case zero
-b c : Nat
-a0 : 0 < 0
-⊢ c ≤ b
-tmp.lean:15:4: error: no goals to be solved
-tmp.lean:8:14: error: alternative 'zero' has not been provided
-tmp.lean:8:14: error: alternative 'succ' has not been provided
+tmp.lean:10:8: error: unknown constant 'Nat.mulSucc'
+tmp.lean:9:13: error: unsolved goals
+case ind
+b c d : Nat
+hd : ∀ (m : Nat), m < d → 0 < m → (m * b < m * c ↔ b < c)
+a0 : 0 < d
+⊢ d * b < d * c ↔ b < c
+case ind
+b c d : Nat
+hd : ∀ (m : Nat), m < d → 0 < m → (m * b < m * c ↔ b < c)
+a0 : 0 < d
+⊢ d * b < d * c ↔ b < c
 
 4. **New Prefix**  
    The initial Lean 4 code that you must build on.
@@ -18,4 +22,5 @@ open Nat
 
 
 example (a0 : 0 < a) : a * b < a * c ↔ b < c := by
-  induction a with
+  induction a using Nat.strongRecOn with
+  | ind d hd =>

@@ -1,0 +1,56 @@
+
+1. **Informal Theorem**  
+UTF-8 Encoding Size Equality for Strings : For any string \( s \), the size of the byte array obtained by converting \( s \) to its UTF-8 encoding is equal to the UTF-8 byte size of \( s \). In other words, the number of bytes in the UTF-8 representation of \( s \) is the same as the result of the function `String.utf8ByteSize` applied to \( s \).
+
+2. **Informal Proof**  
+We start by using the definitions of the functions involved to simplify the goal. Specifically, we use the definitions of `toUTF8`, `ByteArray.size`, `Array.size`, `utf8ByteSize`, and `List.bind` to transform the goal from \( s.toUTF8.size = s.utf8ByteSize \) to \( (\text{List.map utf8EncodeChar } s.data).join.length = \text{utf8ByteSize.go } s.data \).
+
+Next, we perform induction on the list of characters `s.data` to break down the proof into cases.
+
+**Base Case:**
+For the base case, where `s.data` is the empty list, we need to show that the length of the concatenated list of byte sequences for the empty list is zero. This is trivially true because the length of the empty list is zero, and the total number of UTF-8 bytes required to encode the empty list is also zero.
+
+**Inductive Step:**
+For the inductive step, assume the inductive hypothesis that for any list `tail` of characters, the length of the concatenated list of byte sequences for `tail` is equal to the total number of UTF-8 bytes required to encode `tail`. We need to show that for a list `head :: tail`, the length of the concatenated list of byte sequences for `head :: tail` is equal to the total number of UTF-8 bytes required to encode `head :: tail`.
+
+Using the definitions of `List.map`, `List.join`, `utf8ByteSize.go`, and the commutativity of addition, we simplify the goal. Specifically, we have:
+\[
+(\text{List.map utf8EncodeChar } (head :: tail)).join.length = (\text{utf8EncodeChar head} ++ (\text{List.map utf8EncodeChar } tail).join).length
+\]
+By the definition of `List.join` and the length of concatenated lists, this is equal to:
+\[
+\text{utf8EncodeChar head.length} + (\text{List.map utf8EncodeChar } tail).join.length
+\]
+By the inductive hypothesis, we know that:
+\[
+(\text{List.map utf8EncodeChar } tail).join.length = \text{utf8ByteSize.go } tail
+\]
+Thus, we have:
+\[
+\text{utf8EncodeChar head.length} + \text{utf8ByteSize.go } tail
+\]
+By the definition of `utf8ByteSize.go`, this is equal to:
+\[
+\text{utf8ByteSize.go } (head :: tail)
+\]
+Therefore, the length of the concatenated list of byte sequences for `head :: tail` is equal to the total number of UTF-8 bytes required to encode `head :: tail`.
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (s : String) : s.toUTF8.size = s.utf8ByteSize := by sorry
+
+4. **Prefix**
+import Init.Data.ByteArray
+import Init.Data.String.Extra
+
+open String
+
+
+example (s : String) : s.toUTF8.size = s.utf8ByteSize := by
+
+5. **Header Information**  
+-- Init.Data.ByteArray not found. --
+
+-- Init.Data.String.Extra not found. --
+

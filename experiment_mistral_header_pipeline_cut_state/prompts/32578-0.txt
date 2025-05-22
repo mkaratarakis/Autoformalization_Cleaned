@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Bi-implication with Conjunction: \( p \leftrightarrow p \land q \) if and only if \( p \to q \) : For any propositions \( p \) and \( q \), the bi-implication \( p \leftrightarrow p \land q \) holds if and only if \( p \) implies \( q \), i.e., \( p \leftrightarrow p \land q \) if and only if \( p \to q \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \( (p \leftrightarrow p \land q) \leftrightarrow (p \to q) \).
+
+1. **Step 1: Symmetry of Bi-implication**
+- We use the symmetry of the bi-implication to rewrite \( p \leftrightarrow p \land q \) as \( p \land q \leftrightarrow p \). This is valid because the bi-implication is symmetric, i.e., \( p \leftrightarrow q \) is equivalent to \( q \leftrightarrow p \).
+
+2. **Step 2: Conjunction Identity**
+- Next, we use the equivalence that \( p \land q \leftrightarrow p \) holds if and only if \( p \to q \). This equivalence states that the bi-implication \( p \land q \leftrightarrow p \) is true if and only if \( p \) implies \( q \).
+
+3. **Step 3: Simplification**
+- Combining these two steps, the goal \( (p \leftrightarrow p \land q) \leftrightarrow (p \to q) \) is equivalent to \( (p \land q \leftrightarrow p) \leftrightarrow (p \to q) \), which simplifies to \( (p \to q) \leftrightarrow (p \to q) \).
+
+4. **Step 4: Reflexivity**
+- The statement \( (p \to q) \leftrightarrow (p \to q) \) is trivially true by the reflexivity of the bi-implication, which states that any proposition is equivalent to itself.
+
+Therefore, we have shown that \( (p \leftrightarrow p \land q) \leftrightarrow (p \to q) \) is true, completing the proof.
+
+3. **Formal Theorem**  
+example : (p ↔ p ∧ q) ↔ (p → q) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example : (p ↔ p ∧ q) ↔ (p → q) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

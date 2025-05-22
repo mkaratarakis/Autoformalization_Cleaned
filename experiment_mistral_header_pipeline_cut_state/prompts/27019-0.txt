@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+List of Pairs Equals Zipped Lists if First and Second Components Match : For any lists $l$ and $l'$ of types $\alpha$ and $\beta$, respectively, and a list $lp$ of pairs $(\alpha \times \beta)$, if the first components of the pairs in $lp$ form the list $l$ and the second components of the pairs in $lp$ form the list $l'$, then $lp$ is equal to the list obtained by zipping $l$ and $l'$, i.e., $lp = l \text{.zip } l'$.
+
+2. **Informal Proof**  
+We need to show that \( lp = l \text{.zip } l' \) given the hypotheses \( \text{map}(\text{Prod.fst}, lp) = l \) and \( \text{map}(\text{Prod.snd}, lp) = l' \).
+
+1. **Using the hypothesis \( \text{map}(\text{Prod.fst}, lp) = l \):**
+- This means that the first components of the pairs in \( lp \) form the list \( l \).
+
+2. **Using the hypothesis \( \text{map}(\text{Prod.snd}, lp) = l' \):**
+- This means that the second components of the pairs in \( lp \) form the list \( l' \).
+
+3. **Using the property of the `unzip` and `zip` operations:**
+- The theorem \( (l. \text{unzip}. \text{fst}) \text{ zip } (l. \text{unzip}. \text{snd}) = l \) states that unzipping a list of pairs and then zipping the resulting lists of first and second components back together yields the original list.
+- The theorem \( l. \text{unzip}. \text{fst} = \text{map}(\text{Prod.fst}, l) \) states that the first component of the unzipped list is equal to the list obtained by applying the function `Prod.fst` to each pair in \( l \).
+- The theorem \( l. \text{unzip}. \text{snd} = \text{map}(\text{Prod.snd}, l) \) states that the second component of the unzipped list is equal to the list obtained by applying the function `Prod.snd` to each pair in \( l \).
+
+4. **Combining these properties:**
+- Since \( \text{map}(\text{Prod.fst}, lp) = l \) and \( \text{map}(\text{Prod.snd}, lp) = l' \), we have:
+\[
+lp = (lp. \text{unzip}. \text{fst}) \text{ zip } (lp. \text{unzip}. \text{snd})
+\]
+- By the properties of `unzip` and `zip`, this simplifies to:
+\[
+lp = l \text{.zip } l'
+\]
+
+Therefore, we have shown that \( lp = l \text{.zip } l' \), completing the proof.
+
+3. **Formal Theorem**  
+example {l : List α} {l' : List β} {lp : List (α × β)} (hl : lp.map Prod.fst = l)
+    (hr : lp.map Prod.snd = l') : lp = l.zip l' := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {l : List α} {l' : List β} {lp : List (α × β)} (hl : lp.map Prod.fst = l)
+    (hr : lp.map Prod.snd = l') : lp = l.zip l' := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Length Decreases by One When Element Satisfying Predicate is Erased from List : For any type \(\alpha\), any element \(a \in \alpha\), and any list \(l\) of elements of type \(\alpha\), if \(a\) is in \(l\) and the predicate \(p\) applied to \(a\) is true, then the length of the list obtained by removing the first occurrence of \(a\) that satisfies \(p\) from \(l\) is one less than the length of \(l\). Formally, if \(a \in l\) and \(p(a) = \text{true}\), then \(\text{length}(\text{eraseP}(p, l)) = \text{length}(l) - 1\).
+
+2. **Informal Proof**  
+Given that \(a \in l\) and \(p(a) = \text{true}\), we use the existence of the first predicate-satisfying element in list erasure to construct lists \(l_1\) and \(l_2\) such that:
+- No element in \(l_1\) satisfies \(p\),
+- \(p(a) = \text{true}\),
+- The original list \(l\) is the concatenation of \(l_1\), \(a\), and \(l_2\),
+- The list obtained by removing the first occurrence of \(a\) that satisfies \(p\) from \(l\) is the concatenation of \(l_1\) and \(l_2\).
+
+Formally, we have:
+\[
+l = l_1 \, \text{cons} \, a \, l_2 \quad \text{and} \quad \text{eraseP}(p, l) = l_1 \, \text{cons} \, l_2.
+\]
+
+Next, we substitute \(\text{eraseP}(p, l) = l_1 \, \text{cons} \, l_2\) into the goal. Using the property that the length of the concatenation of two lists is the sum of their lengths, we get:
+\[
+\text{length}(\text{eraseP}(p, l)) = \text{length}(l_1 \, \text{cons} \, l_2) = \text{length}(l_1) + \text{length}(l_2).
+\]
+
+Since \(l = l_1 \, \text{cons} \, a \, l_2\), the length of \(l\) is:
+\[
+\text{length}(l) = \text{length}(l_1) + 1 + \text{length}(l_2).
+\]
+
+Thus, we have:
+\[
+\text{length}(\text{eraseP}(p, l)) = \text{length}(l_1) + \text{length}(l_2) = \text{length}(l) - 1.
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (al : a ∈ l) (pa : p a) :
+    length (l.eraseP p) = length l - 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example (al : a ∈ l) (pa : p a) :
+    length (l.eraseP p) = length l - 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

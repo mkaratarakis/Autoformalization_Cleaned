@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Boolean Or is Idempotent: $b \lor b = b$ : For any boolean value $b$, the boolean "or" operation of $b$ with itself is equal to $b$, i.e., $b \lor b = b$.
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value $b$.
+
+1. **Case 1: $b = \text{false}$**
+- In this case, the expression $(\text{false} \lor \text{false})$ is equal to $\text{false}$ by the definition of the boolean "or" operation. Therefore, the equality $(\text{false} \lor \text{false}) = \text{false}$ holds trivially.
+
+2. **Case 2: $b = \text{true}$**
+- In this case, the expression $(\text{true} \lor \text{true})$ is equal to $\text{true}$ by the definition of the boolean "or" operation. Therefore, the equality $(\text{true} \lor \text{true}) = \text{true}$ holds trivially.
+
+Since both cases have been verified, we conclude that for any boolean value $b$, the boolean "or" operation of $b$ with itself is equal to $b$, i.e., $b \lor b = b$. This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) : (b || b) = b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (b || b) = b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

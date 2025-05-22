@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Signed and Unsigned Less-Than Coincide if Most Significant Bits are Equal : For any natural number \( w \) and bit vectors \( x \) and \( y \) of length \( w \), if the most significant bit (msb) of \( x \) is equal to the most significant bit of \( y \), then the signed less-than comparison \( x <_{\text{signed}} y \) is equivalent to the unsigned less-than comparison \( x <_{\text{unsigned}} y \). In other words, if \( x.\text{msb} = y.\text{msb} \), then \( x <_{\text{signed}} y \) if and only if \( x <_{\text{unsigned}} y \).
+
+2. **Informal Proof**  
+We start by simplifying the goal using the definitions of signed and unsigned less-than for bit vectors, the conversion of bit vectors to integers based on their most significant bit, and the fact that the most significant bits of \( x \) and \( y \) are equal. This simplification reduces the goal to showing that:
+\[
+((\text{if } y.\text{msb} = \text{true} \text{ then } x.\text{toNat} - 2^w \text{ else } x.\text{toNat}) < (\text{if } y.\text{msb} = \text{true} \text{ then } y.\text{toNat} - 2^w \text{ else } y.\text{toNat})) \leftrightarrow (x.\text{toNat} < y.\text{toNat})
+\]
+
+We consider two cases based on the value of \( y.\text{msb} \):
+
+1. **Case 1: \( y.\text{msb} = \text{false} \)**
+- In this case, the goal simplifies to:
+\[
+(x.\text{toNat} < y.\text{toNat}) \leftrightarrow (x.\text{toNat} < y.\text{toNat})
+\]
+- This is trivially true.
+
+2. **Case 2: \( y.\text{msb} = \text{true} \)**
+- In this case, the goal simplifies to:
+\[
+(x.\text{toNat} - 2^w < y.\text{toNat} - 2^w) \leftrightarrow (x.\text{toNat} < y.\text{toNat})
+\]
+- Since subtracting the same value from both sides of an inequality does not change the inequality, this is also true.
+
+Thus, in both cases, the signed less-than comparison \( x <_{\text{signed}} y \) is equivalent to the unsigned less-than comparison \( x <_{\text{unsigned}} y \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x y : BitVec w} (h : x.msb = y.msb) :
+    x.slt y = x.ult y := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example {x y : BitVec w} (h : x.msb = y.msb) :
+    x.slt y = x.ult y := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

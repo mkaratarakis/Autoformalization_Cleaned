@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Right Addition and Subtraction Identity: \( n + l - m - (k + l) = n - m - k \) : For any natural numbers \( n, m, k, \) and \( l \), the expression \( n + l - m - (k + l) \) is equal to \( n - m - k \).
+
+2. **Informal Proof**  
+We need to show that \( n + l - m - (k + l) = n - m - k \). We will use the following properties of natural numbers:
+
+1. **Subtraction Identity**: For any natural numbers \( a, b, \) and \( c \), the equation \( a - b - c = a - (b + c) \) holds.
+2. **Associativity of Addition**: For any natural numbers \( a, b, \) and \( c \), the equation \( a + (b + c) = (a + b) + c \) holds.
+3. **Right Addition Cancellation in Subtraction**: For any natural numbers \( n, k, \) and \( m \), the equation \( n + k - (m + k) = n - m \) holds.
+
+Starting with the left-hand side of the equation:
+\[
+n + l - m - (k + l)
+\]
+Using the subtraction identity, we can rewrite this as:
+\[
+n + l - (m + (k + l))
+\]
+Applying the associativity of addition, we get:
+\[
+n + l - (m + k + l)
+\]
+Using the right addition cancellation in subtraction, we can simplify this to:
+\[
+n - (m + k)
+\]
+Thus, we have:
+\[
+n + l - m - (k + l) = n - (m + k)
+\]
+Since the right-hand side of the original equation is also \( n - (m + k) \), we have:
+\[
+n - (m + k) = n - (m + k)
+\]
+This is trivially true by the reflexive property of equality. Therefore, the original equation holds, and the proof is complete.
+
+3. **Formal Theorem**  
+example (n m k l : Nat) :
+    (n + l) - m - (k + l) = n - m - k := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n m k l : Nat) :
+    (n + l) - m - (k + l) = n - m - k := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

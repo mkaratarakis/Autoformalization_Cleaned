@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Right Addition Cancellation in Natural Numbers : For any natural numbers \( n \), \( m \), and \( k \), if \( n + m = k + m \), then \( n = k \).
+
+2. **Informal Proof**  
+We start with the assumption that \( n + m = k + m \). Using the commutativity of addition, we can rewrite this assumption as \( m + n = m + k \). This is because for any natural numbers \( a \) and \( b \), \( a + b = b + a \).
+
+Next, we apply the left cancellation property of addition. This property states that if \( a + b = a + c \), then \( b = c \). Applying this property to our rewritten assumption \( m + n = m + k \), we conclude that \( n = k \).
+
+Thus, we have shown that if \( n + m = k + m \), then \( n = k \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m k : Nat} (h : n + m = k + m) : n = k := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {n m k : Nat} (h : n + m = k + m) : n = k := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Power Divisibility: \( a^m \mid a^n \) for \( m \leq n \) : For any natural numbers \( m \) and \( n \) such that \( m \leq n \), and for any natural number \( a \), it holds that \( a^m \) divides \( a^n \), i.e., \( a^m \mid a^n \).
+
+2. **Informal Proof**  
+We start by considering the case where \( m \leq n \). By the property of natural numbers, there exists a natural number \( k \) such that \( n = m + k \).
+
+We now focus on the specific case where \( n = m + k \). Substituting \( n = m + k \) into the goal, we need to show that \( a^m \mid a^{m + k} \). Using the property of exponents, we know that:
+\[
+a^{m + k} = a^m \cdot a^k
+\]
+Therefore, it suffices to show that \( a^m \mid a^m \cdot a^k \). By the property of divisibility in semigroups, \( a^m \) divides \( a^m \cdot a^k \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n : Nat} (a : Nat) (h : m ≤ n) : a ^ m ∣ a ^ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {m n : Nat} (a : Nat) (h : m ≤ n) : a ^ m ∣ a ^ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

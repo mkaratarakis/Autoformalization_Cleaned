@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Signed Less-Than in Bitvectors Equals XOR of MSB and Carry Bit : For any natural number \( w \) and bitvectors \( x \) and \( y \) of length \( w \), the signed less-than operation \( x \, \text{sl} \, y \) is equal to the exclusive or (XOR) of the most significant bits of \( x \) and \( y \) and the carry bit at position \( w \) when computing the sum of \( x \) and the complement of \( y \) with an initial carry bit of `true`. Formally, this can be written as:
+\[ x \, \text{sl} \, y = (x.\text{msb} \neq y.\text{msb}) \oplus \text{carry}(w, x, \sim y, \text{true}) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions and properties of signed less-than, boolean not-equal, and unsigned less-than to simplify the goal. Specifically, we use the fact that:
+\[ x \, \text{sl} \, y = (x.\text{msb} \neq y.\text{msb}) \oplus (x < y) \]
+and
+\[ x < y = \text{not}(\text{carry}(w, x, \sim y, \text{true})) \]
+
+This simplifies our goal to:
+\[ (!(!x.\text{msb} == y.\text{msb}) == !\text{carry}(w, x, \sim y, \text{true})) = !(x.\text{msb} == y.\text{msb}) == \text{carry}(w, x, \sim y, \text{true}) \]
+
+Next, we consider two cases based on whether the most significant bits of \( x \) and \( y \) are equal or not.
+
+**Case 1: \( x.\text{msb} == y.\text{msb} \)**
+- In this case, the goal simplifies to:
+\[ (!(!\text{false}) == !\text{carry}(w, x, \sim y, \text{true})) = !\text{false} == \text{carry}(w, x, \sim y, \text{true}) \]
+- Since the negation of `false` is `true`, this further simplifies to:
+\[ (\text{true} == !\text{carry}(w, x, \sim y, \text{true})) = \text{true} == \text{carry}(w, x, \sim y, \text{true}) \]
+- This is trivially true because both sides are equivalent.
+
+**Case 2: \( x.\text{msb} \neq y.\text{msb} \)**
+- In this case, the goal simplifies to:
+\[ (!(!\text{true}) == !\text{carry}(w, x, \sim y, \text{true})) = !\text{true} == \text{carry}(w, x, \sim y, \text{true}) \]
+- Since the negation of `true` is `false`, this further simplifies to:
+\[ (\text{false} == !\text{carry}(w, x, \sim y, \text{true})) = \text{false} == \text{carry}(w, x, \sim y, \text{true}) \]
+- This is trivially true because both sides are equivalent.
+
+Since both cases are true, the original goal is proven. Therefore, the signed less-than operation \( x \, \text{sl} \, y \) is indeed equal to the exclusive or (XOR) of the most significant bits of \( x \) and \( y \) and the carry bit at position \( w \) when computing the sum of \( x \) and the complement of \( y \) with an initial carry bit of `true`. This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec w) :
+    x.slt y = (x.msb == y.msb).xor (carry w x (~~~y) true) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x y : BitVec w) :
+    x.slt y = (x.msb == y.msb).xor (carry w x (~~~y) true) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Heterogeneous Equality from Equality and Recursion : For any types \( \alpha \) and \( \beta \), and for any elements \( a : \alpha \) and \( b : \beta \), if \( \alpha \) and \( \beta \) are equal (i.e., \( \alpha = \beta \)), and if the result of applying the `Eq.rec` function to \( a \) and the equality \( \alpha = \beta \) is equal to \( b \) (i.e., \( \text{Eq.rec}(a, \alpha = \beta) = b \)), then \( a \) and \( b \) are heterogeneously equal (i.e., \( \text{HEq}(a, b) \)).
+
+2. **Informal Proof**  
+We start with the assumption that \( \alpha = \beta \). Using this equality, we can substitute \( \beta \) with \( \alpha \) in the goal and the hypothesis. This simplifies the goal to showing \( \text{HEq} \, a \, b \) where \( b \) is now of type \( \alpha \).
+
+Next, we use the theorem that if \( a \) and \( b \) are equal within the same type \( \alpha \), then they are also heterogeneously equal. Therefore, to prove \( \text{HEq} \, a \, b \), it suffices to show that \( a = b \).
+
+Finally, the hypothesis \( \text{Eq.rec}(a, \alpha = \beta) = b \) directly proves that \( a = b \). Hence, \( a \) and \( b \) are heterogeneously equal. This completes the proof.
+
+3. **Formal Theorem**  
+example {α β : Sort u} {a : α} {b : β} (h₁ : α = β) (h₂ : Eq.rec (motive := fun α _ => α) a h₁ = b) : HEq a b := by sorry
+
+4. **Prefix**
+import Init.Prelude
+import Init.SizeOf
+import Init.Core
+
+
+variable {α : Sort u}
+variable {a b : α} {p : Prop}
+variable {a b : α} {p : Prop}
+variable {α β φ : Sort u} {a a' : α} {b b' : β} {c : φ}
+
+example {α β : Sort u} {a : α} {b : β} (h₁ : α = β) (h₂ : Eq.rec (motive := fun α _ => α) a h₁ = b) : HEq a b := by
+
+5. **Header Information**  
+-- Init.Prelude not found. --
+
+-- Init.SizeOf not found. --
+
+-- Init.Core not found. --
+

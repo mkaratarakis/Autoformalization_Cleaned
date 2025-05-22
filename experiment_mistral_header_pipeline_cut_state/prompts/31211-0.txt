@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Right Addition Preserves Less-Than-or-Equal Relation in Natural Numbers : For any natural numbers \( n \) and \( m \) such that \( n \leq m \), and for any natural number \( k \), it holds that \( n + k \leq m + k \).
+
+2. **Informal Proof**  
+We start with the assumption that \( n \leq m \) and need to show that \( n + k \leq m + k \) for any natural number \( k \).
+
+1. Using the commutativity of addition, we can rewrite the goal \( n + k \leq m + k \) as \( k + n \leq k + m \).
+2. To prove \( k + n \leq k + m \), it suffices to show \( n \leq m \) because adding the same natural number \( k \) to both sides of an inequality preserves the inequality.
+3. The current goal \( n \leq m \) has already been given as a hypothesis, so it is already proved.
+
+Thus, we have shown that \( n + k \leq m + k \) for any natural number \( k \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m : Nat} (h : n ≤ m) (k : Nat) : n + k ≤ m + k := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {n m : Nat} (h : n ≤ m) (k : Nat) : n + k ≤ m + k := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

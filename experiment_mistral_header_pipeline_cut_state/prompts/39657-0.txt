@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Find in Replicated List with Positive Length: `List.find? p (List.replicate n a) = if p a = true then some a else none` : For any natural number \( n \) and any type \( \alpha \), if \( n > 0 \) and \( p : \alpha \to \text{Bool} \) is a predicate, and \( a : \alpha \) is an element, then the function `List.find?` applied to the predicate \( p \) and the list `List.replicate n a` returns:
+- `some a` if \( p(a) \) is true,
+- `none` otherwise.
+
+2. **Informal Proof**  
+We start by noting the theorem that for any natural number \( n \) and element \( a \) of type \( \alpha \), the function `List.find?` applied to the predicate \( p \) and the list `List.replicate n a` returns:
+- `none` if \( n = 0 \),
+- `some a` if \( p a = \text{true} \),
+- `none` otherwise.
+
+Given that \( n > 0 \), we know that \( n \neq 0 \) by the property of natural numbers. Therefore, the condition \( n = 0 \) is false, and the if-then-else expression simplifies to:
+- `some a` if \( p a = \text{true} \),
+- `none` otherwise.
+
+This matches the desired result, completing the proof.
+
+3. **Formal Theorem**  
+example (h : 0 < n) : find? p (replicate n a) = if p a then some a else none := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (h : 0 < n) : find? p (replicate n a) = if p a then some a else none := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

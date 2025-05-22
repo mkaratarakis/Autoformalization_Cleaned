@@ -1,0 +1,61 @@
+
+1. **Informal Theorem**  
+Concatenation of First \( m \) and First \( n \) Elements of a List After Dropping \( m \) Elements : For any list \( l \) of elements of type \( \alpha \) and any natural numbers \( m \) and \( n \), the first \( m + n \) elements of \( l \) are equal to the concatenation of the first \( m \) elements of \( l \) and the first \( n \) elements of the list obtained by dropping the first \( m \) elements of \( l \). In other words, \( \text{take}(m + n, l) = \text{take}(m, l) \, \text{++} \, \text{take}(n, \text{drop}(m, l)) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that the first \( m + n \) elements of \( l \) can be expressed as the first \( m + n \) elements of the concatenation of the first \( m \) elements of \( l \) and the list obtained by dropping the first \( m \) elements of \( l \). This is because the concatenation of the first \( m \) elements of a list and the list obtained by dropping the first \( m \) elements is equal to the original list. Formally, we have:
+\[
+\text{take}(m + n, l) = \text{take}(m + n, \text{take}(m, l) \oplus \text{drop}(m, l))
+\]
+
+Next, we use the property that the first \( n \) elements of the concatenation of two lists are equal to the concatenation of the first \( n \) elements of the first list and the first \( n - \text{length}(\text{take}(m, l)) \) elements of the second list. This gives us:
+\[
+\text{take}(m + n, \text{take}(m, l) \oplus \text{drop}(m, l)) = \text{take}(m, l) \oplus \text{take}(m + n - \text{length}(\text{take}(m, l)), \text{drop}(m, l))
+\]
+
+We also use the property that taking the first \( i \) elements of a list is equal to the list itself if the length of the list is less than or equal to \( i \). Since the length of the first \( m \) elements of \( l \) is less than or equal to \( m \), we have:
+\[
+\text{take}(m, l) = \text{take}(m, l)
+\]
+
+Thus, the goal reduces to showing:
+\[
+\text{take}(m + n - \text{length}(\text{take}(m, l)), \text{drop}(m, l)) = \text{take}(n, \text{drop}(m, l))
+\]
+
+Using the property that the right append operation is injective, we can simplify this to:
+\[
+\min(m + n - \min(m, \text{length}(l)), \text{length}(l) - m) = \min(n, \text{length}(l) - m)
+\]
+
+This is a straightforward arithmetic property of natural numbers, and it holds by the properties of the minimum function and the arithmetic of natural numbers.
+
+Finally, we need to show that the length of the first \( m \) elements of \( l \) is less than or equal to \( m + n \). This is true because the length of the first \( m \) elements of \( l \) is less than or equal to \( m \) (by the property of the length of the first \( m \) elements of a list), and \( m \) is less than or equal to \( m + n \) (by the property of addition of natural numbers).
+
+Thus, we have shown that:
+\[
+\text{take}(m + n, l) = \text{take}(m, l) \oplus \text{take}(n, \text{drop}(m, l))
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (l : List α) (m n : Nat) : l.take (m + n) = l.take m ++ (l.drop m).take n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example (l : List α) (m n : Nat) : l.take (m + n) = l.take m ++ (l.drop m).take n := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

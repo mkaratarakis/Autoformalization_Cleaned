@@ -1,0 +1,68 @@
+
+1. **Informal Theorem**  
+Enumeration of Mapped List Equals Mapped Enumeration of List : For any lists \( l \) of elements of type \( \alpha \) and any natural number \( n \), and for any function \( f : \alpha \to \beta \), the enumeration of the list \( \text{map}(f, l) \) starting from \( n \) is equal to the list obtained by applying the function \( \text{Prod.map}(\text{id}, f) \) to each pair in the enumeration of \( l \) starting from \( n \). Formally, this can be written as:
+\[
+\text{enumFrom}(n, \text{map}(f, l)) = \text{map}(\text{Prod.map}(\text{id}, f), \text{enumFrom}(n, l))
+\]
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l \).
+
+1. **Base Case:**
+Consider the case where \( l \) is the empty list. The goal is to show:
+\[
+\text{enumFrom}(n, \text{map}(f, [])) = \text{map}(\text{Prod.map}(\text{id}, f), \text{enumFrom}(n, []))
+\]
+Since both sides of the equation are definitionally equal to the empty list, the base case is trivially true.
+
+2. **Inductive Step:**
+Assume \( l = \text{cons}(hd, tl) \), where \( hd \) is the head of the list and \( tl \) is the tail. We assume the inductive hypothesis \( \text{IH} \) that:
+\[
+\text{enumFrom}(n, \text{map}(f, tl)) = \text{map}(\text{Prod.map}(\text{id}, f), \text{enumFrom}(n, tl))
+\]
+We need to show:
+\[
+\text{enumFrom}(n, \text{map}(f, \text{cons}(hd, tl))) = \text{map}(\text{Prod.map}(\text{id}, f), \text{enumFrom}(n, \text{cons}(hd, tl)))
+\]
+Using the properties of mapping a function over a cons list and enumerating a cons list from an initial index, we can rewrite the left-hand side as:
+\[
+\text{enumFrom}(n, \text{map}(f, \text{cons}(hd, tl))) = (n, f(hd)) :: \text{map}(\text{Prod.map}(\lambda x. x + 1, \text{id}), \text{enumFrom}(n, \text{map}(f, tl)))
+\]
+By the inductive hypothesis, we have:
+\[
+\text{enumFrom}(n, \text{map}(f, tl)) = \text{map}(\text{Prod.map}(\text{id}, f), \text{enumFrom}(n, tl))
+\]
+Substituting this into the left-hand side, we get:
+\[
+(n, f(hd)) :: \text{map}(\text{Prod.map}(\lambda x. x + 1, \text{id}), \text{map}(\text{Prod.map}(\text{id}, f), \text{enumFrom}(n, tl)))
+\]
+Using the property of mapping a composition of functions, we can rewrite the right-hand side as:
+\[
+\text{map}(\text{Prod.map}(\text{id}, f), (n, hd) :: \text{map}(\text{Prod.map}(\lambda x. x + 1, \text{id}), \text{enumFrom}(n, tl))) = (n, f(hd)) :: \text{map}(\text{Prod.map}(\text{id}, f) \circ \text{Prod.map}(\lambda x. x + 1, \text{id}), \text{enumFrom}(n, tl))
+\]
+Since both sides of the equation are now definitionally equal, the inductive step is proven.
+
+By induction, the theorem holds for all lists \( l \) of elements of type \( \alpha \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) (l : List α) (f : α → β) :
+    enumFrom n (l.map f) = (enumFrom n l).map (Prod.map id f) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (n : Nat) (l : List α) (f : α → β) :
+    enumFrom n (l.map f) = (enumFrom n l).map (Prod.map id f) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

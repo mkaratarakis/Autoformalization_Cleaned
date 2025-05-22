@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Erasing a Non-Equal Element from a Replicated List Preserves the List : For any type $\alpha$ with a `BEq` instance, any natural number $n$, and any elements $a, b \in \alpha$, if $b \neq a$, then erasing $b$ from the list containing $n$ copies of $a$ results in the original list, i.e., $\text{erase}(b, \text{replicate}(n, a)) = \text{replicate}(n, a)$.
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that the list \(\text{replicate}(n, a)\) consists of \(n\) copies of the element \(a\). Given the hypothesis \(b \neq a\), we need to show that erasing \(b\) from \(\text{replicate}(n, a)\) results in the original list \(\text{replicate}(n, a)\).
+
+1. **Step 1:**
+Since the theorem states that erasing an element from a list leaves the list unchanged if the element is not in the list, we can replace the goal of showing \((\text{replicate}(n, a)).\text{erase}(b) = \text{replicate}(n, a)\) with showing that \(b \notin \text{replicate}(n, a)\).
+
+2. **Step 2:**
+Using the fact that \(b \neq a\) (which is given by the hypothesis \(h : (!b == a) = \text{true}\)), we can simplify the expression to show that \(b\) is not a member of the list \(\text{replicate}(n, a)\). This is trivial because the list \(\text{replicate}(n, a)\) contains only the element \(a\), and \(b \neq a\).
+
+Therefore, since \(b \notin \text{replicate}(n, a)\), erasing \(b\) from \(\text{replicate}(n, a)\) results in the original list \(\text{replicate}(n, a)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {a b : α} (h : !b == a) :
+    (replicate n a).erase b = replicate n a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a b : α} (h : !b == a) :
+    (replicate n a).erase b = replicate n a := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

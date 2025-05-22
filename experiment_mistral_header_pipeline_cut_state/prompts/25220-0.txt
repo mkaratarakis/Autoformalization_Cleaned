@@ -1,0 +1,71 @@
+
+1. **Informal Theorem**  
+Map Preserves Or-Else Operation in Optional Types : For any types \( \alpha \) and \( \alpha_1 \), and any function \( f : \alpha \to \alpha_1 \), the following holds for any optional values \( x, y : \text{Option} \, \alpha \):
+\[
+\text{Option.map } f \, (x \, <|> \, y) = (x \, <|> \, y) \, \text{map } f
+\]
+In other words, applying the function \( f \) to the result of the or-else operation \( x \, <|> \, y \) is the same as performing the or-else operation on the results of applying \( f \) to \( x \) and \( y \) separately.
+
+2. **Informal Proof**  
+We will consider every possible case of \( x \).
+
+1. **Case 1: \( x = \text{none} \)**
+- We need to show:
+\[
+\text{Option.map } f \, (\text{none} \, <|> \, y) = (\text{none} \, <|> \, y) \, \text{map } f
+\]
+- By the definition of the or-else operation, \(\text{none} \, <|> \, y = y\).
+- Therefore, the left-hand side becomes:
+\[
+\text{Option.map } f \, y
+\]
+- The right-hand side becomes:
+\[
+y \, \text{map } f
+\]
+- Since \(\text{Option.map } f \, y\) is the same as \(y \, \text{map } f\), the equality holds.
+
+2. **Case 2: \( x = \text{some } val \)**
+- We need to show:
+\[
+\text{Option.map } f \, (\text{some } val \, <|> \, y) = (\text{some } val \, <|> \, y) \, \text{map } f
+\]
+- By the definition of the or-else operation, \(\text{some } val \, <|> \, y = \text{some } val\).
+- Therefore, the left-hand side becomes:
+\[
+\text{Option.map } f \, (\text{some } val) = \text{some } (f \, val)
+\]
+- The right-hand side becomes:
+\[
+\text{some } val \, \text{map } f = \text{some } (f \, val)
+\]
+- Since both sides are equal, the equality holds.
+
+In both cases, the equality holds, thus proving the theorem. This completes the proof.
+
+3. **Formal Theorem**  
+example {x y : Option α} : (x <|> y).map f = (x.map f <|> y.map f) := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x y : Option α} : (x <|> y).map f = (x.map f <|> y.map f) := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

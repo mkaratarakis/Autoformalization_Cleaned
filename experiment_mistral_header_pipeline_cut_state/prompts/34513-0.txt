@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Any Element in Dropped List Satisfies Negated Predicate if and only if Not All Elements in Original List Satisfy Predicate: \((\text{List.dropWhile } p \, l). \text{any } (\lambda x, \, \neg p(x)) = \neg (\text{List.all } p \, l)\) : For any list \( l \) of elements of type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), the boolean value \((\text{List.dropWhile } p \, l). \text{any } (\lambda x, \, \neg p(x))\) is equal to the negation of \(\text{List.all } p \, l\). In other words, if there is any element in the list \( l \) that does not satisfy the predicate \( p \), then \((\text{List.dropWhile } p \, l). \text{any } (\lambda x, \, \neg p(x))\) will be `true`, and if all elements in \( l \) satisfy \( p \), then \((\text{List.dropWhile } p \, l). \text{any } (\lambda x, \, \neg p(x))\) will be `false`.
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l \).
+
+1. **Base Case: \( l \) is empty.**
+- The goal is to show that \((\text{List.dropWhile } p \, []). \text{any } (\lambda x, \, \neg p(x)) = \neg (\text{List.all } p \, [])\).
+- Since the list is empty, \(\text{List.dropWhile } p \, []\) is also empty, and \(\text{List.any } (\lambda x, \, \neg p(x))\) on an empty list is `false`.
+- Similarly, \(\text{List.all } p \, []\) is `true` because there are no elements to check.
+- Therefore, \(\neg (\text{List.all } p \, [])\) is `false`.
+- Hence, both sides of the equation are `false`, and the base case holds.
+
+2. **Inductive Case: \( l \) is of the form \( h :: t \).**
+- We split the proof into two cases based on the value of the predicate \( p(h) \).
+
+- **Case 1: \( p(h) \) is true.**
+- In this case, \(\text{List.dropWhile } p \, (h :: t)\) is equal to \(\text{List.dropWhile } p \, t\).
+- We need to show that \((\text{List.dropWhile } p \, t). \text{any } (\lambda x, \, \neg p(x)) = \neg (h :: t). \text{all } p\).
+- By the inductive hypothesis, \((\text{List.dropWhile } p \, t). \text{any } (\lambda x, \, \neg p(x)) = \neg t. \text{all } p\).
+- Since \( p(h) \) is true, \((h :: t). \text{all } p\) is equivalent to \( t. \text{all } p \).
+- Therefore, the goal simplifies to \(\neg t. \text{all } p = \neg t. \text{all } p\), which is trivially true.
+
+- **Case 2: \( p(h) \) is false.**
+- In this case, \(\text{List.dropWhile } p \, (h :: t)\) is equal to \( h :: \text{List.dropWhile } p \, t \).
+- We need to show that \((h :: \text{List.dropWhile } p \, t). \text{any } (\lambda x, \, \neg p(x)) = \neg (h :: t). \text{all } p\).
+- Since \( p(h) \) is false, \( h \) satisfies \(\neg p(h)\).
+- Therefore, \((h :: \text{List.dropWhile } p \, t). \text{any } (\lambda x, \, \neg p(x))\) is true.
+- On the other hand, \((h :: t). \text{all } p\) is false because \( p(h) \) is false.
+- Therefore, \(\neg (h :: t). \text{all } p\) is true.
+- Hence, the goal \((h :: \text{List.dropWhile } p \, t). \text{any } (\lambda x, \, \neg p(x)) = \neg (h :: t). \text{all } p\) is true.
+
+By induction, the theorem holds for all lists \( l \). This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} :
+    (l.dropWhile p).any (fun x => !p x) = !l.all p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} :
+    (l.dropWhile p).any (fun x => !p x) = !l.all p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

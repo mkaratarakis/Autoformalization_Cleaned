@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+LCM of One and Any Natural Number Equals the Number: \(\text{lcm}(1, m) = m\) : For any natural number \( m \), the least common multiple (LCM) of 1 and \( m \) is equal to \( m \), i.e., \(\text{lcm}(1, m) = m\).
+
+2. **Informal Proof**  
+To prove that \(\text{lcm}(1, m) = m\) for any natural number \( m \), we start by using the definition of the least common multiple (LCM). The LCM of two natural numbers \(a\) and \(b\) is given by the formula:
+\[
+\text{lcm}(a, b) = \frac{a \cdot b}{\text{gcd}(a, b)}
+\]
+where \(\text{gcd}(a, b)\) is the greatest common divisor of \(a\) and \(b\).
+
+In our case, we have \(a = 1\) and \(b = m\). The greatest common divisor of 1 and \(m\) is 1, i.e., \(\text{gcd}(1, m) = 1\). Substituting this into the LCM formula, we get:
+\[
+\text{lcm}(1, m) = \frac{1 \cdot m}{1} = m
+\]
+Thus, the least common multiple of 1 and \(m\) is indeed \(m\). Therefore, we have shown that \(\text{lcm}(1, m) = m\) for any natural number \(m\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m : Nat) : lcm 1 m = m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (m : Nat) : lcm 1 m = m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Gcd not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Lcm not found. --
+

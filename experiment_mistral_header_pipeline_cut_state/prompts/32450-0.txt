@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Zero Raised to Any Positive Natural Number Equals Zero: \( 0^n = 0 \) : For any natural number \( n \) such that \( n > 0 \), the expression \( 0^n \) is equal to 0, i.e., \( 0^n = 0 \).
+
+2. **Informal Proof**  
+We will prove this by considering two cases: \( n = 0 \) and \( n = k + 1 \) for some natural number \( k \).
+
+1. **Base Case: \( n = 0 \)**
+- The assumption is \( 0 < n \). If \( n = 0 \), then \( 0 < 0 \), which is a contradiction. Therefore, this case is impossible.
+
+2. **Inductive Step: \( n = k + 1 \)**
+- Assume \( n = k + 1 \) for some natural number \( k \). By the definition of exponentiation, \( 0^{k+1} = 0^k \cdot 0 \).
+- Since \( 0 \cdot 0 = 0 \), we have \( 0^{k+1} = 0 \).
+
+By considering both cases, we conclude that for any natural number \( n \) such that \( n > 0 \), \( 0^n = 0 \). This completes the proof.
+
+3. **Formal Theorem**  
+example {n : Nat} (H : 0 < n) : 0 ^ n = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {n : Nat} (H : 0 < n) : 0 ^ n = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Divisibility of Sum by a Divisor of One Term in Natural Numbers: \( k \mid n \to (k \mid m \leftrightarrow k \mid m + n) \) : For any natural numbers \( k, m, \) and \( n \), if \( k \mid n \), then \( k \mid m \) if and only if \( k \mid m + n \).
+
+2. **Informal Proof**  
+We start by using the commutativity of addition to rewrite the goal as \( k \mid m + n \) if and only if \( k \mid n + m \). Then, we apply the theorem that if \( k \mid n \), then \( k \mid m \) if and only if \( k \mid n + m \). This directly proves the goal, establishing that \( k \mid m \) if and only if \( k \mid m + n \).
+
+3. **Formal Theorem**  
+example {k m n : Nat} (h : k ∣ n) : k ∣ m ↔ k ∣ m + n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example {k m n : Nat} (h : k ∣ n) : k ∣ m ↔ k ∣ m + n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Last Element of Dropped List Equals Last Element of Original List: \((\text{List.drop } n \, l \neq []) \to (\text{List.drop } n \, l).\text{getLast} = l.\text{getLast}\) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( n \), if the list obtained by dropping the first \( n \) elements of \( l \) is non-empty, then the last element of the dropped list is equal to the last element of the original list \( l \). Formally, if \( \text{List.drop } n \, l \neq [] \), then \( (\text{List.drop } n \, l).\text{getLast}(h) = l.\text{getLast} \), where \( h \) is a proof that \( \text{List.drop } n \, l \) is non-empty.
+
+2. **Informal Proof**  
+We start with the assumption that the list obtained by dropping the first \( n \) elements of \( l \) is non-empty, i.e., \( \text{List.drop } n \, l \neq [] \). Using the equivalence that \( a \neq b \) is the same as \( \neg (a = b) \) and the fact that the list obtained by dropping the first \( n \) elements of \( l \) is non-empty if and only if the length of \( l \) is greater than \( n \), we can simplify the hypothesis to \( \neg (l.\text{length} \le n) \).
+
+Next, we need to show that \( (\text{List.drop } n \, l).\text{getLast} \, h = l.\text{getLast} \). To do this, it suffices to show that \( \text{some} \, ((\text{List.drop } n \, l).\text{getLast} \, h) = \text{some} \, (l.\text{getLast}) \), since the `some` constructor is injective.
+
+Using the properties that \( (\text{List.drop } n \, l).\text{getLast?} = \text{if } l.\text{length} \le n \text{ then } \text{none} \text{ else } l.\text{getLast?} \) and the equivalence \( (\text{if } P \text{ then } a \text{ else } b) = b \leftrightarrow P \to a = b \), we can simplify the goal to \( l.\text{length} \le n \to \text{none} = l.\text{getLast?} \).
+
+Since \( \neg (l.\text{length} \le n) \) is given, the implication \( l.\text{length} \le n \to \text{none} = l.\text{getLast?} \) is vacuously true. Therefore, the last element of the dropped list is equal to the last element of the original list, completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} (h : l.drop n ≠ []) :
+    (l.drop n).getLast h = l.getLast (ne_nil_of_length_pos (by simp at h; omega)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} (h : l.drop n ≠ []) :
+    (l.drop n).getLast h = l.getLast (ne_nil_of_length_pos (by simp at h; omega)) := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

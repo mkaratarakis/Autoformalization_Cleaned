@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Strict Inequality Implies Inequality in Boolean Values: \( x < y \to x \neq y \) : For any boolean values \( x \) and \( y \), if \( x < y \), then \( x \neq y \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( x \) and \( y \), if \( x < y \), then \( x \neq y \). The boolean values are \( \text{true} \) and \( \text{false} \). We will consider all possible combinations of \( x \) and \( y \):
+
+1. If \( x = \text{false} \) and \( y = \text{true} \), then \( x < y \) holds, and \( x \neq y \) is true.
+2. If \( x = \text{false} \) and \( y = \text{false} \), then \( x < y \) does not hold.
+3. If \( x = \text{true} \) and \( y = \text{true} \), then \( x < y \) does not hold.
+4. If \( x = \text{true} \) and \( y = \text{false} \), then \( x < y \) does not hold.
+
+In all cases where \( x < y \) holds, we have \( x \neq y \). Therefore, the statement \( x < y \to x \neq y \) is true for all boolean values \( x \) and \( y \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x < y → x ≠ y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x < y → x ≠ y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+True is the Identity for Boolean AND: $\text{true} \land b = b$ : For any boolean value $b$, the boolean AND operation between `true` and $b$ is equal to $b$, i.e., $\text{true} \land b = b$.
+
+2. **Informal Proof**  
+To prove the theorem, we consider every possible value of $b$.
+
+**Case 1: $b = \text{false}$**
+- We need to show that $(\text{true} \land \text{false}) = \text{false}$.
+- By the definition of the boolean AND operation, $\text{true} \land \text{false} = \text{false}$.
+- Therefore, the equality holds.
+
+**Case 2: $b = \text{true}$**
+- We need to show that $(\text{true} \land \text{true}) = \text{true}$.
+- By the definition of the boolean AND operation, $\text{true} \land \text{true} = \text{true}$.
+- Therefore, the equality holds.
+
+Since both cases are covered and the equality holds in each case, we conclude that for any boolean value $b$, $\text{true} \land b = b$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example (b : Bool) : (true && b) = b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (true && b) = b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

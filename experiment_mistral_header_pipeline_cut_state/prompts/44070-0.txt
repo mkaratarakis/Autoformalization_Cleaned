@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Zero Extension of Zero Bitvector : For any natural numbers \( m \) and \( n \), the zero extension of the bitvector \( 0 \) of width \( n \) to a bitvector of width \( m \) results in the bitvector \( 0 \) of width \( m \). In other words, \( \text{zeroExtend}(m, 0^n) = 0^m \).
+
+2. **Informal Proof**  
+To prove that the zero extension of the bitvector \( 0 \) of width \( n \) to a bitvector of width \( m \) results in the bitvector \( 0 \) of width \( m \), we use the property that two bitvectors are equal if and only if their natural number representations are equal. Therefore, it suffices to show that the natural number representation of the zero-extended bitvector \(\text{zeroExtend}(m, 0^n)\) is equal to the natural number representation of the bitvector \(0^m\).
+
+Using the property of the natural number representation of the zero-extended bitvector, we know that \((\text{zeroExtend}(m, 0^n)).\text{toNat} = (0^n).\text{toNat}\). Since the natural number representation of the bitvector \(0^n\) is \(0\), we have \((\text{zeroExtend}(m, 0^n)).\text{toNat} = 0\).
+
+Similarly, the natural number representation of the bitvector \(0^m\) is also \(0\). Therefore, \((0^m).\text{toNat} = 0\).
+
+Thus, we have \((\text{zeroExtend}(m, 0^n)).\text{toNat} = (0^m).\text{toNat}\), which simplifies to \(0 = 0\), a trivially true statement.
+
+Hence, \(\text{zeroExtend}(m, 0^n) = 0^m\), completing the proof.
+
+3. **Formal Theorem**  
+example (m n : Nat) : zeroExtend m 0#n = 0#m := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (m n : Nat) : zeroExtend m 0#n = 0#m := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

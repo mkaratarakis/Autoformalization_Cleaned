@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Zero Plus String Equals Byte Position with UTF-8 Byte Size : For any string \( s \), the byte position \( 0 + s \) is equal to the byte position with byte index \( s.\text{utf8ByteSize} \), i.e., \( 0 + s = \{ \text{byteIdx} := s.\text{utf8ByteSize} \} \).
+
+2. **Informal Proof**  
+To prove that \( 0 + s = \{ \text{byteIdx} := s.\text{utf8ByteSize} \} \) for any string \( s \), we use the theorem that the byte index of the byte position \( 0 + s \) is equal to the UTF-8 byte size of \( s \). This theorem states that \((0 + s).byteIdx = s.\text{utf8ByteSize}\). Therefore, we can rewrite the goal \( 0 + s = \{ \text{byteIdx} := s.\text{utf8ByteSize} \} \) as \( 0 + s = \{ \text{byteIdx} := (0 + s).byteIdx \} \). This new goal is trivially true by the definition of equality. Hence, the original goal is proved.
+
+3. **Formal Theorem**  
+example (s : String) : (0 : Pos) + s = ⟨s.utf8ByteSize⟩ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Basic
+import Init.Data.Char.Basic
+import Init.Data.Option.Basic
+import Init.Data.String.Basic
+
+open String
+open Pos
+
+
+example (s : String) : (0 : Pos) + s = ⟨s.utf8ByteSize⟩ := by
+
+5. **Header Information**  
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.Option.Basic not found. --
+
+-- Init.Data.String.Basic not found. --
+

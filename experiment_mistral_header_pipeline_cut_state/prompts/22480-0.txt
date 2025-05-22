@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Signed Less Than or Equal To is Negation of Signed Less Than for Bit Vectors: \( x \leq y \leftrightarrow \neg (y < x) \) : For any natural number \( w \) and bit vectors \( x \) and \( y \) of length \( w \), the signed less than or equal to relation \( x \leq y \) is equivalent to the negation of the signed less than relation \( y < x \), i.e., \( x \leq y \) if and only if \( \neg (y < x) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by simplifying the goal using the definitions of the signed less than or equal to (`sle`) and signed less than (`slt`) relations for bit vectors. Specifically, we use the following equivalences:
+1. The negation of a decision is equivalent to the decision of the negation.
+2. The equality of decisions is equivalent to the decision of equality.
+
+After applying these simplifications, the goal reduces to a straightforward arithmetic statement. We then use the `omega` tactic to automatically discharge this arithmetic goal, which completes the proof.
+
+Thus, we have shown that for any natural number \( w \) and bit vectors \( x \) and \( y \) of length \( w \), the signed less than or equal to relation \( x \leq y \) is indeed equivalent to the negation of the signed less than relation \( y < x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y : BitVec w) : x.sle y = !y.slt x := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x y : BitVec w) : x.sle y = !y.slt x := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

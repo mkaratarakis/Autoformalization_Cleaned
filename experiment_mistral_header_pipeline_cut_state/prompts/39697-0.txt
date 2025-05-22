@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Find in Replicated List: `List.find? p (List.replicate n a) = if n = 0 then none else if p a = true then some a else none` : For any type \( \alpha \), predicate \( p : \alpha \to \text{Bool} \), natural number \( n \), and element \( a : \alpha \), the function `List.find?` applied to the predicate \( p \) and the list `List.replicate n a` returns:
+- `none` if \( n = 0 \),
+- `some a` if \( p a = \text{true} \),
+- `none` otherwise.
+
+2. **Informal Proof**  
+We will consider two cases for the natural number \( n \):
+
+1. **Case 1: \( n = 0 \)**
+- The list `List.replicate 0 a` is the empty list.
+- The function `List.find? p` applied to the empty list returns `none`.
+- Therefore, the goal \( \text{find? } p \, (\text{replicate } 0 \, a) = \text{if } 0 = 0 \text{ then none else if } p \, a = \text{true then some } a \text{ else none} \) simplifies to `none = none`, which is trivially true.
+
+2. **Case 2: \( n = n' + 1 \) for some natural number \( n' \)**
+- We split this case into two subcases based on the value of \( p \, a \):
+1. **Subcase 1: \( p \, a = \text{true} \)**
+- The list `List.replicate (n' + 1) a` is the list `[a, a, ..., a]` with \( n' + 1 \) elements.
+- The function `List.find? p` applied to this list will return `some a` because \( p \, a = \text{true} \).
+- Therefore, the goal \( \text{find? } p \, (\text{replicate } (n' + 1) \, a) = \text{if } n' + 1 = 0 \text{ then none else if } p \, a = \text{true then some } a \text{ else none} \) simplifies to `some a = some a`, which is trivially true.
+2. **Subcase 2: \( p \, a = \text{false} \)**
+- The list `List.replicate (n' + 1) a` is the list `[a, a, ..., a]` with \( n' + 1 \) elements.
+- The function `List.find? p` applied to this list will return `none` because \( p \, a = \text{false} \).
+- Therefore, the goal \( \text{find? } p \, (\text{replicate } (n' + 1) \, a) = \text{if } n' + 1 = 0 \text{ then none else if } p \, a = \text{true then some } a \text{ else none} \) simplifies to `none = none`, which is trivially true.
+
+Thus, in all cases, the function `List.find? p (List.replicate n a)` returns the correct value as specified. This completes the proof.
+
+3. **Formal Theorem**  
+example : find? p (replicate n a) = if n = 0 then none else if p a then some a else none := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example : find? p (replicate n a) = if n = 0 then none else if p a then some a else none := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

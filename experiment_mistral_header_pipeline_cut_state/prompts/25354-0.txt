@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Transitivity of Boolean 'Less Than or Equal To' Relation: \( x \leq y \land y \leq z \to x \leq z \) : For any boolean values \( x, y, \) and \( z \), if \( x \leq y \) and \( y \leq z \), then \( x \leq z \).
+
+2. **Informal Proof**  
+To prove the transitivity of the boolean 'less than or equal to' relation, we need to show that for any boolean values \( x, y, \) and \( z \), if \( x \leq y \) and \( y \leq z \), then \( x \leq z \).
+
+We use the `decide` tactic, which automatically checks the truth of the statement for all possible boolean values \( x, y, \) and \( z \). Since the boolean values are finite and the relation \( \leq \) is well-defined, the `decide` tactic confirms that the statement holds for all cases. Therefore, the transitivity of the boolean 'less than or equal to' relation is established.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y z : Bool}, x ≤ y → y ≤ z → x ≤ z := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y z : Bool}, x ≤ y → y ≤ z → x ≤ z := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

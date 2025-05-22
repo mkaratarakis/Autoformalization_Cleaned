@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+Boolean AND Identity: $a \land b \land b = a \land b$ : For any boolean values $a$ and $b$, the expression $(a \land b \land b)$ is equal to $(a \land b)$, i.e., $a \land b \land b = a \land b$.
+
+2. **Informal Proof**  
+To prove that for any boolean values $a$ and $b$, the expression $(a \land b \land b)$ is equal to $(a \land b)$, we can directly evaluate all possible cases for $a$ and $b$. Since there are only four possible combinations of $a$ and $b$ (both true, both false, $a$ true and $b$ false, $a$ false and $b$ true), we can check each case individually to verify the equality.
+
+1. **Case 1: $a = \text{true}$ and $b = \text{true}$**
+\[
+(a \land b \land b) = (\text{true} \land \text{true} \land \text{true}) = \text{true}
+\]
+\[
+(a \land b) = (\text{true} \land \text{true}) = \text{true}
+\]
+Thus, $(a \land b \land b) = (a \land b)$.
+
+2. **Case 2: $a = \text{true}$ and $b = \text{false}$**
+\[
+(a \land b \land b) = (\text{true} \land \text{false} \land \text{false}) = \text{false}
+\]
+\[
+(a \land b) = (\text{true} \land \text{false}) = \text{false}
+\]
+Thus, $(a \land b \land b) = (a \land b)$.
+
+3. **Case 3: $a = \text{false}$ and $b = \text{true}$**
+\[
+(a \land b \land b) = (\text{false} \land \text{true} \land \text{true}) = \text{false}
+\]
+\[
+(a \land b) = (\text{false} \land \text{true}) = \text{false}
+\]
+Thus, $(a \land b \land b) = (a \land b)$.
+
+4. **Case 4: $a = \text{false}$ and $b = \text{false}$**
+\[
+(a \land b \land b) = (\text{false} \land \text{false} \land \text{false}) = \text{false}
+\]
+\[
+(a \land b) = (\text{false} \land \text{false}) = \text{false}
+\]
+Thus, $(a \land b \land b) = (a \land b)$.
+
+Since the equality holds for all possible values of $a$ and $b$, we conclude that for any boolean values $a$ and $b$, the expression $(a \land b \land b)$ is equal to $(a \land b)$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), ((a && b) && b) = (a && b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), ((a && b) && b) = (a && b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

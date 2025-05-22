@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Commutativity of Multiplication in Natural Numbers: \(a \times b \times (c \times d) = a \times c \times (b \times d)\) : For any natural numbers \(a\), \(b\), \(c\), and \(d\), the product \(a \times b \times (c \times d)\) is equal to \(a \times c \times (b \times d)\).
+
+2. **Informal Proof**  
+We start with the expression \(a \times b \times (c \times d)\). Using the associativity of multiplication, we can rewrite this as:
+\[
+a \times (b \times (c \times d))
+\]
+Next, we use the associativity of multiplication again to rewrite \(b \times (c \times d)\) as:
+\[
+(b \times c) \times d
+\]
+Thus, the expression becomes:
+\[
+a \times ((b \times c) \times d)
+\]
+Using the left commutativity of multiplication, we can rewrite \(a \times ((b \times c) \times d)\) as:
+\[
+(b \times c) \times (a \times d)
+\]
+Finally, we use the associativity of multiplication to rewrite \((b \times c) \times (a \times d)\) as:
+\[
+a \times c \times (b \times d)
+\]
+Therefore, we have shown that:
+\[
+a \times b \times (c \times d) = a \times c \times (b \times d)
+\]
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c d : Nat) : (a * b) * (c * d) = (a * c) * (b * d) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c d : Nat) : (a * b) * (c * d) = (a * c) * (b * d) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Addition and Subtraction Cancellation: \( m + (n - m) = n \) for \( m \leq n \) : For any natural numbers \( m \) and \( n \) such that \( m \leq n \), it holds that \( m + (n - m) = n \).
+
+2. **Informal Proof**  
+We start with the goal of proving \( m + (n - m) = n \) under the assumption that \( m \leq n \).
+
+1. **Step 1:**
+We use the commutativity of addition to rewrite the goal:
+\[
+m + (n - m) = n \implies n - m + m = n
+\]
+
+2. **Step 2:**
+Next, we use the property that subtraction and addition cancel each other in an additive group to simplify the left-hand side:
+\[
+n - m + m = n
+\]
+This simplification is valid because for any natural numbers \( a \) and \( b \) such that \( a \leq b \), the equation \( a - b + b = a \) holds.
+
+3. **Step 3:**
+The simplified goal \( n = n \) is trivially true.
+
+Therefore, we have shown that \( m + (n - m) = n \) for any natural numbers \( m \) and \( n \) such that \( m \leq n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m : Nat} (h : m ≤ n) : m + (n - m) = n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {n m : Nat} (h : m ≤ n) : m + (n - m) = n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

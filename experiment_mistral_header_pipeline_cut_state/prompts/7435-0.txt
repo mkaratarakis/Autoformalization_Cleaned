@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Dropping Length of Non-Empty List Results in Last Element : For any non-empty list \( l \) of elements of type \( \alpha \) and any element \( a \) of type \( \alpha \), dropping the first \( \text{length}(l) \) elements from the list \( a :: l \) results in a list containing only the last element of \( l \). Formally, if \( l \neq [] \), then \( \text{drop}(\text{length}(l), a :: l) = [l.\text{getLast}(h)] \), where \( h \) is a proof that \( l \) is non-empty.
+
+2. **Informal Proof**  
+We will prove this by induction on the list \( l \).
+
+**Base Case:**
+Consider the case where \( l \) is the empty list. Since \( l \) is empty, the assumption \( l \neq [] \) leads to a contradiction. Therefore, the goal is trivially true.
+
+**Inductive Step:**
+Assume \( l \) is a non-empty list of the form \( y :: l \). We need to show that \( \text{drop}(\text{length}(l), y :: l) = [l.\text{getLast}(h)] \).
+
+1. **Simplify the Goal:**
+Using the definitions of `drop` and `length`, we simplify the goal to show that \( \text{drop}(\text{length}(l), y :: l) = [l.\text{getLast}(h)] \).
+
+2. **Consider Two Cases:**
+- **Case 1: \( l \) is the empty list.**
+Using the assumption \( l = [] \), we simplify the goal to show that \( \text{drop}(\text{length}([]), y :: []) = [y] \). Since \( \text{length}([]) = 0 \), this simplifies to \( \text{drop}(0, [y]) = [y] \), which is trivially true.
+- **Case 2: \( l \) is not the empty list.**
+Since \( l \) is not the empty list, we use the theorem that the last element of \( y :: l \) is the same as the last element of \( l \) to rewrite the goal to \( \text{drop}(\text{length}(l), y :: l) = [l.\text{getLast}(h)] \).
+
+3. **Apply Induction Hypothesis:**
+By the induction hypothesis, if \( l \) is non-empty, then dropping the first \( \text{length}(l) \) elements from the list \( y :: l \) results in a list containing only the last element of \( l \). Therefore, \( \text{drop}(\text{length}(l), y :: l) = [l.\text{getLast}(h)] \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} (h : l ≠ []) (a : α) :
+    (a :: l).drop l.length = [l.getLast h] := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} (h : l ≠ []) (a : α) :
+    (a :: l).drop l.length = [l.getLast h] := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

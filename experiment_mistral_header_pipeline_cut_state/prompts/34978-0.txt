@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Suffix of a List: `isSuffixOf l₁ l₂ = true` if and only if \( l_1 \) is a suffix of \( l_2 \) : For any type \( \alpha \) with a decidable equality, and for any two lists \( l_1 \) and \( l_2 \) of type \( \alpha \), the function `isSuffixOf l₁ l₂` returns `true` if and only if \( l_1 \) is a suffix of \( l_2 \). In other words, \( l_1 \) is a suffix of \( l_2 \) if and only if there exists a list \( t \) such that \( l_2 = t ++ l_1 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the function `isSuffixOf`. The function `isSuffixOf l₁ l₂` returns `true` if and only if \( l_1 \) is a suffix of \( l_2 \). By the definition of a suffix, \( l_1 \) is a suffix of \( l_2 \) if and only if there exists a list \( t \) such that \( l_2 = t ++ l_1 \).
+
+Thus, the proposition \( l_1 \).isSuffixOf \( l_2 \) = true is equivalent to \( l_1 \) <:+ \( l_2 \). This completes the proof.
+
+3. **Formal Theorem**  
+example [BEq α] [LawfulBEq α] {l₁ l₂ : List α} :
+    l₁.isSuffixOf l₂ ↔ l₁ <:+ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example [BEq α] [LawfulBEq α] {l₁ l₂ : List α} :
+    l₁.isSuffixOf l₂ ↔ l₁ <:+ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

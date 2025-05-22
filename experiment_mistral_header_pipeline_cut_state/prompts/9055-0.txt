@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Mapping Increasing Indices to List Elements Produces a Sublist : For any list \( l \) of elements of type \( \alpha \) and any list \( is \) of indices in the range \( 0 \leq i < \text{length}(l) \), if the indices in \( is \) are pairwise strictly increasing, then the list obtained by mapping the function `l.get` over \( is \) is a sublist of \( l \). Formally, if \( is \) is a list of indices such that for all \( x, x_1 \in is \), \( x < x_1 \), then \( \text{List.map} \, l.get \, is \) is a sublist of \( l \).
+
+2. **Informal Proof**  
+We need to show that \( \text{List.map} \, l.get \, is \) is a sublist of \( l \). Given that the indices in \( is \) are pairwise strictly increasing, we can use the theorem that states if the indices in a list \( is \) are pairwise strictly increasing, then the list obtained by mapping the function \( l[i] \) over \( is \) is a sublist of \( l \). Since \( h \) is a proof that the indices in \( is \) are pairwise strictly increasing, we can directly apply this theorem to conclude that \( \text{List.map} \, l.get \, is \) is indeed a sublist of \( l \). This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} {is : List (Fin l.length)} (h : is.Pairwise (·.val < ·.val)) :
+    is.map (get l) <+ l := by sorry
+
+4. **Prefix**
+import Init.Data.Fin.Lemmas
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Pairwise
+
+open List
+
+
+example {l : List α} {is : List (Fin l.length)} (h : is.Pairwise (·.val < ·.val)) :
+    is.map (get l) <+ l := by
+
+5. **Header Information**  
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Pairwise not found. --
+

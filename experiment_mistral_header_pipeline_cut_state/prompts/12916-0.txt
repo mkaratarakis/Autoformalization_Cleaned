@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Sublist Count Preservation: \(\text{countP}(p, l_1) \leq \text{countP}(p, l_2)\) for \( l_1 \subseteq l_2 \) : For any type \(\alpha\) and any predicate \( p : \alpha \to \text{Bool} \), if \( l_1 \) is a sublist of \( l_2 \), then the number of elements in \( l_1 \) that satisfy \( p \) is less than or equal to the number of elements in \( l_2 \) that satisfy \( p \). Mathematically, this can be expressed as:
+\[
+l_1 \subseteq l_2 \implies \text{countP}(p, l_1) \leq \text{countP}(p, l_2)
+\]
+
+2. **Informal Proof**  
+We start by noting that the count of elements in a list that satisfy a predicate \( p \) is equal to the length of the filtered list. Therefore, the goal is to show that the length of the filtered list \( \text{filter}(p, l_1) \) is less than or equal to the length of the filtered list \( \text{filter}(p, l_2) \).
+
+Since \( l_1 \) is a sublist of \( l_2 \), we can use the property that if \( l_1 \) is a sublist of \( l_2 \), then the length of \( l_1 \) is less than or equal to the length of \( l_2 \). Applying this property to the filtered lists, we get:
+\[
+\text{length}(\text{filter}(p, l_1)) \leq \text{length}(\text{filter}(p, l_2))
+\]
+
+Thus, we have shown that:
+\[
+\text{countP}(p, l_1) \leq \text{countP}(p, l_2)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (s : l₁ <+ l₂) : countP p l₁ ≤ countP p l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Sublist
+open Nat
+variable (p q : α → Bool)
+
+example (s : l₁ <+ l₂) : countP p l₁ ≤ countP p l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

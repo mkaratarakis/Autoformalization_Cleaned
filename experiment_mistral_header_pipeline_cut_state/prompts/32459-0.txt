@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Shift Left of One in Natural Numbers Equals Power of Two : For any natural number \( n \), shifting the number 1 to the left by \( n \) positions is equivalent to raising 2 to the power of \( n \), i.e., \( 1 \ll n = 2^n \).
+
+2. **Informal Proof**  
+To prove that \( 1 \ll n = 2^n \) for any natural number \( n \), we start by using the theorem that the left shift of a natural number \( a \) by \( b \) positions is equivalent to multiplying \( a \) by \( 2^b \). Specifically, for \( a = 1 \) and \( b = n \), we have:
+\[
+1 \ll n = 1 \cdot 2^n
+\]
+Next, we use the property of the multiplicative identity, which states that \( 1 \cdot a = a \) for any natural number \( a \). Applying this property, we get:
+\[
+1 \cdot 2^n = 2^n
+\]
+Thus, our goal is to show that:
+\[
+2^n = 2^n
+\]
+This is trivially true by the reflexive property of equality. Therefore, we have shown that \( 1 \ll n = 2^n \) for any natural number \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n : Nat) : 1 <<< n = 2 ^ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n : Nat) : 1 <<< n = 2 ^ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

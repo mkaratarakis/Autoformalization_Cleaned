@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Subarray Size is Less Than or Equal to Array Size : For any subarray \( s \) of elements of type \( \alpha \), the size of the subarray \( s \) is less than or equal to the size of the original array \( s.array \). Formally, this is expressed as \( s.\text{size} \leq s.array.\text{size} \).
+
+2. **Informal Proof**  
+We start by deconstructing the subarray \( s \) into its components: the original array \( \text{array} \), the starting index \( \text{start} \), the stopping index \( \text{stop} \), the fact that the starting index is less than or equal to the stopping index \( \text{start} \leq \text{stop} \), and the fact that the stopping index is less than or equal to the size of the array \( \text{stop} \leq \text{array.size} \).
+
+Next, we use the definition of the size of a subarray, which is the difference between the stopping index and the starting index, to simplify the goal to show that \( \text{stop} - \text{start} \leq \text{array.size} \).
+
+To prove this, we use the transitivity of the less than or equal to relation. Specifically, we know that \( \text{stop} - \text{start} \leq \text{stop} \) (since the subtraction of a natural number from another natural number is less than or equal to the minuend). Therefore, it suffices to show that \( \text{stop} \leq \text{array.size} \).
+
+The current goal \( \text{stop} \leq \text{array.size} \) has already been proved previously, as it is one of the components of the subarray \( s \). This completes the proof.
+
+3. **Formal Theorem**  
+example {s : Subarray α} : s.size ≤ s.array.size := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Basic
+import Init.Data.Array.Subarray
+
+open Subarray
+
+
+example {s : Subarray α} : s.size ≤ s.array.size := by
+
+5. **Header Information**  
+-- Init.Data.Array.Basic not found. --
+
+-- Init.Data.Array.Subarray not found. --
+

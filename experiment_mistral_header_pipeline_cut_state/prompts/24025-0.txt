@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Nonzero LCM of Nonzero Natural Numbers : For any natural numbers \( m \) and \( n \) such that \( m \neq 0 \) and \( n \neq 0 \), their least common multiple (LCM) is also nonzero, i.e., \( \text{lcm}(m, n) \neq 0 \).
+
+2. **Informal Proof**  
+We start by assuming that \( \text{lcm}(m, n) = 0 \) and show that this leads to a contradiction.
+
+1. Let \( h \) be the assumption that \( \text{lcm}(m, n) = 0 \). We need to show that this leads to a contradiction, i.e., \( \text{False} \).
+
+2. We know from the property of the greatest common divisor (gcd) and the least common multiple (lcm) that \( \gcd(m, n) \cdot \text{lcm}(m, n) \) is associated with \( m \cdot n \). Let \( h1 \) be this property, i.e., \( \gcd(m, n) \cdot \text{lcm}(m, n) = m \cdot n \).
+
+3. Since \( \text{lcm}(m, n) = 0 \) by assumption \( h \), we can substitute \( 0 \) for \( \text{lcm}(m, n) \) in \( h1 \). Using the property that any natural number multiplied by \( 0 \) is \( 0 \), we get \( 0 = m \cdot n \).
+
+4. We now consider the equation \( 0 = m \cdot n \). If \( m \neq 0 \) (which is given by \( hm \)), then \( n \) must be \( 0 \) for the product to be \( 0 \). This contradicts the assumption \( n \neq 0 \) (given by \( hn \)).
+
+5. Similarly, if \( n \neq 0 \) (which is given by \( hn \)), then \( m \) must be \( 0 \) for the product to be \( 0 \). This contradicts the assumption \( m \neq 0 \) (given by \( hm \)).
+
+Since both cases lead to a contradiction, our assumption that \( \text{lcm}(m, n) = 0 \) must be false. Therefore, \( \text{lcm}(m, n) \neq 0 \). This completes the proof.
+
+3. **Formal Theorem**  
+example (hm : m ≠ 0) (hn : n ≠ 0) : lcm m n ≠ 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (hm : m ≠ 0) (hn : n ≠ 0) : lcm m n ≠ 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Gcd not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Lcm not found. --
+

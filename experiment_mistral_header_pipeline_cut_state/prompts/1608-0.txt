@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Membership in List of Natural Numbers from \( n \) to 1 : For any natural numbers \( m \) and \( n \), \( m \) is a member of the list \( \text{iota}(n) \) if and only if \( 1 \leq m \leq n \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the fact that \(\text{iota}(n)\) is the reverse of the list \(\text{range}'(1, n)\). This means that \(\text{iota}(n)\) is the list of natural numbers from \( n \) down to 1 in decreasing order, which is the reverse of the list of natural numbers starting from 1 and incrementing by 1 for \( n \) times.
+
+Next, we use the commutativity of addition to simplify the expression. The commutativity of addition states that for any natural numbers \( a \) and \( b \), \( a + b = b + a \).
+
+By simplifying the proposition using these facts, we need to show that \( m \in \text{iota}(n) \) if and only if \( 1 \leq m \leq n \).
+
+Since \(\text{iota}(n)\) is the reverse of \(\text{range}'(1, n)\), and \(\text{range}'(1, n)\) is the list of natural numbers from 1 to \( n \), it follows that \( m \) is in \(\text{iota}(n)\) if and only if \( m \) is in \(\text{range}'(1, n)\).
+
+The list \(\text{range}'(1, n)\) contains all natural numbers \( m \) such that \( 1 \leq m \leq n \). Therefore, \( m \in \text{iota}(n) \) if and only if \( 1 \leq m \leq n \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {m n : Nat} : m ∈ iota n ↔ 1 ≤ m ∧ m ≤ n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {m n : Nat} : m ∈ iota n ↔ 1 ≤ m ∧ m ≤ n := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

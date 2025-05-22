@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Size of Boolean Element is One: \(\text{sizeOf}(b) = 1\) : For any boolean value \( b \), the size of \( b \) is equal to 1, i.e., \(\text{sizeOf}(b) = 1\).
+
+2. **Informal Proof**  
+To prove that \(\text{sizeOf}(b) = 1\) for any boolean value \( b \), we consider the two possible cases for \( b \):
+
+1. **Case 1: \( b = \text{false} \)**
+- By definition, \(\text{sizeOf}(\text{false}) = 1\). Therefore, the equality \(\text{sizeOf}(\text{false}) = 1\) holds.
+
+2. **Case 2: \( b = \text{true} \)**
+- By definition, \(\text{sizeOf}(\text{true}) = 1\). Therefore, the equality \(\text{sizeOf}(\text{true}) = 1\) holds.
+
+Since both cases are covered and the equality holds in each case, we conclude that for any boolean value \( b \), \(\text{sizeOf}(b) = 1\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (b : Bool) : sizeOf b = 1 := by sorry
+
+4. **Prefix**
+import Init.Tactics
+import Init.SizeOf
+
+open Bool
+
+
+example (b : Bool) : sizeOf b = 1 := by
+
+5. **Header Information**  
+-- Init.Tactics not found. --
+
+-- Init.SizeOf not found. --
+

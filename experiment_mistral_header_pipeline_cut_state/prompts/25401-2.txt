@@ -1,0 +1,25 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:4: error: no goals to be solved
+tmp.lean:15:4: error: no goals to be solved
+tmp.lean:8:59: error: unsolved goals
+case neg
+p : Prop
+h : Decidable p
+t f : Bool
+hp : ¬p
+⊢ ((if p then t else f) = false) = if p then t = false else f = false
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (t f : Bool) :
+    (ite p t f = false) = ite p (t = false) (f = false) := by
+  by_cases hp : p
+  · -- Case 1: p is true
+    simp [hp]

@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Recursive Left Shift of Bitvectors with Successor Steps : For any natural numbers \( w_1 \) and \( w_2 \), and for any bitvectors \( x \) and \( y \) of widths \( w_1 \) and \( w_2 \) respectively, the recursive left shift operation `shiftLeftRec` applied to \( x \) and \( y \) with \( n + 1 \) steps is equal to the left shift of \( x \) by the value of the first \( n \) bits of \( y \) followed by the left shift of the result by the value of the \( (n + 1) \)-th bit of \( y \). Formally, this is expressed as:
+\[ x.\text{shiftLeftRec}(y, n + 1) = (x.\text{shiftLeftRec}(y, n)) <<< (y \&&& \text{twoPow}(w_2, n + 1)) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the recursive left shift operation `shiftLeftRec`. According to the definition, the recursive left shift of \( x \) by \( y \) with \( n + 1 \) steps is given by:
+\[ x.\text{shiftLeftRec}(y, n + 1) = (x.\text{shiftLeftRec}(y, n)) <<< (y \&&& \text{twoPow}(w_2, n + 1)) \]
+
+This means that the left shift of \( x \) by \( y \) with \( n + 1 \) steps is equivalent to first performing the left shift of \( x \) by the value of the first \( n \) bits of \( y \), and then performing the left shift of the result by the value of the \( (n + 1) \)-th bit of \( y \).
+
+By the definition of `shiftLeftRec`, the left shift of \( x \) by the value of the first \( n \) bits of \( y \) is \( x.\text{shiftLeftRec}(y, n) \). The value of the \( (n + 1) \)-th bit of \( y \) is given by \( y \&&& \text{twoPow}(w_2, n + 1) \).
+
+Therefore, the left shift of \( x \) by \( y \) with \( n + 1 \) steps is:
+\[ x.\text{shiftLeftRec}(y, n + 1) = (x.\text{shiftLeftRec}(y, n)) <<< (y \&&& \text{twoPow}(w_2, n + 1)) \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec w₁} {y : BitVec w₂} :
+    shiftLeftRec x y (n + 1) = (shiftLeftRec x y n) <<< (y &&& twoPow w₂ (n + 1)) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example {x : BitVec w₁} {y : BitVec w₂} :
+    shiftLeftRec x y (n + 1) = (shiftLeftRec x y n) <<< (y &&& twoPow w₂ (n + 1)) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Successor of Maximum is Maximum of Successors: \(\max(x + 1, y + 1) = \max(x, y) + 1\) : For any natural numbers \( x \) and \( y \), the maximum of their successors is equal to the successor of their maximum, i.e., \(\max(x + 1, y + 1) = \max(x, y) + 1\).
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \( x \) and \( y \), \(\max(x + 1, y + 1) = \max(x, y) + 1\).
+
+Consider the following cases:
+
+1. **Case 1: \( y \leq x \)**
+- By the property of the maximum function, \(\max(x, y) = x\).
+- Since the successor function preserves the less than or equal relation, we have \( y + 1 \leq x + 1 \).
+- Therefore, \(\max(x + 1, y + 1) = x + 1\).
+- Hence, \(\max(x + 1, y + 1) = \max(x, y) + 1\).
+
+2. **Case 2: \( x \leq y \)**
+- By the property of the maximum function, \(\max(x, y) = y\).
+- Since the successor function preserves the less than or equal relation, we have \( x + 1 \leq y + 1 \).
+- Therefore, \(\max(x + 1, y + 1) = y + 1\).
+- Hence, \(\max(x + 1, y + 1) = \max(x, y) + 1\).
+
+In both cases, we have shown that \(\max(x + 1, y + 1) = \max(x, y) + 1\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y) : max (succ x) (succ y) = succ (max x y) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (x y) : max (succ x) (succ y) = succ (max x y) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

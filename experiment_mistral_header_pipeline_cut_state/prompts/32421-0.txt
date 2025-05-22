@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Subtraction of One and Index Preserves Strict Inequality in Natural Numbers : For any natural numbers \( i \) and \( n \) such that \( i < n \), it holds that \( n - 1 - i < n \).
+
+2. **Informal Proof**  
+We start with the assumption that \( i < n \). We need to show that \( n - 1 - i < n \).
+
+First, we use the commutativity of subtraction to rewrite the expression \( n - 1 - i \) as \( n - i - 1 \). This gives us the goal of showing that \( n - i - 1 < n \).
+
+Next, we observe that since \( i < n \), the difference \( n - i \) is a positive natural number. We use the property that subtracting one from a positive number results in a number that is still less than the original number. Specifically, we use the lemma that states if \( a \) is positive and \( a \leq b \), then \( a - 1 < b \). Here, \( a = n - i \) and \( b = n \).
+
+Since \( n - i \) is positive and \( n - i \leq n \), it follows that \( n - i - 1 < n \).
+
+Therefore, we have shown that \( n - 1 - i < n \), completing the proof.
+
+3. **Formal Theorem**  
+example (h : i < n) : n - 1 - i < n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (h : i < n) : n - 1 - i < n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

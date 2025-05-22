@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Count of False Predicate in List Equals Zero : For any list \( l \) of elements of type \( \alpha \), the number of elements in \( l \) that satisfy the predicate \( \text{false} \) is equal to 0. In other words, \(\text{countP}(\lambda x. \text{false}, l) = 0\).
+
+2. **Informal Proof**  
+We start by using the equivalence that the count of elements in a list \( l \) that satisfy a predicate \( p \) is zero if and only if no element in \( l \) satisfies \( p \). Formally, this is expressed as:
+\[
+\text{countP}(p, l) = 0 \iff \forall a \in l, \neg p(a) = \text{true}
+\]
+In our case, the predicate \( p \) is \(\lambda x. \text{false}\). Therefore, to show that \(\text{countP}(\lambda x. \text{false}, l) = 0\), it suffices to show that for all \( a \in l \), \(\neg (\lambda x. \text{false})(a) = \text{true}\).
+
+Since \(\lambda x. \text{false}\) always returns \(\text{false}\), we have:
+\[
+\forall a \in l, \neg (\lambda x. \text{false})(a) = \neg \text{false} = \text{true}
+\]
+This condition is trivially true for all \( a \in l \). Therefore, \(\text{countP}(\lambda x. \text{false}, l) = 0\).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} : (l.countP fun _ => false) = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example {l : List α} : (l.countP fun _ => false) = 0 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Membership in Range with Step: \( m \in \text{range}'(s, n) \leftrightarrow s \leq m \land m < s + n \) : For any natural numbers \( m \), \( s \), and \( n \), \( m \) is a member of the list \(\text{range}'(s, n)\) if and only if \( s \leq m \) and \( m < s + n \). Formally, this can be written as:
+\[
+m \in \text{range}'(s, n) \leftrightarrow s \leq m \land m < s + n
+\]
+
+2. **Informal Proof**  
+To prove the equivalence \( m \in \text{range}'(s, n) \leftrightarrow s \leq m \land m < s + n \), we first simplify the expression using the definition of \(\text{range}'(s, n)\). The list \(\text{range}'(s, n)\) is defined as the list of natural numbers starting from \( s \) and ending at \( s + n - 1 \).
+
+We need to show two directions of the equivalence:
+1. **If \( m \in \text{range}'(s, n) \), then \( s \leq m \) and \( m < s + n \):**
+- Assume \( m \in \text{range}'(s, n) \).
+- By the definition of \(\text{range}'(s, n)\), there exists an index \( i \) such that \( 0 \leq i < n \) and \( m = s + i \).
+- From \( m = s + i \) and \( i \geq 0 \), we have \( s \leq m \) (since \( s \leq s + i \)).
+- From \( m = s + i \) and \( i < n \), we have \( m < s + n \) (since \( s + i < s + n \)).
+
+2. **If \( s \leq m \) and \( m < s + n \), then \( m \in \text{range}'(s, n) \):**
+- Assume \( s \leq m \) and \( m < s + n \).
+- We need to show that \( m \) is in the list \(\text{range}'(s, n)\).
+- By the definition of \(\text{range}'(s, n)\), we need to find an index \( i \) such that \( 0 \leq i < n \) and \( m = s + i \).
+- We can choose \( i = m - s \):
+- \( 0 \leq i \) because \( s \leq m \) implies \( m - s \geq 0 \).
+- \( i < n \) because \( m < s + n \) implies \( m - s < n \).
+- \( m = s + i \) because \( m = s + (m - s) \).
+
+Thus, we have shown both directions of the equivalence, completing the proof.
+
+3. **Formal Theorem**  
+example : m ∈ range' s n ↔ s ≤ m ∧ m < s + n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example : m ∈ range' s n ↔ s ≤ m ∧ m < s + n := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

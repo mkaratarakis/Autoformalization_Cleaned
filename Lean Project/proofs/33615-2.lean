@@ -1,0 +1,27 @@
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open IsPrefix
+open Nat
+variable [BEq α]
+
+example {l l' : List α} (h : l <+: l') (k : Nat) :
+    eraseIdx l k <+: eraseIdx l' k := by
+  rcases h with ⟨t, rfl⟩
+  by_cases hk : k < length l
+  · refine' IsPrefix.trans _ (IsPrefix.refl _)
+    exact eraseIdx_append_right _ _ _ hk
+  · have hk' : k ≥ length l := Nat.not_lt_of_ge hk
+    simp [eraseIdx, hk', eraseIdx_append_of_le]
+
+/- ACTUAL PROOF OF List.IsPrefix.eraseIdx -/
+
+example {l l' : List α} (h : l <+: l') (k : Nat) :
+    eraseIdx l k <+: eraseIdx l' k := by
+  rcases h with ⟨t, rfl⟩
+  if hkl : k < length l then
+    simp [eraseIdx_append_of_lt_length hkl]
+  else
+    rw [Nat.not_lt] at hkl
+    simp [eraseIdx_append_of_length_le hkl, eraseIdx_of_length_le hkl]

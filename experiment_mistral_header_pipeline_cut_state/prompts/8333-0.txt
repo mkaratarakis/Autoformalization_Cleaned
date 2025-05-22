@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Contradiction of \(a = b + c\) when \(c > a\) in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), if \(c > a\), then the equation \(a = b + c\) is false, i.e., \(a = b + c\) is a contradiction.
+
+2. **Informal Proof**  
+We start with the assumption that \(c > a\). To prove that \(a = b + c\) is false, we first use the symmetry of the equality relation to rewrite the equation \(a = b + c\) as \(b + c = a\). Therefore, it suffices to show that \(b + c = a\) is false.
+
+We use the fact that for any natural numbers \(a\), \(b\), and \(c\), if \(c > a\), then \(a + c = b\) is false. Since we have \(c > a\), it follows that \(b + c = a\) is false. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : Nat) {b c : Nat} (h : c > a) : (a = b + c) = False := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example (a : Nat) {b c : Nat} (h : c > a) : (a = b + c) = False := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

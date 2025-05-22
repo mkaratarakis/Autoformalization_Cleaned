@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Drop While Predicate is True for First Element, Otherwise Keep First Element : For any type \( \alpha \), any element \( x \in \alpha \), any list \( xs \) of elements of type \( \alpha \), and any predicate \( p : \alpha \to \text{Bool} \), the result of applying `List.dropWhile p` to the list \( x :: xs \) is:
+- If \( p(x) \) is `true`, then the result is `List.dropWhile p xs`.
+- If \( p(x) \) is `false`, then the result is \( x :: xs \).
+
+2. **Informal Proof**  
+We start by considering the two cases based on the value of \( p(x) \).
+
+1. **Case 1: \( p(x) = \text{true} \)**
+- In this case, we need to show that \( \text{List.dropWhile } p (x :: xs) = \text{List.dropWhile } p \, xs \).
+- By the definition of `List.dropWhile`, if \( p(x) = \text{true} \), the function `List.dropWhile p` will skip the first element \( x \) and continue to process the rest of the list \( xs \).
+- Therefore, \( \text{List.dropWhile } p (x :: xs) = \text{List.dropWhile } p \, xs \).
+
+2. **Case 2: \( p(x) = \text{false} \)**
+- In this case, we need to show that \( \text{List.dropWhile } p (x :: xs) = x :: xs \).
+- By the definition of `List.dropWhile`, if \( p(x) = \text{false} \), the function `List.dropWhile p` will stop dropping elements and return the list starting from \( x \) and including all subsequent elements \( xs \).
+- Therefore, \( \text{List.dropWhile } p (x :: xs) = x :: xs \).
+
+In both cases, the goal is satisfied. Hence, the theorem is proved.
+
+3. **Formal Theorem**  
+example :
+    (x :: xs : List α).dropWhile p = if p x then xs.dropWhile p else x :: xs := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example :
+    (x :: xs : List α).dropWhile p = if p x then xs.dropWhile p else x :: xs := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

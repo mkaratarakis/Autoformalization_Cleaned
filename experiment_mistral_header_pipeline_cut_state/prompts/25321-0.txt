@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Boolean Not-Equal Identity: \(\text{false} \neq b = b\) : For any boolean value \( b \), the boolean not-equal function `bne` applied to `false` and \( b \) returns \( b \). In other words, \(\text{false} \neq b\) is equivalent to \( b \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean value \( b \), the expression \(\text{false} \neq b\) is equal to \( b \). We consider the two possible values of \( b \):
+
+1. **Case 1: \( b = \text{true} \)**
+- Evaluate \(\text{false} \neq \text{true}\):
+- By the definition of the not-equal function, \(\text{false} \neq \text{true}\) is \(\text{true}\).
+- Therefore, \(\text{false} \neq \text{true} = \text{true}\).
+
+2. **Case 2: \( b = \text{false} \)**
+- Evaluate \(\text{false} \neq \text{false}\):
+- By the definition of the not-equal function, \(\text{false} \neq \text{false}\) is \(\text{false}\).
+- Therefore, \(\text{false} \neq \text{false} = \text{false}\).
+
+In both cases, we have shown that \(\text{false} \neq b = b\). Hence, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀(b : Bool), (false != b) =  b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(b : Bool), (false != b) =  b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

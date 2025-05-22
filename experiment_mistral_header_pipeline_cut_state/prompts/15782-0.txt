@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Disjunction with Zero Equals the Number: \( 0 \ ||| \ x = x \) : For any natural number \( x \), the disjunction-like operation \( 0 \ ||| \ x \) is equal to \( x \), i.e., \( 0 \ ||| \ x = x \).
+
+2. **Informal Proof**  
+To prove that \( 0 \ ||| \ x = x \) for any natural number \( x \), we start by using the definitions of the homogeneous disjunction operation \( a \ ||| \ b \), the boolean or operation \( x \ || \ y \), and the bitwise or operation. This simplifies our goal to showing that \( \text{bitwise or } 0 \ x = x \).
+
+Next, we expand the definition of the bitwise or operation. The bitwise or operation recursively applies the boolean or operation to the corresponding bits of the binary representations of the two natural numbers. Specifically:
+- If the first number is zero, the result is the second number if the boolean or of `false` and `true` is true, otherwise it is zero.
+- If the second number is zero, the result is the first number if the boolean or of `true` and `false` is true, otherwise it is zero.
+- If both numbers are non-zero, the function computes the result of the bitwise or of the halves of the two numbers, and then adds 1 to the result if the boolean or of the least significant bits of the two numbers is true, otherwise it just returns the result of the recursive call.
+
+In our case, since the first number is zero, the result is the second number \( x \) if the boolean or of `false` and `true` is true, which it is. Therefore, the result of the bitwise or operation on \( 0 \) and \( x \) is indeed \( x \).
+
+Thus, we have shown that \( 0 \ ||| \ x = x \) for any natural number \( x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : Nat) : 0 ||| x = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x : Nat) : 0 ||| x = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

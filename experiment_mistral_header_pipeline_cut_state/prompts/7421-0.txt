@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Dropping Elements from Concatenation: \(\text{drop } (\text{length}(l_1) + i) (l_1 ++ l_2) = \text{drop } i l_2\) : For any type \( \alpha \) and any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), dropping the first \( \text{length}(l_1) + i \) elements from the concatenation \( l_1 ++ l_2 \) is the same as dropping the first \( i \) elements from \( l_2 \). In other words, \(\text{drop } (\text{length}(l_1) + i) (l_1 ++ l_2) = \text{drop } i l_2\).
+
+2. **Informal Proof**  
+We start by using the theorem that the list obtained by dropping the first \( n \) elements from the concatenation \( l_1 ++ l_2 \) is equal to the concatenation of the list obtained by dropping the first \( n \) elements from \( l_1 \) and the list obtained by dropping the first \( n - \text{length}(l_1) \) elements from \( l_2 \). This transforms our goal to show that:
+\[
+\text{drop } (l_1.\text{length} + i) (l_1 ++ l_2) = \text{drop } (l_1.\text{length} + i) l_1 ++ \text{drop } (l_1.\text{length} + i - l_1.\text{length}) l_2
+\]
+
+Next, we use the theorem that dropping elements beyond the length of a list results in the empty list. Since \( l_1.\text{length} \leq l_1.\text{length} + i \), we have:
+\[
+\text{drop } (l_1.\text{length} + i) l_1 = \text{nil}
+\]
+
+This simplifies our goal to:
+\[
+\text{nil} ++ \text{drop } (l_1.\text{length} + i - l_1.\text{length}) l_2 = \text{drop } i l_2
+\]
+
+We then simplify the expression \( l_1.\text{length} + i - l_1.\text{length} \) to \( i \) using the property that left addition and subtraction cancel each other:
+\[
+l_1.\text{length} + i - l_1.\text{length} = i
+\]
+
+Thus, our goal reduces to:
+\[
+\text{nil} ++ \text{drop } i l_2 = \text{drop } i l_2
+\]
+
+This is trivially true because concatenating the empty list with any list \( l \) results in \( l \). Therefore, we have:
+\[
+\text{drop } (l_1.\text{length} + i) (l_1 ++ l_2) = \text{drop } i l_2
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} (i : Nat) : drop (l₁.length + i) (l₁ ++ l₂) = drop i l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l₁ l₂ : List α} (i : Nat) : drop (l₁.length + i) (l₁ ++ l₂) = drop i l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

@@ -1,0 +1,64 @@
+
+1. **Informal Theorem**  
+Negation of Decide for Modulo Two Equals One is Decide for Modulo Two Equals Zero : For any natural number \( x \), the negation of the boolean value `decide (x \% 2 = 1)` is equal to the boolean value `decide (x \% 2 = 0)`. In other words, if \( x \) is not odd, then \( x \) is even, and vice versa. This can be expressed as:
+\[
+\text{not}(\text{decide}(x \% 2 = 1)) = \text{decide}(x \% 2 = 0)
+\]
+
+2. **Informal Proof**  
+We start by considering the two possible cases for the remainder when \( x \) is divided by 2, using the modulo two identity:
+\[
+x \% 2 = 0 \lor x \% 2 = 1
+\]
+
+**Case 1: \( x \% 2 = 0 \)**
+- Assume \( x \% 2 = 0 \). We rename this assumption to \( p \).
+- We need to show that the negation of `decide (x \% 2 = 1)` is equal to `decide (x \% 2 = 0)`.
+- Since \( x \% 2 = 0 \), `decide (x \% 2 = 1)` is `false`, and its negation is `true`.
+- Therefore, the goal simplifies to `true = decide (x \% 2 = 0)`, which is true because `decide (x \% 2 = 0)` is `true` when \( x \% 2 = 0 \).
+
+**Case 2: \( x \% 2 = 1 \)**
+- Assume \( x \% 2 = 1 \). We rename this assumption to \( p \).
+- We need to show that the negation of `decide (x \% 2 = 1)` is equal to `decide (x \% 2 = 0)`.
+- Since \( x \% 2 = 1 \), `decide (x \% 2 = 1)` is `true`, and its negation is `false`.
+- Therefore, the goal simplifies to `false = decide (x \% 2 = 0)`, which is true because `decide (x \% 2 = 0)` is `false` when \( x \% 2 = 1 \).
+
+Since both cases are handled, the theorem is proved.
+
+3. **Formal Theorem**  
+example (x : Nat)
+    : (!decide (x % 2 = 1)) = decide (x % 2 = 0) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x : Nat)
+    : (!decide (x % 2 = 1)) = decide (x % 2 = 0) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

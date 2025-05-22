@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Distributive Property of If-Then-Else over False Boolean Value: \((\text{if } p \text{ then } t \text{ else } f) = \text{false} \iff \text{if } p \text{ then } t = \text{false} \text{ else } f = \text{false}\) : For any proposition \( p \) and boolean values \( t \) and \( f \), the if-then-else expression \( \text{if } p \text{ then } t \text{ else } f \) is equal to `false` if and only if \( p \) is true and \( t \) is `false`, or \( p \) is false and \( f \) is `false`. This can be written as:
+\[
+(\text{if } p \text{ then } t \text{ else } f) = \text{false} \iff \text{if } p \text{ then } t = \text{false} \text{ else } f = \text{false}
+\]
+
+2. **Informal Proof**  
+We will consider the two possible cases for the proposition \( p \).
+
+1. **Case 1: \( p \) is true.**
+- In this case, the if-then-else expression \(\text{if } p \text{ then } t \text{ else } f\) simplifies to \( t \).
+- Therefore, the goal \((\text{if } p \text{ then } t \text{ else } f) = \text{false}\) simplifies to \( t = \text{false} \).
+- Similarly, the right-hand side of the equivalence \(\text{if } p \text{ then } t = \text{false} \text{ else } f = \text{false}\) simplifies to \( t = \text{false} \).
+- Hence, the equivalence holds in this case.
+
+2. **Case 2: \( p \) is false.**
+- In this case, the if-then-else expression \(\text{if } p \text{ then } t \text{ else } f\) simplifies to \( f \).
+- Therefore, the goal \((\text{if } p \text{ then } t \text{ else } f) = \text{false}\) simplifies to \( f = \text{false} \).
+- Similarly, the right-hand side of the equivalence \(\text{if } p \text{ then } t = \text{false} \text{ else } f = \text{false}\) simplifies to \( f = \text{false} \).
+- Hence, the equivalence holds in this case.
+
+Since the equivalence holds in both cases, the proof is complete. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : Prop) [h : Decidable p] (t f : Bool) :
+    (ite p t f = false) = ite p (t = false) (f = false) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (t f : Bool) :
+    (ite p t f = false) = ite p (t = false) (f = false) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

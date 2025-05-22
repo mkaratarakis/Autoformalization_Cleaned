@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Comparison of Natural Numbers Returns Less Than if and only if \( a < b \) : For any natural numbers \( a \) and \( b \), the comparison \( \text{compare}(a, b) \) returns `Ordering.lt` if and only if \( a < b \).
+
+2. **Informal Proof**  
+To prove the theorem, we use the definition of the comparison function for natural numbers, which states that \( \text{compare}(a, b) = \text{Ordering.lt} \) if and only if \( a < b \). This definition allows us to split the goal into cases and simplify the expressions using the properties of natural numbers and the comparison function. After simplification, we are left with the goal of showing that \( a < b \) if and only if \( a < b \), which is trivially true. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example {a b : Nat} : compare a b = .lt ↔ a < b := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b = .lt ↔ a < b := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.Data.Ord not found. --
+
+-- Init.Data.Nat.Compare not found. --
+

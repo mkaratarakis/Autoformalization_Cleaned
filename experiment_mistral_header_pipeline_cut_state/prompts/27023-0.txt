@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Unzip of Zipped Lists with Equal Lengths Returns Original Lists: \((l_1 \text{ zip } l_2). \text{unzip} = (l_1, l_2)\) when \( |l_1| = |l_2| \) : For any lists \( l_1 \) and \( l_2 \) of types \( \alpha \) and \( \beta \) respectively, if the lengths of \( l_1 \) and \( l_2 \) are equal, then the result of unzipping the zipped list \( l_1 \) and \( l_2 \) is the pair of lists \( (l_1, l_2) \). Formally, if \( |l_1| = |l_2| \), then \((l_1 \text{ zip } l_2). \text{unzip} = (l_1, l_2)\).
+
+2. **Informal Proof**  
+To prove that \((l_1 \text{ zip } l_2). \text{unzip} = (l_1, l_2)\), it suffices to show that for any natural number \( n \) and any element \( a \) of type \( \alpha \), \( a \in (l_1 \text{ zip } l_2). \text{unzip}. \text{fst}[n] \) if and only if \( a \in l_1[n] \), and for any element \( b \) of type \( \beta \), \( b \in (l_1 \text{ zip } l_2). \text{unzip}. \text{snd}[n] \) if and only if \( b \in l_2[n] \).
+
+First, we show that for any element \( a \) of type \( \alpha \), \( a \in (l_1 \text{ zip } l_2). \text{unzip}. \text{fst}[n] \) if and only if \( a \in l_1[n] \). Since the lengths of \( l_1 \) and \( l_2 \) are equal, we have \( l_1.length \leq l_2.length \). By the theorem that the first component of the unzipped list of \( l_1 \) and \( l_2 \) is \( l_1 \) when \( l_1.length \leq l_2.length \), we can replace \((l_1 \text{ zip } l_2). \text{unzip}. \text{fst}\) with \( l_1 \). Therefore, \( a \in (l_1 \text{ zip } l_2). \text{unzip}. \text{fst}[n] \) is equivalent to \( a \in l_1[n] \).
+
+Next, we show that for any element \( b \) of type \( \beta \), \( b \in (l_1 \text{ zip } l_2). \text{unzip}. \text{snd}[n] \) if and only if \( b \in l_2[n] \). Since the lengths of \( l_1 \) and \( l_2 \) are equal, we have \( l_2.length \leq l_1.length \) by symmetry. By the theorem that the second component of the unzipped list of \( l_1 \) and \( l_2 \) is \( l_2 \) when \( l_2.length \leq l_1.length \), we can replace \((l_1 \text{ zip } l_2). \text{unzip}. \text{snd}\) with \( l_2 \). Therefore, \( b \in (l_1 \text{ zip } l_2). \text{unzip}. \text{snd}[n] \) is equivalent to \( b \in l_2[n] \).
+
+Thus, we have shown that \((l_1 \text{ zip } l_2). \text{unzip} = (l_1, l_2)\) when \( |l_1| = |l_2| \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l₁ : List α} {l₂ : List β} (h : length l₁ = length l₂) :
+    unzip (zip l₁ l₂) = (l₁, l₂) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {l₁ : List α} {l₂ : List β} (h : length l₁ = length l₂) :
+    unzip (zip l₁ l₂) = (l₁, l₂) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

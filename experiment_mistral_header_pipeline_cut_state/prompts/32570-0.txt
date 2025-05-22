@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+If-then-else with Identical Branches Equals the Branch Value: $\text{ite}(c, a, a) = a$ : For any type $\alpha$ and any proposition $c$, if $a \in \alpha$, then the if-then-else function `ite` evaluated with the same value $a$ for both the true and false branches is equal to $a$, i.e., $\text{ite}(c, a, a) = a$.
+
+2. **Informal Proof**  
+We need to show that $\text{ite}(c, a, a) = a$ for any type $\alpha$, any proposition $c$, and any element $a \in \alpha$. We will consider every possible case of the decidable proposition $c$.
+
+1. **Case 1: $c$ is true.**
+- In this case, $\text{ite}(c, a, a)$ evaluates to $a$ by the definition of the if-then-else function.
+- Therefore, $\text{ite}(c, a, a) = a$ holds trivially.
+
+2. **Case 2: $c$ is false.**
+- In this case, $\text{ite}(c, a, a)$ also evaluates to $a$ by the definition of the if-then-else function.
+- Therefore, $\text{ite}(c, a, a) = a$ holds trivially.
+
+Since both cases lead to the same conclusion, we have shown that $\text{ite}(c, a, a) = a$ for any $a \in \alpha$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {α : Sort u} {c : Prop} {d : Decidable c} (a : α) : ite c a a = a := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example {α : Sort u} {c : Prop} {d : Decidable c} (a : α) : ite c a a = a := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

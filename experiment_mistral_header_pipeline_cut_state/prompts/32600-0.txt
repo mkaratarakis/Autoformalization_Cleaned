@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Boolean Equality with True is Identity: \( b == \text{true} = b \) : For any boolean value \( b \), the boolean equality \( b == \text{true} \) is equal to \( b \). In other words, \( b == \text{true} \) returns `true` if \( b \) is `true`, and `false` if \( b \) is `false`.
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value \( b \).
+
+1. **Case 1: \( b = \text{false} \)**
+- We need to show that \( (\text{false} == \text{true}) = \text{false} \).
+- The left-hand side \( \text{false} == \text{true} \) evaluates to `false` by the definition of boolean equality.
+- Therefore, \( (\text{false} == \text{true}) = \text{false} \) holds trivially.
+
+2. **Case 2: \( b = \text{true} \)**
+- We need to show that \( (\text{true} == \text{true}) = \text{true} \).
+- The left-hand side \( \text{true} == \text{true} \) evaluates to `true` by the definition of boolean equality.
+- Therefore, \( (\text{true} == \text{true}) = \text{true} \) holds trivially.
+
+Since both cases are satisfied, the theorem is proven.
+
+3. **Formal Theorem**  
+example (b : Bool) : (b == true)  =  b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example (b : Bool) : (b == true)  =  b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

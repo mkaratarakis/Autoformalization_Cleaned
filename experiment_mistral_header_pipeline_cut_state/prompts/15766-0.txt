@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Bit Test and Division Modulo Identity in Natural Numbers : For any natural numbers \( x \) and \( i \), the natural number representation of the \( i \)-th bit of \( x \) is equal to the remainder when \( x \) is divided by \( 2^i \) and then divided by 2, i.e., \((x \text{.testBit } i).toNat = x / 2^i \% 2\).
+
+2. **Informal Proof**  
+We start by using the identity that the \( i \)-th bit of \( x \) is equal to the boolean value `true` if and only if the remainder when \( x \) is divided by \( 2^i \) and then divided by 2 is 1. This transforms our goal into showing that \((\text{decide}(x / 2^i \% 2 = 1)).\text{toNat} = x / 2^i \% 2\).
+
+We consider two cases based on the modulo two identity:
+
+1. **Case 1: \( x / 2^i \% 2 = 0 \)**
+- In this case, \(\text{decide}(x / 2^i \% 2 = 1)\) is `false`, and \(\text{false}.\text{toNat} = 0\). Therefore, the goal simplifies to \(0 = 0\), which is trivially true.
+
+2. **Case 2: \( x / 2^i \% 2 = 1 \)**
+- In this case, \(\text{decide}(x / 2^i \% 2 = 1)\) is `true`, and \(\text{true}.\text{toNat} = 1\). Therefore, the goal simplifies to \(1 = 1\), which is also trivially true.
+
+In both cases, the goal is satisfied, thus completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x i : Nat) :
+    (x.testBit i).toNat = x / 2 ^ i % 2 := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x i : Nat) :
+    (x.testBit i).toNat = x / 2 ^ i % 2 := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

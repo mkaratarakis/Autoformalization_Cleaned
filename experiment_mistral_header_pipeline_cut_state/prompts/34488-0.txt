@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Longest Initial Segment of Replicated List Equals Filtered Replicated List : For any type $\alpha$, natural number $n$, and element $a \in \alpha$, and for any predicate $p : \alpha \to \text{Bool}$, the longest initial segment of the list `replicate n a` that satisfies $p$ is equal to the list of elements in `replicate n a` that satisfy $p$. In other words, if $p(a) = \text{true}$, then `takeWhile p (replicate n a)` is the same as `filter p (replicate n a)`, and if $p(a) = \text{false}$, both `takeWhile p (replicate n a)` and `filter p (replicate n a)` return the empty list.
+
+2. **Informal Proof**  
+We prove this by induction on \(n\).
+
+**Base Case:**
+For \(n = 0\), the list `replicate 0 a` is the empty list. Therefore, both `takeWhile p (replicate 0 a)` and `filter p (replicate 0 a)` are the empty list, and thus they are equal.
+
+**Inductive Step:**
+Assume that the statement holds for \(n\). We need to show that it holds for \(n + 1\).
+
+Consider the list `replicate (n + 1) a`, which is `a :: replicate n a`.
+
+1. **Case 1: \(p(a) = \text{true}\)**
+- By the definition of `takeWhile`, `takeWhile p (a :: replicate n a)` is `a :: takeWhile p (replicate n a)`.
+- By the inductive hypothesis, `takeWhile p (replicate n a) = filter p (replicate n a)`.
+- Therefore, `takeWhile p (a :: replicate n a) = a :: filter p (replicate n a)`.
+- By the definition of `filter`, `filter p (a :: replicate n a)` is `a :: filter p (replicate n a)`.
+- Hence, `takeWhile p (a :: replicate n a) = filter p (a :: replicate n a)`.
+
+2. **Case 2: \(p(a) = \text{false}\)**
+- By the definition of `takeWhile`, `takeWhile p (a :: replicate n a)` is the empty list.
+- By the definition of `filter`, `filter p (a :: replicate n a)` is the empty list.
+- Therefore, `takeWhile p (a :: replicate n a) = filter p (a :: replicate n a)`.
+
+In both cases, the statement holds for \(n + 1\). By the principle of mathematical induction, the statement holds for all natural numbers \(n\).
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : α → Bool) :
+    (replicate n a).takeWhile p = (replicate n a).filter p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) :
+    (replicate n a).takeWhile p = (replicate n a).filter p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

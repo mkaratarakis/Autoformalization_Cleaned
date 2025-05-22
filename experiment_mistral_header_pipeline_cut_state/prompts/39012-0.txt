@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+If-then-else Equals Some if and only if Proposition is True and Elements are Equal: \((\text{if } P \text{ then } \text{some } x \text{ else } \text{none}) = \text{some } y \leftrightarrow P \land x = y\) : For any proposition \( P \) and any elements \( x, y \) of a type \( \alpha \), the if-then-else expression \((\text{if } P \text{ then } \text{some } x \text{ else } \text{none})\) is equal to \(\text{some } y\) if and only if \( P \) is true and \( x = y \).
+
+2. **Informal Proof**  
+We need to show that \((\text{if } P \text{ then } \text{some } x \text{ else } \text{none}) = \text{some } y\) if and only if \( P \land x = y \).
+
+We discuss by cases based on the condition \( P \):
+
+1. **Case 1: \( P \) is true.**
+- If \( P \) is true, the if-then-else expression \(\text{if } P \text{ then } \text{some } x \text{ else } \text{none}\) simplifies to \(\text{some } x\).
+- Therefore, the goal is to show that \(\text{some } x = \text{some } y\) if and only if \( x = y \).
+- This is trivially true because \(\text{some } x = \text{some } y\) if and only if \( x = y \).
+
+2. **Case 2: \( P \) is false.**
+- If \( P \) is false, the if-then-else expression \(\text{if } P \text{ then } \text{some } x \text{ else } \text{none}\) simplifies to \(\text{none}\).
+- Therefore, the goal is to show that \(\text{none} = \text{some } y\) if and only if \( P \land x = y \).
+- Since \(\text{none} \neq \text{some } y\), the left-hand side is \(\text{False}\).
+- The right-hand side \( P \land x = y \) is also \(\text{False}\) because \( P \) is false.
+- Thus, \(\text{False} \leftrightarrow \text{False}\) is true.
+
+In both cases, the equivalence holds, completing the proof.
+
+3. **Formal Theorem**  
+example [Decidable P] :
+    (if P then some x else none) = some y ↔ P ∧ x = y := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.ByCases
+
+
+
+
+example [Decidable P] :
+    (if P then some x else none) = some y ↔ P ∧ x = y := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.ByCases not found. --
+

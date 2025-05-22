@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+If-then-else Identity: \( \text{if } p \text{ then } q \text{ else } p = p \land q \) : For any propositions \( p \) and \( q \), if \( p \) is false, then the expression \( \text{if } p \text{ then } q \text{ else } p \) is equal to \( p \land q \). Formally, this is expressed as:
+\[
+\forall (p, q : \text{Prop}), \text{if } p \text{ then } q \text{ else } p = p \land q
+\]
+
+2. **Informal Proof**  
+We start by considering the two possible cases for the decidability of \( p \): \( p \) is true or \( p \) is false.
+
+1. **Case 1: \( p \) is false.**
+- In this case, the expression \( \text{if } p \text{ then } q \text{ else } p \) simplifies to \( p \).
+- Since \( p \) is false, \( p \land q \) is also false.
+- Therefore, \( p = p \land q \) holds trivially.
+
+2. **Case 2: \( p \) is true.**
+- In this case, the expression \( \text{if } p \text{ then } q \text{ else } p \) simplifies to \( q \).
+- Since \( p \) is true, \( p \land q \) simplifies to \( q \).
+- Therefore, \( q = p \land q \) holds trivially.
+
+In both cases, the expression \( \text{if } p \text{ then } q \text{ else } p \) is equal to \( p \land q \). This completes the proof.
+
+3. **Formal Theorem**  
+example (p q : Prop) [h : Decidable p] : (if p then q else p) = (p ∧ q) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example (p q : Prop) [h : Decidable p] : (if p then q else p) = (p ∧ q) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

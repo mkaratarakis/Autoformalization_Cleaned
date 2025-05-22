@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Definition of Greatest Common Divisor: \(\gcd(x, y) = \begin{cases} y & \text{if } x = 0 \\ \gcd(y \mod x, x) & \text{if } x \neq 0 \end{cases}\) : For any natural numbers \( x \) and \( y \), the greatest common divisor (gcd) of \( x \) and \( y \) is defined as:
+\[
+\gcd(x, y) = \begin{cases} 
+y & \text{if } x = 0 \\
+\gcd(y \mod x, x) & \text{if } x \neq 0 
+\end{cases}
+\]
+
+2. **Informal Proof**  
+We will consider two cases for \( x \):
+
+1. **Case 1: \( x = 0 \)**
+- The goal is to show that \(\gcd(0, y) = \text{if } 0 = 0 \text{ then } y \text{ else } (y \mod 0).gcd(0)\).
+- Since \( 0 = 0 \), the goal simplifies to \(\gcd(0, y) = y\).
+- This is true by the definition of the greatest common divisor.
+
+2. **Case 2: \( x = n + 1 \) for some natural number \( n \)**
+- The goal is to show that \(\gcd(n + 1, y) = \text{if } n + 1 = 0 \text{ then } y \text{ else } (y \mod (n + 1)).gcd(n + 1)\).
+- Since \( n + 1 \neq 0 \), the goal simplifies to \(\gcd(n + 1, y) = (y \mod (n + 1)).gcd(n + 1)\).
+- By the theorem \(\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)\), this is true.
+
+Thus, the definition of the greatest common divisor is verified for both cases. This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : Nat) : gcd x y = if x = 0 then y else gcd (y % x) x := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (x y : Nat) : gcd x y = if x = 0 then y else gcd (y % x) x := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

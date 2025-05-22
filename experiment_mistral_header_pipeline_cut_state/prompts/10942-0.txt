@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Right Cancellation of List Concatenation: \((\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs}) \to (\text{as} = \text{cs})\) : For any lists \( \text{as}, \text{bs}, \text{cs} \) of elements of type \( \alpha \), if the concatenation of \( \text{as} \) and \( \text{bs} \) is equal to the concatenation of \( \text{cs} \) and \( \text{bs} \), then \( \text{as} \) is equal to \( \text{cs} \). Formally, for any \( \text{as}, \text{bs}, \text{cs} : \text{List } \alpha \), it holds that \( \text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs} \) if and only if \( \text{as} = \text{cs} \).
+
+2. **Informal Proof**  
+To prove the equivalence \((\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs}) = (\text{as} = \text{cs})\), we use the propositional extensionality axiom, which states that if two propositions are logically equivalent, they are equal. Therefore, it suffices to show that \((\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs}) \leftrightarrow (\text{as} = \text{cs})\).
+
+1. **First Implication:**
+- To prove \((\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs}) \to (\text{as} = \text{cs})\), we use the right cancellation property of list concatenation. This property states that if \(\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs}\), then \(\text{as} = \text{cs}\). Therefore, the first implication holds.
+
+2. **Second Implication:**
+- To prove \((\text{as} = \text{cs}) \to (\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs})\), we assume \(\text{as} = \text{cs}\). By substituting \(\text{cs}\) for \(\text{as}\) in the expression \(\text{as} \oplus \text{bs}\), we get \(\text{cs} \oplus \text{bs}\). Therefore, \(\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs}\) holds, completing the second implication.
+
+Since both implications are proven, we conclude that \((\text{as} \oplus \text{bs} = \text{cs} \oplus \text{bs}) \leftrightarrow (\text{as} = \text{cs})\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (as bs cs : List α) : (as ++ bs = cs ++ bs) = (as = cs) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.List.BasicAux
+
+open List
+
+
+example (as bs cs : List α) : (as ++ bs = cs ++ bs) = (as = cs) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.List.BasicAux not found. --
+

@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+\( n \notin \text{range}(n) \) for Natural Numbers : For any natural number \( n \), \( n \) is not a member of the list `List.range n`, i.e., \( n \notin \{0, 1, 2, \ldots, n-1\} \).
+
+2. **Informal Proof**  
+To prove that \( n \notin \{0, 1, 2, \ldots, n-1\} \), we simplify the proposition using the definition of `List.range n`. By definition, `List.range n` is the list of all natural numbers from \( 0 \) to \( n-1 \). Since \( n \) is not in this list, the proposition \( n \notin \{0, 1, 2, \ldots, n-1\} \) is true. This completes the proof.
+
+3. **Formal Theorem**  
+example {n : Nat} : n ∉ range n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {n : Nat} : n ∉ range n := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

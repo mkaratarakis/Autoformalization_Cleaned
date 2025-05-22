@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+GCD of a Number and Its GCD with Another Number Equals the GCD: \(\gcd(m, \gcd(n, m)) = \gcd(n, m)\) : For any natural numbers \( m \) and \( n \), the greatest common divisor of \( m \) and the greatest common divisor of \( n \) and \( m \) is equal to the greatest common divisor of \( n \) and \( m \), i.e., \(\gcd(m, \gcd(n, m)) = \gcd(n, m)\).
+
+2. **Informal Proof**  
+To prove that \(\gcd(m, \gcd(n, m)) = \gcd(n, m)\), we start by using the commutativity property of the greatest common divisor (gcd). This property states that for any natural numbers \( a \) and \( b \), \(\gcd(a, b) = \gcd(b, a)\). Applying this property, we have:
+\[
+\gcd(m, \gcd(n, m)) = \gcd(m, \gcd(m, n)).
+\]
+Next, we use the property that the gcd of a number and its gcd with another number is equal to the gcd of the two numbers. Specifically, for any natural numbers \( m \) and \( n \), \(\gcd(m, \gcd(m, n)) = \gcd(m, n)\). Applying this property, we get:
+\[
+\gcd(m, \gcd(m, n)) = \gcd(m, n).
+\]
+Thus, we have:
+\[
+\gcd(m, \gcd(n, m)) = \gcd(m, n).
+\]
+Since \(\gcd(m, n) = \gcd(n, m)\) by the commutativity of gcd, we conclude:
+\[
+\gcd(m, \gcd(n, m)) = \gcd(n, m).
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (m n : Nat) : gcd m (gcd n m) = gcd n m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (m n : Nat) : gcd m (gcd n m) = gcd n m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Self Membership in Range of Successor : For any natural number \( n \), the number \( n \) is a member of the list `List.range (n + 1)`, which is the list of natural numbers from \( 0 \) to \( n \). In other words, \( n \in [0, 1, 2, \ldots, n] \).
+
+2. **Informal Proof**  
+To prove that \( n \) is a member of the list `List.range (n + 1)`, we simplify the proposition. The list `List.range (n + 1)` is defined as the list of natural numbers from \( 0 \) to \( n \). Therefore, \( n \) is one of the elements in this list, and the proposition \( n \in [0, 1, 2, \ldots, n] \) is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : n ∈ range (n + 1) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (n : Nat) : n ∈ range (n + 1) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Distributive Property of If-then-else over True Boolean Value: $(\text{if } p \text{ then } t \text{ else } f) = \text{true} \iff \text{if } p \text{ then } t = \text{true} \text{ else } f = \text{true}$ : For any proposition $p$ and boolean values $t$ and $f$, the if-then-else expression $(\text{if } p \text{ then } t \text{ else } f)$ is equal to `true` if and only if $p$ is true and $t$ is `true`, or $p$ is false and $f$ is `true`. This can be written as:
+\[
+(\text{if } p \text{ then } t \text{ else } f) = \text{true} \iff \text{if } p \text{ then } t = \text{true} \text{ else } f = \text{true}
+\]
+
+2. **Informal Proof**  
+We will consider every possible case of the decidable proposition $p$.
+
+**Case 1: $p$ is true.**
+- If $p$ is true, the expression $(\text{if } p \text{ then } t \text{ else } f)$ simplifies to $t$.
+- Therefore, $(\text{if } p \text{ then } t \text{ else } f) = \text{true}$ is equivalent to $t = \text{true}$.
+- Similarly, the right-hand side of the equivalence, $\text{if } p \text{ then } t = \text{true} \text{ else } f = \text{true}$, simplifies to $t = \text{true}$.
+- Hence, the equivalence holds in this case.
+
+**Case 2: $p$ is false.**
+- If $p$ is false, the expression $(\text{if } p \text{ then } t \text{ else } f)$ simplifies to $f$.
+- Therefore, $(\text{if } p \text{ then } t \text{ else } f) = \text{true}$ is equivalent to $f = \text{true}$.
+- Similarly, the right-hand side of the equivalence, $\text{if } p \text{ then } t = \text{true} \text{ else } f = \text{true}$, simplifies to $f = \text{true}$.
+- Hence, the equivalence holds in this case.
+
+Since the equivalence holds in both cases, the theorem is proved.
+
+3. **Formal Theorem**  
+example (p : Prop) [h : Decidable p] (t f : Bool) :
+    (ite p t f = true) = ite p (t = true) (f = true) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (t f : Bool) :
+    (ite p t f = true) = ite p (t = true) (f = true) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

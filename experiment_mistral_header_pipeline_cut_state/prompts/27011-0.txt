@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Element Retrieval in `zipWith` Lists: Optional Result Based on Index Validity : For any types \(\alpha\), \(\beta\), and \(\gamma\), given two lists \(as : \text{List } \alpha\) and \(bs : \text{List } \beta\), a function \(f : \alpha \to \beta \to \gamma\), and a natural number \(i\), the element at index \(i\) in the list resulting from `zipWith f as bs` is obtained as follows:
+\[
+(\text{zipWith } f \, as \, bs)[i]? =
+\begin{cases}
+\text{some } (f \, a \, b) & \text{if } as[i]? = \text{some } a \text{ and } bs[i]? = \text{some } b \\
+\text{none} & \text{otherwise}
+\end{cases}
+\]
+
+2. **Informal Proof**  
+We will prove the theorem by induction on the structure of the lists `as` and `bs`.
+
+1. **Case 1: \(bs = []\)**
+
+- **Subcase 1.1: \(as = []\)**
+
+If both `as` and `bs` are empty, then the result of `zipWith f as bs` is an empty list. For any index \(i\), the element at index \(i\) in an empty list is `none`. Therefore, \((\text{zipWith } f \, [] \, [])[i]? = \text{none}\).
+
+- **Subcase 1.2: \(as = a :: as'\)**
+
+If `as` is non-empty and `bs` is empty, then the result of `zipWith f as bs` is an empty list. For any index \(i\), the element at index \(i\) in an empty list is `none`. Therefore, \((\text{zipWith } f \, (a :: as') \, [])[i]? = \text{none}\).
+
+2. **Case 2: \(bs = b :: bs'\)**
+
+- **Subcase 2.1: \(as = []\)**
+
+If `as` is empty and `bs` is non-empty, then the result of `zipWith f as bs` is an empty list. For any index \(i\), the element at index \(i\) in an empty list is `none`. Therefore, \((\text{zipWith } f \, [] \, (b :: bs'))[i]? = \text{none}\).
+
+- **Subcase 2.2: \(as = a :: as'\)**
+
+If both `as` and `bs` are non-empty, we perform case analysis on the index \(i\):
+
+- **Subcase 2.2.1: \(i = 0\)**
+
+If \(i = 0\), then the element at index \(0\) in the result of `zipWith f as bs` is \(f(a, b)\). Therefore, \((\text{zipWith } f \, (a :: as') \, (b :: bs'))[0]? = \text{some } (f(a, b))\).
+
+- **Subcase 2.2.2: \(i = n + 1\)**
+
+If \(i = n + 1\), then the element at index \(i\) in the result of `zipWith f as bs` is the element at index \(n\) in the result of `zipWith f as' bs'`. By the induction hypothesis, \((\text{zipWith } f \, as' \, bs')[n]? = \text{some } (f(a', b'))\) if \(as'[n]? = \text{some } a'\) and \(bs'[n]? = \text{some } b'\), and \(\text{none}\) otherwise. Therefore, \((\text{zipWith } f \, (a :: as') \, (b :: bs'))[n + 1]? = \text{some } (f(a', b'))\) if \(as'[n]? = \text{some } a'\) and \(bs'[n]? = \text{some } b'\), and \(\text{none}\) otherwise.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {f : α → β → γ} {i : Nat} :
+    (List.zipWith f as bs)[i]? = match as[i]?, bs[i]? with
+      | some a, some b => some (f a b) | _, _ => none := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {f : α → β → γ} {i : Nat} :
+    (List.zipWith f as bs)[i]? = match as[i]?, bs[i]? with
+      | some a, some b => some (f a b) | _, _ => none := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

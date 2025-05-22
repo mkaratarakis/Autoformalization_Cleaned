@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Longest Initial Segment of Replicated List Equals Entire List or Empty List Based on Predicate : For any type $\alpha$, natural number $n$, and element $a \in \alpha$, and for any predicate $p : \alpha \to \text{Bool}$, the longest initial segment of the list `replicate n a` that satisfies $p$ is:
+- The entire list `replicate n a` if $p(a) = \text{true}$.
+- The empty list if $p(a) = \text{false}$.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that the longest initial segment of a replicated list that satisfies a predicate is equal to the filtered list of the replicated list. This transforms our goal to show that the filtered list of `replicate n a` is equal to the list `replicate n a` if $p(a) = \text{true}$, and is the empty list if $p(a) = \text{false}$.
+
+Next, we use the theorem that the filtered list of `replicate n a` is equal to `replicate n a` if $p(a) = \text{true}$, and is the empty list if $p(a) = \text{false}$. This directly matches our goal, and thus the proof is complete.
+
+Therefore, the longest initial segment of the list `replicate n a` that satisfies the predicate $p$ is:
+- The entire list `replicate n a` if $p(a) = \text{true}$.
+- The empty list if $p(a) = \text{false}$.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p : α → Bool) :
+    (replicate n a).takeWhile p = if p a then replicate n a else [] := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) :
+    (replicate n a).takeWhile p = if p a then replicate n a else [] := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

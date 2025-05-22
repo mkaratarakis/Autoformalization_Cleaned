@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Reversing Lists Preserves Prefix-Suffix Relationship: \( l_1^{\text{reverse}} <+: l_2^{\text{reverse}} \leftrightarrow l_1 <:+ l_2 \) : For any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), the reverse of \( l_1 \) is a prefix of the reverse of \( l_2 \) if and only if \( l_1 \) is a suffix of \( l_2 \). In other words, \( l_1^{\text{reverse}} \) is a prefix of \( l_2^{\text{reverse}} \) if and only if \( l_1 \) is a suffix of \( l_2 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that \( l_1 \) is a suffix of \( l_2 \) if and only if \( l_1^{\text{reverse}} \) is a prefix of \( l_2^{\text{reverse}} \). This allows us to rewrite the goal as:
+\[ l_1^{\text{reverse}} <+: l_2^{\text{reverse}} \leftrightarrow l_1^{\text{reverse}} <+: l_2^{\text{reverse}}. \]
+
+Next, we simplify the expression using the fact that the reverse of the reverse of a list is the original list, i.e., \( (l_1^{\text{reverse}})^{\text{reverse}} = l_1 \) and \( (l_2^{\text{reverse}})^{\text{reverse}} = l_2 \). This simplifies the goal to:
+\[ l_1^{\text{reverse}} <+: l_2^{\text{reverse}} \leftrightarrow l_1 <:+ l_2. \]
+
+Thus, we have shown that the reverse of \( l_1 \) is a prefix of the reverse of \( l_2 \) if and only if \( l_1 \) is a suffix of \( l_2 \). This completes the proof.
+
+3. **Formal Theorem**  
+example : reverse l₁ <+: reverse l₂ ↔ l₁ <:+ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example : reverse l₁ <+: reverse l₂ ↔ l₁ <:+ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

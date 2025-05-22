@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Bitwise Conjunction Preserves Bitwise AND Operation in Natural Numbers : For any natural numbers \( x \), \( y \), and \( i \), the \( (i+1) \)-th least significant bit in the binary representation of the conjunction \( x \&&& y \) is equal to the logical "and" of the \( (i+1) \)-th least significant bits of \( x \) and \( y \). In other words, \((x \&&& y). \text{testBit}(i) = (x. \text{testBit}(i) \, \text{and} \, y. \text{testBit}(i))\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions and properties of the bitwise conjunction operation, the boolean "and" operation, and the bitwise test function. Specifically, we use the following properties:
+
+1. The bitwise conjunction operation \( x \&&& y \) is defined such that the \( i \)-th bit of \( x \&&& y \) is the logical "and" of the \( i \)-th bits of \( x \) and \( y \).
+2. The boolean "and" operation \( x \, \text{and} \, y \) returns `false` if either \( x \) or \( y \) is `false`, and returns `true` if both \( x \) and \( y \) are `true`.
+3. The bitwise test function \( \text{testBit}(i) \) returns the \( i \)-th bit of a natural number.
+
+Using these properties, we can simplify the expression \((x \&&& y). \text{testBit}(i)\) as follows:
+\[
+(x \&&& y). \text{testBit}(i) = (x. \text{testBit}(i) \, \text{and} \, y. \text{testBit}(i))
+\]
+This simplification shows that the \( i \)-th bit of the result of the bitwise operation \( x \&&& y \) is indeed the logical "and" of the \( i \)-th bits of \( x \) and \( y \). Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example (x y i : Nat) : (x &&& y).testBit i = (x.testBit i && y.testBit i) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x y i : Nat) : (x &&& y).testBit i = (x.testBit i && y.testBit i) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

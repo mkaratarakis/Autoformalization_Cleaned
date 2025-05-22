@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Prefix Consistency: \((a :: \text{as}).\text{isPrefixOf} (a :: \text{bs}) \leftrightarrow \text{as}.\text{isPrefixOf} \text{bs}\) : For any type \( \alpha \) and any lists \( \text{as} \) and \( \text{bs} \) of elements of type \( \alpha \), and for any element \( a \) of type \( \alpha \), the list \( a :: \text{as} \) is a prefix of the list \( a :: \text{bs} \) if and only if the list \( \text{as} \) is a prefix of the list \( \text{bs} \). This can be written as:
+\[
+(a :: \text{as}).\text{isPrefixOf} (a :: \text{bs}) = \text{as}.\text{isPrefixOf} \text{bs}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the list \(a :: \text{as}\) is a prefix of the list \(a :: \text{bs}\) if and only if the list \(\text{as}\) is a prefix of the list \(\text{bs}\).
+
+1. **Simplification:**
+Using the definition of `isPrefixOf_cons₂`, we can simplify the proposition we want to show. Specifically, the statement \((a :: \text{as}).\text{isPrefixOf} (a :: \text{bs})\) is equivalent to \(\text{as}.\text{isPrefixOf} \text{bs}\). This simplification is based on the fact that the prefix relationship is preserved when the same element is added to the front of both lists.
+
+2. **Conclusion:**
+Since the simplification shows that \((a :: \text{as}).\text{isPrefixOf} (a :: \text{bs})\) is equivalent to \(\text{as}.\text{isPrefixOf} \text{bs}\), the theorem is proved.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {a : α} :
+    isPrefixOf (a::as) (a::bs) = isPrefixOf as bs := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a : α} :
+    isPrefixOf (a::as) (a::bs) = isPrefixOf as bs := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

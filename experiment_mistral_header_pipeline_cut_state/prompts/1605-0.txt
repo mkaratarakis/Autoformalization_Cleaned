@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Range of Successor is Concatenation of Range and Singleton : For any natural number \( n \), the list `List.range (n + 1)` is equal to the concatenation of the list `List.range n` and the list containing the single element \( n \). In other words, `List.range (n + 1) = List.range n ++ [n]`.
+
+2. **Informal Proof**  
+To prove that `List.range (n + 1) = List.range n ++ [n]`, we use the following properties:
+1. The list `List.range n` is equal to `List.range' 0 n`, which generates the list of natural numbers from \( 0 \) to \( n-1 \).
+2. The list `List.range' s (n + 1)` is equal to `List.range' s n` concatenated with the list containing the single element \( s + n \).
+3. The property that \( 0 + n = n \).
+
+Using these properties, we can simplify the proposition as follows:
+\[
+\text{List.range} (n + 1) = \text{List.range'} 0 (n + 1) = \text{List.range'} 0 n ++ [0 + n] = \text{List.range} n ++ [n]
+\]
+Thus, the list `List.range (n + 1)` is indeed equal to the concatenation of the list `List.range n` and the list containing the single element \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : range (succ n) = range n ++ [n] := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (n : Nat) : range (succ n) = range n ++ [n] := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

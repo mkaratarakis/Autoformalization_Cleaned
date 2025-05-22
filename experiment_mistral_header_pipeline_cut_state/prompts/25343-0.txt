@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Values are Less Than or Equal to True : For any boolean value \( x \), it holds that \( x \leq \text{true} \).
+
+2. **Informal Proof**  
+To prove that for any boolean value \( x \), \( x \leq \text{true} \), we use the fact that the boolean lattice has `true` as its maximum element. In the boolean lattice, the value `true` is greater than or equal to both `true` and `false`. Therefore, for any boolean value \( x \), \( x \) is either `true` or `false`, and in both cases, \( x \leq \text{true} \) holds. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), x ≤ true := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), x ≤ true := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

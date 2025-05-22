@@ -1,0 +1,107 @@
+
+1. **Informal Theorem**  
+Drop While Preserves Filter Map in Lists : For any types \( \alpha \) and \( \beta \), a function \( f : \alpha \to \text{Option} \beta \), a predicate \( p : \beta \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), the following equality holds:
+\[
+\text{dropWhile } p \, (\text{filterMap } f \, l) = \text{filterMap } f \, (\text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, l)
+\]
+This theorem states that applying `dropWhile` to a predicate \( p \) on the result of `filterMap` applied to \( f \) and \( l \) is equivalent to applying `filterMap` to \( f \) on the result of `dropWhile` applied to a modified predicate that checks if \( p \) holds for the optional value returned by \( f \).
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, then both sides of the equation are the empty list. Therefore, the goal is trivially true.
+
+2. **Inductive Step:**
+- Assume \( l = x :: xs \) and the inductive hypothesis \( \text{dropWhile } p \, (\text{filterMap } f \, xs) = \text{filterMap } f \, (\text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs) \).
+- We need to show:
+\[
+\text{dropWhile } p \, (\text{filterMap } f \, (x :: xs)) = \text{filterMap } f \, (\text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, (x :: xs))
+\]
+- We consider two cases based on the result of \( f \, x \):
+- **Case 1: \( f \, x = \text{none} \)**
+- The left-hand side becomes:
+\[
+\text{dropWhile } p \, (\text{filterMap } f \, xs)
+\]
+- The right-hand side becomes:
+\[
+\text{filterMap } f \, (\text{if } \text{Option.all } p \, \text{none} = \text{true} \, \text{then } \text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs \, \text{else } x :: xs)
+\]
+- We consider two sub-cases:
+- **Sub-case 1.1: \( \text{Option.all } p \, \text{none} = \text{true} \)**
+- The right-hand side simplifies to:
+\[
+\text{filterMap } f \, (\text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs)
+\]
+- By the inductive hypothesis, this is equal to:
+\[
+\text{dropWhile } p \, (\text{filterMap } f \, xs)
+\]
+- **Sub-case 1.2: \( \text{Option.all } p \, \text{none} = \text{false} \)**
+- The right-hand side simplifies to:
+\[
+\text{filterMap } f \, (x :: xs)
+\]
+- By the definition of `filterMap`, this is equal to:
+\[
+\text{filterMap } f \, xs
+\]
+- By the inductive hypothesis, this is equal to:
+\[
+\text{dropWhile } p \, (\text{filterMap } f \, xs)
+\]
+- **Case 2: \( f \, x = \text{some } b \)**
+- The left-hand side becomes:
+\[
+\text{dropWhile } p \, (b :: \text{filterMap } f \, xs)
+\]
+- The right-hand side becomes:
+\[
+\text{filterMap } f \, (\text{if } p \, b = \text{true} \, \text{then } \text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs \, \text{else } x :: xs)
+\]
+- We consider two sub-cases:
+- **Sub-case 2.1: \( p \, b = \text{true} \)**
+- The right-hand side simplifies to:
+\[
+\text{filterMap } f \, (\text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs)
+\]
+- By the inductive hypothesis, this is equal to:
+\[
+\text{dropWhile } p \, (\text{filterMap } f \, xs)
+\]
+- **Sub-case 2.2: \( p \, b = \text{false} \)**
+- The right-hand side simplifies to:
+\[
+\text{filterMap } f \, (x :: xs)
+\]
+- By the definition of `filterMap`, this is equal to:
+\[
+b :: \text{filterMap } f \, xs
+\]
+- By the inductive hypothesis, this is equal to:
+\[
+\text{dropWhile } p \, (b :: \text{filterMap } f \, xs)
+\]
+
+Thus, the theorem holds for all lists \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : α → Option β) (p : β → Bool) (l : List α) :
+    (l.filterMap f).dropWhile p = (l.dropWhile fun a => (f a).all p).filterMap f := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (f : α → Option β) (p : β → Bool) (l : List α) :
+    (l.filterMap f).dropWhile p = (l.dropWhile fun a => (f a).all p).filterMap f := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

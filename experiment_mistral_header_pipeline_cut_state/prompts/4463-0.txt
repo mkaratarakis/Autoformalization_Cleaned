@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Minimum of Replicated List is the Element if Positive Replication : For any type $\alpha$ with a minimum operation, and for any natural number $n$ and element $a \in \alpha$, if the minimum of $a$ and $a$ is $a$ (i.e., $\min(a, a) = a$) and $n$ is positive (i.e., $0 < n$), then the minimum element of the list containing $n$ copies of $a$ is $a$. Formally, this can be written as:
+\[
+\min(a, a) = a \quad \text{and} \quad 0 < n \quad \implies \quad (\text{replicate } n \, a).minimum? = \text{some } a
+\]
+
+2. **Informal Proof**  
+Given that \(\min(a, a) = a\) and \(0 < n\), we use the property of the minimum operation on a replicated list, which states that the minimum element of the list `replicate n a` is:
+- `none` if \( n = 0 \),
+- `some a` if \( n > 0 \).
+
+Since \(0 < n\), it follows that \( n \neq 0 \). Therefore, by the definition of the minimum operation on a replicated list and the given conditions, we conclude that the minimum element of the list `replicate n a` is `some a`. This completes the proof.
+
+3. **Formal Theorem**  
+example [Min α] {n : Nat} {a : α} (w : min a a = a) (h : 0 < n) :
+    (replicate n a).minimum? = some a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.MinMax
+
+open List
+open Nat
+
+example [Min α] {n : Nat} {a : α} (w : min a a = a) (h : 0 < n) :
+    (replicate n a).minimum? = some a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.MinMax not found. --
+

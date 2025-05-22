@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Conditional Expression with `decide` Equals If-then-else Expression: \((\text{if } \text{decide } p \text{ then } t \text{ else } e) = (\text{if } p \text{ then } t \text{ else } e)\) : For any decidable proposition \( p \) and any values \( t \) and \( e \) of type \( \alpha \), the expression `bif decide p then t else e` is equal to `if p then t else e`. In other words, if \( p \) is true, both expressions evaluate to \( t \); if \( p \) is false, both expressions evaluate to \( e \).
+
+2. **Informal Proof**  
+We need to show that \((\text{if } \text{decide } p \text{ then } t \text{ else } e) = (\text{if } p \text{ then } t \text{ else } e)\).
+
+Using the theorem that the conditional function `cond` (or `bif b then t else e`) is equivalent to the if-then-else function `ite` (or `if b = true then t else e`), we can simplify the proposition. Specifically, `decide p` is a boolean value that is `true` if \( p \) is true and `false` if \( p \) is false. Therefore, the conditional function `cond` with `decide p` is equivalent to the if-then-else function `ite` with \( p \).
+
+Thus, \((\text{if } \text{decide } p \text{ then } t \text{ else } e) = (\text{if } p \text{ then } t \text{ else } e)\) is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example {α} (p : Prop) [Decidable p] (t e : α) :
+    cond (decide p) t e = if p then t else e := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example {α} (p : Prop) [Decidable p] (t e : α) :
+    cond (decide p) t e = if p then t else e := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,73 @@
+
+1. **Informal Theorem**  
+At Least Two of Three Booleans Including True is Equivalent to Boolean Or: \( a \text{ or } b \) : For any boolean values \( a \) and \( b \), the function `atLeastTwo` returns `true` if at least two out of the three boolean values \( a, b, \) and `true` are `true`. This is equivalent to the boolean "or" operation, i.e., \( a \text{ or } b \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( a \) and \( b \), the function `atLeastTwo` applied to \( a, b, \) and `true` is equal to \( a \lor b \). We will consider every possible combination of \( a \) and \( b \).
+
+1. **Case 1: \( a = \text{false} \) and \( b = \text{false} \)**
+- Using the definition of `atLeastTwo`, we have:
+\[
+\text{false}.\text{atLeastTwo}(\text{false}, \text{true}) = \text{false}
+\]
+- The boolean "or" operation gives:
+\[
+\text{false} \lor \text{false} = \text{false}
+\]
+- Therefore, the goal is satisfied.
+
+2. **Case 2: \( a = \text{false} \) and \( b = \text{true} \)**
+- Using the definition of `atLeastTwo`, we have:
+\[
+\text{false}.\text{atLeastTwo}(\text{true}, \text{true}) = \text{true}
+\]
+- The boolean "or" operation gives:
+\[
+\text{false} \lor \text{true} = \text{true}
+\]
+- Therefore, the goal is satisfied.
+
+3. **Case 3: \( a = \text{true} \) and \( b = \text{false} \)**
+- Using the definition of `atLeastTwo`, we have:
+\[
+\text{true}.\text{atLeastTwo}(\text{false}, \text{true}) = \text{true}
+\]
+- The boolean "or" operation gives:
+\[
+\text{true} \lor \text{false} = \text{true}
+\]
+- Therefore, the goal is satisfied.
+
+4. **Case 4: \( a = \text{true} \) and \( b = \text{true} \)**
+- Using the definition of `atLeastTwo`, we have:
+\[
+\text{true}.\text{atLeastTwo}(\text{true}, \text{true}) = \text{true}
+\]
+- The boolean "or" operation gives:
+\[
+\text{true} \lor \text{true} = \text{true}
+\]
+- Therefore, the goal is satisfied.
+
+Since all cases are satisfied, we conclude that for any boolean values \( a \) and \( b \), the function `atLeastTwo` applied to \( a, b, \) and `true` is equivalent to \( a \lor b \). This completes the proof.
+
+3. **Formal Theorem**  
+example : atLeastTwo a b true  = (a || b) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open Bool
+open Nat Bool
+
+example : atLeastTwo a b true  = (a || b) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

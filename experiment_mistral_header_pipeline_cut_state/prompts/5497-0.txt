@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+If-then-else with False on the Left: \((\text{if } p \text{ then } \text{False} \text{ else } q) \leftrightarrow \neg p \land q\) : For any propositions \( p \) and \( q \), if \( p \) is decidable, then the if-then-else expression \((\text{if } p \text{ then } \text{False} \text{ else } q)\) is logically equivalent to \(\neg p \land q\).
+
+2. **Informal Proof**  
+We consider the two possible cases for the decidable proposition \( p \):
+
+1. **Case 1: \( p \) is false.**
+In this case, the expression \((\text{if } p \text{ then } \text{False} \text{ else } q)\) simplifies to \( q \). Since \( p \) is false, \(\neg p\) is true, and thus \(\neg p \land q\) simplifies to \( q \). Therefore, in this case, the expression \((\text{if } p \text{ then } \text{False} \text{ else } q)\) is equivalent to \(\neg p \land q\).
+
+2. **Case 2: \( p \) is true.**
+In this case, the expression \((\text{if } p \text{ then } \text{False} \text{ else } q)\) simplifies to \(\text{False}\). Since \( p \) is true, \(\neg p\) is false, and thus \(\neg p \land q\) is also false. Therefore, in this case, the expression \((\text{if } p \text{ then } \text{False} \text{ else } q)\) is equivalent to \(\neg p \land q\).
+
+Since both cases show that the expression \((\text{if } p \text{ then } \text{False} \text{ else } q)\) is equivalent to \(\neg p \land q\), we conclude that the theorem holds.
+
+3. **Formal Theorem**  
+example [h : Decidable p] :
+    ite p False q ↔ ¬p ∧ q := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example [h : Decidable p] :
+    ite p False q ↔ ¬p ∧ q := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

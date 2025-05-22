@@ -1,0 +1,178 @@
+
+1. **Informal Theorem**  
+Pairwise Relation on a List is Equivalent to Sublist Condition: \( \text{Pairwise } R \, l \leftrightarrow \forall a, b \in l, [a, b] \text{ is a sublist of } l \rightarrow R a b \) : For any type \( \alpha \) and any list \( l \) of elements of type \( \alpha \), the predicate `Pairwise R l` holds if and only if for all elements \( a \) and \( b \) in \( l \), where \( [a, b] \) is a sublist of \( l \), the relation \( R a b \) holds. In other words, `Pairwise R l` is true if and only if for every pair of elements \( a \) and \( b \) in \( l \) such that \( a \) appears before \( b \), the relation \( R a b \) is satisfied.
+
+2. **Informal Proof**  
+We start by noting that the assumption that the cardinality of $n$ is zero is equivalent to, and thus can be converted to $n$ being empty. We need to prove that the determinant of $M$ is $1$. First, we try to show that $M = 1$ (the identity matrix). To show this, we prove that for every $i \in n$, $M i = 1 i$. However, since $n$ is empty, $M i = 1 i$ holds for every $i \in n$ vacuously. Hence, $M = 1$. Therefore, the determinant of $M$ is $\det M = \det 1 = 1$. This completes the proof.
+
+---
+
+### Line by Line Informal Proof
+
+#### Informal Step 1
+
+**Formal proof line:**
+apply h; exact hab.cons _
+
+**Informal translation:**
+To prove the current goal $R a b$, using the hypothesis $h$, it suffices to show that $[a, b]$ is a sublist of $hd :: tl$. Since $[a, b]$ is a sublist of $tl$ (by $hab$), and $hd :: tl$ is a cons list, we can conclude that $[a, b]$ is a sublist of $hd :: tl$.
+
+#### Informal Step 2
+
+**Formal proof line:**
+| nil => simp
+
+**Informal translation:**
+For the base case where the list is empty, we simplify the goal. Since the empty list has no elements, the pairwise relation holds trivially. Therefore, the goal is satisfied.
+
+#### Informal Step 3
+
+**Formal proof line:**
+| cons hd tl IH =>
+
+**Informal translation:**
+For the inductive step, assume the list is of the form $hd :: tl$. We need to show that the pairwise relation holds for the list $hd :: tl$.
+
+#### Informal Step 4
+
+**Formal proof line:**
+rw [List.pairwise_cons]
+
+**Informal translation:**
+Using the definition of the pairwise relation on a cons list, we rewrite the goal. The pairwise relation on $hd :: tl$ holds if and only if for all elements $a'$ in $tl$, $R hd a'$ holds, and the pairwise relation holds for $tl$.
+
+#### Informal Step 5
+
+**Formal proof line:**
+constructor <;> intro h
+
+**Informal translation:**
+To prove the current goal, it suffices to show two things: (1) for all elements $a'$ in $tl$, $R hd a'$ holds, and (2) the pairwise relation holds for $tl$. We introduce a hypothesis $h$ for the first part and another hypothesis for the second part.
+
+#### Informal Step 6
+
+**Formal proof line:**
+· intro
+
+**Informal translation:**
+Let's concentrate on the proof of the first part. We need to show that for all elements $a'$ in $tl$, $R hd a'$ holds.
+
+#### Informal Step 7
+
+**Formal proof line:**
+| a, b, .cons _ hab => exact IH.mp h.2 hab
+
+**Informal translation:**
+For the first part, consider elements $a$ and $b$ in the list. Since $[a, b]$ is a sublist of $tl$ (by $hab$), and the inductive hypothesis $IH$ states that the pairwise relation holds for $tl$, we can conclude that $R a b$ holds.
+
+#### Informal Step 8
+
+**Formal proof line:**
+| _, b, .cons₂ _ hab => refine h.1 _ (hab.subset ?_); simp
+
+**Informal translation:**
+For the second part, consider elements $a$ and $b$ in the list. Since $[a, b]$ is a sublist of $tl$ (by $hab$), and the hypothesis $h$ states that for all elements $a'$ in $tl$, $R hd a'$ holds, we can conclude that $R hd b$ holds. We simplify the goal to show that $b$ is in $tl$.
+
+#### Informal Step 9
+
+**Formal proof line:**
+· constructor
+
+**Informal translation:**
+To prove the current goal, it suffices to show two things: (1) for all elements $a'$ in $tl$, $R hd a'$ holds, and (2) the pairwise relation holds for $tl$. We introduce a hypothesis for each part.
+
+#### Informal Step 10
+
+**Formal proof line:**
+· intro x hx
+
+**Informal translation:**
+Let $x$ be an arbitrary element in $tl$ (by $hx$), we need to show that $R hd x$ holds.
+
+#### Informal Step 11
+
+**Formal proof line:**
+apply h
+
+**Informal translation:**
+To prove $R hd x$, using the hypothesis $h$, it suffices to show that $[hd, x]$ is a sublist of $hd :: tl$.
+
+#### Informal Step 12
+
+**Formal proof line:**
+rw [List.cons_sublist_cons, List.singleton_sublist]
+
+**Informal translation:**
+Using the properties of sublists, we rewrite the goal. The list $[hd, x]$ is a sublist of $hd :: tl$ if and only if $[x]$ is a sublist of $tl$. Since $[x]$ is a sublist of $tl$ if and only if $x$ is in $tl$, we need to show that $x$ is in $tl$.
+
+#### Informal Step 13
+
+**Formal proof line:**
+exact hx
+
+**Informal translation:**
+The current goal $x \in tl$ is exactly proved by the hypothesis $hx$.
+
+#### Informal Step 14
+
+**Formal proof line:**
+· apply IH.mpr
+
+**Informal translation:**
+To prove the pairwise relation holds for $tl$, using the inductive hypothesis $IH$, it suffices to show that for all elements $a$ and $b$ in $tl$, $R a b$ holds.
+
+#### Informal Step 15
+
+**Formal proof line:**
+intro a b hab
+
+**Informal translation:**
+Let $a$ and $b$ be arbitrary elements in $tl$ (by $hab$), we need to show that $R a b$ holds.
+
+#### Informal Step 16
+
+**Formal proof line:**
+apply h; exact hab.cons _
+
+**Informal translation:**
+To prove $R a b$, using the hypothesis $h$, it suffices to show that $[a, b]$ is a sublist of $hd :: tl$. Since $[a, b]$ is a sublist of $tl$ (by $hab$), and $hd :: tl$ is a cons list, we can conclude that $[a, b]$ is a sublist of $hd :: tl$.
+
+### Whole Informal Proof
+
+**Theorem:**
+For any type $\alpha$ and any list $l$ of elements of type $\alpha$, the predicate `Pairwise R l` holds if and only if for all elements $a$ and $b$ in $l$, where $[a, b]$ is a sublist of $l$, the relation $R a b$ holds.
+
+**Proof:**
+We prove the theorem by induction on the list $l$.
+
+**Base Case:**
+For the base case where the list is empty, we need to show that the pairwise relation holds. Since the empty list has no elements, the pairwise relation holds trivially. Therefore, the goal is satisfied.
+
+**Inductive Step:**
+For the inductive step, assume the list is of the form $hd :: tl$. We need to show that the pairwise relation holds for the list $hd :: tl$.
+
+Using the definition of the pairwise relation on a cons list, we rewrite the goal. The pairwise relation on $hd :: tl$ holds if and only if for all elements $a'$ in $tl$, $R hd a'$ holds, and the pairwise relation holds for $tl$.
+
+To prove the first part, we need to show that for all elements $a'$ in $tl$, $R hd a'$ holds. Let $x$ be an arbitrary element in $tl$ (by $hx$). We need to show that $R hd x$ holds. Using the hypothesis $h$, it suffices to show that $[hd, x]$ is a sublist of $hd :: tl$. Since $[hd, x]$ is a sublist of $hd :: tl$ if and only if $[x]$ is a sublist of $tl$, and $[x]$ is a sublist of $tl$ if and only if $x$ is in $tl$, we conclude that $R hd x$ holds.
+
+To prove the second part, we need to show that the pairwise relation holds for $tl$. Using the inductive hypothesis $IH$, it suffices to show that for all elements $a$ and $b$ in $tl$, $R a b$ holds. Let $a$ and $b$ be arbitrary elements in $tl$ (by $hab$). We need to show that $R a b$ holds. Using the hypothesis $h$, it suffices to show that $[a, b]$ is a sublist of $hd :: tl$. Since $[a, b]$ is a sublist of $tl$ (by $hab$), and $hd :: tl$ is a cons list, we conclude that $[a, b]$ is a sublist of $hd :: tl$.
+
+Therefore, the pairwise relation holds for $hd :: tl$. This completes the proof.
+
+3. **Formal Theorem**  
+example : l.Pairwise R ↔ (∀ {a b}, [a,b] <+ l → R a b) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example : l.Pairwise R ↔ (∀ {a b}, [a,b] <+ l → R a b) := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

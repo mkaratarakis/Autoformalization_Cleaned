@@ -1,0 +1,74 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:10:2: error: unsolved goals
+case h.h.h.h.h.h.nil
+α : Type u_3
+β : Type u_2
+γ : Type u_1
+f : α → β → γ
+bs : List β
+⊢ zipWithTR.go f [] bs #[] = []
+tmp.lean:12:4: error: unsolved goals
+case h.h.h.h.h.h.cons.nil
+α : Type u_3
+β : Type u_2
+γ : Type u_1
+f : α → β → γ
+head✝ : α
+tail✝ : List α
+tail_ih✝ : ∀ (bs : List β), zipWith f tail✝ bs = zipWithTR f tail✝ bs
+⊢ zipWithTR.go f (head✝ :: tail✝) [] #[] = []
+tmp.lean:14:21: warning: `Array.data` has been deprecated: use `Array.toList` instead
+tmp.lean:14:33: error: invalid field notation, type is not of the form (C ...) where C is a constant
+  zipWithTR
+has type
+  (?m.7439 → ?m.7440 → ?m.7441) → List ?m.7439 → List ?m.7440 → List ?m.7441
+tmp.lean:7:35: error: unsolved goals
+case h.h.h.h.h.h.nil
+α : Type u_3
+β : Type u_2
+γ : Type u_1
+f : α → β → γ
+bs : List β
+⊢ zipWith f [] bs = zipWithTR f [] bs
+
+case h.h.h.h.h.h.cons
+α : Type u_3
+β : Type u_2
+γ : Type u_1
+f : α → β → γ
+head✝ : α
+tail✝ : List α
+tail_ih✝ : ∀ (bs : List β), zipWith f tail✝ bs = zipWithTR f tail✝ bs
+bs : List β
+⊢ zipWith f (head✝ :: tail✝) bs = zipWithTR f (head✝ :: tail✝) bs
+case h.h.h.h.h.h.nil
+α : Type u_3
+β : Type u_2
+γ : Type u_1
+f : α → β → γ
+bs : List β
+⊢ zipWith f [] bs = zipWithTR f [] bs
+
+case h.h.h.h.h.h.cons
+α : Type u_3
+β : Type u_2
+γ : Type u_1
+f : α → β → γ
+head✝ : α
+tail✝ : List α
+tail_ih✝ : ∀ (bs : List β), zipWith f tail✝ bs = zipWithTR f tail✝ bs
+bs : List β
+⊢ zipWith f (head✝ :: tail✝) bs = zipWithTR f (head✝ :: tail✝) bs
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @zipWith = @zipWithTR := by
+  funext α β γ f as bs
+  induction as generalizing bs

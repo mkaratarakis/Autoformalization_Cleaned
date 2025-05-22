@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Sublist of Replicated List Characterization : For any list \( l \) of elements of type \( \alpha \), and for any natural number \( m \) and element \( a \) of type \( \alpha \), the list \( l \) is a sublist of the list containing \( m \) copies of \( a \) if and only if there exists a natural number \( n \) such that \( n \leq m \) and \( l \) is equal to the list containing \( n \) copies of \( a \).
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, we need to show that the empty list is a sublist of \( \text{replicate}(m, a) \) if and only if there exists \( n \) such that \( n \leq m \) and the empty list is equal to \( \text{replicate}(n, a) \).
+- The empty list is a sublist of any list, and \( \text{replicate}(0, a) \) is the empty list. Therefore, the base case holds with \( n = 0 \).
+
+2. **Inductive Step:**
+- Assume the inductive hypothesis: for any list \( l' \) and any natural number \( m \), \( l' \) is a sublist of \( \text{replicate}(m, a) \) if and only if there exists \( n \) such that \( n \leq m \) and \( l' = \text{replicate}(n, a) \).
+- Consider the list \( l = b :: l' \).
+
+- **Direction 1:**
+- Suppose \( b :: l' \) is a sublist of \( \text{replicate}(m, a) \).
+- By the inductive hypothesis, \( l' \) is a sublist of \( \text{replicate}(m, a) \), so there exists \( n \) such that \( n \leq m \) and \( l' = \text{replicate}(n, a) \).
+- Since \( b \) is a member of \( \text{replicate}(m, a) \), it follows that \( b = a \).
+- Therefore, \( b :: l' = a :: \text{replicate}(n, a) = \text{replicate}(n + 1, a) \).
+- Since \( n + 1 \leq m + 1 \), \( b :: l' \) is a sublist of \( \text{replicate}(m + 1, a) \).
+
+- **Direction 2:**
+- Suppose there exists \( n \) such that \( n \leq m \) and \( b :: l' = \text{replicate}(n, a) \).
+- Since \( b :: l' = \text{replicate}(n, a) \), it follows that \( b = a \) and \( l' = \text{replicate}(n - 1, a) \).
+- By the inductive hypothesis, \( l' \) is a sublist of \( \text{replicate}(m, a) \).
+- Therefore, \( b :: l' = a :: \text{replicate}(n - 1, a) = \text{replicate}(n, a) \) is a sublist of \( \text{replicate}(m, a) \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : l <+ replicate m a ↔ ∃ n, n ≤ m ∧ l = replicate n a := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example : l <+ replicate m a ↔ ∃ n, n ≤ m ∧ l = replicate n a := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

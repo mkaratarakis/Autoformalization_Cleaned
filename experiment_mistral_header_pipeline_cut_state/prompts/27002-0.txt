@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Head of Zipped List is Function Applied to Heads of Input Lists: \(\text{head}(\text{zipWith } f \, \text{as} \, \text{bs}) = f(\text{head}(\text{as}), \text{head}(\text{bs}))\) : For any types \( \alpha \), \( \beta \), and \( \gamma \), and for any lists \( \text{as} : \text{List } \alpha \) and \( \text{bs} : \text{List } \beta \), and for any function \( f : \alpha \to \beta \to \gamma \), if the list obtained by applying \( f \) to corresponding elements of \( \text{as} \) and \( \text{bs} \) (i.e., \( \text{zipWith } f \, \text{as} \, \text{bs} \)) is non-empty, then the head of this zipped list is equal to \( f \) applied to the heads of \( \text{as} \) and \( \text{bs} \). Formally, if \( h : \text{zipWith } f \, \text{as} \, \text{bs} \neq [] \), then:
+\[ \text{head}(\text{zipWith } f \, \text{as} \, \text{bs}) = f(\text{head}(\text{as}), \text{head}(\text{bs})) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the injectivity of the `some` constructor in the `Option` type. This means that to show:
+\[ \text{head}(\text{zipWith } f \, \text{as} \, \text{bs}) = f(\text{head}(\text{as}), \text{head}(\text{bs})) \]
+it suffices to show:
+\[ \text{some}(\text{head}(\text{zipWith } f \, \text{as} \, \text{bs})) = \text{some}(f(\text{head}(\text{as}), \text{head}(\text{bs}))) \]
+
+Next, we use the equivalence that the optional head of a non-empty list is `some` of the first element. Specifically, we have:
+\[ \text{head?}(\text{zipWith } f \, \text{as} \, \text{bs}) = \text{some}(\text{head}(\text{zipWith } f \, \text{as} \, \text{bs})) \]
+
+We also use the definition of the head of the zipped list:
+\[ \text{head?}(\text{zipWith } f \, \text{as} \, \text{bs}) = \text{some}(f(\text{head?}(\text{as}), \text{head?}(\text{bs}))) \]
+
+Finally, we use the fact that the optional head of a non-empty list is `some` of the first element for both `as` and `bs`:
+\[ \text{head?}(\text{as}) = \text{some}(\text{head}(\text{as})) \]
+\[ \text{head?}(\text{bs}) = \text{some}(\text{head}(\text{bs})) \]
+
+Combining these, we get:
+\[ \text{head?}(\text{zipWith } f \, \text{as} \, \text{bs}) = \text{some}(f(\text{head}(\text{as}), \text{head}(\text{bs}))) \]
+
+Thus, the goal is satisfied, and the theorem is proved.
+
+3. **Formal Theorem**  
+example {f : α → β → γ} (h):
+    (List.zipWith f as bs).head h = f (as.head (by rintro rfl; simp_all)) (bs.head (by rintro rfl; simp_all)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {f : α → β → γ} (h):
+    (List.zipWith f as bs).head h = f (as.head (by rintro rfl; simp_all)) (bs.head (by rintro rfl; simp_all)) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

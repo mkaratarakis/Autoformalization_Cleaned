@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Erasing Element from Right List in Concatenation: \((l_1 ++ l_2). \text{erase } a = l_1 ++ l_2. \text{erase } a\) if \(a \notin l_1\) : For any type \( \alpha \) and any element \( a \) of type \( \alpha \), if \( a \) is not in the list \( l_1 \), then the list obtained by erasing \( a \) from the concatenation \( l_1 ++ l_2 \) is equal to the concatenation of \( l_1 \) and the list obtained by erasing \( a \) from \( l_2 \). Formally, if \( a \notin l_1 \), then \((l_1 ++ l_2). \text{erase } a = l_1 ++ l_2. \text{erase } a\).
+
+2. **Informal Proof**  
+We start by noting that the operation of erasing the first occurrence of an element \(a\) from a list \(l\) using `List.erase` is equivalent to erasing the first element that satisfies the predicate \(x \mapsto (x = a)\) from \(l\) using `List.eraseP`. Therefore, the goal \((l_1 ++ l_2). \text{erase } a = l_1 ++ l_2. \text{erase } a\) can be rewritten as:
+\[
+\text{eraseP}(x \mapsto (x = a), l_1 ++ l_2) = l_1 ++ \text{eraseP}(x \mapsto (x = a), l_2)
+\]
+
+Next, we use the theorem that if no element in \(l_1\) satisfies the predicate \(p\), then \(\text{eraseP}(p, l_1 \oplus l_2) = l_1 \oplus \text{eraseP}(p, l_2)\). Since \(a \notin l_1\), this theorem applies, and our goal simplifies to:
+\[
+l_1 ++ \text{eraseP}(x \mapsto (x = a), l_2) = l_1 ++ \text{eraseP}(x \mapsto (x = a), l_2)
+\]
+This is trivially true by the properties of equality.
+
+To complete the proof, we need to show that for every \(b \in \alpha\), if \(b \in l_1\), then \(\neg (a == b) = \text{true}\). We introduce a new variable \(b\) and assume \(b \in l_1\) and \(\neg (a == b) = \text{true}\). Using the theorem that if \(\neg (a == b) = \text{true}\), then \(a \neq b\), we can transform our assumption \(\neg (a == b) = \text{true}\) into \(a \neq b\). Since \(a \notin l_1\) by our initial hypothesis, and \(b \in l_1\), it follows that \(a \neq b\). Therefore, the assumption \(\neg (a == b) = \text{true}\) is satisfied, and the goal is trivially true.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {a : α} {l₁ : List α} (l₂ : List α) (h : a ∉ l₁) :
+    (l₁ ++ l₂).erase a = (l₁ ++ l₂.erase a) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a : α} {l₁ : List α} (l₂ : List α) (h : a ∉ l₁) :
+    (l₁ ++ l₂).erase a = (l₁ ++ l₂.erase a) := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

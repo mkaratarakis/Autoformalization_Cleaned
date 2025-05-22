@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Injectivity of Left Conjunction and Disjunction in Boolean Logic: \((m \land x) = (m \land y) \land (m \lor x) = (m \lor y) \leftrightarrow x = y\) : For any boolean values \( m \), \( x \), and \( y \), the conjunction \( (m \land x) = (m \land y) \) and the disjunction \( (m \lor x) = (m \lor y) \) hold if and only if \( x = y \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( m \), \( x \), and \( y \), the conjunction \( (m \land x) = (m \land y) \) and the disjunction \( (m \lor x) = (m \lor y) \) hold if and only if \( x = y \).
+
+1. **(\(\Rightarrow\)) Assume \( (m \land x) = (m \land y) \) and \( (m \lor x) = (m \lor y) \).**
+- If \( m = \text{true} \):
+- Then \( (m \land x) = x \) and \( (m \land y) = y \). Since \( (m \land x) = (m \land y) \), we have \( x = y \).
+- If \( m = \text{false} \):
+- Then \( (m \land x) = \text{false} \) and \( (m \land y) = \text{false} \). The condition \( (m \land x) = (m \land y) \) is trivially satisfied.
+- Also, \( (m \lor x) = x \) and \( (m \lor y) = y \). Since \( (m \lor x) = (m \lor y) \), we have \( x = y \).
+
+2. **(\(\Leftarrow\)) Assume \( x = y \).**
+- If \( x = y \), then \( (m \land x) = (m \land y) \) and \( (m \lor x) = (m \lor y) \) are trivially true because both sides of the equations are equal.
+
+Thus, we have shown that \( (m \land x) = (m \land y) \) and \( (m \lor x) = (m \lor y) \) hold if and only if \( x = y \). This completes the proof.
+
+3. **Formal Theorem**  
+example :
+    ∀ {m x y : Bool}, (m && x) = (m && y) ∧ (m || x) = (m || y) ↔ x = y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example :
+    ∀ {m x y : Bool}, (m && x) = (m && y) ∧ (m || x) = (m || y) ↔ x = y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

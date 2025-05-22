@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Non-empty List is Not a Prefix of the Empty List: \( 0 < |L| \implies L.\text{isPrefixOf} [] = \text{false} \) : For any type \( \alpha \) and any list \( L \) of elements of type \( \alpha \), if the length of \( L \) is greater than 0, then \( L \) is not a prefix of the empty list. This can be written as:
+\[
+0 < |L| \implies L.\text{isPrefixOf} [] = \text{false}
+\]
+where \( |L| \) denotes the length of the list \( L \).
+
+2. **Informal Proof**  
+We will consider every possible case of the list \( L \).
+
+**Case 1: \( L \) is the empty list.**
+- The assumption \( 0 < |L| \) becomes \( 0 < 0 \), which is false. Therefore, this case is vacuously true.
+- We need to show that \( L.\text{isPrefixOf} [] = \text{false} \). Since \( L \) is the empty list, \( L.\text{isPrefixOf} [] \) is \( \text{true} \) by definition. However, this case is vacuously true because the assumption \( 0 < |L| \) is false.
+
+**Case 2: \( L \) is a non-empty list, i.e., \( L = \text{head} :: \text{tail} \).**
+- The assumption \( 0 < |L| \) becomes \( 0 < 1 + |\text{tail}| \), which is true.
+- We need to show that \( (\text{head} :: \text{tail}).\text{isPrefixOf} [] = \text{false} \). By the definition of `isPrefixOf`, if the second list is empty and the first list is non-empty, then \( \text{isPrefixOf} \) returns `false`. Therefore, \( (\text{head} :: \text{tail}).\text{isPrefixOf} [] = \text{false} \).
+
+In both cases, the statement holds. Therefore, we have shown that if the length of \( L \) is greater than 0, then \( L \) is not a prefix of the empty list. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {L : List α} (h : 0 < L.length) : isPrefixOf L [] = false := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+
+example {L : List α} (h : 0 < L.length) : isPrefixOf L [] = false := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

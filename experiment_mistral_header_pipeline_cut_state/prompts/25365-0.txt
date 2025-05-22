@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Right Injection of Boolean Not-Equal Function: \((x \neq z) = (y \neq z) \leftrightarrow x = y\) : For any boolean values \( x, y, z \in \text{Bool} \), the equation \((x \neq z) = (y \neq z)\) holds if and only if \( x = y \).
+
+2. **Informal Proof**  
+To prove the statement, we use the decidability of boolean values. Since \( x, y, z \) can only be `true` or `false`, we can check all possible combinations of these values to verify the equivalence.
+
+1. **Case 1: \( x = \text{true} \) and \( y = \text{true} \)**
+- If \( z = \text{true} \), then \( (x \neq z) = \text{false} \) and \( (y \neq z) = \text{false} \). Thus, \((x \neq z) = (y \neq z)\) holds, and \( x = y \) is true.
+- If \( z = \text{false} \), then \( (x \neq z) = \text{true} \) and \( (y \neq z) = \text{true} \). Thus, \((x \neq z) = (y \neq z)\) holds, and \( x = y \) is true.
+
+2. **Case 2: \( x = \text{true} \) and \( y = \text{false} \)**
+- If \( z = \text{true} \), then \( (x \neq z) = \text{false} \) and \( (y \neq z) = \text{true} \). Thus, \((x \neq z) \neq (y \neq z)\), and \( x \neq y \) is true.
+- If \( z = \text{false} \), then \( (x \neq z) = \text{true} \) and \( (y \neq z) = \text{false} \). Thus, \((x \neq z) \neq (y \neq z)\), and \( x \neq y \) is true.
+
+3. **Case 3: \( x = \text{false} \) and \( y = \text{true} \)**
+- If \( z = \text{true} \), then \( (x \neq z) = \text{true} \) and \( (y \neq z) = \text{false} \). Thus, \((x \neq z) \neq (y \neq z)\), and \( x \neq y \) is true.
+- If \( z = \text{false} \), then \( (x \neq z) = \text{false} \) and \( (y \neq z) = \text{true} \). Thus, \((x \neq z) \neq (y \neq z)\), and \( x \neq y \) is true.
+
+4. **Case 4: \( x = \text{false} \) and \( y = \text{false} \)**
+- If \( z = \text{true} \), then \( (x \neq z) = \text{true} \) and \( (y \neq z) = \text{true} \). Thus, \((x \neq z) = (y \neq z)\) holds, and \( x = y \) is true.
+- If \( z = \text{false} \), then \( (x \neq z) = \text{false} \) and \( (y \neq z) = \text{false} \). Thus, \((x \neq z) = (y \neq z)\) holds, and \( x = y \) is true.
+
+In all cases, we have shown that \((x \neq z) = (y \neq z)\) holds if and only if \( x = y \). Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), (x != z) = (y != z) ↔ x = y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), (x != z) = (y != z) ↔ x = y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

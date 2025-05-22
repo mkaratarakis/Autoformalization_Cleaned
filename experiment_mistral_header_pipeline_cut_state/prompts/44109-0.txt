@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Left Shift of Bitvector by Zero is Identity : For any natural number \( w \) and any bitvector \( x \) of width \( w \), performing a left shift operation on \( x \) by 0 positions results in the same bitvector \( x \). In other words, \( x \lll 0 = x \).
+
+2. **Informal Proof**  
+To prove that \( x \lll 0 = x \), we use the fact that two bitvectors are equal if and only if their natural number representations are equal. Therefore, it suffices to show that the natural number representation of \( x \lll 0 \) is equal to the natural number representation of \( x \). That is, we need to show that \((x \lll 0).toNat = x.toNat\).
+
+Using the properties of the left shift operation and the natural number representation, we can simplify the expression \((x \lll 0).toNat\) to \(x.toNat\). Hence, \((x \lll 0).toNat = x.toNat\) holds true. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec w) : x <<< 0 = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) : x <<< 0 = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

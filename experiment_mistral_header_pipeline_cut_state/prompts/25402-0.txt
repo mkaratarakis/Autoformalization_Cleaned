@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Conditional with False Left: \((\text{if } c \text{ then } \text{false} \text{ else } f) = (\neg c \land f)\) : For any boolean values \( c \) and \( f \), the expression \(\text{if } c \text{ then } \text{false} \text{ else } f\) is equal to \(\neg c \land f\), i.e., \((\text{if } c \text{ then } \text{false} \text{ else } f) = (\neg c \land f)\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( c \) and \( f \), the expression \(\text{if } c \text{ then } \text{false} \text{ else } f\) is equal to \(\neg c \land f\). We will consider all possible values of \( c \) and \( f \):
+
+1. **Case 1: \( c = \text{true} \)**
+- If \( c = \text{true} \), then \(\text{if } c \text{ then } \text{false} \text{ else } f\) evaluates to \(\text{false}\).
+- \(\neg c = \neg \text{true} = \text{false}\).
+- Therefore, \(\neg c \land f = \text{false} \land f = \text{false}\).
+- Hence, \(\text{if } c \text{ then } \text{false} \text{ else } f = \text{false} = \neg c \land f\).
+
+2. **Case 2: \( c = \text{false} \)**
+- If \( c = \text{false} \), then \(\text{if } c \text{ then } \text{false} \text{ else } f\) evaluates to \( f \).
+- \(\neg c = \neg \text{false} = \text{true}\).
+- Therefore, \(\neg c \land f = \text{true} \land f = f\).
+- Hence, \(\text{if } c \text{ then } \text{false} \text{ else } f = f = \neg c \land f\).
+
+Since the equality holds for all possible values of \( c \) and \( f \), the theorem is proven. Therefore, for any boolean values \( c \) and \( f \), \((\text{if } c \text{ then } \text{false} \text{ else } f) = (\neg c \land f)\). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c f : Bool), cond c false f = (!c && f) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c f : Bool), cond c false f = (!c && f) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

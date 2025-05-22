@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+GCD of Product Divides Product of GCDs in Natural Numbers : For any natural numbers \( k, m, n \), the greatest common divisor of \( k \) and the product \( m \cdot n \) divides the product of the greatest common divisors of \( k \) and \( m \), and \( k \) and \( n \). In other words, \(\gcd(k, m \cdot n) \mid \gcd(k, m) \cdot \gcd(k, n)\).
+
+2. **Informal Proof**  
+We start by constructing natural numbers \( m' \) and \( n' \) such that \( m' \mid m \) and \( n' \mid n \). Additionally, we have \( \gcd(k, m \cdot n) = m' \cdot n' \). This is derived from the fact that the greatest common divisor of \( k \) and \( m \cdot n \) divides \( m \cdot n \), and by the property of the product of divisors of \( m \) and \( n \) from a divisor of \( m \cdot n \).
+
+Next, we replace the goal of showing \( \gcd(k, m \cdot n) \mid \gcd(k, m) \cdot \gcd(k, n) \) with showing \( m' \cdot n' \mid \gcd(k, m) \cdot \gcd(k, n) \).
+
+We then show that \( m' \cdot n' \mid k \). This follows from the fact that \( \gcd(k, m \cdot n) \mid k \) (since the greatest common divisor of \( k \) and \( m \cdot n \) divides \( k \)), and we have \( \gcd(k, m \cdot n) = m' \cdot n' \).
+
+To show that \( m' \cdot n' \mid \gcd(k, m) \cdot \gcd(k, n) \), we use the fact that \( m' \cdot n' \mid k \) and the properties of divisibility. Specifically, we have:
+- \( m' \mid m \) and \( m' \cdot n' \mid k \) implies \( m' \mid \gcd(k, m) \) (since \( m' \mid m \) and \( m' \cdot n' \mid k \) implies \( m' \mid k \)).
+- \( n' \mid n \) and \( m' \cdot n' \mid k \) implies \( n' \mid \gcd(k, n) \) (since \( n' \mid n \) and \( m' \cdot n' \mid k \) implies \( n' \mid k \)).
+
+Thus, \( m' \cdot n' \mid \gcd(k, m) \cdot \gcd(k, n) \) by the property of multiplication of divisors. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (k m n : Nat) : gcd k (m * n) ∣ gcd k m * gcd k n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (k m n : Nat) : gcd k (m * n) ∣ gcd k m * gcd k n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

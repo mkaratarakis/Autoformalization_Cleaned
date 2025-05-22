@@ -1,0 +1,67 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:18:7: error: unknown tactic
+tmp.lean:17:10: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  denote ctx (insertSorted k m pTail)
+case pos
+ctx : Context
+k : Nat
+m : Mon
+pHead : Nat × Mon
+pTail : List (Nat × Mon)
+ih : denote ctx (insertSorted k m pTail) = denote ctx pTail + k * Mon.denote ctx m
+h : m < pHead.snd
+⊢ k * Mon.denote ctx m + (pHead.fst * Mon.denote ctx pHead.snd + denote ctx pTail) =
+    pHead.fst * Mon.denote ctx pHead.snd + denote ctx pTail + k * Mon.denote ctx m
+tmp.lean:14:24: error: unsolved goals
+case neg
+ctx : Context
+k : Nat
+m : Mon
+pHead : Nat × Mon
+pTail : List (Nat × Mon)
+ih : denote ctx (insertSorted k m pTail) = denote ctx pTail + k * Mon.denote ctx m
+h : ¬m < pHead.snd
+⊢ denote ctx (insertSorted k m (pHead :: pTail)) = denote ctx (pHead :: pTail) + k * Mon.denote ctx m
+tmp.lean:17:10: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  denote ctx (insertSorted k m pTail)
+case pos
+ctx : Context
+k : Nat
+m : Mon
+pHead : Nat × Mon
+pTail : List (Nat × Mon)
+ih : denote ctx (insertSorted k m pTail) = denote ctx pTail + k * Mon.denote ctx m
+h : m < pHead.snd
+⊢ k * Mon.denote ctx m + (pHead.fst * Mon.denote ctx pHead.snd + denote ctx pTail) =
+    pHead.fst * Mon.denote ctx pHead.snd + denote ctx pTail + k * Mon.denote ctx m
+tmp.lean:14:24: error: unsolved goals
+case neg
+ctx : Context
+k : Nat
+m : Mon
+pHead : Nat × Mon
+pTail : List (Nat × Mon)
+ih : denote ctx (insertSorted k m pTail) = denote ctx pTail + k * Mon.denote ctx m
+h : ¬m < pHead.snd
+⊢ denote ctx (insertSorted k m (pHead :: pTail)) = denote ctx (pHead :: pTail) + k * Mon.denote ctx m
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Nat.Linear
+import Init.Data.List.BasicAux
+import Init.Data.Nat.SOM
+
+open Nat
+open SOM
+open Poly
+open Linear (Var hugeFuel Context Var.denote)
+
+example (ctx : Context) (k : Nat) (m : Mon) (p : Poly) : (p.insertSorted k m).denote ctx = p.denote ctx + k * m.denote ctx := by
+  induction p with
+  | nil =>
+    simp [insertSorted, denote]
+  | cons pHead pTail ih =>
+    by_cases h : m < pHead.snd
+    · simp [insertSorted, denote, h]
+      rw [ih]

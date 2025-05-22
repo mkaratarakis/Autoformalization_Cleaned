@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Maximum of Two Natural Numbers is Less Than a Third if and Only if Both are Less Than the Third: \(\max(a, b) < c \leftrightarrow a < c \land b < c\) : For any natural numbers \(a\), \(b\), and \(c\), the maximum of \(a\) and \(b\) is strictly less than \(c\) if and only if both \(a\) and \(b\) are strictly less than \(c\). In other words, \(\max(a, b) < c \leftrightarrow a < c \land b < c\).
+
+2. **Informal Proof**  
+To prove the equivalence \(\max(a, b) < c \leftrightarrow a < c \land b < c\), we proceed as follows:
+
+1. **(\(\Rightarrow\)) Assume \(\max(a, b) < c\):**
+- By the definition of the maximum function, \(\max(a, b)\) is the larger of \(a\) and \(b\).
+- Therefore, \(\max(a, b) < c\) implies that both \(a \leq \max(a, b)\) and \(b \leq \max(a, b)\).
+- Since \(\max(a, b) < c\), it follows that \(a < c\) and \(b < c\).
+
+2. **(\(\Leftarrow\)) Assume \(a < c\) and \(b < c\):**
+- By the definition of the maximum function, \(\max(a, b)\) is the larger of \(a\) and \(b\).
+- Since \(a < c\) and \(b < c\), it follows that \(\max(a, b) \leq c\).
+- To show \(\max(a, b) < c\), we use the fact that \(\max(a, b) + 1 \leq c\).
+- This is equivalent to \(\max(a + 1, b + 1) \leq c\), which is true because \(a + 1 \leq c\) and \(b + 1 \leq c\).
+
+Thus, we have shown that \(\max(a, b) < c\) if and only if \(a < c\) and \(b < c\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Nat} : max a b < c ↔ a < c ∧ b < c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a b c : Nat} : max a b < c ↔ a < c ∧ b < c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

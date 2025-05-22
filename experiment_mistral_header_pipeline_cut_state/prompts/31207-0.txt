@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Multiplication by Two Equals Double in Natural Numbers : For any natural number \( n \), the product of \( n \) and 2 is equal to the sum of \( n \) and \( n \), i.e., \( n \times 2 = n + n \).
+
+2. **Informal Proof**  
+To prove that \( n \times 2 = n + n \) for any natural number \( n \), we start by using the property of multiplication by the successor in natural numbers. This property states that for any natural numbers \( n \) and \( m \), \( n \times (m + 1) = n \times m + n \). Applying this property with \( m = 1 \), we have:
+\[
+n \times 2 = n \times (1 + 1) = n \times 1 + n
+\]
+Next, we use the property of the multiplicative identity, which states that for any natural number \( n \), \( n \times 1 = n \). Substituting this into our equation, we get:
+\[
+n \times 2 = n + n
+\]
+Thus, we have shown that \( n \times 2 = n + n \) for any natural number \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n) : n * 2 = n + n := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n) : n * 2 = n + n := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

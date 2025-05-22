@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Unsigned Less-Than Determined by MSB for Different MSBs: \( x <_{\text{u}} y = y.\text{msb} \) : For any bit vectors \( x \) and \( y \) of the same length \( w \), if the most significant bits (MSBs) of \( x \) and \( y \) are different, then the unsigned less-than comparison \( x <_{\text{u}} y \) is determined by the MSB of \( y \), i.e., \( x <_{\text{u}} y = y.\text{msb} \).
+
+2. **Informal Proof**  
+We start with the assumption that the most significant bits (MSBs) of \( x \) and \( y \) are different, i.e., \( x.\text{msb} \neq y.\text{msb} \). Using the definitions and properties of the unsigned less-than comparison for bit vectors, the most significant bit (MSB) of a bit vector, and the equivalence of not equal and negation of equality, we can simplify the goal and the hypothesis.
+
+The hypothesis \( x.\text{msb} \neq y.\text{msb} \) is equivalent to \( \neg (2^{(w - 1)} \leq x.\text{toNat} \leftrightarrow 2^{(w - 1)} \leq y.\text{toNat}) \). This means that the conditions \( 2^{(w - 1)} \leq x.\text{toNat} \) and \( 2^{(w - 1)} \leq y.\text{toNat} \) are not equivalent.
+
+The goal \( x <_{\text{u}} y = y.\text{msb} \) is equivalent to \( x.\text{toNat} < y.\text{toNat} \leftrightarrow 2^{(w - 1)} \leq y.\text{toNat} \).
+
+Since the conditions \( 2^{(w - 1)} \leq x.\text{toNat} \) and \( 2^{(w - 1)} \leq y.\text{toNat} \) are not equivalent, the most significant bit (MSB) of \( y \) determines the unsigned less-than comparison when the MSBs of \( x \) and \( y \) are different. Therefore, \( x.\text{toNat} < y.\text{toNat} \) is equivalent to \( 2^{(w - 1)} \leq y.\text{toNat} \).
+
+Thus, the goal is satisfied, and the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x y : BitVec w} (h : x.msb ≠ y.msb) :
+    x.ult y = y.msb := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example {x y : BitVec w} (h : x.msb ≠ y.msb) :
+    x.ult y = y.msb := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

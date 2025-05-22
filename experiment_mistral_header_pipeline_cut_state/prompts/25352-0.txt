@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Transitivity of the Less-Than Relation on Boolean Values: \( x < y \) and \( y < z \) implies \( x < z \) : For any boolean values \( x, y, z \), if \( x < y \) and \( y < z \), then \( x < z \).
+
+2. **Informal Proof**  
+To prove the transitivity of the less-than relation on boolean values, we use the fact that the boolean values and the less-than relation are decidable. This means that for any boolean values \( x, y, z \), if \( x < y \) and \( y < z \), then \( x < z \) can be directly determined to be true. Therefore, the statement is true by decidability. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y z : Bool}, x < y → y < z → x < z := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y z : Bool}, x < y → y < z → x < z := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

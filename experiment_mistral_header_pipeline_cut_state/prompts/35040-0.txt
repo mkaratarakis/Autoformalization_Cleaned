@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Reversing Lists Preserves Contiguous Substring Property: \( l_1^{\text{reverse}} <:+: l_2^{\text{reverse}} \leftrightarrow l_1 <:+: l_2 \) : For any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), the reverse of \( l_1 \) is a contiguous substring of the reverse of \( l_2 \) if and only if \( l_1 \) is a contiguous substring of \( l_2 \). In other words, \( l_1^{\text{reverse}} \) is a contiguous substring of \( l_2^{\text{reverse}} \) if and only if \( l_1 \) is a contiguous substring of \( l_2 \).
+
+2. **Informal Proof**  
+To prove the equivalence \( l_1^{\text{reverse}} <:+: l_2^{\text{reverse}} \leftrightarrow l_1 <:+: l_2 \), we need to show both directions.
+
+1. **Forward Direction:**
+- Assume \( l_1^{\text{reverse}} <:+: l_2^{\text{reverse}} \).
+- This means there exist lists \( s \) and \( t \) such that \( s \oplus l_1^{\text{reverse}} \oplus t = l_2^{\text{reverse}} \).
+- We need to show that \( l_1 <:+: l_2 \), i.e., there exist lists \( s' \) and \( t' \) such that \( s' \oplus l_1 \oplus t' = l_2 \).
+- Choose \( s' = t^{\text{reverse}} \) and \( t' = s^{\text{reverse}} \).
+- Using the properties of list operations, we have:
+\[
+t^{\text{reverse}} \oplus l_1 \oplus s^{\text{reverse}} = t^{\text{reverse}} \oplus (l_1^{\text{reverse}})^{\text{reverse}} \oplus s^{\text{reverse}} = (s \oplus l_1^{\text{reverse}} \oplus t)^{\text{reverse}} = l_2^{\text{reverse}}^{\text{reverse}} = l_2
+\]
+- Thus, \( t^{\text{reverse}} \oplus l_1 \oplus s^{\text{reverse}} = l_2 \), which completes the forward direction.
+
+2. **Backward Direction:**
+- Assume \( l_1 <:+: l_2 \).
+- This means there exist lists \( s \) and \( t \) such that \( s \oplus l_1 \oplus t = l_2 \).
+- We need to show that \( l_1^{\text{reverse}} <:+: l_2^{\text{reverse}} \), i.e., there exist lists \( s' \) and \( t' \) such that \( s' \oplus l_1^{\text{reverse}} \oplus t' = l_2^{\text{reverse}} \).
+- Choose \( s' = t^{\text{reverse}} \) and \( t' = s^{\text{reverse}} \).
+- Using the properties of list operations, we have:
+\[
+t^{\text{reverse}} \oplus l_1^{\text{reverse}} \oplus s^{\text{reverse}} = (s \oplus l_1 \oplus t)^{\text{reverse}} = l_2^{\text{reverse}}
+\]
+- Thus, \( t^{\text{reverse}} \oplus l_1^{\text{reverse}} \oplus s^{\text{reverse}} = l_2^{\text{reverse}} \), which completes the backward direction.
+
+Therefore, we have shown that \( l_1^{\text{reverse}} <:+: l_2^{\text{reverse}} \leftrightarrow l_1 <:+: l_2 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : reverse l₁ <:+: reverse l₂ ↔ l₁ <:+: l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example : reverse l₁ <:+: reverse l₂ ↔ l₁ <:+: l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Multiplication and Modulo Identity: \( (x \cdot z) \mod (y \cdot z) = (x \mod y) \cdot z \) : For any natural numbers \( z \), \( x \), and \( y \), the remainder of \( x \cdot z \) when divided by \( y \cdot z \) is equal to the product of the remainder of \( x \) when divided by \( y \) and \( z \). In other words, \( x \cdot z \mod (y \cdot z) = (x \mod y) \cdot z \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal of showing that \( x \cdot z \mod (y \cdot z) = (x \mod y) \cdot z \).
+
+1. **Rewriting the Goal:**
+We use the commutativity of multiplication to rewrite the goal. Specifically, we rewrite \( x \cdot z \) as \( z \cdot x \), \( y \cdot z \) as \( z \cdot y \), and \( (x \mod y) \cdot z \) as \( z \cdot (x \mod y) \). This transforms the goal into showing that:
+\[
+z \cdot x \mod (z \cdot y) = z \cdot (x \mod y)
+\]
+
+2. **Applying the Modulo Theorem:**
+We apply the theorem that states for any natural numbers \( a \), \( b \), and \( c \), the following holds:
+\[
+a \cdot b \mod (a \cdot c) = a \cdot (b \mod c)
+\]
+In our case, we set \( a = z \), \( b = x \), and \( c = y \). This theorem directly gives us:
+\[
+z \cdot x \mod (z \cdot y) = z \cdot (x \mod y)
+\]
+
+Thus, we have shown that \( x \cdot z \mod (y \cdot z) = (x \mod y) \cdot z \). This completes the proof.
+
+3. **Formal Theorem**  
+example (z x y : Nat) : (x * z) % (y * z) = (x % y) * z := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (z x y : Nat) : (x * z) % (y * z) = (x % y) * z := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

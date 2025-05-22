@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+GCD Identity: \(\gcd(m, n + k \cdot m) = \gcd(m, n)\) : For any natural numbers \( m \), \( n \), and \( k \), the greatest common divisor of \( m \) and \( n + k \cdot m \) is equal to the greatest common divisor of \( m \) and \( n \), i.e., \(\gcd(m, n + k \cdot m) = \gcd(m, n)\).
+
+2. **Informal Proof**  
+To prove the theorem, we use the GCD recurrence relation, which states that for any natural numbers \( m \) and \( n \), \(\gcd(m, n) = \gcd(n \mod m, m)\).
+
+1. First, we simplify \(\gcd(m, n + k \cdot m)\) using the GCD recurrence relation:
+\[
+\gcd(m, n + k \cdot m) = \gcd((n + k \cdot m) \mod m, m)
+\]
+
+2. Next, we simplify \(\gcd(m, n)\) using the same GCD recurrence relation:
+\[
+\gcd(m, n) = \gcd(n \mod m, m)
+\]
+
+3. We observe that \((n + k \cdot m) \mod m\) is equivalent to \(n \mod m\). This is because:
+\[
+(n + k \cdot m) \mod m = n \mod m + (k \cdot m) \mod m = n \mod m + 0 = n \mod m
+\]
+
+4. Therefore, we have:
+\[
+\gcd((n + k \cdot m) \mod m, m) = \gcd(n \mod m, m)
+\]
+
+5. Combining the results from steps 1 and 2, we get:
+\[
+\gcd(m, n + k \cdot m) = \gcd(m, n)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (m n k : Nat) : gcd m (n + k * m) = gcd m n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (m n k : Nat) : gcd m (n + k * m) = gcd m n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

@@ -1,0 +1,26 @@
+
+1. **Informal Theorem**  
+Boolean True Implies False Identity: $b = \text{true} \to (b = \text{false} \leftrightarrow b = \text{false})$ : For any boolean value $b$, if $b = \text{true}$, then $b = \text{false}$ if and only if $b = \text{false}$.
+
+2. **Informal Proof**  
+We need to show that for any boolean value $b$, if $b = \text{true}$, then the statement $b = \text{false} \leftrightarrow b = \text{false}$ holds.
+
+Since the statement $b = \text{false} \leftrightarrow b = \text{false}$ is a tautology (it is always true), it holds regardless of the value of $b$. Therefore, if $b = \text{true}$, the statement $b = \text{false} \leftrightarrow b = \text{false}$ is still true. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(b:Bool), (b = true → b = false) ↔ (b = false) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(b:Bool), (b = true → b = false) ↔ (b = false) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

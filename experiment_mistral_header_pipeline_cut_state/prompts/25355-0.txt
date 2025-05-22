@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Irreflexivity of Boolean 'Less Than' Relation: \( x < x \to \text{False} \) : For any boolean value \( x \in \text{Bool} \), it is not the case that \( x < x \). In other words, the less-than relation \( < \) on boolean values is irreflexive.
+
+2. **Informal Proof**  
+To prove that for any boolean value \( x \), it is not the case that \( x < x \), we consider the possible values of \( x \). The boolean values are either `true` or `false`.
+
+1. If \( x = \text{true} \), then \( \text{true} < \text{true} \) is false.
+2. If \( x = \text{false} \), then \( \text{false} < \text{false} \) is false.
+
+Since neither \( \text{true} < \text{true} \) nor \( \text{false} < \text{false} \) holds, it follows that \( \neg (x < x) \) is true for all \( x \in \text{Bool} \). Therefore, the less-than relation \( < \) on boolean values is irreflexive. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), ¬ x < x := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), ¬ x < x := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

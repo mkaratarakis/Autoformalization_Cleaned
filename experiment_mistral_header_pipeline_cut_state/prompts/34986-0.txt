@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Filtering Preserves Contiguous Substring Property in Lists : For any type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), if a list \( l_1 \) is a contiguous substring of a list \( l_2 \), then the list obtained by filtering \( l_1 \) with \( p \) is a contiguous substring of the list obtained by filtering \( l_2 \) with \( p \). In other words, if \( l_1 \) is a contiguous substring of \( l_2 \), then \( \text{filter } p \, l_1 \) is a contiguous substring of \( \text{filter } p \, l_2 \).
+
+2. **Informal Proof**  
+Assume \( l_1 \) is a contiguous substring of \( l_2 \). By the definition of a contiguous substring, there exist lists \( xs \) and \( ys \) such that \( l_2 = xs ++ l_1 ++ ys \).
+
+Next, we use the property of the filter operation on lists, which states that the filter of a concatenation of lists is the concatenation of the filters of the individual lists. Therefore, we have:
+\[ \text{filter } p \, (xs ++ l_1 ++ ys) = (\text{filter } p \, xs) ++ (\text{filter } p \, l_1) ++ (\text{filter } p \, ys) \]
+
+This means that \( \text{filter } p \, l_1 \) is a contiguous substring of \( (\text{filter } p \, xs) ++ (\text{filter } p \, l_1) ++ (\text{filter } p \, ys) \). By the definition of a contiguous substring, \( \text{filter } p \, l_1 \) is indeed a contiguous substring of \( \text{filter } p \, l_2 \).
+
+Thus, we have shown that if \( l_1 \) is a contiguous substring of \( l_2 \), then \( \text{filter } p \, l_1 \) is a contiguous substring of \( \text{filter } p \, l_2 \). This completes the proof.
+
+3. **Formal Theorem**  
+example (p : α → Bool) ⦃l₁ l₂ : List α⦄ (h : l₁ <:+: l₂) :
+    l₁.filter p <:+: l₂.filter p := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open IsInfix
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example (p : α → Bool) ⦃l₁ l₂ : List α⦄ (h : l₁ <:+: l₂) :
+    l₁.filter p <:+: l₂.filter p := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

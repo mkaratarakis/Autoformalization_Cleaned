@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Empty List is a Suffix of Any List : For any list \( l \) of elements of type \( \alpha \), the empty list \( \text{nil} \) is a suffix of \( l \). This is expressed as \( \text{nil}. \text{isSuffixOf } l = \text{true} \).
+
+2. **Informal Proof**  
+To prove that the empty list `nil` is a suffix of any list `l`, we use the definition of `isSuffixOf`. According to the definition, a list `xs` is a suffix of `ys` if there exists a list `zs` such that `ys = zs ++ xs`. For the empty list `nil`, this condition is always satisfied because for any list `l`, we have `l = l ++ nil`. Therefore, the empty list `nil` is a suffix of any list `l`, and the proposition `nil.isSuffixOf l = true` holds. This completes the proof.
+
+3. **Formal Theorem**  
+example [BEq α] : isSuffixOf ([] : List α) l = true := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example [BEq α] : isSuffixOf ([] : List α) l = true := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

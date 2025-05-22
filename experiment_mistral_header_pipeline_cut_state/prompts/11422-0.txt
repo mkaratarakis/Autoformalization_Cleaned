@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Divisibility of Greatest Common Divisor: \( k \mid m \) and \( k \mid n \) implies \( k \mid \text{gcd}(m, n) \) : For any natural numbers \( k, m, \) and \( n \), if \( k \) divides \( m \) and \( k \) divides \( n \), then \( k \) divides the greatest common divisor of \( m \) and \( n \), i.e., \( k \mid \text{gcd}(m, n) \).
+
+2. **Informal Proof**  
+We prove this by induction on \( m \).
+
+**Base Case:**
+Consider \( m = 0 \). By the property of the greatest common divisor, \(\gcd(0, n) = n\). Therefore, the goal \( k \mid \gcd(0, n) \) is equivalent to \( k \mid n \). Since we already have \( k \mid n \) as a hypothesis, the base case is proved.
+
+**Inductive Step:**
+Assume \( m > 0 \). By the recurrence property of the greatest common divisor, \(\gcd(m, n) = \gcd(n \mod m, m)\). Therefore, the goal \( k \mid \gcd(m, n) \) is equivalent to \( k \mid \gcd(n \mod m, m) \). We need to show that \( k \mid \gcd(n \mod m, m) \). By the inductive hypothesis, if \( k \mid (n \mod m) \) and \( k \mid m \), then \( k \mid \gcd(n \mod m, m) \). Since \( k \mid n \) and \( k \mid m \), we can use the property \( k \mid n \rightarrow (k \mid (n \mod m) \leftrightarrow k \mid n) \) to conclude that \( k \mid (n \mod m) \). Therefore, by the inductive hypothesis, \( k \mid \gcd(n \mod m, m) \), which completes the inductive step.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : k ∣ m → k ∣ n → k ∣ gcd m n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example : k ∣ m → k ∣ n → k ∣ gcd m n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

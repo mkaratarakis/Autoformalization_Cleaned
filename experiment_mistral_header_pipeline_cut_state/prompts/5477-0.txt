@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Right Commutativity of Disjunction: \((a \lor b) \lor c \leftrightarrow (a \lor c) \lor b\) : For any propositions \( a \), \( b \), and \( c \), the disjunction \((a \lor b) \lor c\) is logically equivalent to the disjunction \((a \lor c) \lor b\), i.e., \((a \lor b) \lor c \leftrightarrow (a \lor c) \lor b\).
+
+2. **Informal Proof**  
+We start by using the associativity of disjunction to rewrite \((a \lor b) \lor c\) as \(a \lor (b \lor c)\). Similarly, we use associativity again to rewrite \((a \lor c) \lor b\) as \(a \lor (c \lor b)\). Finally, we apply the commutativity of disjunction to swap \(b\) and \(c\) in \(a \lor (c \lor b)\), resulting in \(a \lor (b \lor c)\). Therefore, we have shown that \((a \lor b) \lor c \leftrightarrow (a \lor c) \lor b\). This completes the proof.
+
+3. **Formal Theorem**  
+example : (a ∨ b) ∨ c ↔ (a ∨ c) ∨ b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : (a ∨ b) ∨ c ↔ (a ∨ c) ∨ b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Index of First Element in Cons List Satisfying Predicate : For any type \( \alpha \), predicate \( p : \alpha \to \text{Bool} \), element \( b : \alpha \), and list \( l : \text{List} \, \alpha \), the index of the first element in the list \( b :: l \) that satisfies the predicate \( p \) is given by:
+\[
+\text{List.findIdx} \, p \, (b :: l) = \begin{cases} 
+0 & \text{if } p(b) = \text{true} \\
+\text{List.findIdx} \, p \, l + 1 & \text{if } p(b) = \text{false}
+\end{cases}
+\]
+
+2. **Informal Proof**  
+We start by proving a helper lemma: for any type \(\alpha\), predicate \(p : \alpha \to \text{Bool}\), list \(l : \text{List} \, \alpha\), and natural number \(n\), the function `List.findIdx.go` applied to \(p\), \(l\), and \(n + 1\) returns the result of `List.findIdx.go` applied to \(p\), \(l\), and \(n\) plus 1. We do this by considering two cases:
+1. If \(l\) is the empty list, then `List.findIdx.go p l (n + 1)` is \(n + 1\), which is equal to `List.findIdx.go p l n + 1`.
+2. If \(l\) is a non-empty list with head \(a\) and tail \(l'\), we unfold the definition of `List.findIdx.go` and consider two sub-cases:
+- If \(p(a)\) is true, then `List.findIdx.go p l (n + 1)` is \(n + 1\), which is equal to `List.findIdx.go p l n + 1`.
+- If \(p(a)\) is false, then `List.findIdx.go p l (n + 1)` is `List.findIdx.go p l' (n + 1) + 1`, which is equal to `List.findIdx.go p l' n + 1 + 1` by the induction hypothesis.
+
+Next, we consider the main theorem:
+- If \(p(b)\) is true, then we simplify the goal using the assumption \(H : p(b) = \text{true}\), the definition of `List.findIdx`, and the definition of `List.findIdx.go`. This simplification shows that `List.findIdx p (b :: l)` is 0, which is the desired result.
+- If \(p(b)\) is false, then we simplify the goal using the assumption \(H : p(b) = \text{false}\), the definition of `List.findIdx`, the definition of `List.findIdx.go`, and the lemma `findIdx_go_succ`. This simplification shows that `List.findIdx p (b :: l)` is `List.findIdx p l + 1`, which is the desired result.
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : α → Bool) (b : α) (l : List α) :
+    (b :: l).findIdx p = bif p b then 0 else (l.findIdx p) + 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (p : α → Bool) (b : α) (l : List α) :
+    (b :: l).findIdx p = bif p b then 0 else (l.findIdx p) + 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

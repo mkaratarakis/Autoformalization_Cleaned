@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+List Drop Equals Get Cons: \(\text{drop}(n, l) = l[n] :: \text{drop}(n + 1, l)\) : For any type \(\alpha\), natural number \(n\), and list \(l\) of elements of type \(\alpha\), if \(n\) is less than the length of \(l\), then the list obtained by dropping the first \(n\) elements of \(l\) is equal to the list formed by the \(n\)-th element of \(l\) followed by the list obtained by dropping the first \(n + 1\) elements of \(l\). Mathematically, this can be expressed as:
+\[
+\text{If } n < \text{length}(l), \text{ then } \text{drop}(n, l) = l[n] :: \text{drop}(n + 1, l).
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start with the assumption that \( n < \text{length}(l) \). We need to show that:
+\[
+\text{drop}(n, l) = l[n] :: \text{drop}(n + 1, l).
+\]
+
+We use the theorem that states the list obtained by dropping the first \( n \) elements of \( l \) is equal to the \( n \)-th element of \( l \) followed by the list obtained by dropping the first \( n + 1 \) elements of \( l \). This theorem, which we will refer to as the "drop and get element theorem," directly gives us the desired equality:
+\[
+\text{drop}(n, l) = l[n] :: \text{drop}(n + 1, l).
+\]
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n} {l : List α} (h) : drop n l = get l ⟨n, h⟩ :: drop (n + 1) l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {n} {l : List α} (h) : drop n l = get l ⟨n, h⟩ :: drop (n + 1) l := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

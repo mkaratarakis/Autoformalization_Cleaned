@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Membership in Enumerated List and Optional Lookup Equivalence : For any type \( \alpha \), a natural number \( i \), an element \( x \) of type \( \alpha \), and a list \( l \) of type \( \alpha \), the pair \((i, x)\) is a member of the enumerated list \( l.enum \) if and only if the optional lookup of \( l \) at index \( i \) returns \( x \), i.e., \( l[i]? = \text{some } x \).
+
+2. **Informal Proof**  
+To prove the equivalence, we start by using the definition of the enumerated list \( l.enum \) and the known equivalence that \((i, x) \in l.enum \) if and only if \( i < \text{length}(l) \) and \( l[i] = x \).
+
+By simplifying the proposition using these definitions, we get the desired equivalence:
+\[
+(i, x) \in l.enum \quad \text{if and only if} \quad l[i]? = \text{some } x
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {i : Nat} {x : α} {l : List α} : (i, x) ∈ enum l ↔ l[i]? = x := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {i : Nat} {x : α} {l : List α} : (i, x) ∈ enum l ↔ l[i]? = x := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

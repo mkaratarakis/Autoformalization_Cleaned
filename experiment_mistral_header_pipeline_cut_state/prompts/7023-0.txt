@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Equivalence of `List.eraseP` and `List.erasePTR` Functions : For any type $\alpha$ and any predicate $p : \alpha \to \text{Bool}$, the function `List.eraseP` that removes the first element satisfying $p$ from a list is equal to the tail-recursive function `List.erasePTR` that removes all elements satisfying $p$ from a list.
+
+2. **Informal Proof**  
+To prove that `List.eraseP` is equal to `List.erasePTR`, we use the principle of function extensionality. It suffices to show that for all types \( \alpha \), predicates \( p : \alpha \to \text{Bool} \), and lists \( l : \text{List} \, \alpha \), the functions `eraseP p l` and `erasePTR p l` yield the same result.
+
+1. **Base Case:**
+- Consider the case where the list \( l \) is empty. The hypothesis \( h \) states that \( l \) is the concatenation of the data in the empty array and the empty list. Using the definitions of `erasePTR.go` and `eraseP`, and the hypothesis \( h \), we simplify the goal to show that `erasePTR.go p [] [] #[]` is equal to `#[]`.
+
+2. **Inductive Step:**
+- Consider the case where the list \( l \) is non-empty, i.e., \( l = x :: xs \) for some element \( x \) and list \( xs \). We need to show that `eraseP p (x :: xs)` is equal to `erasePTR.go p (x :: xs) (x :: xs) #[]`.
+- Using the definitions of `erasePTR.go` and `eraseP`, we simplify the goal. We then consider the two cases for the predicate \( p \) applied to \( x \):
+- If \( p(x) \) is `false`, we need to show that `erasePTR.go p (x :: xs) (x :: xs) (acc.push x)` is equal to `acc.data ++ x :: eraseP p xs`.
+- If \( p(x) \) is `true`, we need to show that `erasePTR.go p (x :: xs) (x :: xs) (acc.push x)` is equal to `acc.data ++ xs`.
+
+3. **Conclusion:**
+- Let \( h \) be the hypothesis that \( l = \text{acc.data} ++ x :: xs \). Using the definition of `go`, we rewrite the goal to show that \((\text{acc.push} \, x).data ++ \text{eraseP} \, p \, xs\) is equal to \(\text{acc.data} ++ x :: \text{eraseP} \, p \, xs\). Simplifying this, we get the desired equality. We also need to show that \( l = (\text{acc.push} \, x).data ++ xs \), which follows from the hypothesis \( h \).
+- The current goal is to show that `eraseP p l` is equal to `erasePTR.go p l l #[]`. Using the theorem `go` with the empty array and the reflexivity of equality, we get that `erasePTR.go p l l #[]` is equal to `#[] ++ \text{eraseP} \, p \, l`, which simplifies to `eraseP p l`. By the symmetry of equality, this completes the proof.
+
+Thus, we have shown that `List.eraseP` is equal to `List.erasePTR`. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : @eraseP = @erasePTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @eraseP = @erasePTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

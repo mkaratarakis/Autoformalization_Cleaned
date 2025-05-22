@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Tail of `zipWith` is `zipWith` of Tails : For any types $\alpha$, $\alpha_1$, and $\alpha_2$, and for any function $f : \alpha \to \alpha_1 \to \alpha_2$, and any lists $l : \text{List} \, \alpha$ and $l' : \text{List} \, \alpha_1$, the tail of the list obtained by applying `zipWith` to $l$ and $l'$ is equal to the list obtained by applying `zipWith` to the tails of $l$ and $l'$.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that the tail of a list is the same as dropping the first element of the list. This changes our goal from showing that the tail of $\text{zipWith} \, f \, l \, l'$ is equal to $\text{zipWith} \, f \, l.\text{tail} \, l'.\text{tail}$ to showing that dropping the first element of $\text{zipWith} \, f \, l \, l'$ is equal to $\text{zipWith} \, f \, (\text{drop} \, 1 \, l) \, (\text{drop} \, 1 \, l')$. We then simplify the goal using the property that dropping the first element of the result of `zipWith` is the same as applying `zipWith` to the lists with their first elements dropped. This completes the proof.
+
+3. **Formal Theorem**  
+example : (zipWith f l l').tail = zipWith f l.tail l'.tail := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example : (zipWith f l l').tail = zipWith f l.tail l'.tail := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

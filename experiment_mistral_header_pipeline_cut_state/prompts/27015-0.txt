@@ -1,0 +1,68 @@
+
+1. **Informal Theorem**  
+First Component of Unzipped List Equals Map of First Components: \( l.\text{unzip}.1 = \text{map}(\text{fst}, l) \) : For any lists of pairs \( l \) with elements of types \( \alpha \) and \( \beta \), the first component of the result of `unzip` applied to \( l \) is equal to the result of applying `map` to \( l \) with the function `Prod.fst`. Formally, for a list of pairs \( l = [(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)] \), the first component of `unzip l` is the list \( [x_1, x_2, \ldots, x_n] \), which is the same as the list obtained by applying `map` to \( l \) with the function that extracts the first component of each pair.
+
+2. **Informal Proof**  
+We perform induction on the list \( l \).
+
+**Base Case:**
+For the empty list \( l = [] \), we need to show that the first component of the result of `unzip` applied to the empty list is equal to the result of applying `map` to the empty list with the function `Prod.fst`. Formally, we need to show:
+\[
+[].\text{unzip}.1 = \text{map}(\text{fst}, [])
+\]
+By the definition of `unzip` and `map`, both sides are the empty list:
+\[
+[].\text{unzip}.1 = [] \quad \text{and} \quad \text{map}(\text{fst}, []) = []
+\]
+Thus, the base case holds.
+
+**Inductive Step:**
+Assume that for a list \( \text{tail} \) of pairs, the first component of the result of `unzip` applied to \( \text{tail} \) is equal to the result of applying `map` to \( \text{tail} \) with the function `Prod.fst`. Formally, we assume:
+\[
+\text{tail}.\text{unzip}.1 = \text{map}(\text{fst}, \text{tail})
+\]
+We need to show that for a list \( l = \text{head} :: \text{tail} \), the first component of the result of `unzip` applied to \( l \) is equal to the result of applying `map` to \( l \) with the function `Prod.fst`. Formally, we need to show:
+\[
+(\text{head} :: \text{tail}).\text{unzip}.1 = \text{map}(\text{fst}, \text{head} :: \text{tail})
+\]
+By the definition of `unzip`, the first component of the result of `unzip` applied to \( \text{head} :: \text{tail} \) is:
+\[
+(\text{head} :: \text{tail}).\text{unzip}.1 = \text{head}.1 :: \text{tail}.\text{unzip}.1
+\]
+By the inductive hypothesis, we have:
+\[
+\text{tail}.\text{unzip}.1 = \text{map}(\text{fst}, \text{tail})
+\]
+Thus:
+\[
+(\text{head} :: \text{tail}).\text{unzip}.1 = \text{head}.1 :: \text{map}(\text{fst}, \text{tail})
+\]
+By the definition of `map`, the result of applying `map` to \( \text{head} :: \text{tail} \) with the function `Prod.fst` is:
+\[
+\text{map}(\text{fst}, \text{head} :: \text{tail}) = \text{head}.1 :: \text{map}(\text{fst}, \text{tail})
+\]
+Therefore:
+\[
+(\text{head} :: \text{tail}).\text{unzip}.1 = \text{map}(\text{fst}, \text{head} :: \text{tail})
+\]
+This completes the inductive step.
+
+By induction, the theorem holds for all lists \( l \). Thus, the first component of the result of `unzip` applied to \( l \) is equal to the result of applying `map` to \( l \) with the function `Prod.fst`. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : (unzip l).fst = l.map Prod.fst := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example : (unzip l).fst = l.map Prod.fst := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

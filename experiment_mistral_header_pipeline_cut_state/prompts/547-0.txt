@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Erase Equals List if and only if Element Not in List or List Split Condition : For any type \( \alpha \) and lists \( l, l' \) of elements of type \( \alpha \), and for any element \( a \) of type \( \alpha \), the list \( l \) with the first occurrence of \( a \) erased is equal to \( l' \) if and only if \( a \) is not in \( l \) and \( l = l' \), or there exist lists \( l_1 \) and \( l_2 \) such that \( a \) is not in \( l_1 \), \( l = l_1 ++ [a] ++ l_2 \), and \( l' = l_1 ++ l_2 \).
+
+2. **Informal Proof**  
+We start by using the equivalence that erasing the first occurrence of an element \(a\) from a list \(l\) using the `List.erase` function is the same as erasing the first element that satisfies the predicate \(x \mapsto (x = a)\) from \(l\) using the `List.eraseP` function. This transforms our goal into:
+\[ (\forall a_1 \in l, a_1 \neq a) \land l = l' \lor \exists a_1, l_1, l_2, (\forall b \in l_1, b \neq a) \land a_1 = a \land l = l_1 ++ [a_1] ++ l_2 \land l' = l_1 ++ l_2 \]
+
+Next, we simplify the goal using the fact that boolean equality \(a_1 == a\) is equivalent to logical equality \(a_1 = a\), and the properties of existential quantification and conjunction. This simplifies our goal to:
+\[ (\neg a \in l \land l = l') \lor (\exists l_1, \neg a \in l_1 \land \exists x, l = l_1 ++ [a] ++ x \land l' = l_1 ++ x) \]
+
+To prove the equivalence, we need to show both directions. We start with the forward direction.
+
+1. **Case 1:** Suppose \(a\) is not in \(l\) and \(l = l'\). Then, the left side of the disjunction holds, and we have:
+\[ \neg a \in l \land l = l \]
+which is trivially true.
+
+2. **Case 2:** Suppose there exist lists \(l_1\) and \(x\) such that \(a\) is not in \(l_1\), \(a = a\), \(l = l_1 ++ [a] ++ x\), and \(l' = l_1 ++ x\). Then, the right side of the disjunction holds. We construct the existential proof by providing \(a\), \(l_1\), and \(x\), and simplifying the remaining conditions, which are trivially true.
+
+Now, we move to the backward direction.
+
+1. **Case 1:** Suppose \(a\) is not in \(l\) and \(l = l'\). Then, the left side of the disjunction holds, and we have:
+\[ \neg a \in l \land l = l \]
+which is trivially true.
+
+2. **Case 2:** Suppose there exist lists \(l_1\) and \(x\) such that \(a\) is not in \(l_1\), \(a = a\), \(l = l_1 ++ [a] ++ x\), and \(l' = l_1 ++ x\). Then, the right side of the disjunction holds. We construct the existential proof by providing \(a\), \(l_1\), and \(x\), and simplifying the remaining conditions, which are trivially true.
+
+Thus, we have shown both directions of the equivalence, completing the proof.
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {a : α} {l : List α} :
+    l.erase a = l' ↔
+      (a ∉ l ∧ l = l') ∨
+        ∃ l₁ l₂, a ∉ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a : α} {l : List α} :
+    l.erase a = l' ↔
+      (a ∉ l ∧ l = l') ∨
+        ∃ l₁ l₂, a ∉ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

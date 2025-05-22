@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Boolean AND is Idempotent: \( b \land b = b \) : For any boolean value \( b \), the boolean "and" operation \( b \text{ and } b \) is equal to \( b \), i.e., \( b \land b = b \).
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value \( b \).
+
+**Case 1: \( b = \text{false} \)**
+- The goal is to show that \( \text{false} \land \text{false} = \text{false} \).
+- This is trivially true because the boolean "and" operation of \(\text{false}\) with itself is \(\text{false}\).
+
+**Case 2: \( b = \text{true} \)**
+- The goal is to show that \( \text{true} \land \text{true} = \text{true} \).
+- This is trivially true because the boolean "and" operation of \(\text{true}\) with itself is \(\text{true}\).
+
+Since both cases are trivially true, we conclude that for any boolean value \( b \), \( b \land b = b \). This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) : (b && b) = b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (b && b) = b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

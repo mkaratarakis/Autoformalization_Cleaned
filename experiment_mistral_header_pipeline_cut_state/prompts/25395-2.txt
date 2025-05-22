@@ -1,0 +1,56 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:11:11: error: tactic 'unfold' failed to unfold 'cond' at
+  (if a = true then x else y) = if p then u else v
+tmp.lean:20:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  if x : ?m.175 then ?m.177 else ?m.178
+case mpr
+α : Sort u_1
+a : Bool
+p : Prop
+h : Decidable p
+x y u v : α
+h1 :
+  (Decidable.casesOn (instDecidableEqBool a true) (fun x => y) fun x_1 => x) =
+    Decidable.casesOn h (fun x => v) fun x => u
+⊢ (match a with
+    | true => x
+    | false => y) =
+    Decidable.casesOn h (fun x => v) fun x => u
+tmp.lean:10:2: error: unsolved goals
+case mp
+α : Sort u_1
+a : Bool
+p : Prop
+h : Decidable p
+x y u v : α
+h1 : (bif a then x else y) = if p then u else v
+⊢ (if a = true then x else y) = if p then u else v
+tmp.lean:8:54: error: unsolved goals
+case mpr
+α : Sort u_1
+a : Bool
+p : Prop
+h : Decidable p
+x y u v : α
+⊢ ((if a = true then x else y) = if p then u else v) → (bif a then x else y) = if p then u else v
+case mpr
+α : Sort u_1
+a : Bool
+p : Prop
+h : Decidable p
+x y u v : α
+⊢ ((if a = true then x else y) = if p then u else v) → (bif a then x else y) = if p then u else v
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (a : Bool) (p : Prop) [h : Decidable p] (x y u v : α) :
+  (cond a x y = ite p u v) ↔ ite a x y = ite p u v := by
+  constructor
+  · intro h1

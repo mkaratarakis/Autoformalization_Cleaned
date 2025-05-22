@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Modulo of a Number by One is Zero : For any natural number \( x \), the modulo operation \( x \% 1 \) is equal to 0, i.e., \( x \% 1 = 0 \).
+
+2. **Informal Proof**  
+We start by noting that the remainder of any natural number \( x \) when divided by a positive number \( y \) is less than \( y \). Since \( 1 > 0 \) is trivially true, we can apply this property to conclude \( x \% 1 < 1 \).
+
+Next, we construct a lemma that for any natural number \( y \), if \( y < 1 \), then \( y \) must be \( 0 \). This lemma will be useful in proving our main goal.
+
+Let \( y \) be an arbitrary natural number. We need to show that if \( y < 1 \), then \( y = 0 \).
+
+Consider the case when \( y \) is \( 0 \). If \( y < 1 \), then \( y = 0 \) is trivially true by reflexivity.
+
+Now, consider the case when \( y \) is of the form \( y + 1 \). If \( y + 1 < 1 \), then by the property that the successor of a number is less than the successor of another number implies the original numbers are in the same order, we have \( y < 0 \). However, this contradicts the fact that no natural number is less than \( 0 \). Therefore, this case is impossible, and we conclude that \( y \) must be \( 0 \).
+
+Finally, we apply the lemma we constructed earlier to \( x \% 1 \). Since we have already shown that \( x \% 1 < 1 \), by the lemma, we conclude that \( x \% 1 = 0 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x : Nat) : x % 1 = 0 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (x : Nat) : x % 1 = 0 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

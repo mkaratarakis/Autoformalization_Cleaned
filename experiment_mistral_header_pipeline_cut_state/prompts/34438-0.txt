@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+List Element at Index Preceded by Tail Equals Dropped List : For any list \( l \) of elements of type \( \alpha \) and any index \( i \) of type \( \text{Fin } l.\text{length} \), the list obtained by taking the \( i \)-th element of \( l \) and appending the list obtained by dropping the first \( i + 1 \) elements of \( l \) is equal to the list obtained by dropping the first \( i \) elements of \( l \). In other words, \( l[i] :: \text{List.drop}(i + 1, l) = \text{List.drop}(i, l) \).
+
+2. **Informal Proof**  
+We need to show that for any list \( l \) and any index \( i \) in the range of the length of \( l \), the following equality holds:
+\[ l[i] :: \text{List.drop}(i + 1, l) = \text{List.drop}(i, l). \]
+
+To prove this, we use the properties of list operations and element retrieval. Specifically, we use the following properties:
+1. The `List.cons` function constructs a new list by adding an element to the front of an existing list.
+2. The `List.drop` function removes the first \( n \) elements from a list.
+3. The `GetElem.getElem` function retrieves the element at a specified index in a list, provided the index is valid.
+
+By these properties, we can simplify the left-hand side of the equation:
+\[ l[i] :: \text{List.drop}(i + 1, l). \]
+
+The element \( l[i] \) is the \( i \)-th element of the list \( l \). The list \( \text{List.drop}(i + 1, l) \) is the list obtained by removing the first \( i + 1 \) elements of \( l \). Therefore, appending \( l[i] \) to the front of \( \text{List.drop}(i + 1, l) \) results in a list that is equivalent to the list obtained by removing the first \( i \) elements of \( l \), which is \( \text{List.drop}(i, l) \).
+
+Thus, we have:
+\[ l[i] :: \text{List.drop}(i + 1, l) = \text{List.drop}(i, l). \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (l : List α) (i) : get l i :: drop (i + 1) l = drop i l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (l : List α) (i) : get l i :: drop (i + 1) l = drop i l := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

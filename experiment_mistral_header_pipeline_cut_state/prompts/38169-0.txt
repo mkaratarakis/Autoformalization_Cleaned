@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Heterogeneous Addition of Zero and Character Equals UTF-8 Size : For any Unicode character \( c \), the heterogeneous addition of the byte position `0` and the character \( c \) results in a byte position with the byte index equal to the UTF-8 size of the character \( c \), i.e., \( 0 + c = \{ \text{byteIdx} := \text{utf8Size}(c) \} \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that the byte index of the byte position resulting from adding a character \( c \) to the byte position `0` is equal to the UTF-8 size of \( c \). This theorem states that \((0 + c).byteIdx = c.\text{utf8Size}\).
+
+By substituting this equivalence into our goal, we need to show that:
+\[ 0 + c = \{ \text{byteIdx} := (0 + c).byteIdx \} \]
+
+Since \((0 + c).byteIdx = c.\text{utf8Size}\), the goal simplifies to:
+\[ 0 + c = \{ \text{byteIdx} := c.\text{utf8Size} \} \]
+
+This is exactly what we need to prove. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example (c : Char) : (0 : Pos) + c = ⟨c.utf8Size⟩ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Basic
+import Init.Data.Char.Basic
+import Init.Data.Option.Basic
+import Init.Data.String.Basic
+
+open String
+open Pos
+
+
+example (c : Char) : (0 : Pos) + c = ⟨c.utf8Size⟩ := by
+
+5. **Header Information**  
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.Option.Basic not found. --
+
+-- Init.Data.String.Basic not found. --
+

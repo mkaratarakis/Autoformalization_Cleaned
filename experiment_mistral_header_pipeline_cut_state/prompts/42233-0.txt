@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Power of Two is Positive in Natural Numbers: \( n > 0 \) if \( n \) is a Power of Two : For any natural number \( n \), if \( n \) is a power of 2, then \( n \) is strictly greater than 0, i.e., \( n > 0 \).
+
+2. **Informal Proof**  
+We start by noting that if \( n \) is a power of 2, there exists a natural number \( k \) such that \( n = 2^k \). To prove that \( n > 0 \), we need to show that \( 2^k > 0 \).
+
+Using the theorem that for any natural number \( n \) such that \( n > 0 \) and any natural number \( m \), \( n^m > 0 \), we can apply this theorem with \( n = 2 \) and \( m = k \). Therefore, it suffices to show that \( 0 < 2 \).
+
+The inequality \( 0 < 2 \) is a known fact and is trivially true. Hence, \( 2^k > 0 \), and thus \( n > 0 \). This completes the proof.
+
+3. **Formal Theorem**  
+example (h : isPowerOfTwo n) : n > 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.Nat.Power2
+
+open Nat
+
+
+example (h : isPowerOfTwo n) : n > 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+

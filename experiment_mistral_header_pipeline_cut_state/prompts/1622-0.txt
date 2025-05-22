@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Element Retrieval in Enumerated List Equals Mapped Element Retrieval in Original List : For any list \( l \) of elements of type \( \alpha \) and any natural number \( n \), the optional element at index \( n \) in the enumerated list \( l.\text{enum} \) is equal to the optional result of mapping the function \( a \mapsto (n, a) \) to the optional element at index \( n \) in the original list \( l \). Formally, this is expressed as:
+\[
+l.\text{enum}[n]? = \text{Option.map} \, (\lambda a \mapsto (n, a)) \, l[n]?
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the enumerated list `List.enum`. The function `List.enum` is defined as `List.enumFrom 0`, which means it enumerates the elements of the list \( l \) starting from index 0. Therefore, the goal can be rewritten as:
+\[
+(\text{enumFrom}(0, l))[n]? = \text{Option.map} \, (\lambda a. (n, a)) \, l[n]?
+\]
+
+Next, we use the theorem that states the optional element at index \( m \) in the enumerated list `enumFrom n l` is equal to the optional element at index \( m \) in \( l \) mapped to a pair \((n + m, a)\). Applying this theorem with \( n = 0 \) and \( m = n \), we get:
+\[
+(\text{enumFrom}(0, l))[n]? = \text{Option.map} \, (\lambda a. (0 + n, a)) \, l[n]?
+\]
+
+Finally, we use the property that the zero element is the additive identity, i.e., \( 0 + n = n \), to simplify the expression:
+\[
+\text{Option.map} \, (\lambda a. (0 + n, a)) \, l[n]? = \text{Option.map} \, (\lambda a. (n, a)) \, l[n]?
+\]
+
+Thus, the goal is now:
+\[
+\text{Option.map} \, (\lambda a. (n, a)) \, l[n]? = \text{Option.map} \, (\lambda a. (n, a)) \, l[n]?
+\]
+
+This is trivially true by the properties of equality. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (l : List α) (n : Nat) : (enum l)[n]? = l[n]?.map fun a => (n, a) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (l : List α) (n : Nat) : (enum l)[n]? = l[n]?.map fun a => (n, a) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

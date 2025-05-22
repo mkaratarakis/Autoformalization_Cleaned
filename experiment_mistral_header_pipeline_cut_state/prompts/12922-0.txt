@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Positive Count of Elements Satisfying a Predicate in a List: \( 0 < \text{countP}(p, l) \iff \exists a \in l, \, p(a) = \text{true} \) : For any type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), the count of elements in a list \( l \) that satisfy \( p \) is positive if and only if there exists an element \( a \) in \( l \) such that \( p(a) = \text{true} \). Mathematically, this can be expressed as:
+\[ 0 < \text{countP}(p, l) \iff \exists a \in l, \, p(a) = \text{true} \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by simplifying the proposition using the following theorems:
+1. The count of elements in a list \( l \) that satisfy a predicate \( p \) is equal to the length of the list obtained by filtering \( l \) with \( p \). Formally, \(\text{countP}(p, l) = \text{length}(\text{filter}(p, l))\).
+2. The length of a list is positive if and only if there exists an element in the list. Formally, \(\text{length}(l) > 0 \iff \exists a \in l\).
+3. An element \( a \) is in the filtered list if and only if \( a \) is in the original list and \( p(a) = \text{true} \). Formally, \( a \in \text{filter}(p, l) \iff a \in l \land p(a) = \text{true} \).
+4. The existential quantification \(\exists h, b\) is logically equivalent to the conjunction \(a \land b\). Formally, \(\exists h, b \iff a \land b\).
+
+Using these theorems, we can rewrite the original goal \(0 < \text{countP}(p, l) \iff \exists a, a \in l \land p(a) = \text{true}\) as follows:
+\[ 0 < \text{length}(\text{filter}(p, l)) \iff \exists a, a \in l \land p(a) = \text{true} \]
+
+Since \(\text{length}(\text{filter}(p, l)) > 0\) if and only if there exists an element \( a \) in \( l \) such that \( p(a) = \text{true} \), the two statements are equivalent. Therefore, we have:
+\[ 0 < \text{countP}(p, l) \iff \exists a \in l, \, p(a) = \text{true} \]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : 0 < countP p l ↔ ∃ a ∈ l, p a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example : 0 < countP p l ↔ ∃ a ∈ l, p a := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

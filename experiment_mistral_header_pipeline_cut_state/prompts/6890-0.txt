@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Equality of List Filter and Tail-Recursive List Filter: $\text{List.filter} = \text{List.filterTR}$ : For any type $\alpha$ and any predicate $p : \alpha \to \text{Bool}$, the list filter function `List.filter` and the tail-recursive list filter function `List.filterTR` are equal, i.e., `List.filter p l = List.filterTR p l` for any list $l : \text{List} \, \alpha$.
+
+2. **Informal Proof**  
+To prove that the list filter function `List.filter` and the tail-recursive list filter function `List.filterTR` are equal, we use function extensionality. This means we need to show that for any type \(\alpha\), any predicate \(p : \alpha \to \text{Bool}\), and any list \(as : \text{List} \, \alpha\), the functions `List.filter p` and `List.filterTR p` applied to \(as\) are equal. Therefore, it suffices to show that for any \(\alpha\), \(p\), and \(as\), `List.filter p as = List.filterTR p as`.
+
+Using the definitions of `List.filterTR` and the lemma `List.filterTR_loop_eq`, we can simplify the goal. The lemma `List.filterTR_loop_eq` states that the tail-recursive filter loop function `List.filterTR.loop` applied to \(p\), \(as\), and an empty list \([]\) is equal to the reverse of the empty list concatenated with the list of elements from \(as\) that satisfy the predicate \(p\). This simplifies to `List.filter p as`. Therefore, the goal `List.filter p as = List.filterTR p as` is trivially true.
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : @filter = @filterTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @filter = @filterTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

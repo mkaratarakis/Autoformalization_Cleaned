@@ -1,0 +1,35 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:10: error: unknown identifier 'dite_eq_ite_of_decidable'
+tmp.lean:13:4: error: no goals to be solved
+tmp.lean:10:17: error: unsolved goals
+case cons
+α : Type u_1
+p : α → Bool
+a : α
+l' : List α
+ih : (∀ (a : α), a ∈ l' → ¬p a = true) → eraseP p l' = l'
+h : ∀ (a_1 : α), a_1 ∈ a :: l' → ¬p a_1 = true
+⊢ (bif p a then l' else a :: eraseP p l') = a :: l'
+case cons
+α : Type u_1
+p : α → Bool
+a : α
+l' : List α
+ih : (∀ (a : α), a ∈ l' → ¬p a = true) → eraseP p l' = l'
+h : ∀ (a_1 : α), a_1 ∈ a :: l' → ¬p a_1 = true
+⊢ (bif p a then l' else a :: eraseP p l') = a :: l'
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example {l : List α} (h : ∀ a, a ∈ l → ¬p a) : l.eraseP p = l := by
+  induction l with
+  | nil => rfl
+  | cons a l' ih =>
+    simp only [eraseP, ih]

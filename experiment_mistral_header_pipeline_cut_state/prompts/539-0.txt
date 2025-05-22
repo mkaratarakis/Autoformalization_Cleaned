@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Erasing Element Beyond List Length in Appended Lists : For any list \( l \) of elements of type \( \alpha \) and any natural number \( k \), if the length of \( l \) is less than or equal to \( k \), then for any list \( l' \) of elements of type \( \alpha \), the list obtained by appending \( l' \) to \( l \) and then erasing the element at index \( k \) is equal to the list obtained by appending \( l \) to the list \( l' \) with the element at index \( k - \text{length}(l) \) erased. Formally, if \( \text{length}(l) \leq k \), then for any \( l' \), \((l ++ l').\text{eraseIdx}(k) = l ++ l'.\text{eraseIdx}(k - \text{length}(l))\).
+
+2. **Informal Proof**  
+We will prove the theorem by induction on the list \( l \).
+
+1. **Base Case: \( l \) is empty.**
+- Consider the case where the list \( l \) is empty. Using the properties of list length and the definition of `eraseIdx`, we can simplify the goal to show that \(([] ++ l').\text{eraseIdx}(k) = [] ++ l'.\text{eraseIdx}(k - 0)\). Since the length of the empty list is \(0\), this simplifies to \(([] ++ l').\text{eraseIdx}(k) = l'.\text{eraseIdx}(k)\), which is trivially true.
+
+2. **Inductive Step: \( l \) is non-empty.**
+- Consider the case where the list \( l \) is non-empty, i.e., \( l = x :: l_1 \) for some element \( x \) and list \( l_1 \). We will use induction on the length of \( l \) and assume the inductive hypothesis \( \text{ih} \), which states that for any natural number \( k \), if \( \text{length}(l_1) \leq k \), then \((l_1 ++ l').\text{eraseIdx}(k) = l_1 ++ l'.\text{eraseIdx}(k - \text{length}(l_1))\).
+
+- **Subcase: \( k = 0 \)**
+- Consider the subcase where \( k = 0 \). Using the properties of list length and the definition of `eraseIdx`, we can simplify the goal to show that \((x :: l_1 ++ l').\text{eraseIdx}(0) = x :: l_1 ++ l'.\text{eraseIdx}(0 - \text{length}(x :: l_1))\). Since \(\text{length}(x :: l_1) = \text{length}(l_1) + 1\), this simplifies to \((x :: l_1 ++ l').\text{eraseIdx}(0) = x :: l_1 ++ l'.\text{eraseIdx}(-1)\), which is trivially true because erasing an element at a negative index does not change the list.
+
+- **Subcase: \( k = k' + 1 \) for some natural number \( k' \)**
+- Consider the subcase where \( k = k' + 1 \) for some natural number \( k' \). Using the properties of list length and the definition of `eraseIdx`, we can simplify the goal to show that \((x :: l_1 ++ l').\text{eraseIdx}(k' + 1) = x :: l_1 ++ l'.\text{eraseIdx}((k' + 1) - (\text{length}(x :: l_1)))\). Since \(\text{length}(x :: l_1) = \text{length}(l_1) + 1\), this simplifies to \((x :: l_1 ++ l').\text{eraseIdx}(k' + 1) = x :: l_1 ++ l'.\text{eraseIdx}(k' - \text{length}(l_1))\). By the inductive hypothesis, we know that \((l_1 ++ l').\text{eraseIdx}(k') = l_1 ++ l'.\text{eraseIdx}(k' - \text{length}(l_1))\), and thus the goal is satisfied.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} {k : Nat} (hk : length l ≤ k) (l' : List α) :
+    eraseIdx (l ++ l') k = l ++ eraseIdx l' (k - length l) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example {l : List α} {k : Nat} (hk : length l ≤ k) (l' : List α) :
+    eraseIdx (l ++ l') k = l ++ eraseIdx l' (k - length l) := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

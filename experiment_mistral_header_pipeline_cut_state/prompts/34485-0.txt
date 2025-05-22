@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Drop-While and Map Commute: \(\text{dropWhile } p \, (\text{map } f \, l) = \text{map } f \, (\text{dropWhile } (p \circ f) \, l)\) : For any types \( \alpha \) and \( \beta \), a function \( f : \alpha \to \beta \), a predicate \( p : \beta \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), the following equality holds:
+\[
+\text{dropWhile } p \, (\text{map } f \, l) = \text{map } f \, (\text{dropWhile } (p \circ f) \, l)
+\]
+This theorem states that the list obtained by first applying the function \( f \) to each element of \( l \) and then dropping elements from the beginning of the resulting list while the predicate \( p \) holds is the same as the list obtained by first dropping elements from the beginning of \( l \) while the predicate \( p \) holds for the result of \( f \) and then applying \( f \) to the remaining elements.
+
+2. **Informal Proof**  
+We prove this by induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, then both sides of the equation are the empty list. Therefore, the equality holds trivially by the reflexive property of equality.
+
+2. **Inductive Step:**
+- Assume \( l \) is of the form \( x :: xs \) and that the property holds for the list \( xs \). We need to show that the property holds for the list \( x :: xs \).
+- Using the definitions of `map` and `dropWhile` for the cons constructor, we simplify the goal to:
+\[
+\text{if } p(f(x)) = \text{true} \text{ then } \text{dropWhile } p \, (\text{map } f \, xs) \text{ else } f(x) :: \text{map } f \, xs
+\]
+is equal to
+\[
+\text{map } f \, (\text{if } (p \circ f)(x) = \text{true} \text{ then } \text{dropWhile } (p \circ f) \, xs \text{ else } x :: xs)
+\]
+- We discuss by cases based on the condition \( p(f(x)) = \text{true} \):
+- **Case 1: \( p(f(x)) = \text{true} \)**
+- The left-hand side simplifies to \( \text{dropWhile } p \, (\text{map } f \, xs) \).
+- The right-hand side simplifies to \( \text{map } f \, (\text{dropWhile } (p \circ f) \, xs) \).
+- By the induction hypothesis, \( \text{dropWhile } p \, (\text{map } f \, xs) = \text{map } f \, (\text{dropWhile } (p \circ f) \, xs) \), so the equality holds.
+- **Case 2: \( p(f(x)) = \text{false} \)**
+- The left-hand side simplifies to \( f(x) :: \text{map } f \, xs \).
+- The right-hand side simplifies to \( f(x) :: \text{map } f \, xs \).
+- Both sides are equal, so the equality holds.
+
+Thus, by induction, the theorem holds for all lists \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : α → β) (p : β → Bool) (l : List α) :
+    (l.map f).dropWhile p = (l.dropWhile (p ∘ f)).map f := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (f : α → β) (p : β → Bool) (l : List α) :
+    (l.map f).dropWhile p = (l.dropWhile (p ∘ f)).map f := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

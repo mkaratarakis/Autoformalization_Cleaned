@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Boolean Decide of Bi-implication Equals Boolean Equality of Decides: \(\text{decide}(p \leftrightarrow q) = \text{decide}(p) == \text{decide}(q)\) : For any decidable propositions \( p \) and \( q \), the boolean value `decide (p \leftrightarrow q)` is equal to the boolean value `decide p == decide q`, i.e., \(\text{decide}(p \leftrightarrow q) = \text{decide}(p) == \text{decide}(q)\).
+
+2. **Informal Proof**  
+We will consider every possible case of the decidable proposition \( p \).
+
+- **Case 1:** \( p \) is true.
+- Using the fact that \( p \) is true, we simplify the proposition we want to show, which is \(\text{decide}(p \leftrightarrow q) = \text{decide}(p) == \text{decide}(q)\). Since \( p \) is true, \(\text{decide}(p) = \text{true}\). Therefore, the goal reduces to showing \(\text{decide}(p \leftrightarrow q) = \text{true} == \text{decide}(q)\). This is equivalent to showing \(\text{decide}(p \leftrightarrow q) = \text{decide}(q)\).
+- By the definition of \(\text{decide}\), \(\text{decide}(p \leftrightarrow q)\) is true if and only if \( p \leftrightarrow q \) is true. Since \( p \) is true, \( p \leftrightarrow q \) is true if and only if \( q \) is true. Therefore, \(\text{decide}(p \leftrightarrow q) = \text{decide}(q)\).
+
+- **Case 2:** \( p \) is false.
+- Using the fact that \( p \) is false, we simplify the proposition we want to show, which is \(\text{decide}(p \leftrightarrow q) = \text{decide}(p) == \text{decide}(q)\). Since \( p \) is false, \(\text{decide}(p) = \text{false}\). Therefore, the goal reduces to showing \(\text{decide}(p \leftrightarrow q) = \text{false} == \text{decide}(q)\). This is equivalent to showing \(\text{decide}(p \leftrightarrow q) = \neg \text{decide}(q)\).
+- By the definition of \(\text{decide}\), \(\text{decide}(p \leftrightarrow q)\) is true if and only if \( p \leftrightarrow q \) is true. Since \( p \) is false, \( p \leftrightarrow q \) is true if and only if \( q \) is false. Therefore, \(\text{decide}(p \leftrightarrow q) = \neg \text{decide}(q)\).
+
+In both cases, we have shown that \(\text{decide}(p \leftrightarrow q) = \text{decide}(p) == \text{decide}(q)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p q : Prop) [dpq : Decidable (p ↔ q)] [dp : Decidable p] [dq : Decidable q] :
+    decide (p ↔ q) = (decide p == decide q) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p q : Prop) [dpq : Decidable (p ↔ q)] [dp : Decidable p] [dq : Decidable q] :
+    decide (p ↔ q) = (decide p == decide q) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

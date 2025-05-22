@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Distributive Property of Multiplication over Subtraction in Natural Numbers: \((n - m) \times k = n \times k - m \times k\) : For any natural numbers \( n \), \( m \), and \( k \), the product of the difference \( n - m \) with \( k \) is equal to the difference between the product of \( n \) and \( k \) and the product of \( m \) and \( k \). In other words, \( (n - m) \times k = n \times k - m \times k \).
+
+2. **Informal Proof**  
+We prove this by induction on \( m \).
+
+**Base Case:**
+Consider \( m = 0 \). We need to show that \((n - 0) \times k = n \times k - 0 \times k\). Simplifying the left-hand side, we get \( n \times k \), and the right-hand side simplifies to \( n \times k - 0 \). Since \( 0 \times k = 0 \), the equation holds trivially.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some \( m' \), \((n - m') \times k = n \times k - m' \times k\). We need to show that \((n - (m' + 1)) \times k = n \times k - (m' + 1) \times k\).
+
+1. Using the property of subtraction, we have \( n - (m' + 1) = (n - m').\text{pred} \).
+2. Using the property of multiplication of the predecessor, we have \((n - m').\text{pred} \times k = (n - m') \times k - k\).
+3. By the inductive hypothesis, \((n - m') \times k = n \times k - m' \times k\).
+4. Using the property of successor multiplication, we have \((m' + 1) \times k = m' \times k + k\).
+5. Using the property of subtraction, we have \( n \times k - m' \times k - k = n \times k - (m' \times k + k) \).
+
+Thus, the equation \((n - (m' + 1)) \times k = n \times k - (m' + 1) \times k\) holds, completing the inductive step.
+
+By induction, the theorem holds for all natural numbers \( n \), \( m \), and \( k \). Therefore, \((n - m) \times k = n \times k - m \times k\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m k : Nat) : (n - m) * k = n * k - m * k := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m k : Nat) : (n - m) * k = n * k - m * k := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

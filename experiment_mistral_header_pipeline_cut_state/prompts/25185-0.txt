@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Option Bind with Some Constructor Equals Original Option : For any type \( \alpha \) and any optional value \( x : \text{Option} \, \alpha \), if \( x \) is `some a` for some \( a : \alpha \), then \( x \) bound with the `some` constructor is equal to \( x \). In other words, if \( x \) is a valid optional value, then applying the `some` constructor to the value inside \( x \) results in \( x \) itself.
+
+2. **Informal Proof**  
+We need to show that for any \( x : \text{Option} \, \alpha \), the equation \( x.bind \text{some} = x \) holds. We will consider the two possible cases for \( x \):
+
+1. **Case 1: \( x = \text{none} \)**
+- The `bind` operation on `none` with any function results in `none`. Therefore, \(\text{none.bind some} = \text{none}\). This is trivially true.
+
+2. **Case 2: \( x = \text{some } a \) for some \( a : \alpha \)**
+- The `bind` operation on `some a` with the `some` constructor results in `some a`. Therefore, \((\text{some } a).bind \text{some} = \text{some } a\). This is also trivially true.
+
+Since both cases are trivially true, the theorem holds for any \( x : \text{Option} \, \alpha \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : Option α) : x.bind some = x := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (x : Option α) : x.bind some = x := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

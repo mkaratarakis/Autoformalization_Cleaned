@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Taking First \( i \) Elements of a List Equals the List if Length is Less Than or Equal to \( i \) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( i \), if the length of \( l \) is less than or equal to \( i \), then taking the first \( i \) elements of \( l \) results in the list \( l \) itself, i.e., \( \text{take}(i, l) = l \).
+
+2. **Informal Proof**  
+We start by using the lemma that the concatenation of the first $i$ elements of a list $l$ and the list obtained by dropping the first $i$ elements of $l$ is equal to the original list $l$. This gives us the equation:
+\[
+\text{take}(i, l) \oplus \text{drop}(i, l) = l
+\]
+Next, we use the fact that if the length of $l$ is less than or equal to $i$, then dropping the first $i$ elements of $l$ results in the empty list. Therefore, we have:
+\[
+\text{drop}(i, l) = \text{nil}
+\]
+Substituting this into our equation, we get:
+\[
+\text{take}(i, l) \oplus \text{nil} = l
+\]
+Since concatenating any list with the empty list results in the original list, we have:
+\[
+\text{take}(i, l) = l
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} (h : l.length ≤ i) : take i l = l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} (h : l.length ≤ i) : take i l = l := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

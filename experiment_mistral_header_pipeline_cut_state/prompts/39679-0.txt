@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+First Non-`None` Result in Cons List is `f a` if `f a` is `Some` : For any types $\alpha$ and $\alpha_1$, and any function $f : \alpha \to \text{Option} \, \alpha_1$, if $f(a)$ is `some` for an element $a \in \alpha$, then the first non-`none` result of applying $f$ to the list $a :: l$ is $f(a)$. In other words, if `f a` is `some b` for some $b \in \alpha_1$, then `List.findSome? f (a :: l)` is equal to `f a`.
+
+2. **Informal Proof**  
+We start by simplifying the goal using the definition of `findSome?`. This simplifies the goal to:
+\[
+\text{match } f(a) \text{ with} \begin{cases}
+\text{some } b \Rightarrow \text{some } b \\
+\text{none} \Rightarrow \text{findSome? } f \, l
+\end{cases} = f(a)
+\]
+
+We then discuss by cases based on the value of \( f(a) \):
+
+1. **Case 1:** \( f(a) = \text{some } b \)
+- Using the definition of `findSome?`, the goal simplifies to:
+\[
+\text{some } b = f(a)
+\]
+- Since \( f(a) = \text{some } b \) by assumption, this is trivially true.
+
+2. **Case 2:** \( f(a) = \text{none} \)
+- Using the definition of `findSome?`, the goal simplifies to:
+\[
+\text{findSome? } f \, l = f(a)
+\]
+- Since \( f(a) = \text{none} \) by assumption, this simplifies to:
+\[
+\text{findSome? } f \, l = \text{none}
+\]
+- This is also trivially true because the definition of `findSome?` states that if the first element is `none`, it continues to the rest of the list.
+
+Thus, in both cases, the goal is satisfied. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (l) (h : (f a).isSome) : findSome? f (a :: l) = f a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (l) (h : (f a).isSome) : findSome? f (a :: l) = f a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

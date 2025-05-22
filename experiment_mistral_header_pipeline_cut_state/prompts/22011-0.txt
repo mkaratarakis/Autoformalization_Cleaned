@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Partial Map Equals Map of Attached List: \(\text{pmap } f \, l \, H = \text{map } (fun \, x \, \Rightarrow \, f \, x.val) \, l.attach\) : For any type \( \alpha \) and a property \( p : \alpha \to \text{Prop} \), if \( f : \Pi a, p a \to \beta \) is a function that maps elements of \( \alpha \) satisfying \( p \) to elements of \( \beta \), and \( l \) is a list of elements of \( \alpha \) such that all elements in \( l \) satisfy \( p \) (i.e., \( H : \forall a \in l, p a \)), then the partial map of \( f \) over \( l \) using \( H \) is equal to the map of \( f \) over the attached list \( l.attach \). Formally, this can be written as:
+\[
+\text{pmap } f \, l \, H = \text{map } (fun \, x \, \Rightarrow \, f \, x.val) \, l.attach
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions of `attach`, `attachWith`, and `map_pmap` to rewrite the goal. The `attach` function converts a list \( l \) into a list of pairs where each pair consists of an element of \( l \) and its index. The `attachWith` function is a variant of `attach` that uses a custom function to create the pairs. The `map_pmap` theorem states that the map of a function over a list of pairs is equivalent to the partial map of the function over the list.
+
+By applying these definitions, the goal simplifies to showing that the partial map of \( f \) over \( l \) using \( H \) is equal to the map of \( f \) over the attached list \( l.attach \). This is equivalent to showing that for every element \( x \) in the list \( l \), the function \( f \) applied to \( x \) and its proof of property \( p \) is equal to the function \( f \) applied to the attached element \( x.val \).
+
+This equality is trivially true by the reflexivity of equality, as the function \( f \) applied to \( x \) and its proof of property \( p \) is the same as the function \( f \) applied to \( x.val \). Therefore, by the congruence theorem for partial maps, `pmap_congr`, we conclude that:
+\[
+\text{pmap } f \, l \, H = \text{map } (fun \, x \, \Rightarrow \, f \, x.val) \, l.attach
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {p : α → Prop} (f : ∀ a, p a → β) (l H) :
+    pmap f l H = l.attach.map fun x => f x.1 (H _ x.2) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.Subtype
+import Init.Data.List.Attach
+
+open List
+
+
+example {p : α → Prop} (f : ∀ a, p a → β) (l H) :
+    pmap f l H = l.attach.map fun x => f x.1 (H _ x.2) := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.Subtype not found. --
+
+-- Init.Data.List.Attach not found. --
+

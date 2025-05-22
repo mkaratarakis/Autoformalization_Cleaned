@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Subtraction and Addition Equivalence in Natural Numbers: \(a - b = c \leftrightarrow a = b + c\) : For any natural numbers \(a\), \(b\), and \(c\) such that \(b \leq a\), the equation \(a - b = c\) holds if and only if \(a = b + c\).
+
+2. **Informal Proof**  
+We start with the goal of proving that for any natural numbers \(a\), \(b\), and \(c\) such that \(b \leq a\), the equation \(a - b = c\) holds if and only if \(a = b + c\).
+
+1. **Step 1:**
+We use the commutativity of addition, which states that for any natural numbers \(a\) and \(b\), \(a + b = b + a\). This allows us to rewrite the goal \(a - b = c \leftrightarrow a = b + c\) as \(a - b = c \leftrightarrow a = c + b\).
+
+2. **Step 2:**
+Next, we use the theorem that for any natural numbers \(a\), \(b\), and \(c\) such that \(b \leq a\), the equation \(a - b = c\) holds if and only if \(a = c + b\). This theorem directly simplifies our goal to \(a = c + b \leftrightarrow a = c + b\), which is trivially true.
+
+Therefore, we have shown that \(a - b = c\) if and only if \(a = b + c\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {c : Nat} (h : b ≤ a) : a - b = c ↔ a = b + c := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {c : Nat} (h : b ≤ a) : a - b = c ↔ a = b + c := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Sublist of Filtered List Equivalence: \( l_1 \text{ is a sublist of } \text{List.filter } p \, l_2 \leftrightarrow \exists l', l' \text{ is a sublist of } l_2 \text{ and } l_1 = \text{List.filter } p \, l' \) : For any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \) and for any predicate \( p : \alpha \to \text{Bool} \), the list \( l_1 \) is a sublist of the list \( \text{List.filter } p \, l_2 \) if and only if there exists a list \( l' \) such that \( l' \) is a sublist of \( l_2 \) and \( l_1 = \text{List.filter } p \, l' \).
+
+2. **Informal Proof**  
+We start by using the equivalence that the filtered list `List.filter p l` is the same as the filtered map `List.filterMap (λ x, if p x then some x else none) l`. This equivalence allows us to rewrite the original statement.
+
+Next, we use the fact that a list \( l_1 \) is a sublist of the filtered map of another list \( l_2 \) if and only if there exists a sublist \( l' \) of \( l_2 \) such that \( l_1 \) is equal to the filtered list of \( l' \). This is a known property of sublists and filtered maps.
+
+By applying these equivalences, we can simplify the original proposition to the desired form:
+\[
+l_1 \text{ is a sublist of } \text{List.filter } p \, l_2 \leftrightarrow \exists l', l' \text{ is a sublist of } l_2 \text{ and } l_1 = \text{List.filter } p \, l'
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l₁ : List α} {p : α → Bool} :
+    l₁ <+ l₂.filter p ↔ ∃ l', l' <+ l₂ ∧ l₁ = l'.filter p := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {l₁ : List α} {p : α → Bool} :
+    l₁ <+ l₂.filter p ↔ ∃ l', l' <+ l₂ ∧ l₁ = l'.filter p := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

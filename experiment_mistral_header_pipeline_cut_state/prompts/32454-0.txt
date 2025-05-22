@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Modulo Distributes Over Addition in Natural Numbers: \((a + b) \mod n = (a \mod n + b \mod n) \mod n\) : For any natural numbers \(a\), \(b\), and \(n\), the following identity holds:
+\[
+(a + b) \mod n = (a \mod n + b \mod n) \mod n
+\]
+This theorem states that the modulo operation distributes over addition in the natural numbers.
+
+2. **Informal Proof**  
+To prove the identity \((a + b) \mod n = (a \mod n + b \mod n) \mod n\), we use the following steps:
+
+1. **Rewrite the left-hand side:**
+Using the identity \((m + n \% k) \% k = (m + n) \% k\), we rewrite \((a + b) \% n\) as \((a \% n + b) \% n\).
+
+2. **Rewrite the right-hand side:**
+Using the identity \((m \% n + k) \% n = (m + k) \% n\), we rewrite \((a \% n + b \% n) \% n\) as \((a + b) \% n\).
+
+3. **Combine the results:**
+Therefore, the goal \((a + b) \% n = (a \% n + b \% n) \% n\) is equivalent to \((a + b) \% n = (a + b) \% n\), which is trivially true by the properties of equality.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a b n : Nat) : (a + b) % n = ((a % n) + (b % n)) % n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b n : Nat) : (a + b) % n = ((a % n) + (b % n)) % n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Division Identity: \(a / b = (a - b) / b + 1\) for \(0 < b \le a\) : For any natural numbers \(a\) and \(b\) such that \(0 < b\) and \(b \le a\), the division \(a / b\) is equal to \((a - b) / b + 1\), i.e., \(a / b = (a - b) / b + 1\).
+
+2. **Informal Proof**  
+We begin by using the definition of division for natural numbers, which states that \(a / b\) is defined as the maximum \(k\) such that \(b \cdot k \leq a\). Given the conditions \(0 < b\) and \(b \leq a\), the condition for the positive branch of the if-statement in the definition of division is satisfied. Therefore, we can simplify the goal to show that \(a / b = (a - b) / b + 1\) by using the positive branch of the if-statement. This branch requires us to prove two conditions: \(0 < b\) and \(b \leq a\), which are already given as assumptions. Thus, the goal is satisfied, and we have shown that \(a / b = (a - b) / b + 1\).
+
+3. **Formal Theorem**  
+example (h₁ : 0 < b) (h₂ : b ≤ a) : a / b = (a - b) / b + 1 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (h₁ : 0 < b) (h₂ : b ≤ a) : a / b = (a - b) / b + 1 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

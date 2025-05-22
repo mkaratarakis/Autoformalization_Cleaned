@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Left Multiplication Preserves Modulo Zero in Natural Numbers : For any natural numbers \( m \) and \( n \), the product \( m \times n \) modulo \( n \) is equal to 0, i.e., \( m \times n \mod n = 0 \).
+
+2. **Informal Proof**  
+We start by using the commutativity of multiplication for natural numbers, which states that \( m \times n = n \times m \). This allows us to rewrite the goal as \( n \times m \mod n = 0 \). Then, we use the property that for any natural numbers \( m \) and \( n \), \( n \times m \mod n = 0 \). Therefore, \( m \times n \mod n = 0 \), which completes the proof.
+
+3. **Formal Theorem**  
+example (m n : Nat) : (m * n) % n = 0 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (m n : Nat) : (m * n) % n = 0 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

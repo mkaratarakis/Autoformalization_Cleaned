@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+List Update and Drop: \((\text{List.drop } n \, l). \text{set } m \, a = \text{List.drop } n \, (l. \text{set } (n + m) \, a)\) : For any list \( l \) of elements of type \( \alpha \), and for any natural numbers \( n \) and \( m \), and for any element \( a \) of type \( \alpha \), the list obtained by updating the \( m \)-th element of the list \( \text{List.drop } n \, l \) to \( a \) is equal to the list obtained by first updating the \( (n + m) \)-th element of \( l \) to \( a \) and then dropping the first \( n \) elements of the resulting list. Formally, this can be written as:
+\[
+(\text{List.drop } n \, l). \text{set } m \, a = \text{List.drop } n \, (l. \text{set } (n + m) \, a)
+\]
+
+2. **Informal Proof**  
+We start by using the theorem that describes the relationship between dropping elements and updating elements in a list. Specifically, for any list \( l \) of elements of type \( \alpha \), and for any natural numbers \( n \) and \( m \), and for any element \( a \) of type \( \alpha \), the list obtained by dropping the first \( n \) elements of \( l \) and then updating the \( m \)-th element to \( a \) is equal to the list obtained by first updating the \( m \)-th element of \( l \) to \( a \) and then dropping the first \( n \) elements of the resulting list. Formally, this can be written as:
+\[
+\text{List.drop } n \, (l.\text{set } m \, a) =
+\begin{cases}
+\text{List.drop } n \, l & \text{if } m < n \\
+(\text{List.drop } n \, l).\text{set } (m - n) \, a & \text{if } m \geq n
+\end{cases}
+\]
+Since \( n + m \geq n \), the condition \( n + m < n \) is false. Therefore, we can simplify the expression to:
+\[
+(\text{List.drop } n \, l).\text{set } m \, a = (\text{List.drop } n \, l).\text{set } (n + m - n) \, a
+\]
+Using the property of natural numbers that \( n + m - n = m \), we get:
+\[
+(\text{List.drop } n \, l).\text{set } m \, a = (\text{List.drop } n \, l).\text{set } m \, a
+\]
+Thus, the goal is to show that \( n + m \geq n \).
+
+To show that \( n + m \geq n \), we use the property of natural numbers that adding a non-negative number to another number preserves the order. Specifically, for any natural numbers \( n \) and \( m \), \( n \leq n + m \). This is a direct consequence of the fact that adding a non-negative number to \( n \) results in a number that is at least \( n \). Therefore, \( n + m \geq n \) is true, and the proof is complete.
+
+3. **Formal Theorem**  
+example {l : List α} {n m : Nat} {a : α} :
+    (l.drop n).set m a = (l.set (n + m) a).drop n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} {n m : Nat} {a : α} :
+    (l.drop n).set m a = (l.set (n + m) a).drop n := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

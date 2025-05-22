@@ -1,0 +1,76 @@
+
+1. **Informal Theorem**  
+Monotonicity of CountP with Respect to Predicates: \(\text{countP}(p, l) \leq \text{countP}(q, l)\) : For any type \(\alpha\), and for any predicates \(p, q : \alpha \to \text{Bool}\) and list \(l : \text{List}(\alpha)\), if for every element \(x \in l\), \(p(x) = \text{true}\) implies \(q(x) = \text{true}\), then the number of elements in \(l\) that satisfy \(p\) is less than or equal to the number of elements in \(l\) that satisfy \(q\). In mathematical notation, this is expressed as:
+\[
+\forall x \in l, \, p(x) = \text{true} \implies q(x) = \text{true} \implies \text{countP}(p, l) \leq \text{countP}(q, l).
+\]
+
+2. **Informal Proof**  
+We prove this by induction on the list \(l\).
+
+1. **Base Case:**
+- Consider the case where the list \(l\) is empty, i.e., \(l = \text{nil}\).
+- The number of elements in the empty list that satisfy \(p\) is zero, and the number of elements in the empty list that satisfy \(q\) is also zero.
+- Since \(0 \leq 0\), the inequality holds trivially.
+
+2. **Inductive Step:**
+- Consider the case where the list \(l\) is of the form \(a :: l\), where \(a\) is an element of type \(\alpha\) and \(l\) is a list of elements of type \(\alpha\).
+- We need to show that \(\text{countP}(p, a :: l) \leq \text{countP}(q, a :: l)\).
+- By the definition of \(\text{countP}\) for a cons list, we have:
+\[
+\text{countP}(p, a :: l) = \text{countP}(p, l) + \text{if } p(a) = \text{true} \text{ then } 1 \text{ else } 0
+\]
+and
+\[
+\text{countP}(q, a :: l) = \text{countP}(q, l) + \text{if } q(a) = \text{true} \text{ then } 1 \text{ else } 0.
+\]
+- We need to show:
+\[
+\text{countP}(p, l) + \text{if } p(a) = \text{true} \text{ then } 1 \text{ else } 0 \leq \text{countP}(q, l) + \text{if } q(a) = \text{true} \text{ then } 1 \text{ else } 0.
+\]
+- We consider two cases based on the value of \(p(a)\):
+- **Case 1: \(p(a) = \text{false}\)**
+- In this case, \(\text{if } p(a) = \text{true} \text{ then } 1 \text{ else } 0 = 0\).
+- The goal simplifies to:
+\[
+\text{countP}(p, l) \leq \text{countP}(q, l) + \text{if } q(a) = \text{true} \text{ then } 1 \text{ else } 0.
+\]
+- Since \(\text{countP}(q, l) \leq \text{countP}(q, l) + 1\) (because adding a non-negative number to a number preserves the order), it suffices to show:
+\[
+\text{countP}(p, l) \leq \text{countP}(q, l).
+\]
+- By the induction hypothesis, this holds.
+- **Case 2: \(p(a) = \text{true}\)**
+- In this case, \(\text{if } p(a) = \text{true} \text{ then } 1 \text{ else } 0 = 1\).
+- Since \(p(a) = \text{true}\) implies \(q(a) = \text{true}\), we have \(\text{if } q(a) = \text{true} \text{ then } 1 \text{ else } 0 = 1\).
+- The goal simplifies to:
+\[
+\text{countP}(p, l) + 1 \leq \text{countP}(q, l) + 1.
+\]
+- This is equivalent to:
+\[
+\text{countP}(p, l) \leq \text{countP}(q, l).
+\]
+- By the induction hypothesis, this holds.
+
+Thus, by induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (h : ∀ x ∈ l, p x → q x) : countP p l ≤ countP q l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+
+example (h : ∀ x ∈ l, p x → q x) : countP p l ≤ countP q l := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

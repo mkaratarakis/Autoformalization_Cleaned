@@ -1,0 +1,98 @@
+
+1. **Informal Theorem**  
+Associativity of Boolean OR: \((a \lor b) \lor c = a \lor (b \lor c)\) : For any boolean values \( a, b, c \), the boolean "or" operation is associative, i.e., \((a \lor b) \lor c = a \lor (b \lor c)\).
+
+2. **Informal Proof**  
+To prove the associativity of the boolean "or" operation, we will consider every possible combination of the boolean values of \(a\), \(b\), and \(c\). For each combination, we will show that \((a \lor b) \lor c = a \lor (b \lor c)\).
+
+1. **Case 1: \(a = \text{false}, b = \text{false}, c = \text{false}\)**
+\[
+(\text{false} \lor \text{false}) \lor \text{false} = \text{false} \lor \text{false} = \text{false}
+\]
+\[
+\text{false} \lor (\text{false} \lor \text{false}) = \text{false} \lor \text{false} = \text{false}
+\]
+Both sides are equal to \(\text{false}\).
+
+2. **Case 2: \(a = \text{false}, b = \text{false}, c = \text{true}\)**
+\[
+(\text{false} \lor \text{false}) \lor \text{true} = \text{false} \lor \text{true} = \text{true}
+\]
+\[
+\text{false} \lor (\text{false} \lor \text{true}) = \text{false} \lor \text{true} = \text{true}
+\]
+Both sides are equal to \(\text{true}\).
+
+3. **Case 3: \(a = \text{false}, b = \text{true}, c = \text{false}\)**
+\[
+(\text{false} \lor \text{true}) \lor \text{false} = \text{true} \lor \text{false} = \text{true}
+\]
+\[
+\text{false} \lor (\text{true} \lor \text{false}) = \text{false} \lor \text{true} = \text{true}
+\]
+Both sides are equal to \(\text{true}\).
+
+4. **Case 4: \(a = \text{false}, b = \text{true}, c = \text{true}\)**
+\[
+(\text{false} \lor \text{true}) \lor \text{true} = \text{true} \lor \text{true} = \text{true}
+\]
+\[
+\text{false} \lor (\text{true} \lor \text{true}) = \text{false} \lor \text{true} = \text{true}
+\]
+Both sides are equal to \(\text{true}\).
+
+5. **Case 5: \(a = \text{true}, b = \text{false}, c = \text{false}\)**
+\[
+(\text{true} \lor \text{false}) \lor \text{false} = \text{true} \lor \text{false} = \text{true}
+\]
+\[
+\text{true} \lor (\text{false} \lor \text{false}) = \text{true} \lor \text{false} = \text{true}
+\]
+Both sides are equal to \(\text{true}\).
+
+6. **Case 6: \(a = \text{true}, b = \text{false}, c = \text{true}\)**
+\[
+(\text{true} \lor \text{false}) \lor \text{true} = \text{true} \lor \text{true} = \text{true}
+\]
+\[
+\text{true} \lor (\text{false} \lor \text{true}) = \text{true} \lor \text{true} = \text{true}
+\]
+Both sides are equal to \(\text{true}\).
+
+7. **Case 7: \(a = \text{true}, b = \text{true}, c = \text{false}\)**
+\[
+(\text{true} \lor \text{true}) \lor \text{false} = \text{true} \lor \text{false} = \text{true}
+\]
+\[
+\text{true} \lor (\text{true} \lor \text{false}) = \text{true} \lor \text{true} = \text{true}
+\]
+Both sides are equal to \(\text{true}\).
+
+8. **Case 8: \(a = \text{true}, b = \text{true}, c = \text{true}\)**
+\[
+(\text{true} \lor \text{true}) \lor \text{true} = \text{true} \lor \text{true} = \text{true}
+\]
+\[
+\text{true} \lor (\text{true} \lor \text{true}) = \text{true} \lor \text{true} = \text{true}
+\]
+Both sides are equal to \(\text{true}\).
+
+Since all possible cases have been considered and shown to satisfy the equation \((a \lor b) \lor c = a \lor (b \lor c)\), we conclude that the boolean "or" operation is associative. This completes the proof.
+
+3. **Formal Theorem**  
+example (a b c : Bool) : (a || b || c) = (a || (b || c)) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (a b c : Bool) : (a || b || c) = (a || (b || c)) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

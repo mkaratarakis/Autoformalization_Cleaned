@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+List Erasure at Index Zero Equals Tail: \( l.\text{eraseIdx}(0) = l.\text{tail} \) : For any list \( l \) of elements of type \( \alpha \), removing the element at index 0 from \( l \) results in the tail of \( l \), i.e., \( l.\text{eraseIdx}(0) = l.\text{tail} \).
+
+2. **Informal Proof**  
+We will consider every possible case of the list \( l \).
+
+1. **Case 1:** If \( l \) is the empty list, then \( l.\text{eraseIdx}(0) \) is the empty list, and \( l.\text{tail} \) is also the empty list. Therefore, \( l.\text{eraseIdx}(0) = l.\text{tail} \) holds trivially.
+2. **Case 2:** If \( l \) is a non-empty list, say \( l = \text{head} :: \text{tail} \), then \( l.\text{eraseIdx}(0) \) removes the first element (head) of the list, resulting in the list \( \text{tail} \). Similarly, \( l.\text{tail} \) is the list \( \text{tail} \) by definition. Therefore, \( l.\text{eraseIdx}(0) = l.\text{tail} \) holds trivially.
+
+In both cases, the equality \( l.\text{eraseIdx}(0) = l.\text{tail} \) is satisfied. This completes the proof.
+
+3. **Formal Theorem**  
+example (l : List α) : eraseIdx l 0 = tail l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example (l : List α) : eraseIdx l 0 = tail l := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

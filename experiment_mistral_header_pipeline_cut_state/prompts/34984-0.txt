@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Element of List of Lists is a Sublist of Concatenation: \( l \in L \to l \subseteq \text{join}(L) \) : For any type \( \alpha \) and any list \( L \) of lists of type \( \alpha \), if a list \( l \) is an element of \( L \), then \( l \) is a sublist of the concatenation of all lists in \( L \), i.e., \( l \subseteq \text{join}(L) \).
+
+2. **Informal Proof**  
+We prove this by induction on the list \( L \).
+
+1. **Base Case:**
+- Suppose \( L \) is the empty list, i.e., \( L = [] \).
+- If \( l \) is an element of the empty list, this is a contradiction. Therefore, the goal is vacuously true.
+
+2. **Inductive Case:**
+- Suppose \( L \) is a cons list, i.e., \( L = l' :: L' \).
+- Assume the induction hypothesis: for any list \( l \) in \( L' \), \( l \) is a sublist of \( L'.join \).
+- We need to show that if \( l \) is an element of \( l' :: L' \), then \( l \) is a sublist of \( (l' :: L').join \).
+
+We consider two cases based on the membership property of cons lists:
+- **Case 1: \( l = l' \)**
+- If \( l \) is equal to \( l' \), then \( l \) is the first element of the list \( l' :: L' \).
+- Therefore, \( l \) is a sublist of \( (l' :: L').join \), which is trivially true because \( l \) is the first element of the list.
+- **Case 2: \( l \in L' \)**
+- If \( l \) is an element of \( L' \), then by the induction hypothesis, \( l \) is a sublist of \( L'.join \).
+- Since \( (l' :: L').join = l' ++ L'.join \), and a sublist of \( L'.join \) is also a sublist of \( l' ++ L'.join \), it follows that \( l \) is a sublist of \( (l' :: L').join \).
+
+Thus, in both cases, we have shown that if \( l \) is an element of \( L \), then \( l \) is a sublist of \( L.join \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {L : List (List α)} {l} (h : l ∈ L) : l <+ L.join := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {L : List (List α)} {l} (h : l ∈ L) : l <+ L.join := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Count of Element in Singleton List : For any type \(\alpha\) with a decidable equality relation, and for any elements \(a, b \in \alpha\), the count of \(a\) in the list \([b]\) is 1 if \(b\) is equal to \(a\), and 0 otherwise. Mathematically, this can be expressed as:
+\[
+\text{count}(a, [b]) = \begin{cases} 
+1 & \text{if } b = a \\
+0 & \text{if } b \neq a 
+\end{cases}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we use the definition of the count function for lists. Specifically, we use the property that for any list \(l\) and elements \(a, b \in \alpha\), the count of \(a\) in the list \(b :: l\) is given by:
+\[
+\text{count}(a, b :: l) = \text{count}(a, l) + \begin{cases}
+1 & \text{if } b = a \\
+0 & \text{otherwise}
+\end{cases}
+\]
+In our case, the list is \([b]\), which can be written as \(b :: []\). Therefore, we have:
+\[
+\text{count}(a, [b]) = \text{count}(a, b :: []) = \text{count}(a, []) + \begin{cases}
+1 & \text{if } b = a \\
+0 & \text{otherwise}
+\end{cases}
+\]
+Since \(\text{count}(a, []) = 0\), this simplifies to:
+\[
+\text{count}(a, [b]) = \begin{cases}
+1 & \text{if } b = a \\
+0 & \text{otherwise}
+\end{cases}
+\]
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : α) : count a [b] = if b == a then 1 else 0 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+
+example (a b : α) : count a [b] = if b == a then 1 else 0 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

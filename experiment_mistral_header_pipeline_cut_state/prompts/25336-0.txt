@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Boolean Or Equals False if and only if Both Operands are False: \( (x \lor y) = \text{false} \leftrightarrow x = \text{false} \land y = \text{false} \) : For any boolean values \( x \) and \( y \), the boolean "or" operation \( x \lor y \) is equal to `false` if and only if both \( x \) and \( y \) are equal to `false`, i.e., \( (x \lor y) = \text{false} \leftrightarrow x = \text{false} \land y = \text{false} \).
+
+2. **Informal Proof**  
+To prove the equivalence \( (x \lor y) = \text{false} \leftrightarrow x = \text{false} \land y = \text{false} \), we consider all possible values of \( x \) and \( y \):
+
+1. **Case 1: \( x = \text{false} \) and \( y = \text{false} \)**
+- Here, \( x \lor y = \text{false} \lor \text{false} = \text{false} \).
+- Therefore, \( (x \lor y) = \text{false} \) holds, and \( x = \text{false} \land y = \text{false} \) also holds.
+
+2. **Case 2: \( x = \text{false} \) and \( y = \text{true} \)**
+- Here, \( x \lor y = \text{false} \lor \text{true} = \text{true} \).
+- Therefore, \( (x \lor y) = \text{false} \) does not hold, and \( x = \text{false} \land y = \text{false} \) does not hold.
+
+3. **Case 3: \( x = \text{true} \) and \( y = \text{false} \)**
+- Here, \( x \lor y = \text{true} \lor \text{false} = \text{true} \).
+- Therefore, \( (x \lor y) = \text{false} \) does not hold, and \( x = \text{false} \land y = \text{false} \) does not hold.
+
+4. **Case 4: \( x = \text{true} \) and \( y = \text{true} \)**
+- Here, \( x \lor y = \text{true} \lor \text{true} = \text{true} \).
+- Therefore, \( (x \lor y) = \text{false} \) does not hold, and \( x = \text{false} \land y = \text{false} \) does not hold.
+
+From these cases, we see that \( (x \lor y) = \text{false} \) if and only if \( x = \text{false} \) and \( y = \text{false} \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), (x || y) = false ↔ x = false ∧ y = false := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (x || y) = false ↔ x = false ∧ y = false := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

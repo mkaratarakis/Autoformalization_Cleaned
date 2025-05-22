@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Count of Elements Satisfying Predicate Equals List Length if and only if All Elements Satisfy Predicate: \(\text{countP}(p, l) = \text{length}(l) \iff \forall a \in l, p(a) = \text{true}\) : For any type \(\alpha\) and any predicate \( p : \alpha \to \text{Bool} \), the number of elements in a list \( l \) that satisfy \( p \) is equal to the length of \( l \) if and only if every element in \( l \) satisfies \( p \). Mathematically, this can be expressed as:
+\[
+\text{countP}(p, l) = \text{length}(l) \iff \forall a \in l, p(a) = \text{true}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that the count of elements in a list \( l \) that satisfy a predicate \( p \) is equal to the length of the filtered list \( \text{filter}(p, l) \). This gives us:
+\[
+\text{countP}(p, l) = \text{length}(\text{filter}(p, l))
+\]
+Next, we use the theorem that the length of the filtered list \( \text{filter}(p, l) \) is equal to the length of the original list \( l \) if and only if every element in \( l \) satisfies \( p \). This gives us:
+\[
+\text{length}(\text{filter}(p, l)) = \text{length}(l) \quad \text{if and only if} \quad \forall a \in l, p(a) = \text{true}
+\]
+Combining these two results, we have:
+\[
+\text{countP}(p, l) = \text{length}(l) \quad \text{if and only if} \quad \forall a \in l, p(a) = \text{true}
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example : countP p l = l.length ↔ ∀ a ∈ l, p a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example : countP p l = l.length ↔ ∀ a ∈ l, p a := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

@@ -1,0 +1,56 @@
+
+1. **Informal Theorem**  
+Element at Index in `zipWith` List: Optional Result Using `Option.map` and `Option.bind` : For any types \(\alpha\), \(\beta\), and \(\gamma\), given two lists \(l_1 : \text{List } \alpha\) and \(l_2 : \text{List } \beta\), a function \(f : \alpha \to \beta \to \gamma\), and a natural number \(i\), the optional element at index \(i\) in the list resulting from \(\text{zipWith } f \, l_1 \, l_2\) is given by:
+\[
+(\text{zipWith } f \, l_1 \, l_2)[i]? = (\text{Option.map } f \, l_1[i]?).\text{bind } (\lambda g, \, \text{Option.map } g \, l_2[i]?)
+\]
+This means that if \(l_1[i]?\) is \(\text{some } a\) and \(l_2[i]?\) is \(\text{some } b\), then \((\text{zipWith } f \, l_1 \, l_2)[i]?\) is \(\text{some } (f \, a \, b)\). If either \(l_1[i]?\) or \(l_2[i]?\) is \(\text{none}\), then \((\text{zipWith } f \, l_1 \, l_2)[i]?\) is \(\text{none}\).
+
+2. **Informal Proof**  
+We will prove the theorem by induction on the structure of the lists \( l_1 \) and \( l_2 \).
+
+1. **Base Case: \( l_1 \) is the empty list.**
+- If \( l_1 \) is the empty list, then for any list \( l_2 \) and any natural number \( i \), the list \(\text{zipWith } f \, [] \, l_2\) is the empty list. Therefore, \((\text{zipWith } f \, [] \, l_2)[i]?\) is \(\text{none}\).
+- On the other hand, \(\text{Option.map } f \, [][i]?\) is \(\text{none}\) because \([i]?\) is \(\text{none}\) for any \( i \). Thus, \((\text{Option.map } f \, [][i]?).\text{bind } (\lambda g, \, \text{Option.map } g \, l_2[i]?)\) is also \(\text{none}\).
+- Therefore, the base case holds.
+
+2. **Inductive Step: \( l_1 \) is a non-empty list.**
+- Let \( l_1 = \text{head} :: \text{tail} \) and \( l_2 = \text{head}^\prime :: \text{tail}^\prime \).
+- We need to show that \((\text{zipWith } f \, (\text{head} :: \text{tail}) \, (\text{head}^\prime :: \text{tail}^\prime))[i]?\) is equal to \((\text{Option.map } f \, (\text{head} :: \text{tail})[i]?).\text{bind } (\lambda g, \, \text{Option.map } g \, (\text{head}^\prime :: \text{tail}^\prime)[i]?)\).
+
+- **Case 1: \( i = 0 \)**
+- \((\text{zipWith } f \, (\text{head} :: \text{tail}) \, (\text{head}^\prime :: \text{tail}^\prime))[0]?\) is \(\text{some } (f \, \text{head} \, \text{head}^\prime)\) because the first elements of the lists are paired.
+- \((\text{Option.map } f \, (\text{head} :: \text{tail})[0]?).\text{bind } (\lambda g, \, \text{Option.map } g \, (\text{head}^\prime :: \text{tail}^\prime)[0]?)\) is \(\text{some } (f \, \text{head} \, \text{head}^\prime)\) because \((\text{head} :: \text{tail})[0]?\) is \(\text{some } \text{head}\) and \((\text{head}^\prime :: \text{tail}^\prime)[0]?\) is \(\text{some } \text{head}^\prime\).
+- Therefore, the case \( i = 0 \) holds.
+
+- **Case 2: \( i = n + 1 \) for some natural number \( n \)**
+- \((\text{zipWith } f \, (\text{head} :: \text{tail}) \, (\text{head}^\prime :: \text{tail}^\prime))[n + 1]?\) is \((\text{zipWith } f \, \text{tail} \, \text{tail}^\prime)[n]?\) by the definition of `zipWith`.
+- By the inductive hypothesis, \((\text{zipWith } f \, \text{tail} \, \text{tail}^\prime)[n]?\) is equal to \((\text{Option.map } f \, \text{tail}[n]?).\text{bind } (\lambda g, \, \text{Option.map } g \, \text{tail}^\prime[n]?)\).
+- Therefore, \((\text{zipWith } f \, (\text{head} :: \text{tail}) \, (\text{head}^\prime :: \text{tail}^\prime))[n + 1]?\) is equal to \((\text{Option.map } f \, (\text{head} :: \text{tail})[n + 1]?).\text{bind } (\lambda g, \, \text{Option.map } g \, (\text{head}^\prime :: \text{tail}^\prime)[n + 1]?)\).
+
+- **Case 3: \( l_2 \) is the empty list**
+- If \( l_2 \) is the empty list, then \((\text{zipWith } f \, (\text{head} :: \text{tail}) \, [])[i]?\) is \(\text{none}\) for any \( i \).
+- On the other hand, \((\text{Option.map } f \, (\text{head} :: \text{tail})[i]?).\text{bind } (\lambda g, \, \text{Option.map } g \, [][i]?)\) is \(\text{none}\) because \([][i]?\) is \(\text{none}\) for any \( i \).
+- Therefore, the case where \( l_2 \) is the empty list holds.
+
+Thus, by induction, the theorem holds for all lists \( l_1 \) and \( l_2 \) and all natural numbers \( i \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {f : α → β → γ} {i : Nat} :
+    (zipWith f l₁ l₂)[i]? = (l₁[i]?.map f).bind fun g => l₂[i]?.map g := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {f : α → β → γ} {i : Nat} :
+    (zipWith f l₁ l₂)[i]? = (l₁[i]?.map f).bind fun g => l₂[i]?.map g := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

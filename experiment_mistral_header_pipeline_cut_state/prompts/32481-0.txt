@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Power Subtraction and Multiplication Identity: \( a^{n - m} \cdot a^m = a^n \) : For any natural number \( a \) and any natural numbers \( m \) and \( n \) such that \( m \leq n \), it holds that \( a^{n - m} \cdot a^m = a^n \).
+
+2. **Informal Proof**  
+To prove the identity \( a^{n - m} \cdot a^m = a^n \), we start by using the property of exponents that states the power of a sum of exponents is equal to the product of the powers of the individual exponents. Specifically, we have:
+\[
+a^{(n - m) + m} = a^{n - m} \cdot a^m
+\]
+By applying this property in reverse, we can rewrite the goal \( a^{n - m} \cdot a^m = a^n \) as:
+\[
+a^{(n - m) + m} = a^n
+\]
+Next, we use the property that subtraction and addition cancel each other out in additive groups. Since \( m \leq n \), we have:
+\[
+n - m + m = n
+\]
+Thus, the goal simplifies to:
+\[
+a^n = a^n
+\]
+This is trivially true. Therefore, we have shown that \( a^{n - m} \cdot a^m = a^n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : Nat) {m n : Nat} (h : m ≤ n) :
+    a ^ (n - m) * a ^ m = a ^ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a : Nat) {m n : Nat} (h : m ≤ n) :
+    a ^ (n - m) * a ^ m = a ^ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

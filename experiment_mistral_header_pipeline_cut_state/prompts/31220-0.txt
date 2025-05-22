@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Subtraction and Addition Cancellation in Natural Numbers: \( n - m + m = n \) : For any natural numbers \( n \) and \( m \) such that \( m \leq n \), the equation \( n - m + m = n \) holds.
+
+2. **Informal Proof**  
+We start with the goal of proving \( n - m + m = n \) for natural numbers \( n \) and \( m \) such that \( m \leq n \).
+
+1. **Step 1:**
+Using the commutativity of addition, we rewrite the goal \( n - m + m = n \) as \( m + (n - m) = n \).
+
+2. **Step 2:**
+By the property of natural numbers, for any \( a \) and \( b \) such that \( a \leq b \), the sum \( a + (b - a) \) is equal to \( b \). Since \( m \leq n \), we have \( m + (n - m) = n \).
+
+3. **Step 3:**
+Therefore, the goal is now \( n = n \), which is trivially true.
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m : Nat} (h : m ≤ n) : n - m + m = n := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {n m : Nat} (h : m ≤ n) : n - m + m = n := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Positive Count of Element in List if and only if Element is in List: \( 0 < \text{count}(a, l) \iff a \in l \) : For any type \( \alpha \) with a `BEq` instance and a `LawfulBEq` instance, and for any element \( a \in \alpha \) and list \( l \) of elements of type \( \alpha \), the count of \( a \) in \( l \) is positive if and only if \( a \) is a member of \( l \). Mathematically, this can be expressed as:
+\[
+0 < \text{count}(a, l) \iff a \in l
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions and properties of the functions and relations involved. Specifically, we use the following:
+
+1. **Definition of `count`**: The function `count a l` returns the number of occurrences of \( a \) in the list \( l \).
+2. **Property `countP_pos`**: The count of \( a \) in \( l \) is positive if and only if there exists an element \( a' \) in \( l \) such that \( a = a' \).
+3. **Property `beq_iff_eq`**: The boolean equality \( a == b \) is `true` if and only if \( a = b \).
+4. **Property `exists_eq_right`**: The statement \( \exists a, p(a) \land a = a' \) is logically equivalent to \( p(a') \).
+
+Using these properties, we can simplify the proposition \( 0 < \text{count}(a, l) \iff a \in l \) as follows:
+
+- **Forward direction**: If \( 0 < \text{count}(a, l) \), then by `countP_pos`, there exists an element \( a' \) in \( l \) such that \( a = a' \). By `beq_iff_eq`, this means \( a \) is a member of \( l \).
+- **Backward direction**: If \( a \in l \), then there exists an element \( a' \) in \( l \) such that \( a = a' \). By `countP_pos`, this implies \( 0 < \text{count}(a, l) \).
+
+Thus, we have shown that \( 0 < \text{count}(a, l) \) if and only if \( a \in l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : α} {l : List α} : 0 < count a l ↔ a ∈ l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+variable [LawfulBEq α]
+
+example {a : α} {l : List α} : 0 < count a l ↔ a ∈ l := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

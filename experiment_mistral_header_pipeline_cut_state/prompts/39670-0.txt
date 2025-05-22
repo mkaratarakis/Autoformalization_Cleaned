@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+First Element Satisfying Predicate in Replicated List: `List.find? p (List.replicate n a) = if n = 0 then none else some a` : For any type \( \alpha \), predicate \( p : \alpha \to \text{Bool} \), natural number \( n \), and element \( a : \alpha \), if \( p(a) \) is true, then the result of `List.find? p (List.replicate n a)` is `none` if \( n = 0 \) and `some a` otherwise. In other words, if \( p(a) \) is true, the function `List.find?` applied to the predicate \( p \) and a list containing \( n \) copies of \( a \) returns `none` if the list is empty and `some a` if the list is non-empty.
+
+2. **Informal Proof**  
+We start with the given hypothesis that \( p(a) = \text{true} \). We need to show that `List.find? p (List.replicate n a)` is `none` if \( n = 0 \) and `some a` if \( n \neq 0 \).
+
+Using the definition of `List.find?` on a replicated list, we know that:
+- If \( n = 0 \), `List.find? p (List.replicate n a)` returns `none`.
+- If \( n \neq 0 \) and \( p(a) = \text{true} \), `List.find? p (List.replicate n a)` returns `some a`.
+- If \( n \neq 0 \) and \( p(a) = \text{false} \), `List.find? p (List.replicate n a)` returns `none`.
+
+Since \( p(a) = \text{true} \) by hypothesis, the result of `List.find? p (List.replicate n a)` is:
+- `none` if \( n = 0 \),
+- `some a` if \( n \neq 0 \).
+
+This matches the goal exactly, thus completing the proof.
+
+3. **Formal Theorem**  
+example (h : p a) : find? p (replicate n a) = if n = 0 then none else some a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (h : p a) : find? p (replicate n a) = if n = 0 then none else some a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

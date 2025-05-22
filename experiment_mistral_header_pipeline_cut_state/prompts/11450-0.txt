@@ -1,0 +1,69 @@
+
+1. **Informal Theorem**  
+GCD of Products with Common Factor: \(\gcd(m \cdot n, k \cdot n) = \gcd(m, k) \cdot n\) : For any natural numbers \( m \), \( n \), and \( k \), the greatest common divisor of \( m \cdot n \) and \( k \cdot n \) is equal to the product of the greatest common divisor of \( m \) and \( k \) with \( n \), i.e., \(\gcd(m \cdot n, k \cdot n) = \gcd(m, k) \cdot n\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \(\gcd(m \cdot n, k \cdot n) = \gcd(m, k) \cdot n\).
+
+1. **Step 1: Commutativity of Multiplication**
+- We use the commutativity of multiplication to rewrite the terms:
+\[
+m \cdot n = n \cdot m \quad \text{and} \quad k \cdot n = n \cdot k
+\]
+- This transforms our goal to:
+\[
+\gcd(n \cdot m, n \cdot k) = \gcd(m, k) \cdot n
+\]
+
+2. **Step 2: Commutativity of Multiplication for GCD**
+- We also use the commutativity of multiplication for the term involving the greatest common divisor:
+\[
+\gcd(m, k) \cdot n = n \cdot \gcd(m, k)
+\]
+- This further simplifies our goal to:
+\[
+\gcd(n \cdot m, n \cdot k) = n \cdot \gcd(m, k)
+\]
+
+3. **Step 3: GCD of Left Multiples**
+- We apply the theorem that the greatest common divisor of left multiples is equal to the normalized left multiple of the greatest common divisor:
+\[
+\gcd(a \cdot b, a \cdot c) = \text{normalize}(a) \cdot \gcd(b, c)
+\]
+- In our case, \( a = n \), \( b = m \), and \( c = k \). Since \( n \) is a natural number, \(\text{normalize}(n) = n\). Therefore, we have:
+\[
+\gcd(n \cdot m, n \cdot k) = n \cdot \gcd(m, k)
+\]
+
+4. **Step 4: Conclusion**
+- The goal is now:
+\[
+n \cdot \gcd(m, k) = n \cdot \gcd(m, k)
+\]
+- This is trivially true by the properties of equality.
+
+Thus, we have shown that \(\gcd(m \cdot n, k \cdot n) = \gcd(m, k) \cdot n\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n k : Nat) : gcd (m * n) (k * n) = gcd m k * n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (m n k : Nat) : gcd (m * n) (k * n) = gcd m k * n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Valid Index Returns Some in Element Retrieval : For any collection \( c \) of type `cont`, any index \( i \) of type `idx`, and any element type `elem`, if the index \( i \) is valid for the collection \( c \) (i.e., \( \text{dom } c \, i \) holds), and if the validity of the index is decidable (i.e., \( \text{Decidable}(\text{dom } c \, i) \) holds), then the function `getElem?` returns `some (getElem c i h)` when applied to \( c \) and \( i \), where \( h \) is a proof of the validity of \( i \) in \( c \). In other words, if the index is valid, `getElem?` returns the element at that index wrapped in `some`.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of `getElem?`. According to the definition, `getElem? c i` is defined as:
+\[
+\text{if } h : \text{dom } c \, i \text{ then } \text{some } (\text{getElem } c \, i \, h) \text{ else } \text{none}
+\]
+Given that \( h \) is a proof that \(\text{dom } c \, i\) holds, the if-then-else construct evaluates to the true branch:
+\[
+\text{if } h : \text{dom } c \, i \text{ then } \text{some } (\text{getElem } c \, i \, h) \text{ else } \text{none} = \text{some } (\text{getElem } c \, i \, h)
+\]
+Thus, the goal \(\text{getElem? } c \, i = \text{some } (\text{getElem } c \, i \, h)\) is exactly proved. This completes the proof.
+
+3. **Formal Theorem**  
+example [GetElem? cont idx elem dom] [LawfulGetElem cont idx elem dom]
+    (c : cont) (i : idx) (h : dom c i) [Decidable (dom c i)] : c[i]? = some (c[i]'h) := by sorry
+
+4. **Prefix**
+import Init.Util
+import Init.GetElem
+
+
+
+
+example [GetElem? cont idx elem dom] [LawfulGetElem cont idx elem dom]
+    (c : cont) (i : idx) (h : dom c i) [Decidable (dom c i)] : c[i]? = some (c[i]'h) := by
+
+5. **Header Information**  
+-- Init.Util not found. --
+
+-- Init.GetElem not found. --
+

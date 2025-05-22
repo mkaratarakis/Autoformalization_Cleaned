@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Left Conjunction with Self is Equivalent to Conjunction : For any propositions \( a \) and \( b \), the conjunction \( a \land a \land b \) is logically equivalent to \( a \land b \), i.e., \( a \land a \land b \leftrightarrow a \land b \).
+
+2. **Informal Proof**  
+To prove that \( a \land a \land b \leftrightarrow a \land b \), we start by using the associativity of conjunction. The associativity of conjunction states that \((a \land a) \land b\) is logically equivalent to \(a \land a \land b\). Therefore, we can rewrite the goal as:
+\[
+(a \land a) \land b \leftrightarrow a \land b
+\]
+Next, we use the idempotence of conjunction, which states that \(a \land a\) is equal to \(a\). Applying this, we get:
+\[
+a \land b \leftrightarrow a \land b
+\]
+This is a trivially true statement, as it is an equality of the same expression on both sides. Therefore, we have shown that:
+\[
+a \land a \land b \leftrightarrow a \land b
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example : a ∧ (a ∧ b) ↔ a ∧ b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example : a ∧ (a ∧ b) ↔ a ∧ b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Power Division Identity: \( x^m / x^n = x^{m - n} \) for \( x > 0 \) and \( n \le m \) : For any natural numbers \( x \), \( m \), and \( n \) such that \( n \le m \) and \( x > 0 \), the division of \( x^m \) by \( x^n \) is equal to \( x^{m - n} \), i.e., \( x^m / x^n = x^{m - n} \).
+
+2. **Informal Proof**  
+We start by noting that \( x^n \) is positive because \( x > 0 \) and \( x^n \) is a power of a positive number. Additionally, since \( n \le m \), \( x^n \) divides \( x^m \). Using the equivalence of division and multiplication in natural numbers, we have:
+\[ \frac{x^m}{x^n} = x^{m - n} \quad \text{if and only if} \quad x^m = x^{m - n} \cdot x^n. \]
+Next, we use the property of powers in monoids, which states that for any natural numbers \( m \) and \( n \) such that \( m \le n \), and for any element \( a \) in a monoid, it holds that:
+\[ a^{n - m} \cdot a^m = a^n. \]
+Applying this property to our specific case, we get:
+\[ x^{m - n} \cdot x^n = x^m. \]
+Thus, the equation \( x^m = x^{m - n} \cdot x^n \) is true, and therefore:
+\[ \frac{x^m}{x^n} = x^{m - n}. \]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x m n : Nat} (h : n ≤ m) (hx : 0 < x) : x ^ m / x ^ n = x ^ (m - n) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {x m n : Nat} (h : n ≤ m) (hx : 0 < x) : x ^ m / x ^ n = x ^ (m - n) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

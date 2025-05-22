@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Subtraction Identity: \(a = c + b\) if \(a - b = c\) and \(b \leq a\) : For any natural numbers \(a\), \(b\), and \(c\), if \(b \leq a\) and \(a - b = c\), then \(a = c + b\).
+
+2. **Informal Proof**  
+We start with the given conditions: \(b \leq a\) and \(a - b = c\). We need to show that \(a = c + b\).
+
+1. **Symmetry of Equality:**
+Since \(a - b = c\), by the symmetry of equality, we can rewrite this as \(c = a - b\).
+
+2. **Subtraction and Addition Cancel Each Other:**
+Using the property of natural numbers, for any \(a\) and \(b\) where \(b \leq a\), the equation \(a - b + b = a\) holds. Therefore, we can rewrite \(a\) as:
+\[
+a = (a - b) + b
+\]
+
+3. **Substitute \(c\) for \(a - b\):**
+From the symmetry of equality, we know \(c = a - b\). Substituting \(c\) for \(a - b\) in the equation \(a = (a - b) + b\), we get:
+\[
+a = c + b
+\]
+
+Thus, we have shown that \(a = c + b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Nat} (hle : b ≤ a) (h : a - b = c) : a = c + b := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {a b c : Nat} (hle : b ≤ a) (h : a - b = c) : a = c + b := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+If-Then-Else Function Congruence: $\text{ite}(b, x, y) = \text{ite}(c, u, v)$ : For any type $\alpha$, propositions $b$ and $c$, and elements $x, y, u, v \in \alpha$, if $b$ is equal to $c$, and if $c$ implies $x = u$, and if the negation of $c$ implies $y = v$, then the if-then-else function `ite` evaluated at $b$ with $x$ and $y$ is equal to `ite` evaluated at $c$ with $u$ and $v$. In other words, if $b = c$, $c \to x = u$, and $\neg c \to y = v$, then $\text{ite}(b, x, y) = \text{ite}(c, u, v)$.
+
+2. **Informal Proof**  
+We need to show that $\text{ite}(b, x, y) = \text{ite}(c, u, v)$ under the given conditions. We consider two cases based on the truth value of $c$.
+
+1. **Case 1: $c$ is true.**
+- By the property of the if-then-else function, $\text{ite}(c, u, v) = u$ when $c$ is true.
+- Since $b = c$, we can substitute $b$ with $c$ in the goal. Thus, $\text{ite}(b, x, y) = \text{ite}(c, x, y) = x$.
+- Therefore, the goal reduces to showing $x = u$.
+- This is exactly proved by the hypothesis $h₂$, which states that if $c$ is true, then $x = u$.
+
+2. **Case 2: $c$ is false.**
+- By the property of the if-then-else function, $\text{ite}(c, u, v) = v$ when $c$ is false.
+- Since $b = c$, we can substitute $b$ with $c$ in the goal. Thus, $\text{ite}(b, x, y) = \text{ite}(c, x, y) = y$.
+- Therefore, the goal reduces to showing $y = v$.
+- This is exactly proved by the hypothesis $h₃$, which states that if $c$ is false, then $y = v$.
+
+In both cases, the goal is satisfied. Therefore, we have shown that $\text{ite}(b, x, y) = \text{ite}(c, u, v)$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {x y u v : α} {s : Decidable b} [Decidable c]
+    (h₁ : b = c) (h₂ : c → x = u) (h₃ : ¬ c → y = v) : ite b x y = ite c u v := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example {x y u v : α} {s : Decidable b} [Decidable c]
+    (h₁ : b = c) (h₂ : c → x = u) (h₃ : ¬ c → y = v) : ite b x y = ite c u v := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

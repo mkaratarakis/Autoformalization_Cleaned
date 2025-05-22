@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Double Negation Identity: \(\text{not}(\text{not}(b)) = b\) : For any boolean value \( b \), the double negation of \( b \) is equal to \( b \), i.e., \(\text{not}(\text{not}(b)) = b\).
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value \( b \).
+
+1. **Case 1: \( b = \text{false} \)**
+- We need to show that \(\text{not}(\text{not}(\text{false})) = \text{false}\).
+- By the definition of the \(\text{not}\) function, \(\text{not}(\text{false}) = \text{true}\).
+- Applying \(\text{not}\) again, \(\text{not}(\text{true}) = \text{false}\).
+- Therefore, \(\text{not}(\text{not}(\text{false})) = \text{false}\).
+
+2. **Case 2: \( b = \text{true} \)**
+- We need to show that \(\text{not}(\text{not}(\text{true})) = \text{true}\).
+- By the definition of the \(\text{not}\) function, \(\text{not}(\text{true}) = \text{false}\).
+- Applying \(\text{not}\) again, \(\text{not}(\text{false}) = \text{true}\).
+- Therefore, \(\text{not}(\text{not}(\text{true})) = \text{true}\).
+
+Since both cases hold, we conclude that for any boolean value \( b \), \(\text{not}(\text{not}(b)) = b\). This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) : (!!b) = b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (!!b) = b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

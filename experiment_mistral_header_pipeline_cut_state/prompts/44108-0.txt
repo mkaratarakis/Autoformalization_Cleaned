@@ -1,0 +1,71 @@
+
+1. **Informal Theorem**  
+Truncation Preserves Bitvector Conjunction: \(\text{truncate}(k, x \&&& y) = \text{truncate}(k, x) \&&& \text{truncate}(k, y)\) : For any natural numbers \( w \) and \( k \), and any bitvectors \( x \) and \( y \) of width \( w \), the most significant bit of the conjunction \( x \&&& y \) truncated to width \( k \) is equal to the conjunction of the most significant bits of \( x \) and \( y \) truncated to width \( k \). Formally, \(\text{truncate}(k, x \&&& y) = \text{truncate}(k, x) \&&& \text{truncate}(k, y)\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for every \(i \in \{0, 1, \ldots, k-1\}\), the \(i\)-th least significant bit of \(\text{truncate}(k, x \&&& y)\) is equal to the \(i\)-th least significant bit of \(\text{truncate}(k, x) \&&& \text{truncate}(k, y)\).
+
+1. **Introduce a new variable \(i\):**
+We introduce a new variable \(i\) to reason about the \(i\)-th least significant bit of the bitvectors involved. This reduces our goal to showing that for every \(i \in \{0, 1, \ldots, k-1\}\),
+\[
+(\text{truncate}(k, x \&&& y)).\text{getLsb}(i) = (\text{truncate}(k, x) \&&& \text{truncate}(k, y)).\text{getLsb}(i).
+\]
+
+2. **Simplify the expression:**
+Using the properties of bitvector operations and the definition of the least significant bit, we can simplify the expression. Specifically, we use the fact that the conjunction operation preserves the least significant bits:
+\[
+(x \&&& y).\text{getLsb}(i) = (x.\text{getLsb}(i) \land y.\text{getLsb}(i)).
+\]
+Additionally, the truncation operation only affects the higher bits, which are not considered in the least significant bit comparison. Therefore, for every \(i \in \{0, 1, \ldots, k-1\}\),
+\[
+(\text{truncate}(k, x \&&& y)).\text{getLsb}(i) = (x \&&& y).\text{getLsb}(i) = (x.\text{getLsb}(i) \land y.\text{getLsb}(i)).
+\]
+Similarly,
+\[
+(\text{truncate}(k, x) \&&& \text{truncate}(k, y)).\text{getLsb}(i) = (\text{truncate}(k, x).\text{getLsb}(i) \land \text{truncate}(k, y).\text{getLsb}(i)) = (x.\text{getLsb}(i) \land y.\text{getLsb}(i)).
+\]
+Hence, we have
+\[
+(\text{truncate}(k, x \&&& y)).\text{getLsb}(i) = (\text{truncate}(k, x) \&&& \text{truncate}(k, y)).\text{getLsb}(i).
+\]
+
+Since this holds for every \(i \in \{0, 1, \ldots, k-1\}\), we conclude that
+\[
+\text{truncate}(k, x \&&& y) = \text{truncate}(k, x) \&&& \text{truncate}(k, y).
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x y : BitVec w} :
+    (x &&& y).truncate k = x.truncate k &&& y.truncate k := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x y : BitVec w} :
+    (x &&& y).truncate k = x.truncate k &&& y.truncate k := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

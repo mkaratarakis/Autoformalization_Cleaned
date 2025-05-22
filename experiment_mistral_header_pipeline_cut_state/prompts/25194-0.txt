@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Option Bind Equals None if and only if Function Maps Some to None : For any types \( \alpha \) and \( \beta \), and for any optional value \( o : \text{Option} \, \alpha \) and function \( f : \alpha \to \text{Option} \, \beta \), the expression \( o \bind f \) is equal to `none` if and only if for every \( a : \alpha \), if \( o = \text{some} \, a \), then \( f(a) = \text{none} \).
+
+2. **Informal Proof**  
+We will consider every possible case of the optional value \( o \). There are two cases:
+
+1. **Case 1: \( o = \text{none} \)**
+- We need to show that \( \text{none} \bind f = \text{none} \) if and only if for every \( a : \alpha \), \( \text{none} = \text{some} \, a \) implies \( f(a) = \text{none} \).
+- Since \( \text{none} = \text{some} \, a \) is always false, the right-hand side of the equivalence is trivially true. Therefore, the equivalence holds.
+
+2. **Case 2: \( o = \text{some} \, a \)**
+- We need to show that \( (\text{some} \, a) \bind f = \text{none} \) if and only if for every \( a' : \alpha \), \( \text{some} \, a = \text{some} \, a' \) implies \( f(a') = \text{none} \).
+- Since \( \text{some} \, a = \text{some} \, a' \) implies \( a = a' \), the right-hand side of the equivalence simplifies to \( f(a) = \text{none} \). Therefore, the equivalence holds.
+
+In both cases, the equivalence \( o \bind f = \text{none} \) if and only if for every \( a : \alpha \), if \( o = \text{some} \, a \), then \( f(a) = \text{none} \) is satisfied. This completes the proof.
+
+3. **Formal Theorem**  
+example {o : Option α} {f : α → Option β} :
+    o.bind f = none ↔ ∀ a, o = some a → f a = none := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {f : α → Option β} :
+    o.bind f = none ↔ ∀ a, o = some a → f a = none := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

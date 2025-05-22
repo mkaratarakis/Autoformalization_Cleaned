@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Carry Bit at Width \( w \) is True if and Only if Sum of Natural Representations is at Least \( 2^w \) : For any natural number \( w \), boolean value \( c \), and bitvectors \( x \) and \( y \) of width \( w \), the carry bit at position \( w \) when computing the sum of \( x \) and \( y \) with an initial carry bit \( c \) is `true` if and only if the sum of the natural number representations of \( x \), \( y \), and \( c \) is at least \( 2^w \). Formally, this is expressed as:
+\[
+\text{carry}(w, x, y, c) = \text{true} \iff x_{\text{nat}} + y_{\text{nat}} + c_{\text{nat}} \ge 2^w
+\]
+where \( x_{\text{nat}} \), \( y_{\text{nat}} \), and \( c_{\text{nat}} \) are the natural number representations of \( x \), \( y \), and \( c \), respectively.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the carry bit. The carry bit at position \( w \) when computing the sum of \( x \) and \( y \) with an initial carry bit \( c \) is defined as:
+\[
+\text{carry}(w, x, y, c) = \text{decide}(x_{\text{nat}} + y_{\text{nat}} + c_{\text{nat}} \ge 2^w)
+\]
+Here, \(\text{decide}(P)\) is a function that returns `true` if the proposition \( P \) is true and `false` otherwise. Therefore, the carry bit is `true` if and only if the sum of the natural number representations of \( x \), \( y \), and \( c \) is at least \( 2^w \). This completes the proof.
+
+3. **Formal Theorem**  
+example {x y : BitVec w} :
+    carry w x y c = decide (x.toNat + y.toNat + c.toNat ≥ 2^w) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example {x y : BitVec w} :
+    carry w x y c = decide (x.toNat + y.toNat + c.toNat ≥ 2^w) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

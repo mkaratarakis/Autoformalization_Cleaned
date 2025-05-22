@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Boolean Prefix Check is Equivalent to List Prefix Relation: \( l_1 \text{ is a prefix of } l_2 \leftrightarrow l_1 <+: l_2 \) : For any type \( \alpha \) with a decidable equality, and for any two lists \( l_1 \) and \( l_2 \) of type \( \alpha \), the boolean function `isPrefixOf` returns `true` if and only if \( l_1 \) is a prefix of \( l_2 \). Formally, \( l_1 \) is a prefix of \( l_2 \) (denoted as \( l_1 <+: l_2 \)) if and only if there exists a list \( t \) such that \( l_2 = l_1 ++ t \).
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l_1 \).
+
+1. **Base Case: \( l_1 \) is the empty list.**
+- We need to show that `isPrefixOf [] l_2` returns `true` if and only if \( [] <+: l_2 \).
+- By the definition of `isPrefixOf`, `isPrefixOf [] l_2` always returns `true`.
+- By the definition of the prefix relation, the empty list is a prefix of any list \( l_2 \).
+- Therefore, the base case holds.
+
+2. **Inductive Step: \( l_1 \) is a non-empty list, specifically \( l_1 = a :: l_1' \).**
+- Assume the induction hypothesis: for any list \( l_2 \), \( l_1' \) is a prefix of \( l_2 \) if and only if `isPrefixOf l_1' l_2` returns `true`.
+- We need to show that \( a :: l_1' \) is a prefix of \( l_2 \) if and only if `isPrefixOf (a :: l_1') l_2` returns `true`.
+- Consider the case where \( l_2 \) is a non-empty list, specifically \( l_2 = a' :: l_2' \).
+- By the definition of `isPrefixOf`, `isPrefixOf (a :: l_1') (a' :: l_2')` returns `true` if and only if \( a = a' \) and `isPrefixOf l_1' l_2'` returns `true`.
+- By the induction hypothesis, `isPrefixOf l_1' l_2'` returns `true` if and only if \( l_1' \) is a prefix of \( l_2' \).
+- Therefore, \( a :: l_1' \) is a prefix of \( a' :: l_2' \) if and only if \( a = a' \) and \( l_1' \) is a prefix of \( l_2' \).
+
+By induction, the theorem holds for all lists \( l_1 \) and \( l_2 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example [BEq α] [LawfulBEq α] {l₁ l₂ : List α} :
+    l₁.isPrefixOf l₂ ↔ l₁ <+: l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example [BEq α] [LawfulBEq α] {l₁ l₂ : List α} :
+    l₁.isPrefixOf l₂ ↔ l₁ <+: l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

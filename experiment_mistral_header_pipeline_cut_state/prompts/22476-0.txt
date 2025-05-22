@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Unsigned Less-Than-or-Equal is Equivalent to Not Unsigned Less-Than for Bit Vectors : For any natural number \( w \) and any bit vectors \( x \) and \( y \) of length \( w \), the unsigned less-than-or-equal relation \( x \le y \) holds if and only if the unsigned less-than relation \( y < x \) does not hold. In other words, \( x \le y \) if and only if \( \neg (y < x) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions of the unsigned less-than-or-equal relation \( x \le y \) and the unsigned less-than relation \( y < x \). We also use the property that the boolean value of the negation of a proposition is the negation of the boolean value of the proposition. Specifically, we have:
+
+1. The unsigned less-than-or-equal relation \( x \le y \) is defined as a certain boolean expression.
+2. The unsigned less-than relation \( y < x \) is defined as another boolean expression.
+3. The property that the boolean value of the negation of a proposition is the negation of the boolean value of the proposition, i.e., \(\text{decide}(\neg p) = \text{not}(\text{decide} p)\).
+
+Using these definitions and properties, we can simplify the goal to show that \( x \le y \) is equivalent to \( \neg (y < x) \). This simplification directly follows from the definitions and the property of negation. Therefore, we conclude that \( x \le y \) if and only if \( \neg (y < x) \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec w) : x.ule y = !y.ult x := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x y : BitVec w) : x.ule y = !y.ult x := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

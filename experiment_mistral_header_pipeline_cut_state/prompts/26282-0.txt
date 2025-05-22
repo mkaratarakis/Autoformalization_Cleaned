@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Power of Successor: \( b^{e + 1} = b \cdot b^e \) : For any integer \( b \) and any natural number \( e \), the power \( b^{e + 1} \) is equal to \( b \cdot b^e \), i.e., \( b^{e + 1} = b \cdot b^e \).
+
+2. **Informal Proof**  
+We start with the goal of proving that \( b^{e + 1} = b \cdot b^e \) for any integer \( b \) and any natural number \( e \).
+
+1. First, we use the commutativity of multiplication to rewrite the goal \( b \cdot b^e \) as \( b^e \cdot b \). This gives us the equivalent goal:
+\[
+b^{e + 1} = b^e \cdot b
+\]
+
+2. Next, we use the property of powers in monoids, which states that for any integer \( b \) and any natural number \( e \), \( b^{e + 1} = b^e \cdot b \). This property directly matches our current goal, so we have:
+\[
+b^{e + 1} = b^e \cdot b
+\]
+
+3. Since the goal \( b^e \cdot b = b^e \cdot b \) is trivially true by the properties of equality, the proof is complete.
+
+Thus, we have shown that \( b^{e + 1} = b \cdot b^e \) for any integer \( b \) and any natural number \( e \). \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (b : Int) (e : Nat) : b ^ (e+1) = b * (b ^ e) := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.Data.Int.Pow
+
+open Int
+
+
+example (b : Int) (e : Nat) : b ^ (e+1) = b * (b ^ e) := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.Data.Int.Pow not found. --
+

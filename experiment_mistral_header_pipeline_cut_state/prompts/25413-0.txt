@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Conditional Function Equals If-Then-Else Function for Boolean Conditions : For any type $\alpha$ and any boolean value $b$, the conditional function `cond` (or `bif b then t else e`) returns the same result as the if-then-else function `ite` (or `if b = true then t else e`). Specifically, if $b$ is `true`, both functions return $t$, and if $b$ is `false`, both functions return $e$.
+
+2. **Informal Proof**  
+We need to show that for any boolean value $b$, the conditional function `cond` (or `bif b then t else e`) returns the same result as the if-then-else function `ite` (or `if b = true then t else e`).
+
+We will consider the two possible cases for the boolean value $b$:
+
+1. **Case 1: $b = \text{false}$**
+- The expression `bif false then t else e` simplifies to $e$.
+- The expression `if false = true then t else e` also simplifies to $e$ because `false` is not equal to `true`.
+- Therefore, $(\text{bif false then } t \text{ else } e) = (\text{if false} = \text{true then } t \text{ else } e)$ holds.
+
+2. **Case 2: $b = \text{true}$**
+- The expression `bif true then t else e` simplifies to $t$.
+- The expression `if true = true then t else e` also simplifies to $t$ because `true` is equal to `true`.
+- Therefore, $(\text{bif true then } t \text{ else } e) = (\text{if true} = \text{true then } t \text{ else } e)$ holds.
+
+Since both cases are covered, we conclude that for any boolean value $b$, the conditional function `cond` (or `bif b then t else e`) returns the same result as the if-then-else function `ite` (or `if b = true then t else e`). This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {α} (b : Bool) (t e : α) : cond b t e = if b then t else e := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example {α} (b : Bool) (t e : α) : cond b t e = if b then t else e := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

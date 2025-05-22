@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Concatenation of an Element to a List Equals Appending a Singleton List : For any list \( as \) of elements of type \( \alpha \) and any element \( a \) of type \( \alpha \), the concatenation of \( a \) to the end of \( as \) is equal to the list obtained by appending \( a \) to \( as \) as a singleton list, i.e., \( as.concat(a) = as ++ [a] \).
+
+2. **Informal Proof**  
+We prove this by induction on the list \( as \).
+
+1. **Base Case:**
+- Consider the empty list \( \text{nil} \).
+- We need to show that \( \text{nil.concat}(a) = \text{nil} ++ [a] \).
+- By the definition of `concat`, \( \text{nil.concat}(a) = [a] \).
+- By the definition of list concatenation, \( \text{nil} ++ [a] = [a] \).
+- Therefore, \( \text{nil.concat}(a) = \text{nil} ++ [a] \).
+
+2. **Inductive Step:**
+- Assume the property holds for a list \( \text{tail} \), i.e., \( \text{tail.concat}(a) = \text{tail} ++ [a] \).
+- Consider a non-empty list \( \text{head} :: \text{tail} \).
+- We need to show that \( (\text{head} :: \text{tail}).concat(a) = \text{head} :: (\text{tail} ++ [a]) \).
+- By the definition of `concat`, \( (\text{head} :: \text{tail}).concat(a) = \text{head} :: (\text{tail.concat}(a)) \).
+- By the inductive hypothesis, \( \text{tail.concat}(a) = \text{tail} ++ [a] \).
+- Therefore, \( \text{head} :: (\text{tail.concat}(a)) = \text{head} :: (\text{tail} ++ [a]) \).
+
+Since both the base case and the inductive step hold, by induction, the property \( as.concat(a) = as ++ [a] \) holds for all lists \( as \) and elements \( a \). This completes the proof.
+
+3. **Formal Theorem**  
+example (as : List α) (a : α) : as.concat a = as ++ [a] := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (as : List α) (a : α) : as.concat a = as ++ [a] := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Power of Successor: \( m^{n+1} = m \cdot m^n \) : For any natural numbers \( m \) and \( n \), the following identity holds:
+\[
+m^{n+1} = m \cdot m^n
+\]
+This theorem states that the power of a natural number \( m \) raised to \( n + 1 \) is equal to \( m \) times the power of \( m \) raised to \( n \).
+
+2. **Informal Proof**  
+To prove the identity \( m^{n+1} = m \cdot m^n \), we start by using the theorem that states \( m^{n+1} = m^n \cdot m \). This theorem tells us that the power of a natural number \( m \) raised to \( n + 1 \) is equal to \( m \) times the power of \( m \) raised to \( n \). Therefore, we can rewrite the goal as:
+\[
+m^{n+1} = m^n \cdot m
+\]
+Next, we use the commutativity of multiplication, which states that for any natural numbers \( a \) and \( b \), \( a \cdot b = b \cdot a \). Applying this property, we can rewrite \( m^n \cdot m \) as \( m \cdot m^n \). Thus, the goal becomes:
+\[
+m^{n+1} = m \cdot m^n
+\]
+Since the left-hand side and the right-hand side of the equation are now identical, the goal is trivially true by the properties of equality. Therefore, we have shown that:
+\[
+m^{n+1} = m \cdot m^n
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {m n : Nat} : m ^ (n + 1) = m * m ^ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {m n : Nat} : m ^ (n + 1) = m * m ^ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

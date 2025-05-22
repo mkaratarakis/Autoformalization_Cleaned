@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Left-Commutativity of Multiplication in Natural Numbers: \( n \cdot (m \cdot k) = m \cdot (n \cdot k) \) : For any natural numbers \( n, m, k \in \mathbb{N} \), the equation \( n \cdot (m \cdot k) = m \cdot (n \cdot k) \) holds. This property is known as the left-commutativity of multiplication in the natural numbers.
+
+2. **Informal Proof**  
+To prove the left-commutativity of multiplication in the natural numbers, we start with the equation \( n \cdot (m \cdot k) = m \cdot (n \cdot k) \).
+
+1. **Step 1: Use the associativity of multiplication.**
+By the associativity of multiplication, we can rewrite \( n \cdot (m \cdot k) \) as \( (n \cdot m) \cdot k \). Therefore, the goal becomes:
+\[
+(n \cdot m) \cdot k = m \cdot (n \cdot k)
+\]
+
+2. **Step 2: Use the commutativity of multiplication.**
+By the commutativity of multiplication, we can rewrite \( (n \cdot m) \cdot k \) as \( (m \cdot n) \cdot k \). Therefore, the goal now is:
+\[
+(m \cdot n) \cdot k = m \cdot (n \cdot k)
+\]
+
+3. **Step 3: Use the associativity of multiplication again.**
+By the associativity of multiplication, we can rewrite \( (m \cdot n) \cdot k \) as \( m \cdot (n \cdot k) \). Therefore, the goal is:
+\[
+m \cdot (n \cdot k) = m \cdot (n \cdot k)
+\]
+
+4. **Step 4: Conclude the proof.**
+The equation \( m \cdot (n \cdot k) = m \cdot (n \cdot k) \) is trivially true by the reflexive property of equality. Hence, we have shown that \( n \cdot (m \cdot k) = m \cdot (n \cdot k) \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m k : Nat) : n * (m * k) = m * (n * k) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m k : Nat) : n * (m * k) = m * (n * k) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

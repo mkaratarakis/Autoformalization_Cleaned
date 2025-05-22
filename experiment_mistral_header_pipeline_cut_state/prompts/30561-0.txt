@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Heterogeneous Iteration Equals State at Final Index: \( \text{hIterate}(P, s, f) = \text{state}(n) \) : For any type family \( P : \mathbb{N} \to \text{Sort} \) and any natural number \( n \), if \( s \) is an initial state of type \( P(0) \) and \( f \) is a function that takes an index \( i \) of type \( \text{Fin}(n) \) and a state \( \text{state}(i) \) of type \( P(i) \) to produce a new state \( \text{state}(i + 1) \) of type \( P(i + 1) \), then the result of applying the heterogeneous iteration function `hIterate` starting from \( s \) and using \( f \) is equal to \( \text{state}(n) \) if the following conditions hold:
+1. \( s = \text{state}(0) \)
+2. For all \( i \in \text{Fin}(n) \), \( f(i, \text{state}(i)) = \text{state}(i + 1) \).
+
+2. **Informal Proof**  
+To prove that \( \text{hIterate}(P, s, f) = \text{state}(n) \), we use the heterogeneous iteration elimination principle. This principle states that if:
+1. \( s = \text{state}(0) \), and
+2. for all \( k \in \text{Fin}(n) \) and \( s \in P(k) \), if \( s = \text{state}(k) \), then \( f(k, s) = \text{state}(k + 1) \),
+then \( \text{hIterate}(P, s, f) = \text{state}(n) \).
+
+We need to show that for all \( k \in \text{Fin}(n) \) and \( s \in P(k) \), if \( s = \text{state}(k) \), then \( f(k, s) = \text{state}(k + 1) \).
+
+Let \( i \) be an arbitrary element of \( \text{Fin}(n) \), \( s \) be an element of \( P(i) \), and assume \( s = \text{state}(i) \). Using the assumption \( s = \text{state}(i) \) and the step condition \( \forall (i : \text{Fin}(n)), f(i, \text{state}(i)) = \text{state}(i + 1) \), we can simplify the expression \( f(i, s) \) to \( \text{state}(i + 1) \). Therefore, \( f(i, s) = \text{state}(i + 1) \) holds.
+
+By the heterogeneous iteration elimination principle, we conclude that \( \text{hIterate}(P, s, f) = \text{state}(n) \). This completes the proof.
+
+3. **Formal Theorem**  
+example {P : Nat → Sort _} (state : ∀(i : Nat), P i)
+    {n : Nat} (f : ∀(i : Fin n), P i.val → P (i.val+1)) (s : P 0)
+    (init : s = state 0)
+    (step : ∀(i : Fin n), f i (state i) = state (i+1)) :
+    hIterate P s f = state n := by sorry
+
+4. **Prefix**
+import Init.PropLemmas
+import Init.Data.Fin.Basic
+import Init.Data.Fin.Iterate
+
+open Fin
+
+
+example {P : Nat → Sort _} (state : ∀(i : Nat), P i)
+    {n : Nat} (f : ∀(i : Fin n), P i.val → P (i.val+1)) (s : P 0)
+    (init : s = state 0)
+    (step : ∀(i : Fin n), f i (state i) = state (i+1)) :
+    hIterate P s f = state n := by
+
+5. **Header Information**  
+-- Init.PropLemmas not found. --
+
+-- Init.Data.Fin.Basic not found. --
+
+-- Init.Data.Fin.Iterate not found. --
+

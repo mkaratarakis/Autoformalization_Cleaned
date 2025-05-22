@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Evaluation of Polynomial Multiplication: \(\text{denote}(\text{ctx}, p_1 \cdot p_2) = \text{denote}(\text{ctx}, p_1) \cdot \text{denote}(\text{ctx}, p_2)\) : For any context \( \text{ctx} \) of type `Nat.Linear.Context` and any two polynomials \( p_1 \) and \( p_2 \) over the semiring of natural numbers with a specific structure, the evaluation of the product polynomial \( p_1 \cdot p_2 \) in the context \( \text{ctx} \) is equal to the product of the evaluations of \( p_1 \) and \( p_2 \) in the same context. Mathematically, this can be expressed as:
+\[
+\text{denote}(\text{ctx}, p_1 \cdot p_2) = \text{denote}(\text{ctx}, p_1) \cdot \text{denote}(\text{ctx}, p_2)
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by simplifying the goal using the definitions of polynomial multiplication and the evaluation function. Specifically, we use the definitions of `mul` and `go` to simplify the expression. After simplification, the goal reduces to showing that the evaluation of the product polynomial \( p_1 \cdot p_2 \) in the context \( \text{ctx} \) is equal to the product of the evaluations of \( p_1 \) and \( p_2 \) in the same context. This simplification is straightforward and follows directly from the definitions. Therefore, the theorem holds.
+
+\[
+\text{denote}(\text{ctx}, p_1 \cdot p_2) = \text{denote}(\text{ctx}, p_1) \cdot \text{denote}(\text{ctx}, p_2)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (ctx : Context) (p₁ p₂ : Poly) : (p₁.mul p₂).denote ctx = p₁.denote ctx * p₂.denote ctx := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.List.BasicAux
+import Init.Data.Nat.SOM
+
+open Nat
+open SOM
+open Poly
+open Linear (Var hugeFuel Context Var.denote)
+
+example (ctx : Context) (p₁ p₂ : Poly) : (p₁.mul p₂).denote ctx = p₁.denote ctx * p₂.denote ctx := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.List.BasicAux not found. --
+
+-- Init.Data.Nat.SOM not found. --
+

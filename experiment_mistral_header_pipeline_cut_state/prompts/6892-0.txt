@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Equality of Left Padding Functions: \(\text{List.leftpad} = \text{List.leftpadTR}\) : For any type \( \alpha \), natural number \( n \), element \( a \) of type \( \alpha \), and list \( l \) of elements of type \( \alpha \), the function `List.leftpad` and the optimized function `List.leftpadTR` produce the same result. Formally, this is expressed as:
+\[
+\text{List.leftpad}(n, a, l) = \text{List.leftpadTR}(n, a, l)
+\]
+
+2. **Informal Proof**  
+To prove that the function `List.leftpad` is equal to the optimized function `List.leftpadTR`, we need to show that for any type \( \alpha \), natural number \( n \), element \( a \) of type \( \alpha \), and list \( l \) of elements of type \( \alpha \), the results of `List.leftpad(n, a, l)` and `List.leftpadTR(n, a, l)` are the same.
+
+1. **Introduce Variables:**
+We use the extensionality principle to introduce the variables \( \alpha \), \( n \), \( a \), and \( l \). This means we need to show that for all such variables, the functions produce the same result.
+
+2. **Simplify Expressions:**
+We simplify the expressions using the definitions of `leftpad`, `leftpadTR`, and the equivalence `replicateTR_loop_eq`. The function `leftpad` pads a list \( l \) with the element \( a \) to make its length at least \( n \). The function `leftpadTR` is an optimized version of `leftpad` that uses a tail-recursive loop.
+
+3. **Use Equivalence:**
+The equivalence `replicateTR_loop_eq` ensures that the tail-recursive loop used in `leftpadTR` produces the same result as the non-tail-recursive version used in `leftpad`.
+
+4. **Conclusion:**
+Since the definitions and the equivalence `replicateTR_loop_eq` guarantee that the results of `leftpad` and `leftpadTR` are the same for any \( \alpha \), \( n \), \( a \), and \( l \), we conclude that:
+\[
+\text{List.leftpad}(n, a, l) = \text{List.leftpadTR}(n, a, l)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example : @leftpad = @leftpadTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @leftpad = @leftpadTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

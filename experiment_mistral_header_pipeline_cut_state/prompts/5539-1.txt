@@ -1,0 +1,43 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:13:4: error: type mismatch
+  Iff.rfl
+has type
+  ?m.260 ↔ ?m.260 : Prop
+but is expected to have type
+  p → ¬q : Prop
+tmp.lean:16:4: error: type mismatch
+  Iff.rfl
+has type
+  ?m.374 ↔ ?m.374 : Prop
+but is expected to have type
+  q → p : Prop
+tmp.lean:11:2: error: unsolved goals
+case isFalse
+p q : Prop
+h✝ : ¬p
+⊢ p → ¬q
+tmp.lean:9:29: error: unsolved goals
+case isTrue
+p q : Prop
+h✝ : p
+⊢ (if p then q else False) ↔ p ∧ q
+case isFalse
+p q : Prop
+h✝ : ¬p
+⊢ p → ¬q
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example [h : Decidable p] :
+    ite p q False ↔ p ∧ q := by
+  cases h
+  · -- Case 1: p is false
+    simp [ite]

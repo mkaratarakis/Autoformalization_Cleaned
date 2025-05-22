@@ -1,0 +1,81 @@
+
+1. **Informal Theorem**  
+Find in Mapped List: $\text{List.find? } p \, (\text{List.map } f \, l) = \text{Option.map } f \, (\text{List.find? } (p \circ f) \, l)$ : For any types \( \alpha \) and \( \beta \), predicate \( p : \alpha \to \text{Bool} \), function \( f : \beta \to \alpha \), and list \( l : \text{List } \beta \), the first element in the list \( \text{List.map } f \, l \) that satisfies the predicate \( p \) is the same as applying \( f \) to the first element in \( l \) that satisfies the predicate \( p \circ f \). Formally, this can be written as:
+\[
+\text{List.find? } p \, (\text{List.map } f \, l) = \text{Option.map } f \, (\text{List.find? } (p \circ f) \, l)
+\]
+
+2. **Informal Proof**  
+We prove this by induction on the list \( l \).
+
+1. **Base Case:**
+- Assume \( l \) is the empty list, i.e., \( l = [] \).
+- The left-hand side of the equation is:
+\[
+\text{List.find? } p \, (\text{List.map } f \, []) = \text{List.find? } p \, [] = \text{none}
+\]
+- The right-hand side of the equation is:
+\[
+\text{Option.map } f \, (\text{List.find? } (p \circ f) \, []) = \text{Option.map } f \, \text{none} = \text{none}
+\]
+- Therefore, both sides are equal, and the base case holds.
+
+2. **Inductive Step:**
+- Assume \( l \) is of the form \( x :: xs \), where \( x \) is the head of the list and \( xs \) is the tail.
+- Assume the induction hypothesis (IH) that the property holds for the tail \( xs \):
+\[
+\text{List.find? } p \, (\text{List.map } f \, xs) = \text{Option.map } f \, (\text{List.find? } (p \circ f) \, xs)
+\]
+- We need to show:
+\[
+\text{List.find? } p \, (\text{List.map } f \, (x :: xs)) = \text{Option.map } f \, (\text{List.find? } (p \circ f) \, (x :: xs))
+\]
+- Simplify the left-hand side using the definition of `map` and `find?`:
+\[
+\text{List.find? } p \, (\text{List.map } f \, (x :: xs)) = \text{List.find? } p \, (f(x) :: \text{List.map } f \, xs)
+\]
+- If \( p(f(x)) \) is true, then:
+\[
+\text{List.find? } p \, (f(x) :: \text{List.map } f \, xs) = \text{some } f(x)
+\]
+- If \( p(f(x)) \) is false, then:
+\[
+\text{List.find? } p \, (f(x) :: \text{List.map } f \, xs) = \text{List.find? } p \, (\text{List.map } f \, xs)
+\]
+- Simplify the right-hand side using the definition of `find?`:
+\[
+\text{Option.map } f \, (\text{List.find? } (p \circ f) \, (x :: xs)) = \text{Option.map } f \, (\text{List.find? } (p \circ f) \, (x :: xs))
+\]
+- If \( (p \circ f)(x) \) is true, then:
+\[
+\text{Option.map } f \, (\text{List.find? } (p \circ f) \, (x :: xs)) = \text{Option.map } f \, (\text{some } x) = \text{some } f(x)
+\]
+- If \( (p \circ f)(x) \) is false, then:
+\[
+\text{Option.map } f \, (\text{List.find? } (p \circ f) \, (x :: xs)) = \text{Option.map } f \, (\text{List.find? } (p \circ f) \, xs)
+\]
+- By the induction hypothesis, we have:
+\[
+\text{List.find? } p \, (\text{List.map } f \, xs) = \text{Option.map } f \, (\text{List.find? } (p \circ f) \, xs)
+\]
+- Therefore, in both cases, the left-hand side and the right-hand side are equal, and the inductive step holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : β → α) (l : List β) : find? p (l.map f) = (l.find? (p ∘ f)).map f := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (f : β → α) (l : List β) : find? p (l.map f) = (l.find? (p ∘ f)).map f := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

@@ -1,0 +1,84 @@
+
+1. **Informal Theorem**  
+Maximum of Products Equals Product of Maximum in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), the maximum of \(a \cdot c\) and \(b \cdot c\) is equal to the product of the maximum of \(a\) and \(b\) with \(c\), i.e., \(\max(a \cdot c, b \cdot c) = \max(a, b) \cdot c\).
+
+2. **Informal Proof**  
+We will prove this by induction on \( b \).
+
+**Base Case: \( b = 0 \)**
+We need to show that \(\max(a \cdot c, 0 \cdot c) = \max(a, 0) \cdot c\).
+Using the property that \(\max(a, 0) = a\), we have:
+\[
+\max(a \cdot c, 0 \cdot c) = \max(a \cdot c, 0) = a \cdot c = \max(a, 0) \cdot c
+\]
+This is trivially true.
+
+**Inductive Step: \( b = n + 1 \) for some natural number \( n \)**
+Assume that for any natural number \( b \), \(\max(i \cdot c, b \cdot c) = \max(i, b) \cdot c\). We need to show that \(\max((i + 1) \cdot c, (n + 1) \cdot c) = \max(i + 1, n + 1) \cdot c\).
+
+Using the property of successor multiplication, we have:
+\[
+(i + 1) \cdot c = i \cdot c + c
+\]
+and
+\[
+(n + 1) \cdot c = n \cdot c + c
+\]
+Thus, the goal becomes:
+\[
+\max(i \cdot c + c, n \cdot c + c) = \max(i + 1, n + 1) \cdot c
+\]
+Using the distributive property of maximum over addition, we have:
+\[
+\max(i \cdot c + c, n \cdot c + c) = \max(i \cdot c, n \cdot c) + c
+\]
+By the inductive hypothesis, we know:
+\[
+\max(i \cdot c, n \cdot c) = \max(i, n) \cdot c
+\]
+Thus:
+\[
+\max(i \cdot c + c, n \cdot c + c) = \max(i, n) \cdot c + c
+\]
+Since \(\max(i + 1, n + 1) = \max(i, n) + 1\), we have:
+\[
+\max(i + 1, n + 1) \cdot c = (\max(i, n) + 1) \cdot c = \max(i, n) \cdot c + c
+\]
+Therefore:
+\[
+\max(i \cdot c + c, n \cdot c + c) = \max(i + 1, n + 1) \cdot c
+\]
+This completes the inductive step.
+
+By induction, the theorem holds for all natural numbers \( b \). Hence, for any natural numbers \(a\), \(b\), and \(c\), we have:
+\[
+\max(a \cdot c, b \cdot c) = \max(a, b) \cdot c
+\]
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c : Nat) : max (a * c) (b * c) = max a b * c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) : max (a * c) (b * c) = max a b * c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

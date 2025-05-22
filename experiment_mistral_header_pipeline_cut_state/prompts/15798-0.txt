@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Conjunction with Natural Number Less Than \( 2^n \) is Less Than \( 2^n \) : For any natural numbers \( x \), \( y \), and \( n \), if \( y < 2^n \), then \( x \&&& y < 2^n \).
+
+2. **Informal Proof**  
+To prove that \( x \&&& y < 2^n \), we use the theorem that if for all \( i \geq n \), the \( i \)-th bit of a number \( z \) is `false`, then \( z < 2^n \). Therefore, it suffices to show that for all \( i \geq n \), the \( i \)-th bit of \( x \&&& y \) is `false`.
+
+Let \( i \) be an arbitrary natural number such that \( i \geq n \). We need to show that the \( i \)-th bit of \( x \&&& y \) is `false`.
+
+First, we show that the \( i \)-th bit of \( y \) is `false`. Since \( y < 2^n \) and \( i \geq n \), we use the theorem that if \( y < 2^i \), then the \( i \)-th bit of \( y \) is `false`. To prove \( y < 2^i \), we use the transitivity of the less-than and less-than-or-equal relations: \( y < 2^n \) and \( 2^n \leq 2^i \) imply \( y < 2^i \). The inequality \( 2^n \leq 2^i \) holds because \( 2 > 0 \) and \( n \leq i \).
+
+Using the property that the \( i \)-th bit of \( x \&&& y \) is the logical "and" of the \( i \)-th bits of \( x \) and \( y \), and the fact that the \( i \)-th bit of \( y \) is `false`, we conclude that the \( i \)-th bit of \( x \&&& y \) is `false`.
+
+Thus, for all \( i \geq n \), the \( i \)-th bit of \( x \&&& y \) is `false`, which implies \( x \&&& y < 2^n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : Nat) {y n : Nat} (right : y < 2^n) : (x &&& y) < 2^n := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x : Nat) {y n : Nat} (right : y < 2^n) : (x &&& y) < 2^n := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

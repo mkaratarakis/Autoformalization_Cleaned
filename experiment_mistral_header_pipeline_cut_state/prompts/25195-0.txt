@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Optional Value with Default is Some if Not None: $\text{some} (x.\text{getD} \, y) = x$ if $x \neq \text{none}$ : For any type $\alpha$ and any optional value $x : \text{Option} \, \alpha$, if $x$ is not `none`, then for any value $y : \alpha$, the optional value `some (x.getD y)` is equal to $x$.
+
+2. **Informal Proof**  
+We start by performing case analysis on the optional value $x$.
+
+1. **Case 1: $x = \text{none}$**
+- The assumption $x \neq \text{none}$ contradicts the case $x = \text{none}$. Therefore, this case is impossible.
+
+2. **Case 2: $x = \text{some} \, a$ for some $a \in \alpha$**
+- We need to show that `some (x.\text{getD} \, y) = x`.
+- By the definition of `getD`, we have `some (some a).getD y = some a`.
+- Since `some a` is equal to `x`, the goal is satisfied.
+
+Thus, in both cases, the goal is satisfied, and the theorem is proved. $\blacksquare$
+
+3. **Formal Theorem**  
+example {x : Option α} (hx : x ≠ none) (y : α) : some (x.getD y) = x := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} (hx : x ≠ none) (y : α) : some (x.getD y) = x := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Subtraction Elimination for Natural Numbers: \( y \leq x \) and \( x = y + k \) Imply \( P(k) \) and \( x < y \) Imply \( P(0) \) : For any natural numbers \( x \) and \( y \), and any proposition \( P \) on natural numbers, if \( y \leq x \) and for any natural number \( k \) such that \( x = y + k \), \( P(k) \) holds, and if \( x < y \), \( P(0) \) holds, then \( P(x - y) \) holds.
+
+2. **Informal Proof**  
+We need to show that \( P(x - y) \) holds under the given conditions. We consider two cases based on the relationship between \( x \) and \( y \):
+
+1. **Case 1: \( y \leq x \)**
+- By the hypothesis \( h_1 \), if \( y \leq x \), then there exists a natural number \( k \) such that \( x = y + k \).
+- Using the property of natural numbers, we have \( x = y + (x - y) \).
+- Therefore, \( x - y = k \).
+- By the hypothesis \( h_1 \), \( P(k) \) holds, which means \( P(x - y) \) holds.
+
+2. **Case 2: \( x < y \)**
+- By the property of natural numbers, if \( x < y \), then \( x \leq y \).
+- Using the property that \( n \leq m \) implies \( n - m = 0 \), we get \( x - y = 0 \).
+- By the hypothesis \( h_2 \), \( P(0) \) holds, which means \( P(x - y) \) holds.
+
+In both cases, we have shown that \( P(x - y) \) holds. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {motive : Nat → Prop}
+    (x y : Nat)
+    (h₁ : y ≤ x → (k : Nat) → x = y + k → motive k)
+    (h₂ : x < y → motive 0)
+    : motive (x - y) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+open sub
+
+
+example {motive : Nat → Prop}
+    (x y : Nat)
+    (h₁ : y ≤ x → (k : Nat) → x = y + k → motive k)
+    (h₂ : x < y → motive 0)
+    : motive (x - y) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

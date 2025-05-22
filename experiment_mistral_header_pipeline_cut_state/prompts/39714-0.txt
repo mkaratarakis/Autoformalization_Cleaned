@@ -1,0 +1,80 @@
+
+1. **Informal Theorem**  
+Index of First Element Satisfying Predicate in Concatenated Lists: \(\text{List.findIdx? } p \, (xs ++ ys)\) : For any type \( \alpha \), lists \( xs \) and \( ys \) of elements of type \( \alpha \), and a predicate \( p : \alpha \to \text{Bool} \), the index of the first element in the concatenated list \( xs ++ ys \) that satisfies the predicate \( p \) is given by:
+\[
+\text{List.findIdx? } p \, (xs ++ ys) = 
+\begin{cases} 
+\text{List.findIdx? } p \, xs & \text{if } \text{List.findIdx? } p \, xs \neq \text{none} \\
+\text{Option.map } (\lambda i. i + \text{List.length } xs) \, (\text{List.findIdx? } p \, ys) & \text{if } \text{List.findIdx? } p \, xs = \text{none}
+\end{cases}
+\]
+In other words, if the first list \( xs \) contains an element that satisfies \( p \), the index of that element is returned. Otherwise, the function searches the second list \( ys \) and, if an element satisfying \( p \) is found, returns the index of that element adjusted by the length of \( xs \).
+
+2. **Informal Proof**  
+We proceed by induction on the list \( xs \).
+
+**Base Case:**
+If \( xs \) is the empty list, then \( xs ++ ys = ys \). Therefore, the index of the first element in \( xs ++ ys \) that satisfies \( p \) is the same as the index of the first element in \( ys \) that satisfies \( p \). This is given by:
+\[
+\text{List.findIdx? } p \, (xs ++ ys) = \text{List.findIdx? } p \, ys
+\]
+Since \( \text{List.findIdx? } p \, xs = \text{none} \) when \( xs \) is empty, the theorem holds in this case.
+
+**Inductive Step:**
+Assume the theorem holds for a list \( \text{tail} \). We need to show that it holds for a list \( \text{cons } \text{head} \, \text{tail} \).
+
+We split the goal into two cases based on whether the predicate \( p \) holds for the head of the list \( \text{head} \):
+
+1. **Case 1: \( p(\text{head}) = \text{true} \)**
+- In this case, the index of the first element in \( \text{cons } \text{head} \, \text{tail} \) that satisfies \( p \) is \( 0 \). Therefore:
+\[
+\text{List.findIdx? } p \, (\text{cons } \text{head} \, \text{tail} ++ ys) = \text{some } 0
+\]
+- On the other hand, since \( p(\text{head}) = \text{true} \), we have:
+\[
+\text{List.findIdx? } p \, (\text{cons } \text{head} \, \text{tail}) = \text{some } 0
+\]
+- Thus, the theorem holds in this case.
+
+2. **Case 2: \( p(\text{head}) = \text{false} \)**
+- In this case, the index of the first element in \( \text{cons } \text{head} \, \text{tail} \) that satisfies \( p \) is the same as the index of the first element in \( \text{tail} \) that satisfies \( p \), adjusted by 1. Therefore:
+\[
+\text{List.findIdx? } p \, (\text{cons } \text{head} \, \text{tail} ++ ys) = \text{Option.map } (\lambda i. i + 1) \, (\text{List.findIdx? } p \, (\text{tail} ++ ys))
+\]
+- By the inductive hypothesis, we have:
+\[
+\text{List.findIdx? } p \, (\text{tail} ++ ys) = \text{HOrElse.hOrElse } (\text{List.findIdx? } p \, \text{tail}) \, (\lambda x. \text{Option.map } (\lambda i. i + \text{List.length } \text{tail}) \, (\text{List.findIdx? } p \, ys))
+\]
+- Therefore:
+\[
+\text{List.findIdx? } p \, (\text{cons } \text{head} \, \text{tail} ++ ys) = \text{HOrElse.hOrElse } (\text{Option.map } (\lambda i. i + 1) \, (\text{List.findIdx? } p \, \text{tail})) \, (\lambda x. \text{Option.map } (\lambda i. i + 1 + \text{List.length } \text{tail}) \, (\text{List.findIdx? } p \, ys))
+\]
+- Simplifying the right-hand side using the properties of `Option.map` and `Option.map_orElse`, we get:
+\[
+\text{List.findIdx? } p \, (\text{cons } \text{head} \, \text{tail} ++ ys) = \text{HOrElse.hOrElse } (\text{Option.map } (\lambda i. i + 1) \, (\text{List.findIdx? } p \, \text{tail})) \, (\lambda x. \text{Option.map } (\lambda i. i + (\text{List.length } \text{tail} + 1)) \, (\text{List.findIdx? } p \, ys))
+\]
+- This matches the right-hand side of the theorem, so the theorem holds in this case.
+
+By induction, the theorem holds for all lists \( xs \). This completes the proof.
+
+3. **Formal Theorem**  
+example :
+    (xs ++ ys : List α).findIdx? p =
+      (xs.findIdx? p <|> (ys.findIdx? p).map fun i => i + xs.length) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example :
+    (xs ++ ys : List α).findIdx? p =
+      (xs.findIdx? p <|> (ys.findIdx? p).map fun i => i + xs.length) := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

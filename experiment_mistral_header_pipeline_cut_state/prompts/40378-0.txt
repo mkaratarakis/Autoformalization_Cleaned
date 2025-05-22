@@ -1,0 +1,71 @@
+
+1. **Informal Theorem**  
+Length of Concatenated List: \(\text{length}(as \cdot a) = \text{length}(as) + 1\) : For any type \(\alpha\) and any list \(as : \text{List}(\alpha)\), and any element \(a : \alpha\), the length of the list obtained by appending \(a\) to the end of \(as\) is equal to the length of \(as\) plus 1. In other words, if \(as\) is a list and \(a\) is an element, then \(\text{length}(as \cdot a) = \text{length}(as) + 1\).
+
+2. **Informal Proof**  
+We prove this by induction on the list \(as\).
+
+**Base Case:**
+Consider the case where \(as\) is the empty list \(\text{nil}\). The length of the list obtained by appending \(a\) to the end of \(\text{nil}\) is:
+\[
+\text{length}(\text{nil} \cdot a) = \text{length}(\text{cons}(a, \text{nil})) = 1
+\]
+On the other hand, the length of \(\text{nil}\) is \(0\), and adding 1 to it gives:
+\[
+\text{length}(\text{nil}) + 1 = 0 + 1 = 1
+\]
+Thus, the equality \(\text{length}(\text{nil} \cdot a) = \text{length}(\text{nil}) + 1\) holds.
+
+**Inductive Step:**
+Assume the statement holds for some list \(xs\), i.e., \(\text{length}(xs \cdot a) = \text{length}(xs) + 1\). We need to show that the statement holds for the list \(\text{cons}(x, xs)\) for some element \(x\). The length of the list obtained by appending \(a\) to the end of \(\text{cons}(x, xs)\) is:
+\[
+\text{length}((\text{cons}(x, xs)) \cdot a) = \text{length}(\text{cons}(x, (xs \cdot a)))
+\]
+By the definition of `length`, this is:
+\[
+\text{length}(\text{cons}(x, (xs \cdot a))) = \text{length}(xs \cdot a) + 1
+\]
+By the inductive hypothesis, we have:
+\[
+\text{length}(xs \cdot a) = \text{length}(xs) + 1
+\]
+Substituting this into the previous equation, we get:
+\[
+\text{length}(\text{cons}(x, (xs \cdot a))) = (\text{length}(xs) + 1) + 1 = \text{length}(xs) + 2
+\]
+On the other hand, the length of \(\text{cons}(x, xs)\) is:
+\[
+\text{length}(\text{cons}(x, xs)) = \text{length}(xs) + 1
+\]
+Adding 1 to this, we get:
+\[
+\text{length}(\text{cons}(x, xs)) + 1 = (\text{length}(xs) + 1) + 1 = \text{length}(xs) + 2
+\]
+Thus, the equality \(\text{length}((\text{cons}(x, xs)) \cdot a) = \text{length}(\text{cons}(x, xs)) + 1\) holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (as : List α) (a : α) : (concat as a).length = as.length + 1 := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (as : List α) (a : α) : (concat as a).length = as.length + 1 := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Equivalence of True Equality in Boolean Type: $\text{true} = b \leftrightarrow b = \text{true}$ : For any boolean value $b$, the statement $\text{true} = b$ is equivalent to $b = \text{true}$, i.e., $\text{true} = b \leftrightarrow b = \text{true}$.
+
+2. **Informal Proof**  
+To prove the equivalence $\text{true} = b \leftrightarrow b = \text{true}$ for any boolean value $b$, we will consider every possible case of $b$.
+
+1. **Case 1: $b = \text{false}$**
+- We need to show that $(\text{true} = \text{false}) = (\text{false} = \text{true})$.
+- Since $\text{true} \neq \text{false}$, the left-hand side $\text{true} = \text{false}$ is false.
+- Similarly, the right-hand side $\text{false} = \text{true}$ is also false.
+- Therefore, $(\text{true} = \text{false}) = (\text{false} = \text{true})$ is equivalent to $\text{False} = \text{False}$, which is true.
+
+2. **Case 2: $b = \text{true}$**
+- We need to show that $(\text{true} = \text{true}) = (\text{true} = \text{true})$.
+- Both sides of the equation are equal to $\text{true}$.
+- Therefore, $(\text{true} = \text{true}) = (\text{true} = \text{true})$ is trivially true.
+
+Since both cases are true, we conclude that for any boolean value $b$, the statement $\text{true} = b$ is equivalent to $b = \text{true}$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example (b : Bool) : (true = b) = (b = true) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (b : Bool) : (true = b) = (b = true) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

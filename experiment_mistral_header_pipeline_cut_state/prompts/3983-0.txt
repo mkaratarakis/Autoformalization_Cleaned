@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Divisibility from Zero Remainder: \( n \% m = 0 \to m \mid n \) : For any natural numbers \( m \) and \( n \), if the remainder when \( n \) is divided by \( m \) is zero, i.e., \( n \% m = 0 \), then \( m \) divides \( n \), denoted as \( m \mid n \).
+
+2. **Informal Proof**  
+To show that \( m \) divides \( n \), it suffices to find an integer \( k \) such that \( n = m \cdot k \). We claim that \( k = n / m \) works.
+
+We construct a lemma that states \( n = n \% m + m \cdot (n / m) \). This is a direct consequence of the identity \( n \% m + m \cdot (n / m) = n \), which we take in its symmetric form.
+
+Using the assumption \( n \% m = 0 \), we substitute \( 0 \) for \( n \% m \) in the lemma \( n = n \% m + m \cdot (n / m) \). This simplifies to \( n = 0 + m \cdot (n / m) \). By the property that \( 0 + a = a \) for any natural number \( a \), we further simplify to \( n = m \cdot (n / m) \). This matches our goal exactly, thus completing the proof.
+
+3. **Formal Theorem**  
+example {m n : Nat} (H : n % m = 0) : m ∣ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example {m n : Nat} (H : n % m = 0) : m ∣ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

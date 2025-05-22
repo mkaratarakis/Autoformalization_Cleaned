@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+None is the Identity for Option or Function: \( o \text{ or } \text{none} = o \) : For any type \( \alpha \) and any `Option` value \( o \in \text{Option} \alpha \), the expression \( o \text{ or } \text{none} \) is equal to \( o \). In other words, the `none` element acts as the identity for the `or` function on `Option` values, i.e., \( o \text{ or } \text{none} = o \).
+
+2. **Informal Proof**  
+To prove the theorem, we consider the two possible cases for \( o \):
+
+1. **Case 1: \( o = \text{none} \)**
+- We need to show that \( \text{none} \text{ or } \text{none} = \text{none} \).
+- By the definition of the `or` function on `Option` values, \( \text{none} \text{ or } \text{none} = \text{none} \).
+- Therefore, the equality holds in this case.
+
+2. **Case 2: \( o = \text{some } val \)**
+- We need to show that \( (\text{some } val) \text{ or } \text{none} = \text{some } val \).
+- By the definition of the `or` function on `Option` values, \( (\text{some } val) \text{ or } \text{none} = \text{some } val \).
+- Therefore, the equality holds in this case as well.
+
+Since both cases are covered and the equality holds in each case, we conclude that for any `Option` value \( o \), \( o \text{ or } \text{none} = o \). This completes the proof.
+
+3. **Formal Theorem**  
+example : or o none = o := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : or o none = o := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

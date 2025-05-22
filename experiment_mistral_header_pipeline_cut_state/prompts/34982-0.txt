@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Sublist Condition for Cons: \( l \subseteq (a :: l') \leftrightarrow l \subseteq l' \lor \exists r, l = a :: r \land r \subseteq l' \) : For any type \( \alpha \) and elements \( a \in \alpha \), lists \( l, l' \) of type \( \alpha \), the list \( l \) is a sublist of \( a :: l' \) if and only if \( l \) is a sublist of \( l' \) or there exists a list \( r \) such that \( l = a :: r \) and \( r \) is a sublist of \( l' \).
+
+2. **Informal Proof**  
+To prove the equivalence \( l \subseteq (a :: l') \leftrightarrow l \subseteq l' \lor \exists r, l = a :: r \land r \subseteq l' \), we need to show both directions of the implication.
+
+1. **Forward Direction:**
+- Let \( h \) be a proof that \( l \subseteq (a :: l') \).
+- We need to show that \( l \subseteq l' \) or there exists a list \( r \) such that \( l = a :: r \) and \( r \subseteq l' \).
+- **Case 1:** If \( l \subseteq l' \), then we can directly use \( h \) to show that \( l \subseteq l' \). This satisfies the first disjunct of the goal.
+- **Case 2:** If \( l = a :: r \) and \( r \subseteq l' \), then we can use the reflexivity of equality and the fact that \( r \subseteq l' \) to show that \( l = a :: r \) and \( r \subseteq l' \). This satisfies the second disjunct of the goal.
+
+2. **Backward Direction:**
+- Let \( h \) be a proof that \( l \subseteq l' \) or there exists a list \( r \) such that \( l = a :: r \) and \( r \subseteq l' \).
+- We discuss the two cases:
+- **Case 1:** If \( l \subseteq l' \), then by the property of the sublist relation, \( l \subseteq (a :: l') \).
+- **Case 2:** If \( l = a :: r \) and \( r \subseteq l' \), then by the property of the sublist relation under cons, \( a :: r \subseteq a :: l' \). Since \( l = a :: r \), it follows that \( l \subseteq (a :: l') \).
+
+Thus, we have shown both directions of the equivalence, completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : α} {l l'} :
+    l <+ a :: l' ↔ l <+ l' ∨ ∃ r, l = a :: r ∧ r <+ l' := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {a : α} {l l'} :
+    l <+ a :: l' ↔ l <+ l' ∨ ∃ r, l = a :: r ∧ r <+ l' := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

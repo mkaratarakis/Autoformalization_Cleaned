@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Subtraction Identity: \( n - m = \max(n, m) - m \) : For any natural numbers \( n \) and \( m \), the subtraction \( n - m \) is equal to the maximum of \( n \) and \( m \) minus \( m \), i.e., \( n - m = \max(n, m) - m \).
+
+2. **Informal Proof**  
+We need to prove that for any natural numbers \( n \) and \( m \), the equation \( n - m = \max(n, m) - m \) holds. We consider two cases based on the relationship between \( n \) and \( m \).
+
+1. **Case 1: \( n \leq m \)**
+- By the property of the maximum function, \(\max(n, m) = m\).
+- Therefore, the goal \( n - m = \max(n, m) - m \) simplifies to \( n - m = m - m \).
+- Since \( n \leq m \), we know that \( n - m = 0 \).
+- Also, \( m - m = 0 \).
+- Thus, the goal reduces to \( 0 = 0 \), which is trivially true.
+
+2. **Case 2: \( m \leq n \)**
+- By the property of the maximum function, \(\max(n, m) = n\).
+- Therefore, the goal \( n - m = \max(n, m) - m \) simplifies to \( n - m = n - m \), which is trivially true.
+
+Since both cases are covered, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m : Nat) : n - m = max n m - m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (n m : Nat) : n - m = max n m - m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

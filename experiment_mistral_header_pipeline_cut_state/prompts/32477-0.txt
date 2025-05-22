@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+Left and Right Shift Operations Cancel Each Other in Natural Numbers : For any natural numbers \( x \) and \( n \), the left shift operation followed by the right shift operation of the same amount \( n \) returns the original number \( x \), i.e., \( (x <<< n) >>> n = x \).
+
+2. **Informal Proof**  
+To prove that \( (x \<<< n) \>>> n = x \) for any natural numbers \( x \) and \( n \), we proceed as follows:
+
+1. **Left Shift Operation:**
+By the definition of the left shift operation, we have:
+\[
+x \<<< n = x \cdot 2^n
+\]
+
+2. **Right Shift Operation:**
+By the definition of the right shift operation, we have:
+\[
+(x \cdot 2^n) \>>> n = (x \cdot 2^n) / 2^n
+\]
+
+3. **Cancellation Property:**
+Since \( 2^n \) is positive for any natural number \( n \), we can use the cancellation property of multiplication and division in a commutative group, which states that:
+\[
+a \cdot (b / a) = b
+\]
+Applying this property, we get:
+\[
+(x \cdot 2^n) / 2^n = x
+\]
+
+Therefore, we have shown that:
+\[
+(x \<<< n) \>>> n = x
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x n : Nat) : x <<< n >>> n = x := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (x n : Nat) : x <<< n >>> n = x := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Count of True Predicate in List Equals Length of List : For any list \( l \) of elements of type \( \alpha \), the number of elements in \( l \) that satisfy the predicate \( \text{true} \) is equal to the length of \( l \). In other words, \(\text{countP}(\lambda x. \text{true}, l) = \text{length}(l)\).
+
+2. **Informal Proof**  
+To prove that the number of elements in a list \( l \) that satisfy the predicate \( \text{true} \) is equal to the length of \( l \), we use the equivalence that the number of elements in a list \( l \) that satisfy a predicate \( p \) is equal to the length of \( l \) if and only if every element in \( l \) satisfies \( p \). Formally, this equivalence is:
+\[
+\text{countP}(p, l) = \text{length}(l) \iff \forall a \in l, p(a) = \text{true}
+\]
+Applying this equivalence to our specific case where \( p(x) = \text{true} \), we need to show:
+\[
+\forall a \in l, \text{true} = \text{true}
+\]
+Since \(\text{true} = \text{true}\) is always true, the above statement is trivially true. Therefore, \(\text{countP}(\lambda x. \text{true}, l) = \text{length}(l)\) holds. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} : (l.countP fun _ => true) = l.length := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example {l : List α} : (l.countP fun _ => true) = l.length := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

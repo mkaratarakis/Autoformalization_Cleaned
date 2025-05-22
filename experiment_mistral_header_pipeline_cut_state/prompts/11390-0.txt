@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+GCD of \( x + 1 \) and \( y \) Equals GCD of \( y \mod (x + 1) \) and \( x + 1 \) : For any natural numbers \( x \) and \( y \), the greatest common divisor of \( x + 1 \) and \( y \) is equal to the greatest common divisor of \( y \mod (x + 1) \) and \( x + 1 \), i.e., \(\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the greatest common divisor (gcd). The definition of gcd states that \(\gcd(a, b)\) is the greatest common divisor of \(a\) and \(b\). Applying this definition to our goal, we rewrite \(\gcd(x + 1, y)\) and \(\gcd(y \mod (x + 1), x + 1)\). After applying the definition, the goal simplifies to the equality of the gcd expressions, which is trivially true by the properties of gcd. Therefore, we have \(\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)\). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : Nat) : gcd (x + 1) y = gcd (y % (x + 1)) (x + 1) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (x y : Nat) : gcd (x + 1) y = gcd (y % (x + 1)) (x + 1) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

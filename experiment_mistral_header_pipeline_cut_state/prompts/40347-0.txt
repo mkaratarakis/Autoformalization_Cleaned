@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Empty List is a Prefix of Any List : For any list \( l \) of elements of type \( \alpha \), the empty list is a prefix of \( l \). Formally, this is expressed as \(\text{nil} \text{ isPrefixOf } l = \text{true}\).
+
+2. **Informal Proof**  
+To prove that the empty list is a prefix of any list \( l \), we use the definition of the `isPrefixOf` function. According to the definition:
+- If the first list is the empty list, `isPrefixOf` returns `true` for any second list.
+- If the first list is non-empty and the second list is empty, `isPrefixOf` returns `false`.
+- If both lists are non-empty, `isPrefixOf` returns `true` if the first elements of both lists are equal and the rest of the first list is a prefix of the rest of the second list.
+
+Since the empty list is the first list in our case, the definition directly states that `isPrefixOf` returns `true` for any list \( l \). Therefore, the proposition \(\text{nil} \text{ isPrefixOf } l = \text{true}\) is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example [BEq α] : isPrefixOf ([] : List α) l = true := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example [BEq α] : isPrefixOf ([] : List α) l = true := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

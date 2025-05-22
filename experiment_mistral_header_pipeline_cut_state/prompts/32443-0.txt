@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Successor Multiplication Identity: \((a + 1) \cdot (b + 1) = a \cdot b + a + b + 1\) : For any natural numbers \( a \) and \( b \), the product of their successors is equal to the sum of their product, \( a \), \( b \), and 1, i.e., \((a + 1) \cdot (b + 1) = a \cdot b + a + b + 1\).
+
+2. **Informal Proof**  
+To prove the identity \((a + 1) \cdot (b + 1) = a \cdot b + a + b + 1\), we start by using the properties of the successor function and multiplication. Specifically, we use the following properties:
+1. \((a + 1) \cdot b = a \cdot b + b\)
+2. \(a \cdot (b + 1) = a \cdot b + a\)
+
+Applying these properties, we can rewrite the left-hand side of the equation:
+\[
+(a + 1) \cdot (b + 1) = (a + 1) \cdot b + (a + 1)
+\]
+Using the first property, we get:
+\[
+(a + 1) \cdot b = a \cdot b + b
+\]
+Substituting this back, we have:
+\[
+(a + 1) \cdot (b + 1) = (a \cdot b + b) + (a + 1)
+\]
+Simplifying the right-hand side, we get:
+\[
+(a \cdot b + b) + (a + 1) = a \cdot b + a + b + 1
+\]
+Thus, we have shown that:
+\[
+(a + 1) \cdot (b + 1) = a \cdot b + a + b + 1
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a b) : succ a * succ b = a * b + a + b + 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b) : succ a * succ b = a * b + a + b + 1 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

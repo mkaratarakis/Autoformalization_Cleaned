@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Exponentiation Preserves Strict Inequality in Natural Numbers: \( a^n < a^{n+1} \) for \( a > 1 \) : For any natural numbers \( a \) and \( n \) such that \( a > 1 \), it holds that \( a^n < a^{n+1} \).
+
+2. **Informal Proof**  
+We start by using the properties of exponentiation and the multiplicative identity. Specifically, we know that:
+\[ a^n \cdot 1 = a^n \]
+and
+\[ a^{n+1} = a^n \cdot a. \]
+Thus, the goal \( a^n < a^{n+1} \) can be rewritten as:
+\[ a^n \cdot 1 < a^n \cdot a. \]
+
+To prove this, we use the fact that multiplication preserves inequalities in ordered monoids. We need to show:
+1. \( a^n \leq a^n \) (which is true by the reflexivity of the less than or equal to relation),
+2. \( 1 < a \) (which is given by the hypothesis \( h \)),
+3. \( 0 < a^n \) (which follows from the fact that \( 0 < 1 \) and \( 1 < a \) implies \( 0 < a \), and since \( a \) is positive, \( a^n \) is also positive).
+
+Using these facts, we can conclude that:
+\[ a^n \cdot 1 < a^n \cdot a. \]
+Therefore, \( a^n < a^{n+1} \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (h : 1 < a) : a ^ n < a ^ (n + 1) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (h : 1 < a) : a ^ n < a ^ (n + 1) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

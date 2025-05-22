@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Count of Elements Satisfying a Predicate in Cons List: \(\text{countP}(p, a :: l) = \text{countP}(p, l)\) if \( p(a) = \text{false} \) : For any type \( \alpha \), a predicate \( p : \alpha \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), if \( p(a) = \text{false} \) for some element \( a \in \alpha \), then the count of elements in the list \( a :: l \) that satisfy \( p \) is equal to the count of elements in \( l \) that satisfy \( p \), i.e., \(\text{countP}(p, a :: l) = \text{countP}(p, l)\).
+
+2. **Informal Proof**  
+We start by noting that the predicate \( p \) maps elements of type \( \alpha \) to boolean values. Given a list \( l \) of elements of type \( \alpha \) and an element \( a \in \alpha \) such that \( p(a) = \text{false} \), we need to show that the count of elements in the list \( a :: l \) that satisfy \( p \) is equal to the count of elements in \( l \) that satisfy \( p \).
+
+Using the definitions of `countP` and `countP.go`, and the fact that \( p(a) = \text{false} \), we can simplify the expression for the count of elements in \( a :: l \) that satisfy \( p \). Specifically, since \( p(a) = \text{false} \), the element \( a \) does not contribute to the count. Therefore, the count of elements in \( a :: l \) that satisfy \( p \) is the same as the count of elements in \( l \) that satisfy \( p \).
+
+Thus, we have:
+\[
+\text{countP}(p, a :: l) = \text{countP}(p, l)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (l) (pa : ¬p a) : countP p (a :: l) = countP p l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example (l) (pa : ¬p a) : countP p (a :: l) = countP p l := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

@@ -1,0 +1,64 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:18:10: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  map f (zipWith g tl (head :: tail))
+case cons.cons
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+δ : Type u_4
+f : α → β
+g : γ → δ → α
+hd : γ
+tl : List γ
+head : δ
+tail : List δ
+ih : map f (zipWith g tl (head :: tail)) = zipWith (fun x y => f (g x y)) tl (head :: tail)
+⊢ map f (zipWith g tl tail) = zipWith (fun x y => f (g x y)) tl tail
+tmp.lean:16:21: error: unsolved goals
+case cons.cons
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+δ : Type u_4
+f : α → β
+g : γ → δ → α
+hd : γ
+tl : List γ
+head : δ
+tail : List δ
+ih : map f (zipWith g tl (head :: tail)) = zipWith (fun x y => f (g x y)) tl (head :: tail)
+⊢ map f (zipWith g tl tail) = zipWith (fun x y => f (g x y)) tl tail
+case cons.cons
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+δ : Type u_4
+f : α → β
+g : γ → δ → α
+hd : γ
+tl : List γ
+head : δ
+tail : List δ
+ih : map f (zipWith g tl (head :: tail)) = zipWith (fun x y => f (g x y)) tl (head :: tail)
+⊢ map f (zipWith g tl tail) = zipWith (fun x y => f (g x y)) tl tail
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {δ : Type _} (f : α → β) (g : γ → δ → α) (l : List γ) (l' : List δ) :
+    map f (zipWith g l l') = zipWith (fun x y => f (g x y)) l l' := by
+  induction l with
+  | nil =>
+    simp [zipWith, map]
+  | cons hd tl ih =>
+    cases l' with
+    | nil =>
+      simp [zipWith, map]
+    | cons head tail =>
+      simp [zipWith, map]

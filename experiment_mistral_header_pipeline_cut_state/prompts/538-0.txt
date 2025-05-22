@@ -1,0 +1,93 @@
+
+1. **Informal Theorem**  
+Commutativity of List Erasure: \((l \setminus a) \setminus b = (l \setminus b) \setminus a\) : For any list \( l \) of elements of type \( \alpha \) and any elements \( a, b \in \alpha \), the operation of erasing \( a \) from \( l \) and then erasing \( b \) from the resulting list is the same as erasing \( b \) from \( l \) and then erasing \( a \) from the resulting list. In other words, the order in which elements are erased from a list does not affect the final result. Formally, for any \( a, b \in \alpha \) and any list \( l \):
+\[
+(l \setminus a) \setminus b = (l \setminus b) \setminus a
+\]
+where \( l \setminus x \) denotes the list obtained by removing the first occurrence of \( x \) from \( l \).
+
+2. **Informal Proof**  
+We start by considering the cases based on the equality and membership of \( a \) and \( b \) in the list \( l \).
+
+1. **Case 1: \( a = b \)**
+- If \( a \) and \( b \) are equal, then by the property that boolean equality implies true equality, we can replace \( b \) with \( a \) in the goal. This simplifies the goal to:
+\[
+(l \setminus a) \setminus a = (l \setminus a) \setminus a
+\]
+which is trivially true.
+
+2. **Case 2: \( a \notin l \)**
+- If \( a \) is not in \( l \), then by the property that erasing a non-member element from a list leaves the list unchanged, we have:
+\[
+l \setminus a = l
+\]
+Similarly, since \( a \) is not in \( l \), \( a \) cannot be in \( l \setminus b \) (by the property that membership in a list after erasing an element implies original membership), and thus:
+\[
+(l \setminus b) \setminus a = l \setminus b
+\]
+Therefore, the goal simplifies to:
+\[
+l \setminus b = l \setminus b
+\]
+which is trivially true.
+
+3. **Case 3: \( b \notin l \)**
+- If \( b \) is not in \( l \), then by the property that erasing a non-member element from a list leaves the list unchanged, we have:
+\[
+l \setminus b = l
+\]
+Similarly, since \( b \) is not in \( l \), \( b \) cannot be in \( l \setminus a \) (by the property that membership in a list after erasing an element implies original membership), and thus:
+\[
+(l \setminus a) \setminus b = l \setminus a
+\]
+Therefore, the goal simplifies to:
+\[
+l \setminus a = l \setminus a
+\]
+which is trivially true.
+
+4. **Case 4: \( a \in l \) and \( b \in l \)**
+- If both \( a \) and \( b \) are in \( l \), we can decompose \( l \) into \( l_1 \) and \( l_2 \) such that \( l = l_1 ++ a :: l_2 \) and \( b \in l_1 \). Using the property that erasing an element from the right of an append operation leaves the left part unchanged, we have:
+\[
+(l_1 ++ a :: l_2) \setminus b = l_1 \setminus b ++ a :: l_2
+\]
+Similarly, we can apply this property to the resulting list:
+\[
+(l_1 \setminus b ++ a :: l_2) \setminus a = (l_1 \setminus b) \setminus a ++ l_2
+\]
+On the other hand, we also have:
+\[
+(l_1 ++ a :: l_2) \setminus a = l_1 ++ l_2
+\]
+and:
+\[
+(l_1 ++ l_2) \setminus b = (l_1 \setminus b) ++ l_2
+\]
+Thus, the goal simplifies to:
+\[
+(l_1 \setminus b) \setminus a ++ l_2 = (l_1 \setminus b) \setminus a ++ l_2
+\]
+which is trivially true.
+
+In all cases, the goal is satisfied, and thus we have shown that the order in which elements are erased from a list does not affect the final result. This completes the proof.
+
+3. **Formal Theorem**  
+example [LawfulBEq α] (a b : α) (l : List α) :
+    (l.erase a).erase b = (l.erase b).erase a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] (a b : α) (l : List α) :
+    (l.erase a).erase b = (l.erase b).erase a := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

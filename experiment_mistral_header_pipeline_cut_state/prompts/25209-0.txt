@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+None Inequality and Existence of Some Element in Option Type : For any type \( \alpha \) and any optional value \( o : \text{Option} \, \alpha \), the statement \( o \neq \text{none} \) is equivalent to the existence of an element \( x \in \alpha \) such that \( o = \text{some} \, x \). In other words, \( o \neq \text{none} \) if and only if there exists \( x \) such that \( o = \text{some} \, x \).
+
+2. **Informal Proof**  
+We will consider every possible case of \( o \).
+
+1. **Case 1: \( o = \text{none} \)**
+- We need to show that \( \text{none} \neq \text{none} \leftrightarrow \exists x, \text{some} \, x = \text{none} \).
+- Since \( \text{none} \neq \text{none} \) is false and there is no \( x \) such that \( \text{some} \, x = \text{none} \), the proposition simplifies to \( \text{False} \leftrightarrow \text{False} \), which is true.
+
+2. **Case 2: \( o = \text{some} \, x \) for some \( x \in \alpha \)**
+- We need to show that \( \text{some} \, x \neq \text{none} \leftrightarrow \exists y, \text{some} \, y = \text{some} \, x \).
+- Since \( \text{some} \, x \neq \text{none} \) is true and there exists \( y = x \) such that \( \text{some} \, y = \text{some} \, x \), the proposition simplifies to \( \text{True} \leftrightarrow \text{True} \), which is true.
+
+Since both cases are true, the original statement \( o \neq \text{none} \leftrightarrow \exists x, \text{some} \, x = o \) holds. This completes the proof.
+
+3. **Formal Theorem**  
+example : o ≠ none ↔ ∃ x, some x = o := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o ≠ none ↔ ∃ x, some x = o := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

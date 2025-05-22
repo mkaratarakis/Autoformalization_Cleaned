@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Count of Element in Cons List : For any type \(\alpha\) with a boolean equality function, and for any elements \(a, b \in \alpha\) and list \(l\) of elements of type \(\alpha\), the count of \(a\) in the list \(b :: l\) (i.e., the list with \(b\) added to the front of \(l\)) is equal to the count of \(a\) in \(l\) plus 1 if \(b\) is equal to \(a\), and plus 0 otherwise. Mathematically, this can be expressed as:
+\[
+\text{count}(a, b :: l) = \text{count}(a, l) + \begin{cases} 
+1 & \text{if } b = a \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the `count` function and the lemma `countP_cons`. The `count` function counts the number of occurrences of an element in a list, and the lemma `countP_cons` states that the count of elements satisfying a predicate in a cons list is the count in the original list plus 1 if the head element satisfies the predicate, and plus 0 otherwise.
+
+Given the list \(b :: l\), we need to show that:
+\[
+\text{count}(a, b :: l) = \text{count}(a, l) + \begin{cases}
+1 & \text{if } b = a \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+By the definition of `count` and the lemma `countP_cons`, we have:
+\[
+\text{count}(a, b :: l) = \text{count}(a, l) + \begin{cases}
+1 & \text{if } b = a \\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+This simplification directly follows from the definition of `count` and the lemma `countP_cons`. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : α) (l : List α) :
+    count a (b :: l) = count a l + if b == a then 1 else 0 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+
+example (a b : α) (l : List α) :
+    count a (b :: l) = count a l + if b == a then 1 else 0 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

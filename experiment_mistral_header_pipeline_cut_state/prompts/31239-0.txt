@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Multiplication by Predecessor on the Right: \( n \times (m - 1) = n \times m - n \) : For any natural numbers \( n \) and \( m \), the product \( n \times (m - 1) \) is equal to \( n \times m - n \).
+
+2. **Informal Proof**  
+We start by using the commutativity of multiplication to rewrite the left-hand side of the equation:
+\[
+n \times (m - 1) = (m - 1) \times n
+\]
+Next, we apply the left distributive property of multiplication over subtraction:
+\[
+(m - 1) \times n = m \times n - n
+\]
+Finally, we use the commutativity of multiplication again to rewrite \( m \times n \) as \( n \times m \):
+\[
+m \times n - n = n \times m - n
+\]
+Thus, we have shown that:
+\[
+n \times (m - 1) = n \times m - n
+\]
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m : Nat) : n * (m - 1) = n * m - n := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m : Nat) : n * (m - 1) = n * m - n := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

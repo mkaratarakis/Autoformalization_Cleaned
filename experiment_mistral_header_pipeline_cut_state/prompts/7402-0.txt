@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Drop of Concatenation Equals Concatenation of Drops when \( n \leq \text{length}(l_1) \) : For any type \( \alpha \) and any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), if \( n \) is a natural number such that \( n \leq \text{length}(l_1) \), then the list obtained by dropping the first \( n \) elements from the concatenation \( l_1 ++ l_2 \) is equal to the concatenation of the list obtained by dropping the first \( n \) elements from \( l_1 \) and the list \( l_2 \). In other words, if \( n \leq \text{length}(l_1) \), then \(\text{drop } n (l_1 ++ l_2) = \text{drop } n l_1 ++ l_2\).
+
+2. **Informal Proof**  
+We start with the assumption that \( n \leq \text{length}(l_1) \). We need to show that \(\text{drop } n (l_1 ++ l_2) = \text{drop } n l_1 ++ l_2\).
+
+Using the theorem that the list obtained by dropping the first \( n \) elements from the concatenation \( l_1 ++ l_2 \) is equal to the concatenation of the list obtained by dropping the first \( n \) elements from \( l_1 \) and the list obtained by dropping the first \( n - \text{length}(l_1) \) elements from \( l_2 \), we have:
+\[
+\text{drop } n (l_1 ++ l_2) = \text{drop } n l_1 ++ \text{drop } (n - \text{length}(l_1)) l_2
+\]
+
+Since \( n \leq \text{length}(l_1) \), we know that \( n - \text{length}(l_1) = 0 \). Therefore, the list obtained by dropping the first \( n - \text{length}(l_1) \) elements from \( l_2 \) is just \( l_2 \). Substituting this into the equation, we get:
+\[
+\text{drop } n (l_1 ++ l_2) = \text{drop } n l_1 ++ l_2
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} {n : Nat} (h : n ≤ l₁.length) :
+    (l₁ ++ l₂).drop n = l₁.drop n ++ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l₁ l₂ : List α} {n : Nat} (h : n ≤ l₁.length) :
+    (l₁ ++ l₂).drop n = l₁.drop n ++ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

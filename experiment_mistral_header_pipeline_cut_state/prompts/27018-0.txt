@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+First Element of ZipWithAll Equals Function Applied to Optional Heads of Lists : For any types \( \alpha \), \( \beta \), and \( \gamma \), and any lists \( as : \text{List} \, \alpha \) and \( bs : \text{List} \, \beta \), and any function \( f : \text{Option} \, \alpha \to \text{Option} \, \beta \to \gamma \), if the list \( \text{zipWithAll} \, f \, as \, bs \) is non-empty, then the first element of \( \text{zipWithAll} \, f \, as \, bs \) is equal to \( f \, (\text{head?} \, as) \, (\text{head?} \, bs) \). In other words, if \( \text{zipWithAll} \, f \, as \, bs \neq [] \), then:
+\[
+(\text{zipWithAll} \, f \, as \, bs). \text{head} \, h = f \, (\text{head?} \, as) \, (\text{head?} \, bs)
+\]
+where \( h \) is a proof that \( \text{zipWithAll} \, f \, as \, bs \) is non-empty.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the injectivity of the `some` constructor in the `Option` type. This means that to show:
+\[
+(\text{zipWithAll} \, f \, as \, bs). \text{head} \, h = f \, (\text{head?} \, as) \, (\text{head?} \, bs)
+\]
+it suffices to show:
+\[
+\text{some}((\text{zipWithAll} \, f \, as \, bs). \text{head} \, h) = \text{some}(f \, (\text{head?} \, as) \, (\text{head?} \, bs))
+\]
+
+Next, we use the equivalence that the optional head of a non-empty list is `some` of the first element, and the definition of the first element of `zipWithAll`. This allows us to rewrite the goal to:
+\[
+\text{match } \text{head?} \, as, \text{head?} \, bs \text{ with} \\
+\text{| none, none => none} \\
+\text{| some } a, \text{ some } b => \text{ some } (f (\text{some } a) (\text{some } b))
+\]
+is equal to:
+\[
+\text{some} (f \, (\text{head?} \, as) \, (\text{head?} \, bs))
+\]
+
+We then discuss by cases based on the values of `head? as` and `head? bs`:
+1. **Case 1:** If both `head? as` and `head? bs` are `none`, then the goal is:
+\[
+\text{none} = \text{some} (f \, \text{none} \, \text{none})
+\]
+This is a contradiction because `none` cannot be equal to `some` of any value. Therefore, this case is impossible.
+2. **Case 2:** If both `head? as` and `head? bs` are `some a` and `some b` respectively, then the goal is:
+\[
+\text{some} (f \, (\text{some } a) \, (\text{some } b)) = \text{some} (f \, (\text{some } a) \, (\text{some } b))
+\]
+This is trivially true by the reflexivity of equality.
+
+Since both cases are either impossible or trivially true, the theorem is proven. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {f : Option α → Option β → γ} (h) :
+    (zipWithAll f as bs).head h = f as.head? bs.head? := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {f : Option α → Option β → γ} (h) :
+    (zipWithAll f as bs).head h = f as.head? bs.head? := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

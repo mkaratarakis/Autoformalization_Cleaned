@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Subset of Reverse List is Equivalent to Subset of Original List: \( l_1 \subseteq l_2^{\text{reverse}} \leftrightarrow l_1 \subseteq l_2 \) : For any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), \( l_1 \) is a subset of the reverse of \( l_2 \) if and only if \( l_1 \) is a subset of \( l_2 \). In other words, \( l_1 \subseteq l_2^{\text{reverse}} \) if and only if \( l_1 \subseteq l_2 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of subset. A list \( l_1 \) is a subset of another list \( l_2 \) if and only if every element of \( l_1 \) is also an element of \( l_2 \). Therefore, the statement \( l_1 \subseteq l_2^{\text{reverse}} \leftrightarrow l_1 \subseteq l_2 \) can be simplified to showing that for every element \( x \) in \( l_1 \), \( x \) is in \( l_2^{\text{reverse}} \) if and only if \( x \) is in \( l_2 \).
+
+Since the reverse of a list \( l_2 \) contains exactly the same elements as \( l_2 \), just in a different order, the membership of an element \( x \) in \( l_2 \) is equivalent to its membership in \( l_2^{\text{reverse}} \). Hence, for any element \( x \) in \( l_1 \), \( x \) is in \( l_2^{\text{reverse}} \) if and only if \( x \) is in \( l_2 \).
+
+Therefore, \( l_1 \subseteq l_2^{\text{reverse}} \) if and only if \( l_1 \subseteq l_2 \). This completes the proof.
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} : l₁ ⊆ reverse l₂ ↔ l₁ ⊆ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {l₁ l₂ : List α} : l₁ ⊆ reverse l₂ ↔ l₁ ⊆ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

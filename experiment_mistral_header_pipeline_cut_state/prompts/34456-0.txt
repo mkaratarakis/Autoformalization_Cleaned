@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+First Element of `dropWhile` Result Does Not Satisfy Predicate: $p(\text{head}(\text{dropWhile}(p, l))) = \text{false}$ : For any type $\alpha$ and any predicate $p : \alpha \to \text{Bool}$, if the list $l : \text{List} \, \alpha$ is non-empty after applying `List.dropWhile p` to it, then the first element of the resulting list does not satisfy the predicate $p$, i.e., $p(\text{head}(\text{dropWhile}(p, l))) = \text{false}$.
+
+2. **Informal Proof**  
+We need to show that if the list $l$ is non-empty after applying `List.dropWhile p` to it, then the first element of the resulting list does not satisfy the predicate $p$.
+
+First, we use the fact that the optional head of a non-empty list is `some` of its first element. This means that if the list `List.dropWhile p l` is non-empty, then `List.head? (List.dropWhile p l)` is `some (List.head (List.dropWhile p l) w)`, where `w` is a proof that `List.dropWhile p l` is non-empty.
+
+Next, we use the fact that the first element of the list resulting from `List.dropWhile p l` does not satisfy the predicate $p$. This means that if `List.dropWhile p l` is non-empty, then $p(\text{head}(\text{dropWhile}(p, l))) = \text{false}$.
+
+Combining these two facts, we can simplify the proposition we want to show to $p(\text{head}(\text{dropWhile}(p, l))) = \text{false}$. We see that this is exactly what we have proved, thus completing the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example (p : α → Bool) (l : List α) (w) :
+    p ((l.dropWhile p).head w) = false := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) (l : List α) (w) :
+    p ((l.dropWhile p).head w) = false := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

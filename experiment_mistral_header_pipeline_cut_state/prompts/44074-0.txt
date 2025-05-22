@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Bitvector to Natural Number Conversion Equivalence: \( x.\text{toNat} = y \leftrightarrow y < 2^w \land x = \text{BitVec.ofNat}(w, y) \) : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the underlying natural number of \( x \), denoted as \( x.\text{toNat} \), is equal to \( y \) if and only if \( y \) is less than \( 2^w \) and \( x \) is the bitvector representation of \( y \) in width \( w \). In other words, \( x.\text{toNat} = y \) if and only if \( y < 2^w \) and \( x = \text{BitVec.ofNat}(w, y) \).
+
+2. **Informal Proof**  
+To prove the bi-implication \( x.\text{toNat} = y \leftrightarrow y < 2^w \land x = \text{BitVec.ofNat}(w, y) \), we need to show both directions.
+
+1. **(\( \Rightarrow \))** Suppose \( x.\text{toNat} = y \). We need to show that \( y < 2^w \) and \( x = \text{BitVec.ofNat}(w, y) \).
+- Since \( x \) is a bitvector of width \( w \), by definition, \( x.\text{toNat} < 2^w \).
+- Given \( x.\text{toNat} = y \), it follows that \( y < 2^w \).
+- Also, \( x = \text{BitVec.ofNat}(w, x.\text{toNat}) \), and since \( x.\text{toNat} = y \), we have \( x = \text{BitVec.ofNat}(w, y) \).
+
+2. **(\( \Leftarrow \))** Suppose \( y < 2^w \) and \( x = \text{BitVec.ofNat}(w, y) \). We need to show that \( x.\text{toNat} = y \).
+- By the definition of \( \text{BitVec.ofNat}(w, y) \), the underlying natural number of \( \text{BitVec.ofNat}(w, y) \) is \( y \).
+- Since \( x = \text{BitVec.ofNat}(w, y) \), it follows that \( x.\text{toNat} = y \).
+
+Thus, we have shown both directions, and the bi-implication \( x.\text{toNat} = y \leftrightarrow y < 2^w \land x = \text{BitVec.ofNat}(w, y) \) holds. This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec w) (y : Nat)
+  : (x.toNat = y) ↔ (y < 2^w ∧ (x = BitVec.ofNat w y)) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) (y : Nat)
+  : (x.toNat = y) ↔ (y < 2^w ∧ (x = BitVec.ofNat w y)) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

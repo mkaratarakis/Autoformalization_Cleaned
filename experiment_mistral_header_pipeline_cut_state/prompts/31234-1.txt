@@ -1,0 +1,35 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:9:2: error: tactic 'rfl' failed, the left-hand side
+  a = c + b
+is not definitionally equal to the right-hand side
+  a = b + c
+b a c : Nat
+h : b ≤ a
+⊢ a = c + b ↔ a = b + c
+tmp.lean:7:57: error: unsolved goals
+b a c : Nat
+h : b ≤ a
+⊢ a = c + b ↔ a = b + c
+
+b a c : Nat
+h : b ≤ a
+⊢ b ≤ a
+b a c : Nat
+h : b ≤ a
+⊢ a = c + b ↔ a = b + c
+
+b a c : Nat
+h : b ≤ a
+⊢ b ≤ a
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {c : Nat} (h : b ≤ a) : a - b = c ↔ a = b + c := by
+  rw [Nat.sub_eq_iff_eq_add]

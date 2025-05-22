@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Optional Element Getter for Finite Types is Equivalent to Natural Number Getter : For any type \( \text{Cont} \) and a type \( \text{Elem} \), and a validity predicate \( \text{Dom} : \text{Cont} \to \mathbb{N} \to \text{Prop} \), if there exists an optional element getter \( \text{GetElem?} \) for \( \text{Cont} \) and \( \mathbb{N} \) with respect to \( \text{Dom} \), then for any collection \( a : \text{Cont} \) and any index \( i \in \text{Fin } n \), the optional element getter \( \text{GetElem?} \) applied to \( a \) and \( i \) is equal to the optional element getter applied to \( a \) and the natural number value of \( i \), i.e., \( \text{GetElem? } a \, i = \text{GetElem? } a \, \text{val}(i) \).
+
+2. **Informal Proof**  
+We need to show that for any collection \( a : \text{Cont} \) and any index \( i \in \text{Fin } n \), the optional element getter \( \text{GetElem? } a \, i \) is equal to \( \text{GetElem? } a \, \text{val}(i) \). This equality holds trivially due to the reflexive property, as both sides of the equation are definitionally equal. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example [h : GetElem? Cont Nat Elem Dom] (a : Cont) (i : Fin n) : a[i]? = a[i.1]? := by sorry
+
+4. **Prefix**
+import Init.Util
+import Init.GetElem
+
+open Fin
+
+
+example [h : GetElem? Cont Nat Elem Dom] (a : Cont) (i : Fin n) : a[i]? = a[i.1]? := by
+
+5. **Header Information**  
+-- Init.Util not found. --
+
+-- Init.GetElem not found. --
+

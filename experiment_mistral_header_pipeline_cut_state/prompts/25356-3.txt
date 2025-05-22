@@ -1,0 +1,50 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:9:2: error: type mismatch
+  h
+has type
+  false < false : Prop
+but is expected to have type
+  false ≤ false : Prop
+tmp.lean:6:43: error: unsolved goals
+case false.false
+h : false < false
+⊢ false ≤ false
+
+case false.true
+h : false < true
+⊢ false ≤ true
+
+case true.false
+h : true < false
+⊢ true ≤ false
+
+case true.true
+h : true < true
+⊢ true ≤ true
+case false.false
+h : false < false
+⊢ false ≤ false
+
+case false.true
+h : false < true
+⊢ false ≤ true
+
+case true.false
+h : true < false
+⊢ true ≤ false
+
+case true.true
+h : true < true
+⊢ true ≤ true
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+example : ∀ {x y : Bool}, x < y → x ≤ y := by
+  intro x y h
+  cases x <;> cases y <;> try exact isTrue (x ≤ y)

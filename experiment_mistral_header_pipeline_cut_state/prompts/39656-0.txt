@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+List Find on Cons List Returns Same Result if First Element Does Not Satisfy Predicate : For any type \( \alpha \), a predicate \( p : \alpha \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), if \( p(a) \) is `false` for some element \( a \) of type \( \alpha \), then the function `List.find? p (a :: l)` returns the same result as `List.find? p l`. In other words, if the first element of the list does not satisfy the predicate, `List.find?` behaves as if the first element were not present.
+
+2. **Informal Proof**  
+We start with the assumption that \( p(a) \) is `false` for some element \( a \) of type \( \alpha \). According to the definition of `List.find?`, the function `List.find? p (a :: l)` checks the predicate \( p \) on the first element \( a \) of the list \( a :: l \). Since \( p(a) \) is `false`, the function `List.find?` will skip \( a \) and continue searching in the rest of the list \( l \). Therefore, `List.find? p (a :: l)` is equivalent to `List.find? p l`. This completes the proof.
+
+3. **Formal Theorem**  
+example (l) (h : ¬p a) : find? p (a :: l) = find? p l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (l) (h : ¬p a) : find? p (a :: l) = find? p l := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Division of Any Natural Number by Zero is Zero : For any natural number \( n \), the division of \( n \) by \( 0 \) is \( 0 \), i.e., \( n / 0 = 0 \).
+
+2. **Informal Proof**  
+We begin by considering the definition of division for natural numbers. The division \( n / 0 \) is defined as the number of times \( 0 \) can be subtracted from \( n \) without making \( n \) negative. Since subtracting \( 0 \) from \( n \) does not change \( n \), and there is no natural number \( k \) such that \( k \cdot 0 = n \) for any \( n \neq 0 \), the result of this operation is \( 0 \). Furthermore, we use the property that no natural number is less than itself, which is a trivial fact, to simplify our reasoning. Thus, we conclude that \( n / 0 = 0 \) for any natural number \( n \).
+
+3. **Formal Theorem**  
+example (n : Nat) : n / 0 = 0 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (n : Nat) : n / 0 = 0 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

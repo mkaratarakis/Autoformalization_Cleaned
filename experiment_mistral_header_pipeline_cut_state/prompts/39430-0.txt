@@ -1,0 +1,73 @@
+
+1. **Informal Theorem**  
+Equivalence of `List.erase` and `List.eraseTR` : For any type \( \alpha \) equipped with a binary equality operation, the function `List.erase` that removes the first occurrence of an element from a list is equal to the tail-recursive function `List.eraseTR` that performs the same operation. Formally, for any list \( l : \text{List} \, \alpha \) and any element \( a : \alpha \), the result of `List.erase l a` is the same as the result of `List.eraseTR l a`.
+
+2. **Informal Proof**  
+To prove that the function `List.erase` is equal to the tail-recursive function `List.eraseTR`, we use the principle of function extensionality. This means we need to show that for all possible lists \( l \) and elements \( a \) of type \( \alpha \), the functions `List.erase` and `List.eraseTR` yield the same result. Specifically, we need to show that \( l.\text{erase} \, a = \text{eraseTR.go} \, l \, a \, l \, \#[] \).
+
+We will perform induction on the list \( l \).
+
+**Base Case:**
+If \( l \) is the empty list, i.e., \( l = [] \), then using the definitions of `List.erase` and `List.eraseTR.go`, and the hypothesis \( l = \text{acc.data} \, ++ \, [] \), we can simplify the proposition to:
+\[ [].\text{erase} \, a = \text{eraseTR.go} \, [] \, a \, [] \, \#[] \]
+Since both `List.erase` and `List.eraseTR.go` return the empty list when applied to the empty list, we have:
+\[ [] = \#[] \]
+This is trivially true.
+
+**Inductive Step:**
+Assume \( l \) is a non-empty list, i.e., \( l = x :: xs \). We will use the induction hypothesis \( \text{IH} \), which states that for any array \( \text{acc} \), if \( l = \text{acc.data} \, ++ \, xs \), then:
+\[ \text{eraseTR.go} \, l \, a \, xs \, \text{acc} = \text{acc.data} \, ++ \, xs.\text{erase} \, a \]
+
+We need to show:
+\[ (x :: xs).\text{erase} \, a = \text{eraseTR.go} \, (x :: xs) \, a \, (x :: xs) \, \#[] \]
+
+We will discuss every possible case of \( x == a \).
+
+**Case 1: \( x = a \)**
+Using the definitions of `List.erase` and `List.eraseTR.go`, and the hypothesis \( l = \text{acc.data} \, ++ \, x :: xs \), we can simplify the proposition to:
+\[ (x :: xs).\text{erase} \, a = \text{acc.data} \, ++ \, xs \]
+Since \( x = a \), the left-hand side simplifies to:
+\[ xs = \text{acc.data} \, ++ \, xs \]
+This is trivially true.
+
+**Case 2: \( x \neq a \)**
+Using the definitions of `List.erase` and `List.eraseTR.go`, and the hypothesis \( l = \text{acc.data} \, ++ \, x :: xs \), we can simplify the proposition to:
+\[ (x :: xs).\text{erase} \, a = x :: (xs.\text{erase} \, a) \]
+and
+\[ \text{eraseTR.go} \, (x :: xs) \, a \, (x :: xs) \, \#[] = x :: \text{eraseTR.go} \, xs \, a \, xs \, (\#[].\text{push} \, x) \]
+
+By the induction hypothesis \( \text{IH} \), we have:
+\[ \text{eraseTR.go} \, xs \, a \, xs \, (\#[].\text{push} \, x) = (\#[].\text{push} \, x).\text{data} \, ++ \, xs.\text{erase} \, a \]
+
+Using the definition of `Array.push`, we know:
+\[ (\#[].\text{push} \, x).\text{data} = \#[].\text{data} \, ++ \, [x] = [x] \]
+
+Thus, the right-hand side simplifies to:
+\[ x :: \text{eraseTR.go} \, xs \, a \, xs \, (\#[].\text{push} \, x) = x :: (\#[].\text{data} \, ++ \, xs.\text{erase} \, a) = x :: (xs.\text{erase} \, a) \]
+
+Therefore, we have:
+\[ (x :: xs).\text{erase} \, a = x :: (xs.\text{erase} \, a) \]
+and
+\[ \text{eraseTR.go} \, (x :: xs) \, a \, (x :: xs) \, \#[] = x :: (xs.\text{erase} \, a) \]
+
+Both sides are equal, and the inductive step is complete.
+
+By induction, we have shown that for any list \( l \) and any element \( a \) of type \( \alpha \), the result of `List.erase l a` is the same as the result of `List.eraseTR l a`. This completes the proof.
+
+3. **Formal Theorem**  
+example : @List.erase = @eraseTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @List.erase = @eraseTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

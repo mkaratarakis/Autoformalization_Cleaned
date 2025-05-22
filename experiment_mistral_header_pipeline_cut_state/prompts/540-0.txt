@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Erasing Element from Appended List: \((l \oplus l') \setminus k = (l \setminus k) \oplus l'\) for \( k < \text{length}(l) \) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( k \) such that \( k < \text{length}(l) \), and for any list \( l' \) of elements of type \( \alpha \), the list obtained by appending \( l' \) to \( l \) and then erasing the element at index \( k \) is equal to the list obtained by first erasing the element at index \( k \) from \( l \) and then appending \( l' \). In other words, if \( k \) is less than the length of \( l \), then \((l \oplus l') \setminus k = (l \setminus k) \oplus l'\).
+
+2. **Informal Proof**  
+We will prove the theorem by induction on the list \( l \).
+
+1. **Base Case: \( l = [] \)**
+- Consider the case where the list \( l \) is empty. Using the properties of the length of an empty list and the definition of `eraseIdx`, we can simplify the goal to show that \(([] \oplus l') \setminus k = [] \setminus k \oplus l'\). Since the length of the empty list is \(0\), the assumption \( k < \text{length}([]) \) is false, and thus the goal is trivially true.
+
+2. **Inductive Step: \( l = x :: l \)**
+- Perform induction on the list \( l \) and consider the case where \( l \) is of the form \( x :: l \) (i.e., \( l \) is a non-empty list with head \( x \) and tail \( l \)). The induction hypothesis \( \text{ih} \) states that for any natural number \( k \) such that \( k < \text{length}(l) \), and for any list \( l' \), the property \((l \oplus l') \setminus k = (l \setminus k) \oplus l'\) holds.
+- **Subcase: \( k = 0 \)**
+- Consider the case where \( k = 0 \). The goal is to show that \((x :: l \oplus l') \setminus 0 = (x :: l) \setminus 0 \oplus l'\). By the definition of `eraseIdx`, erasing the element at index \(0\) from \( x :: l \) results in \( l \), and thus the left-hand side simplifies to \( l \oplus l' \) and the right-hand side simplifies to \( l \oplus l' \). Therefore, the goal is trivially true due to the reflexive property of equality.
+- **Subcase: \( k = k' + 1 \)**
+- Consider the case where \( k = k' + 1 \) for some natural number \( k' \). Using the properties of `eraseIdx` for a list with a head and a tail, and the fact that \( k' + 1 < \text{length}(x :: l) \) is equivalent to \( k' < \text{length}(l) \), we can simplify the goal to show that \((x :: l \oplus l') \setminus (k' + 1) = (x :: l) \setminus (k' + 1) \oplus l'\). By the induction hypothesis, this simplifies to \((l \oplus l') \setminus k' = (l \setminus k') \oplus l'\), which is true by the induction hypothesis.
+
+This completes the proof by induction. Therefore, for any list \( l \) of elements of type \( \alpha \) and any natural number \( k \) such that \( k < \text{length}(l) \), and for any list \( l' \) of elements of type \( \alpha \), the property \((l \oplus l') \setminus k = (l \setminus k) \oplus l'\) holds.
+
+3. **Formal Theorem**  
+example {l : List α} {k : Nat} (hk : k < length l) (l' : List α) :
+    eraseIdx (l ++ l') k = eraseIdx l k ++ l' := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example {l : List α} {k : Nat} (hk : k < length l) (l' : List α) :
+    eraseIdx (l ++ l') k = eraseIdx l k ++ l' := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

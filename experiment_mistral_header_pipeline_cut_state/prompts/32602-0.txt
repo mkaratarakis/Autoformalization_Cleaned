@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Not-Equal Function Returns False for Equal Elements: $a \neq a = \text{false}$ : For any type $\alpha$ with a `BEq` instance and a `LawfulBEq` instance, and for any element $a \in \alpha$, the boolean not-equal function `a != a` returns `false`. This means that the boolean expression `a != a` is always `false` for any element $a$ in the type $\alpha$.
+
+2. **Informal Proof**  
+To prove that \((a \neq a) = \text{false}\) for any element \(a \in \alpha\), we use the definition of the boolean not-equal function `bne`. The function `bne` is defined as the boolean negation of the equality function, i.e., \(a \neq a\) is equivalent to \(\text{not}(a == a)\). Since \(a == a\) is always `true` (by the reflexivity of equality), \(\text{not}(a == a)\) is \(\text{not}(\text{true})\), which is `false`. Therefore, \((a \neq a) = \text{false}\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example [BEq α] [LawfulBEq α] (a : α) : (a != a) = false := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example [BEq α] [LawfulBEq α] (a : α) : (a != a) = false := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

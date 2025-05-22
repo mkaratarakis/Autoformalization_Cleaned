@@ -1,0 +1,86 @@
+
+1. **Informal Theorem**  
+Taking First \( n \) Elements of Concatenated Lists Equals Concatenation of First \( n \) Elements of Each List and Remaining Elements of Second List : For any type \(\alpha\), any lists \(l_1\) and \(l_2\) of elements of type \(\alpha\), and any natural number \(n\), the first \(n\) elements of the concatenation \(l_1 ++ l_2\) are equal to the concatenation of the first \(n\) elements of \(l_1\) and the first \(n - l_1.\text{length}\) elements of \(l_2\). Formally, this can be written as:
+\[
+\text{take } n \, (l_1 ++ l_2) = \text{take } n \, l_1 ++ \text{take } (n - \text{length } l_1) \, l_2
+\]
+
+2. **Informal Proof**  
+We perform induction on the list \( l_1 \).
+
+**Base Case:**
+For \( l_1 = [] \), we need to show:
+\[
+\text{take } n \, ([] ++ l_2) = \text{take } n \, [] ++ \text{take } (n - \text{length } []) \, l_2
+\]
+Simplifying both sides, we get:
+\[
+\text{take } n \, l_2 = \text{take } n \, [] ++ \text{take } n \, l_2
+\]
+Since \(\text{take } n \, [] = []\), the right-hand side simplifies to:
+\[
+[] ++ \text{take } n \, l_2 = \text{take } n \, l_2
+\]
+Thus, the base case is trivially true.
+
+**Inductive Step:**
+Assume \( l_1 = \text{head} :: \text{tail} \). We need to show:
+\[
+\text{take } n \, (\text{head} :: \text{tail} ++ l_2) = \text{take } n \, (\text{head} :: \text{tail}) ++ \text{take } (n - \text{length } (\text{head} :: \text{tail})) \, l_2
+\]
+We will consider two cases for \( n \).
+
+**Case 1: \( n = 0 \)**
+We need to show:
+\[
+\text{take } 0 \, (\text{head} :: \text{tail} ++ l_2) = \text{take } 0 \, (\text{head} :: \text{tail}) ++ \text{take } (0 - \text{length } (\text{head} :: \text{tail})) \, l_2
+\]
+Simplifying both sides, we get:
+\[
+[] = [] ++ \text{take } (-1) \, l_2
+\]
+Since \(\text{take } (-1) \, l_2 = []\), the right-hand side simplifies to:
+\[
+[] = []
+\]
+Thus, the case \( n = 0 \) is trivially true.
+
+**Case 2: \( n = m + 1 \)**
+We need to show:
+\[
+\text{take } (m + 1) \, (\text{head} :: \text{tail} ++ l_2) = \text{take } (m + 1) \, (\text{head} :: \text{tail}) ++ \text{take } (m + 1 - \text{length } (\text{head} :: \text{tail})) \, l_2
+\]
+Using the properties of list concatenation and taking the first \( m + 1 \) elements, we simplify the goal to:
+\[
+\text{take } (m - \text{length } \text{tail}) \, l_2 = \text{take } (m + 1 - (\text{length } \text{tail} + 1)) \, l_2
+\]
+Simplifying the right-hand side, we get:
+\[
+\text{take } (m - \text{length } \text{tail}) \, l_2 = \text{take } (m - \text{length } \text{tail}) \, l_2
+\]
+Thus, the inductive step is proven.
+
+By induction, the theorem holds for all lists \( l_1 \) and \( l_2 \) and all natural numbers \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} {n : Nat} :
+    take n (l₁ ++ l₂) = take n l₁ ++ take (n - l₁.length) l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l₁ l₂ : List α} {n : Nat} :
+    take n (l₁ ++ l₂) = take n l₁ ++ take (n - l₁.length) l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

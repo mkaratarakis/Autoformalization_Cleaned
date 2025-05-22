@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+If-Then-Else Identity: \((\text{if } p \text{ then } \text{True} \text{ else } q) \leftrightarrow \neg p \to q\) : For any propositions \( p \) and \( q \), the if-then-else expression \((\text{if } p \text{ then } \text{True} \text{ else } q)\) is logically equivalent to \(\neg p \to q\). In other words, if \( p \) is false, then the expression evaluates to \( q \); otherwise, it evaluates to \(\text{True}\).
+
+2. **Informal Proof**  
+We start by considering the two possible cases for the decidability of \( p \):
+
+1. **Case 1: \( p \) is false.**
+- In this case, the expression \((\text{if } p \text{ then } \text{True} \text{ else } q)\) simplifies to \( q \).
+- Since \( p \) is false, \(\neg p\) is true, and thus \(\neg p \to q\) simplifies to \( q \).
+- Therefore, in this case, the expression \((\text{if } p \text{ then } \text{True} \text{ else } q)\) is equivalent to \(\neg p \to q\).
+
+2. **Case 2: \( p \) is true.**
+- In this case, the expression \((\text{if } p \text{ then } \text{True} \text{ else } q)\) simplifies to \(\text{True}\).
+- Since \( p \) is true, \(\neg p\) is false, and thus \(\neg p \to q\) simplifies to \(\text{True}\).
+- Therefore, in this case, the expression \((\text{if } p \text{ then } \text{True} \text{ else } q)\) is equivalent to \(\neg p \to q\).
+
+Since both cases show that the expression \((\text{if } p \text{ then } \text{True} \text{ else } q)\) is equivalent to \(\neg p \to q\), we conclude that the theorem holds for any propositions \( p \) and \( q \).
+
+3. **Formal Theorem**  
+example [h : Decidable p] :
+    ite p True q ↔ ¬p → q := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example [h : Decidable p] :
+    ite p True q ↔ ¬p → q := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

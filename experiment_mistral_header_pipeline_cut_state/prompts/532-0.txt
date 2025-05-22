@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Erasing Element from Concatenated Lists: \((l_1 ++ l_2) \setminus a = l_1 \setminus a ++ l_2\) if \(a \in l_1\), otherwise \((l_1 ++ l_2) \setminus a = l_1 ++ l_2 \setminus a\) : For any type \( \alpha \) and any element \( a \) of type \( \alpha \), the list obtained by erasing \( a \) from the concatenation \( l_1 ++ l_2 \) is equal to:
+- \( l_1 \setminus a ++ l_2 \) if \( a \in l_1 \),
+- \( l_1 ++ l_2 \setminus a \) if \( a \notin l_1 \).
+
+Formally, for any lists \( l_1, l_2 \) of elements of type \( \alpha \):
+\[
+(l_1 ++ l_2) \setminus a = 
+\begin{cases} 
+l_1 \setminus a ++ l_2 & \text{if } a \in l_1 \\
+l_1 ++ l_2 \setminus a & \text{if } a \notin l_1 
+\end{cases}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that erasing the first occurrence of an element \( a \) from a list \( l \) is the same as erasing the first element that satisfies the predicate \( x \mapsto (x = a) \) from \( l \). This equivalence is given by the theorem:
+\[ l \setminus a = \text{List.eraseP } (x \mapsto (x = a)) \, l \]
+
+Next, we use the property of erasing the first element from a concatenated list. This property states that for any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), and a predicate \( p : \alpha \to \text{Bool} \):
+\[ \text{List.eraseP } p \, (l_1 ++ l_2) = \begin{cases}
+\text{List.eraseP } p \, l_1 ++ l_2 & \text{if } \exists a \in l_1, \, p(a) = \text{true} \\
+l_1 ++ \text{List.eraseP } p \, l_2 & \text{otherwise}
+\end{cases} \]
+
+Applying these two theorems, we can simplify our goal to:
+\[ (l_1 ++ l_2) \setminus a = \begin{cases}
+l_1 \setminus a ++ l_2 & \text{if } a \in l_1 \\
+l_1 ++ l_2 \setminus a & \text{if } a \notin l_1
+\end{cases} \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {a : α} {l₁ l₂ : List α} :
+    (l₁ ++ l₂).erase a = if a ∈ l₁ then l₁.erase a ++ l₂ else l₁ ++ l₂.erase a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a : α} {l₁ l₂ : List α} :
+    (l₁ ++ l₂).erase a = if a ∈ l₁ then l₁.erase a ++ l₂ else l₁ ++ l₂.erase a := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

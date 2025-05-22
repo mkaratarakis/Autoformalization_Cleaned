@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Negation of Boolean True is False: \(\neg \text{true} = \text{false}\) : For any boolean value \( b \), the negation of \( b \) is equal to `false` if and only if \( b \) is equal to `true`, i.e., \(\neg b = \text{false} \leftrightarrow b = \text{true}\).
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value \( b \).
+
+1. **Case 1: \( b = \text{false} \)**
+- We need to show that \(\neg \text{false} = \text{false} \leftrightarrow \text{false} = \text{true}\).
+- Since \(\neg \text{false} = \text{true}\) and \(\text{false} \neq \text{true}\), the left-hand side is \(\text{true} = \text{false}\), which is false, and the right-hand side is \(\text{false} = \text{true}\), which is also false.
+- Therefore, both sides are equal, and the statement holds.
+
+2. **Case 2: \( b = \text{true} \)**
+- We need to show that \(\neg \text{true} = \text{false} \leftrightarrow \text{true} = \text{true}\).
+- Since \(\neg \text{true} = \text{false}\) and \(\text{true} = \text{true}\), the left-hand side is \(\text{false} = \text{false}\), which is true, and the right-hand side is \(\text{true} = \text{true}\), which is also true.
+- Therefore, both sides are equal, and the statement holds.
+
+Since both cases are covered and the statement holds in each case, we conclude that for any boolean value \( b \), \(\neg b = \text{false} \leftrightarrow b = \text{true}\). This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) : (¬(b = false)) = (b = true) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (¬(b = false)) = (b = true) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

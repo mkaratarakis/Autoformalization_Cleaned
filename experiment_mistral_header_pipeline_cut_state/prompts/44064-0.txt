@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Bitvector to Natural Number Conversion of Integer Modulo \( 2^n \) : For any natural number \( n \) and any integer \( i \), the natural number representation of the bitvector `BitVec.ofInt n i` is equal to the natural number representation of \( i \) modulo \( 2^n \), i.e., \((\text{BitVec.ofInt } n \, i). \text{toNat} = (i \bmod 2^n). \text{toNat}\).
+
+2. **Informal Proof**  
+We start by expanding the definition of `BitVec.ofInt`. The function `BitVec.ofInt n i` maps an integer \( i \) to a bitvector of width \( n \) by taking \( i \) modulo \( 2^n \) and converting the result to a natural number, which is then interpreted as a bitvector of width \( n \). Therefore, the goal is to show:
+\[
+((i \bmod 2^n). \text{toNat}). \text{toNat} = (i \bmod 2^n). \text{toNat}
+\]
+
+Next, we simplify the left-hand side of the equation. The `toNat` function applied to a natural number is the natural number itself. Hence, \(((i \bmod 2^n). \text{toNat}). \text{toNat}\) simplifies to \((i \bmod 2^n). \text{toNat}\). This reduces the equation to:
+\[
+(i \bmod 2^n). \text{toNat} = (i \bmod 2^n). \text{toNat}
+\]
+This is trivially true, as both sides of the equation are identical. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n : Nat} (i : Int) :
+  (BitVec.ofInt n i).toNat = (i % (2^n : Nat)).toNat := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n : Nat} (i : Int) :
+  (BitVec.ofInt n i).toNat = (i % (2^n : Nat)).toNat := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

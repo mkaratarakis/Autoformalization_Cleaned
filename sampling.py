@@ -116,7 +116,7 @@ def main():
     thm_re = re.compile(r'\btheorem\s+\S+')
 
     for row in df.itertuples(index=False):
-        if success >= 100:
+        if success >= 1000:
             break
         if row.id in seen:
             continue
@@ -147,12 +147,12 @@ def main():
             success += 1
             selected.append(row._asdict())
             seen.add(row.id)
-            print(f"[✓] ({success}/100) id={row.id} accepted")
+            print(f"[✓] ({success}/1000) id={row.id} accepted")
         else:
-            print(f"[✗] ({success}/100) id={row.id} failed, removing")
+            print(f"[✗] ({success}/1000) id={row.id} failed, removing")
             os.remove(lf)
 
-    if success < 100:
+    if success < 1000:
         print(f"Warning: only found {success} valid points.")
 
     # 6. Save CSV at project root

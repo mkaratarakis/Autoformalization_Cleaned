@@ -1,0 +1,26 @@
+
+1. **Informal Theorem**  
+Left-Commutativity of Exclusive Or (XOR) in Boolean Values : For any boolean values $x$, $y$, and $z$, the expression $\text{xor}(x, \text{xor}(y, z))$ is equal to $\text{xor}(y, \text{xor}(x, z))$. This theorem demonstrates the left-commutativity property of the exclusive or (XOR) operation.
+
+2. **Informal Proof**  
+To prove the left-commutativity of the exclusive or (XOR) operation, we need to show that for any boolean values $x$, $y$, and $z$, the expression $\text{xor}(x, \text{xor}(y, z))$ is equal to $\text{xor}(y, \text{xor}(x, z))$. We use a decision procedure to verify this equality. This procedure exhaustively checks all possible combinations of $x$, $y$, and $z$ to ensure that the equality holds in every case. Since the decision procedure confirms the equality for all possible boolean values, the theorem is proven.
+
+Thus, the left-commutativity of the XOR operation is established. $\blacksquare$
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), xor x (xor y z) = xor y (xor x z) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), xor x (xor y z) = xor y (xor x z) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

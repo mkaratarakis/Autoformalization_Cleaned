@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Length of List After Erasing an Element : For any type \( \alpha \) with a `BEq` instance and a `LawfulBEq` instance, and for any element \( a \) and list \( l \) of elements of type \( \alpha \), the length of the list obtained by erasing the first occurrence of \( a \) from \( l \) is equal to the length of \( l \) minus 1 if \( a \) is a member of \( l \), otherwise it is equal to the length of \( l \). Formally, \((l \setminus a). \text{length} = \text{if } a \in l \text{ then } l. \text{length} - 1 \text{ else } l. \text{length}\).
+
+2. **Informal Proof**  
+We start by noting that the assumption that the cardinality of \( n \) is zero is equivalent to \( n \) being an empty type. Therefore, we convert the assumption \( \text{card}(n) = 0 \) into \( n \) being empty.
+
+To prove that the determinant of \( M \) is \( 1 \), it suffices to show that \( M \) is the identity matrix. Using extensionality, we need to show that for every \( i \in n \), \( M(i) = 1(i) \). Since \( n \) is empty, there are no elements \( i \) in \( n \), and thus the statement \( M(i) = 1(i) \) holds vacuously for all \( i \in n \).
+
+Hence, \( M \) is the identity matrix, and the determinant of \( M \) is \(\det(M) = \det(1) = 1\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example [LawfulBEq α] (a : α) (l : List α) :
+    length (l.erase a) = if a ∈ l then length l - 1 else length l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] (a : α) (l : List α) :
+    length (l.erase a) = if a ∈ l then length l - 1 else length l := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

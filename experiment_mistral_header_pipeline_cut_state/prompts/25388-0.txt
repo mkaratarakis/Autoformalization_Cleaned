@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Injectivity of Left Conjunction and Disjunction in Boolean Logic : For any boolean values $m$, $x$, and $y$, if $(m \land x) = (m \land y)$ and $(m \lor x) = (m \lor y)$, then $x = y$.
+
+2. **Informal Proof**  
+We need to show that for any boolean values $m$, $x$, and $y$, if $(m \land x) = (m \land y)$ and $(m \lor x) = (m \lor y)$, then $x = y$. Since boolean values are decidable, we can check all possible cases for $m$, $x$, and $y$.
+
+1. **Case 1: $m = \text{true}$**
+- If $m = \text{true}$, then $(m \land x) = x$ and $(m \land y) = y$. Therefore, $(m \land x) = (m \land y)$ implies $x = y$.
+- Similarly, $(m \lor x) = \text{true}$ and $(m \lor y) = \text{true}$. Therefore, $(m \lor x) = (m \lor y)$ is always true.
+- Hence, if $m = \text{true}$, the conditions $(m \land x) = (m \land y)$ and $(m \lor x) = (m \lor y)$ imply $x = y$.
+
+2. **Case 2: $m = \text{false}$**
+- If $m = \text{false}$, then $(m \land x) = \text{false}$ and $(m \land y) = \text{false}$. Therefore, $(m \land x) = (m \land y)$ is always true.
+- Similarly, $(m \lor x) = x$ and $(m \lor y) = y$. Therefore, $(m \lor x) = (m \lor y)$ implies $x = y$.
+- Hence, if $m = \text{false}$, the conditions $(m \land x) = (m \land y)$ and $(m \lor x) = (m \lor y)$ imply $x = y$.
+
+Since we have checked all possible cases for $m$, $x$, and $y$, we conclude that if $(m \land x) = (m \land y)$ and $(m \lor x) = (m \lor y)$, then $x = y$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {m x y : Bool}, (m && x) = (m && y) → (m || x) = (m || y) → x = y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {m x y : Bool}, (m && x) = (m && y) → (m || x) = (m || y) → x = y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

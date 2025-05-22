@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Erasing Non-Satisfying Element from Replicated List Preserves the List: $\neg p(a) \to \text{eraseP } p \, (\text{replicate } n \, a) = \text{replicate } n \, a$ : For any type $\alpha$, predicate $p : \alpha \to \text{Bool}$, natural number $n$, and element $a : \alpha$, if $p(a) = \text{false}$, then the list obtained by removing the first element that satisfies $p$ from the list containing $n$ copies of $a$ is equal to the original list containing $n$ copies of $a$. In other words, if the predicate $p$ does not hold for the element $a$, then `List.eraseP p (List.replicate n a)` is equal to `List.replicate n a`.
+
+2. **Informal Proof**  
+We start by noting that the list \(\text{replicate } n \, a\) consists of \(n\) copies of the element \(a\). Given the assumption \(p(a) = \text{false}\), we need to show that \(\text{eraseP}(p, \text{replicate } n \, a) = \text{replicate } n \, a\).
+
+By the theorem that states if no element in a list \( l \) satisfies the predicate \( p \), then the list remains unchanged after applying the `eraseP` function, we can replace our goal with showing that \(\text{replicate } n \, a = \text{replicate } n \, a\). This is because we need to show that no element in the list \(\text{replicate } n \, a\) satisfies \( p \).
+
+Since \( p(a) = \text{false} \), it follows that for every element \( a_1 \) in the list \(\text{replicate } n \, a\), \( p(a_1) = \text{false} \). Therefore, the list \(\text{replicate } n \, a\) remains unchanged after applying the `eraseP` function, and the goal \(\text{replicate } n \, a = \text{replicate } n \, a\) is trivially true.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n : Nat} {a : α} (h : ¬p a) :
+    (replicate n a).eraseP p = replicate n a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example {n : Nat} {a : α} (h : ¬p a) :
+    (replicate n a).eraseP p = replicate n a := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

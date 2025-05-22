@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Zero Extension of Bitvector to Same Length Equals Original Bitvector : For any natural number \( n \) and any bitvector \( x \) of length \( n \), the zero extension of \( x \) to a bitvector of the same length \( n \) is equal to \( x \). In other words, \( \text{zeroExtend}(n, x) = x \).
+
+2. **Informal Proof**  
+To prove that the zero extension of a bitvector \( x \) of length \( n \) to the same length \( n \) is equal to \( x \), it suffices to show that the natural number representation of the zero extension of \( x \) is equal to the natural number representation of \( x \). That is, we need to show that \((\text{zeroExtend}(n, x)).\text{toNat} = x.\text{toNat}\).
+
+We construct the bitvector \( x \) as a pair \((x, \text{lt}_n)\), where \( x \) is a natural number and \(\text{lt}_n\) is a proof that \( x < 2^n \). This allows us to work with the natural number representation of \( x \) directly.
+
+Using the definitions of the `truncate` and `zeroExtend` functions, we can simplify the proposition we want to show. Specifically, the zero extension of a bitvector \( x \) of length \( n \) to the same length \( n \) is simply \( x \) itself, and the natural number representation of \( x \) remains unchanged. Therefore, \((\text{zeroExtend}(n, x)).\text{toNat} = x.\text{toNat}\) holds trivially.
+
+Thus, we have shown that \(\text{zeroExtend}(n, x) = x\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec n) : zeroExtend n x = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec n) : zeroExtend n x = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,75 @@
+
+1. **Informal Theorem**  
+First Non-`none` Result in Mapped List Equals First Non-`none` Result in Composed Function Application : For any types \( \beta \), \( \gamma \), and \( \alpha \), and for any function \( p : \gamma \to \text{Option } \alpha \) and any function \( f : \beta \to \gamma \), the first non-`none` result of applying \( p \) to the elements of the list \( \text{List.map } f \, l \) is the same as the first non-`none` result of applying \( p \circ f \) to the elements of the list \( l \). Formally, for a list \( l = [b_1, b_2, \ldots, b_n] \), the following holds:
+\[
+\text{List.findSome? } p \, (\text{List.map } f \, l) = \text{List.findSome? } (p \circ f) \, l
+\]
+where \( p \circ f \) denotes the function composition \( (p \circ f)(x) = p(f(x)) \).
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( l \).
+
+**Base Case:**
+For the empty list \( l = [] \):
+\[
+\text{List.findSome? } p \, (\text{List.map } f \, []) = \text{List.findSome? } p \, [] = \text{none}
+\]
+and
+\[
+\text{List.findSome? } (p \circ f) \, [] = \text{none}
+\]
+Thus, the base case holds.
+
+**Inductive Step:**
+Assume the property holds for a list \( xs \). We need to show that it holds for a list \( x :: xs \).
+
+By the definition of `List.map`:
+\[
+\text{List.map } f \, (x :: xs) = f x :: \text{List.map } f \, xs
+\]
+
+We consider two cases based on the result of \( p (f x) \):
+
+1. **Case 1: \( p (f x) = \text{some } b \)**
+\[
+\text{List.findSome? } p \, (f x :: \text{List.map } f \, xs) = \text{some } b
+\]
+and
+\[
+\text{List.findSome? } (p \circ f) \, (x :: xs) = \text{some } b
+\]
+Thus, the property holds in this case.
+
+2. **Case 2: \( p (f x) = \text{none} \)**
+\[
+\text{List.findSome? } p \, (f x :: \text{List.map } f \, xs) = \text{List.findSome? } p \, (\text{List.map } f \, xs)
+\]
+and
+\[
+\text{List.findSome? } (p \circ f) \, (x :: xs) = \text{List.findSome? } (p \circ f) \, xs
+\]
+By the inductive hypothesis, we have:
+\[
+\text{List.findSome? } p \, (\text{List.map } f \, xs) = \text{List.findSome? } (p \circ f) \, xs
+\]
+Thus, the property holds in this case as well.
+
+By induction, the theorem holds for all lists \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : β → γ) (l : List β) : findSome? p (l.map f) = l.findSome? (p ∘ f) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (f : β → γ) (l : List β) : findSome? p (l.map f) = l.findSome? (p ∘ f) := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

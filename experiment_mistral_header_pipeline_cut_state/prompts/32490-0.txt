@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Base 2 Logarithm of a Nonzero Natural Number is Less Than \( k \) if and only if \( n < 2^k \) : For any natural numbers \( n \) and \( k \) such that \( n \neq 0 \), the base 2 logarithm of \( n \), denoted as \( \lfloor \log_2 n \rfloor \), is strictly less than \( k \) if and only if \( n \) is strictly less than \( 2^k \). Formally, \( \lfloor \log_2 n \rfloor < k \) if and only if \( n < 2^k \).
+
+2. **Informal Proof**  
+We start by noting that the negation of \( a \leq b \) is equivalent to \( b < a \). Therefore, we can rewrite the goal \( n.\log_2 < k \) as \( \neg (k \leq n.\log_2) \) and \( n < 2^k \) as \( \neg (2^k \leq n) \).
+
+Next, we use the theorem that for any natural numbers \( n \) and \( k \) such that \( n \neq 0 \), \( k \leq \lfloor \log_2 n \rfloor \) if and only if \( 2^k \leq n \). This allows us to rewrite \( \neg (k \leq n.\log_2) \) as \( \neg (2^k \leq n) \).
+
+Thus, our goal becomes \( \neg (2^k \leq n) \leftrightarrow \neg (2^k \leq n) \), which is trivially true. Therefore, we have shown that \( \lfloor \log_2 n \rfloor < k \) if and only if \( n < 2^k \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (h : n ≠ 0) : n.log2 < k ↔ n < 2 ^ k := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (h : n ≠ 0) : n.log2 < k ↔ n < 2 ^ k := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

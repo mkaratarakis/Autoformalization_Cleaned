@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Power of Product Equals Repeated Power in Natural Numbers : For any natural numbers \(a\), \(m\), and \(n\), the power of \(a\) raised to the product of \(m\) and \(n\) is equal to the power of \(a\) raised to \(n\) and then raised to \(m\). In other words, \(a^{m \cdot n} = (a^n)^m\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \( a^{m \cdot n} = (a^n)^m \).
+
+1. **Step 1:**
+We use the property of exponents in monoids, which states that for any natural numbers \(a\), \(m\), and \(n\), \( a^{m \cdot n} = (a^m)^n \). This allows us to rewrite the goal as:
+\[
+a^{m \cdot n} = a^{n \cdot m}
+\]
+
+2. **Step 2:**
+Next, we use the commutativity of multiplication in natural numbers, which states that \( m \cdot n = n \cdot m \). This further simplifies the goal to:
+\[
+a^{n \cdot m} = a^{n \cdot m}
+\]
+
+3. **Step 3:**
+The equation \( a^{n \cdot m} = a^{n \cdot m} \) is trivially true by the properties of equality.
+
+Thus, we have shown that \( a^{m \cdot n} = (a^n)^m \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a m n : Nat) : a ^ (m * n) = (a ^ n) ^ m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a m n : Nat) : a ^ (m * n) = (a ^ n) ^ m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

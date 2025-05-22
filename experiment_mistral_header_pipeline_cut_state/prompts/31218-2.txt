@@ -1,0 +1,27 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:8:35: error: application type mismatch
+  Nat.le_of_add_le_add_right h
+argument
+  h
+has type
+  a + b ≤ a + c : Prop
+but is expected to have type
+  b + ?m.87 ≤ c + ?m.87 : Prop
+tmp.lean:7:53: error: unsolved goals
+a b c : Nat
+h : a + b ≤ a + c
+⊢ b ≤ c
+a b c : Nat
+h : a + b ≤ a + c
+⊢ b ≤ c
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {a b c : Nat} (h : a + b ≤ a + c) : b ≤ c := by

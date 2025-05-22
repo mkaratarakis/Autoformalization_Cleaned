@@ -1,0 +1,93 @@
+
+1. **Informal Theorem**  
+Mapping Enumerated List with Function Pairing : For any types \(\alpha\) and \(\beta\), any function \(f : \alpha \to \beta\), any natural number \(n\), and any list \(l\) of elements of type \(\alpha\), the following equality holds:
+\[
+\text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, (\text{List.enumFrom} \, n \, l) = \text{List.enumFrom} \, n \, (\text{List.map} \, f \, l)
+\]
+This theorem states that applying the function \(\text{Prod.map} \, \text{id} \, f\) to each pair in the list \(\text{List.enumFrom} \, n \, l\) and then mapping the resulting list is equivalent to first mapping the list \(l\) with \(f\) and then enumerating the result starting from \(n\).
+
+2. **Informal Proof**  
+We perform induction on the list \( l \) to break down the proof into cases, generalizing over the natural number \( n \).
+
+1. **Base Case:**
+- Suppose \( l \) is the empty list, i.e., \( l = [] \).
+- We need to show:
+\[
+\text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, (\text{List.enumFrom} \, n \, []) = \text{List.enumFrom} \, n \, (\text{List.map} \, f \, [])
+\]
+- By the definition of \(\text{List.enumFrom}\), \(\text{List.enumFrom} \, n \, [] = []\).
+- By the definition of \(\text{List.map}\), \(\text{List.map} \, f \, [] = []\).
+- Therefore, the left-hand side simplifies to:
+\[
+\text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, [] = []
+\]
+- And the right-hand side simplifies to:
+\[
+\text{List.enumFrom} \, n \, [] = []
+\]
+- Hence, the base case holds trivially.
+
+2. **Inductive Step:**
+- Suppose \( l = \text{head} :: \text{tail} \), where \(\text{head} \in \alpha\) and \(\text{tail} \) is a list of elements of type \(\alpha\).
+- We need to show:
+\[
+\text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, (\text{List.enumFrom} \, n \, (\text{head} :: \text{tail})) = \text{List.enumFrom} \, n \, (\text{List.map} \, f \, (\text{head} :: \text{tail}))
+\]
+- By the definition of \(\text{List.enumFrom}\), we have:
+\[
+\text{List.enumFrom} \, n \, (\text{head} :: \text{tail}) = (n, \text{head}) :: \text{List.enumFrom} \, (n + 1) \, \text{tail}
+\]
+- By the definition of \(\text{List.map}\), we have:
+\[
+\text{List.map} \, f \, (\text{head} :: \text{tail}) = f \, \text{head} :: \text{List.map} \, f \, \text{tail}
+\]
+- Therefore, the right-hand side becomes:
+\[
+\text{List.enumFrom} \, n \, (f \, \text{head} :: \text{List.map} \, f \, \text{tail}) = (n, f \, \text{head}) :: \text{List.enumFrom} \, (n + 1) \, (\text{List.map} \, f \, \text{tail})
+\]
+- For the left-hand side, we apply \(\text{List.map} \, (\text{Prod.map} \, \text{id} \, f)\) to \((n, \text{head}) :: \text{List.enumFrom} \, (n + 1) \, \text{tail}\):
+\[
+\text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, ((n, \text{head}) :: \text{List.enumFrom} \, (n + 1) \, \text{tail}) = (\text{Prod.map} \, \text{id} \, f) \, (n, \text{head}) :: \text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, (\text{List.enumFrom} \, (n + 1) \, \text{tail})
+\]
+- By the definition of \(\text{Prod.map}\), we have:
+\[
+(\text{Prod.map} \, \text{id} \, f) \, (n, \text{head}) = (n, f \, \text{head})
+\]
+- Therefore, the left-hand side becomes:
+\[
+(n, f \, \text{head}) :: \text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, (\text{List.enumFrom} \, (n + 1) \, \text{tail})
+\]
+- By the inductive hypothesis, we know:
+\[
+\text{List.map} \, (\text{Prod.map} \, \text{id} \, f) \, (\text{List.enumFrom} \, (n + 1) \, \text{tail}) = \text{List.enumFrom} \, (n + 1) \, (\text{List.map} \, f \, \text{tail})
+\]
+- Substituting this into the left-hand side, we get:
+\[
+(n, f \, \text{head}) :: \text{List.enumFrom} \, (n + 1) \, (\text{List.map} \, f \, \text{tail})
+\]
+- This matches the right-hand side, thus the inductive step holds.
+
+By induction, the theorem is proved for all lists \( l \) and natural numbers \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (f : α → β) (n : Nat) (l : List α) :
+    map (Prod.map id f) (enumFrom n l) = enumFrom n (map f l) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (f : α → β) (n : Nat) (l : List α) :
+    map (Prod.map id f) (enumFrom n l) = enumFrom n (map f l) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

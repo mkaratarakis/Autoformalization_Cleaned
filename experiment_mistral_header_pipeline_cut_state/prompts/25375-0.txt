@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Boolean Value Greater Than or Equal to True is True: $\text{true} \leq x \implies x = \text{true}$ : For any boolean value $x$, if `true` is less than or equal to $x$, then $x$ is equal to `true`, i.e., $\text{true} \leq x \implies x = \text{true}$.
+
+2. **Informal Proof**  
+To prove that for any boolean value $x$, if $\text{true} \leq x$, then $x = \text{true}$, we consider the possible values of $x$. Since $x$ is a boolean value, it can only be either $\text{true}$ or $\text{false}$.
+
+- If $x = \text{true}$, then $\text{true} \leq \text{true}$ is true, and $x = \text{true}$ holds.
+- If $x = \text{false}$, then $\text{true} \leq \text{false}$ is false, which contradicts the assumption that $\text{true} \leq x$.
+
+Therefore, the only possible value for $x$ that satisfies $\text{true} \leq x$ is $x = \text{true}$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x : Bool}, true ≤ x → x = true := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x : Bool}, true ≤ x → x = true := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

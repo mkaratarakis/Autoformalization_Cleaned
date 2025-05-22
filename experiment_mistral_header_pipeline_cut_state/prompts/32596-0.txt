@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Equality Function Returns True for Equal Elements: $a == a = \text{true}$ : For any type $\alpha$ with a decidable equality relation and for any element $a \in \alpha$, the boolean equality function `a == a` returns `true`. This means that the boolean expression `a == a` is always `true` for any element $a$ in the type $\alpha$.
+
+2. **Informal Proof**  
+We need to show that for any element $a \in \alpha$, the boolean equality function `a == a` returns `true`. Using the properties of equality and the fact that `a == a` is equivalent to `true` for any element $a$ in a type $\alpha$ with decidable equality, we can simplify the proposition to $(a == a) = \text{true}$. This is trivially true because the boolean equality function `a == a` always returns `true` for any element $a$. Therefore, the theorem holds. $\blacksquare$
+
+3. **Formal Theorem**  
+example [DecidableEq α] (a : α) : (a == a) = true := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example [DecidableEq α] (a : α) : (a == a) = true := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

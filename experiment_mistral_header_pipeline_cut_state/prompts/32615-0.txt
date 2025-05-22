@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Boolean AND Equals True if and only if Both Operands are True: \( a \text{ and } b = \text{true} \leftrightarrow a = \text{true} \land b = \text{true} \) : For any boolean values \( a \) and \( b \), the boolean "and" operation \( a \text{ and } b \) is equal to `true` if and only if both \( a \) and \( b \) are equal to `true`. In other words, \( a \text{ and } b = \text{true} \) if and only if \( a = \text{true} \) and \( b = \text{true} \).
+
+2. **Informal Proof**  
+To prove the theorem, we will consider every possible combination of boolean values for \( a \) and \( b \) and show that the equality \( (a \text{ and } b) = \text{true} \) holds if and only if \( a = \text{true} \) and \( b = \text{true} \).
+
+1. **Case 1: \( a = \text{false} \)**
+- **Subcase 1.1: \( b = \text{false} \)**
+- Evaluate \( (a \text{ and } b) = (false \text{ and } false) = \text{false} \).
+- Evaluate \( (a = \text{true} \land b = \text{true}) = (false = \text{true} \land false = \text{true}) = \text{false} \).
+- Therefore, \( (false \text{ and } false) = \text{false} \) and \( (false = \text{true} \land false = \text{true}) = \text{false} \), so the equality holds.
+- **Subcase 1.2: \( b = \text{true} \)**
+- Evaluate \( (a \text{ and } b) = (false \text{ and } true) = \text{false} \).
+- Evaluate \( (a = \text{true} \land b = \text{true}) = (false = \text{true} \land true = \text{true}) = \text{false} \).
+- Therefore, \( (false \text{ and } true) = \text{false} \) and \( (false = \text{true} \land true = \text{true}) = \text{false} \), so the equality holds.
+
+2. **Case 2: \( a = \text{true} \)**
+- **Subcase 2.1: \( b = \text{false} \)**
+- Evaluate \( (a \text{ and } b) = (true \text{ and } false) = \text{false} \).
+- Evaluate \( (a = \text{true} \land b = \text{true}) = (true = \text{true} \land false = \text{true}) = \text{false} \).
+- Therefore, \( (true \text{ and } false) = \text{false} \) and \( (true = \text{true} \land false = \text{true}) = \text{false} \), so the equality holds.
+- **Subcase 2.2: \( b = \text{true} \)**
+- Evaluate \( (a \text{ and } b) = (true \text{ and } true) = \text{true} \).
+- Evaluate \( (a = \text{true} \land b = \text{true}) = (true = \text{true} \land true = \text{true}) = \text{true} \).
+- Therefore, \( (true \text{ and } true) = \text{true} \) and \( (true = \text{true} \land true = \text{true}) = \text{true} \), so the equality holds.
+
+Since we have considered all possible cases and shown that the equality holds in each case, the theorem is proven. Therefore, for any boolean values \( a \) and \( b \), \( a \text{ and } b = \text{true} \) if and only if \( a = \text{true} \) and \( b = \text{true} \).
+
+3. **Formal Theorem**  
+example (a b : Bool) : ((a && b) = true) = (a = true ∧ b = true) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (a b : Bool) : ((a && b) = true) = (a = true ∧ b = true) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

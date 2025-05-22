@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Right Addition Preserves Division in Natural Numbers: \(\frac{x + z}{z} = \frac{x}{z} + 1\) : For any natural numbers \( x \) and \( z \), if \( z \) is strictly greater than zero, then the division of the sum \( x + z \) by \( z \) is equal to the sum of the division of \( x \) by \( z \) and 1, i.e., \(\frac{x + z}{z} = \frac{x}{z} + 1\).
+
+2. **Informal Proof**  
+Given \( x \) and \( z \) are natural numbers with \( z > 0 \), we start by applying the division identity for natural numbers, which states that for any \( a \) and \( b \) such that \( 0 < b \le a \), \( a / b = (a - b) / b + 1 \). Here, we set \( a = x + z \) and \( b = z \). Since \( z \) is positive, \( z \le x + z \). Thus, we have:
+
+\[
+(x + z) / z = (x + z - z) / z + 1
+\]
+
+Next, we use the cancellation property of addition and subtraction in natural numbers, which states that \( x + z - z = x \). Therefore:
+
+\[
+(x + z - z) / z = x / z
+\]
+
+Combining these results, we get:
+
+\[
+(x + z) / z = x / z + 1
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x : Nat) {z : Nat} (H : 0 < z) : (x + z) / z = (x / z) + 1 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (x : Nat) {z : Nat} (H : 0 < z) : (x + z) / z = (x / z) + 1 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

@@ -1,0 +1,51 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:19:12: error: invalid field notation, type is not of the form (C ...) where C is a constant
+  filterMapTR
+has type
+  (?m.747 → Option ?m.748) → List ?m.747 → List ?m.748
+tmp.lean:23:12: error: invalid field notation, type is not of the form (C ...) where C is a constant
+  filterMapTR
+has type
+  (?m.856 → Option ?m.857) → List ?m.856 → List ?m.857
+tmp.lean:16:11: error: unsolved goals
+case h.h.h.h.cons.none
+α : Type u_2
+β : Type u_1
+f : α → Option β
+hd : α
+tl : List α
+ih : filterMap f tl = filterMapTR f tl
+h : f hd = none
+⊢ filterMapTR f tl = filterMapTR.go f (hd :: tl) #[]
+tmp.lean:16:4: error: alternative 'some' has not been provided
+case h.h.h.h.cons.none
+α : Type u_2
+β : Type u_1
+f : α → Option β
+hd : α
+tl : List α
+ih : filterMap f tl = filterMapTR f tl
+h : f hd = none
+⊢ filterMapTR f tl = filterMapTR.go f (hd :: tl) #[]
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @List.filterMap = @filterMapTR := by
+  funext α β f l
+  induction l with
+  | nil =>
+    simp [filterMap, filterMapTR]
+    rfl
+  | cons hd tl ih =>
+    simp [filterMap, filterMapTR]
+    cases h : f hd with
+    | none =>
+      simp [filterMap, filterMapTR, h]
+      rw [ih]

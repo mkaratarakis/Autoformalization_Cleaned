@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+At Least Two with True Middle Argument is Equivalent to Boolean Or: \(\text{atLeastTwo}(a, \text{true}, c) = a \lor c\) : For any boolean values \( a \) and \( c \), the function `atLeastTwo` with the second argument `true` is equal to the boolean "or" operation of \( a \) and \( c \), i.e., \(\text{atLeastTwo}(a, \text{true}, c) = a \lor c\).
+
+2. **Informal Proof**  
+To prove the theorem, we will consider every possible combination of the boolean values \( a \) and \( c \).
+
+1. **Case 1: \( a = \text{false} \) and \( c = \text{false} \)**
+- We need to show that \(\text{false}.\text{atLeastTwo}(\text{true}, \text{false}) = \text{false} \lor \text{false}\).
+- Using the definition of the `atLeastTwo` function, \(\text{false}.\text{atLeastTwo}(\text{true}, \text{false})\) is `false` because at least two of the three booleans are not `true`.
+- Therefore, \(\text{false} \lor \text{false} = \text{false}\).
+
+2. **Case 2: \( a = \text{false} \) and \( c = \text{true} \)**
+- We need to show that \(\text{false}.\text{atLeastTwo}(\text{true}, \text{true}) = \text{false} \lor \text{true}\).
+- Using the definition of the `atLeastTwo` function, \(\text{false}.\text{atLeastTwo}(\text{true}, \text{true})\) is `true` because at least two of the three booleans are `true`.
+- Therefore, \(\text{false} \lor \text{true} = \text{true}\).
+
+3. **Case 3: \( a = \text{true} \) and \( c = \text{false} \)**
+- We need to show that \(\text{true}.\text{atLeastTwo}(\text{true}, \text{false}) = \text{true} \lor \text{false}\).
+- Using the definition of the `atLeastTwo` function, \(\text{true}.\text{atLeastTwo}(\text{true}, \text{false})\) is `true` because at least two of the three booleans are `true`.
+- Therefore, \(\text{true} \lor \text{false} = \text{true}\).
+
+4. **Case 4: \( a = \text{true} \) and \( c = \text{true} \)**
+- We need to show that \(\text{true}.\text{atLeastTwo}(\text{true}, \text{true}) = \text{true} \lor \text{true}\).
+- Using the definition of the `atLeastTwo` function, \(\text{true}.\text{atLeastTwo}(\text{true}, \text{true})\) is `true` because at least two of the three booleans are `true`.
+- Therefore, \(\text{true} \lor \text{true} = \text{true}\).
+
+Since all cases have been considered and the equality holds in each case, we conclude that for any boolean values \( a \) and \( c \), \(\text{atLeastTwo}(a, \text{true}, c) = a \lor c\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : atLeastTwo a true c  = (a || c) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open Bool
+open Nat Bool
+
+example : atLeastTwo a true c  = (a || c) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

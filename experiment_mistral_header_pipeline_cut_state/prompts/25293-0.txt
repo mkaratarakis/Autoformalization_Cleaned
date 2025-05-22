@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Boolean Or with Negation is True: \( x \lor \neg x = \text{true} \) : For any boolean value \( x \), the expression \( x \lor \neg x \) is equal to `true`, i.e., \( x \lor \neg x = \text{true} \).
+
+2. **Informal Proof**  
+To prove that \( x \lor \neg x = \text{true} \) for any boolean value \( x \), we consider the two possible values of \( x \):
+1. If \( x = \text{true} \), then \( x \lor \neg x = \text{true} \lor \neg \text{true} = \text{true} \lor \text{false} = \text{true} \).
+2. If \( x = \text{false} \), then \( x \lor \neg x = \text{false} \lor \neg \text{false} = \text{false} \lor \text{true} = \text{true} \).
+
+In both cases, the expression \( x \lor \neg x \) evaluates to `true`. Therefore, the statement \( x \lor \neg x = \text{true} \) holds for all boolean values \( x \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), (x || !x) = true := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), (x || !x) = true := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

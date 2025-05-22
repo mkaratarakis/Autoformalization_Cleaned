@@ -1,0 +1,58 @@
+
+1. **Informal Theorem**  
+Erase First Occurrence of Element from Cons List : For any type \(\alpha\) with a decidable equality instance, and for any elements \(a, b \in \alpha\) and list \(l\) of elements of type \(\alpha\), the list \((b :: l)\) with the first occurrence of \(a\) erased is given by:
+\[
+(b :: l). \text{erase } a = 
+\begin{cases} 
+l & \text{if } b = a \\
+b :: (l. \text{erase } a) & \text{if } b \neq a 
+\end{cases}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by simplifying the expression \((b :: l). \text{erase } a\) using the definition of the `erase` function. This simplification splits the problem into two cases based on whether \(b\) is equal to \(a\) or not.
+
+1. **Case 1: \(b = a\)**
+
+If \(b = a\), then the first element of the list \((b :: l)\) is \(a\). According to the definition of `erase`, the first occurrence of \(a\) is removed, leaving the list \(l\). Therefore, we have:
+\[
+(b :: l). \text{erase } a = l
+\]
+
+2. **Case 2: \(b \neq a\)**
+
+If \(b \neq a\), then the first element of the list \((b :: l)\) is not \(a\). According to the definition of `erase`, the first element \(b\) remains in the list, and we need to erase the first occurrence of \(a\) from the rest of the list \(l\). Therefore, we have:
+\[
+(b :: l). \text{erase } a = b :: (l. \text{erase } a)
+\]
+
+In both cases, the simplified expressions match the desired results. Hence, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example [BEq α] (a b : α) (l : List α) :
+    (b :: l).erase a = if b == a then l else b :: l.erase a := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+variable (R : α → α → Prop)
+variable {R}
+
+example [BEq α] (a b : α) (l : List α) :
+    (b :: l).erase a = if b == a then l else b :: l.erase a := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

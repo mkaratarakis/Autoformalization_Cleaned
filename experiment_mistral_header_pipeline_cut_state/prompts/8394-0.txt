@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Addition and Subtraction with Inequality in Natural Numbers: \(a + b - (c + d) = a - (c + (d - b))\) : For any natural numbers \(a\), \(c\), \(b\), and \(d\) such that \(b \leq d\), the equation \(a + b - (c + d) = a - (c + (d - b))\) holds.
+
+2. **Informal Proof**  
+We prove the theorem by induction on \(b\).
+
+1. **Base Case: \(b = 0\)**
+
+When \(b = 0\), the goal is to show that \(a + 0 - (c + d) = a - (c + (d - 0))\). Simplifying, we get:
+\[
+a - (c + d) = a - (c + d)
+\]
+which is trivially true.
+
+2. **Inductive Step: \(b = b' + 1\)**
+
+Assume the statement holds for \(b = b'\), i.e., \(a + b' - (c + d) = a - (c + (d - b'))\). We need to show that \(a + (b' + 1) - (c + d) = a - (c + (d - (b' + 1)))\).
+
+- **Case 1: \(d = 0\)**
+
+The goal is to show that \(a + (b' + 1) - (c + 0) = a - (c + (0 - (b' + 1)))\). This simplifies to:
+\[
+a + (b' + 1) - c = a - (c - (b' + 1))
+\]
+Since \(b' + 1 \leq 0\) is a contradiction (as \(b' + 1\) is a positive natural number), this case is vacuously true.
+
+- **Case 2: \(d = d' + 1\)**
+
+The goal is to show that \(a + (b' + 1) - (c + (d' + 1)) = a - (c + ((d' + 1) - (b' + 1)))\). Using the properties of natural numbers, we rewrite the goal:
+\[
+a + (b' + 1) - (c + (d' + 1)) = a - (c + (d' - b'))
+\]
+By the inductive hypothesis, we know that \(a + b' - (c + d') = a - (c + (d' - b'))\). Therefore, the goal simplifies to:
+\[
+a + (b' + 1) - (c + (d' + 1)) = a + b' - (c + d')
+\]
+which is true by the inductive hypothesis.
+
+Thus, by induction, the theorem holds for all natural numbers \(a\), \(c\), \(b\), and \(d\) such that \(b \leq d\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a c : Nat) {b d : Nat} (h : b ≤ d) : a + b - (c + d) = a - (c + (d-b)) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example (a c : Nat) {b d : Nat} (h : b ≤ d) : a + b - (c + d) = a - (c + (d-b)) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Successor of Predecessor Identity for Nonzero Natural Numbers: \( \text{succ}(\text{pred}(a)) = a \) for \( a \neq 0 \) : For any natural number \( a \) such that \( a \neq 0 \), the successor of the predecessor of \( a \) is equal to \( a \), i.e., \( \text{succ}(\text{pred}(a)) = a \).
+
+2. **Informal Proof**  
+We need to prove that for any natural number \( a \) such that \( a \neq 0 \), the successor of the predecessor of \( a \) is equal to \( a \). We consider two cases based on the structure of \( a \):
+
+1. **Case 1: \( a = 0 \)**
+- Since the assumption is \( a \neq 0 \), we get a direct contradiction. Therefore, this case is vacuously true.
+
+2. **Case 2: \( a = n + 1 \) for some natural number \( n \)**
+- In this case, we need to show that \( \text{succ}(\text{pred}(n + 1)) = n + 1 \).
+- By the definition of the predecessor function, \( \text{pred}(n + 1) = n \).
+- Therefore, \( \text{succ}(\text{pred}(n + 1)) = \text{succ}(n) = n + 1 \).
+- This is trivially true due to the reflexive property, as both sides of the equation are definitionally equal.
+
+Since both cases are covered, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : Nat} (h : a ≠ 0) : a.pred.succ = a := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {a : Nat} (h : a ≠ 0) : a.pred.succ = a := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

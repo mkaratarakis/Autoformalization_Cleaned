@@ -1,0 +1,67 @@
+
+1. **Informal Theorem**  
+Length of List Plus Natural Number Equals Auxiliary Length Function Result : For any list \( as \) of elements of type \( \alpha \) and any natural number \( n \), the length of the list \( as \) plus \( n \) is equal to the result of the auxiliary length function `List.lengthTRAux` applied to the list \( as \) and the natural number \( n \). In other words, \( \text{length}(as) + n = \text{lengthTRAux}(as, n) \).
+
+2. **Informal Proof**  
+We prove this by induction on the list \( \text{as} \).
+
+1. **Base Case:**
+- Consider the case where the list \( \text{as} \) is empty, i.e., \( \text{as} = [] \).
+- Using the definitions of the length of a list and the auxiliary length function, we have:
+\[
+\text{length}([]) + n = 0 + n = n
+\]
+and
+\[
+\text{lengthTRAux}([], n) = n
+\]
+- Therefore, \( \text{length}([]) + n = \text{lengthTRAux}([], n) \).
+
+2. **Inductive Step:**
+- Assume the induction hypothesis: for any natural number \( n \), \( \text{length}(\text{as}) + n = \text{lengthTRAux}(\text{as}, n) \).
+- Consider the case where the list \( \text{as} \) is non-empty, i.e., \( \text{as} = a :: \text{as} \).
+- Using the definitions of the length of a list and the auxiliary length function, we have:
+\[
+\text{length}(a :: \text{as}) = \text{length}(\text{as}) + 1
+\]
+and
+\[
+\text{lengthTRAux}(a :: \text{as}, n) = \text{lengthTRAux}(\text{as}, n + 1)
+\]
+- By the induction hypothesis, we know:
+\[
+\text{length}(\text{as}) + (n + 1) = \text{lengthTRAux}(\text{as}, n + 1)
+\]
+- Therefore, we need to show:
+\[
+\text{length}(a :: \text{as}) + n = \text{lengthTRAux}(a :: \text{as}, n)
+\]
+which simplifies to:
+\[
+(\text{length}(\text{as}) + 1) + n = \text{lengthTRAux}(\text{as}, n + 1)
+\]
+Using the property of successor addition, we have:
+\[
+\text{length}(\text{as}) + (n + 1) = \text{lengthTRAux}(\text{as}, n + 1)
+\]
+which is true by the induction hypothesis.
+
+Thus, by induction, the theorem holds for all lists \( \text{as} \) and natural numbers \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (as : List α) (n : Nat) : as.length + n = as.lengthTRAux n := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example (as : List α) (n : Nat) : as.length + n = as.lengthTRAux n := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

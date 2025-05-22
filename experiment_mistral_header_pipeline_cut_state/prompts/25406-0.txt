@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Conditional with True Right: \((\text{if } c \text{ then } t \text{ else } \text{true}) = (\neg c \lor t)\) : For any boolean values \( c \) and \( t \), the expression \(\text{if } c \text{ then } t \text{ else } \text{true}\) is equal to \(\neg c \lor t\), i.e., \((\text{if } c \text{ then } t \text{ else } \text{true}) = (\neg c \lor t)\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( c \) and \( t \), the expression \(\text{if } c \text{ then } t \text{ else } \text{true}\) is equal to \(\neg c \lor t\). We will consider all possible values of \( c \) and \( t \):
+
+1. **Case 1: \( c = \text{true} \)**
+- If \( c = \text{true} \), then \(\text{if } c \text{ then } t \text{ else } \text{true} = t\).
+- Also, \(\neg c = \neg \text{true} = \text{false}\), so \(\neg c \lor t = \text{false} \lor t = t\).
+- Therefore, \(\text{if } c \text{ then } t \text{ else } \text{true} = t = \neg c \lor t\).
+
+2. **Case 2: \( c = \text{false} \)**
+- If \( c = \text{false} \), then \(\text{if } c \text{ then } t \text{ else } \text{true} = \text{true}\).
+- Also, \(\neg c = \neg \text{false} = \text{true}\), so \(\neg c \lor t = \text{true} \lor t = \text{true}\).
+- Therefore, \(\text{if } c \text{ then } t \text{ else } \text{true} = \text{true} = \neg c \lor t\).
+
+Since the equality holds for all possible values of \( c \) and \( t \), we conclude that \((\text{if } c \text{ then } t \text{ else } \text{true}) = (\neg c \lor t)\). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c t : Bool), cond c t true  = (!c || t) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c t : Bool), cond c t true  = (!c || t) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

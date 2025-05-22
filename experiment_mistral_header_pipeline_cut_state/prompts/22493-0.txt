@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Bitwise AND Zero Implies Natural Number Sum of Bitvectors Equals Sum of Natural Number Representations : For any natural number \( w \) and any bitvectors \( x \) and \( y \) of width \( w \), if the bitwise AND of \( x \) and \( y \) is zero, i.e., \( x \& y = 0 \), then the natural number representation of the sum of \( x \) and \( y \) is equal to the sum of their natural number representations, i.e., \( (x + y).toNat = x.toNat + y.toNat \).
+
+2. **Informal Proof**  
+We start by using the theorem that the natural number representation of the sum of two bitvectors \( x \) and \( y \) is equal to the sum of their natural number representations modulo \( 2^w \). This changes our goal to show that:
+\[
+(x.toNat + y.toNat) \mod 2^w = x.toNat + y.toNat
+\]
+
+To prove this, we use the theorem that if \( a < b \), then \( a \mod b = a \). Therefore, it suffices to show that:
+\[
+x.toNat + y.toNat < 2^w
+\]
+
+To prove \( x.toNat + y.toNat < 2^w \), it suffices to show that the boolean value of the decision \( x.toNat + y.toNat + false.toNat \ge 2^w \) is `false`. We simplify this using the theorem that the boolean value of a decision is `true` if and only if the proposition is true, which reduces our goal to showing that:
+\[
+x.toNat + y.toNat + false.toNat < 2^w
+\]
+
+We use the theorem that the carry bit at position \( w \) when adding \( x \) and \( y \) with an initial carry of `false` is `true` if and only if \( x.toNat + y.toNat + false.toNat \ge 2^w \). This changes our goal to show that the carry bit at position \( w \) is `false`.
+
+We simplify the goal using the theorem that the carry bit at position \( w \) is `false` if the bitwise AND of \( x \) and \( y \) is zero. Since \( x \land y = 0 \) by our hypothesis, the carry bit at position \( w \) is indeed `false`. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x y : BitVec w} (h : x &&& y = 0#w) :
+    (x + y).toNat = x.toNat + y.toNat := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example {x y : BitVec w} (h : x &&& y = 0#w) :
+    (x + y).toNat = x.toNat + y.toNat := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

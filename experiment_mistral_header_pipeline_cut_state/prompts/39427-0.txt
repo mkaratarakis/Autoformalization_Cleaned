@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Equivalence of `takeWhile` and `takeWhileTR` for Lists : For any type \( \alpha \), any predicate \( p : \alpha \to \text{Bool} \), and any list \( xs : \text{List} \, \alpha \), the function `List.takeWhile` applied to \( p \) and \( xs \) returns the same list as the function `List.takeWhileTR` applied to \( p \) and \( xs \). In other words, the longest initial segment of \( xs \) that satisfies \( p \) is the same whether computed using the standard `List.takeWhile` function or the tail-recursive `List.takeWhileTR` function.
+
+2. **Informal Proof**  
+To prove that `List.takeWhile p l` is equal to `List.takeWhileTR p l` for any list \( l \) of type \( \alpha \), we use the principle of function extensionality. This means we need to show that for all possible lists \( l \), the functions `List.takeWhile` and `List.takeWhileTR` yield the same result.
+
+We start by simplifying the goal using the definition of `List.takeWhileTR`. This reduces our goal to showing that `List.takeWhile p l` is equal to `List.takeWhileTR.go p l l #[]`.
+
+Next, we use induction on the list \( l \). For the base case, let \( l \) be the empty list. Using the definitions of `List.takeWhile` and `List.takeWhileTR.go`, we can simplify the goal to show that `List.takeWhileTR.go p [] [] #[]` is equal to \( #[] \). This is trivially true because both functions return the empty list when applied to an empty list.
+
+For the inductive step, assume \( l \) is a non-empty list with head \( x \) and tail \( xs \). We need to show that for any array \( acc \), if \( l = acc.data ++ x :: xs \), then `List.takeWhileTR.go p l (x :: xs) acc` is equal to \( acc.data ++ x :: \text{List.takeWhile} \, p \, xs \).
+
+Let \( h \) be the hypothesis that \( l = acc.data ++ x :: xs \). By the inductive hypothesis \( \text{IH} \), we know that for any array \( acc \), if \( l = acc.data ++ xs \), then `List.takeWhileTR.go p l xs acc` is equal to \( acc.data ++ \text{List.takeWhile} \, p \, xs \).
+
+We now consider two cases based on the value of \( p(x) \):
+
+1. **Case 1: \( p(x) \) is true.**
+- By the inductive hypothesis \( \text{IH} \), we can replace `List.takeWhileTR.go p l xs (acc.push x)` with \( (acc.push x).data ++ \text{List.takeWhile} \, p \, xs \).
+- Using the definition of `Array.push`, we know that \( (acc.push x).data = acc.data ++ [x] \).
+- Therefore, the goal simplifies to showing \( (acc.data ++ [x]) ++ \text{List.takeWhile} \, p \, xs = acc.data ++ x :: \text{List.takeWhile} \, p \, xs \).
+- This is trivially true by the properties of list concatenation.
+
+2. **Case 2: \( p(x) \) is false.**
+- By the inductive hypothesis \( \text{IH} \), we can replace `List.takeWhileTR.go p l xs (acc.push x)` with \( acc.data \).
+- Therefore, the goal simplifies to showing \( acc.data = acc.data \).
+- This is trivially true by the reflexivity of equality.
+
+Thus, by induction, we have shown that for any list \( l \) of type \( \alpha \), `List.takeWhile p l` is equal to `List.takeWhileTR p l`. This completes the proof.
+
+3. **Formal Theorem**  
+example : @takeWhile = @takeWhileTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @takeWhile = @takeWhileTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

@@ -1,0 +1,28 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:2: error: unsolved goals
+case mpr.false.true
+h : false = true
+⊢ False
+
+case mpr.true.false
+h : true = false
+⊢ False
+tmp.lean:7:47: error: unsolved goals
+case mpr
+a b : Bool
+⊢ a = b → ¬(!a) = b
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {a b : Bool}, ¬(!a) = b ↔ a = b := by
+  intros a b
+  apply Iff.intro
+  . intro h
+    cases a <;> cases b <;> simp at h <;> simp [h]

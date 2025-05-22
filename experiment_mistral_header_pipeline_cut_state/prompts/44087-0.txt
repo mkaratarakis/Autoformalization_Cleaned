@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+Bitvector Equality from Integer Representation Equality : For any natural number $n$ and any bitvectors $i$ and $j$ of width $n$, if the integer representation of $i$ is equal to the integer representation of $j$, then $i$ is equal to $j$. In other words, if $i.\text{toInt} = j.\text{toInt}$, then $i = j$.
+
+2. **Informal Proof**  
+Let $eq$ be the assumption that the integer representation of $i$ is equal to the integer representation of $j$. We need to show that $i = j$.
+
+First, we simplify the assumption $eq$ using the definition of the integer representation of a bitvector. This gives us:
+\[
+\text{if } 2 \cdot i.\text{toNat} < 2^n \text{ then } i.\text{toNat} \text{ else } i.\text{toNat} - 2^n = \text{if } 2 \cdot j.\text{toNat} < 2^n \text{ then } j.\text{toNat} \text{ else } j.\text{toNat} - 2^n
+\]
+
+To prove that $i = j$, it suffices to show that the natural number representation of $i$ is equal to the natural number representation of $j$, i.e., $i.\text{toNat} = j.\text{toNat}$.
+
+We strengthen the proposition we are proving. We show that for every $eq$, if the simplified condition holds, then $i.\text{toNat} = j.\text{toNat}$.
+
+We construct two lemmas:
+1. The natural number representation of $i$ is less than $2^n$, i.e., $i.\text{toNat} < 2^n$.
+2. The natural number representation of $j$ is less than $2^n$, i.e., $j.\text{toNat} < 2^n$.
+
+We discuss by cases based on the conditions $2 \cdot i.\text{toNat} < 2^n$ and $2 \cdot j.\text{toNat} < 2^n$:
+1. If $2 \cdot i.\text{toNat} < 2^n$ and $2 \cdot j.\text{toNat} < 2^n$, then we need to show that $i.\text{toNat} = j.\text{toNat}$. This is trivially true by the assumption.
+2. If $2 \cdot i.\text{toNat} < 2^n$ and $2 \cdot j.\text{toNat} \geq 2^n$, then we need to show that $i.\text{toNat} = j.\text{toNat} - 2^n$. This is trivially true by the assumption and the properties of natural numbers.
+3. If $2 \cdot i.\text{toNat} \geq 2^n$ and $2 \cdot j.\text{toNat} < 2^n$, then we need to show that $i.\text{toNat} - 2^n = j.\text{toNat}$. This is trivially true by the assumption and the properties of natural numbers.
+4. If $2 \cdot i.\text{toNat} \geq 2^n$ and $2 \cdot j.\text{toNat} \geq 2^n$, then we need to show that $i.\text{toNat} - 2^n = j.\text{toNat} - 2^n$. This is trivially true by the assumption and the properties of natural numbers.
+
+Thus, in all cases, we have shown that $i.\text{toNat} = j.\text{toNat}$, which implies $i = j$. Therefore, the theorem is proved. $\blacksquare$
+
+3. **Formal Theorem**  
+example {i j : BitVec n} : i.toInt = j.toInt → i = j := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {i j : BitVec n} : i.toInt = j.toInt → i = j := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

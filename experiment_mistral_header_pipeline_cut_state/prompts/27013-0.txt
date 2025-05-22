@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Second Component of Unzipped List Equals Map of Second Components: \( l.\text{unzip}.2 = \text{map}(\text{snd}, l) \) : For any types \(\alpha\) and \(\beta\), and for any list \(l\) of pairs \((a, b)\) where \(a \in \alpha\) and \(b \in \beta\), the second component of the pair returned by the function `unzip` applied to \(l\) is equal to the list obtained by applying the function `Prod.snd` to each pair in \(l\). Formally, for a list of pairs \([(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)]\), the function `unzip` returns the pair of lists \([x_1, x_2, \ldots, x_n]\) and \([y_1, y_2, \ldots, y_n]\). The theorem states that the second list in this pair is equal to the list \([y_1, y_2, \ldots, y_n]\).
+
+2. **Informal Proof**  
+We perform induction on the list \( l \).
+
+1. **Base Case:**
+- Consider the empty list \( l = [] \).
+- The function `unzip` applied to the empty list returns the pair \(([], [])\).
+- The second component of this pair is the empty list \( [] \).
+- The list obtained by applying `Prod.snd` to the empty list is also \( [] \).
+- Therefore, the second component of the pair returned by `unzip` applied to the empty list is equal to the list obtained by applying `Prod.snd` to the empty list.
+
+2. **Inductive Step:**
+- Assume the property holds for a list \( \text{tail} \), i.e., \(\text{tail}.unzip.snd = \text{map}(\text{Prod.snd}, \text{tail})\).
+- Consider a non-empty list \( l = \text{head} :: \text{tail} \), where \(\text{head} = (a, b)\).
+- The function `unzip` applied to \( \text{head} :: \text{tail} \) returns the pair \((\text{map}(\text{Prod.fst}, \text{head} :: \text{tail}), \text{map}(\text{Prod.snd}, \text{head} :: \text{tail}))\).
+- The second component of this pair is \(\text{map}(\text{Prod.snd}, \text{head} :: \text{tail})\).
+- By the definition of `map`, \(\text{map}(\text{Prod.snd}, \text{head} :: \text{tail}) = \text{Prod.snd}(\text{head}) :: \text{map}(\text{Prod.snd}, \text{tail})\).
+- By the inductive hypothesis, \(\text{map}(\text{Prod.snd}, \text{tail}) = \text{tail}.unzip.snd\).
+- Therefore, \(\text{map}(\text{Prod.snd}, \text{head} :: \text{tail}) = b :: \text{tail}.unzip.snd\).
+- This is exactly the list obtained by applying `Prod.snd` to each pair in \( \text{head} :: \text{tail} \).
+
+By induction, the theorem holds for all lists \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : (unzip l).snd = l.map Prod.snd := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example : (unzip l).snd = l.map Prod.snd := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

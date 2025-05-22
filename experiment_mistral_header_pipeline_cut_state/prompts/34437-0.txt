@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Symmetric Pairwise Relation on Appended Lists: \(\text{Pairwise } R (l_1 ++ l_2) \leftrightarrow \text{Pairwise } R (l_2 ++ l_1)\) : For any type \( \alpha \) and any symmetric relation \( R \) on \( \alpha \), and for any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), the list \( l_1 \) appended to \( l_2 \) satisfies the pairwise relation \( R \) if and only if the list \( l_2 \) appended to \( l_1 \) satisfies the pairwise relation \( R \). In other words, if \( R \) is symmetric, then \( \text{Pairwise } R (l_1 ++ l_2) \) holds if and only if \( \text{Pairwise } R (l_2 ++ l_1) \) holds.
+
+2. **Informal Proof**  
+We start by constructing a lemma: for any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), and for any elements \( x \) and \( y \) of type \( \alpha \), if \( x \) is in \( l_2 \) and \( y \) is in \( l_1 \), and if \( R \) holds for all elements in \( l_1 \) and \( l_2 \), then \( R \) also holds for \( x \) and \( y \). This follows from the symmetry of \( R \).
+
+Next, we use the definition of the pairwise relation on appended lists and the commutativity of conjunction to simplify the goal. We need to show that the pairwise relation \( R \) holds for \( l_1 \) appended to \( l_2 \) if and only if it holds for \( l_2 \) appended to \( l_1 \). This is equivalent to showing that the pairwise relation \( R \) holds for \( l_1 \) and \( l_2 \) in both orders, which we have already established in the lemma.
+
+Thus, we conclude that \( \text{Pairwise } R (l_1 ++ l_2) \) holds if and only if \( \text{Pairwise } R (l_2 ++ l_1) \) holds. This completes the proof.
+
+3. **Formal Theorem**  
+example {R : α → α → Prop} (s : ∀ {x y}, R x y → R y x) {l₁ l₂ : List α} :
+    Pairwise R (l₁ ++ l₂) ↔ Pairwise R (l₂ ++ l₁) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example {R : α → α → Prop} (s : ∀ {x y}, R x y → R y x) {l₁ l₂ : List α} :
+    Pairwise R (l₁ ++ l₂) ↔ Pairwise R (l₂ ++ l₁) := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

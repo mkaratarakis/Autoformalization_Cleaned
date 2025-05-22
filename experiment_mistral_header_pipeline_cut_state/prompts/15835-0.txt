@@ -1,0 +1,69 @@
+
+1. **Informal Theorem**  
+Bitwise Representation of \( 2^i \cdot a + b \) in Natural Numbers : For any natural numbers \( a \), \( b \), and \( i \), if \( b < 2^i \), then for any natural number \( j \), the \((j+1)\)-th least significant bit in the binary representation of \( 2^i \cdot a + b \) is equal to:
+- \( b \)’s \((j+1)\)-th least significant bit if \( j < i \),
+- \( a \)’s \((j+1 - i)\)-th least significant bit if \( j \geq i \).
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \( a \), \( b \), and \( i \), if \( b < 2^i \), then for any natural number \( j \), the \((j+1)\)-th least significant bit in the binary representation of \( 2^i \cdot a + b \) is equal to:
+- \( b \)’s \((j+1)\)-th least significant bit if \( j < i \),
+- \( a \)’s \((j+1 - i)\)-th least significant bit if \( j \geq i \).
+
+We consider two cases based on the value of \( j \):
+
+1. **Case \( j < i \):**
+- We simplify the goal using the properties of the test bit, the power of a sum, and the division of a sum of multiples and a remainder.
+- We show that \( (2^i \cdot a + b).testBit j = b.testBit j \).
+
+2. **Case \( j \ge i \):**
+- We introduce a lemma \( j = i + (j - i) \) and prove it using the property that \( a + b - a = b \) and the symmetry of equality.
+- We simplify the goal using the properties of the test bit, the non-strict inequality, and the if-then-else function.
+- We show that \( (2^i \cdot a + b).testBit j = a.testBit (j - i) \).
+
+In both cases, the goal is simplified to the desired form, completing the proof.
+
+3. **Formal Theorem**  
+example (a : Nat) {b i : Nat} (b_lt : b < 2^i) (j : Nat) :
+    testBit (2 ^ i * a + b) j =
+      if j < i then
+        testBit b j
+      else
+        testBit a (j - i) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (a : Nat) {b i : Nat} (b_lt : b < 2^i) (j : Nat) :
+    testBit (2 ^ i * a + b) j =
+      if j < i then
+        testBit b j
+      else
+        testBit a (j - i) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

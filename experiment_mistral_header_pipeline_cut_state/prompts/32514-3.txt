@@ -1,0 +1,42 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:13:4: error: tactic 'simp' failed, nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+tmp.lean:21:6: error: simp made no progress
+tmp.lean:30:45: error: application type mismatch
+  div_lt_self hle
+argument
+  hle
+has type
+  ¬n < 2 : Prop
+but is expected to have type
+  0 < n : Prop
+tmp.lean:33:8: error: simp made no progress
+tmp.lean:34:10: error: unknown identifier 'log2_succ'
+tmp.lean:12:9: error: unsolved goals
+case zero
+n : Nat
+h : n ≠ 0
+⊢ 0 ≤ n.log2 ↔ 2 ^ 0 ≤ n
+tmp.lean:12:2: error: alternative 'succ' has not been provided
+case zero
+n : Nat
+h : n ≠ 0
+⊢ 0 ≤ n.log2 ↔ 2 ^ 0 ≤ n
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (h : n ≠ 0) : k ≤ n.log2 ↔ 2 ^ k ≤ n := by
+  induction k with
+  | zero =>

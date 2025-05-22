@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+List Remains Unchanged if No Element Satisfies Predicate: \(\text{eraseP}(p, l) = l\) : For any list \( l \) of elements of type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), if no element in \( l \) satisfies \( p \), then the list \( l \) remains unchanged after applying the `eraseP` function, i.e., \(\text{eraseP}(p, l) = l\).
+
+2. **Informal Proof**  
+We will prove this theorem by induction on the list \( l \).
+
+1. **Base Case:**
+- Consider the case where \( l \) is the empty list, i.e., \( l = [] \).
+- The goal is to show that \(\text{eraseP}(p, []) = []\).
+- By the definition of the `eraseP` function, it leaves an empty list unchanged. Therefore, the base case is trivially true.
+
+2. **Inductive Step:**
+- Assume \( l \) is of the form \( a :: l' \), where \( a \) is an element of type \( \alpha \) and \( l' \) is a list of elements of type \( \alpha \).
+- We need to show that \(\text{eraseP}(p, a :: l') = a :: l'\).
+- By the hypothesis \( h \), no element in \( a :: l' \) satisfies \( p \). This can be broken down into:
+- \( h(a, \text{head}(a :: l')) \) shows that \( a \) does not satisfy \( p \).
+- \( \text{forall\_mem\_cons.1}(h).2 \) shows that no element in \( l' \) satisfies \( p \).
+- By the inductive hypothesis \( \text{ih} \), we know that \(\text{eraseP}(p, l') = l'\).
+- Therefore, simplifying the expression \(\text{eraseP}(p, a :: l')\) using these facts, we get \( a :: l' \), which is exactly what we need to show.
+
+By induction, we have shown that for any list \( l \) and any predicate \( p \), if no element in \( l \) satisfies \( p \), then \(\text{eraseP}(p, l) = l\). This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} (h : ∀ a, a ∈ l → ¬p a) : l.eraseP p = l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example {l : List α} (h : ∀ a, a ∈ l → ¬p a) : l.eraseP p = l := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

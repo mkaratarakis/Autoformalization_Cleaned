@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Left Distributive Property of AND over XOR in Boolean Logic: $(x \land (y \oplus z)) = (x \land y) \oplus (x \land z)$ : For any boolean values $x$, $y$, and $z$, the expression $(x \land (y \oplus z))$ is equal to $(x \land y) \oplus (x \land z)$. This theorem demonstrates the left distributive property of the boolean "and" operation over the boolean "exclusive or" operation.
+
+2. **Informal Proof**  
+To prove the distributive property of the boolean "and" operation over the boolean "exclusive or" operation, we consider all possible boolean values for $x$, $y$, and $z$. By evaluating the expression $(x \land (y \oplus z))$ and comparing it to $(x \land y) \oplus (x \land z)$ for each combination of $x$, $y$, and $z$, we verify that they are equal. This exhausts all cases and completes the proof.
+
+\[
+\begin{aligned}
+&\text{Case 1: } x = \text{true}, y = \text{true}, z = \text{true} \\
+&\quad (x \land (y \oplus z)) = (\text{true} \land (\text{true} \oplus \text{true})) = (\text{true} \land \text{false}) = \text{false} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{true} \land \text{true}) \oplus (\text{true} \land \text{true}) = \text{true} \oplus \text{true} = \text{false} \\
+&\text{Case 2: } x = \text{true}, y = \text{true}, z = \text{false} \\
+&\quad (x \land (y \oplus z)) = (\text{true} \land (\text{true} \oplus \text{false})) = (\text{true} \land \text{true}) = \text{true} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{true} \land \text{true}) \oplus (\text{true} \land \text{false}) = \text{true} \oplus \text{false} = \text{true} \\
+&\text{Case 3: } x = \text{true}, y = \text{false}, z = \text{true} \\
+&\quad (x \land (y \oplus z)) = (\text{true} \land (\text{false} \oplus \text{true})) = (\text{true} \land \text{true}) = \text{true} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{true} \land \text{false}) \oplus (\text{true} \land \text{true}) = \text{false} \oplus \text{true} = \text{true} \\
+&\text{Case 4: } x = \text{true}, y = \text{false}, z = \text{false} \\
+&\quad (x \land (y \oplus z)) = (\text{true} \land (\text{false} \oplus \text{false})) = (\text{true} \land \text{false}) = \text{false} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{true} \land \text{false}) \oplus (\text{true} \land \text{false}) = \text{false} \oplus \text{false} = \text{false} \\
+&\text{Case 5: } x = \text{false}, y = \text{true}, z = \text{true} \\
+&\quad (x \land (y \oplus z)) = (\text{false} \land (\text{true} \oplus \text{true})) = (\text{false} \land \text{false}) = \text{false} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{false} \land \text{true}) \oplus (\text{false} \land \text{true}) = \text{false} \oplus \text{false} = \text{false} \\
+&\text{Case 6: } x = \text{false}, y = \text{true}, z = \text{false} \\
+&\quad (x \land (y \oplus z)) = (\text{false} \land (\text{true} \oplus \text{false})) = (\text{false} \land \text{true}) = \text{false} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{false} \land \text{true}) \oplus (\text{false} \land \text{false}) = \text{false} \oplus \text{false} = \text{false} \\
+&\text{Case 7: } x = \text{false}, y = \text{false}, z = \text{true} \\
+&\quad (x \land (y \oplus z)) = (\text{false} \land (\text{false} \oplus \text{true})) = (\text{false} \land \text{true}) = \text{false} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{false} \land \text{false}) \oplus (\text{false} \land \text{true}) = \text{false} \oplus \text{false} = \text{false} \\
+&\text{Case 8: } x = \text{false}, y = \text{false}, z = \text{false} \\
+&\quad (x \land (y \oplus z)) = (\text{false} \land (\text{false} \oplus \text{false})) = (\text{false} \land \text{false}) = \text{false} \\
+&\quad (x \land y) \oplus (x \land z) = (\text{false} \land \text{false}) \oplus (\text{false} \land \text{false}) = \text{false} \oplus \text{false} = \text{false}
+\end{aligned}
+\]
+
+In all cases, we have shown that $(x \land (y \oplus z)) = (x \land y) \oplus (x \land z)$. Therefore, the left distributive property of the boolean "and" operation over the boolean "exclusive or" operation holds. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), (x && xor y z) = xor (x && y) (x && z) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), (x && xor y z) = xor (x && y) (x && z) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

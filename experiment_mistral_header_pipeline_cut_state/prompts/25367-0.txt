@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Commutativity of Exclusive Or (XOR) in Boolean Values : For any boolean values $x$ and $y$, the exclusive or (XOR) operation is commutative, i.e., $\text{xor}(x, y) = \text{xor}(y, x)$.
+
+2. **Informal Proof**  
+To prove that the exclusive or (XOR) operation is commutative for any boolean values $x$ and $y$, we can directly evaluate all possible cases for $x$ and $y$. Since there are only four possible combinations of boolean values, we check each case individually:
+
+1. **Case 1: $x = \text{true}$ and $y = \text{true}$**
+\[
+\text{xor}(\text{true}, \text{true}) = \text{false} \quad \text{and} \quad \text{xor}(\text{true}, \text{true}) = \text{false}
+\]
+Thus, $\text{xor}(\text{true}, \text{true}) = \text{xor}(\text{true}, \text{true})$.
+
+2. **Case 2: $x = \text{true}$ and $y = \text{false}$**
+\[
+\text{xor}(\text{true}, \text{false}) = \text{true} \quad \text{and} \quad \text{xor}(\text{false}, \text{true}) = \text{true}
+\]
+Thus, $\text{xor}(\text{true}, \text{false}) = \text{xor}(\text{false}, \text{true})$.
+
+3. **Case 3: $x = \text{false}$ and $y = \text{true}$**
+\[
+\text{xor}(\text{false}, \text{true}) = \text{true} \quad \text{and} \quad \text{xor}(\text{true}, \text{false}) = \text{true}
+\]
+Thus, $\text{xor}(\text{false}, \text{true}) = \text{xor}(\text{true}, \text{false})$.
+
+4. **Case 4: $x = \text{false}$ and $y = \text{false}$**
+\[
+\text{xor}(\text{false}, \text{false}) = \text{false} \quad \text{and} \quad \text{xor}(\text{false}, \text{false}) = \text{false}
+\]
+Thus, $\text{xor}(\text{false}, \text{false}) = \text{xor}(\text{false}, \text{false})$.
+
+Since $\text{xor}(x, y) = \text{xor}(y, x)$ holds for all possible combinations of boolean values, the exclusive or (XOR) operation is commutative. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), xor x y = xor y x := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), xor x y = xor y x := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

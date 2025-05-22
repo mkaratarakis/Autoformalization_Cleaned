@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Membership in Right List Implies Membership in Appended List : For any type \( \alpha \), any element \( b \) of type \( \alpha \), and any lists \( as \) and \( bs \) of elements of type \( \alpha \), if \( b \) is a member of \( bs \), then \( b \) is also a member of the list \( as ++ bs \).
+
+2. **Informal Proof**  
+Let \( h \) be the hypothesis that \( b \in bs \). We need to show that \( b \in as ++ bs \).
+
+1. **Case 1: \( as \) is the empty list.**
+- If \( as = \text{nil} \), then \( as ++ bs = \text{nil} ++ bs = bs \).
+- Since \( b \in bs \) by hypothesis \( h \), it follows that \( b \in bs \).
+- Therefore, \( b \in \text{nil} ++ bs \).
+
+2. **Case 2: \( as \) is a non-empty list.**
+- Let \( as = \text{head} :: \text{tail} \).
+- We need to show that \( b \in \text{head} :: \text{tail} ++ bs \).
+- By the theorem that if \( b \in \text{tail} ++ bs \), then \( b \in \text{head} :: \text{tail} ++ bs \), it suffices to show that \( b \in \text{tail} ++ bs \).
+- By the induction hypothesis, since \( b \in bs \) by hypothesis \( h \), it follows that \( b \in \text{tail} ++ bs \).
+- Therefore, \( b \in \text{head} :: \text{tail} ++ bs \).
+
+In both cases, we have shown that \( b \in as ++ bs \). This completes the proof.
+
+3. **Formal Theorem**  
+example {b : α} {bs : List α} (as : List α) : b ∈ bs → b ∈ as ++ bs := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example {b : α} {bs : List α} (as : List α) : b ∈ bs → b ∈ as ++ bs := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

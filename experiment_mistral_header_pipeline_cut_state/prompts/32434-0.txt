@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+Distributive Property of Minimum over Maximum on the Right: \(\min(\max(a, b), c) = \max(\min(a, c), \min(b, c))\) : For any natural numbers \(a\), \(b\), and \(c\), the minimum of the maximum of \(a\) and \(b\) with \(c\) is equal to the maximum of the minimum of \(a\) and \(c\) with the minimum of \(b\) and \(c\). In other words, \(\min(\max(a, b), c) = \max(\min(a, c), \min(b, c))\).
+
+2. **Informal Proof**  
+To prove the distributive property of the minimum over the maximum on the right, we start with the goal:
+\[
+\min(\max(a, b), c) = \max(\min(a, c), \min(b, c))
+\]
+
+First, we use the commutativity of the minimum operation, which states that for any natural numbers \(x\) and \(y\), \(\min(x, y) = \min(y, x)\). Applying this property, we rewrite the goal as:
+\[
+\min(c, \max(a, b)) = \max(\min(c, a), \min(c, b))
+\]
+
+Next, we use the distributive property of the minimum over the maximum on the left, which states that for any natural numbers \(a\), \(b\), and \(c\):
+\[
+\min(a, \max(b, c)) = \max(\min(a, b), \min(a, c))
+\]
+
+By substituting \(a = c\), \(b = a\), and \(c = b\) into this property, we get:
+\[
+\min(c, \max(a, b)) = \max(\min(c, a), \min(c, b))
+\]
+
+This exactly matches our rewritten goal, thus completing the proof. Therefore, we have:
+\[
+\min(\max(a, b), c) = \max(\min(a, c), \min(b, c))
+\]
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c : Nat) :
+    min (max a b) c = max (min a c) (min b c) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) :
+    min (max a b) c = max (min a c) (min b c) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

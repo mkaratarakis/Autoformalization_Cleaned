@@ -1,0 +1,70 @@
+
+1. **Informal Theorem**  
+Equality of `List.take` and `List.takeTR` Functions : For any type \( \alpha \) and any natural number \( n \), the function `List.take` that returns the first \( n \) elements of a list \( xs \) of elements of type \( \alpha \) is equal to the tail-recursive function `List.takeTR` that also returns the first \( n \) elements of the same list \( xs \). In other words, for any list \( xs \) and any natural number \( n \), `List.take n xs = List.takeTR n xs`.
+
+2. **Informal Proof**  
+To prove that `List.take` and `List.takeTR` are equal, we use the principle of function extensionality. This means we need to show that for all possible arguments \( \alpha \), \( n \), and \( l \), the functions `List.take` and `List.takeTR` yield the same result. Specifically, we need to show that `List.take n l = List.takeTR.go l l n #[]`.
+
+We will perform induction on the list \( l \) and generalize over \( n \).
+
+**Base Case:**
+For the base case where \( l \) is the empty list, we need to show that for any array \( acc \), if \( l = acc.data ++ [] \), then `List.takeTR.go l [] n acc = acc.data ++ List.take n []`.
+
+1. If \( n = 0 \), by the definitions of `List.take` and `List.takeTR.go`, we have:
+\[
+\text{List.take} \, 0 \, l = [] \quad \text{and} \quad \text{List.takeTR.go} \, l \, [] \, 0 \, acc = \text{acc.toList}
+\]
+Since \(\text{acc.toList} = \text{acc.data} ++ []\), the base case holds.
+
+2. If \( n = n' + 1 \) for some \( n' \), by the definitions of `List.take` and `List.takeTR.go`, we have:
+\[
+\text{List.take} \, (n' + 1) \, l = l \quad \text{and} \quad \text{List.takeTR.go} \, l \, [] \, (n' + 1) \, acc = l
+\]
+Since \( l = \text{acc.data} ++ l \), the base case holds.
+
+**Inductive Step:**
+For the inductive step, assume \( l = x :: xs \) for some element \( x \) and list \( xs \). We need to show that for any natural number \( n \) and array \( acc \), if \( l = acc.data ++ x :: xs \), then `List.takeTR.go l (x :: xs) n acc = acc.data ++ List.take n (x :: xs)`.
+
+We will consider two cases for \( n \):
+
+1. If \( n = 0 \), by the definitions of `List.take` and `List.takeTR.go`, we have:
+\[
+\text{List.take} \, 0 \, (x :: xs) = [] \quad \text{and} \quad \text{List.takeTR.go} \, l \, (x :: xs) \, 0 \, acc = \text{acc.toList}
+\]
+Since \(\text{acc.toList} = \text{acc.data} ++ []\), the inductive step holds for \( n = 0 \).
+
+2. If \( n = n' + 1 \) for some \( n' \), we introduce the hypothesis \( h \) that \( l = acc.data ++ x :: xs \). By the inductive hypothesis \( IH \), we know that for any natural number \( n' \) and array \( acc \), if \( l = acc.data ++ xs \), then `List.takeTR.go l xs n' acc = acc.data ++ List.take n' xs`.
+
+Using this inductive hypothesis, we can replace `List.takeTR.go l xs n' (acc.push x)` with `acc.data ++ List.take n' xs`. Therefore, we need to show:
+\[
+(acc.push x).data ++ \text{List.take} \, n' \, xs = \text{acc.data} ++ x :: \text{List.take} \, n' \, xs
+\]
+By the definition of `Array.push`, we have:
+\[
+(acc.push x).data = \text{acc.data} ++ [x]
+\]
+Thus, the left-hand side becomes:
+\[
+(\text{acc.data} ++ [x]) ++ \text{List.take} \, n' \, xs = \text{acc.data} ++ x :: \text{List.take} \, n' \, xs
+\]
+This is true by the associativity of list concatenation.
+
+Therefore, by induction, we have shown that for any list \( l \) and any natural number \( n \), `List.take n l = List.takeTR n l`. This completes the proof.
+
+3. **Formal Theorem**  
+example : @take = @takeTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @take = @takeTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

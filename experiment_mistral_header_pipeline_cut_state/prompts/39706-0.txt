@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+First Non-`none` Result in Replicated List Equals Function Application or `none` : For any types \( \alpha \) and \( \alpha_1 \), and for any function \( f : \alpha \to \text{Option } \alpha_1 \), the first non-`none` result of applying \( f \) to the elements of a list containing \( n \) copies of an element \( a \) is:
+\[
+\text{List.findSome? } f \, (\text{List.replicate } n \, a) = 
+\begin{cases} 
+\text{none} & \text{if } n = 0 \\
+f(a) & \text{if } n > 0 
+\end{cases}
+\]
+
+2. **Informal Proof**  
+We need to show that the first non-`none` result of applying \( f \) to the elements of a list containing \( n \) copies of an element \( a \) is `none` if \( n = 0 \) and \( f(a) \) if \( n > 0 \).
+
+1. **Case \( n = 0 \):**
+- The list `List.replicate 0 a` is the empty list.
+- By the definition of `List.findSome?`, the first non-`none` result of applying \( f \) to the elements of an empty list is `none`.
+- Therefore, the goal is trivially satisfied.
+
+2. **Case \( n > 0 \):**
+- We perform induction on \( n \).
+- **Base case \( n = 1 \):**
+- The list `List.replicate 1 a` is `[a]`.
+- By the definition of `List.findSome?`, the first non-`none` result of applying \( f \) to the elements of `[a]` is `f(a)`.
+- Therefore, the goal is trivially satisfied.
+- **Inductive step:**
+- Assume the induction hypothesis: for any \( n \), the first non-`none` result of applying \( f \) to the elements of a list containing \( n \) copies of \( a \) is `f(a)` if \( n > 0 \).
+- Consider the list `List.replicate (n + 1) a`, which is `[a] ++ List.replicate n a`.
+- By the definition of `List.findSome?`, the first non-`none` result of applying \( f \) to the elements of `[a] ++ List.replicate n a` is:
+\[
+\text{match } f(a) \text{ with} \, | \text{some } b \Rightarrow \text{some } b \, | \text{none} \Rightarrow \text{findSome? } f \, (\text{List.replicate } n \, a)
+\]
+- If \( f(a) = \text{some } b \), then the first non-`none` result is `some b`.
+- If \( f(a) = \text{none} \), then the first non-`none` result is the result of `findSome? f (List.replicate n a)`, which by the induction hypothesis is `f(a)` if \( n > 0 \).
+- In both sub-cases, the goal is trivially satisfied.
+
+Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : findSome? f (replicate n a) = if n = 0 then none else f a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example : findSome? f (replicate n a) = if n = 0 then none else f a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

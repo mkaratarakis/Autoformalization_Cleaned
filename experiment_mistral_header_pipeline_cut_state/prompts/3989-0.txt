@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Multiplication and Division Associativity: \( m \cdot n / k = m \cdot (n / k) \) if \( k \mid n \) : For any natural numbers \( k \), \( n \), and \( m \), if \( k \) divides \( n \), then the expression \( m \cdot n / k \) is equal to \( m \cdot (n / k) \). In other words, if \( k \mid n \), then \( m \cdot n / k = m \cdot (n / k) \).
+
+2. **Informal Proof**  
+We start by introducing a lemma \( h1 \) which states that \( m \cdot n / k = m \cdot (n / k \cdot k) / k \). This is derived using the cancellation property of division and multiplication, given that \( k \) divides \( n \).
+
+Next, we rewrite the goal using this lemma. Then, we apply the associativity of multiplication to rearrange the terms. Finally, we use the cancellation property of division and multiplication, given that \( k > 0 \), to simplify the expression.
+
+Thus, we have shown that \( m \cdot n / k = m \cdot (n / k) \), completing the proof.
+
+3. **Formal Theorem**  
+example (m : Nat) (H : k ∣ n) : m * n / k = m * (n / k) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example (m : Nat) (H : k ∣ n) : m * n / k = m * (n / k) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Commutativity of Bitvector Conjunction: \( x \&&& y = y \&&& x \) : For any natural number \( w \) and any bitvectors \( x, y \) of width \( w \), the conjunction operation is commutative, i.e., \( x \&&& y = y \&&& x \).
+
+2. **Informal Proof**  
+To prove that \( x \&&& y = y \&&& x \), we need to show that for every index \( i \) in the range of \( w \), the \( i \)-th bit of \( x \&&& y \) is equal to the \( i \)-th bit of \( y \&&& x \).
+
+1. **Introduce a new variable \( i \):**
+We introduce a new variable \( i \) to reason about the \( i \)-th bit of the bitvectors. This reduces our goal to showing that \((x \&&& y).getLsb(i) = (y \&&& x).getLsb(i)\).
+
+2. **Simplify using the commutativity of the boolean "and" operation:**
+For any boolean values \( x_i \) and \( y_i \), the \( i \)-th bit of \( x \&&& y \) is \( x_i \land y_i \), and the \( i \)-th bit of \( y \&&& x \) is \( y_i \land x_i \). Since the boolean "and" operation is commutative, we have \( x_i \land y_i = y_i \land x_i \). Therefore, the \( i \)-th bit of \( x \&&& y \) is equal to the \( i \)-th bit of \( y \&&& x \).
+
+Since this holds for every index \( i \) in the range of \( w \), we conclude that \( x \&&& y = y \&&& x \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec w) :
+    x &&& y = y &&& x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec w) :
+    x &&& y = y &&& x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Division and Modulo Identity: \( n \cdot (m / n) + m \% n = m \) : For any natural numbers \( m \) and \( n \), the equation \( n \cdot (m / n) + m \% n = m \) holds. This theorem states that the division and modulo operations on natural numbers satisfy the identity \( n \cdot \left\lfloor \frac{m}{n} \right\rfloor + (m \mod n) = m \).
+
+2. **Informal Proof**  
+We start by expressing the division and modulo operations using their definitions. Specifically, we replace \( m / n \) with \( \text{ite}(0 < n \land n \leq m, (m - n) / n + 1, 0) \) and \( m \% n \) with \( \text{ite}(0 < n \land n \leq m, (m - n) \% n, m) \).
+
+Next, we consider the decidability of the proposition \( 0 < n \land n \leq m \). We introduce a hypothesis \( h \) that states this proposition is decidable.
+
+We then proceed by cases:
+
+1. **Case \( 0 < n \land n \leq m \) is false:**
+In this case, the goal simplifies directly to \( m = m \), which is trivially true.
+
+2. **Case \( 0 < n \land n \leq m \) is true:**
+Here, \( n \) is a positive natural number and \( n \leq m \). We simplify the goal using the hypothesis \( h \), which reduces it to \( n \cdot ((m - n) / n + 1) + (m - n) \% n = m \).
+
+We introduce an induction hypothesis \( ih \) which states that \( n \cdot ((m - n) / n) + (m - n) \% n = m - n \).
+
+Using several properties of natural numbers—distributivity, multiplicative identity, associativity, left commutativity, the induction hypothesis \( ih \), commutativity, and the cancellation property of subtraction—we rewrite the goal. This sequence of rewrites transforms the goal into \( m = m \), which is trivially true.
+
+Thus, the theorem holds for all natural numbers \( m \) and \( n \).
+
+3. **Formal Theorem**  
+example (m n : Nat) : n * (m / n) + m % n = m := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (m n : Nat) : n * (m / n) + m % n = m := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

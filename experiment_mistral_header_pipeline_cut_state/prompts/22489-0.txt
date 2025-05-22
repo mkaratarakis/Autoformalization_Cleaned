@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Unsigned Less-Than-or-Equal to Carry Bit Equivalence in Bitvectors : For any natural number \( w \) and any bitvectors \( x \) and \( y \) of width \( w \), the unsigned less-than-or-equal-to relation \( x \leq y \) is equivalent to the carry bit being true when computing the sum of \( y \) and the complement of \( x \) with an initial carry bit of `true`. Formally, this is expressed as:
+\[ x \leq y \iff \text{carry}(w, y, \sim x, \text{true}) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the following two key equivalences:
+
+1. The unsigned less-than-or-equal relation \( x \le y \) is equivalent to the negation of the unsigned less-than relation \( y < x \):
+\[
+x \le y \iff \neg (y < x)
+\]
+
+2. The unsigned less-than relation \( x < y \) is equivalent to the carry bit being false when computing the sum of \( x \) and the complement of \( y \) with an initial carry bit of `true`:
+\[
+x < y \iff \text{carry}(w, x, \sim y, \text{true}) = \text{false}
+\]
+
+Using these equivalences, we can rewrite the unsigned less-than-or-equal relation \( x \le y \) as:
+\[
+x \le y \iff \neg (y < x) \iff \neg (\text{carry}(w, y, \sim x, \text{true}) = \text{false})
+\]
+
+The negation of the carry bit being false is equivalent to the carry bit being true:
+\[
+\neg (\text{carry}(w, y, \sim x, \text{true}) = \text{false}) \iff \text{carry}(w, y, \sim x, \text{true}) = \text{true}
+\]
+
+Therefore, we have:
+\[
+x \le y \iff \text{carry}(w, y, \sim x, \text{true})
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec w) : x.ule y = carry w y (~~~x) true := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x y : BitVec w) : x.ule y = carry w y (~~~x) true := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

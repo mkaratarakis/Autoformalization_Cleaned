@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Filtering Preserves Prefix Relationship in Lists : For any type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), if the list \( l_1 \) is a prefix of the list \( l_2 \), then the list obtained by filtering \( l_1 \) with \( p \) is a prefix of the list obtained by filtering \( l_2 \) with \( p \). In other words, if \( l_1 \) is a prefix of \( l_2 \), then \( \text{filter } p \, l_1 \) is a prefix of \( \text{filter } p \, l_2 \).
+
+2. **Informal Proof**  
+Assume \( l_1 \) is a prefix of \( l_2 \). By the definition of prefix, there exists a list \( xs \) such that \( l_2 = l_1 ++ xs \). We need to show that \( \text{filter } p \, l_1 \) is a prefix of \( \text{filter } p \, l_2 \).
+
+Using the property of the filter operation, we have:
+\[
+\text{filter } p \, (l_1 ++ xs) = \text{filter } p \, l_1 ++ \text{filter } p \, xs
+\]
+Thus, \( \text{filter } p \, l_2 = \text{filter } p \, l_1 ++ \text{filter } p \, xs \).
+
+By the definition of prefix, \( \text{filter } p \, l_1 \) is a prefix of \( \text{filter } p \, l_1 ++ \text{filter } p \, xs \). Therefore, \( \text{filter } p \, l_1 \) is a prefix of \( \text{filter } p \, l_2 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p : α → Bool) ⦃l₁ l₂ : List α⦄ (h : l₁ <+: l₂) :
+    l₁.filter p <+: l₂.filter p := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open IsPrefix
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example (p : α → Bool) ⦃l₁ l₂ : List α⦄ (h : l₁ <+: l₂) :
+    l₁.filter p <+: l₂.filter p := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

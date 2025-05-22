@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Negation of If-Then-Else Expression: \(\neg (\text{if } p \text{ then } b = \text{true} \text{ else } c = \text{false}) \leftrightarrow \text{if } p \text{ then } b = \text{false} \text{ else } c = \text{true}\) : For any proposition \( p \) and boolean values \( b \) and \( c \), the negation of the if-then-else expression \( \neg (\text{if } p \text{ then } b = \text{true} \text{ else } c = \text{false}) \) is equivalent to the if-then-else expression \( \text{if } p \text{ then } b = \text{false} \text{ else } c = \text{true} \).
+
+2. **Informal Proof**  
+We will consider the two possible cases for the proposition \( p \).
+
+**Case 1: \( p \) is true.**
+Using the fact that \( p \) is true, we simplify the expression \( \neg (\text{if } p \text{ then } b = \text{true} \text{ else } c = \text{false}) \) to \( \neg (b = \text{true}) \). By the property of boolean negation, \( \neg (b = \text{true}) \) is equivalent to \( b = \text{false} \). Similarly, we simplify \( \text{if } p \text{ then } b = \text{false} \text{ else } c = \text{true} \) to \( b = \text{false} \). Therefore, in this case, the left-hand side and the right-hand side of the equivalence are both \( b = \text{false} \), which are clearly equivalent.
+
+**Case 2: \( p \) is false.**
+Using the fact that \( p \) is false, we simplify the expression \( \neg (\text{if } p \text{ then } b = \text{true} \text{ else } c = \text{false}) \) to \( \neg (c = \text{false}) \). By the property of boolean negation, \( \neg (c = \text{false}) \) is equivalent to \( c = \text{true} \). Similarly, we simplify \( \text{if } p \text{ then } b = \text{false} \text{ else } c = \text{true} \) to \( c = \text{true} \). Therefore, in this case, the left-hand side and the right-hand side of the equivalence are both \( c = \text{true} \), which are clearly equivalent.
+
+Since both cases have been considered and the equivalence holds in each case, the theorem is proved.
+
+3. **Formal Theorem**  
+example (p : Prop) [h : Decidable p] (b c : Bool) :
+  ¬(ite p (b = true) (c = false)) ↔ (ite p (b = false) (c = true)) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (b c : Bool) :
+  ¬(ite p (b = true) (c = false)) ↔ (ite p (b = false) (c = true)) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

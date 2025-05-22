@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Element at Index in Take Equals Element at Index in Original List: \(\text{get}(\text{take}(j, L), i) = \text{get}(L, i)\) : For any list \( L \) of elements of type \( \alpha \) and any natural numbers \( j \) and \( i \) such that \( i \) is a valid index in the list obtained by taking the first \( j \) elements of \( L \), the \( i \)-th element of the list `List.take j L` is equal to the \( i \)-th element of the original list \( L \). Mathematically, this can be expressed as:
+\[
+\text{get}(\text{take}(j, L), i) = \text{get}(L, i)
+\]
+where \( i \) is a natural number less than the length of `List.take j L`.
+
+2. **Informal Proof**  
+To prove the theorem, we start with the given list \( L \) and natural numbers \( j \) and \( i \) such that \( i \) is a valid index in the list obtained by taking the first \( j \) elements of \( L \). We need to show that:
+\[
+\text{get}(\text{take}(j, L), i) = \text{get}(L, i)
+\]
+
+We use the theorem that states the \( i \)-th element of a list obtained by taking the first \( j \) elements of \( L \) is equal to the \( i \)-th element of the original list \( L \). Formally, this theorem can be written as:
+\[
+\text{take}(j, L)[i] = L[i]
+\]
+
+By applying this theorem, we can directly simplify the proposition we want to show:
+\[
+\text{get}(\text{take}(j, L), i) = L[i]
+\]
+
+Since the \( i \)-th element of the list `List.take j L` is indeed equal to the \( i \)-th element of the original list \( L \), the goal is proven. Therefore, we have:
+\[
+\text{get}(\text{take}(j, L), i) = \text{get}(L, i)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (L : List α) {j i} :
+    get (L.take j) i =
+    get L ⟨i.1, Nat.lt_of_lt_of_le i.2 (length_take_le' _ _)⟩ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example (L : List α) {j i} :
+    get (L.take j) i =
+    get L ⟨i.1, Nat.lt_of_lt_of_le i.2 (length_take_le' _ _)⟩ := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

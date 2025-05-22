@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+De Morgan's Law: $\neg (x \land y) = \neg x \lor \neg y$ : For any boolean values $x$ and $y$, the negation of their conjunction is equal to the disjunction of their negations, i.e., $\neg (x \land y) = \neg x \lor \neg y$.
+
+2. **Informal Proof**  
+To prove the statement $\neg (x \land y) = \neg x \lor \neg y$ for any boolean values $x$ and $y$, we can directly evaluate the truth values of both sides of the equation for all possible combinations of $x$ and $y$. We will use the truth table for boolean operations to verify this.
+
+Consider the following truth table:
+
+\[
+\begin{array}{|c|c|c|c|c|}
+\hline
+x & y & x \land y & \neg (x \land y) & \neg x & \neg y & \neg x \lor \neg y \\
+\hline
+\text{true} & \text{true} & \text{true} & \text{false} & \text{false} & \text{false} & \text{false} \\
+\text{true} & \text{false} & \text{false} & \text{true} & \text{false} & \text{true} & \text{true} \\
+\text{false} & \text{true} & \text{false} & \text{true} & \text{true} & \text{false} & \text{true} \\
+\text{false} & \text{false} & \text{false} & \text{true} & \text{true} & \text{true} & \text{true} \\
+\hline
+\end{array}
+\]
+
+From the truth table, we can see that for all combinations of $x$ and $y$, the value of $\neg (x \land y)$ is equal to the value of $\neg x \lor \neg y$. Therefore, the statement $\neg (x \land y) = \neg x \lor \neg y$ holds for any boolean values $x$ and $y$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), (!(x && y)) = (!x || !y) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (!(x && y)) = (!x || !y) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

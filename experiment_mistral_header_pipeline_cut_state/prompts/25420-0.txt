@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Boolean Decision of Disjunction: $\text{decide}(p \lor q) = (\text{decide}(p) \lor \text{decide}(q))$ : For any propositions \( p \) and \( q \) that are decidable, the boolean value of the disjunction \( p \lor q \) is equal to the boolean "or" operation of the boolean values of \( p \) and \( q \). In other words, if \( p \) and \( q \) are decidable propositions, then \( \text{decide}(p \lor q) = (\text{decide}(p) \lor \text{decide}(q)) \).
+
+2. **Informal Proof**  
+We need to show that for any decidable propositions \( p \) and \( q \), the boolean value of \( p \lor q \) is equal to the boolean "or" operation of the boolean values of \( p \) and \( q \).
+
+We will consider every possible case of the decidability of \( p \).
+
+**Case 1: \( p \) is true.**
+- Since \( p \) is true, the boolean value of \( p \) is `true`.
+- Therefore, the boolean value of \( p \lor q \) is `true` (since `true` or anything is `true`).
+- The boolean "or" operation of `true` with the boolean value of \( q \) is also `true`.
+- Hence, the goal \( \text{decide}(p \lor q) = (\text{decide}(p) \lor \text{decide}(q)) \) simplifies to `true = true`, which is trivially true.
+
+**Case 2: \( p \) is false.**
+- Since \( p \) is false, the boolean value of \( p \) is `false`.
+- Therefore, the boolean value of \( p \lor q \) is the same as the boolean value of \( q \) (since `false` or \( q \) is \( q \)).
+- The boolean "or" operation of `false` with the boolean value of \( q \) is also the boolean value of \( q \).
+- Hence, the goal \( \text{decide}(p \lor q) = (\text{decide}(p) \lor \text{decide}(q)) \) simplifies to the boolean value of \( q \) being equal to itself, which is trivially true.
+
+In both cases, the goal is satisfied. Therefore, we have shown that for any decidable propositions \( p \) and \( q \), \( \text{decide}(p \lor q) = (\text{decide}(p) \lor \text{decide}(q)) \). This completes the proof.
+
+3. **Formal Theorem**  
+example (p q : Prop) [dpq : Decidable (p ∨ q)] [dp : Decidable p] [dq : Decidable q] :
+    decide (p ∨ q) = (p || q) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p q : Prop) [dpq : Decidable (p ∨ q)] [dp : Decidable p] [dq : Decidable q] :
+    decide (p ∨ q) = (p || q) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

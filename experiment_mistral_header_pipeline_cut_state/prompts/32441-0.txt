@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Multiplication Distributes Over Minimum on the Left in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), the minimum of \(a \cdot b\) and \(a \cdot c\) is equal to \(a\) times the minimum of \(b\) and \(c\), i.e., \(\min(a \cdot b, a \cdot c) = a \cdot \min(b, c)\).
+
+2. **Informal Proof**  
+We start with the goal of proving \(\min(a \cdot b, a \cdot c) = a \cdot \min(b, c)\). Using the commutativity of multiplication in natural numbers, which states that \(a \cdot b = b \cdot a\), we can rewrite the goal as \(\min(b \cdot a, c \cdot a) = \min(b, c) \cdot a\). This transformation is valid because the order of multiplication does not affect the result.
+
+Next, we use the theorem that states \(\min(a \cdot c, b \cdot c) = \min(a, b) \cdot c\). This theorem directly applies to our transformed goal, \(\min(b \cdot a, c \cdot a) = \min(b, c) \cdot a\), thus proving the original statement. Therefore, we have shown that \(\min(a \cdot b, a \cdot c) = a \cdot \min(b, c)\).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c : Nat) : min (a * b) (a * c) = a * min b c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) : min (a * b) (a * c) = a * min b c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Division Less Than Characterization: \(\frac{x}{k} < y \leftrightarrow x < y \cdot k\) : For any natural numbers \( k \), \( x \), and \( y \) such that \( k > 0 \), the quotient \( \frac{x}{k} \) is strictly less than \( y \) if and only if \( x \) is strictly less than \( y \cdot k \), i.e., \( \frac{x}{k} < y \leftrightarrow x < y \cdot k \).
+
+2. **Informal Proof**  
+We begin by considering the logical equivalence between "not less than or equal to" and "greater than" for natural numbers. This allows us to rewrite the goal as \( \neg (x / k \ge y) \leftrightarrow \neg (x \ge y \cdot k) \). Next, we use the contrapositive of the inequality \( x / k \ge y \leftrightarrow x \ge y \cdot k \), which holds under the assumption \( k > 0 \). This equivalence is precisely what we need to show, and thus the proof is complete.
+
+3. **Formal Theorem**  
+example (Hk : 0 < k) : x / k < y ↔ x < y * k := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (Hk : 0 < k) : x / k < y ↔ x < y * k := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

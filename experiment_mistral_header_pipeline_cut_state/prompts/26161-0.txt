@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Commutativity of Minimum on Natural Numbers: \(\min(a, b) = \min(b, a)\) : For any natural numbers \( a \) and \( b \), the minimum of \( a \) and \( b \) is equal to the minimum of \( b \) and \( a \), i.e., \(\min(a, b) = \min(b, a)\).
+
+2. **Informal Proof**  
+To prove that \(\min(a, b) = \min(b, a)\) for any natural numbers \( a \) and \( b \), we consider the following cases:
+
+1. **Case 1: \( a \leq b \) and \( b \leq a \)**
+- If \( a \leq b \) and \( b \leq a \), then \( a = b \).
+- By the definition of the minimum function, \(\min(a, b) = a\) and \(\min(b, a) = a\).
+- Therefore, \(\min(a, b) = \min(b, a)\).
+
+2. **Case 2: \( a \leq b \) and \( b \not\leq a \)**
+- If \( a \leq b \) and \( b \not\leq a \), then \( a < b \).
+- By the definition of the minimum function, \(\min(a, b) = a\) and \(\min(b, a) = a\).
+- Therefore, \(\min(a, b) = \min(b, a)\).
+
+3. **Case 3: \( a \not\leq b \) and \( b \leq a \)**
+- If \( a \not\leq b \) and \( b \leq a \), then \( b < a \).
+- By the definition of the minimum function, \(\min(a, b) = b\) and \(\min(b, a) = b\).
+- Therefore, \(\min(a, b) = \min(b, a)\).
+
+4. **Case 4: \( a \not\leq b \) and \( b \not\leq a \)**
+- If \( a \not\leq b \) and \( b \not\leq a \), then \( a = b \).
+- By the definition of the minimum function, \(\min(a, b) = a\) and \(\min(b, a) = a\).
+- Therefore, \(\min(a, b) = \min(b, a)\).
+
+In all cases, we have shown that \(\min(a, b) = \min(b, a)\). This completes the proof.
+
+3. **Formal Theorem**  
+example (a b : Nat) : min a b = min b a := by sorry
+
+4. **Prefix**
+import Init.ByCases
+import Init.Data.Nat.MinMax
+
+open Nat
+
+
+example (a b : Nat) : min a b = min b a := by
+
+5. **Header Information**  
+-- Init.ByCases not found. --
+
+-- Init.Data.Nat.MinMax not found. --
+

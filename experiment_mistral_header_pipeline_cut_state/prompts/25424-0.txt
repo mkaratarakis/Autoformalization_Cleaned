@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Boolean False Equals Decide if and only if Proposition is False: \(\text{false} = \text{decide}(p) \leftrightarrow \neg p\) : For any decidable proposition \( p \), the boolean value `false` is equal to `decide p` if and only if \( p \) is false, i.e., \( \text{false} = \text{decide}(p) \leftrightarrow \neg p \).
+
+2. **Informal Proof**  
+We will consider the two possible cases for the decidable proposition \( p \).
+
+**Case 1: \( p \) is true.**
+- In this case, \( \text{decide}(p) = \text{true} \).
+- We need to show that \( \text{false} = \text{decide}(p) \leftrightarrow \neg p \).
+- Since \( \text{decide}(p) = \text{true} \), the left-hand side of the equivalence \( \text{false} = \text{true} \) is false.
+- Therefore, the equivalence \( \text{false} = \text{true} \leftrightarrow \neg p \) is true if and only if \( \neg p \) is false, which is true because \( p \) is true.
+- Hence, the equivalence holds in this case.
+
+**Case 2: \( p \) is false.**
+- In this case, \( \text{decide}(p) = \text{false} \).
+- We need to show that \( \text{false} = \text{decide}(p) \leftrightarrow \neg p \).
+- Since \( \text{decide}(p) = \text{false} \), the left-hand side of the equivalence \( \text{false} = \text{false} \) is true.
+- Therefore, the equivalence \( \text{false} = \text{false} \leftrightarrow \neg p \) is true if and only if \( \neg p \) is true, which is true because \( p \) is false.
+- Hence, the equivalence holds in this case.
+
+Since the equivalence holds in both cases, we conclude that for any decidable proposition \( p \), \( \text{false} = \text{decide}(p) \leftrightarrow \neg p \). This completes the proof.
+
+3. **Formal Theorem**  
+example {p : Prop} [h : Decidable p] : false = decide p ↔ ¬p := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+
+
+
+example {p : Prop} [h : Decidable p] : false = decide p ↔ ¬p := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

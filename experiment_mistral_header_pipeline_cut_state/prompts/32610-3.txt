@@ -1,0 +1,33 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:2: error: tactic 'apply' failed, failed to unify
+  ?f = ?g
+with
+  (∀ (a : p₁), q₁ a) = ∀ (a : p₁), q₂ a
+p₁ : Prop
+q₁ q₂ : p₁ → Prop
+h₂ : ∀ (a : p₁), q₁ ⋯ = q₂ a
+⊢ (∀ (a : p₁), q₁ a) = ∀ (a : p₁), q₂ a
+tmp.lean:10:45: error: unsolved goals
+p₁ : Prop
+q₁ q₂ : p₁ → Prop
+h₂ : ∀ (a : p₁), q₁ ⋯ = q₂ a
+⊢ (∀ (a : p₁), q₁ a) = ∀ (a : p₁), q₂ a
+p₁ : Prop
+q₁ q₂ : p₁ → Prop
+h₂ : ∀ (a : p₁), q₁ ⋯ = q₂ a
+⊢ (∀ (a : p₁), q₁ a) = ∀ (a : p₁), q₂ a
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example {p₁ p₂ : Prop} {q₁ : p₁ → Prop} {q₂ : p₂ → Prop}
+    (h₁ : p₁ = p₂)
+    (h₂ : ∀ a : p₂, q₁ (h₁.substr a) = q₂ a)
+    : (∀ a : p₁, q₁ a) = (∀ a : p₂, q₂ a) := by
+  subst h₁

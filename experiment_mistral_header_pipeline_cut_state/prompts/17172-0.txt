@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Monadic Fold Over Cons List: \( \text{List.foldlM } f \, b \, (a :: l) = \text{do } \text{let } \text{init} \leftarrow f(b, a); \text{List.foldlM } f \, \text{init} \, l \) : For any monad \( m \), any function \( f : \beta \to \alpha \to m \beta \), any initial state \( b : \beta \), any element \( a : \alpha \), and any list \( l : \text{List } \alpha \), the monadic fold `List.foldlM f b (a :: l)` over a list with a head element \( a \) and a tail list \( l \) is equal to the following computation:
+\[
+\text{do} \quad
+\begin{aligned}
+  &\text{let } \text{init} \leftarrow f(b, a) \\
+  &\text{List.foldlM } f \, \text{init} \, l
+\end{aligned}
+\]
+In other words, the monadic fold over a list with a head element \( a \) and a tail list \( l \) is equivalent to first applying the function \( f \) to the initial state \( b \) and the head element \( a \), and then performing the monadic fold over the tail list \( l \) with the result of the first application as the new initial state.
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the monadic fold `List.foldlM`. According to the definition, for a list with a head element \( a \) and a tail list \( l \), the monadic fold `List.foldlM f b (a :: l)` is defined as:
+\[
+\text{do} \quad
+\begin{aligned}
+&\text{let } \text{init} \leftarrow f(b, a) \\
+&\text{List.foldlM } f \, \text{init} \, l
+\end{aligned}
+\]
+This definition directly matches the goal we need to prove. Therefore, the proposition is true by the definition of `List.foldlM`. This completes the proof.
+
+3. **Formal Theorem**  
+example [Monad m] (f : β → α → m β) (b) (a) (l : List α) :
+    (a :: l).foldlM f b = f b a >>= l.foldlM f := by sorry
+
+4. **Prefix**
+import Init.Control.Basic
+import Init.Data.List.Basic
+import Init.Data.List.Control
+
+open List
+
+
+example [Monad m] (f : β → α → m β) (b) (a) (l : List α) :
+    (a :: l).foldlM f b = f b a >>= l.foldlM f := by
+
+5. **Header Information**  
+-- Init.Control.Basic not found. --
+
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.List.Control not found. --
+

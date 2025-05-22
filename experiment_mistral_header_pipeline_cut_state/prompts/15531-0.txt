@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Right Multiplication Cancellation in Natural Numbers: \(b \cdot a < c \cdot a \to b < c\) : For any natural numbers \(a\), \(b\), and \(c\), if \(a \neq 0\) and \(b \cdot a < c \cdot a\), then \(b < c\).
+
+2. **Informal Proof**  
+We start with the assumption that \( b \cdot a < c \cdot a \) and \( a \neq 0 \). By the commutativity of multiplication in natural numbers, we can rewrite the assumption as \( a \cdot b < a \cdot c \).
+
+Next, we use the theorem that if \( a \cdot b < a \cdot c \) and \( a \geq 0 \), then \( b < c \). Since \( a \) is a natural number, it is nonnegative by definition. Therefore, we can directly conclude that \( b < c \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b c : Nat} (h : b * a < c * a) : b < c := by sorry
+
+4. **Prefix**
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example {a b c : Nat} (h : b * a < c * a) : b < c := by
+
+5. **Header Information**  
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Mod not found. --
+

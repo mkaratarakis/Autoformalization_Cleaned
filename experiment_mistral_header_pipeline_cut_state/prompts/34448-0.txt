@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Cons of List Preserves No Duplicates if and only if Element is Not in List and List has No Duplicates : For any type \( \alpha \), any element \( a \) of type \( \alpha \), and any list \( l \) of elements of type \( \alpha \), the list \( a :: l \) (i.e., the list obtained by adding \( a \) to the front of \( l \)) has no duplicate elements if and only if \( a \) is not a member of \( l \) and \( l \) itself has no duplicate elements. Formally, \((a :: l).Nodup \leftrightarrow \neg (a \in l) \land l.Nodup\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions of the relevant concepts:
+
+1. **Definition of `Nodup`:** A list \( l \) has no duplicate elements if and only if for all elements \( x \) and \( y \) in \( l \), if \( x \neq y \), then \( x \) and \( y \) are not the same element.
+2. **Definition of `pairwise_cons`:** The list \( a :: l \) has no duplicate elements if and only if \( a \) is not in \( l \) and \( l \) has no duplicate elements.
+3. **Definition of `forall_mem_ne`:** For all elements \( x \) and \( y \) in \( l \), if \( x \neq y \), then \( x \) and \( y \) are not the same element.
+
+Using these definitions, we can simplify the proposition \((a :: l).Nodup\) to \(\neg (a \in l) \land l.Nodup\). This means that the list \( a :: l \) has no duplicate elements if and only if \( a \) is not a member of \( l \) and \( l \) itself has no duplicate elements.
+
+Thus, we have shown that \((a :: l).Nodup \leftrightarrow \neg (a \in l) \land l.Nodup\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : α} {l : List α} : Nodup (a :: l) ↔ a ∉ l ∧ Nodup l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Nat
+
+example {a : α} {l : List α} : Nodup (a :: l) ↔ a ∉ l ∧ Nodup l := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

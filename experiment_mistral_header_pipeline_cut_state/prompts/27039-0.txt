@@ -1,0 +1,93 @@
+
+1. **Informal Theorem**  
+Left Mapping Preserves ZipWith Operation in Lists : For any lists \( l_1 \) and \( l_2 \) of types \( \alpha \) and \( \beta \) respectively, and for any functions \( f : \alpha \to \alpha' \) and \( g : \alpha' \to \beta \to \gamma \), the following equality holds:
+\[ \text{zipWith } g \, (\text{map } f \, l_1) \, l_2 = \text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, l_1 \, l_2 \]
+
+2. **Informal Proof**  
+We will prove the theorem by induction on the list \( l_1 \) while generalizing over \( l_2 \).
+
+**Base Case:**
+1. **Case 1: \( l_1 = [] \) and \( l_2 = [] \)**
+- We need to show:
+\[
+\text{zipWith } g \, (\text{map } f \, []) \, [] = \text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, [] \, []
+\]
+- By the definition of `map` and `zipWith`, both sides are the empty list:
+\[
+\text{zipWith } g \, [] \, [] = []
+\]
+\[
+\text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, [] \, [] = []
+\]
+- Therefore, the equality holds.
+
+2. **Case 2: \( l_1 = [] \) and \( l_2 = y :: l_2' \)**
+- We need to show:
+\[
+\text{zipWith } g \, (\text{map } f \, []) \, (y :: l_2') = \text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, [] \, (y :: l_2')
+\]
+- By the definition of `map` and `zipWith`, both sides are the empty list:
+\[
+\text{zipWith } g \, [] \, (y :: l_2') = []
+\]
+\[
+\text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, [] \, (y :: l_2') = []
+\]
+- Therefore, the equality holds.
+
+**Inductive Step:**
+Assume the theorem holds for a list \( l_1' \) (inductive hypothesis). We need to show it holds for \( l_1 = x :: l_1' \).
+
+1. **Case 1: \( l_1 = x :: l_1' \) and \( l_2 = [] \)**
+- We need to show:
+\[
+\text{zipWith } g \, (\text{map } f \, (x :: l_1')) \, [] = \text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, (x :: l_1') \, []
+\]
+- By the definition of `map` and `zipWith`, both sides are the empty list:
+\[
+\text{zipWith } g \, (f x :: \text{map } f \, l_1') \, [] = []
+\]
+\[
+\text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, (x :: l_1') \, [] = []
+\]
+- Therefore, the equality holds.
+
+2. **Case 2: \( l_1 = x :: l_1' \) and \( l_2 = y :: l_2' \)**
+- We need to show:
+\[
+\text{zipWith } g \, (\text{map } f \, (x :: l_1')) \, (y :: l_2') = \text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, (x :: l_1') \, (y :: l_2')
+\]
+- By the definition of `map` and `zipWith`, we have:
+\[
+\text{zipWith } g \, (f x :: \text{map } f \, l_1') \, (y :: l_2') = g (f x) y :: \text{zipWith } g \, (\text{map } f \, l_1') \, l_2'
+\]
+\[
+\text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, (x :: l_1') \, (y :: l_2') = g (f x) y :: \text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, l_1' \, l_2'
+\]
+- By the inductive hypothesis, we have:
+\[
+\text{zipWith } g \, (\text{map } f \, l_1') \, l_2' = \text{zipWith } (\lambda a \, b, \, g (f a) \, b) \, l_1' \, l_2'
+\]
+- Therefore, the equality holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (l₁ : List α) (l₂ : List β) (f : α → α') (g : α' → β → γ) :
+    zipWith g (l₁.map f) l₂ = zipWith (fun a b => g (f a) b) l₁ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example (l₁ : List α) (l₂ : List β) (f : α → α') (g : α' → β → γ) :
+    zipWith g (l₁.map f) l₂ = zipWith (fun a b => g (f a) b) l₁ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

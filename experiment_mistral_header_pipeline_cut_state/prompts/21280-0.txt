@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Equivalence of `filterMap` and `filterMapTR` Functions for Lists : For any types \( \alpha \) and \( \beta \), and for any function \( f : \alpha \to \text{Option} \, \beta \), the `filterMap` function applied to a list \( l \) of elements of type \( \alpha \) is equal to the `filterMapTR` function applied to the same list \( l \). In other words, the non-tail-recursive `filterMap` and the tail-recursive `filterMapTR` produce the same result when applied to the same list and function.
+
+2. **Informal Proof**  
+By the principle of function extensionality, it suffices to show that for all types \( \alpha \) and \( \beta \), for any function \( f : \alpha \to \text{Option} \, \beta \), and for any list \( l \) of elements of type \( \alpha \), the functions `filterMap` and `filterMapTR` yield the same result when applied to \( l \) and \( f \).
+
+Let us define a recursive function `go` such that for any list `as` and accumulator `acc`, `filterMapTR.go f as acc` is equal to the concatenation of `acc.data` and `as.filterMap f`. For the base case where `as` is empty, we simplify using the definitions of `filterMapTR.go` and `filterMap`. For the inductive case where `as` is of the form `a :: as`, we simplify using the recursive call `go as` and properties of list operations. We then handle the two cases of the `match` expression (where `f a` is either `none` or `some b`) and simplify using the properties of list concatenation.
+
+The current goal, which is to show that `filterMap f l = filterMapTR f l`, is exactly proved by the symmetric form of the result of the recursive function `go` applied to `l` and an empty array `#[]`. This completes the proof.
+
+Thus, we have shown that `filterMap` and `filterMapTR` are equivalent for any list and function, thereby establishing the theorem.
+
+3. **Formal Theorem**  
+example : @List.filterMap = @filterMapTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @List.filterMap = @filterMapTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

@@ -1,0 +1,44 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:14:2: error: too many variable names provided at alternative 'cons', #4 provided, but #3 expected
+tmp.lean:15:19: error: application type mismatch
+  List.lt m m'
+argument
+  m'
+has type
+  List (Nat × Mon) : Type
+but is expected to have type
+  List Var : Type
+tmp.lean:15:4: error: tactic 'cases' failed, major premise type is not an inductive type
+  Prop
+
+Explanation: the 'cases' tactic is for constructor-based reasoning as well as for applying custom cases principles with a 'using' clause or a registered '@[cases_eliminator]' theorem. The above type neither is an inductive type nor has a registered theorem.
+
+Consider using the 'by_cases' tactic, which does true/false reasoning for propositions.
+case cons
+ctx : Context
+k : Nat
+m : Mon
+k' : Nat × Mon
+m' : List (Nat × Mon)
+p : denote ctx (insertSorted k m m') = denote ctx m' + k * Mon.denote ctx m
+x✝ : Prop
+h : List.lt m sorry = x✝
+⊢ denote ctx (insertSorted k m (k' :: m')) = denote ctx (k' :: m') + k * Mon.denote ctx m
+tmp.lean:12:2: error: alternative 'cons' has not been provided
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Nat.Linear
+import Init.Data.List.BasicAux
+import Init.Data.Nat.SOM
+
+open Nat
+open SOM
+open Poly
+open Linear (Var hugeFuel Context Var.denote)
+
+example (ctx : Context) (k : Nat) (m : Mon) (p : Poly) : (p.insertSorted k m).denote ctx = p.denote ctx + k * m.denote ctx := by
+  induction p with
+  | nil =>
+    simp [insertSorted, denote]

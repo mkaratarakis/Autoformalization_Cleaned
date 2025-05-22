@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Equivalence of `intersperse` and `intersperseTR` Functions for Lists : For any type \( \alpha \), any element \( \text{sep} \) of type \( \alpha \), and any list \( \text{xs} \) of elements of type \( \alpha \), the function `List.intersperse` and the tail-recursive function `List.intersperseTR` produce the same result. Specifically, `List.intersperse sep xs` is equal to `List.intersperseTR sep xs`.
+
+2. **Informal Proof**  
+By the principle of function extensionality, it suffices to show that for all types \( \alpha \), all elements \( \text{sep} \) of type \( \alpha \), and all lists \( \text{l} \) of elements of type \( \alpha \), the functions `List.intersperse` and `List.intersperseTR` yield the same result. We proceed by case analysis on the list `l`:
+
+1. **Base Case: Empty List**
+- If `l` is the empty list (`[]`), both `List.intersperse sep []` and `List.intersperseTR sep []` return the empty list. Thus, the equality holds trivially.
+
+2. **Base Case: Single Element List**
+- If `l` is a list with a single element (`[x]`), both `List.intersperse sep [x]` and `List.intersperseTR sep [x]` return the list `[x]`. Thus, the equality holds trivially.
+
+3. **Inductive Case: At Least Two Elements**
+- If `l` is of the form `x::y::xs` (i.e., it contains at least two elements), we simplify the expressions using the definitions of `List.intersperse` and `List.intersperseTR`. We then perform induction on the remaining list `xs`, generalizing the second element `y`. For each case in the induction, we simplify the expressions using the induction hypotheses and the definitions of the functions, ensuring that the results match.
+
+By considering all these cases, we conclude that `List.intersperse sep l` is equal to `List.intersperseTR sep l` for any list `l`, thus proving the theorem.
+
+$\square$
+
+3. **Formal Theorem**  
+example : @intersperse = @intersperseTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @intersperse = @intersperseTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Equivalence of \( a = \text{true} \leftrightarrow b = \text{false} \) and \( a = \neg b \) : For any boolean values \( a \) and \( b \), the statement \( a = \text{true} \leftrightarrow b = \text{false} \) is equivalent to \( a = \neg b \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( a \) and \( b \), the statement \( a = \text{true} \leftrightarrow b = \text{false} \) is equivalent to \( a = \neg b \).
+
+To do this, we consider the truth values of \( a \) and \( b \):
+
+1. **Case 1: \( a = \text{true} \)**
+- If \( a = \text{true} \), then \( a = \text{true} \leftrightarrow b = \text{false} \) is true if and only if \( b = \text{false} \).
+- This is equivalent to \( a = \neg b \) because \( \neg b = \text{true} \) when \( b = \text{false} \).
+
+2. **Case 2: \( a = \text{false} \)**
+- If \( a = \text{false} \), then \( a = \text{true} \leftrightarrow b = \text{false} \) is false for any value of \( b \).
+- This is equivalent to \( a = \neg b \) because \( \neg b = \text{false} \) when \( b = \text{true} \).
+
+In both cases, the statement \( a = \text{true} \leftrightarrow b = \text{false} \) is equivalent to \( a = \neg b \). Therefore, the theorem holds for all boolean values \( a \) and \( b \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), (a ↔ b = false) ↔ a = (!b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), (a ↔ b = false) ↔ a = (!b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

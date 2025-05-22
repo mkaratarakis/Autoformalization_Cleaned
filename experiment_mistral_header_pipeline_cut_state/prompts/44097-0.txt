@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Associativity of XOR in Bitvectors: \( x \^^^ y \^^^ z = x \^^^ (y \^^^ z) \) : For any natural number \( w \) and any bitvectors \( x, y, z \in \text{BitVec}(w) \), the XOR operation is associative, i.e., \( x \^^^ y \^^^ z = x \^^^ (y \^^^ z) \).
+
+2. **Informal Proof**  
+To prove that \( x \^^^ y \^^^ z = x \^^^ (y \^^^ z) \), we need to show that for every index \( i \) in the range of \( w \), the \( i \)-th bit of \( x \^^^ y \^^^ z \) is equal to the \( i \)-th bit of \( x \^^^ (y \^^^ z) \).
+
+By the definition of the bitvector XOR operation, the \( i \)-th bit of \( x \^^^ y \^^^ z \) is the boolean XOR of the \( i \)-th bits of \( x \), \( y \), and \( z \). Similarly, the \( i \)-th bit of \( x \^^^ (y \^^^ z) \) is the boolean XOR of the \( i \)-th bit of \( x \) and the \( i \)-th bit of \( y \^^^ z \).
+
+Using the associativity of the boolean XOR operation, we have:
+\[
+(x_i \^^^ y_i) \^^^ z_i = x_i \^^^ (y_i \^^^ z_i)
+\]
+for every \( i \) in the range of \( w \).
+
+Thus, the \( i \)-th bit of \( x \^^^ y \^^^ z \) is equal to the \( i \)-th bit of \( x \^^^ (y \^^^ z) \) for all \( i \). Therefore, \( x \^^^ y \^^^ z = x \^^^ (y \^^^ z) \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x y z : BitVec w) :
+    x ^^^ y ^^^ z = x ^^^ (y ^^^ z) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y z : BitVec w) :
+    x ^^^ y ^^^ z = x ^^^ (y ^^^ z) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

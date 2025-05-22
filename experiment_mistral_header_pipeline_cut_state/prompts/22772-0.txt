@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Accessibility of Transitive Closure: \( \text{Acc } r \, a \to \text{Acc } (\text{TransGen } r) \, a \) : For any type \( \alpha \) and a relation \( r \) on \( \alpha \), if \( a \) is accessible with respect to \( r \), then \( a \) is also accessible with respect to the transitive closure of \( r \). In other words, if there is no infinite sequence of elements in \( \alpha \) that are related to \( a \) by \( r \), then there is no infinite sequence of elements in \( \alpha \) that are related to \( a \) by the transitive closure of \( r \).
+
+2. **Informal Proof**  
+We perform induction on the accessibility of \( a \) with respect to \( r \). Let \( x \) be an element in \( \alpha \) such that for every \( y \) in \( \alpha \) with \( r y x \), \( y \) is accessible with respect to \( r \). We need to show that \( x \) is accessible with respect to the transitive closure of \( r \).
+
+To show this, we need to prove that for every \( y \) in \( \alpha \) such that \( \text{TransGen}(r) \, y \, x \) holds, \( y \) is accessible with respect to the transitive closure of \( r \).
+
+1. **Single Step Case:**
+- Suppose \( \text{TransGen}(r) \, y \, x \) is a single step, i.e., \( r y x \) holds.
+- By the induction hypothesis, \( y \) is accessible with respect to \( r \).
+- Therefore, \( y \) is also accessible with respect to the transitive closure of \( r \).
+
+2. **Multi-Step Case:**
+- Suppose \( \text{TransGen}(r) \, y \, x \) is a multi-step relation, i.e., there exists some \( z \) in \( \alpha \) such that \( \text{TransGen}(r) \, y \, z \) and \( r z x \) hold.
+- By the induction hypothesis, \( z \) is accessible with respect to the transitive closure of \( r \).
+- Since \( r z x \) holds, and accessibility is preserved by the relation \( r \), \( y \) is also accessible with respect to the transitive closure of \( r \).
+
+Thus, in both cases, \( y \) is accessible with respect to the transitive closure of \( r \). Therefore, \( x \) is accessible with respect to the transitive closure of \( r \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (h : Acc r a) : Acc (TransGen r) a := by sorry
+
+4. **Prefix**
+import Init.SizeOf
+import Init.Data.Nat.Basic
+import Init.WF
+
+open Acc
+variable {α : Sort u} {r : α → α → Prop}
+variable {α : Sort u} {r : α → α → Prop} (hwf : WellFounded r)
+variable {C : α → Sort v}
+variable (F : ∀ x, (∀ y, r y x → C y) → C x)
+variable (F : ∀ x, (∀ y, r y x → C y) → C x)
+variable {α : Sort u} {C : α → Sort v} {r : α → α → Prop}
+open WellFounded
+variable {α : Sort u} {r q : α → α → Prop}
+variable {α : Sort u} {β : Sort v} {r : β → β → Prop}
+open Relation
+
+example (h : Acc r a) : Acc (TransGen r) a := by
+
+5. **Header Information**  
+-- Init.SizeOf not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.WF not found. --
+

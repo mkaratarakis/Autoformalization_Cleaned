@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Appending a Cons List is Equivalent to Appending a Singleton List and Another List : For any type \( \alpha \), any list \( as \) of elements of type \( \alpha \), any element \( b \) of type \( \alpha \), and any list \( bs \) of elements of type \( \alpha \), the following equality holds:
+\[ as \oplus (b :: bs) = as \oplus [b] \oplus bs \]
+where \( \oplus \) denotes the append operation, and \( b :: bs \) and \( [b] \) denote the list with \( b \) as the head and \( bs \) as the tail, and the singleton list containing \( b \), respectively.
+
+2. **Informal Proof**  
+We need to show that for any type \( \alpha \), any list \( as \) of elements of type \( \alpha \), any element \( b \) of type \( \alpha \), and any list \( bs \) of elements of type \( \alpha \), the following equality holds:
+\[ as \oplus (b :: bs) = as \oplus [b] \oplus bs \]
+
+To prove this, we simplify the proposition using the properties of the append operation and the definition of the cons operation. The left-hand side \( as \oplus (b :: bs) \) can be expanded as:
+\[ as \oplus (b :: bs) = (as \oplus [b]) \oplus bs \]
+
+The right-hand side \( as \oplus [b] \oplus bs \) is already in the form:
+\[ as \oplus [b] \oplus bs \]
+
+Since both sides of the equation are equivalent, we have:
+\[ as \oplus (b :: bs) = as \oplus [b] \oplus bs \]
+
+Thus, the proposition holds, and the proof is complete.
+
+3. **Formal Theorem**  
+example (as : List α) (b : α) (bs : List α) : as ++ b :: bs = as ++ [b] ++ bs := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (as : List α) (b : α) (bs : List α) : as ++ b :: bs = as ++ [b] ++ bs := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

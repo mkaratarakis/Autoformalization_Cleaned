@@ -1,0 +1,77 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:16: error: unknown identifier 'compare_lt_of_lt'
+tmp.lean:12:4: error: unsolved goals
+case pos
+a b : Nat
+h : ¬compare a b = Ordering.gt
+h' : a < b
+⊢ a ≤ b
+tmp.lean:13:12: error: unknown identifier 'compare_of_not_lt'
+tmp.lean:14:6: error: tactic 'cases' failed, major premise type is not an inductive type
+  a < b → False
+
+Explanation: the 'cases' tactic is for constructor-based reasoning as well as for applying custom cases principles with a 'using' clause or a registered '@[cases_eliminator]' theorem. The above type neither is an inductive type nor has a registered theorem.
+case neg
+a b : Nat
+h : ¬compare a b = Ordering.gt
+h' : ¬a < b
+⊢ a ≤ b
+tmp.lean:19:16: error: unknown identifier 'compare_lt_of_lt'
+tmp.lean:19:4: error: unsolved goals
+case pos
+a b : Nat
+h : a ≤ b
+h' : a < b
+⊢ ¬compare a b = Ordering.gt
+tmp.lean:20:12: error: unknown identifier 'compare_of_not_lt'
+tmp.lean:21:6: error: tactic 'cases' failed, major premise type is not an inductive type
+  a < b → False
+
+Explanation: the 'cases' tactic is for constructor-based reasoning as well as for applying custom cases principles with a 'using' clause or a registered '@[cases_eliminator]' theorem. The above type neither is an inductive type nor has a registered theorem.
+case neg
+a b : Nat
+h : a ≤ b
+h' : ¬a < b
+⊢ ¬compare a b = Ordering.gt
+tmp.lean:10:2: error: unsolved goals
+case pos
+a b : Nat
+h : compare a b ≠ Ordering.gt
+h' : a < b
+⊢ a ≤ b
+
+case neg
+a b : Nat
+h : compare a b ≠ Ordering.gt
+h' : ¬a < b
+⊢ a ≤ b
+tmp.lean:8:51: error: unsolved goals
+case mpr
+a b : Nat
+⊢ a ≤ b → compare a b ≠ Ordering.gt
+case pos
+a b : Nat
+h : compare a b ≠ Ordering.gt
+h' : a < b
+⊢ a ≤ b
+
+case neg
+a b : Nat
+h : compare a b ≠ Ordering.gt
+h' : ¬a < b
+⊢ a ≤ b
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b ≠ .gt ↔ a ≤ b := by
+  constructor
+  · intro h
+    by_cases h' : a < b

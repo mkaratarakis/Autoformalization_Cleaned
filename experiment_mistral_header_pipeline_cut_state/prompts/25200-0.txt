@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Option is None if and only if isSome is False : For any type \( \alpha \) and any option \( o \) of type `Option \alpha`, the option \( o \) is not `some` (i.e., \( o \) is `none`) if and only if \( o \) is equal to `none`. Formally, this can be stated as:
+\[
+\neg (o.\text{isSome} = \text{true}) \leftrightarrow o = \text{none}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we will consider every possible case of the option \( o \). There are two cases: \( o \) is `none` or \( o \) is `some val` for some value \( val \).
+
+1. **Case 1: \( o = \text{none} \)**
+- We need to show that \( \neg (\text{none}.\text{isSome} = \text{true}) \leftrightarrow \text{none} = \text{none} \).
+- By definition, `none.isSome` is `false`. Therefore, \( \neg (\text{false} = \text{true}) \) is true.
+- The right-hand side is trivially true because \( \text{none} = \text{none} \).
+- Thus, the equivalence holds in this case.
+
+2. **Case 2: \( o = \text{some val} \)**
+- We need to show that \( \neg (\text{some val}.\text{isSome} = \text{true}) \leftrightarrow \text{some val} = \text{none} \).
+- By definition, `some val.isSome` is `true`. Therefore, \( \neg (\text{true} = \text{true}) \) is false.
+- The right-hand side is false because \( \text{some val} \neq \text{none} \).
+- Thus, the equivalence holds in this case as well.
+
+Since the equivalence holds in both cases, the theorem is proven. Therefore, for any type \( \alpha \) and any option \( o \) of type `Option \alpha`, the option \( o \) is not `some` if and only if \( o \) is `none`. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : ¬o.isSome ↔ o = none := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : ¬o.isSome ↔ o = none := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Boolean Less-Than Relation: \( x < y \leftrightarrow x \le y \land \neg (y \le x) \) : For any boolean values \( x \) and \( y \), the relation \( x < y \) holds if and only if \( x \le y \) and \( \neg (y \le x) \).
+
+2. **Informal Proof**  
+To prove the equivalence \( x < y \leftrightarrow x \le y \land \neg (y \le x) \) for any boolean values \( x \) and \( y \), we consider all possible values of \( x \) and \( y \). Since the boolean values are finite, we can use a decision procedure to check the truth of the statement for each combination of \( x \) and \( y \).
+
+- If \( x = \text{false} \) and \( y = \text{true} \):
+- \( x < y \) is true.
+- \( x \le y \) is true.
+- \( y \le x \) is false.
+- Therefore, \( x < y \leftrightarrow x \le y \land \neg (y \le x) \) holds.
+
+- If \( x = \text{false} \) and \( y = \text{false} \):
+- \( x < y \) is false.
+- \( x \le y \) is true.
+- \( y \le x \) is true.
+- Therefore, \( x < y \leftrightarrow x \le y \land \neg (y \le x) \) holds.
+
+- If \( x = \text{true} \) and \( y = \text{true} \):
+- \( x < y \) is false.
+- \( x \le y \) is true.
+- \( y \le x \) is true.
+- Therefore, \( x < y \leftrightarrow x \le y \land \neg (y \le x) \) holds.
+
+- If \( x = \text{true} \) and \( y = \text{false} \):
+- \( x < y \) is false.
+- \( x \le y \) is false.
+- \( y \le x \) is true.
+- Therefore, \( x < y \leftrightarrow x \le y \land \neg (y \le x) \) holds.
+
+Since the equivalence holds for all possible values of \( x \) and \( y \), the theorem is proven.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x < y ↔ x ≤ y ∧ ¬ y ≤ x := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x < y ↔ x ≤ y ∧ ¬ y ≤ x := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

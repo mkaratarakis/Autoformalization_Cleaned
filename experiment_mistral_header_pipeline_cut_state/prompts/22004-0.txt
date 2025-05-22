@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Membership in Partial Map of List: \( b \in \text{pmap } f \, l \, H \leftrightarrow \exists a \, h, f(a, h) = b \) : For any list \( l \) of elements of type \( \alpha \) and a predicate \( P : \alpha \to \text{Prop} \), if \( f : \Pi a, P a \to \beta \) is a partial function that can be applied to elements of \( l \) that satisfy \( P \), and \( H \) is a proof that all elements of \( l \) satisfy \( P \), then an element \( b \) of type \( \beta \) is in the list obtained by applying \( f \) to each element of \( l \) that satisfies \( P \) if and only if there exists an element \( a \) in \( l \) and a proof \( h \) that \( a \) satisfies \( P \) such that \( f(a, h) = b \).
+
+2. **Informal Proof**  
+We start by simplifying the proposition we want to show using the following theorems and definitions:
+1. The partial map of \( f \) over \( l \) using \( H \) is equal to the map of \( f \) over the attached list \( l.attach \):
+\[
+\text{pmap } f \, l \, H = \text{map } (fun \, x \, \Rightarrow \, f \, x.val) \, l.attach
+\]
+2. The membership of an element in a map of a list.
+3. The membership of an element in the attached list.
+4. The conjunction of the true proposition and any proposition \( p \) is equal to \( p \):
+\[
+\text{True} \land p = p
+\]
+5. The existential quantification over a subtype.
+6. The symmetry of equality:
+\[
+a = b \leftrightarrow b = a
+\]
+
+After simplification, the proposition we want to show is equivalent to:
+\[
+b \in \text{map } (fun \, x \, \Rightarrow \, f \, x.val) \, l.attach \leftrightarrow \exists a \, h, f(a, h) = b
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {p : α → Prop} {f : ∀ a, p a → β} {l H b} :
+    b ∈ pmap f l H ↔ ∃ (a : _) (h : a ∈ l), f a (H a h) = b := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.Subtype
+import Init.Data.List.Attach
+
+open List
+
+
+example {p : α → Prop} {f : ∀ a, p a → β} {l H b} :
+    b ∈ pmap f l H ↔ ∃ (a : _) (h : a ∈ l), f a (H a h) = b := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.Subtype not found. --
+
+-- Init.Data.List.Attach not found. --
+

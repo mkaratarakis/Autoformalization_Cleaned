@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Left Addition Cancellation in Subtraction of Natural Numbers: \( k + n - (k + m) = n - m \) : For any natural numbers \( k \), \( n \), and \( m \), the equation \( k + n - (k + m) = n - m \) holds.
+
+2. **Informal Proof**  
+To prove the equation \( k + n - (k + m) = n - m \), we start by using the commutativity of addition. Specifically, we rewrite \( k + n \) as \( n + k \) and \( k + m \) as \( m + k \). This transforms the equation into:
+\[
+n + k - (m + k) = n - m
+\]
+Next, we apply the theorem that states for any natural numbers \( n \), \( k \), and \( m \), the equation \( n + k - (m + k) = n - m \) holds. This simplifies our goal to:
+\[
+n - m = n - m
+\]
+This is trivially true by the properties of equality. Therefore, the original equation \( k + n - (k + m) = n - m \) holds for any natural numbers \( k \), \( n \), and \( m \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (k n m : Nat) : (k + n) - (k + m) = n - m := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (k n m : Nat) : (k + n) - (k + m) = n - m := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

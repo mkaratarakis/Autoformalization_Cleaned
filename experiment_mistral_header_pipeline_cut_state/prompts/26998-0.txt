@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Mapping Function with Right Pairing Equals Zipping with Original List: \(\text{map } (\lambda x. (f(x), x)) \, l = (\text{map } f \, l) \, \text{zip} \, l\) : For any lists \( l \) of elements of type \( \alpha \) and any function \( f : \alpha \to \beta \), the list obtained by mapping the function \( \lambda x. (f(x), x) \) over \( l \) is equal to the list obtained by zipping the list \( \text{map } f \, l \) with \( l \). Formally, for a list \( l = [a_1, a_2, \ldots, a_n] \), the result of \( \text{map } (\lambda x. (f(x), x)) \, l \) is the list \( [(f(a_1), a_1), (f(a_2), a_2), \ldots, (f(a_n), a_n)] \), which is equal to the list obtained by zipping \( [f(a_1), f(a_2), \ldots, f(a_n)] \) with \( [a_1, a_2, \ldots, a_n] \).
+
+2. **Informal Proof**  
+We start by using the theorem that zipping the result of applying \( f \) to each element of \( l \) with the result of applying the identity function to each element of \( l \) is the same as mapping the function that pairs \( f(a) \) and \( a \) to each element \( a \) of \( l \). This transforms our goal from showing \( \text{map } (\lambda x. (f(x), x)) \, l = (\text{map } f \, l) \text{.zip} \, l \) to showing \( (\text{map } f \, l) \text{.zip} (\text{map } (\lambda x. x) \, l) = (\text{map } f \, l) \text{.zip} \, l \).
+
+To establish the equality \( (\text{map } f \, l) \text{.zip} (\text{map } (\lambda x. x) \, l) = (\text{map } f \, l) \text{.zip} \, l \), we decompose it to prove that \( \text{map } (\lambda x. x) \, l = l \).
+
+The current goal \( \text{map } (\lambda x. x) \, l = l \) is exactly proved by the theorem that the identity function preserves the list, which states that applying the identity function to each element of \( l \) results in the same list \( l \).
+
+Thus, we have shown that \( \text{map } (\lambda x. (f(x), x)) \, l = (\text{map } f \, l) \text{.zip} \, l \). This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} (f : α → β) :
+    (l.map fun x => (f x, x)) = (l.map f).zip l := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {l : List α} (f : α → β) :
+    (l.map fun x => (f x, x)) = (l.map f).zip l := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

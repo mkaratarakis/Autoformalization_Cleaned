@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+GCD of Successor and Another Number Equals GCD of Remainder and Successor : For any natural numbers \( x \) and \( y \), the greatest common divisor of \( x + 1 \) and \( y \) is equal to the greatest common divisor of \( y \mod (x + 1) \) and \( x + 1 \), i.e., \(\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the greatest common divisor (gcd). The goal is to show that \(\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)\).
+
+By the definition of gcd, the gcd of two numbers \(a\) and \(b\) is the largest number that divides both \(a\) and \(b\). The properties of gcd include the fact that \(\gcd(a, b) = \gcd(b, a \mod b)\). Applying this property to our specific case, we have:
+\[
+\gcd(x + 1, y) = \gcd(y, (x + 1) \mod y)
+\]
+However, since \((x + 1) \mod y\) is the remainder when \(x + 1\) is divided by \(y\), we can rewrite this as:
+\[
+\gcd(x + 1, y) = \gcd(y, y \mod (x + 1))
+\]
+By the symmetry of gcd, we have:
+\[
+\gcd(y, y \mod (x + 1)) = \gcd(y \mod (x + 1), y)
+\]
+Finally, since gcd is symmetric, we can rewrite this as:
+\[
+\gcd(y \mod (x + 1), y) = \gcd(y \mod (x + 1), x + 1)
+\]
+Thus, we have shown that:
+\[
+\gcd(x + 1, y) = \gcd(y \mod (x + 1), x + 1)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : Nat) : gcd (succ x) y = gcd (y % succ x) (succ x) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (x y : Nat) : gcd (succ x) y = gcd (y % succ x) (succ x) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

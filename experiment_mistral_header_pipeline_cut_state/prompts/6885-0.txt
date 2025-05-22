@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Equality of `List.dropLast` and `List.dropLastTR` Functions : For any list \( l \) of elements of type \( \alpha \), the function `List.dropLast` applied to \( l \) returns the same result as the function `List.dropLastTR` applied to \( l \). In other words, `List.dropLast l = List.dropLastTR l`.
+
+2. **Informal Proof**  
+To prove that the function `List.dropLast` is equal to the function `List.dropLastTR` for any list \( l \) of elements of type \( \alpha \), we use the function extensionality principle. This principle states that two functions are equal if they yield the same result for all inputs. Therefore, we need to show that for any list \( l \) of type \( \alpha \), `List.dropLast l` is equal to `List.dropLastTR l`.
+
+We simplify the expression using the definition of `List.dropLastTR`. By the definition of `List.dropLastTR`, it is designed to be a tail-recursive version of `List.dropLast`. Since both functions are designed to remove the last element of the list, they must yield the same result for any input list \( l \).
+
+Thus, for any list \( l \) of type \( \alpha \), we have:
+\[ \text{List.dropLast } l = \text{List.dropLastTR } l \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : @dropLast = @dropLastTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @dropLast = @dropLastTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

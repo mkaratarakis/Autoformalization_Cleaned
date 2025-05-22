@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+First Element Satisfying Predicate in Cons List : For any type \( \alpha \), a predicate \( p : \alpha \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), if \( p(a) \) is true for some element \( a \) of type \( \alpha \), then the function `List.find?` applied to the predicate \( p \) and the list \( a :: l \) returns `some a`. In other words, if the first element of the list satisfies the predicate, `List.find?` returns that element.
+
+2. **Informal Proof**  
+We need to show that if \( p(a) = \text{true} \) for some element \( a \) of type \( \alpha \), then `List.find? p (a :: l) = some a`.
+
+Using the definition of `List.find?`, we know that `List.find? p (a :: l)` returns the first element \( a \) in the list \( a :: l \) for which \( p(a) \) is true. Given the hypothesis \( p(a) = \text{true} \), the first element \( a \) satisfies the predicate \( p \). Therefore, `List.find? p (a :: l)` returns `some a`.
+
+Thus, we have shown that if \( p(a) = \text{true} \), then `List.find? p (a :: l) = some a`. This completes the proof.
+
+3. **Formal Theorem**  
+example (l) (h : p a) : find? p (a :: l) = some a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example (l) (h : p a) : find? p (a :: l) = some a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

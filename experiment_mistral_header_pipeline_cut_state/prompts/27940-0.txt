@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Element Retrieval is Congruent under Collection Equality: $\text{getElem}(c, i, h) = \text{getElem}(d, i, h)$ if $c = d$ : For any types `coll`, `idx`, and `elem`, and a validity predicate `valid : coll → idx → Prop`, if there is an instance of `GetElem coll idx elem valid`, and for any collections `c` and `d` of type `coll`, and an index `i` of type `idx`, and a proof `h` that `i` is a valid index for `c`, and a proof `h'` that `c` is equal to `d`, then the element retrieved from `c` at index `i` using the validity proof `h` is equal to the element retrieved from `d` at the same index `i` using the same validity proof `h`.
+
+In mathematical notation, this can be expressed as:
+For any collections $c, d \in \text{coll}$, index $i \in \text{idx}$, and a proof $h$ that $i$ is a valid index for $c$, if $c = d$, then $\text{getElem}(c, i, h) = \text{getElem}(d, i, h)$.
+
+2. **Informal Proof**  
+Given that $c$ and $d$ are collections of type $\text{coll}$, $i$ is an index of type $\text{idx}$, and $h$ is a proof that $i$ is a valid index for $c$, we need to show that if $c = d$, then $\text{getElem}(c, i, h) = \text{getElem}(d, i, h)$.
+
+Since we have a proof $h'$ that $c = d$, we can use this equality to substitute $c$ with $d$ in the expression $\text{getElem}(c, i, h)$. By the properties of equality, this substitution shows that $\text{getElem}(c, i, h) = \text{getElem}(d, i, h)$. Therefore, the goal is trivially satisfied. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example [GetElem coll idx elem valid] {c d : coll} {i : idx} {h : valid c i}
+    (h' : c = d) : c[i] = d[i]'(h' ▸ h) := by sorry
+
+4. **Prefix**
+import Init.Util
+import Init.GetElem
+
+
+
+
+example [GetElem coll idx elem valid] {c d : coll} {i : idx} {h : valid c i}
+    (h' : c = d) : c[i] = d[i]'(h' ▸ h) := by
+
+5. **Header Information**  
+-- Init.Util not found. --
+
+-- Init.GetElem not found. --
+

@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Existence of Element in List for `findSome?` Result : For any types \( \alpha \) and \( \beta \), any element \( b \) of type \( \beta \), any list \( l \) of elements of type \( \alpha \), and any function \( f : \alpha \to \text{Option} \, \beta \), if the result of `List.findSome? f l` is `some b`, then there exists an element \( a \) in \( l \) such that \( f(a) = \text{some} \, b \).
+
+2. **Informal Proof**  
+We proceed by induction on the list \( l \).
+
+1. **Base Case:**
+- Consider the case where the list \( l \) is empty, i.e., \( l = [] \).
+- If `findSome? f [] = some b`, this is impossible because `findSome? f []` always returns `none`.
+- Therefore, the goal is trivially true.
+
+2. **Inductive Step:**
+- Consider the case where the list \( l \) is non-empty, i.e., \( l = h :: l' \).
+- We use the induction hypothesis \( ih \), which states that if `findSome? f l' = some b`, then there exists an element \( a \) in \( l' \) such that \( f(a) = \text{some} \, b \).
+
+We need to show that if `findSome? f (h :: l') = some b`, then there exists an element \( a \) in \( h :: l' \) such that \( f(a) = \text{some} \, b \).
+
+- **Case 1:**
+- Suppose \( f(h) = \text{some} \, b \).
+- Then \( h \) is an element in \( h :: l' \) and \( f(h) = \text{some} \, b \).
+- Therefore, the goal is satisfied with \( a = h \).
+
+- **Case 2:**
+- Suppose \( f(h) = \text{none} \) and \( \text{findSome?} \, f \, l' = \text{some} \, b \).
+- By the induction hypothesis, there exists an element \( a \) in \( l' \) such that \( f(a) = \text{some} \, b \).
+- Since \( a \) is in \( l' \), it is also in \( h :: l' \).
+- Therefore, the goal is satisfied with \( a \).
+
+In both cases, we have shown that if `findSome? f (h :: l') = some b`, then there exists an element \( a \) in \( h :: l' \) such that \( f(a) = \text{some} \, b \).
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} {f : α → Option β} (w : l.findSome? f = some b) :
+    ∃ a, a ∈ l ∧ f a = b := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.Find
+
+open List
+open Nat
+
+example {l : List α} {f : α → Option β} (w : l.findSome? f = some b) :
+    ∃ a, a ∈ l ∧ f a = b := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.Find not found. --
+

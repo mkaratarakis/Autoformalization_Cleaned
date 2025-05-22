@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Left Subtraction Preserves Strict Inequality in Natural Numbers : For any natural numbers \( n \), \( k \), and \( m \), if \( n \leq k \) and \( k < n + m \), then \( k - n < m \).
+
+2. **Informal Proof**  
+We start by noting the given conditions: \( n \leq k \) and \( k < n + m \). We need to show that \( k - n < m \).
+
+1. **Construct a Lemma:**
+First, we construct a lemma that states \( k + 1 - n \leq (n + m) - n \). This follows from the fact that if \( k < n + m \), then \( k + 1 \leq n + m \) (by the property that the successor of a number less than another number is less than or equal to that number), and by the property that subtraction preserves the less-than-or-equal-to relation in additive groups.
+
+2. **Simplify the Lemma:**
+Next, we simplify the lemma \( k + 1 - n \leq (n + m) - n \) using the properties of addition and subtraction. Specifically, we use the fact that \( a + b - a = b \) (left addition and subtraction cancel each other) to simplify \( (n + m) - n \) to \( m \). Additionally, we use the property that \( (k + 1) - n = (k - n) + 1 \) (successor subtraction identity) to rewrite \( k + 1 - n \) as \( (k - n) + 1 \). This simplifies our lemma to \( (k - n) + 1 \leq m \).
+
+3. **Conclude the Proof:**
+Since \( (k - n) + 1 \leq m \) is equivalent to \( k - n < m \), we have shown the desired inequality. Therefore, \( k - n < m \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n k m : Nat} (H : n ≤ k) (h : k < n + m) : k - n < m := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {n k m : Nat} (H : n ≤ k) (h : k < n + m) : k - n < m := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

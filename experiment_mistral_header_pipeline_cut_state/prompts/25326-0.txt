@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Not-Equal Identity: \( x \neq \text{not}(x) \) is `true` : For any boolean value \( x \), the boolean not-equal function `bne` applied to \( x \) and its negation `not x` returns `true`, i.e., \( x \neq \text{not}(x) \) is `true`.
+
+2. **Informal Proof**  
+To prove that for any boolean value \( x \), the statement \( x \neq \text{not}(x) \) is `true`, we use the `decide` tactic. This tactic evaluates the expression for all possible boolean values of \( x \) and confirms that the statement holds. Specifically, for \( x = \text{true} \), we have \( \text{true} \neq \text{not}(\text{true}) = \text{true} \neq \text{false} \), which is `true`. Similarly, for \( x = \text{false} \), we have \( \text{false} \neq \text{not}(\text{false}) = \text{false} \neq \text{true} \), which is also `true`. Therefore, the statement \( x \neq \text{not}(x) \) is `true` for all boolean values \( x \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), (x   != !x) = true := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), (x   != !x) = true := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Count of Element in Replicated List: \(\text{count}(a, \text{replicate}(n, b)) = \begin{cases} n & \text{if } a = b \\ 0 & \text{otherwise} \end{cases}\) : For any type \(\alpha\) with a `BEq` instance and a `LawfulBEq` instance, and for any elements \(a, b \in \alpha\) and natural number \(n \in \mathbb{N}\), the number of occurrences of \(a\) in the list `replicate n b` is equal to \(n\) if \(a\) is equal to \(b\), and 0 otherwise. In other words, \(\text{count}(a, \text{replicate}(n, b)) = \begin{cases} n & \text{if } a = b \\ 0 & \text{otherwise} \end{cases}\).
+
+2. **Informal Proof**  
+We discuss by cases based on the condition \( b = a \).
+
+1. **Case 1: \( b = a \)**
+- If \( b = a \), we need to show that \(\text{count}(a, \text{replicate}(n, b)) = n\).
+- Since \( b = a \), we can use the theorem that the count of an element in a replicated list of itself is equal to the replication number, i.e., \(\text{count}(a, \text{replicate}(n, a)) = n\).
+- Therefore, \(\text{count}(a, \text{replicate}(n, b)) = n\).
+
+2. **Case 2: \( b \neq a \)**
+- If \( b \neq a \), we need to show that \(\text{count}(a, \text{replicate}(n, b)) = 0\).
+- Since \( b \neq a \), we use the theorem that the count of an element in a list is zero if and only if the element is not in the list, i.e., \(\text{count}(a, l) = 0 \leftrightarrow a \notin l\).
+- We also use the fact that if \( b \) is in the list \(\text{replicate}(n, a)\), then \( b = a \). Since \( b \neq a \), it follows that \( b \) is not in the list \(\text{replicate}(n, a)\).
+- Therefore, \(\text{count}(a, \text{replicate}(n, b)) = 0\).
+
+In both cases, the theorem holds. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : α) (n : Nat) : count a (replicate n b) = if b == a then n else 0 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+variable [LawfulBEq α]
+
+example (a b : α) (n : Nat) : count a (replicate n b) = if b == a then n else 0 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

@@ -1,0 +1,74 @@
+
+1. **Informal Theorem**  
+Left Fold of ZipWith Equals Left Fold of Zip with Function Applied: \( \text{foldl } g \, i \, (\text{zipWith } f \, l_1 \, l_2) = \text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, (\text{zip } l_1 \, l_2) \) : For any types \(\alpha\), \(\beta\), \(\gamma\), and \(\delta\), and any lists \(l_1 : \text{List } \alpha\) and \(l_2 : \text{List } \beta\), and any functions \(f : \alpha \to \beta \to \gamma\) and \(g : \delta \to \gamma \to \delta\), the left fold of \(g\) over the list produced by `zipWith f l₁ l₂` starting with an initial value \(i : \delta\) is equal to the left fold of \(g\) over the list produced by `zip l₁ l₂` where \(g\) is applied to the result of \(f\) on each pair of elements. Formally, this can be written as:
+\[ \text{foldl } g \, i \, (\text{zipWith } f \, l_1 \, l_2) = \text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, (\text{zip } l_1 \, l_2) \]
+
+2. **Informal Proof**  
+We will prove the theorem by induction on the list \( l_1 \) while generalizing over the initial value \( i \) and the list \( l_2 \).
+
+**Base Case: \( l_1 = [] \)**
+1. **Case 1: \( l_2 = [] \)**
+- We need to show:
+\[
+\text{foldl } g \, i \, (\text{zipWith } f \, [] \, []) = \text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, (\text{zip } [] \, [])
+\]
+- By the definition of `zipWith` and `zip`, both sides are equal to \( i \) because the lists are empty.
+- Therefore, the base case holds.
+
+2. **Case 2: \( l_2 = \text{head} \, \text{::} \, \text{tail} \)**
+- We need to show:
+\[
+\text{foldl } g \, i \, (\text{zipWith } f \, [] \, (\text{head} \, \text{::} \, \text{tail})) = \text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, (\text{zip } [] \, (\text{head} \, \text{::} \, \text{tail}))
+\]
+- By the definition of `zipWith` and `zip`, both sides are equal to \( i \) because the first list is empty.
+- Therefore, the base case holds.
+
+**Inductive Step: \( l_1 = \text{head} \, \text{::} \, \text{tail} \)**
+1. **Case 1: \( l_2 = [] \)**
+- We need to show:
+\[
+\text{foldl } g \, i \, (\text{zipWith } f \, (\text{head} \, \text{::} \, \text{tail}) \, []) = \text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, (\text{zip } (\text{head} \, \text{::} \, \text{tail}) \, [])
+\]
+- By the definition of `zipWith` and `zip`, both sides are equal to \( i \) because the second list is empty.
+- Therefore, the inductive step holds.
+
+2. **Case 2: \( l_2 = \text{head} \, \text{::} \, \text{tail} \)**
+- We need to show:
+\[
+\text{foldl } g \, i \, (\text{zipWith } f \, (\text{head} \, \text{::} \, \text{tail}) \, (\text{head} \, \text{::} \, \text{tail})) = \text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, (\text{zip } (\text{head} \, \text{::} \, \text{tail}) \, (\text{head} \, \text{::} \, \text{tail}))
+\]
+- By the definition of `zipWith` and `zip`, the left-hand side is:
+\[
+\text{foldl } g \, i \, (f \, \text{head} \, \text{head} \, \text{::} \, \text{zipWith } f \, \text{tail} \, \text{tail})
+\]
+- The right-hand side is:
+\[
+\text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, ((\text{head}, \text{head}) \, \text{::} \, \text{zip } \text{tail} \, \text{tail})
+\]
+- By the inductive hypothesis, we have:
+\[
+\text{foldl } g \, i \, (\text{zipWith } f \, \text{tail} \, \text{tail}) = \text{foldl } (\lambda r \, (a, b) \, \Rightarrow g \, r \, (f \, a \, b)) \, i \, (\text{zip } \text{tail} \, \text{tail})
+\]
+- Therefore, the inductive step holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {f : α → β → γ} (i : δ):
+    (zipWith f l₁ l₂).foldl g i = (zip l₁ l₂).foldl (fun r p => g r (f p.1 p.2)) i := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {f : α → β → γ} (i : δ):
+    (zipWith f l₁ l₂).foldl g i = (zip l₁ l₂).foldl (fun r p => g r (f p.1 p.2)) i := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

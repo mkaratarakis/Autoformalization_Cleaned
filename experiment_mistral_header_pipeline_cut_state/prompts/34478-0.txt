@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Drop While Preserves List Concatenation if Predicate is True on First List : For any type $\alpha$, predicate $p : \alpha \to \text{Bool}$, and lists $l_1, l_2$ of elements of type $\alpha$, if every element in $l_1$ satisfies $p$, then the result of applying `dropWhile p` to the concatenation of $l_1$ and $l_2$ is the same as applying `dropWhile p` to $l_2$ alone. In other words, if $p(a) = \text{true}$ for all $a \in l_1$, then $\text{dropWhile } p (l_1 \oplus l_2) = \text{dropWhile } p (l_2)$.
+
+2. **Informal Proof**  
+We prove this by induction on the list \(l_1\).
+
+1. **Base Case:**
+- Suppose \(l_1\) is the empty list, i.e., \(l_1 = []\).
+- We need to show that \(\text{dropWhile } p (l_1 \oplus l_2) = \text{dropWhile } p (l_2)\).
+- Since \(l_1\) is empty, the concatenation \(l_1 \oplus l_2\) is simply \(l_2\).
+- Therefore, \(\text{dropWhile } p (l_1 \oplus l_2) = \text{dropWhile } p (l_2)\) holds trivially.
+
+2. **Inductive Step:**
+- Suppose \(l_1\) is a non-empty list, i.e., \(l_1 = x :: xs\).
+- We need to show that \(\text{dropWhile } p (x :: xs \oplus l_2) = \text{dropWhile } p (l_2)\).
+- By the definition of \(\text{dropWhile}\), if \(p(x) = \text{true}\), then \(\text{dropWhile } p (x :: xs \oplus l_2) = \text{dropWhile } p (xs \oplus l_2)\).
+- By the inductive hypothesis, \(\text{dropWhile } p (xs \oplus l_2) = \text{dropWhile } p (l_2)\).
+- Therefore, \(\text{dropWhile } p (x :: xs \oplus l_2) = \text{dropWhile } p (l_2)\).
+
+By induction, the theorem holds for all lists \(l_1\) and \(l_2\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {p : α → Bool} {l₁ l₂ : List α} (h : ∀ a ∈ l₁, p a) :
+    (l₁ ++ l₂).dropWhile p = l₂.dropWhile p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {p : α → Bool} {l₁ l₂ : List α} (h : ∀ a ∈ l₁, p a) :
+    (l₁ ++ l₂).dropWhile p = l₂.dropWhile p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

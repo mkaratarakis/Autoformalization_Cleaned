@@ -1,0 +1,81 @@
+
+1. **Informal Theorem**  
+Take-While and Map Commute: $\text{takeWhile}(p, \text{map}(f, l)) = \text{map}(f, \text{takeWhile}(p \circ f, l))$ : For any types $\alpha$ and $\beta$, any function $f : \alpha \to \beta$, any predicate $p : \beta \to \text{Bool}$, and any list $l : \text{List} \, \alpha$, the following equality holds:
+\[
+\text{takeWhile}(p, \text{map}(f, l)) = \text{map}(f, \text{takeWhile}(p \circ f, l)).
+\]
+This means that applying the predicate $p$ to the elements of the list after mapping them with $f$ and taking the longest initial segment that satisfies $p$ is the same as first taking the longest initial segment of $l$ that satisfies the composed predicate $p \circ f$ and then mapping the elements of this segment with $f$.
+
+2. **Informal Proof**  
+We prove this by induction on the list \(l\).
+
+1. **Base Case:**
+For the base case where the list is empty, the equality holds trivially due to the reflexive property of equality. Specifically, both sides of the equation are the empty list:
+\[
+\text{takeWhile}(p, \text{map}(f, [])) = \text{map}(f, \text{takeWhile}(p \circ f, [])).
+\]
+Both sides are \([]\).
+
+2. **Inductive Step:**
+Assume the list is of the form \( x :: xs \) and that the property holds for the list \( xs \). We need to show that the property holds for the list \( x :: xs \).
+
+Using the definitions of `map` and `takeWhile` on a cons list, we simplify the proposition we want to show to:
+\[
+\text{if } p(f(x)) = \text{true} \text{ then } f(x) :: \text{takeWhile}(p, \text{map}(f, xs)) \text{ else } []
+\]
+is equal to
+\[
+\text{map}(f, \text{if } (p \circ f)(x) = \text{true} \text{ then } x :: \text{takeWhile}(p \circ f, xs) \text{ else } []).
+\]
+
+We discuss by cases based on the condition \( p(f(x)) = \text{true} \):
+
+- **Case 1: \( p(f(x)) = \text{true} \):**
+In this case, the left-hand side becomes:
+\[
+f(x) :: \text{takeWhile}(p, \text{map}(f, xs)),
+\]
+and the right-hand side becomes:
+\[
+\text{map}(f, x :: \text{takeWhile}(p \circ f, xs)) = f(x) :: \text{map}(f, \text{takeWhile}(p \circ f, xs)).
+\]
+By the inductive hypothesis, we have:
+\[
+\text{takeWhile}(p, \text{map}(f, xs)) = \text{map}(f, \text{takeWhile}(p \circ f, xs)).
+\]
+Therefore, both sides are equal.
+
+- **Case 2: \( p(f(x)) = \text{false} \):**
+In this case, the left-hand side becomes:
+\[
+[],
+\]
+and the right-hand side becomes:
+\[
+\text{map}(f, []).
+\]
+Both sides are \([]\).
+
+In both cases, the equality holds. Therefore, by induction, the property holds for all lists \( l \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : α → β) (p : β → Bool) (l : List α) :
+    (l.map f).takeWhile p = (l.takeWhile (p ∘ f)).map f := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (f : α → β) (p : β → Bool) (l : List α) :
+    (l.map f).takeWhile p = (l.takeWhile (p ∘ f)).map f := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

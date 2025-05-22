@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Length of Concatenated Lists: \(\text{length}(\text{as} \oplus \text{bs}) = \text{length}(\text{as}) + \text{length}(\text{bs})\) : For any type \( \alpha \) and any lists \( \text{as} \) and \( \text{bs} \) of elements of type \( \alpha \), the length of the concatenated list \( \text{as} \oplus \text{bs} \) is equal to the sum of the lengths of \( \text{as} \) and \( \text{bs} \). Formally, \( \text{length}(\text{as} \oplus \text{bs}) = \text{length}(\text{as}) + \text{length}(\text{bs}) \).
+
+2. **Informal Proof**  
+We prove this by induction on the list \(\text{as}\).
+
+1. **Base Case:**
+- Consider the case where \(\text{as}\) is the empty list \([]\).
+- We need to show that \(\text{length}([] \oplus \text{bs}) = \text{length}([]) + \text{length}(\text{bs})\).
+- Simplifying the left-hand side, we get \(\text{length}(\text{bs})\).
+- Simplifying the right-hand side, we get \(0 + \text{length}(\text{bs})\), which is \(\text{length}(\text{bs})\).
+- Therefore, \(\text{length}([] \oplus \text{bs}) = \text{length}(\text{bs})\), and the base case is proved.
+
+2. **Inductive Step:**
+- Assume the inductive hypothesis: for any list \(\text{as}'\), \(\text{length}(\text{as}' \oplus \text{bs}) = \text{length}(\text{as}') + \text{length}(\text{bs})\).
+- Consider the case where \(\text{as}\) is of the form \(a :: \text{as}'\) (i.e., \(\text{as}\) is a non-empty list with head \(a\) and tail \(\text{as}'\)).
+- We need to show that \(\text{length}((a :: \text{as}') \oplus \text{bs}) = \text{length}(a :: \text{as}') + \text{length}(\text{bs})\).
+- By the definition of list concatenation, \((a :: \text{as}') \oplus \text{bs} = a :: (\text{as}' \oplus \text{bs})\).
+- By the definition of list length, \(\text{length}(a :: (\text{as}' \oplus \text{bs})) = \text{length}(\text{as}' \oplus \text{bs}) + 1\).
+- By the inductive hypothesis, \(\text{length}(\text{as}' \oplus \text{bs}) = \text{length}(\text{as}') + \text{length}(\text{bs})\).
+- Therefore, \(\text{length}(a :: (\text{as}' \oplus \text{bs})) = (\text{length}(\text{as}') + \text{length}(\text{bs})) + 1\).
+- By the property of natural number addition, \((\text{length}(\text{as}') + \text{length}(\text{bs})) + 1 = \text{length}(\text{as}') + (\text{length}(\text{bs}) + 1)\).
+- By the definition of list length, \(\text{length}(a :: \text{as}') = \text{length}(\text{as}') + 1\).
+- Therefore, \(\text{length}((a :: \text{as}') \oplus \text{bs}) = \text{length}(a :: \text{as}') + \text{length}(\text{bs})\).
+- This completes the inductive step.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (as bs : List α) : (as ++ bs).length = as.length + bs.length := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (as bs : List α) : (as ++ bs).length = as.length + bs.length := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

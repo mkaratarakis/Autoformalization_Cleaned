@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Next Power of Two is a Power of Two in Natural Numbers: \( \text{nextPowerOfTwo}(n) \) is a Power of Two : For any natural number \( n \), the smallest power of 2 that is greater than or equal to \( n \), denoted as \( \text{nextPowerOfTwo}(n) \), is itself a power of 2. In other words, there exists a natural number \( k \) such that \( \text{nextPowerOfTwo}(n) = 2^k \).
+
+2. **Informal Proof**  
+To prove that \( \text{nextPowerOfTwo}(n) \) is a power of 2, we use the theorem that if \( \text{power} \) is a positive power of 2, then the result of the function `Nat.nextPowerOfTwo.go` applied to \( n \) and \( \text{power} \) is also a power of 2. This reduces our goal to showing that 1 is a power of 2.
+
+Next, we use the theorem that 1 is a power of 2, i.e., \( 1 = 2^0 \). This completes the proof that 1 is a power of 2.
+
+To ensure that the function `Nat.nextPowerOfTwo.go` is well-founded, we unfold the recursive definitions to simplify the goal. We then apply the theorem `nextPowerOfTwo_dec` to show that the function decreases, and use the assumptions to close the remaining subgoals.
+
+Thus, we have shown that \( \text{nextPowerOfTwo}(n) \) is a power of 2 for any natural number \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n : Nat) : n.nextPowerOfTwo.isPowerOfTwo := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.Nat.Power2
+
+open Nat
+
+
+example (n : Nat) : n.nextPowerOfTwo.isPowerOfTwo := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+

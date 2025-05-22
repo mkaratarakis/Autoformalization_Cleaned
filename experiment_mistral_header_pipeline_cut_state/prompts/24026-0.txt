@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+GCD and LCM Product Identity: \(\gcd(m, n) \cdot \text{lcm}(m, n) = m \cdot n\) : For any natural numbers \( m \) and \( n \), the product of their greatest common divisor (gcd) and their least common multiple (lcm) is equal to the product of the numbers themselves, i.e., \(\gcd(m, n) \cdot \text{lcm}(m, n) = m \cdot n\).
+
+2. **Informal Proof**  
+To prove the identity \(\gcd(m, n) \cdot \text{lcm}(m, n) = m \cdot n\), we start by using the definition of the least common multiple (LCM). The LCM of \( m \) and \( n \) is defined as:
+\[
+\text{lcm}(m, n) = \frac{m \cdot n}{\gcd(m, n)}
+\]
+Substituting this into the left-hand side of the goal, we get:
+\[
+\gcd(m, n) \cdot \text{lcm}(m, n) = \gcd(m, n) \cdot \left( \frac{m \cdot n}{\gcd(m, n)} \right)
+\]
+Next, we use the fact that \(\gcd(m, n)\) divides \( m \) (i.e., \(\gcd(m, n) \mid m\)). By the transitivity of divisibility, since \(\gcd(m, n) \mid m\) and \( m \mid m \cdot n \), it follows that \(\gcd(m, n) \mid m \cdot n\). Therefore, we can apply the cancellation property of multiplication and division, which states that for any nonzero \( b \) and any \( a \), \( b \cdot \left( \frac{a}{b} \right) = a \). Here, \( b = \gcd(m, n) \) and \( a = m \cdot n \), so we have:
+\[
+\gcd(m, n) \cdot \left( \frac{m \cdot n}{\gcd(m, n)} \right) = m \cdot n
+\]
+Thus, the left-hand side simplifies to \( m \cdot n \), which is exactly the right-hand side of the goal. Therefore, we have:
+\[
+\gcd(m, n) \cdot \text{lcm}(m, n) = m \cdot n
+\]
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n : Nat) : gcd m n * lcm m n = m * n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (m n : Nat) : gcd m n * lcm m n = m * n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Gcd not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Lcm not found. --
+

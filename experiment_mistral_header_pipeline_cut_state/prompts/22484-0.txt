@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Carry Bit at Position Zero in Bitvector Addition : For any bitvector width \( w \), and for any bitvectors \( x \) and \( y \) of width \( w \), and any boolean carry bit \( c \), the carry bit at position \( 0 \) in the addition of \( x \) and \( y \) with initial carry \( c \) is equal to \( c \).
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean carry bit \( c \). There are two cases: \( c = \text{false} \) and \( c = \text{true} \).
+
+**Case 1: \( c = \text{false} \)**
+
+Using the definition of the carry bit in bitvector addition, we need to show that \( \text{carry}(0, x, y, \text{false}) = \text{false} \). By the definition of the carry bit, this is equivalent to checking if the sum of the 0-th bits of \( x \) and \( y \), along with the initial carry bit \( \text{false} \), is at least \( 2^0 \). Since \( 2^0 = 1 \), and the sum of the 0-th bits of \( x \) and \( y \) (which are either 0 or 1) plus 0 (the initial carry bit) is less than 1, the carry bit is false. Therefore, \( \text{carry}(0, x, y, \text{false}) = \text{false} \).
+
+**Case 2: \( c = \text{true} \)**
+
+Using the definition of the carry bit in bitvector addition, we need to show that \( \text{carry}(0, x, y, \text{true}) = \text{true} \). By the definition of the carry bit, this is equivalent to checking if the sum of the 0-th bits of \( x \) and \( y \), along with the initial carry bit \( \text{true} \), is at least \( 2^0 \). Since \( 2^0 = 1 \), and the sum of the 0-th bits of \( x \) and \( y \) (which are either 0 or 1) plus 1 (the initial carry bit) is at least 1, the carry bit is true. Therefore, \( \text{carry}(0, x, y, \text{true}) = \text{true} \).
+
+In both cases, the carry bit at position 0 is equal to the initial carry bit \( c \). This completes the proof.
+
+3. **Formal Theorem**  
+example : carry 0 x y c = c := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example : carry 0 x y c = c := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

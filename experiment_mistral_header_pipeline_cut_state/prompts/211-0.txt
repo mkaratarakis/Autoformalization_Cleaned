@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Length of List Decreases by One After Erasing an Element : For any type \( \alpha \) with a `BEq` instance and a `LawfulBEq` instance, and for any element \( a \) and list \( l \) of elements of type \( \alpha \), if \( a \) is a member of \( l \), then the length of the list obtained by erasing the first occurrence of \( a \) from \( l \) is equal to the length of \( l \) minus 1. Formally, if \( a \in l \), then \((l \setminus a). \text{length} = l. \text{length} - 1\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that erasing an element \( a \) from a list \( l \) using the `erase` function is equivalent to erasing it using the `eraseP` function. This equivalence is given by the theorem that states \( l. \text{erase} \, a = l. \text{eraseP} \, a \, (\text{beq} \, a \, a) \).
+
+Next, we apply the theorem that the length of a list after erasing an element \( a \) (using `eraseP`) is the length of the original list minus 1, provided that \( a \) is a member of the list and the equality \( a = a \) holds. Since \( a \) is a member of \( l \) (by assumption \( h \)) and \( a = a \) is always true, the length of the list obtained by erasing the first occurrence of \( a \) from \( l \) is \( l. \text{length} - 1 \).
+
+Thus, we have shown that if \( a \in l \), then \((l \setminus a). \text{length} = l. \text{length} - 1\). This completes the proof.
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {a : α} {l : List α} (h : a ∈ l) :
+    length (l.erase a) = length l - 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a : α} {l : List α} (h : a ∈ l) :
+    length (l.erase a) = length l - 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

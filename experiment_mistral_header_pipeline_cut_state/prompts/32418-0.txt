@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Minimum of Differences Equals Difference of Maximums in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), the minimum of \(a - b\) and \(a - c\) is equal to \(a - \max(b, c)\), i.e., \(\min(a - b, a - c) = a - \max(b, c)\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any natural numbers \(a\), \(b\), and \(c\), the equality \(\min(a - b, a - c) = a - \max(b, c)\) holds. We use the omega tactic, which is a powerful tool for handling arithmetic reasoning in natural numbers. This tactic automatically considers all possible cases and verifies the equality. Therefore, the theorem is true for all natural numbers \(a\), \(b\), and \(c\).
+
+\[
+\boxed{\min(a - b, a - c) = a - \max(b, c)}
+\]
+
+3. **Formal Theorem**  
+example (a b c : Nat) : min (a - b) (a - c) = a - max b c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) : min (a - b) (a - c) = a - max b c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

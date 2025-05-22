@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Subtraction of Successor Preserves Strict Inequality in Natural Numbers : For any natural numbers \( a \) and \( i \) such that \( i < a \), it holds that \( a - (i + 1) < a - i \).
+
+2. **Informal Proof**  
+We start with the goal of proving \( a - (i + 1) < a - i \). Using the properties of natural numbers, we know that adding the successor of a natural number is the same as adding one to the sum, and subtracting the successor of a natural number is the same as taking the predecessor of the result of the subtraction. Therefore, the goal \( a - (i + 1) < a - i \) can be rewritten as \( (a - i).pred < a - i \).
+
+Next, we use the theorem that the predecessor of a natural number is strictly less than the number itself if the number is not zero. Thus, to prove \( (a - i).pred < a - i \), it suffices to show that \( a - i \neq 0 \).
+
+To show \( a - i \neq 0 \), we use the theorem that if a natural number \( b \) is less than another natural number \( a \), then \( a \) is not zero. Therefore, it suffices to show that \( i < a \).
+
+Finally, we use the theorem that if \( i < a \), then \( 0 < a - i \). Since \( i < a \) is given as a hypothesis, it is already proved. Therefore, \( 0 < a - i \) holds, and thus \( a - i \neq 0 \).
+
+Since \( a - i \neq 0 \), we have \( (a - i).pred < a - i \), which completes the proof that \( a - (i + 1) < a - i \).
+
+3. **Formal Theorem**  
+example (a i : Nat) (h : i < a) : a - (i + 1) < a - i := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (a i : Nat) (h : i < a) : a - (i + 1) < a - i := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

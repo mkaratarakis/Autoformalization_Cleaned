@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Partial Map on List is Empty if and only if List is Empty: \( \text{pmap } f \, l \, H = [] \leftrightarrow l = [] \) : For any types \( \alpha \) and \( \beta \), a predicate \( p : \alpha \to \text{Prop} \), a partial function \( f : \Pi a, p a \to \beta \), and a list \( l \) of elements of type \( \alpha \) such that all elements of \( l \) satisfy \( p \), the partial map `pmap f l H` is the empty list if and only if \( l \) is the empty list. Here, \( H \) is a proof that all elements of \( l \) satisfy \( p \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that a list is empty if and only if its length is zero. Specifically, we have:
+\[
+\text{pmap } f \, l \, H = [] \leftrightarrow (\text{pmap } f \, l \, H). \text{length} = 0
+\]
+Next, we use the fact that the length of the partial map of \( l \) is equal to the length of \( l \):
+\[
+(\text{pmap } f \, l \, H). \text{length} = l. \text{length}
+\]
+Thus, the goal reduces to:
+\[
+l. \text{length} = 0 \leftrightarrow l = []
+\]
+Finally, we use the equivalence again to show that the length of \( l \) is zero if and only if \( l \) is the empty list:
+\[
+l. \text{length} = 0 \leftrightarrow l = []
+\]
+Therefore, the original goal is equivalent to:
+\[
+\text{pmap } f \, l \, H = [] \leftrightarrow l = []
+\]
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {p : α → Prop} {f : ∀ a, p a → β} {l H} : pmap f l H = [] ↔ l = [] := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.Subtype
+import Init.Data.List.Attach
+
+open List
+
+
+example {p : α → Prop} {f : ∀ a, p a → β} {l H} : pmap f l H = [] ↔ l = [] := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.Subtype not found. --
+
+-- Init.Data.List.Attach not found. --
+

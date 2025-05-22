@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+Bitvector Representation of Boolean Values is Injective: \(\text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \leftrightarrow b = b'\) : For any boolean values \( b \) and \( b' \), the bitvector representation of \( b \) is equal to the bitvector representation of \( b' \) if and only if \( b \) is equal to \( b' \). In other words, \( \text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \) if and only if \( b = b' \).
+
+2. **Informal Proof**  
+To prove the theorem, we use the decidability of the equality of boolean values. Specifically, we need to show that \( \text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \) if and only if \( b = b' \).
+
+1. **(\(\Rightarrow\)) Assume \( \text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \):**
+- If \( b = \text{true} \), then \( \text{BitVec.ofBool}(b) = 1 \).
+- If \( b' = \text{true} \), then \( \text{BitVec.ofBool}(b') = 1 \).
+- If \( b = \text{false} \), then \( \text{BitVec.ofBool}(b) = 0 \).
+- If \( b' = \text{false} \), then \( \text{BitVec.ofBool}(b') = 0 \).
+- Therefore, if \( \text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \), it must be that \( b = b' \).
+
+2. **(\(\Leftarrow\)) Assume \( b = b' \):**
+- If \( b = b' = \text{true} \), then \( \text{BitVec.ofBool}(b) = 1 \) and \( \text{BitVec.ofBool}(b') = 1 \), so \( \text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \).
+- If \( b = b' = \text{false} \), then \( \text{BitVec.ofBool}(b) = 0 \) and \( \text{BitVec.ofBool}(b') = 0 \), so \( \text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \).
+
+Since both directions are proven, we conclude that \( \text{BitVec.ofBool}(b) = \text{BitVec.ofBool}(b') \) if and only if \( b = b' \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(b b' : Bool), BitVec.ofBool b = BitVec.ofBool b' ↔ b = b' := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example : ∀(b b' : Bool), BitVec.ofBool b = BitVec.ofBool b' ↔ b = b' := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

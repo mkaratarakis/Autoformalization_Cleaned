@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Membership in Enumerated List: \(i \geq n\) and Element at Index \(i - n\) : For any type \(\alpha\), any natural numbers \(n\) and \(i\), any element \(x\) of type \(\alpha\), and any list \(l\) of elements of type \(\alpha\), the pair \((i, x)\) is a member of the list `List.enumFrom n l` if and only if \(n \leq i\) and the element at index \(i - n\) in \(l\) is \(x\).
+
+2. **Informal Proof**  
+We need to prove the equivalence \((i, x) \in \text{List.enumFrom } n \, l \leftrightarrow n \leq i \land l[i - n]? = \text{some } x\).
+
+1. **(\(\rightarrow\))** Assume \((i, x) \in \text{List.enumFrom } n \, l\). By the definition of \(\text{List.enumFrom } n \, l\), this means there exists some \(k\) such that \(i = n + k\) and \(l[k]? = \text{some } x\). Therefore, \(n \leq i\) and \(l[i - n]? = \text{some } x\).
+
+2. **(\(\leftarrow\))** Assume \(n \leq i\) and \(l[i - n]? = \text{some } x\). Let \(k = i - n\). Then \(i = n + k\) and \(l[k]? = \text{some } x\). By the definition of \(\text{List.enumFrom } n \, l\), \((i, x) \in \text{List.enumFrom } n \, l\).
+
+To handle the case where \(n > i\), we show that \((i, x) \notin \text{List.enumFrom } n \, l\). We first prove that for all natural numbers \(k\), \(n + k \neq i\). This is true because if \(n + k = i\), then \(n \leq i\), which contradicts our assumption \(n > i\). Using this new hypothesis and the fact that \(n > i\), we simplify the goal using the lemma that states \((i, x) \in l\) if and only if the element at index \(i\) in \(l\) is \(x\). This simplification shows that \((i, x) \notin \text{List.enumFrom } n \, l\).
+
+Thus, we have shown both directions of the equivalence, completing the proof.
+
+3. **Formal Theorem**  
+example {n i : Nat} {x : α} {l : List α} :
+    (i, x) ∈ enumFrom n l ↔ n ≤ i ∧ l[i - n]? = x := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {n i : Nat} {x : α} {l : List α} :
+    (i, x) ∈ enumFrom n l ↔ n ≤ i ∧ l[i - n]? = x := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

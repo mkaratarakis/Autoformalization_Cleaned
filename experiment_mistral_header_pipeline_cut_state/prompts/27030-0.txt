@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Distributivity of `zipWith` over `drop` : For any types $\alpha$, $\alpha_1$, and $\alpha_2$, and for any function $f : \alpha \to \alpha_1 \to \alpha_2$, and for any lists $l : \text{List } \alpha$ and $l' : \text{List } \alpha_1$, and for any natural number $n$, the result of dropping the first $n$ elements from the list obtained by applying `zipWith` to $l$ and $l'$ is equal to the list obtained by applying `zipWith` to the lists obtained by dropping the first $n$ elements from $l$ and $l'$.
+
+2. **Informal Proof**  
+We proceed by induction on the list `l`.
+
+1. **Base Case:**
+- **Case 1: `l'` is empty.**
+- We need to show that dropping the first `n` elements from the result of `zipWith f l []` is the same as applying `zipWith f` to the lists obtained by dropping the first `n` elements from `l` and `[]`.
+- Since `zipWith f l []` is the empty list, and dropping elements from an empty list results in an empty list, the goal is trivially true.
+
+2. **Inductive Step:**
+- **Case 2: `l'` is non-empty, specifically of the form `head :: tail`.**
+- We need to show that dropping the first `n` elements from the result of `zipWith f (hd :: tl) (head :: tail)` is the same as applying `zipWith f` to the lists obtained by dropping the first `n` elements from `hd :: tl` and `head :: tail`.
+- We perform case analysis on the natural number `n`:
+- **Subcase 1: `n` is `0`.**
+- We need to show that dropping the first `0` elements from the result of `zipWith f (hd :: tl) (head :: tail)` is the same as applying `zipWith f` to the lists obtained by dropping the first `0` elements from `hd :: tl` and `head :: tail`.
+- Since dropping `0` elements from a list does not change the list, the goal is trivially true.
+- **Subcase 2: `n` is of the form `n' + 1`.**
+- We need to show that dropping the first `n' + 1` elements from the result of `zipWith f (hd :: tl) (head :: tail)` is the same as applying `zipWith f` to the lists obtained by dropping the first `n' + 1` elements from `hd :: tl` and `head :: tail`.
+- By the inductive hypothesis, we know that dropping the first `n'` elements from the result of `zipWith f tl tail` is the same as applying `zipWith f` to the lists obtained by dropping the first `n'` elements from `tl` and `tail`.
+- Therefore, the goal is true by the inductive hypothesis.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : (zipWith f l l').drop n = zipWith f (l.drop n) (l'.drop n) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example : (zipWith f l l').drop n = zipWith f (l.drop n) (l'.drop n) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

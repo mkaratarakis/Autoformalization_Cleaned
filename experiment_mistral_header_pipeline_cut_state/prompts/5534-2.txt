@@ -1,0 +1,42 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:11:17: error: unknown identifier 'h'
+tmp.lean:18:17: error: failed to synthesize
+  Decidable p
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+tmp.lean:24:8: error: type mismatch
+  h1.left
+has type
+  p : Prop
+but is expected to have type
+  p ∧ q : Prop
+tmp.lean:26:16: error: unknown identifier 'h'
+tmp.lean:29:17: error: failed to synthesize
+  Decidable p
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+tmp.lean:11:2: error: expected '{' or indented tactic sequence
+tmp.lean:10:2: error: unsolved goals
+case isFalse
+p q : Prop
+h✝ : ¬p
+⊢ (if p then q else p) = (p ∧ q)
+tmp.lean:8:75: error: unsolved goals
+case isTrue
+p q : Prop
+h✝ : p
+⊢ (if p then q else p) = (p ∧ q)
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example (p q : Prop) [h : Decidable p] : (if p then q else p) = (p ∧ q) := by
+  cases h
+  · -- Case 1: p is false

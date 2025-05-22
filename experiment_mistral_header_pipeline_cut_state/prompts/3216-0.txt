@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Modulo and Division Identity: \( m \% k + k \cdot (m / k) = m \) : For any natural numbers \( m \) and \( k \), the sum of the remainder of \( m \) divided by \( k \) and the product of \( k \) and the quotient of \( m \) divided by \( k \) is equal to \( m \), i.e., \( m \% k + k \cdot (m / k) = m \).
+
+2. **Informal Proof**  
+We proceed by induction on \( m \).
+
+**Base Case:**
+For \( m = 0 \), the expression \( 0 \% k + k \cdot (0 / k) \) simplifies to \( 0 + k \cdot 0 = 0 \), which is trivially true.
+
+**Inductive Step:**
+Assume the statement holds for \( m \), i.e., \( m \% k + k \cdot (m / k) = m \). We need to show that \( (m + 1) \% k + k \cdot ((m + 1) / k) = m + 1 \).
+
+Consider two cases:
+1. **Case 1:** \( 0 < k \land k \leq m \).
+- Simplify the expression using the assumption \( 0 < k \land k \leq m \).
+- Rewrite the goal using the properties of natural numbers:
+- The multiplication by successor property \( k \times (m / k + 1) = k \times (m / k) + k \).
+- The associativity of addition \( (m \% k + k \times (m / k)) + k = m \% k + (k \times (m / k) + k) \).
+- The inductive hypothesis \( m \% k + k \times (m / k) = m \).
+- The cancellation property of subtraction and addition in natural numbers \( m + k = m + 1 \).
+
+2. **Case 2:** \( \neg (0 < k \land k \leq m) \).
+- Simplify the expression using the assumption \( \neg (0 < k \land k \leq m) \).
+- This simplifies the goal to \( m + 1 = m + 1 \), which is trivially true.
+
+By induction, the statement holds for all natural numbers \( m \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (m k : Nat) : m % k + k * (m / k) = m := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (m k : Nat) : m % k + k * (m / k) = m := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

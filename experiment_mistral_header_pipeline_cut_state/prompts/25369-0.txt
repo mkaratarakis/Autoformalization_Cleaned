@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Equality Implies Less Than or Equal To in Boolean Values: \( x = y \to x \leq y \) : For any boolean values \( x \) and \( y \), if \( x = y \), then \( x \leq y \).
+
+2. **Informal Proof**  
+To prove that for any boolean values \( x \) and \( y \), if \( x = y \), then \( x \leq y \), we consider the possible values of \( x \) and \( y \). The boolean values are either `true` or `false`, and the order relation \( \leq \) on booleans is defined as follows:
+- `false ≤ false`
+- `false ≤ true`
+- `true ≤ true`
+
+Given \( x = y \), we have the following cases:
+1. If \( x = \text{false} \) and \( y = \text{false} \), then \( \text{false} \leq \text{false} \) holds.
+2. If \( x = \text{true} \) and \( y = \text{true} \), then \( \text{true} \leq \text{true} \) holds.
+
+In both cases, \( x \leq y \) is true. Therefore, the statement \( x = y \to x \leq y \) holds for all boolean values \( x \) and \( y \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x = y → x ≤ y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x = y → x ≤ y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

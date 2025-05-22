@@ -1,0 +1,56 @@
+
+1. **Informal Theorem**  
+Least Significant Bit of Natural Number is 1 if and only if Number is Odd : For any natural number \( x \), the least significant bit (0th bit) of \( x \) in its binary representation is 1 if and only if \( x \) is odd, i.e., \( x \mod 2 = 1 \).
+
+2. **Informal Proof**  
+We need to show that for any natural number \( x \), the least significant bit of \( x \) (denoted as \( x \text{.testBit} 0 \)) is 1 if and only if \( x \) is odd, i.e., \( x \mod 2 = 1 \).
+
+We will consider the two possible cases for the remainder when \( x \) is divided by 2, using the modulo two identity \( x \% 2 = 0 \lor x \% 2 = 1 \).
+
+**Case 1: \( x \% 2 = 0 \)**
+- By the definition of `testBit`, \( x \text{.testBit} 0 \) checks if the 0th bit of \( x \) is 1. Since \( x \% 2 = 0 \), the 0th bit of \( x \) is 0, so \( x \text{.testBit} 0 = \text{false} \).
+- The decision \( \text{decide}(x \% 2 = 1) \) is `false` because \( x \% 2 = 0 \).
+- Therefore, \( x \text{.testBit} 0 = \text{decide}(x \% 2 = 1) \) holds in this case.
+
+**Case 2: \( x \% 2 = 1 \)**
+- By the definition of `testBit`, \( x \text{.testBit} 0 \) checks if the 0th bit of \( x \) is 1. Since \( x \% 2 = 1 \), the 0th bit of \( x \) is 1, so \( x \text{.testBit} 0 = \text{true} \).
+- The decision \( \text{decide}(x \% 2 = 1) \) is `true` because \( x \% 2 = 1 \).
+- Therefore, \( x \text{.testBit} 0 = \text{decide}(x \% 2 = 1) \) holds in this case.
+
+Since both cases are covered, we conclude that for any natural number \( x \), the least significant bit of \( x \) is 1 if and only if \( x \) is odd. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : Nat) : testBit x 0 = decide (x % 2 = 1) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x : Nat) : testBit x 0 = decide (x % 2 = 1) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Erasure of First Element Satisfying Predicate from Replicated List: \(\text{List.eraseP } p \, (\text{List.replicate } n \, a) = \text{List.replicate } (n - 1) \, a\) if \( p(a) = \text{true} \) : For any type \( \alpha \), predicate \( p : \alpha \to \text{Bool} \), natural number \( n \), and element \( a \in \alpha \), if \( p(a) = \text{true} \), then the list obtained by removing the first element \( a \) that satisfies \( p \) from the list containing \( n \) copies of \( a \) is equal to the list containing \( n - 1 \) copies of \( a \). In other words, if \( p(a) \) is true, then:
+\[ \text{List.eraseP } p \, (\text{List.replicate } n \, a) = \text{List.replicate } (n - 1) \, a \]
+
+2. **Informal Proof**  
+We will consider two cases for the natural number \( n \):
+
+1. **Case 1: \( n = 0 \)**
+- The list \(\text{List.replicate } 0 \, a\) is the empty list.
+- The operation \(\text{List.eraseP } p \, []\) results in the empty list, since there are no elements to remove.
+- The list \(\text{List.replicate } (0 - 1) \, a\) is also the empty list, as \(\text{List.replicate } (-1) \, a\) is defined to be the empty list.
+- Therefore, \(\text{List.eraseP } p \, (\text{List.replicate } 0 \, a) = \text{List.replicate } (0 - 1) \, a\) is trivially true.
+
+2. **Case 2: \( n = n' + 1 \) for some \( n' \in \mathbb{N} \)**
+- The list \(\text{List.replicate } (n' + 1) \, a\) is equivalent to \(a :: \text{List.replicate } n' \, a\).
+- Given that \( p(a) = \text{true} \), the operation \(\text{List.eraseP } p \, (a :: \text{List.replicate } n' \, a)\) removes the first element \( a \) from the list, resulting in \(\text{List.replicate } n' \, a\).
+- The list \(\text{List.replicate } (n' + 1 - 1) \, a\) is also \(\text{List.replicate } n' \, a\).
+- Therefore, \(\text{List.eraseP } p \, (\text{List.replicate } (n' + 1) \, a) = \text{List.replicate } (n' + 1 - 1) \, a\) holds true.
+
+In both cases, the desired equality is established. This completes the proof.
+
+3. **Formal Theorem**  
+example {n : Nat} {a : α} (h : p a) :
+    (replicate n a).eraseP p = replicate (n - 1) a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example {n : Nat} {a : α} (h : p a) :
+    (replicate n a).eraseP p = replicate (n - 1) a := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

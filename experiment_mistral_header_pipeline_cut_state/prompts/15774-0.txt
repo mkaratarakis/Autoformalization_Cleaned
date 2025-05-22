@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Right Shift and Test Bit Relationship in Natural Numbers : For any natural numbers \( i \) and \( j \), and for any natural number \( x \), the \((j+1)\)-th least significant bit of the natural number \( x \) right-shifted by \( i \) positions is equal to the \((i + j + 1)\)-th least significant bit of \( x \). In other words, \((x >>> i).testBit(j) = x.testBit(i + j)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the `testBit` function and the property of right-shifting. Specifically, we use the fact that right-shifting a number by \( i \) positions and then testing the \( j \)-th bit is equivalent to testing the \((i + j)\)-th bit of the original number. Formally, this means:
+
+\[
+(x >>> i).testBit(j) = x.testBit(i + j)
+\]
+
+By applying this property, we can directly simplify the left-hand side of the equation to the right-hand side. Therefore, the theorem holds true. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : Nat) : testBit (x >>> i) j = testBit x (i+j) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x : Nat) : testBit (x >>> i) j = testBit x (i+j) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

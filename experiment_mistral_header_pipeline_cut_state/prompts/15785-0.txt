@@ -1,0 +1,59 @@
+
+1. **Informal Theorem**  
+Conjunction with One is Modulo Two in Natural Numbers : For any natural number \( n \), the conjunction of 1 with \( n \), denoted as \( 1 \&&& n \), is equal to the remainder when \( n \) is divided by 2, i.e., \( 1 \&&& n = n \mod 2 \).
+
+2. **Informal Proof**  
+To prove that \( 1 \&&& n = n \mod 2 \) for any natural number \( n \), we start by simplifying the expression \( 1 \&&& n \) using the definitions of the bitwise AND operation for natural numbers. This simplification reduces the expression to a more manageable form.
+
+Next, we consider the two possible cases for the remainder when \( n \) is divided by 2:
+1. **Case 1: \( n \mod 2 = 0 \)**
+- In this case, we use the property of bitwise AND for natural numbers, which states that \( a \&& b = (a \mod 2) \cdot (b \mod 2) \). Since \( 1 \mod 2 = 1 \) and \( n \mod 2 = 0 \), we have:
+\[
+1 \&&& n = (1 \mod 2) \cdot (n \mod 2) = 1 \cdot 0 = 0
+\]
+- Therefore, \( 1 \&&& n = 0 \), which is equal to \( n \mod 2 \).
+
+2. **Case 2: \( n \mod 2 = 1 \)**
+- In this case, we again use the property of bitwise AND for natural numbers. Since \( 1 \mod 2 = 1 \) and \( n \mod 2 = 1 \), we have:
+\[
+1 \&&& n = (1 \mod 2) \cdot (n \mod 2) = 1 \cdot 1 = 1
+\]
+- Therefore, \( 1 \&&& n = 1 \), which is equal to \( n \mod 2 \).
+
+In both cases, we have shown that \( 1 \&&& n = n \mod 2 \). Hence, the theorem is proved.
+
+3. **Formal Theorem**  
+example (n : Nat) : 1 &&& n = n % 2 := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (n : Nat) : 1 &&& n = n % 2 := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Count of Elements Satisfying Predicate Equals Zero if and only if No Element Satisfies Predicate: \(\text{countP}(p, l) = 0 \iff \forall a \in l, \neg p(a)\) : For any type \(\alpha\) and any predicate \( p : \alpha \to \text{Bool} \), the number of elements in a list \( l \) that satisfy \( p \) is zero if and only if no element in \( l \) satisfies \( p \). Mathematically, this can be expressed as:
+\[
+\text{countP}(p, l) = 0 \iff \forall a \in l, \neg p(a) = \text{true}
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the following lemmas:
+1. The number of elements in a list \( l \) that satisfy a predicate \( p \) is equal to the length of the list obtained by filtering \( l \) with \( p \). Formally, \(\text{countP}(p, l) = \text{length}(\text{filter}(p, l))\).
+2. The length of a list is zero if and only if the list is empty. Formally, \(\text{length}(l) = 0 \iff l = \text{nil}\).
+3. A list filtered by a predicate \( p \) is empty if and only if no element in the list satisfies \( p \). Formally, \(\text{filter}(p, l) = \text{nil} \iff \forall a \in l, \neg p(a) = \text{true}\).
+
+Using these lemmas, we can simplify the goal:
+\[
+\text{countP}(p, l) = 0 \iff \text{length}(\text{filter}(p, l)) = 0
+\]
+Since \(\text{length}(\text{filter}(p, l)) = 0\) is equivalent to \(\text{filter}(p, l) = \text{nil}\), we have:
+\[
+\text{countP}(p, l) = 0 \iff \text{filter}(p, l) = \text{nil}
+\]
+Finally, \(\text{filter}(p, l) = \text{nil}\) is equivalent to \(\forall a \in l, \neg p(a) = \text{true}\). Therefore, we conclude:
+\[
+\text{countP}(p, l) = 0 \iff \forall a \in l, \neg p(a) = \text{true}
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example : countP p l = 0 ↔ ∀ a ∈ l, ¬p a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+
+example : countP p l = 0 ↔ ∀ a ∈ l, ¬p a := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Conversion of Boolean False to Bitvector Zero : The function `BitVec.ofBool` applied to the boolean value `false` results in the bitvector `0` of length 1, i.e., \(\text{BitVec.ofBool}(\text{false}) = 0\).
+
+2. **Informal Proof**  
+The proof is straightforward. By the definition of the function `BitVec.ofBool`, applying it to the boolean value `false` yields the bitvector `0`. Therefore, the equality \(\text{BitVec.ofBool}(\text{false}) = 0\) holds by definition. This completes the proof.
+
+3. **Formal Theorem**  
+example : ofBool false = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Fin.Basic
+import Init.Data.Nat.Bitwise.Lemmas
+import Init.Data.Nat.Power2
+import Init.Data.Int.Bitwise
+import Init.Data.BitVec.Basic
+
+open BitVec
+
+
+example : ofBool false = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Fin.Basic not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Data.Int.Bitwise not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+

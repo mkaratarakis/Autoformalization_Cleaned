@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Boolean Inequality Identity: \((a \neq b) \neq b = a\) : For any boolean values \( a \) and \( b \), the boolean expression \((a \neq b) \neq b\) is equal to \( a \), i.e., \((a \neq b) \neq b = a\).
+
+2. **Informal Proof**  
+To prove the statement \((a \neq b) \neq b = a\) for any boolean values \(a\) and \(b\), we can directly evaluate all possible cases for \(a\) and \(b\):
+
+1. **Case 1: \(a = \text{true}\) and \(b = \text{true}\)**
+- \((a \neq b) = (\text{true} \neq \text{true}) = \text{false}\)
+- \((a \neq b) \neq b = \text{false} \neq \text{true} = \text{true}\)
+- Therefore, \((a \neq b) \neq b = \text{true} = a\)
+
+2. **Case 2: \(a = \text{true}\) and \(b = \text{false}\)**
+- \((a \neq b) = (\text{true} \neq \text{false}) = \text{true}\)
+- \((a \neq b) \neq b = \text{true} \neq \text{false} = \text{true}\)
+- Therefore, \((a \neq b) \neq b = \text{true} = a\)
+
+3. **Case 3: \(a = \text{false}\) and \(b = \text{true}\)**
+- \((a \neq b) = (\text{false} \neq \text{true}) = \text{true}\)
+- \((a \neq b) \neq b = \text{true} \neq \text{true} = \text{false}\)
+- Therefore, \((a \neq b) \neq b = \text{false} = a\)
+
+4. **Case 4: \(a = \text{false}\) and \(b = \text{false}\)**
+- \((a \neq b) = (\text{false} \neq \text{false}) = \text{false}\)
+- \((a \neq b) \neq b = \text{false} \neq \text{false} = \text{false}\)
+- Therefore, \((a \neq b) \neq b = \text{false} = a\)
+
+In all cases, the equality \((a \neq b) \neq b = a\) holds. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), ((a != b) != b) = a := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), ((a != b) != b) = a := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

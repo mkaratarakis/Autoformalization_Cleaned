@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Right Multiplication Cancellation in Natural Numbers : For any natural numbers \( n \), \( m \), and \( k \), if \( m \) is nonzero and \( n \cdot m = k \cdot m \), then \( n = k \).
+
+2. **Informal Proof**  
+We start with the given conditions: \( m \) is a nonzero natural number, and \( n \cdot m = k \cdot m \).
+
+First, we use the commutativity of multiplication to rewrite the equation \( n \cdot m = k \cdot m \) as \( m \cdot n = m \cdot k \).
+
+Next, we apply the left multiplication cancellation property, which states that if \( m \cdot n = m \cdot k \) and \( m \) is nonzero, then \( n = k \). Since \( m \) is nonzero (given by \( 0 < m \)), and we have \( m \cdot n = m \cdot k \), it follows that \( n = k \).
+
+Thus, we have shown that \( n = k \), completing the proof.
+
+3. **Formal Theorem**  
+example {n m k : Nat} (mp : 0 < m) (h : n * m = k * m) : n = k := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {n m k : Nat} (mp : 0 < m) (h : n * m = k * m) : n = k := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

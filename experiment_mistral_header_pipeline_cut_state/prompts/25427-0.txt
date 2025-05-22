@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Function Application Distributes Over Conditional Expressions : For any types $\alpha$ and $\beta$, and for any function $f : \alpha \to \beta$, if $b$ is a boolean value and $a, a' \in \alpha$, then the application of $f$ to the conditional expression `bif b then a else a'` is equal to the conditional expression `bif b then f a else f a'`. In other words, $f(\text{if } b \text{ then } a \text{ else } a') = \text{if } b \text{ then } f(a) \text{ else } f(a')$.
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value $b$.
+
+1. **Case 1: $b = \text{false}$**
+- We need to show that $f(\text{if } \text{false} \text{ then } a \text{ else } a') = \text{if } \text{false} \text{ then } f(a) \text{ else } f(a')$.
+- Simplifying the left-hand side, we get $f(\text{if } \text{false} \text{ then } a \text{ else } a') = f(a')$.
+- Simplifying the right-hand side, we get $\text{if } \text{false} \text{ then } f(a) \text{ else } f(a') = f(a')$.
+- Therefore, $f(\text{if } \text{false} \text{ then } a \text{ else } a') = f(a') = \text{if } \text{false} \text{ then } f(a) \text{ else } f(a')$.
+
+2. **Case 2: $b = \text{true}$**
+- We need to show that $f(\text{if } \text{true} \text{ then } a \text{ else } a') = \text{if } \text{true} \text{ then } f(a) \text{ else } f(a')$.
+- Simplifying the left-hand side, we get $f(\text{if } \text{true} \text{ then } a \text{ else } a') = f(a)$.
+- Simplifying the right-hand side, we get $\text{if } \text{true} \text{ then } f(a) \text{ else } f(a') = f(a)$.
+- Therefore, $f(\text{if } \text{true} \text{ then } a \text{ else } a') = f(a) = \text{if } \text{true} \text{ then } f(a) \text{ else } f(a')$.
+
+Since both cases hold, we have shown that $f(\text{if } b \text{ then } a \text{ else } a') = \text{if } b \text{ then } f(a) \text{ else } f(a')$ for any boolean value $b$. This completes the proof.
+
+3. **Formal Theorem**  
+example (f : α → β) {b : Bool} {a a' : α} :
+    f (bif b then a else a') = bif b then f a else f a' := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (f : α → β) {b : Bool} {a a' : α} :
+    f (bif b then a else a') = bif b then f a else f a' := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+DropWhile and Filter Commute: \(\text{dropWhile } q \, (\text{filter } p \, l) = \text{filter } p \, (\text{dropWhile } (\text{not } p \, a \, \text{ or } q \, a) \, l)\) : For any type \( \alpha \) and any predicates \( p, q : \alpha \to \text{Bool} \), and for any list \( l \) of elements of type \( \alpha \), the list obtained by dropping elements from the filtered list \( \text{filter } p \, l \) while \( q \) returns `true` is equal to the list obtained by filtering the list \( l \) after dropping elements while the predicate \( \text{not } p \, a \, \text{ or } q \, a \) returns `true`. In other words, \( \text{dropWhile } q \, (\text{filter } p \, l) = \text{filter } p \, (\text{dropWhile } (\text{not } p \, a \, \text{ or } q \, a) \, l) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorems `filterMap_eq_filter` and `dropWhile_filterMap` to simplify the goal. The theorem `filterMap_eq_filter` states that for any type \( \alpha \), a predicate \( p : \alpha \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), the following equality holds:
+\[
+\text{filterMap } (\text{guard } p) \, l = \text{filter } p \, l
+\]
+The theorem `dropWhile_filterMap` states that for any types \( \alpha \) and \( \beta \), a function \( f : \alpha \to \text{Option} \beta \), a predicate \( p : \beta \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), the following equality holds:
+\[
+\text{dropWhile } p \, (\text{filterMap } f \, l) = \text{filterMap } f \, (\text{dropWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, l)
+\]
+Using these theorems, we can simplify the goal to:
+\[
+\text{dropWhile } q \, (\text{filter } p \, l) = \text{filter } p \, (\text{dropWhile } (\lambda a, \, \text{not } p \, a \, \text{ or } q \, a) \, l)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p q : α → Bool) (l : List α) :
+    (l.filter p).dropWhile q = (l.dropWhile fun a => !p a || q a).filter p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p q : α → Bool) (l : List α) :
+    (l.filter p).dropWhile q = (l.dropWhile fun a => !p a || q a).filter p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

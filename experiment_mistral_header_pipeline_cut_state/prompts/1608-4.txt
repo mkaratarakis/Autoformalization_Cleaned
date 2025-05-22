@@ -1,0 +1,23 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:15:5: error: unknown tactic
+tmp.lean:11:2: error: tactic 'split' failed, consider using `set_option trace.split.failure true`
+m n : Nat
+⊢ 1 ≤ m → (m < 1 + n ↔ m ≤ n)
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {m n : Nat} : m ∈ (range' 1 n).reverse ↔ 1 ≤ m ∧ m ≤ n := by
+  rw [mem_reverse]
+  simp
+  split
+  · rintro ⟨_, hmn, rfl⟩
+    exact ⟨Nat.succ_le_of_lt hmn, hmn.le⟩
+  · rintro ⟨h1, h2⟩

@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Exclusive Or of a Boolean with Itself is False : For any boolean value $x$, the exclusive or of $x$ with itself is `false`, i.e., $x \oplus x = \text{false}$.
+
+2. **Informal Proof**  
+To prove that for any boolean value $x$, the exclusive or of $x$ with itself is `false`, we consider all possible values of $x$. Since $x$ can only be `true` or `false`, we check both cases:
+- If $x = \text{true}$, then $\text{xor}(\text{true}, \text{true}) = \text{false}$.
+- If $x = \text{false}$, then $\text{xor}(\text{false}, \text{false}) = \text{false}$.
+In both cases, the exclusive or of $x$ with itself is `false`. Therefore, the statement holds for all boolean values $x$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), xor x x = false := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), xor x x = false := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

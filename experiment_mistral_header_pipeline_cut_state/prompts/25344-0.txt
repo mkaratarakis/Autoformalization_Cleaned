@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+False is Less Than or Equal to Any Boolean Value : For any boolean value \( x \), it holds that \( \text{false} \leq x \).
+
+2. **Informal Proof**  
+We need to show that for any boolean value \( x \), \( \text{false} \leq x \). The boolean values are ordered such that \( \text{false} \leq \text{false} \) and \( \text{false} \leq \text{true} \). Since these are the only possible values for \( x \), the statement \( \text{false} \leq x \) holds for all \( x \). Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), false ≤ x := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), false ≤ x := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

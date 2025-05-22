@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Most Significant Bit is True if and only if \( 2 \times \text{val}(x) \ge 2^w \) : For any bitvector \( x \) of length \( w \), the most significant bit of \( x \) is true if and only if \( 2 \times \text{val}(x) \ge 2^w \), where \(\text{val}(x)\) is the underlying natural number representation of \( x \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that a boolean value is true if and only if it is not false. Additionally, we use the fact that the most significant bit of a bitvector \( x \) is false if and only if \( 2 \times \text{val}(x) < 2^w \).
+
+By combining these equivalences, we can simplify the proposition we want to show. Specifically, the most significant bit of \( x \) is true if and only if it is not false. Since the most significant bit of \( x \) is false if and only if \( 2 \times \text{val}(x) < 2^w \), it follows that the most significant bit of \( x \) is true if and only if \( 2 \times \text{val}(x) \ge 2^w \).
+
+Thus, we have shown that the most significant bit of \( x \) is true if and only if \( 2 \times \text{val}(x) \ge 2^w \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec w) : x.msb = true ↔ 2 * x.toNat ≥ 2^w := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) : x.msb = true ↔ 2 * x.toNat ≥ 2^w := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

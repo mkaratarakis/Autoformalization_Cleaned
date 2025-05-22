@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Injectivity of Conjunction and Disjunction on the Right: $(x \land m = y \land m) \land (x \lor m = y \lor m) \leftrightarrow x = y$ : For any boolean values $m$, $x$, and $y$, the following equivalence holds:
+\[
+(x \land m = y \land m) \land (x \lor m = y \lor m) \leftrightarrow x = y
+\]
+This means that if the conjunction and disjunction of $x$ and $m$ are equal to the conjunction and disjunction of $y$ and $m$, respectively, then $x$ is equal to $y$.
+
+2. **Informal Proof**  
+To prove the equivalence, we need to show both directions of the biconditional statement.
+
+1. **(⇒) If $x = y$, then $(x \land m = y \land m) \land (x \lor m = y \lor m)$:**
+- Assume $x = y$.
+- Then, $x \land m = y \land m$ and $x \lor m = y \lor m$ are trivially true because both sides of the equations are the same.
+
+2. **(⇐) If $(x \land m = y \land m) \land (x \lor m = y \lor m)$, then $x = y$:**
+- Assume $(x \land m = y \land m) \land (x \lor m = y \lor m)$.
+- We need to show that $x = y$.
+- Consider the possible values of $m$:
+- If $m = \text{true}$:
+- Then $x \land \text{true} = y \land \text{true}$ simplifies to $x = y$.
+- Similarly, $x \lor \text{true} = y \lor \text{true}$ simplifies to $\text{true} = \text{true}$, which is always true.
+- If $m = \text{false}$:
+- Then $x \land \text{false} = y \land \text{false}$ simplifies to $\text{false} = \text{false}$, which is always true.
+- Similarly, $x \lor \text{false} = y \lor \text{false}$ simplifies to $x = y$.
+- In both cases, we conclude that $x = y$.
+
+Since both directions of the biconditional statement are true, the equivalence holds. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example :
+    ∀ {m x y : Bool}, (x && m) = (y && m) ∧ (x || m) = (y || m) ↔ x = y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example :
+    ∀ {m x y : Bool}, (x && m) = (y && m) ∧ (x || m) = (y || m) ↔ x = y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

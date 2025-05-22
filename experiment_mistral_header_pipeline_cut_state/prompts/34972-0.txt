@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Singleton List is Sublist if and only if Element is in List: \([a] \subseteq l \leftrightarrow a \in l\) : For any type \( \alpha \), a list \( l \) of elements of type \( \alpha \), and an element \( a \) of type \( \alpha \), the singleton list \([a]\) is a sublist of \( l \) if and only if \( a \) is a member of \( l \). In other words, \([a] \subseteq l \leftrightarrow a \in l\).
+
+2. **Informal Proof**  
+To prove the equivalence \([a] \subseteq l \leftrightarrow a \in l\), we need to show both directions.
+
+1. **(\(\Rightarrow\)) Assume \([a] \subseteq l\):**
+- By the property that a sublist implies a subset, and the fact that \(a \in [a]\), it follows that \(a \in l\).
+
+2. **(\(\Leftarrow\)) Assume \(a \in l\):**
+- By the property that if an element is in a list, there exist sublists \(s\) and \(t\) such that \(l = s ++ [a] ++ t\), we can write \(l\) as \(s ++ [a] ++ t\).
+- To show that \([a] \subseteq l\), we use the fact that the empty list is a sublist of any list, and the property that if a list is a sublist of another, adding the same element to the front of both lists preserves the sublist relation.
+- Specifically, since \([] \subseteq s\), it follows that \([a] \subseteq [a] ++ s\).
+- By the property that a list is a sublist of its concatenation with another list, we have \([a] ++ s \subseteq s ++ [a] ++ t\).
+- Therefore, by transitivity, \([a] \subseteq s ++ [a] ++ t\), which is \(l\).
+
+Thus, we have shown both directions, and the proof is complete. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : α} {l} : [a] <+ l ↔ a ∈ l := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {a : α} {l} : [a] <+ l ↔ a ∈ l := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

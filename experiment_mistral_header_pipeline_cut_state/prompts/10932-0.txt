@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Element at Index in Concatenated List Equals Element in First List: \((as ++ bs)[i] = as[i]\) : For any type \( \alpha \), any natural number \( i \), and any lists \( as \) and \( bs \) of elements of type \( \alpha \), if \( i \) is less than the length of \( as \) and \( i \) is less than the length of the concatenated list \( as ++ bs \), then the element at index \( i \) in the concatenated list \( as ++ bs \) is equal to the element at index \( i \) in the list \( as \). In other words, if \( i \) is an index within the bounds of \( as \), then \((as ++ bs)[i] = as[i]\).
+
+2. **Informal Proof**  
+We will prove this by induction on the list \( as \).
+
+1. **Base Case:**
+- Consider the case where \( as \) is the empty list, i.e., \( as = [] \).
+- The goal is to show that \(([] ++ bs)[i] = [][i]\).
+- Since the empty list has no elements, the index \( i \) must be out of bounds, and the goal is trivially true.
+
+2. **Inductive Step:**
+- Assume \( as \) is a non-empty list, i.e., \( as = a :: as' \) for some element \( a \) and list \( as' \).
+- We will use induction on the length of \( as \).
+- The induction hypothesis \( ih \) states that for any natural number \( i \) and any lists \( as' \) and \( bs \), if \( i < \text{length}(as') \) and \( i < \text{length}(as' ++ bs) \), then \((as' ++ bs)[i] = as'[i]\).
+
+- **Base Case of Induction:**
+- Consider \( i = 0 \).
+- We need to show that \((a :: as ++ bs)[0] = (a :: as)[0]\).
+- By the definition of list concatenation and indexing, both sides of the equation are equal to \( a \).
+- Therefore, the goal is trivially true due to the reflexive property of equality.
+
+- **Inductive Step of Induction:**
+- Consider \( i = k + 1 \) for some natural number \( k \).
+- We need to show that \((a :: as ++ bs)[k + 1] = (a :: as)[k + 1]\).
+- By the induction hypothesis \( ih \), it suffices to show that \((as ++ bs)[k] = as[k]\).
+- Since \( k < \text{length}(as) \) and \( k < \text{length}(as ++ bs) \), the induction hypothesis applies, and the goal is proved.
+
+Thus, by induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (as bs : List α) (h : i < as.length) {h'} : (as ++ bs)[i] = as[i] := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.List.BasicAux
+
+open List
+
+
+example (as bs : List α) (h : i < as.length) {h'} : (as ++ bs)[i] = as[i] := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.List.BasicAux not found. --
+

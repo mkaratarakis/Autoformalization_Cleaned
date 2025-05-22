@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Reflexivity of Less Than or Equal To Relation on Boolean Values : For any boolean value \( x \in \text{Bool} \), it holds that \( x \le x \).
+
+2. **Informal Proof**  
+To prove that for any boolean value \( x \), \( x \le x \), we use the decidability of the boolean values. The boolean order relation \( \le \) is defined such that for any boolean value \( x \), \( x \le x \) is always true. This is a fundamental property of the boolean order relation. Therefore, the statement \( x \le x \) holds for all \( x \in \text{Bool} \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), x ≤ x := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), x ≤ x := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

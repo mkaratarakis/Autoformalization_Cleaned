@@ -1,0 +1,28 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:13:6: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  bif false then h else ?b
+case neg
+c t f : Bool
+h : ¬c = true
+⊢ ((bif c then t else f) = true) = if c = true then t = true else f = true
+tmp.lean:8:66: error: unsolved goals
+case neg
+c t f : Bool
+h : ¬c = true
+⊢ ((bif c then t else f) = true) = if c = true then t = true else f = true
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c t f : Bool),
+    (cond c t f = true) = ite (c = true) (t = true) (f = true) := by
+intro c t f
+by_cases h: c = true
+· rw [h, cond_true]
+  rfl

@@ -1,0 +1,107 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:16:31: error: unknown constant 'List.exists_of_mem'
+tmp.lean:16:15: error: rcases tactic failed: x✝ : ?m.400 is not an inductive datatype
+tmp.lean:15:4: error: unsolved goals
+case pos
+α : Type u_1
+inst✝¹ : BEq α
+l' : List α
+inst✝ : LawfulBEq α
+a : α
+l : List α
+h : l.erase a = l'
+h₁ : a ∈ l
+h₂ : ∃ l₁ l₂, ¬a ∈ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂
+⊢ ¬a ∈ l ∧ l = l' ∨ ∃ l₁ l₂, ¬a ∈ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂
+tmp.lean:29:8: error: tactic 'apply' failed, failed to unify
+  l.erase a = l
+with
+  l = l'
+case neg.h.right
+α : Type u_1
+inst✝¹ : BEq α
+l' : List α
+inst✝ : LawfulBEq α
+a : α
+l : List α
+h : l.erase a = l'
+h₁ : ¬a ∈ l
+⊢ l = l'
+tmp.lean:33:34: error: unknown identifier 'h'
+tmp.lean:33:6: error: tactic 'apply' failed, failed to unify
+  List.erase ?m.530 ?m.529 = ?m.530
+with
+  l.erase a = l'
+case mpr.inl
+α : Type u_1
+inst✝¹ : BEq α
+l' : List α
+inst✝ : LawfulBEq α
+a : α
+l : List α
+h✝ : ¬a ∈ l ∧ l = l'
+⊢ l.erase a = l'
+tmp.lean:34:29: error: unknown identifier 'h'
+tmp.lean:34:13: error: rcases tactic failed: x✝ : ?m.582 is not an inductive datatype
+tmp.lean:16:4: error: expected '{' or indented tactic sequence
+tmp.lean:15:71: error: unsolved goals
+α : Type u_1
+inst✝¹ : BEq α
+l' : List α
+inst✝ : LawfulBEq α
+a : α
+l : List α
+h : l.erase a = l'
+h₁ : a ∈ l
+⊢ ∃ l₁ l₂, ¬a ∈ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂
+tmp.lean:15:4: error: unsolved goals
+case pos
+α : Type u_1
+inst✝¹ : BEq α
+l' : List α
+inst✝ : LawfulBEq α
+a : α
+l : List α
+h : l.erase a = l'
+h₁ : a ∈ l
+h₂ : ∃ l₁ l₂, ¬a ∈ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂
+⊢ ¬a ∈ l ∧ l = l' ∨ ∃ l₁ l₂, ¬a ∈ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂
+tmp.lean:13:2: error: unsolved goals
+case neg
+α : Type u_1
+inst✝¹ : BEq α
+l' : List α
+inst✝ : LawfulBEq α
+a : α
+l : List α
+h : l.erase a = l'
+h₁ : ¬a ∈ l
+⊢ ¬a ∈ l ∧ l = l' ∨ ∃ l₁ l₂, ¬a ∈ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂
+tmp.lean:11:63: error: unsolved goals
+case mpr
+α : Type u_1
+inst✝¹ : BEq α
+l' : List α
+inst✝ : LawfulBEq α
+a : α
+l : List α
+⊢ (¬a ∈ l ∧ l = l' ∨ ∃ l₁ l₂, ¬a ∈ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂) → l.erase a = l'
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a : α} {l : List α} :
+    l.erase a = l' ↔
+      (a ∉ l ∧ l = l') ∨
+        ∃ l₁ l₂, a ∉ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂ := by
+  constructor
+  · intro h
+    by_cases h₁ : a ∈ l
+    · have h₂ : ∃ l₁ l₂, a ∉ l₁ ∧ l = l₁ ++ a :: l₂ ∧ l' = l₁ ++ l₂ := by

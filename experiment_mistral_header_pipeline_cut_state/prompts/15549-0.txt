@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Modulo Identity: \(x \mod b^{k+1} = x \mod b^k + b^k \cdot (x \div b^k \mod b)\) : For any natural numbers \(x\), \(b\), and \(k\), the modulo operation \(x \mod b^{k+1}\) is equal to \(x \mod b^k + b^k \cdot (x \div b^k \mod b)\). In other words, the remainder when \(x\) is divided by \(b^{k+1}\) can be expressed as the sum of the remainder when \(x\) is divided by \(b^k\) and the product of \(b^k\) and the remainder when \(x \div b^k\) is divided by \(b\).
+
+2. **Informal Proof**  
+We start with the goal of proving that \( x \mod b^{k+1} = x \mod b^k + b^k \cdot (x \div b^k \mod b) \).
+
+1. **Step 1: Apply the power of successor identity.**
+- We use the identity for the power of a successor, which states that \( b^{k+1} = b^k \cdot b \). This transforms our goal from \( x \mod b^{k+1} \) to \( x \mod (b^k \cdot b) \).
+
+2. **Step 2: Apply the modulo identity.**
+- Next, we apply the modulo identity \( x \mod (a \cdot b) = x \mod a + a \cdot (x \div a \mod b) \) with \( a = b^k \) and \( b = b \). This simplifies our goal to \( x \mod b^k + b^k \cdot (x \div b^k \mod b) \).
+
+Since the goal is now exactly the expression we want to prove, the proof is complete.
+
+\[
+\boxed{x \mod b^{k+1} = x \mod b^k + b^k \cdot (x \div b^k \mod b)}
+\]
+
+3. **Formal Theorem**  
+example {x b k : Nat} :
+    x % b ^ (k + 1) = x % b ^ k + b ^ k * ((x / b ^ k) % b) := by sorry
+
+4. **Prefix**
+import Init.Omega
+import Init.Data.Nat.Mod
+
+open Nat
+
+
+example {x b k : Nat} :
+    x % b ^ (k + 1) = x % b ^ k + b ^ k * ((x / b ^ k) % b) := by
+
+5. **Header Information**  
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Mod not found. --
+

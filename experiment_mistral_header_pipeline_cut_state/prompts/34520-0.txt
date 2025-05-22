@@ -1,0 +1,82 @@
+
+1. **Informal Theorem**  
+Equality of Take and TakeWhile Operations: \(\text{take } n \, (\text{takeWhile } p \, l) = \text{takeWhile } p \, (\text{take } n \, l)\) : For any list \( l \) of elements of type \( \alpha \), a predicate \( p : \alpha \to \text{Bool} \), and a natural number \( n \), the first \( n \) elements of the longest initial segment of \( l \) that satisfies \( p \) are equal to the longest initial segment of the first \( n \) elements of \( l \) that satisfies \( p \). In other words, \(\text{take } n \, (\text{takeWhile } p \, l) = \text{takeWhile } p \, (\text{take } n \, l)\).
+
+2. **Informal Proof**  
+We proceed by induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, the goal simplifies to:
+\[
+\text{take } n \, (\text{takeWhile } p \, []) = \text{takeWhile } p \, (\text{take } n \, [])
+\]
+By the definition of `take` and `takeWhile`, both sides are the empty list \( [] \), so the equality holds.
+
+2. **Inductive Step:**
+- Assume \( l \) is a non-empty list and can be written as \( x :: xs \). We proceed by induction on \( xs \) with the induction hypothesis \( \text{ih} \) stating that for any natural number \( n \), \( \text{take } n \, (\text{takeWhile } p \, xs) = \text{takeWhile } p \, (\text{take } n \, xs) \).
+
+- We consider two cases based on whether the predicate \( p \) holds for the first element \( x \) of the list \( l \).
+
+- **Case 1: \( p(x) = \text{true} \)**
+- We further consider the cases where \( n \) is \( 0 \) or a successor of some natural number \( n' \).
+
+- **Subcase 1.1: \( n = 0 \)**
+- The goal simplifies to:
+\[
+\text{take } 0 \, (\text{takeWhile } p \, (x :: xs)) = \text{takeWhile } p \, (\text{take } 0 \, (x :: xs))
+\]
+By the definition of `take`, both sides are the empty list \( [] \), so the equality holds.
+
+- **Subcase 1.2: \( n = n' + 1 \)**
+- The goal simplifies to:
+\[
+\text{take } (n' + 1) \, (\text{takeWhile } p \, (x :: xs)) = \text{takeWhile } p \, (\text{take } (n' + 1) \, (x :: xs))
+\]
+Using the definitions of `takeWhile` and `take`, and the induction hypothesis \( \text{ih} \), we can simplify this to:
+\[
+x :: \text{take } n' \, (\text{takeWhile } p \, xs) = x :: \text{takeWhile } p \, (\text{take } n' \, xs)
+\]
+By the induction hypothesis, \( \text{take } n' \, (\text{takeWhile } p \, xs) = \text{takeWhile } p \, (\text{take } n' \, xs) \), so the equality holds.
+
+- **Case 2: \( p(x) = \text{false} \)**
+- We further consider the cases where \( n \) is \( 0 \) or a successor of some natural number \( n' \).
+
+- **Subcase 2.1: \( n = 0 \)**
+- The goal simplifies to:
+\[
+\text{take } 0 \, (\text{takeWhile } p \, (x :: xs)) = \text{takeWhile } p \, (\text{take } 0 \, (x :: xs))
+\]
+By the definition of `take`, both sides are the empty list \( [] \), so the equality holds.
+
+- **Subcase 2.2: \( n = n' + 1 \)**
+- The goal simplifies to:
+\[
+\text{take } (n' + 1) \, (\text{takeWhile } p \, (x :: xs)) = \text{takeWhile } p \, (\text{take } (n' + 1) \, (x :: xs))
+\]
+Using the definitions of `takeWhile` and `take`, and the induction hypothesis \( \text{ih} \), we can simplify this to:
+\[
+\text{take } n' \, (\text{takeWhile } p \, xs) = \text{takeWhile } p \, (\text{take } n' \, xs)
+\]
+By the induction hypothesis, \( \text{take } n' \, (\text{takeWhile } p \, xs) = \text{takeWhile } p \, (\text{take } n' \, xs) \), so the equality holds.
+
+Thus, by induction, the theorem holds for all lists \( l \) and natural numbers \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} (p : α → Bool) n :
+    (l.takeWhile p).take n = (l.take n).takeWhile p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} (p : α → Bool) n :
+    (l.takeWhile p).take n = (l.take n).takeWhile p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

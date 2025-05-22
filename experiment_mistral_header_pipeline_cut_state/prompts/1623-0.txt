@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Enumeration of Concatenated Lists: \((xs ++ ys).enum = xs.enum ++ \text{enumFrom}(xs.length, ys)\) : For any lists \( xs \) and \( ys \) of elements of type \( \alpha \), the enumeration of the concatenated list \( xs ++ ys \) is equal to the concatenation of the enumeration of \( xs \) and the enumeration of \( ys \) starting from the length of \( xs \). In other words, \((xs ++ ys).enum = xs.enum ++ \text{enumFrom}(xs.length, ys)\).
+
+2. **Informal Proof**  
+To prove the theorem, we use the definition of the enumeration function and a key property of the enumeration of concatenated lists. Specifically, the definition of the enumeration function `enum` and the property that the enumeration of a concatenated list starting from an initial index is the concatenation of the enumerations of the individual lists starting from the appropriate indices. This property can be formally stated as:
+\[
+\text{enumFrom}(n, xs ++ ys) = \text{enumFrom}(n, xs) ++ \text{enumFrom}(n + \text{length}(xs), ys)
+\]
+By applying this property with \( n = 0 \), we get:
+\[
+(xs ++ ys).enum = \text{enumFrom}(0, xs ++ ys) = \text{enumFrom}(0, xs) ++ \text{enumFrom}(\text{length}(xs), ys) = xs.enum ++ \text{enumFrom}(\text{length}(xs), ys)
+\]
+Thus, the proposition \((xs ++ ys).enum = xs.enum ++ \text{enumFrom}(xs.length, ys)\) is true. This completes the proof.
+
+3. **Formal Theorem**  
+example (xs ys : List α) : enum (xs ++ ys) = enum xs ++ enumFrom xs.length ys := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (xs ys : List α) : enum (xs ++ ys) = enum xs ++ enumFrom xs.length ys := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

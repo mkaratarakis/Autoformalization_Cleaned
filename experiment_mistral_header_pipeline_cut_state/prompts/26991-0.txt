@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Commutativity of `zipWith` for Commutative Functions : For any types $\alpha$ and $\beta$, and a function $f : \alpha \to \alpha \to \beta$ that is commutative, i.e., $f(x, y) = f(y, x)$ for all $x, y \in \alpha$, and for any lists $l, l' : \text{List } \alpha$, the result of applying `zipWith` to $l$ and $l'$ using $f$ is the same as applying `zipWith` to $l'$ and $l$ using $f$. In other words, if $f$ is commutative, then:
+\[ \text{zipWith } f \, l \, l' = \text{zipWith } f \, l' \, l \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the commutativity property of `zipWith` for function swapping arguments. Specifically, since $f$ is commutative, we have:
+\[ \text{zipWith } f \, l \, l' = \text{zipWith } (fun \, b \, a \, => \, f \, a \, b) \, l' \, l \]
+This means it suffices to show that:
+\[ \text{zipWith } (fun \, b \, a \, => \, f \, a \, b) \, l' \, l = \text{zipWith } f \, l' \, l \]
+
+Since $f$ is commutative, for any $x, y \in \alpha$, we have $f(x, y) = f(y, x)$. Therefore, the function $(fun \, b \, a \, => \, f \, a \, b)$ is equivalent to $f$. Hence, the expression $\text{zipWith } (fun \, b \, a \, => \, f \, a \, b) \, l' \, l$ simplifies to $\text{zipWith } f \, l' \, l$. This completes the proof.
+
+3. **Formal Theorem**  
+example (f : α → α → β) (comm : ∀ x y : α, f x y = f y x) (l l' : List α) :
+    zipWith f l l' = zipWith f l' l := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example (f : α → α → β) (comm : ∀ x y : α, f x y = f y x) (l l' : List α) :
+    zipWith f l l' = zipWith f l' l := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

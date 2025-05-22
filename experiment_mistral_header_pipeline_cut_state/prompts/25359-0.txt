@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Strict Inequality from Non-Equality and Less-Than-or-Equal in Boolean Values: \( x \leq y \) and \( x \neq y \) implies \( x < y \) : For any boolean values \( x \) and \( y \), if \( x \leq y \) and \( x \neq y \), then \( x < y \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( x \) and \( y \), if \( x \leq y \) and \( x \neq y \), then \( x < y \). Since the boolean values and the order relations on them are decidable, we can directly evaluate the conditions. Given \( x \leq y \) and \( x \neq y \), it follows that \( x < y \) must hold. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x ≤ y → x ≠ y → x < y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x ≤ y → x ≠ y → x < y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

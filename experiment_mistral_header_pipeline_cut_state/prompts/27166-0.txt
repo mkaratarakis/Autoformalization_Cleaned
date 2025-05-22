@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Length of Left-Padded List Equals Maximum of Target Length and Original Length : For any type \(\alpha\), natural number \(n\), element \(a \in \alpha\), and list \(l\) of elements of type \(\alpha\), the length of the list returned by `List.leftpad n a l` is equal to the maximum of \(n\) and the length of \(l\), i.e., \(\text{length}(\text{leftpad}(n, a, l)) = \max(n, \text{length}(l))\).
+
+2. **Informal Proof**  
+To prove that the length of the list returned by \(\text{leftpad}(n, a, l)\) is \(\max(n, \text{length}(l))\), we use the following properties and definitions:
+1. The length of a list \(l\) is denoted by \(\text{length}(l)\).
+2. The length of a list created by replicating an element \(a\) \(n\) times is \(n\), i.e., \(\text{length}(\text{replicate}(n, a)) = n\).
+3. The length of the concatenation of two lists \(as\) and \(bs\) is the sum of their lengths, i.e., \(\text{length}(as \oplus bs) = \text{length}(as) + \text{length}(bs)\).
+4. For any natural numbers \(a\) and \(b\), the equation \(a - b + b = \max(a, b)\) holds.
+
+By the definition of \(\text{leftpad}(n, a, l)\), the list is constructed by concatenating a list of \(n - \text{length}(l)\) copies of \(a\) (if \(n > \text{length}(l)\)) with the original list \(l\). Therefore, the length of the resulting list is:
+\[
+\text{length}(\text{leftpad}(n, a, l)) = \text{length}(\text{replicate}(n - \text{length}(l), a) \oplus l)
+\]
+Using the properties of the length of a replicated list and the length of a concatenated list, we get:
+\[
+\text{length}(\text{replicate}(n - \text{length}(l), a) \oplus l) = (n - \text{length}(l)) + \text{length}(l)
+\]
+Simplifying the right-hand side using the property \(a - b + b = \max(a, b)\), we obtain:
+\[
+(n - \text{length}(l)) + \text{length}(l) = \max(n, \text{length}(l))
+\]
+Thus, the length of the list returned by \(\text{leftpad}(n, a, l)\) is \(\max(n, \text{length}(l))\). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) (a : α) (l : List α) :
+    (leftpad n a l).length = max n l.length := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.List.MinMax
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.Basic
+
+open List
+open Nat
+
+example (n : Nat) (a : α) (l : List α) :
+    (leftpad n a l).length = max n l.length := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.List.MinMax not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.Basic not found. --
+

@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Left Rotation by Zero Preserves the List : For any list \( l \) of elements of type \( \alpha \), rotating \( l \) to the left by 0 positions results in the same list \( l \). Formally, \( l.\text{rotateLeft}(0) = l \).
+
+2. **Informal Proof**  
+To prove that rotating a list \( l \) to the left by 0 positions results in the same list \( l \), we use the definition of the `rotateLeft` function. By definition, rotating a list by 0 positions means that the list remains unchanged. Therefore, \( l.\text{rotateLeft}(0) = l \) is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example (l : List α) : rotateLeft l 0 = l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (l : List α) : rotateLeft l 0 = l := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

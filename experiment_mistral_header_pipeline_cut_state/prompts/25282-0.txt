@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Boolean Negation AND Identity: $\neg x \land x = \text{false}$ : For any boolean value $x$, the expression $\neg x \land x$ is equal to `false`, i.e., $\neg x \land x = \text{false}$.
+
+2. **Informal Proof**  
+To prove that $\neg x \land x = \text{false}$ for any boolean value $x$, we consider the two possible values of $x$:
+1. If $x = \text{true}$, then $\neg x = \text{false}$. Therefore, $\neg x \land x = \text{false} \land \text{true} = \text{false}$.
+2. If $x = \text{false}$, then $\neg x = \text{true}$. Therefore, $\neg x \land x = \text{true} \land \text{false} = \text{false}$.
+
+In both cases, the expression $\neg x \land x$ evaluates to `false`. Hence, the statement $\neg x \land x = \text{false}$ holds for all boolean values $x$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), (!x && x) = false := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), (!x && x) = false := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

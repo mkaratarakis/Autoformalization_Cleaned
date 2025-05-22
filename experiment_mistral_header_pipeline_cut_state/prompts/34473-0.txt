@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Condition for Dropped List to be Empty: \(\text{drop}(k, l) = [] \leftrightarrow \text{length}(l) \le k\) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( k \), the list obtained by dropping the first \( k \) elements from \( l \) is empty if and only if the length of \( l \) is less than or equal to \( k \), i.e., \(\text{drop}(k, l) = [] \leftrightarrow \text{length}(l) \le k\).
+
+2. **Informal Proof**  
+To prove the equivalence \(\text{drop}(k, l) = [] \leftrightarrow \text{length}(l) \le k\), we need to show both directions.
+
+1. **(\(\Rightarrow\))**: Assume \(\text{drop}(k, l) = []\). We need to show that \(\text{length}(l) \le k\).
+
+- **Base Case**: \(k = 0\).
+- If \(\text{drop}(0, l) = []\), then by the definition of \(\text{drop}\), \(l = []\).
+- The length of \(l\) is \(0\), which is clearly less than or equal to \(0\).
+
+- **Inductive Step**: Assume \(k = k' + 1\) and that the statement holds for \(k'\). We need to show that if \(\text{drop}(k' + 1, l) = []\), then \(\text{length}(l) \le k' + 1\).
+- Consider two cases for \(l\):
+- **Case 1**: \(l = []\).
+- \(\text{drop}(k' + 1, []) = []\) is trivially true, and the length of \(l\) is \(0\), which is less than or equal to \(k' + 1\).
+- **Case 2**: \(l = \text{head} :: \text{tail}\).
+- Using the definition of \(\text{drop}\), \(\text{drop}(k' + 1, \text{head} :: \text{tail}) = \text{drop}(k', \text{tail})\).
+- By the induction hypothesis, \(\text{drop}(k', \text{tail}) = []\) implies \(\text{length}(\text{tail}) \le k'\).
+- Since \(\text{length}(l) = \text{length}(\text{tail}) + 1\), we have \(\text{length}(l) \le k' + 1\).
+
+2. **(\(\Leftarrow\))**: Assume \(\text{length}(l) \le k\). We need to show that \(\text{drop}(k, l) = []\).
+
+- This is given by the theorem that if \(\text{length}(l) \le k\), then \(\text{drop}(k, l) = []\).
+
+Thus, we have shown both directions, completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} {k : Nat} : l.drop k = [] ↔ l.length ≤ k := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} {k : Nat} : l.drop k = [] ↔ l.length ≤ k := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

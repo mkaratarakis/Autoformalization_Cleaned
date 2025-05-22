@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Conditional with False Right: \((\text{if } c \text{ then } t \text{ else } \text{false}) = (c \land t)\) : For any boolean values \( c \) and \( t \), the expression \(\text{if } c \text{ then } t \text{ else } \text{false}\) is equal to \( c \land t \), i.e., \((\text{if } c \text{ then } t \text{ else } \text{false}) = (c \land t)\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( c \) and \( t \), the expression \(\text{if } c \text{ then } t \text{ else } \text{false}\) is equal to \( c \land t \).
+
+We will consider all possible values of \( c \) and \( t \):
+
+1. **Case 1: \( c = \text{true} \) and \( t = \text{true} \)**
+- \(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{false} = \text{true}\)
+- \( \text{true} \land \text{true} = \text{true} \)
+- Therefore, \(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{false} = \text{true} \land \text{true}\).
+
+2. **Case 2: \( c = \text{true} \) and \( t = \text{false} \)**
+- \(\text{if } \text{true} \text{ then } \text{false} \text{ else } \text{false} = \text{false}\)
+- \( \text{true} \land \text{false} = \text{false} \)
+- Therefore, \(\text{if } \text{true} \text{ then } \text{false} \text{ else } \text{false} = \text{true} \land \text{false}\).
+
+3. **Case 3: \( c = \text{false} \) and \( t = \text{true} \)**
+- \(\text{if } \text{false} \text{ then } \text{true} \text{ else } \text{false} = \text{false}\)
+- \( \text{false} \land \text{true} = \text{false} \)
+- Therefore, \(\text{if } \text{false} \text{ then } \text{true} \text{ else } \text{false} = \text{false} \land \text{true}\).
+
+4. **Case 4: \( c = \text{false} \) and \( t = \text{false} \)**
+- \(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{false} = \text{false}\)
+- \( \text{false} \land \text{false} = \text{false} \)
+- Therefore, \(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{false} = \text{false} \land \text{false}\).
+
+Since the equality holds in all possible cases, we conclude that for any boolean values \( c \) and \( t \), the expression \(\text{if } c \text{ then } t \text{ else } \text{false}\) is equal to \( c \land t \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c t : Bool), cond c t false = ( c && t) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c t : Bool), cond c t false = ( c && t) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

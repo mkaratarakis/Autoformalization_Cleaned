@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Count of Element in List is Less Than or Equal to Count of its Image in Mapped List : For any list \( l \) of elements of type \( \alpha \) and a function \( f : \alpha \to \beta \), the number of occurrences of an element \( x \) in \( l \) is less than or equal to the number of occurrences of \( f(x) \) in the list obtained by applying \( f \) to each element of \( l \). Formally, for any \( x \in \alpha \), it holds that \( \text{count}(x, l) \leq \text{count}(f(x), \text{map}(f, l)) \).
+
+2. **Informal Proof**  
+We start by using the definition of the `count` function, which counts the number of elements in a list that satisfy a given predicate. Specifically, we rewrite the goal to show that the number of elements in \( l \) that are equal to \( x \) is less than or equal to the number of elements in \( \text{map} f l \) that are equal to \( f(x) \).
+
+Using the theorem `countP_map`, we further rewrite the goal to show that the number of elements in \( l \) that are equal to \( x \) is less than or equal to the number of elements in \( l \) that satisfy the predicate \( (p \circ f) \), where \( p \) is the predicate that checks if an element is equal to \( f(x) \).
+
+To prove this inequality, we use the theorem `countP_mono_left`, which states that if a predicate \( p_1 \) implies a predicate \( p_2 \), then the number of elements in a list that satisfy \( p_1 \) is less than or equal to the number of elements that satisfy \( p_2 \). In our case, we need to show that the predicate \( (x_1 == x) \) implies the predicate \( ((x_1 == f x) \circ f) \).
+
+After simplifying the expression using the given context, we see that this implication holds. Therefore, the number of elements in \( l \) that are equal to \( x \) is indeed less than or equal to the number of elements in \( l \) that satisfy the predicate \( (p \circ f) \), which completes the proof.
+
+\[
+\boxed{\text{count}(x, l) \leq \text{count}(f(x), \text{map}(f, l))}
+\]
+
+3. **Formal Theorem**  
+example [DecidableEq β] (l : List α) (f : α → β) (x : α) :
+    count x l ≤ count (f x) (map f l) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+variable [LawfulBEq α]
+
+example [DecidableEq β] (l : List α) (f : α → β) (x : α) :
+    count x l ≤ count (f x) (map f l) := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

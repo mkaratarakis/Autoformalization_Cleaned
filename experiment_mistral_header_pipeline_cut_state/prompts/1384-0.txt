@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Comparison of Natural Numbers Returns Greater Than if and only if \( b < a \) : For any natural numbers \( a \) and \( b \), the comparison \( \text{compare}(a, b) \) returns `Ordering.gt` if and only if \( b < a \).
+
+2. **Informal Proof**  
+We start by using the definition of the comparison function for natural numbers, which states that \( \text{compare}(a, b) \) returns `Ordering.gt` if and only if \( a > b \). This means we need to show that \( \text{compare}(a, b) = \text{Ordering.gt} \) if and only if \( b < a \).
+
+To do this, we split the goal into cases based on the possible outcomes of the comparison. Specifically, we consider the cases where \( a \) and \( b \) are equal, \( a \) is less than \( b \), and \( a \) is greater than \( b \).
+
+1. **Case 1: \( a = b \)**
+- If \( a = b \), then \( \text{compare}(a, b) \) returns `Ordering.eq`, which is not `Ordering.gt`.
+- Therefore, \( \text{compare}(a, b) = \text{Ordering.gt} \) is false, and \( b < a \) is also false.
+- Hence, \( \text{compare}(a, b) = \text{Ordering.gt} \) if and only if \( b < a \) holds in this case.
+
+2. **Case 2: \( a < b \)**
+- If \( a < b \), then \( \text{compare}(a, b) \) returns `Ordering.lt`, which is not `Ordering.gt`.
+- Therefore, \( \text{compare}(a, b) = \text{Ordering.gt} \) is false, and \( b < a \) is also false.
+- Hence, \( \text{compare}(a, b) = \text{Ordering.gt} \) if and only if \( b < a \) holds in this case.
+
+3. **Case 3: \( a > b \)**
+- If \( a > b \), then \( \text{compare}(a, b) \) returns `Ordering.gt`.
+- Therefore, \( \text{compare}(a, b) = \text{Ordering.gt} \) is true, and \( b < a \) is also true.
+- Hence, \( \text{compare}(a, b) = \text{Ordering.gt} \) if and only if \( b < a \) holds in this case.
+
+Since the comparison function \( \text{compare}(a, b) \) returns `Ordering.gt` if and only if \( a > b \), and \( a > b \) is equivalent to \( b < a \), we conclude that \( \text{compare}(a, b) = \text{Ordering.gt} \) if and only if \( b < a \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} : compare a b = .gt ↔ b < a := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b = .gt ↔ b < a := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.Data.Ord not found. --
+
+-- Init.Data.Nat.Compare not found. --
+

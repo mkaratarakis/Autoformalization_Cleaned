@@ -1,0 +1,66 @@
+
+1. **Informal Theorem**  
+Drop Last Element of First \( n \) Elements of a List : For any list \( l \) of elements of type \( \alpha \) and any natural number \( n \) such that \( n \) is less than the length of \( l \), the result of removing the last element from the first \( n \) elements of \( l \) is equal to the first \( n - 1 \) elements of \( l \). In other words, if \( l \) has at least \( n \) elements, then removing the last element from the list formed by taking the first \( n \) elements of \( l \) results in the list formed by taking the first \( n - 1 \) elements of \( l \).
+
+2. **Informal Proof**  
+We need to show that \((\text{take } n \, l).\text{dropLast} = \text{take } (n - 1) \, l\).
+
+1. **Length of the First \( n \) Elements:**
+The length of the first \( n \) elements of \( l \) is given by:
+\[
+\text{length}(\text{take } n \, l) = \min(n, \text{length}(l))
+\]
+Since \( n < \text{length}(l) \), it follows that:
+\[
+\min(n, \text{length}(l)) = n
+\]
+
+2. **Removing the Last Element:**
+The list obtained by removing the last element from the first \( n \) elements of \( l \) is:
+\[
+(\text{take } n \, l).\text{dropLast} = \text{take } (n - 1) \, (\text{take } n \, l)
+\]
+
+3. **Taking the First \( n - 1 \) Elements:**
+By the property of taking elements, we have:
+\[
+\text{take } (n - 1) \, (\text{take } n \, l) = \text{take } \min(n - 1, n) \, l
+\]
+Since \( n - 1 \leq n \), it follows that:
+\[
+\min(n - 1, n) = n - 1
+\]
+Therefore:
+\[
+\text{take } (n - 1) \, (\text{take } n \, l) = \text{take } (n - 1) \, l
+\]
+
+Combining these steps, we conclude:
+\[
+(\text{take } n \, l).\text{dropLast} = \text{take } (n - 1) \, l
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n : Nat} {l : List α} (h : n < l.length) :
+    (l.take n).dropLast = l.take (n - 1) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {n : Nat} {l : List α} (h : n < l.length) :
+    (l.take n).dropLast = l.take (n - 1) := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

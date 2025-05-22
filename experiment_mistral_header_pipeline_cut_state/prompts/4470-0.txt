@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Maximum of List is None if and only if List is Empty: \( \text{maximum?}(xs) = \text{none} \leftrightarrow xs = [] \) : For any type \( \alpha \) with a `Max` instance, the maximum element of a list \( xs \) of type \( \alpha \) is `none` if and only if the list \( xs \) is empty. In other words, \( \text{maximum?}(xs) = \text{none} \) if and only if \( xs = [] \).
+
+2. **Informal Proof**  
+We proceed by considering the two possible cases for the list \( xs \):
+
+1. **Case 1: \( xs \) is empty.**
+- In this case, \( xs = [] \). By the definition of `List.maximum?`, the maximum of an empty list is `none`. Therefore, \( [].maximum? = \text{none} \), which simplifies to \( \text{none} = \text{none} \), a trivial true statement.
+
+2. **Case 2: \( xs \) is non-empty.**
+- Let \( xs = head :: tail \), where \( head \) is the first element and \( tail \) is the rest of the list. By the definition of `List.maximum?`, the maximum of a non-empty list is always `some` value, which is the maximum element of the list. Therefore, \( (head :: tail).maximum? = \text{some } \text{max} \), where \( \text{max} \) is the maximum element of \( head :: tail \). This clearly contradicts the assumption that \( (head :: tail).maximum? = \text{none} \). Hence, this case is false.
+
+Since both cases cover all possibilities and the non-empty case leads to a contradiction, we conclude that \( \text{maximum?}(xs) = \text{none} \) if and only if \( xs = [] \). This completes the proof.
+
+3. **Formal Theorem**  
+example {xs : List α} [Max α] : xs.maximum? = none ↔ xs = [] := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.MinMax
+
+open List
+open Nat
+
+example {xs : List α} [Max α] : xs.maximum? = none ↔ xs = [] := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.MinMax not found. --
+

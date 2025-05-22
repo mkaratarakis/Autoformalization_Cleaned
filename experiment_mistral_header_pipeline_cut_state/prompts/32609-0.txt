@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Boolean Negation and Equality: \((\text{not } a == b) = \text{true} \leftrightarrow \neg a = b\) : For any boolean values \( a \) and \( b \), the boolean equality \( \text{not } a \text{ equals } b \) is true if and only if the logical negation of \( a \) is equal to \( b \), i.e., \( (\text{not } a == b) = \text{true} \) if and only if \( \neg a = b \).
+
+2. **Informal Proof**  
+We need to show that the boolean equality \((\text{not } a == b) = \text{true}\) is equivalent to the logical statement \(\neg a = b\).
+
+1. **Simplify the Proposition:**
+- The boolean equality \((\text{not } a == b) = \text{true}\) means that the boolean value \(\text{not } a\) is equal to the boolean value \(b\).
+- By the definition of boolean equality, \((\text{not } a == b) = \text{true}\) is true if and only if \(\text{not } a\) and \(b\) are the same boolean value.
+- The logical negation \(\neg a\) is defined such that \(\neg a\) is true if \(a\) is false, and \(\neg a\) is false if \(a\) is true.
+- Therefore, \((\text{not } a == b) = \text{true}\) is equivalent to \(\neg a = b\).
+
+Thus, we have shown that \((\text{not } a == b) = \text{true} \leftrightarrow \neg a = b\). This completes the proof.
+
+3. **Formal Theorem**  
+example (a b : Bool) : (!(a == b)) = ¬(a = b) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (a b : Bool) : (!(a == b)) = ¬(a = b) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

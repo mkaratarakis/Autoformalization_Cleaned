@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Commutativity of Subtraction and Addition in Natural Numbers: \( n + m - k = n - k + m \) for \( k \leq n \) : For any natural numbers \( n \), \( m \), and \( k \) such that \( k \leq n \), the following equality holds: \( n + m - k = n - k + m \).
+
+2. **Informal Proof**  
+We start with the given condition \( k \leq n \). By the property that right addition preserves order, we have \( k \leq n + m \). Using the subtraction identity, the equation \( n + m - k = n - k + m \) is equivalent to \( n + m = n - k + m + k \).
+
+Next, we use the right commutativity of addition to rewrite \( n - k + m + k \) as \( n - k + k + m \). By the property that subtraction and addition cancel each other, we have \( n - k + k = n \). Therefore, the equation \( n + m = n - k + k + m \) simplifies to \( n + m = n + m \), which is trivially true.
+
+Thus, we have shown that \( n + m - k = n - k + m \) for any natural numbers \( n \), \( m \), and \( k \) such that \( k \leq n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n m k : Nat} (h : k ≤ n) : n + m - k = n - k + m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {n m k : Nat} (h : k ≤ n) : n + m - k = n - k + m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

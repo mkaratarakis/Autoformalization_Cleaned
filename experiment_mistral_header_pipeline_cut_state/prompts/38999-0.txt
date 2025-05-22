@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Dependent If-Then-Else Equals Left if and only if Negation of Condition Implies Left Value: $\text{dite } P \, (\lambda x. a) \, B = a \leftrightarrow \forall h : \neg P, B(h) = a$ : For any type $\alpha$, any element $a \in \alpha$, any proposition $P$, and any function $B : \neg P \to \alpha$, the dependent if-then-else construct `dite P (fun x => a) B` is equal to $a$ if and only if for all proofs $h$ of $\neg P$, $B(h) = a$. In other words, $\text{dite } P \, (\lambda x. a) \, B = a$ if and only if $\forall h : \neg P, B(h) = a$.
+
+2. **Informal Proof**  
+We consider two cases based on the truth of the proposition $P$.
+
+1. **Case 1: Assume $P$ holds.**
+- In this case, the dependent if-then-else construct $\text{dite } P \, (\lambda x. a) \, B$ simplifies to $a$ because the condition $P$ is true.
+- We need to show that $\text{dite } P \, (\lambda x. a) \, B = a$ is equivalent to $\forall h : \neg P, B(h) = a$.
+- Since $P$ is true, the statement $\forall h : \neg P, B(h) = a$ is vacuously true because there are no proofs of $\neg P$.
+- Therefore, $\text{dite } P \, (\lambda x. a) \, B = a$ is true, and the equivalence holds.
+
+2. **Case 2: Assume $P$ does not hold.**
+- In this case, the dependent if-then-else construct $\text{dite } P \, (\lambda x. a) \, B$ simplifies to $B(h)$ for any proof $h$ of $\neg P$.
+- We need to show that $\text{dite } P \, (\lambda x. a) \, B = a$ is equivalent to $\forall h : \neg P, B(h) = a$.
+- Since $P$ is false, the statement $\text{dite } P \, (\lambda x. a) \, B = a$ simplifies to $B(h) = a$ for any proof $h$ of $\neg P$.
+- Therefore, $\text{dite } P \, (\lambda x. a) \, B = a$ is true if and only if $\forall h : \neg P, B(h) = a$.
+
+In both cases, the equivalence $\text{dite } P \, (\lambda x. a) \, B = a \leftrightarrow \forall h : \neg P, B(h) = a$ holds. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {P : Prop} [Decidable P] {B : ¬ P → α} :
+    dite P (fun _ => a) B = a ↔ ∀ h, B h = a := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.ByCases
+
+
+
+
+example {P : Prop} [Decidable P] {B : ¬ P → α} :
+    dite P (fun _ => a) B = a ↔ ∀ h, B h = a := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.ByCases not found. --
+

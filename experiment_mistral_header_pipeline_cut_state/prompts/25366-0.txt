@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Boolean Value Less Than or Equal to False is False: $x \leq \text{false} \implies x = \text{false}$ : For any boolean value $x$, if $x$ is less than or equal to `false`, then $x$ is equal to `false`, i.e., $x \leq \text{false} \implies x = \text{false}$.
+
+2. **Informal Proof**  
+To prove that for any boolean value $x$, if $x \leq \text{false}$, then $x = \text{false}$, we consider the possible values of $x$. Since $x$ is a boolean value, it can only be either `true` or `false`.
+
+1. If $x = \text{true}$, then $x \leq \text{false}$ would be false, which contradicts our assumption that $x \leq \text{false}$.
+2. Therefore, the only possibility is $x = \text{false}$.
+
+Thus, if $x \leq \text{false}$, it must be that $x = \text{false}$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x : Bool}, x ≤ false → x = false := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x : Bool}, x ≤ false → x = false := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

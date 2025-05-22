@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+Commutativity of Boolean Or: \( x \lor y = y \lor x \) : For any boolean values \( x \) and \( y \), the boolean "or" operation is commutative, i.e., \( x \lor y = y \lor x \).
+
+2. **Informal Proof**  
+To prove the commutativity of the boolean "or" operation, we need to show that for any boolean values \( x \) and \( y \), \( x \lor y = y \lor x \). We can do this by evaluating all possible combinations of \( x \) and \( y \):
+
+1. **Case 1: \( x = \text{true} \) and \( y = \text{true} \)**
+\[
+x \lor y = \text{true} \lor \text{true} = \text{true}
+\]
+\[
+y \lor x = \text{true} \lor \text{true} = \text{true}
+\]
+Thus, \( x \lor y = y \lor x \).
+
+2. **Case 2: \( x = \text{true} \) and \( y = \text{false} \)**
+\[
+x \lor y = \text{true} \lor \text{false} = \text{true}
+\]
+\[
+y \lor x = \text{false} \lor \text{true} = \text{true}
+\]
+Thus, \( x \lor y = y \lor x \).
+
+3. **Case 3: \( x = \text{false} \) and \( y = \text{true} \)**
+\[
+x \lor y = \text{false} \lor \text{true} = \text{true}
+\]
+\[
+y \lor x = \text{true} \lor \text{false} = \text{true}
+\]
+Thus, \( x \lor y = y \lor x \).
+
+4. **Case 4: \( x = \text{false} \) and \( y = \text{false} \)**
+\[
+x \lor y = \text{false} \lor \text{false} = \text{false}
+\]
+\[
+y \lor x = \text{false} \lor \text{false} = \text{false}
+\]
+Thus, \( x \lor y = y \lor x \).
+
+Since all possible cases have been verified, we conclude that for any boolean values \( x \) and \( y \), the boolean "or" operation is commutative, i.e., \( x \lor y = y \lor x \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), (x || y) = (y || x) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (x || y) = (y || x) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

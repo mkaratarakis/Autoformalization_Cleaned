@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Addition Preserves Inequality in Natural Numbers: \(a + b \leq c + d \leftrightarrow a \leq c + (d - b)\) : For any natural numbers \(a\), \(c\), \(b\), and \(d\) such that \(b \leq d\), the inequality \(a + b \leq c + d\) holds if and only if \(a \leq c + (d - b)\).
+
+2. **Informal Proof**  
+We start by using the associativity of addition and subtraction in natural numbers. Given the hypothesis \( b \leq d \), we can rewrite the inequality \( a + b \leq c + d \) as \( a \leq c + (d - b) \). This is because the equation \( a + b \leq c + d \) is equivalent to \( a \leq c + (d - b) \) by the properties of addition and subtraction in natural numbers.
+
+Next, we need to show that \( b \leq c + d \). We use the transitivity of the less-than-or-equal-to relation. Since \( b \leq d \) (by the hypothesis \( h \)) and \( d \leq c + d \) (by the property that adding a non-negative number to another number does not decrease it), we conclude that \( b \leq c + d \).
+
+Therefore, the inequality \( a + b \leq c + d \) holds if and only if \( a \leq c + (d - b) \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a c : Nat) {b d : Nat} (h : b ≤ d) : (a + b ≤ c + d) = (a ≤ c + (d - b)) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example (a c : Nat) {b d : Nat} (h : b ≤ d) : (a + b ≤ c + d) = (a ≤ c + (d - b)) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

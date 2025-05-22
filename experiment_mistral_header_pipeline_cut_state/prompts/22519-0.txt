@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Left Shift of Bitvectors Equals Recursive Left Shift by \( w_2 - 1 \) Bits: \( x <<< y = x.\text{shiftLeftRec}(y, w_2 - 1) \) : For any natural numbers \( w_1 \) and \( w_2 \), and for any bitvectors \( x \) and \( y \) of widths \( w_1 \) and \( w_2 \) respectively, the left shift operation \( x <<< y \) is equal to the recursive left shift operation \( x.\text{shiftLeftRec}(y, w_2 - 1) \). Specifically, \( x <<< y = x.\text{shiftLeftRec}(y, w_2 - 1) \).
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \( w_1 \) and \( w_2 \), and for any bitvectors \( x \) and \( y \) of widths \( w_1 \) and \( w_2 \) respectively, the left shift operation \( x <<< y \) is equal to the recursive left shift operation \( x.\text{shiftLeftRec}(y, w_2 - 1) \).
+
+We consider two cases:
+
+1. **Case 1: \( w_2 = 0 \)**
+- In this case, \( y \) is a bitvector of length 0, which is equal to the zero bitvector \( 0\#0 \).
+- The left shift operation \( x <<< y \) is trivially equal to \( x \) because shifting by 0 bits does not change \( x \).
+- The recursive left shift operation \( x.\text{shiftLeftRec}(y, 0 - 1) \) simplifies to \( x.\text{shiftLeftRec}(y, -1) \), which is also equal to \( x \) by definition.
+- Therefore, \( x <<< y = x.\text{shiftLeftRec}(y, 0 - 1) \).
+
+2. **Case 2: \( w_2 = w_2 + 1 \) for some natural number \( w_2 \)**
+- In this case, we use the definition of the recursive left shift operation \( x.\text{shiftLeftRec}(y, n) \).
+- Specifically, we use the theorem that states \( x.\text{shiftLeftRec}(y, n) = x <<< \text{BitVec.zeroExtend}(w_2, \text{BitVec.truncate}(n + 1, y)) \).
+- Substituting \( n = w_2 \), we get \( x.\text{shiftLeftRec}(y, w_2) = x <<< \text{BitVec.zeroExtend}(w_2, \text{BitVec.truncate}(w_2 + 1, y)) \).
+- Since \( \text{BitVec.zeroExtend}(w_2, \text{BitVec.truncate}(w_2 + 1, y)) \) is equal to \( y \), we have \( x.\text{shiftLeftRec}(y, w_2) = x <<< y \).
+- Therefore, \( x <<< y = x.\text{shiftLeftRec}(y, w_2 - 1) \).
+
+In both cases, we have shown that \( x <<< y = x.\text{shiftLeftRec}(y, w_2 - 1) \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec w₁) (y : BitVec w₂) :
+    x <<< y = shiftLeftRec x y (w₂ - 1) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x : BitVec w₁) (y : BitVec w₂) :
+    x <<< y = shiftLeftRec x y (w₂ - 1) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Maximum of Sums Equals Sum of Maximum in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), the maximum of \(a + b\) and \(a + c\) is equal to \(a + \max(b, c)\), i.e., \(\max(a + b, a + c) = a + \max(b, c)\).
+
+2. **Informal Proof**  
+We start by using the commutativity of addition to rewrite the goal. Specifically, we rewrite \(a + b\) as \(b + a\) and \(a + c\) as \(c + a\). This transforms the goal from \(\max(a + b, a + c) = a + \max(b, c)\) to \(\max(b + a, c + a) = a + \max(b, c)\).
+
+Next, we use the distributive property of the maximum over addition in natural numbers, which states that \(\max(a + c, b + c) = \max(a, b) + c\). Applying this property, we see that \(\max(b + a, c + a) = \max(b, c) + a\).
+
+Thus, the goal \(\max(b + a, c + a) = \max(b, c) + a\) is satisfied, and the proof is complete. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c : Nat) : max (a + b) (a + c) = a + max b c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) : max (a + b) (a + c) = a + max b c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

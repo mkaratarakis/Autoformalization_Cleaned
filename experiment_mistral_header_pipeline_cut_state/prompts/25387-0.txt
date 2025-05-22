@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Boolean to Natural Number Representation is Less Than or Equal to One : For any boolean value \( c \), the natural number representation of \( c \) (i.e., \( \text{Bool.toNat}(c) \)) is less than or equal to 1. Specifically, \(\text{Bool.toNat}(\text{false}) = 0\) and \(\text{Bool.toNat}(\text{true}) = 1\), so both values satisfy \( \text{Bool.toNat}(c) \leq 1 \).
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value \( c \). Specifically, we have two cases: \( c = \text{false} \) and \( c = \text{true} \).
+
+1. **Case 1: \( c = \text{false} \)**
+- We need to show that \( \text{Bool.toNat}(\text{false}) \leq 1 \).
+- By definition, \( \text{Bool.toNat}(\text{false}) = 0 \).
+- Since \( 0 \leq 1 \) is true, this case is straightforward.
+
+2. **Case 2: \( c = \text{true} \)**
+- We need to show that \( \text{Bool.toNat}(\text{true}) \leq 1 \).
+- By definition, \( \text{Bool.toNat}(\text{true}) = 1 \).
+- Since \( 1 \leq 1 \) is true, this case is also straightforward.
+
+Since both cases are true, we conclude that for any boolean value \( c \), \( \text{Bool.toNat}(c) \leq 1 \). This completes the proof.
+
+3. **Formal Theorem**  
+example (c : Bool) : c.toNat ≤ 1 := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (c : Bool) : c.toNat ≤ 1 := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

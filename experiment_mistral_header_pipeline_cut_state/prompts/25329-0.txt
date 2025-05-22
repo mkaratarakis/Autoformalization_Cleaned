@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Associativity of Boolean Not-Equal Function: \((x \neq y) \neq z = x \neq (y \neq z)\) : For any boolean values \( x, y, z \in \text{Bool} \), the boolean not-equal function `!=` is associative, i.e., \((x \neq y) \neq z = x \neq (y \neq z)\).
+
+2. **Informal Proof**  
+To prove the associativity of the boolean not-equal function, we need to show that for all boolean values \(x, y, z \in \text{Bool}\), the equality \((x \neq y) \neq z = x \neq (y \neq z)\) holds. We use a decision procedure to check this equality for all possible combinations of \(x, y, z\). The decision procedure confirms that the equality holds for all combinations of \(x, y, z\). Therefore, the boolean not-equal function is associative. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), ((x != y) != z) = (x != (y != z)) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), ((x != y) != z) = (x != (y != z)) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+If-Then-Else Identity: $(\text{if } p \text{ then } p \text{ else } q) = (\neg p \to q)$ : For any propositions $p$ and $q$, the if-then-else expression `if p then p else q` is equal to the proposition $\neg p \to q$. In other words, if $p$ is true, the expression evaluates to $p$, and if $p$ is false, the expression evaluates to $q$.
+
+2. **Informal Proof**  
+We consider the two possible cases for the decidability of $p$: either $p$ is true or $p$ is false. In each case, we rename the decidability instance to $g$ and simplify the expression using $g$.
+
+1. **Case 1: $p$ is true.**
+- In this case, the if-then-else expression simplifies to $p$.
+- The proposition $\neg p \to q$ simplifies to $\text{True} \to q$, which is equivalent to $q$.
+- Since $p$ is true, the expression evaluates to $p$, and the proposition $\neg p \to q$ evaluates to $q$.
+- Therefore, the if-then-else expression is equal to the proposition $\neg p \to q$.
+
+2. **Case 2: $p$ is false.**
+- In this case, the if-then-else expression simplifies to $q$.
+- The proposition $\neg p \to q$ simplifies to $\text{False} \to q$, which is equivalent to $\text{True}$.
+- Since $p$ is false, the expression evaluates to $q$, and the proposition $\neg p \to q$ evaluates to $\text{True}$.
+- Therefore, the if-then-else expression is equal to the proposition $\neg p \to q$.
+
+In both cases, the if-then-else expression is equal to the proposition $\neg p \to q$. Hence, we have shown that $(\text{if } p \text{ then } p \text{ else } q) = (\neg p \to q)$.
+
+3. **Formal Theorem**  
+example (p q : Prop) [h : Decidable p] : (if p then p else q) = (¬p → q) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example (p q : Prop) [h : Decidable p] : (if p then p else q) = (¬p → q) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

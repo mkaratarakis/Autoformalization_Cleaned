@@ -1,0 +1,30 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:8:27: error: unknown tactic
+tmp.lean:7:45: error: unsolved goals
+case false.false
+⊢ ((false == false) = true) = (false = false)
+
+case false.true
+⊢ ((false == true) = true) = (false = true)
+
+case true.false
+⊢ ((true == false) = true) = (true = false)
+
+case true.true
+⊢ ((true == true) = true) = (true = true)
+tmp.lean:7:45: error: unsolved goals
+a b : Bool
+⊢ ((a == b) = true) = (a = b)
+a b : Bool
+⊢ ((a == b) = true) = (a = b)
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (a b : Bool) : (a == b) = (a = b) := by

@@ -1,0 +1,71 @@
+
+1. **Informal Theorem**  
+Accessibility of Lexicographic Order on Dependent Pair Type: \(\text{Acc}(\text{Lex}(r, s)) \langle a, b \rangle\) : For any types \(\alpha\) and \(\beta\) where \(\beta\) is a family of types indexed by \(\alpha\), and for any relations \(r\) on \(\alpha\) and \(s\) on \(\beta a\) for each \(a \in \alpha\), if \(a\) is accessible under \(r\) and for every \(a \in \alpha\), the relation \(s a\) is well-founded, then for any \(b \in \beta a\), the dependent pair \(\langle a, b \rangle\) is accessible under the lexicographic order \(\text{Lex}(r, s)\).
+
+2. **Informal Proof**  
+We need to show that for any \(a \in \alpha\) and \(b \in \beta a\), the dependent pair \(\langle a, b \rangle\) is accessible under the lexicographic order \(\text{Lex}(r, s)\).
+
+1. **Base Case:**
+- We perform induction on the accessibility of \(a\) under the relation \(r\). For the base case, we introduce a new element \(xa\) and the induction hypothesis `iha` which states that for any \(y\) such that \(r y xa\), the dependent pair \(\langle y, b \rangle\) is accessible under the lexicographic order.
+- We also perform induction on the well-foundedness of the relation \(s\) at \(xa\). For the base case, we introduce a new element \(xb\) and the induction hypothesis `ihb` which states that for any \(y\) such that \(s xa y xb\), the dependent pair \(\langle xa, y \rangle\) is accessible under the lexicographic order.
+
+2. **Inductive Step:**
+- To show that the dependent pair \(\langle xa, xb \rangle\) is accessible under the lexicographic order, we use the constructor `Acc.intro`. This means we need to show that for any pair \(\langle y, z \rangle\) such that \(\text{Lex}(r, s) \langle y, z \rangle \langle xa, xb \rangle\), the pair \(\langle y, z \rangle\) is accessible under the lexicographic order.
+- We introduce a new pair \(p\) and the assumption `lt` that \(\text{Lex}(r, s) p \langle xa, xb \rangle\). We need to show that \(p\) is accessible under the lexicographic order.
+
+3. **Case Analysis:**
+- **Case 1: \(\text{Lex}(r, s) \langle y, z \rangle \langle xa, xb \rangle\) is determined by the first component:**
+- We use the induction hypothesis `iha` to show that the dependent pair \(\langle y, b \rangle\) is accessible under the lexicographic order. Since the hypothesis `iha` already provides the necessary condition, this case is immediately resolved.
+- **Case 2: \(\text{Lex}(r, s) \langle y, z \rangle \langle xa, xb \rangle\) is determined by the second component:**
+- We use the induction hypothesis `ihb` to show that the dependent pair \(\langle xa, y \rangle\) is accessible under the lexicographic order. Since the hypothesis `ihb` already provides the necessary condition, this case is immediately resolved.
+
+Thus, we have shown that for any \(a \in \alpha\) and \(b \in \beta a\), the dependent pair \(\langle a, b \rangle\) is accessible under the lexicographic order \(\text{Lex}(r, s)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a} (aca : Acc r a) (acb : (a : α) → WellFounded (s a)) (b : β a) : Acc (Lex r s) ⟨a, b⟩ := by sorry
+
+4. **Prefix**
+import Init.SizeOf
+import Init.Data.Nat.Basic
+import Init.WF
+
+open PSigma
+variable {α : Sort u} {r : α → α → Prop}
+variable {α : Sort u} {r : α → α → Prop} (hwf : WellFounded r)
+variable {C : α → Sort v}
+variable (F : ∀ x, (∀ y, r y x → C y) → C x)
+variable (F : ∀ x, (∀ y, r y x → C y) → C x)
+variable {α : Sort u} {C : α → Sort v} {r : α → α → Prop}
+open WellFounded
+variable {α : Sort u} {r q : α → α → Prop}
+variable {α : Sort u} {β : Sort v} {r : β → β → Prop}
+open Relation
+open WellFounded
+variable {α : Type u} {β : Type v}
+variable  (ra  : α → α → Prop)
+variable  (rb  : β → β → Prop)
+variable  (ra  : α → α → Prop)
+variable  (rb  : β → β → Prop)
+variable  (rb  : β → β → Prop)
+variable {α : Type u} {β : Type v}
+variable {ra  : α → α → Prop} {rb  : β → β → Prop}
+variable {ra  : α → α → Prop} {rb  : β → β → Prop}
+variable {α : Sort u} {β : α → Sort v}
+variable  (r  : α → α → Prop)
+variable  (s  : ∀ a, β a → β a → Prop)
+variable  (r  : α → α → Prop)
+variable  (s  : ∀ a, β a → β a → Prop)
+variable  (s  : ∀ a, β a → β a → Prop)
+variable {α : Sort u} {β : α → Sort v}
+variable {r  : α → α → Prop} {s : ∀ (a : α), β a → β a → Prop}
+variable {r  : α → α → Prop} {s : ∀ (a : α), β a → β a → Prop}
+
+example {a} (aca : Acc r a) (acb : (a : α) → WellFounded (s a)) (b : β a) : Acc (Lex r s) ⟨a, b⟩ := by
+
+5. **Header Information**  
+-- Init.SizeOf not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.WF not found. --
+

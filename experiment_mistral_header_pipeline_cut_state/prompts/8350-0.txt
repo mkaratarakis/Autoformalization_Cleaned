@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Boolean Equality Preservation: \(a = b \leftrightarrow c = d \implies a == b \leftrightarrow c == d\) : For any natural numbers \(a\), \(b\), \(c\), and \(d\), if the equality \(a = b\) is equivalent to the equality \(c = d\), then the boolean equality \(a == b\) is equivalent to the boolean equality \(c == d\).
+
+2. **Informal Proof**  
+We start with the given hypothesis that the equality \(a = b\) is equivalent to the equality \(c = d\), i.e., \((a = b) = (c = d)\). We need to show that the boolean equality \(a == b\) is equivalent to the boolean equality \(c == d\), i.e., \((a == b) = (c == d)\).
+
+Using the fact that the boolean equality \(a == b\) is equivalent to the boolean value obtained by deciding the proposition \(a = b\) (i.e., \(a == b = \text{decide}(a = b)\)), we can rewrite the goal as \(\text{decide}(a = b) = \text{decide}(c = d)\).
+
+Given the hypothesis \((a = b) = (c = d)\), it follows that \(\text{decide}(a = b) = \text{decide}(c = d)\) because the decision function \(\text{decide}\) is a function that maps equal propositions to equal boolean values. Therefore, \((a == b) = (c == d)\) holds true.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b c d : Nat} (p : (a = b) = (c = d)) : (a == b) = (c == d) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example {a b c d : Nat} (p : (a = b) = (c = d)) : (a == b) = (c == d) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

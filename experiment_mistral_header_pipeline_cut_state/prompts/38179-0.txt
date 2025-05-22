@@ -1,0 +1,62 @@
+
+1. **Informal Theorem**  
+Length of String After Appending a Character: \(\text{length}(s \text{.push } c) = \text{length}(s) + 1\) : For any string \( s \) and any character \( c \), the length of the string obtained by appending \( c \) to \( s \) is equal to the length of \( s \) plus 1. Formally, this can be written as:
+\[
+\text{length}(s \text{.push } c) = \text{length}(s) + 1
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the `String.push` function. The function `String.push` appends a character \( c \) to the end of a string \( s \), resulting in a new string \( s ++ [c] \). Therefore, the length of the new string \( s \text{.push } c \) is the length of the concatenated list \( s.data ++ [c] \).
+
+Next, we use the fact that the length of a string constructed from a list of characters is equal to the length of the list. This means that the length of the string \( s \text{.push } c \) is the length of the list \( s.data ++ [c] \).
+
+Using the property of the length of concatenated lists, we have:
+\[
+\text{length}(s.data ++ [c]) = \text{length}(s.data) + \text{length}([c])
+\]
+
+Since the length of a singleton list \([c]\) is 1, we can rewrite the equation as:
+\[
+\text{length}(s.data ++ [c]) = \text{length}(s.data) + 1
+\]
+
+We know that the length of the string \( s \) is equal to the length of the list \( s.data \), so:
+\[
+\text{length}(s.data) = \text{length}(s)
+\]
+
+Substituting this into the equation, we get:
+\[
+\text{length}(s.data ++ [c]) = \text{length}(s) + 1
+\]
+
+Finally, using the injectivity of the successor function, we conclude that:
+\[
+\text{length}(s \text{.push } c) = \text{length}(s) + 1
+\]
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (c : Char) : (String.push s c).length = s.length + 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Basic
+import Init.Data.Char.Basic
+import Init.Data.Option.Basic
+import Init.Data.String.Basic
+
+open String
+
+
+example (c : Char) : (String.push s c).length = s.length + 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Basic not found. --
+
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.Option.Basic not found. --
+
+-- Init.Data.String.Basic not found. --
+

@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+ZipWith of Replicated Elements : For any types `α`, `β`, and `α₁`, a function `f : α → β → α₁`, elements `a : α` and `b : β`, and a natural number `n`, the result of zipping two lists created by replicating `a` and `b` `n` times with the function `f` is equivalent to replicating the result of applying `f` to `a` and `b` `n` times. Specifically, `zipWith f (replicate n a) (replicate n b) = replicate n (f a b)`.
+
+2. **Informal Proof**  
+We prove this by induction on \( n \).
+
+**Base Case:**
+For \( n = 0 \), we need to show:
+\[ \text{zipWith } f \, (\text{replicate } 0 \, a) \, (\text{replicate } 0 \, b) = \text{replicate } 0 \, (f \, a \, b) \]
+Since both sides of the equation are empty lists, the equality holds trivially by the reflexive property of equality.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some natural number \( k \):
+\[ \text{zipWith } f \, (\text{replicate } k \, a) \, (\text{replicate } k \, b) = \text{replicate } k \, (f \, a \, b) \]
+We need to show that:
+\[ \text{zipWith } f \, (\text{replicate } (k + 1) \, a) \, (\text{replicate } (k + 1) \, b) = \text{replicate } (k + 1) \, (f \, a \, b) \]
+Using the definition of `replicate`, we have:
+\[ \text{replicate } (k + 1) \, a = a :: \text{replicate } k \, a \]
+\[ \text{replicate } (k + 1) \, b = b :: \text{replicate } k \, b \]
+Applying the definition of `zipWith`, we get:
+\[ \text{zipWith } f \, (a :: \text{replicate } k \, a) \, (b :: \text{replicate } k \, b) = f \, a \, b :: \text{zipWith } f \, (\text{replicate } k \, a) \, (\text{replicate } k \, b) \]
+By the inductive hypothesis, we know:
+\[ \text{zipWith } f \, (\text{replicate } k \, a) \, (\text{replicate } k \, b) = \text{replicate } k \, (f \, a \, b) \]
+Thus, we have:
+\[ f \, a \, b :: \text{replicate } k \, (f \, a \, b) = \text{replicate } (k + 1) \, (f \, a \, b) \]
+This completes the inductive step.
+
+By induction, the theorem holds for all natural numbers \( n \). Therefore, the result is:
+\[ \text{zipWith } f \, (\text{replicate } n \, a) \, (\text{replicate } n \, b) = \text{replicate } n \, (f \, a \, b) \]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a : α} {b : β} {n : Nat} :
+    zipWith f (replicate n a) (replicate n b) = replicate n (f a b) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {a : α} {b : β} {n : Nat} :
+    zipWith f (replicate n a) (replicate n b) = replicate n (f a b) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

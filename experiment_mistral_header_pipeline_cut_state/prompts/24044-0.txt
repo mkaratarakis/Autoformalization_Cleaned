@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+LCM Divides Common Multiple: \(\text{lcm}(m, n) \mid k\) if \( m \mid k \) and \( n \mid k \) : For any natural numbers \( m \), \( n \), and \( k \), if \( m \mid k \) and \( n \mid k \), then \( \text{lcm}(m, n) \mid k \).
+
+2. **Informal Proof**  
+We need to show that if \( m \mid k \) and \( n \mid k \), then \( \text{lcm}(m, n) \mid k \).
+
+1. **Case \( k = 0 \):**
+- If \( k = 0 \), then \( \text{lcm}(m, n) \mid 0 \) is trivially true because any natural number divides 0.
+
+2. **Case \( k > 0 \):**
+- Assume \( k > 0 \). We need to show that \( \text{lcm}(m, n) \mid k \).
+- Since \( m \mid k \) and \( k > 0 \), we have \( m > 0 \). Similarly, \( n > 0 \).
+- We use the property that \( \gcd(m, n) \cdot \text{lcm}(m, n) = m \cdot n \).
+- We also use the property that \( \gcd(m \cdot k, n \cdot k) = \gcd(m, n) \cdot k \).
+- By the commutativity of multiplication, \( n \cdot k = k \cdot n \).
+- Therefore, our goal is to show that \( m \cdot n \mid (m \cdot k) \gcd (k \cdot n) \).
+- Since \( m \mid k \) and \( n \mid k \), we have \( m \cdot n \mid (m \cdot k) \) and \( n \cdot m \mid (k \cdot n) \).
+- Thus, \( m \cdot n \) divides the greatest common divisor of \( m \cdot k \) and \( k \cdot n \), which is \( \gcd(m \cdot k, k \cdot n) \).
+- Therefore, \( \text{lcm}(m, n) \mid k \).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n k : Nat} (H1 : m ∣ k) (H2 : n ∣ k) : lcm m n ∣ k := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example {m n k : Nat} (H1 : m ∣ k) (H2 : n ∣ k) : lcm m n ∣ k := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Gcd not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Lcm not found. --
+

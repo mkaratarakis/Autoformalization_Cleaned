@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Element at Index in Zipped List is `some` if and only if Corresponding Elements are `some`: \((l_1 \text{ zip } l_2)[i]? = \text{some } z \leftrightarrow l_1[i]? = \text{some } z.1 \, \land \, l_2[i]? = \text{some } z.2\) : For any types \( \alpha \) and \( \beta \), and for any lists \( l_1 : \text{List } \alpha \) and \( l_2 : \text{List } \beta \), and for any pair \( z : \alpha \times \beta \), and for any natural number \( i \), the following holds:
+\[
+(l_1 \text{ zip } l_2)[i]? = \text{some } z \quad \text{if and only if} \quad l_1[i]? = \text{some } z.1 \, \land \, l_2[i]? = \text{some } z.2
+\]
+This means that the optional element at index \( i \) in the list obtained by zipping \( l_1 \) and \( l_2 \) is `some z` if and only if the optional elements at index \( i \) in \( l_1 \) and \( l_2 \) are `some z.1` and `some z.2`, respectively.
+
+2. **Informal Proof**  
+We start by considering every possible case of the pair \( z \). Let \( z = (a, b) \) where \( a \in \alpha \) and \( b \in \beta \).
+
+Using the definition of the `zip` function and the theorem that the optional element at index \( i \) in the `zipWith` list is `some z` if and only if the corresponding elements in the original lists are `some x` and `some y` and the function applied to them equals \( z \), we can rewrite the goal. This reduces our goal to proving:
+\[
+(\exists x y, l_1[i]? = \text{some } x \land l_2[i]? = \text{some } y \land (x, y) = (a, b)) \leftrightarrow l_1[i]? = \text{some } a \land l_2[i]? = \text{some } b
+\]
+
+We will prove this equivalence by constructing both directions of the implication.
+
+1. **(\(\rightarrow\))**:
+Let \( x \in \alpha \) and \( y \in \beta \) be such that \( l_1[i]? = \text{some } x \), \( l_2[i]? = \text{some } y \), and \( (x, y) = (a, b) \). We need to show that \( l_1[i]? = \text{some } a \) and \( l_2[i]? = \text{some } b \).
+
+Using the hypotheses \( l_1[i]? = \text{some } x \) and \( l_2[i]? = \text{some } y \), and the fact that \( (x, y) = (a, b) \), we have \( x = a \) and \( y = b \). Therefore, \( l_1[i]? = \text{some } a \) and \( l_2[i]? = \text{some } b \) hold.
+
+2. **(\(\leftarrow\))**:
+Let \( l_1[i]? = \text{some } a \) and \( l_2[i]? = \text{some } b \). We need to show that there exist \( x \) and \( y \) such that \( l_1[i]? = \text{some } x \), \( l_2[i]? = \text{some } y \), and \( (x, y) = (a, b) \).
+
+We can take \( x = a \) and \( y = b \). By the hypotheses \( l_1[i]? = \text{some } a \) and \( l_2[i]? = \text{some } b \), and the fact that \( (a, b) = (a, b) \) by reflexivity, the goal is exactly proved.
+
+Thus, we have shown both directions of the equivalence, completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (l₁ : List α) (l₂ : List β) (z : α × β) (i : Nat) :
+    (zip l₁ l₂)[i]? = some z ↔ l₁[i]? = some z.1 ∧ l₂[i]? = some z.2 := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example (l₁ : List α) (l₂ : List β) (z : α × β) (i : Nat) :
+    (zip l₁ l₂)[i]? = some z ↔ l₁[i]? = some z.1 ∧ l₂[i]? = some z.2 := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

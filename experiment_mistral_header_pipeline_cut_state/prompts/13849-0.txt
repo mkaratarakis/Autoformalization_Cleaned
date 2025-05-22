@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+List to Array Conversion is Invertible: \((\text{List.toArray } as).data = as\) : For any list \( as \) of elements of type \( \alpha \), the list obtained by converting the array back to a list after converting the list to an array is equal to the original list \( as \). In other words, \((\text{List.toArray } as).data = as\).
+
+2. **Informal Proof**  
+To prove that \((\text{List.toArray } as).data = as\), we use the definitions of the functions involved:
+- `List.toArray` converts a list to an array.
+- `Array.mkEmpty` creates an empty array of a given type.
+
+By applying these definitions, we can simplify the expression \((\text{List.toArray } as).data\) to \( as \). This simplification shows that the list obtained by converting the array back to a list is indeed the original list \( as \). Therefore, the proposition \((\text{List.toArray } as).data = as\) holds true. This completes the proof.
+
+3. **Formal Theorem**  
+example (as : List α) : as.toArray.data = as := by sorry
+
+4. **Prefix**
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Fin.Basic
+import Init.Data.UInt.Basic
+import Init.Data.Repr
+import Init.Data.ToString.Basic
+import Init.GetElem
+import Init.Data.Array.Basic
+
+open Array
+variable {α : Type u}
+
+example (as : List α) : as.toArray.data = as := by
+
+5. **Header Information**  
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Fin.Basic not found. --
+
+-- Init.Data.UInt.Basic not found. --
+
+-- Init.Data.Repr not found. --
+
+-- Init.Data.ToString.Basic not found. --
+
+-- Init.GetElem not found. --
+
+-- Init.Data.Array.Basic not found. --
+

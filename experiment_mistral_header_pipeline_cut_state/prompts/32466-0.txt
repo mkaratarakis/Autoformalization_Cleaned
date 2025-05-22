@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Power of Sum Equals Product of Powers in Natural Numbers : For any natural numbers \(a\), \(m\), and \(n\), the power of \(a\) raised to the sum of \(m\) and \(n\) is equal to the product of \(a\) raised to \(n\) and \(a\) raised to \(m\), i.e., \(a^{m + n} = a^n \cdot a^m\).
+
+2. **Informal Proof**  
+To prove that \(a^{m + n} = a^n \cdot a^m\) for any natural numbers \(a\), \(m\), and \(n\), we start by using the theorem that the power of a sum is equal to the product of the powers, but in the reverse direction. This theorem states that \(a^{m + n} = a^m \cdot a^n\). By applying this theorem, we rewrite the goal as \(a^{m + n} = a^{n + m}\).
+
+Next, we use the commutativity of addition, which states that \(m + n = n + m\). This allows us to further simplify the goal to \(a^{n + m} = a^{n + m}\). Since the left-hand side and the right-hand side are identical, the goal is trivially true. Therefore, we have shown that \(a^{m + n} = a^n \cdot a^m\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a m n : Nat) : a ^ (m + n) = a ^ n * a ^ m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a m n : Nat) : a ^ (m + n) = a ^ n * a ^ m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

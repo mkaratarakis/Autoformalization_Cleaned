@@ -1,0 +1,38 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:25: error: unknown constant 'List.max?_eq_none.mpr'
+tmp.lean:9:2: error: unsolved goals
+case mp.cons
+α : Type u_1
+inst✝ : Max α
+head✝ : α
+tail✝ : List α
+h : (head✝ :: tail✝).max? = none
+⊢ head✝ :: tail✝ = []
+tmp.lean:7:60: error: unsolved goals
+case mpr
+α : Type u_1
+xs : List α
+inst✝ : Max α
+⊢ xs = [] → xs.max? = none
+case mp.cons
+α : Type u_1
+inst✝ : Max α
+head✝ : α
+tail✝ : List α
+h : (head✝ :: tail✝).max? = none
+⊢ head✝ :: tail✝ = []
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.List.Lemmas
+import Init.Data.List.MinMax
+
+open List
+open Nat
+
+example {xs : List α} [Max α] : xs.max? = none ↔ xs = [] := by
+  constructor
+  · intro h
+    cases xs
+    · exact rfl

@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Boolean Value is Either False or True : For any boolean value \( b \), the disjunction \( b = \text{false} \lor b = \text{true} \) is always true, i.e., \( b = \text{false} \lor b = \text{true} \leftrightarrow \text{True} \).
+
+2. **Informal Proof**  
+We need to show that for any boolean value \( b \), the disjunction \( b = \text{false} \lor b = \text{true} \) is always true. Since a boolean value can only be either \(\text{false}\) or \(\text{true}\), the disjunction \( b = \text{false} \lor b = \text{true} \) is always true. Therefore, the statement \( b = \text{false} \lor b = \text{true} \leftrightarrow \text{True} \) holds. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(b : Bool), (b = false ∨ b = true) ↔ True := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(b : Bool), (b = false ∨ b = true) ↔ True := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

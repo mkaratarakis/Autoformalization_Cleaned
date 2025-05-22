@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Positive \( k \) from \( n < k + n \) in Natural Numbers : For any natural numbers \( n \) and \( k \), if \( n < k + n \), then \( 0 < k \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the given inequality \( n < k + n \). By the commutativity of addition, we can rewrite this inequality as \( n < n + k \). We then use the known result that if \( n < n + k \), then \( 0 < k \). Therefore, we conclude that \( 0 < k \). This completes the proof.
+
+3. **Formal Theorem**  
+example : n < k + n → 0 < k := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example : n < k + n → 0 < k := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

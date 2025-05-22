@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Zero is Less Than Nonzero Natural Numbers : For any natural number \( a \), if \( a \neq 0 \), then \( 0 < a \).
+
+2. **Informal Proof**  
+We need to show that for any natural number \( a \), if \( a \neq 0 \), then \( 0 < a \).
+
+1. **Case 1: \( a = 0 \)**
+- Assume \( a = 0 \).
+- This contradicts our assumption that \( a \neq 0 \).
+- Therefore, this case is impossible.
+
+2. **Case 2: \( a = a' + 1 \) for some natural number \( a' \)**
+- Assume \( a = a' + 1 \).
+- We need to show that \( 0 < a \).
+- By the properties of natural numbers, we know that \( 0 < a' + 1 \) for any natural number \( a' \).
+- Therefore, \( 0 < a \).
+
+Since the only possible case is \( a = a' + 1 \) and in this case \( 0 < a \), we conclude that for any natural number \( a \), if \( a \neq 0 \), then \( 0 < a \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a : Nat} (h : a ≠ 0) : 0 < a := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {a : Nat} (h : a ≠ 0) : 0 < a := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Count of Element in List After Erasing Itself Decreases by One : For any list \( l \) of elements of type \( \alpha \) and any element \( a \in \alpha \), the number of occurrences of \( a \) in the list obtained by erasing the first occurrence of \( a \) from \( l \) is equal to the number of occurrences of \( a \) in \( l \) minus 1. Formally, for any \( a \in \alpha \) and list \( l \):
+\[ \text{count}(a, \text{erase}(a, l)) = \text{count}(a, l) - 1 \]
+
+2. **Informal Proof**  
+We start by using the theorem that the count of an element \( a \) in a list \( l \) after erasing another element \( b \) is equal to the count of \( a \) in \( l \) minus 1 if \( a = b \), and equal to the count of \( a \) in \( l \) otherwise. This theorem simplifies our goal to:
+\[ \text{count}(a, l) - \text{if } (a == a) = \text{true} \text{ then } 1 \text{ else } 0 = \text{count}(a, l) - 1 \]
+
+Since the boolean equality \( a == a \) is true, the if-then-else expression \(\text{if } (a == a) = \text{true} \text{ then } 1 \text{ else } 0\) simplifies to 1. Therefore, our goal becomes:
+\[ \text{count}(a, l) - 1 = \text{count}(a, l) - 1 \]
+
+This equality is trivially true by the properties of equality. Hence, the number of occurrences of \( a \) in the list obtained by erasing the first occurrence of \( a \) from \( l \) is indeed equal to the number of occurrences of \( a \) in \( l \) minus 1. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : α) (l : List α) :
+    count a (List.erase l a) = count a l - 1 := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+variable [LawfulBEq α]
+
+example (a : α) (l : List α) :
+    count a (List.erase l a) = count a l - 1 := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

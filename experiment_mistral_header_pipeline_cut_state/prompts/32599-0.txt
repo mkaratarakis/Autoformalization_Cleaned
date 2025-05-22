@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Boolean AND with True Equals the Original Boolean Value : For any boolean value $b$, the boolean "and" operation between $b$ and `true` is equal to $b$, i.e., $b \land \text{true} = b$.
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value $b$.
+
+1. **Case 1: $b = \text{false}$**
+- We need to show that $(\text{false} \land \text{true}) = \text{false}$.
+- The left-hand side $(\text{false} \land \text{true})$ is definitionally equal to $\text{false}$.
+- Therefore, the equality $(\text{false} \land \text{true}) = \text{false}$ holds.
+
+2. **Case 2: $b = \text{true}$**
+- We need to show that $(\text{true} \land \text{true}) = \text{true}$.
+- The left-hand side $(\text{true} \land \text{true})$ is definitionally equal to $\text{true}$.
+- Therefore, the equality $(\text{true} \land \text{true}) = \text{true}$ holds.
+
+Since both cases are covered and the equality holds in each case, we conclude that for any boolean value $b$, the boolean "and" operation between $b$ and `true` is equal to $b$. This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) : (b && true) = b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (b && true) = b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

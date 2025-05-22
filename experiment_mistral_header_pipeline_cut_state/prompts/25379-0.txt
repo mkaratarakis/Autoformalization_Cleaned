@@ -1,0 +1,98 @@
+
+1. **Informal Theorem**  
+Left Distributive Property of OR over AND in Boolean Logic: $(x \lor y) \land z = (x \land z) \lor (y \land z)$ : For any boolean values $x$, $y$, and $z$, the expression $(x \lor y) \land z$ is equal to $(x \land z) \lor (y \land z)$. This theorem demonstrates the left distributive property of the boolean "or" operation over the boolean "and" operation.
+
+2. **Informal Proof**  
+To prove the distributive property, we consider all possible boolean values for $x$, $y$, and $z$. We evaluate the expression $(x \lor y) \land z$ and $(x \land z) \lor (y \land z)$ for each combination of $x$, $y$, and $z$:
+
+1. **Case 1: $x = \text{true}$, $y = \text{true}$, $z = \text{true}$**
+\[
+(x \lor y) \land z = (\text{true} \lor \text{true}) \land \text{true} = \text{true} \land \text{true} = \text{true}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{true} \land \text{true}) \lor (\text{true} \land \text{true}) = \text{true} \lor \text{true} = \text{true}
+\]
+Both expressions are equal.
+
+2. **Case 2: $x = \text{true}$, $y = \text{true}$, $z = \text{false}$**
+\[
+(x \lor y) \land z = (\text{true} \lor \text{true}) \land \text{false} = \text{true} \land \text{false} = \text{false}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{true} \land \text{false}) \lor (\text{true} \land \text{false}) = \text{false} \lor \text{false} = \text{false}
+\]
+Both expressions are equal.
+
+3. **Case 3: $x = \text{true}$, $y = \text{false}$, $z = \text{true}$**
+\[
+(x \lor y) \land z = (\text{true} \lor \text{false}) \land \text{true} = \text{true} \land \text{true} = \text{true}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{true} \land \text{true}) \lor (\text{false} \land \text{true}) = \text{true} \lor \text{false} = \text{true}
+\]
+Both expressions are equal.
+
+4. **Case 4: $x = \text{true}$, $y = \text{false}$, $z = \text{false}$**
+\[
+(x \lor y) \land z = (\text{true} \lor \text{false}) \land \text{false} = \text{true} \land \text{false} = \text{false}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{true} \land \text{false}) \lor (\text{false} \land \text{false}) = \text{false} \lor \text{false} = \text{false}
+\]
+Both expressions are equal.
+
+5. **Case 5: $x = \text{false}$, $y = \text{true}$, $z = \text{true}$**
+\[
+(x \lor y) \land z = (\text{false} \lor \text{true}) \land \text{true} = \text{true} \land \text{true} = \text{true}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{false} \land \text{true}) \lor (\text{true} \land \text{true}) = \text{false} \lor \text{true} = \text{true}
+\]
+Both expressions are equal.
+
+6. **Case 6: $x = \text{false}$, $y = \text{true}$, $z = \text{false}$**
+\[
+(x \lor y) \land z = (\text{false} \lor \text{true}) \land \text{false} = \text{true} \land \text{false} = \text{false}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{false} \land \text{false}) \lor (\text{true} \land \text{false}) = \text{false} \lor \text{false} = \text{false}
+\]
+Both expressions are equal.
+
+7. **Case 7: $x = \text{false}$, $y = \text{false}$, $z = \text{true}$**
+\[
+(x \lor y) \land z = (\text{false} \lor \text{false}) \land \text{true} = \text{false} \land \text{true} = \text{false}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{false} \land \text{true}) \lor (\text{false} \land \text{true}) = \text{false} \lor \text{false} = \text{false}
+\]
+Both expressions are equal.
+
+8. **Case 8: $x = \text{false}$, $y = \text{false}$, $z = \text{false}$**
+\[
+(x \lor y) \land z = (\text{false} \lor \text{false}) \land \text{false} = \text{false} \land \text{false} = \text{false}
+\]
+\[
+(x \land z) \lor (y \land z) = (\text{false} \land \text{false}) \lor (\text{false} \land \text{false}) = \text{false} \lor \text{false} = \text{false}
+\]
+Both expressions are equal.
+
+Since the expressions $(x \lor y) \land z$ and $(x \land z) \lor (y \land z)$ are equal for all possible boolean values of $x$, $y$, and $z$, the distributive property holds. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), (x || y && z) = ((x || y) && (x || z)) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), (x || y && z) = ((x || y) && (x || z)) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

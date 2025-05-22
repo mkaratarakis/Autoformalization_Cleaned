@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+All Elements in TakeWhile Satisfy Predicate: \((\text{takeWhile } p \, l). \text{all } p = \text{true}\) : For any list \( l \) of elements of type \( \alpha \) and a predicate \( p : \alpha \to \text{Bool} \), the longest initial segment of \( l \) that satisfies \( p \) has all elements satisfying \( p \). In other words, if \( \text{takeWhile } p \, l \) is the longest initial segment of \( l \) for which \( p \) returns `true`, then every element in \( \text{takeWhile } p \, l \) satisfies \( p \).
+
+2. **Informal Proof**  
+We prove this by induction on the list \( l \).
+
+1. **Base Case: \( l \) is empty.**
+- If \( l \) is empty, then the longest initial segment of \( l \) that satisfies \( p \) is also empty. The empty list trivially satisfies the property that all elements satisfy \( p \). Therefore, the goal is trivially true due to the reflexive property.
+
+2. **Inductive Step: \( l \) is non-empty.**
+- Let \( l = h :: t \) for some head element \( h \) and tail list \( t \). We need to show that the longest initial segment of \( l \) that satisfies \( p \) has all elements satisfying \( p \). We split the proof into two cases based on whether \( p(h) \) is true or false.
+
+- **Case 1: \( p(h) \) is true.**
+- If \( p(h) \) is true, then \( h \) is included in the longest initial segment of \( l \) that satisfies \( p \). By the inductive hypothesis, the longest initial segment of \( t \) that satisfies \( p \) has all elements satisfying \( p \). Therefore, the longest initial segment of \( l \) that satisfies \( p \) is \( h \) followed by the longest initial segment of \( t \) that satisfies \( p \). Since both \( h \) and the elements in the longest initial segment of \( t \) satisfy \( p \), the entire segment satisfies \( p \). This simplifies the goal to a trivially true statement.
+
+- **Case 2: \( p(h) \) is false.**
+- If \( p(h) \) is false, then \( h \) is not included in the longest initial segment of \( l \) that satisfies \( p \). Therefore, the longest initial segment of \( l \) that satisfies \( p \) is the same as the longest initial segment of \( t \) that satisfies \( p \). By the inductive hypothesis, the longest initial segment of \( t \) that satisfies \( p \) has all elements satisfying \( p \). This simplifies the goal to a trivially true statement.
+
+By induction, the theorem holds for all lists \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} : (l.takeWhile p).all p = true := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} : (l.takeWhile p).all p = true := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

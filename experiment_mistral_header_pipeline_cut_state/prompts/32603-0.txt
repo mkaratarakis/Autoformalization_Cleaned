@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Dependent If-Then-Else Construct Congruence: \( \text{dite}(b, x_1, y) = \text{dite}(c, u, v) \) if \( b = c \) and \( x_1 = u \) and \( y = v \) : For any propositions \( b \) and \( c \), and any type \( \alpha \), if \( b \) is decidable and \( c \) is decidable, and if there are functions \( x_1 : b \to \alpha \), \( u : c \to \alpha \), \( y : \neg b \to \alpha \), and \( v : \neg c \to \alpha \), then the following holds:
+- If \( b = c \),
+- and for all \( h : c \), \( x_1(h) = u(h) \),
+- and for all \( h : \neg c \), \( y(h) = v(h) \),
+then the dependent if-then-else construct \( \text{dite}(b, x_1, y) \) is equal to \( \text{dite}(c, u, v) \).
+
+2. **Informal Proof**  
+We need to show that \( \text{dite}(b, x_1, y) = \text{dite}(c, u, v) \) under the given conditions. We consider two cases based on the truth value of \( c \).
+
+1. **Case 1: \( c \) is true.**
+- By the property of the dependent if-then-else construct, if \( c \) is true, then \( \text{dite}(c, u, v) = u(h) \) for any proof \( h \) of \( c \).
+- Since \( b = c \), we can substitute \( b \) with \( c \) in the goal. Therefore, \( \text{dite}(b, x_1, y) = \text{dite}(c, x_1, y) \).
+- By the same property, \( \text{dite}(c, x_1, y) = x_1(h) \).
+- By the hypothesis \( h_2 \), \( x_1(h) = u(h) \).
+- Therefore, \( \text{dite}(b, x_1, y) = u(h) \), which is equal to \( \text{dite}(c, u, v) \).
+
+2. **Case 2: \( c \) is false.**
+- By the property of the dependent if-then-else construct, if \( c \) is false, then \( \text{dite}(c, u, v) = v(h) \) for any proof \( h \) of \( \neg c \).
+- Since \( b = c \), we can substitute \( b \) with \( c \) in the goal. Therefore, \( \text{dite}(b, x_1, y) = \text{dite}(c, x_1, y) \).
+- By the same property, \( \text{dite}(c, x_1, y) = y(h) \).
+- By the hypothesis \( h_3 \), \( y(h) = v(h) \).
+- Therefore, \( \text{dite}(b, x_1, y) = v(h) \), which is equal to \( \text{dite}(c, u, v) \).
+
+In both cases, we have shown that \( \text{dite}(b, x_1, y) = \text{dite}(c, u, v) \). Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example {_ : Decidable b} [Decidable c]
+    {x : b → α} {u : c → α} {y : ¬b → α} {v : ¬c → α}
+    (h₁ : b = c)
+    (h₂ : (h : c)  → x (h₁.mpr_prop h) = u h)
+    (h₃ : (h : ¬c) → y (h₁.mpr_not h)  = v h) :
+    dite b x y = dite c u v := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example {_ : Decidable b} [Decidable c]
+    {x : b → α} {u : c → α} {y : ¬b → α} {v : ¬c → α}
+    (h₁ : b = c)
+    (h₂ : (h : c)  → x (h₁.mpr_prop h) = u h)
+    (h₃ : (h : ¬c) → y (h₁.mpr_not h)  = v h) :
+    dite b x y = dite c u v := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Membership in Range: \( m \in \text{range}(n) \leftrightarrow m < n \) : For any natural numbers \( m \) and \( n \), \( m \) is a member of the list `List.range n` if and only if \( m < n \). In other words, \( m \in \{0, 1, 2, \ldots, n-1\} \) if and only if \( m < n \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the fact that the list \(\text{range}(n)\) is equal to the list \(\text{range}'(0, n)\). By definition, \( m \in \text{range}'(0, n) \) if and only if \( 0 \leq m \) and \( m < n \).
+
+Since \( 0 \leq m \) is always true for any natural number \( m \), and \( 0 + m = m \), the condition \( 0 \leq m \) is trivially satisfied. Therefore, the proposition \( m \in \text{range}(n) \) is equivalent to \( m < n \).
+
+Thus, we have shown that \( m \in \text{range}(n) \) if and only if \( m < n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n : Nat} : m ∈ range n ↔ m < n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {m n : Nat} : m ∈ range n ↔ m < n := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

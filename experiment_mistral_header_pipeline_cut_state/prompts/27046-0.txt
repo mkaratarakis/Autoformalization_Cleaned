@@ -1,0 +1,90 @@
+
+1. **Informal Theorem**  
+ZipWithAll Distributes Over Map Operations : For any types \( \gamma \), \( \delta \), \( \alpha \), and \( \beta \), and any function \( f : \text{Option} \, \gamma \to \text{Option} \, \delta \to \mu \), the function \( g : \alpha \to \gamma \), and the function \( h : \beta \to \delta \), and for any lists \( l_1 : \text{List} \, \alpha \) and \( l_2 : \text{List} \, \beta \), the following equality holds:
+\[
+\text{zipWithAll} \, f \, (\text{map} \, g \, l_1) \, (\text{map} \, h \, l_2) = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, l_1 \, l_2
+\]
+This theorem states that applying `zipWithAll` to the results of mapping functions \( g \) and \( h \) over lists \( l_1 \) and \( l_2 \) respectively is equivalent to applying `zipWithAll` to the original lists \( l_1 \) and \( l_2 \) with a modified function that first applies \( g \) and \( h \) to the elements of the lists before applying \( f \).
+
+2. **Informal Proof**  
+We will prove the theorem by induction on the list \( l_1 \) while generalizing over \( l_2 \).
+
+1. **Base Case: \( l_1 = [] \)**
+- We perform case analysis on \( l_2 \):
+- **Case 1: \( l_2 = [] \)**
+- We need to show:
+\[
+\text{zipWithAll} \, f \, (\text{map} \, g \, []) \, (\text{map} \, h \, []) = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, [] \, []
+\]
+- Simplifying both sides, we get:
+\[
+\text{zipWithAll} \, f \, [] \, [] = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, [] \, []
+\]
+- Both sides are the empty list, so the equality holds.
+- **Case 2: \( l_2 = \text{head} \, :: \, \text{tail} \)**
+- We need to show:
+\[
+\text{zipWithAll} \, f \, (\text{map} \, g \, []) \, (\text{map} \, h \, (\text{head} \, :: \, \text{tail})) = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, [] \, (\text{head} \, :: \, \text{tail})
+\]
+- Simplifying both sides, we get:
+\[
+\text{zipWithAll} \, f \, [] \, (\text{map} \, h \, (\text{head} \, :: \, \text{tail})) = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, [] \, (\text{head} \, :: \, \text{tail})
+\]
+- Both sides are the empty list, so the equality holds.
+
+2. **Inductive Step: \( l_1 = \text{head} \, :: \, \text{tail} \)**
+- We assume the inductive hypothesis:
+\[
+\forall \, l_2, \, \text{zipWithAll} \, f \, (\text{map} \, g \, \text{tail}) \, (\text{map} \, h \, l_2) = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, \text{tail} \, l_2
+\]
+- We perform case analysis on \( l_2 \):
+- **Case 1: \( l_2 = [] \)**
+- We need to show:
+\[
+\text{zipWithAll} \, f \, (\text{map} \, g \, (\text{head} \, :: \, \text{tail})) \, (\text{map} \, h \, []) = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, (\text{head} \, :: \, \text{tail}) \, []
+\]
+- Simplifying both sides, we get:
+\[
+\text{zipWithAll} \, f \, (\text{map} \, g \, (\text{head} \, :: \, \text{tail})) \, [] = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, (\text{head} \, :: \, \text{tail}) \, []
+\]
+- Both sides are the empty list, so the equality holds.
+- **Case 2: \( l_2 = \text{head} \, :: \, \text{tail} \)**
+- We need to show:
+\[
+\text{zipWithAll} \, f \, (\text{map} \, g \, (\text{head} \, :: \, \text{tail})) \, (\text{map} \, h \, (\text{head} \, :: \, \text{tail})) = \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, (\text{head} \, :: \, \text{tail}) \, (\text{head} \, :: \, \text{tail})
+\]
+- Using the inductive hypothesis, we can simplify the left-hand side:
+\[
+\text{zipWithAll} \, f \, (\text{map} \, g \, (\text{head} \, :: \, \text{tail})) \, (\text{map} \, h \, (\text{head} \, :: \, \text{tail})) = f \, (g \, \text{head}) \, (h \, \text{head}) \, :: \, \text{zipWithAll} \, f \, (\text{map} \, g \, \text{tail}) \, (\text{map} \, h \, \text{tail})
+\]
+- Using the inductive hypothesis again, we get:
+\[
+f \, (g \, \text{head}) \, (h \, \text{head}) \, :: \, \text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, \text{tail} \, \text{tail}
+\]
+- This is equal to:
+\[
+\text{zipWithAll} \, (\lambda a \, b, \, f \, (g \, a) \, (h \, b)) \, (\text{head} \, :: \, \text{tail}) \, (\text{head} \, :: \, \text{tail})
+\]
+- Therefore, the equality holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {μ} (f : Option γ → Option δ → μ) (g : α → γ) (h : β → δ) (l₁ : List α) (l₂ : List β) :
+    zipWithAll f (l₁.map g) (l₂.map h) = zipWithAll (fun a b => f (g <$> a) (h <$> b)) l₁ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {μ} (f : Option γ → Option δ → μ) (g : α → γ) (h : β → δ) (l₁ : List α) (l₂ : List β) :
+    zipWithAll f (l₁.map g) (l₂.map h) = zipWithAll (fun a b => f (g <$> a) (h <$> b)) l₁ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

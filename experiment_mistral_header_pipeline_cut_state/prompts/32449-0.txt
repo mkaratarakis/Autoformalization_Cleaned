@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Right Factor Positivity from Product Positivity in Natural Numbers : For any natural numbers \( a \) and \( b \), if the product \( a \times b \) is strictly greater than zero, then \( a \) is strictly greater than zero.
+
+2. **Informal Proof**  
+To prove that \( 0 < a \) given \( 0 < a \times b \), we proceed by contradiction. Assume the negation, i.e., \( \neg (0 < a) \). This means \( a \leq 0 \). Since \( a \) is a natural number, the only possibility is \( a = 0 \).
+
+Now, consider the product \( a \times b \). Since \( a = 0 \), we have \( a \times b = 0 \). This contradicts the given assumption that \( 0 < a \times b \). Therefore, our assumption \( \neg (0 < a) \) must be false, and hence \( 0 < a \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} (h : 0 < a * b) : 0 < a := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a b : Nat} (h : 0 < a * b) : 0 < a := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

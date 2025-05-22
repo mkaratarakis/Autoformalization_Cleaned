@@ -1,0 +1,69 @@
+
+1. **Informal Theorem**  
+Head of Longest Initial Segment Satisfying Predicate Equals Filtered Head of List: $\text{head}(\text{takeWhile } p \, l) = \text{Option.filter } p \, (\text{head? } l)$ : For any type $\alpha$ and a predicate $p : \alpha \to \text{Bool}$, and for any list $l$ of elements of type $\alpha$, the head of the list obtained by taking the longest initial segment of $l$ that satisfies $p$ is equal to the optional value obtained by filtering the head of $l$ through $p$. Formally, this is expressed as:
+\[
+\text{head}( \text{takeWhile } p \, l ) = \text{Option.filter } p \, (\text{head? } l)
+\]
+
+2. **Informal Proof**  
+We proceed by induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, then:
+\[
+\text{head}(\text{takeWhile } p \, []) = \text{head}([]) = \text{none}
+\]
+and
+\[
+\text{Option.filter } p \, (\text{head? } []) = \text{Option.filter } p \, \text{none} = \text{none}
+\]
+Therefore, the equality holds trivially.
+
+2. **Inductive Case:**
+- Suppose \( l \) is a non-empty list, which can be written as \( x :: xs \). We need to show:
+\[
+\text{head}(\text{takeWhile } p \, (x :: xs)) = \text{Option.filter } p \, (\text{head? } (x :: xs))
+\]
+- We discuss by cases based on the condition \( p(x) = \text{true} \) or \( p(x) = \text{false} \).
+
+- **Case 1: \( p(x) = \text{true} \)**
+- The head of the list obtained by taking the longest initial segment of \( x :: xs \) that satisfies \( p \) is:
+\[
+\text{head}(\text{takeWhile } p \, (x :: xs)) = \text{head}(x :: \text{takeWhile } p \, xs) = \text{some } x
+\]
+- The filtered head of \( x :: xs \) through \( p \) is:
+\[
+\text{Option.filter } p \, (\text{head? } (x :: xs)) = \text{Option.filter } p \, (\text{some } x) = \text{some } x
+\]
+- Therefore, the equality holds.
+
+- **Case 2: \( p(x) = \text{false} \)**
+- The head of the list obtained by taking the longest initial segment of \( x :: xs \) that satisfies \( p \) is:
+\[
+\text{head}(\text{takeWhile } p \, (x :: xs)) = \text{head}([]) = \text{none}
+\]
+- The filtered head of \( x :: xs \) through \( p \) is:
+\[
+\text{Option.filter } p \, (\text{head? } (x :: xs)) = \text{Option.filter } p \, (\text{some } x) = \text{none}
+\]
+- Therefore, the equality holds.
+
+By induction, the theorem holds for all lists \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : α → Bool) (l : List α) : (l.takeWhile p).head? = l.head?.filter p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) (l : List α) : (l.takeWhile p).head? = l.head?.filter p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

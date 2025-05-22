@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Comparison is Not Greater Than if and Only if \( a \leq b \) in Natural Numbers : For any natural numbers \( a \) and \( b \), the comparison \( \text{compare}(a, b) \) is not equal to `greater than` (i.e., \( \text{compare}(a, b) \neq \text{gt} \)) if and only if \( a \leq b \).
+
+2. **Informal Proof**  
+We start by using the definition of the comparison function for natural numbers, which states:
+- If \( a < b \), then \( \text{compare}(a, b) = \text{lt} \).
+- If \( a = b \), then \( \text{compare}(a, b) = \text{eq} \).
+- If \( a > b \), then \( \text{compare}(a, b) = \text{gt} \).
+
+Substituting this definition into the goal, we get:
+\[
+(a < b \to \text{lt}) \land (a = b \to \text{eq}) \land (a > b \to \text{gt}) \neq \text{gt} \leftrightarrow a \leq b
+\]
+
+Next, we split the conjunction into separate cases:
+\[
+(a < b \to \text{False}) \land (a = b \to \text{True}) \land (a > b \to \text{False}) \leftrightarrow a \leq b
+\]
+
+Finally, we simplify the expression using the properties of logical negation:
+- \( a < b \to \text{False} \) is equivalent to \( \neg (a < b) \), which is \( a \geq b \).
+- \( a = b \to \text{True} \) is always true.
+- \( a > b \to \text{False} \) is equivalent to \( \neg (a > b) \), which is \( a \leq b \).
+
+Thus, the goal simplifies to:
+\[
+(a \geq b) \land \text{True} \land (a \leq b) \leftrightarrow a \leq b
+\]
+
+Since \( a \geq b \) and \( a \leq b \) together imply \( a = b \), and \( a = b \) implies \( a \leq b \), the entire expression simplifies to:
+\[
+a \leq b \leftrightarrow a \leq b
+\]
+
+This is trivially true, completing the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} : compare a b ≠ .gt ↔ a ≤ b := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b ≠ .gt ↔ a ≤ b := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.Data.Ord not found. --
+
+-- Init.Data.Nat.Compare not found. --
+

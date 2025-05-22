@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Disjunction with Self on the Right is Equivalent to Original Disjunction: \((a \lor b) \lor b \leftrightarrow a \lor b\) : For any propositions \( a \) and \( b \), the disjunction \((a \lor b) \lor b\) is logically equivalent to \( a \lor b \), i.e., \((a \lor b) \lor b \leftrightarrow a \lor b\).
+
+2. **Informal Proof**  
+To prove that \((a \lor b) \lor b \leftrightarrow a \lor b\), we start by using the associativity of disjunction. The associativity of disjunction states that \((a \lor b) \lor c\) is logically equivalent to \(a \lor b \lor c\). Applying this to our goal, we can rewrite \((a \lor b) \lor b\) as \(a \lor b \lor b\).
+
+Next, we use the idempotence of disjunction, which states that \(p \lor p\) is equal to \(p\). Applying this to our new goal, we can simplify \(a \lor b \lor b\) to \(a \lor b\). Therefore, the goal \((a \lor b) \lor b \leftrightarrow a \lor b\) is equivalent to \(a \lor b \leftrightarrow a \lor b\), which is trivially true by the properties of equality.
+
+Thus, we have shown that \((a \lor b) \lor b \leftrightarrow a \lor b\). This completes the proof.
+
+3. **Formal Theorem**  
+example : (a ∨ b) ∨ b ↔ a ∨ b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example : (a ∨ b) ∨ b ↔ a ∨ b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

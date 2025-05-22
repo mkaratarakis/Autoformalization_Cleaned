@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+First Component of Enumerated List Member is Less Than List Length: \( i < \text{length}(l) \) if \( (i, a) \in l.\text{enum} \) : For any list \( l \) of elements of type \( \alpha \) and any pair \( x = (i, a) \) in the enumerated list \( l.\text{enum} \), if \( x \) is a member of \( l.\text{enum} \), then the first component \( i \) of \( x \) is strictly less than the length of the list \( l \). In other words, if \( (i, a) \in l.\text{enum} \), then \( i < \text{length}(l) \).
+
+2. **Informal Proof**  
+To prove that if \( (i, a) \in l.\text{enum} \), then \( i < \text{length}(l) \), we use the fact that the enumerated list \( l.\text{enum} \) is equivalent to \( \text{List.enumFrom} \, 0 \, l \). Specifically, if \( (i, a) \in \text{List.enumFrom} \, 0 \, l \), then \( i < 0 + \text{length}(l) \). Simplifying this, we get \( i < \text{length}(l) \). Since this is exactly what we need to show, the proof is complete.
+
+3. **Formal Theorem**  
+example {x : Nat × α} {l : List α} (h : x ∈ enum l) : x.1 < length l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {x : Nat × α} {l : List α} (h : x ∈ enum l) : x.1 < length l := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

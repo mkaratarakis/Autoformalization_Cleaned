@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Successor Subtraction Identity: \( (m + 1) - n = (m - n) + 1 \) for \( n \leq m \) : For any natural numbers \( m \) and \( n \) such that \( n \leq m \), the successor of \( m \) minus \( n \) is equal to the successor of \( m - n \), i.e., \( m + 1 - n = (m - n) + 1 \).
+
+2. **Informal Proof**  
+Given \( n \leq m \), there exists a natural number \( k \) such that \( n + k = m \). Let \( k \) be this natural number, and let \( hk \) denote the equation \( n + k = m \).
+
+We need to show that \( m + 1 - n = (m - n) + 1 \). Using the equation \( n + k = m \), we can rewrite the goal as:
+\[
+(n + k) + 1 - n = (n + k - n) + 1
+\]
+By the property of left addition and subtraction canceling each other in additive commutative groups, we have:
+\[
+(n + k) + 1 - n = k + 1
+\]
+Using the property that the sum of a natural number and the successor of another natural number is the successor of their sum, we get:
+\[
+n + (k + 1) - n = k + 1
+\]
+Again, by the property of left addition and subtraction canceling each other, we have:
+\[
+k + 1 = k + 1
+\]
+This is trivially true, thus completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n : Nat} (h : n ≤ m) : succ m - n = succ (m - n) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {m n : Nat} (h : n ≤ m) : succ m - n = succ (m - n) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

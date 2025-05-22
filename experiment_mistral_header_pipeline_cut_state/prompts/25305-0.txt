@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Boolean Identity: \( (a \lor b) = b \leftrightarrow (a = \text{true} \to b = \text{true}) \) : For any boolean values \( a \) and \( b \), the boolean "or" operation \( a \lor b \) is equal to \( b \) if and only if \( a = \text{true} \) implies \( b = \text{true} \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( a \) and \( b \), the following equivalence holds:
+\[ (a \lor b) = b \leftrightarrow (a = \text{true} \to b = \text{true}) \]
+
+We will consider all possible values of \( a \) and \( b \):
+
+1. **Case 1: \( a = \text{false} \)**
+- If \( a = \text{false} \), then \( a \lor b = b \) for any value of \( b \).
+- Therefore, \( (a \lor b) = b \) is always true.
+- The implication \( a = \text{true} \to b = \text{true} \) is vacuously true because the antecedent \( a = \text{true} \) is false.
+- Hence, \( (a \lor b) = b \leftrightarrow (a = \text{true} \to b = \text{true}) \) holds.
+
+2. **Case 2: \( a = \text{true} \)**
+- If \( a = \text{true} \), then \( a \lor b = \text{true} \).
+- For \( (a \lor b) = b \) to hold, we must have \( b = \text{true} \).
+- The implication \( a = \text{true} \to b = \text{true} \) is true if and only if \( b = \text{true} \).
+- Therefore, \( (a \lor b) = b \leftrightarrow (a = \text{true} \to b = \text{true}) \) holds.
+
+Since the equivalence holds in both cases, the theorem is proven.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), ((a || b) = b) ↔ (a → b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), ((a || b) = b) ↔ (a → b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

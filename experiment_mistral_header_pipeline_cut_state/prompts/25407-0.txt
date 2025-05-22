@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Distributive Property of If-then-else over False Boolean Value: \((\text{if } p \text{ then } t \text{ else } \text{false}) = (\text{decide } p) \land t\) : For any proposition \( p \) and boolean value \( t \), the if-then-else expression \((\text{if } p \text{ then } t \text{ else } \text{false})\) is equal to the boolean AND operation \((\text{decide } p) \text{ and } t\). This can be written as:
+\[
+(\text{if } p \text{ then } t \text{ else } \text{false}) = (\text{decide } p) \land t
+\]
+
+2. **Informal Proof**  
+We will consider the two possible cases for the decidable proposition \( p \).
+
+1. **Case 1: \( p \) is true.**
+- In this case, the if-then-else expression \((\text{if } p \text{ then } t \text{ else } \text{false})\) simplifies to \( t \).
+- The boolean AND operation \((\text{decide } p) \land t\) also simplifies to \( t \) because \(\text{decide } p\) is true.
+- Therefore, \((\text{if } p \text{ then } t \text{ else } \text{false}) = t\) and \((\text{decide } p) \land t = t\), so the two expressions are equal.
+
+2. **Case 2: \( p \) is false.**
+- In this case, the if-then-else expression \((\text{if } p \text{ then } t \text{ else } \text{false})\) simplifies to \(\text{false}\).
+- The boolean AND operation \((\text{decide } p) \land t\) also simplifies to \(\text{false}\) because \(\text{decide } p\) is false.
+- Therefore, \((\text{if } p \text{ then } t \text{ else } \text{false}) = \text{false}\) and \((\text{decide } p) \land t = \text{false}\), so the two expressions are equal.
+
+In both cases, the expressions are equal, thus proving the theorem. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : Prop) [h : Decidable p] (t : Bool) :
+    (ite p t false) = (p && t) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example (p : Prop) [h : Decidable p] (t : Bool) :
+    (ite p t false) = (p && t) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Boolean Or with True is True: $b \lor \text{true} = \text{true}$ : For any boolean value $b$, the boolean "or" operation between $b$ and `true` is equal to `true`, i.e., $b \lor \text{true} = \text{true}$.
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value $b$.
+
+1. **Case 1: $b = \text{false}$**
+- In this case, the expression $(\text{false} \lor \text{true})$ is equal to $\text{true}$ by the definition of the boolean "or" operation. Therefore, the equality $(\text{false} \lor \text{true}) = \text{true}$ holds.
+
+2. **Case 2: $b = \text{true}$**
+- In this case, the expression $(\text{true} \lor \text{true})$ is equal to $\text{true}$ by the definition of the boolean "or" operation. Therefore, the equality $(\text{true} \lor \text{true}) = \text{true}$ holds.
+
+Since both cases have been verified, we conclude that for any boolean value $b$, the boolean "or" operation between $b$ and $\text{true}$ is equal to $\text{true}$. This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) : (b || true) = true := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (b || true) = true := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

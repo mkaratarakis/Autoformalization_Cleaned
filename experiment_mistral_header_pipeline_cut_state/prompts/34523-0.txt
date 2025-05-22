@@ -1,0 +1,98 @@
+
+1. **Informal Theorem**  
+Take-While and Filter-Map Commute: \(\text{takeWhile } p \, (\text{filterMap } f \, l) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, l)\) : For any types \( \alpha \) and \( \beta \), a function \( f : \alpha \to \text{Option} \beta \), a predicate \( p : \beta \to \text{Bool} \), and a list \( l \) of elements of type \( \alpha \), the following equality holds:
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, l) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, l)
+\]
+This theorem states that the longest initial segment of the list \( l \) for which the predicate \( p \) holds after applying \( f \) and filtering out `none` values is the same as the list obtained by first taking the longest initial segment of \( l \) for which the predicate \( p \) holds for the result of \( f \) (if it is `some`), and then applying \( f \) and filtering out `none` values.
+
+2. **Informal Proof**  
+We proceed by induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, the goal is trivially true by the reflexive property of equality:
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, []) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, [])
+\]
+Both sides are the empty list, so the equality holds.
+
+2. **Inductive Step:**
+- Assume the list \( l \) is \( x :: xs \), where \( x \) is the head and \( xs \) is the tail. We use the induction hypothesis \( \text{ih} \) which states:
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, xs) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs)
+\]
+- We need to show:
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, (x :: xs)) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, (x :: xs))
+\]
+- We consider two cases based on the result of \( f(x) \):
+- **Case 1: \( f(x) = \text{none} \)**
+- Using the definition of `filterMap_cons`, we have:
+\[
+\text{filterMap } f \, (x :: xs) = \text{filterMap } f \, xs
+\]
+- Using the definition of `takeWhile_cons`, we have:
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, (x :: xs)) = \text{takeWhile } p \, (\text{filterMap } f \, xs)
+\]
+- By the induction hypothesis, this is:
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, xs) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs)
+\]
+- Therefore, we need to show:
+\[
+\text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, (x :: xs)) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs)
+\]
+- Since \( f(x) = \text{none} \), \( \text{Option.all } p \, (f \, x) = \text{false} \), so:
+\[
+\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, (x :: xs) = \text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs
+\]
+- Thus, the equality holds.
+- **Case 2: \( f(x) = \text{some } b \)**
+- Using the definition of `filterMap_cons`, we have:
+\[
+\text{filterMap } f \, (x :: xs) = b :: \text{filterMap } f \, xs
+\]
+- Using the definition of `takeWhile_cons`, we have:
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, (x :: xs)) = \text{takeWhile } p \, (b :: \text{filterMap } f \, xs)
+\]
+- This is:
+\[
+\text{if } p(b) = \text{true} \text{ then } b :: \text{takeWhile } p \, (\text{filterMap } f \, xs) \text{ else } []
+\]
+- By the induction hypothesis, this is:
+\[
+\text{if } p(b) = \text{true} \text{ then } b :: \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs) \text{ else } []
+\]
+- Therefore, we need to show:
+\[
+\text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, (x :: xs)) = \text{if } p(b) = \text{true} \text{ then } b :: \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs) \text{ else } []
+\]
+- Since \( f(x) = \text{some } b \), \( \text{Option.all } p \, (f \, x) = p(b) \), so:
+\[
+\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, (x :: xs) = \text{if } p(b) = \text{true} \text{ then } x :: \text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, xs \text{ else } []
+\]
+- Thus, the equality holds.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (f : α → Option β) (p : β → Bool) (l : List α) :
+    (l.filterMap f).takeWhile p = (l.takeWhile fun a => (f a).all p).filterMap f := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (f : α → Option β) (p : β → Bool) (l : List α) :
+    (l.filterMap f).takeWhile p = (l.takeWhile fun a => (f a).all p).filterMap f := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

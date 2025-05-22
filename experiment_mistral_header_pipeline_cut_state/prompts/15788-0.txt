@@ -1,0 +1,69 @@
+
+1. **Informal Theorem**  
+Bit Test of Sum with Power of Two Equals Bit Test of Original Number : For any natural numbers \( i \) and \( j \) such that \( j < i \), and for any natural number \( x \), the \((j+1)\)-th least significant bit in the binary representation of \( 2^i + x \) is equal to the \((j+1)\)-th least significant bit in the binary representation of \( x \), i.e., \(\text{testBit}(2^i + x, j) = \text{testBit}(x, j)\).
+
+2. **Informal Proof**  
+We start by constructing the lemma \( i = j + (i - j) \) using the fact that \( j < i \) implies \( j \le i \) and the property that \( a + b - a = b \) for any natural numbers \( a \) and \( b \). This lemma is obtained by symmetry of the equality.
+
+Next, we use this lemma to replace \( i \) with \( j + (i - j) \) in the goal, simplifying it to \((2^{j + (i - j)} + x).\text{testBit}(j) = x.\text{testBit}(j)\).
+
+We then simplify the goal using the following properties:
+- The bit test \(\text{testBit}(x, i)\) is equivalent to \(\text{decide}(x / 2^i \% 2 = 1)\).
+- The power of a sum \(2^{m + n} = 2^m \cdot 2^n\).
+- The commutativity of addition \(a + b = b + a\).
+- The division of a sum of multiples and a remainder \(\frac{m \cdot x + y}{m} = x + \frac{y}{m}\).
+
+After simplification, the goal becomes \(\text{decide}((2^{i - j} + x / 2^j) \% 2 = 1) = \text{decide}(x / 2^j \% 2 = 1)\).
+
+We consider two cases for \( i - j \):
+1. **Case \( i - j = 0 \)**:
+- We assume for contradiction that \( i - j = 0 \).
+- Using the property that \( n - m = 0 \) if and only if \( n \le m \), we replace \( i - j = 0 \) with \( i \le j \).
+- Since \( j < i \) implies \( j \not\le i \), we have a contradiction. Therefore, the assumption \( i - j = 0 \) is false.
+
+2. **Case \( i - j = d + 1 \) for some natural number \( d \)**:
+- We simplify the goal using the following properties:
+- The power of a successor \(2^{d + 1} = 2^d \cdot 2\).
+- The commutativity of multiplication \(a \cdot b = b \cdot a\).
+- The modulo of a sum of multiples and a remainder \((m \cdot x + y) \% m = y \% m\).
+- After simplification, the goal is trivially true.
+
+Thus, in both cases, the goal is satisfied, and the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {i j : Nat} (j_lt_i : j < i) (x : Nat) :
+    testBit (2^i + x) j = testBit x j := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example {i j : Nat} (j_lt_i : j < i) (x : Nat) :
+    testBit (2^i + x) j = testBit x j := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Greatest Common Divisor Zero Implies \( n = 0 \) : For any natural numbers \( m \) and \( n \), if the greatest common divisor of \( m \) and \( n \) is zero, i.e., \(\gcd(m, n) = 0\), then \( n \) must be zero, i.e., \( n = 0 \).
+
+2. **Informal Proof**  
+We start with the assumption that \(\gcd(m, n) = 0\). By the commutativity of the greatest common divisor, we have \(\gcd(n, m) = 0\). Using the property that if the greatest common divisor of \( n \) and \( m \) is zero, then \( n \) must be zero, we conclude that \( n = 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n : Nat} (H : gcd m n = 0) : n = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example {m n : Nat} (H : gcd m n = 0) : n = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

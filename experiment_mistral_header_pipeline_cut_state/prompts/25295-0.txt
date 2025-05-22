@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Boolean AND Identity: \( (a \land b) = a \leftrightarrow (a = \text{true} \to b = \text{true}) \) : For any boolean values \( a \) and \( b \), the boolean "and" operation \( a \land b \) is equal to \( a \) if and only if \( a \) is `true` implies \( b \) is `true`.
+
+2. **Informal Proof**  
+To prove the statement \( (a \land b) = a \leftrightarrow (a = \text{true} \to b = \text{true}) \), we consider all possible boolean values for \( a \) and \( b \):
+
+1. **Case 1: \( a = \text{true} \) and \( b = \text{true} \)**
+- \( a \land b = \text{true} \land \text{true} = \text{true} \)
+- \( a = \text{true} \)
+- \( b = \text{true} \)
+- Therefore, \( (a \land b) = a \) and \( a = \text{true} \to b = \text{true} \) both hold.
+
+2. **Case 2: \( a = \text{true} \) and \( b = \text{false} \)**
+- \( a \land b = \text{true} \land \text{false} = \text{false} \)
+- \( a = \text{true} \)
+- \( b = \text{false} \)
+- Therefore, \( (a \land b) \neq a \) and \( a = \text{true} \to b = \text{true} \) does not hold.
+
+3. **Case 3: \( a = \text{false} \) and \( b = \text{true} \)**
+- \( a \land b = \text{false} \land \text{true} = \text{false} \)
+- \( a = \text{false} \)
+- \( b = \text{true} \)
+- Therefore, \( (a \land b) = a \) and \( a = \text{true} \to b = \text{true} \) does not hold (since the antecedent \( a = \text{true} \) is false).
+
+4. **Case 4: \( a = \text{false} \) and \( b = \text{false} \)**
+- \( a \land b = \text{false} \land \text{false} = \text{false} \)
+- \( a = \text{false} \)
+- \( b = \text{false} \)
+- Therefore, \( (a \land b) = a \) and \( a = \text{true} \to b = \text{true} \) does not hold (since the antecedent \( a = \text{true} \) is false).
+
+In all cases, the statement \( (a \land b) = a \leftrightarrow (a = \text{true} \to b = \text{true}) \) holds true. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), ((a && b) = a) ↔ (a → b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), ((a && b) = a) ↔ (a → b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

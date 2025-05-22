@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Addition and Subtraction Identity: \(a + b = c + d \leftrightarrow a + (b - d) = c\) for \(b \geq d\) : For any natural numbers \(a\), \(c\), \(b\), and \(d\), if \(b \geq d\), then the equation \(a + b = c + d\) holds if and only if \(a + (b - d) = c\).
+
+2. **Informal Proof**  
+We start with the goal of proving that \(a + b = c + d\) if and only if \(a + (b - d) = c\) under the condition that \(b \geq d\).
+
+1. **Symmetry of Equality:**
+We use the symmetry of equality to rewrite the goal from \(a + b = c + d\) to \(c + d = a + b\).
+
+2. **Application of Theorem:**
+We apply the theorem that states for any natural numbers \(a\), \(c\), \(b\), and \(d\), if \(b \geq d\), then \(a + b = c + d\) is equivalent to \(a + (b - d) = c\). This theorem is valid because it leverages the properties of natural numbers and the definition of subtraction.
+
+3. **Symmetry of Equality:**
+We use the symmetry of equality again to rewrite the goal from \(c = a + (b - d)\) to \(a + (b - d) = c\).
+
+Since the goal is now trivially true, the proof is complete. Therefore, we have shown that \(a + b = c + d\) if and only if \(a + (b - d) = c\) for \(b \geq d\).
+
+3. **Formal Theorem**  
+example (a c : Nat) {b d : Nat} (h : b ≥ d) : (a + b = c + d) = (a + (b - d) = c) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example (a c : Nat) {b d : Nat} (h : b ≥ d) : (a + b = c + d) = (a + (b - d) = c) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

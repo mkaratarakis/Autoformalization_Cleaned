@@ -1,0 +1,4130 @@
+nohup: ignoring input
+🔄 Processing:   0%|                                                       | 0/1000 [00:00<?, ?it/s]🔄 Processing:  32%|██████████████▍                              | 320/1000 [01:05<02:19,  4.86it/s]🔄 Processing:  32%|██████████████▍                              | 321/1000 [02:04<05:16,  2.14it/s]
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24025, Nat.lcm_ne_zero (data point #320)
+🔁 Attempt 1 / 5 | ✅ Success: 86 / Processed: 319
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (hm : m ≠ 0) (hn : n ≠ 0) : lcm m n ≠ 0 := by
+  intro h
+  rw [← Nat.gcd_mul_lcm m n] at h
+  rw [zero_mul] at h
+  cases hm
+  rw [h] at hn
+  contradiction
+❌ Lean check FAILED. Error message:
+tmp.lean:8:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24025, Nat.lcm_ne_zero (data point #320)
+🔁 Attempt 2 / 5 | ✅ Success: 86 / Processed: 319
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (hm : m ≠ 0) (hn : n ≠ 0) : lcm m n ≠ 0 := by
+  intro h
+  have h1 := Nat.gcd_mul_lcm m n
+  rw [h] at h1
+  rw [zero_mul] at h1
+  cases' h1 with h1 h1
+  · exact hm h1
+  · exact hn h1
+❌ Lean check FAILED. Error message:
+tmp.lean:7:51: error: unsolved goals
+m n : Nat
+hm : m ≠ 0
+hn : n ≠ 0
+h : m.lcm n = 0
+h1 : m.gcd n * 0 = m * n
+⊢ False
+m n : Nat
+hm : m ≠ 0
+hn : n ≠ 0
+h : m.lcm n = 0
+h1 : m.gcd n * 0 = m * n
+⊢ False
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24025, Nat.lcm_ne_zero (data point #320)
+🔁 Attempt 3 / 5 | ✅ Success: 86 / Processed: 319
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (hm : m ≠ 0) (hn : n ≠ 0) : lcm m n ≠ 0 := by
+  intro h
+  have h1 := Nat.gcd_mul_lcm m n
+  rw [h] at h1
+  rw [zero_mul] at h1
+  have hmn : m * n = 0 := by rwa [mul_comm]
+  have hm0 : m = 0 := eq_zero_of_mul_eq_zero hn hmn
+  contradiction
+❌ Lean check FAILED. Error message:
+tmp.lean:7:51: error: unsolved goals
+m n : Nat
+hm : m ≠ 0
+hn : n ≠ 0
+h : m.lcm n = 0
+h1 : m.gcd n * 0 = m * n
+⊢ False
+m n : Nat
+hm : m ≠ 0
+hn : n ≠ 0
+h : m.lcm n = 0
+h1 : m.gcd n * 0 = m * n
+⊢ False
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24025, Nat.lcm_ne_zero (data point #320)
+🔁 Attempt 4 / 5 | ✅ Success: 86 / Processed: 319
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (hm : m ≠ 0) (hn : n ≠ 0) : lcm m n ≠ 0 := by
+  intro h
+  have h1 := Nat.gcd_mul_lcm m n
+  rw [h] at h1
+  rw [MulZero.mulZero] at h1
+  have : m * n = 0 := by rwa [mul_comm]
+  exact not_forall.mpr ⟨m, hm, fun hn0 => this ▸ hn hn0⟩ hm
+❌ Lean check FAILED. Error message:
+tmp.lean:12:25: error: type mismatch
+  h1
+has type
+  0 = m * n : Prop
+but is expected to have type
+  m * n = 0 : Prop
+tmp.lean:13:22: error: unknown constant 'Nat.eq_zero_or_eq_zero_of_mul_eq_zero'
+tmp.lean:13:9: error: rcases tactic failed: x✝ : ?m.414 is not an inductive datatype
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24025, Nat.lcm_ne_zero (data point #320)
+🔁 Attempt 5 / 5 | ✅ Success: 86 / Processed: 319
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (hm : m ≠ 0) (hn : n ≠ 0) : lcm m n ≠ 0 := by
+  intro h
+  have h1 : m * n = 0 := by
+    rw [Nat.gcd_mul_lcm]
+    rw [h]
+    rw [MulZero.mulZero]
+  cases (eq_zero_or_eq_zero_of_mul_eq_zero h1) with
+    | inl hm0 => exact hm hm0
+    | inr hn0 => exact hn hn0
+❌ Lean check FAILED. Error message:
+tmp.lean:12:25: error: type mismatch
+  h1
+has type
+  0 = m * n : Prop
+but is expected to have type
+  m * n = 0 : Prop
+tmp.lean:15:20: error: unknown constant 'Nat.mul_eq_zero_iff'
+tmp.lean:16:13: error: application type mismatch
+  hn h
+argument
+  h
+has type
+  m.lcm n = 0 : Prop
+but is expected to have type
+  n = 0 : Prop
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24026, Nat.gcd_mul_lcm (data point #321)
+🔁 Attempt 1 / 5 | ✅ Success: 86 / Processed: 320
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (m n : Nat) : gcd m n * lcm m n = m * n := by
+  rw [mul_assoc]
+  rw [← Nat.gcd_mul_lcm m n]
+  rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:12:10: error: function expected at
+  Nat.mul_div_cancel' (gcd_dvd_left m n)
+term has type
+  m.gcd n * (m / m.gcd n) = m
+tmp.lean:15:24: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ?m.356 * ?m.355 / ?m.356
+m n : Nat
+d : Nat := m.gcd n
+l : Nat := m.lcm n
+hlcm : l = m * n / d
+⊢ d * (m * n / d) = m * n
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24026, Nat.gcd_mul_lcm (data point #321)
+🔁 Attempt 2 / 5 | ✅ Success: 86 / Processed: 320
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (m n : Nat) : gcd m n * lcm m n = m * n := by
+  let d := gcd m n
+  let l := lcm m n
+  have hlcm : l = m * n / d := by
+    apply lcm_eq_mul_div_gcd
+  rw [hlcm]
+  apply mul_div_cancel'
+  apply gcd_dvd_left
+❌ Lean check FAILED. Error message:
+tmp.lean:7:51: error: unsolved goals
+m n : Nat
+⊢ m.gcd n * m.lcm n = m * n
+m n : Nat
+⊢ m.gcd n * m.lcm n = m * n
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24026, Nat.gcd_mul_lcm (data point #321)
+🔁 Attempt 3 / 5 | ✅ Success: 86 / Processed: 320
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (m n : Nat) : gcd m n * lcm m n = m * n := by
+  rw [lcm_eq_mul_div_gcd]
+  rw [mul_comm]
+  rw [mul_assoc]
+  apply mul_div_cancel'
+  exact gcd_dvd_left m n
+❌ Lean check FAILED. Error message:
+tmp.lean:7:51: error: unsolved goals
+m n : Nat
+⊢ m.gcd n * m.lcm n = m * n
+m n : Nat
+⊢ m.gcd n * m.lcm n = m * n
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24026, Nat.gcd_mul_lcm (data point #321)
+🔁 Attempt 4 / 5 | ✅ Success: 86 / Processed: 320
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (m n : Nat) : gcd m n * lcm m n = m * n := by
+  rw [mul_comm (gcd m n)]
+  rw [← mul_div_assoc (gcd m n) m n]
+  rw [div_mul_cancel (gcd m n) (m * n)]
+  exact gcd_dvd_left m n
+❌ Lean check FAILED. Error message:
+tmp.lean:8:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24026, Nat.gcd_mul_lcm (data point #321)
+🔁 Attempt 5 / 5 | ✅ Success: 86 / Processed: 320
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example (m n : Nat) : gcd m n * lcm m n = m * n := by
+  rw [mul_comm (gcd m n)]
+  rw [← mul_div_assoc (gcd m n) m n]
+  rw [div_mul_cancel (gcd m n) (m * n)]
+  exact gcd_dvd_left m n
+❌ Lean check FAILED. Error message:
+tmp.lean:7:51: error: unsolved goals
+m n : Nat
+⊢ m.gcd n * m.lcm n = m * n
+m n : Nat
+⊢ m.gcd n * m.lcm n = m * n
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24044, Nat.lcm_dvd (data point #322)
+🔁 Attempt 1 / 5 | ✅ Success: 86 / Processed: 321
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  32%|██████████████▍                              | 322/1000 [03:19<10:33,  1.07it/s]🔄 Processing:  32%|██████████████▌                              | 323/1000 [03:48<13:22,  1.18s/it]import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example {m n k : Nat} (H1 : m ∣ k) (H2 : n ∣ k) : lcm m n ∣ k := by
+  by_cases hk : k = 0
+  · exact dvd_zero _
+  · have hm : m > 0 := pos_of_dvd_of_pos H1 (Nat.pos_of_ne_zero hk)
+    have hn : n > 0 := pos_of_dvd_of_pos H2 (Nat.pos_of_ne_zero hk)
+    rw [lcm_mul_gcd_eq m n]
+    rw [gcd_mul_left]
+    rw [mul_comm]
+    rw [mul_left_comm]
+    rw [gcd_mul_left]
+    rw [mul_comm]
+    rw [mul_left_comm]
+    exact dvd_gcd (dvd_mul_of_dvd_left H1 (Nat.pos_of_ne_zero hk)) (dvd_mul_of_dvd_right H2 (Nat.pos_of_ne_zero hk))
+❌ Lean check FAILED. Error message:
+tmp.lean:8:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24044, Nat.lcm_dvd (data point #322)
+🔁 Attempt 2 / 5 | ✅ Success: 86 / Processed: 321
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example {m n k : Nat} (H1 : m ∣ k) (H2 : n ∣ k) : lcm m n ∣ k := by
+  by_cases hk : k = 0
+  · exact dvd_zero _
+  · have hm : m > 0 := pos_of_dvd_of_pos H1 (Nat.pos_of_ne_zero hk)
+    have hn : n > 0 := pos_of_dvd_of_pos H2 (Nat.pos_of_ne_zero hk)
+    have hlcm : lcm m n * gcd m n = m * n := lcm_mul_gcd_cancel hm hn
+    rw [hlcm]
+    apply dvd_gcd
+    · apply dvd_mul_of_dvd_left
+      exact H1
+    · apply dvd_mul_of_dvd_right
+      exact H2
+❌ Lean check FAILED. Error message:
+tmp.lean:10:10: error: unknown identifier 'dvd_zero'
+tmp.lean:16:8: error: unknown identifier 'mul_comm'
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24044, Nat.lcm_dvd (data point #322)
+🔁 Attempt 3 / 5 | ✅ Success: 86 / Processed: 321
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example {m n k : Nat} (H1 : m ∣ k) (H2 : n ∣ k) : lcm m n ∣ k := by
+  by_cases hk : k = 0
+  · exact Nat.dvd_zero _
+  · have hm : m > 0 := pos_of_dvd_of_pos H1 (Nat.pos_of_ne_zero hk)
+    have hn : n > 0 := pos_of_dvd_of_pos H2 (Nat.pos_of_ne_zero hk)
+    have hlcm : lcm m n * gcd m n = m * n := Nat.lcm_mul_gcd_cancel hm hn
+    rw [hlcm]
+    apply Nat.dvd_gcd
+    · apply Nat.dvd_mul_of_dvd_left
+      exact H1
+    · apply Nat.dvd_mul_of_dvd_right
+      exact H2
+❌ Lean check FAILED. Error message:
+tmp.lean:10:10: error: unknown identifier 'dvd_zero'
+tmp.lean:15:54: error: unknown identifier 'gcd_mult_right'
+tmp.lean:16:8: error: unknown identifier 'mul_comm'
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24044, Nat.lcm_dvd (data point #322)
+🔁 Attempt 4 / 5 | ✅ Success: 86 / Processed: 321
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example {m n k : Nat} (H1 : m ∣ k) (H2 : n ∣ k) : lcm m n ∣ k := by
+  by_cases hk : k = 0
+  · exact dvd_zero _
+  · have hm : m > 0 := pos_of_dvd_of_pos H1 (pos_of_ne_zero hk)
+    have hn : n > 0 := pos_of_dvd_of_pos H2 (pos_of_ne_zero hk)
+    have hlcm : lcm m n * gcd m n = m * n := lcm_mul_gcd_cancel hm hn
+    rw [hlcm]
+    apply dvd_gcd
+    · apply dvd_mul_right
+      exact H1
+    · apply dvd_mul_left
+      exact H2
+❌ Lean check FAILED. Error message:
+tmp.lean:10:10: error: unknown identifier 'dvd_zero'
+tmp.lean:15:35: error: type mismatch
+  Eq.symm (gcd_mul_lcm m n)
+has type
+  m * n = m.gcd n * m.lcm n : Prop
+but is expected to have type
+  m.lcm n * m.gcd n = m * n : Prop
+tmp.lean:16:19: error: unknown identifier 'dvd_mul_of_dvd_left'
+tmp.lean:17:19: error: unknown identifier 'dvd_mul_of_dvd_right'
+tmp.lean:17:6: error: invalid 'calc' step, failed to synthesize `Trans` instance
+  Trans Dvd.dvd Dvd.dvd ?m.527
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 24044, Nat.lcm_dvd (data point #322)
+🔁 Attempt 5 / 5 | ✅ Success: 86 / Processed: 321
+
+📜 Generated Lean 4 proof:
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+example {m n k : Nat} (H1 : m ∣ k) (H2 : n ∣ k) : lcm m n ∣ k := by
+  by_cases hk : k = 0
+  · exact dvd_zero _
+  · have hm : m > 0 := pos_of_dvd_of_pos H1 (Nat.pos_of_ne_zero hk)
+    have hn : n > 0 := pos_of_dvd_of_pos H2 (Nat.pos_of_ne_zero hk)
+    rw [lcm_mul_gcd_cancel hm hn]
+    apply dvd_gcd
+    · apply dvd_mul_of_dvd_left
+      exact H1
+    · apply dvd_mul_of_dvd_right
+      exact H2
+❌ Lean check FAILED. Error message:
+tmp.lean:10:10: error: unknown identifier 'dvd_zero'
+tmp.lean:12:48: error: application type mismatch
+  pos_of_dvd_of_pos H1 hk
+argument
+  hk
+has type
+  ¬k = 0 : Prop
+but is expected to have type
+  0 < k : Prop
+tmp.lean:13:48: error: application type mismatch
+  pos_of_dvd_of_pos H2 hk
+argument
+  hk
+has type
+  ¬k = 0 : Prop
+but is expected to have type
+  0 < k : Prop
+tmp.lean:16:8: error: unknown identifier 'mul_comm'
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25185, Option.bind_some (data point #323)
+🔁 Attempt 1 / 5 | ✅ Success: 86 / Processed: 322
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (x : Option α) : x.bind some = x := by
+  cases x
+  . case none =>
+    simp [bind]
+  . case some a =>
+    simp [bind]
+❌ Lean check FAILED. Error message:
+tmp.lean:10:44: error: unsolved goals
+case none
+α : Type u_1
+⊢ none.bind some = none
+
+case some
+α : Type u_1
+val✝ : α
+⊢ (some val✝).bind some = some val✝
+case none
+α : Type u_1
+⊢ none.bind some = none
+
+case some
+α : Type u_1
+val✝ : α
+⊢ (some val✝).bind some = some val✝
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25185, Option.bind_some (data point #323)
+🔁 Attempt 2 / 5 | ✅ Success: 86 / Processed: 322
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (x : Option α) : x.bind some = x := by
+  cases x
+  . case none =>
+    rfl
+  . case some a =>
+    rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:10:52: error: unsolved goals
+case mp
+α✝ : Type u_1
+x : Option (Option α✝)
+⊢ x.join ≠ none → ∃ z, x = some (some z)
+
+case mpr
+α✝ : Type u_1
+x : Option (Option α✝)
+⊢ (∃ z, x = some (some z)) → x.join ≠ none
+case mp
+α✝ : Type u_1
+x : Option (Option α✝)
+⊢ x.join ≠ none → ∃ z, x = some (some z)
+
+case mpr
+α✝ : Type u_1
+x : Option (Option α✝)
+⊢ (∃ z, x = some (some z)) → x.join ≠ none
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25185, Option.bind_some (data point #323)
+🔁 Attempt 3 / 5 | ✅ Success: 86 / Processed: 322
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (x : Option α) : x.bind some = x := by
+  cases x
+  . case none =>
+    simp [bind]
+  . case some a =>
+    simp [bind]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25187, Option.join_ne_none (data point #324)
+🔁 Attempt 1 / 5 | ✅ Success: 87 / Processed: 323
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  32%|██████████████▌                              | 324/1000 [05:25<26:54,  2.39s/it]import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.join ≠ none ↔ ∃ z, x = some (some z) := by
+  constructor
+  · intro h
+    by_cases hx : x = none
+    · exfalso
+      rw [hx] at h
+      exact h rfl
+    · have hx' : x ≠ none := by simp [hx]
+      match x, hx' with
+      | some y, _ =>
+        match y with
+        | some z =>
+          existsi z
+          simp
+        | none =>
+          exfalso
+          exact h rfl
+    · simp [join] at h
+      match x with
+      | some y =>
+        exact y.isSome
+  · rintro ⟨z, rfl⟩
+    simp [join]
+❌ Lean check FAILED. Error message:
+tmp.lean:21:17: error: unsolved goals
+α✝ : Type u_1
+x : Option (Option α✝)
+hx' : x ≠ none
+y : Option α✝
+z : α✝
+x✝ : some (some z) ≠ none
+h : (some (some z)).join ≠ none
+hx : ¬some (some z) = none
+⊢ ∃ z_1, some (some z) = some (some z_1)
+tmp.lean:10:52: error: unsolved goals
+case mpr
+α✝ : Type u_1
+x : Option (Option α✝)
+⊢ (∃ z, x = some (some z)) → x.join ≠ none
+α✝ : Type u_1
+x : Option (Option α✝)
+hx' : x ≠ none
+y : Option α✝
+z : α✝
+x✝ : some (some z) ≠ none
+h : (some (some z)).join ≠ none
+hx : ¬some (some z) = none
+⊢ ∃ z_1, some (some z) = some (some z_1)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25187, Option.join_ne_none (data point #324)
+🔁 Attempt 2 / 5 | ✅ Success: 87 / Processed: 323
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.join ≠ none ↔ ∃ z, x = some (some z) := by
+  constructor
+  · intro h
+    by_cases hx : x = none
+    · exfalso
+      rw [hx] at h
+      exact h rfl
+    · have hx' : x ≠ none := by simp [hx]
+      match x, hx' with
+      | some y, _ =>
+        match y with
+        | some z =>
+          existsi z
+          simp
+        | none =>
+          exfalso
+          exact h rfl
+  · rintro ⟨z, rfl⟩
+    simp [join]
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: unsolved goals
+case neg
+α✝ : Type u_1
+x : Option (Option α✝)
+h : x.join ≠ none
+hx : ¬x = none
+⊢ ∃ z, x = some (some z)
+tmp.lean:10:52: error: unsolved goals
+case mpr
+α✝ : Type u_1
+x : Option (Option α✝)
+⊢ (∃ z, x = some (some z)) → x.join ≠ none
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25187, Option.join_ne_none (data point #324)
+🔁 Attempt 3 / 5 | ✅ Success: 87 / Processed: 323
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.join ≠ none ↔ ∃ z, x = some (some z) := by
+  constructor
+  · intro h
+    by_cases hx : x = none
+    · exfalso
+      rw [hx] at h
+      exact h rfl
+    · have hx' : x ≠ none := by simp [hx]
+      cases' hx' with y
+      · exact hx'
+      cases' y with z
+      · apply False.elim
+        exact h rfl
+      exists z
+  · rintro ⟨z, rfl⟩
+    simp [join]
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: unsolved goals
+case neg
+α✝ : Type u_1
+x : Option (Option α✝)
+h : x.join ≠ none
+hx : ¬x = none
+⊢ ∃ z, x = some (some z)
+tmp.lean:10:52: error: unsolved goals
+case mpr
+α✝ : Type u_1
+x : Option (Option α✝)
+⊢ (∃ z, x = some (some z)) → x.join ≠ none
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25187, Option.join_ne_none (data point #324)
+🔁 Attempt 4 / 5 | ✅ Success: 87 / Processed: 323
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.join ≠ none ↔ ∃ z, x = some (some z) := by
+  constructor
+  · intro h
+    by_cases hx : x = none
+    · exfalso
+      rw [hx] at h
+      exact h rfl
+    · have hx' : x ≠ none := by simp [hx]
+      rcases x with (_ | y)
+      · exact hx'
+      rcases y with (_ | z)
+      · apply False.elim
+        exact h rfl
+      exists z
+  · rintro ⟨z, rfl⟩
+    simp [join]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:56: error: unsolved goals
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+⊢ Option.map g ∘ Option.map f = Option.map (g ∘ f)
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+⊢ Option.map g ∘ Option.map f = Option.map (g ∘ f)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25187, Option.join_ne_none (data point #324)
+🔁 Attempt 5 / 5 | ✅ Success: 87 / Processed: 323
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.join ≠ none ↔ ∃ z, x = some (some z) := by
+  constructor
+  · intro h
+    by_cases hx : x = none
+    · exfalso
+      rw [hx] at h
+      exact h rfl
+    · rcases x with (_ | ⟨y⟩)
+      rcases y with (_ | ⟨z⟩)
+      exact ⟨z, rfl⟩
+  · rintro ⟨z, rfl⟩
+    simp [join]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:56: error: unsolved goals
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+⊢ Option.map g ∘ Option.map f = Option.map (g ∘ f)
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+⊢ Option.map g ∘ Option.map f = Option.map (g ∘ f)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25188, Option.bind_eq_none' (data point #325)
+🔁 Attempt 1 / 5 | ✅ Success: 87 / Processed: 324
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {f : α → Option β} :
+    o.bind f = none ↔ ∀ b a, a ∈ o → b ∉ f a := by
+rw [bind, Option.mem_def, Option.not_mem_def, Option.bind_def]
+apply Iff.intro
+. intro h b a a_in_o
+  rw [Option.mem_def, Option.not_mem_def] at a_in_o
+  cases a_in_o
+  . exfalso
+    apply h
+    exists a
+  . apply Option.not_mem_none
+. intro h
+  by_cases h_o : o = none
+  . rw [h_o, none_bind]
+  . rw [Option.mem_def, Option.not_mem_def] at h_o
+    cases h_o
+    exists a
+    apply h
+    exists a
+    rw [Option.mem_def, Option.not_mem_def]
+    exists b
+    apply Option.mem_some
+❌ Lean check FAILED. Error message:
+tmp.lean:15:30: error: unknown identifier 'map'
+tmp.lean:15:2: error: unsolved goals
+case h.some
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+val✝ : α
+⊢ Option.map g (Option.map f (some val✝)) = Option.map (g ∘ f) (some val✝)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25188, Option.bind_eq_none' (data point #325)
+🔁 Attempt 2 / 5 | ✅ Success: 87 / Processed: 324
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {f : α → Option β} :
+    o.bind f = none ↔ ∀ b a, a ∈ o → b ∉ f a := by
+  rw [bind]
+  split
+  · intro h b a a_in_o
+    cases a_in_o
+    · contradiction
+    · cases h
+  · intro h
+    cases o
+    · simp
+    · intro a b
+      apply h
+      exact Option.some a
+❌ Lean check FAILED. Error message:
+tmp.lean:15:10: error: unknown identifier 'map'
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25188, Option.bind_eq_none' (data point #325)
+🔁 Attempt 3 / 5 | ✅ Success: 87 / Processed: 324
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  32%|██████████████▋                              | 325/1000 [06:00<33:30,  2.98s/it]🔄 Processing:  33%|██████████████▋                              | 326/1000 [06:31<41:06,  3.66s/it]🔄 Processing:  33%|██████████████▋                              | 327/1000 [06:37<41:55,  3.74s/it]🔄 Processing:  33%|██████████████▊                              | 328/1000 [06:43<42:59,  3.84s/it]🔄 Processing:  33%|██████████████▊                              | 329/1000 [06:55<48:49,  4.37s/it]🔄 Processing:  33%|██████████████▏                            | 330/1000 [07:13<1:01:07,  5.47s/it]🔄 Processing:  33%|██████████████▏                            | 331/1000 [07:19<1:01:40,  5.53s/it]🔄 Processing:  33%|██████████████▎                            | 332/1000 [07:25<1:02:04,  5.58s/it]import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {f : α → Option β} :
+    o.bind f = none ↔ ∀ b a, a ∈ o → b ∉ f a := by
+  constructor
+  · intro h b a a_in_o
+    cases a_in_o
+    · contradiction
+    · exfalso
+      apply h
+      exact some (f a_1)
+  · intro h
+    cases o
+    · simp
+    · intro a
+      apply h
+      exact some a
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25190, Option.map_comp_map (data point #326)
+🔁 Attempt 1 / 5 | ✅ Success: 88 / Processed: 325
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (g : β → γ) :
+    Option.map g ∘ Option.map f = Option.map (g ∘ f) := by
+  funext x
+  cases x
+  · simp [map]
+  · simp [map, Function.comp]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:56: error: unsolved goals
+case h.none
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+⊢ (Option.map g ∘ Option.map f) none = Option.map (g ∘ f) none
+
+case h.some
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+val✝ : α
+⊢ (Option.map g ∘ Option.map f) (some val✝) = Option.map (g ∘ f) (some val✝)
+case h.none
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+⊢ (Option.map g ∘ Option.map f) none = Option.map (g ∘ f) none
+
+case h.some
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+val✝ : α
+⊢ (Option.map g ∘ Option.map f) (some val✝) = Option.map (g ∘ f) (some val✝)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25190, Option.map_comp_map (data point #326)
+🔁 Attempt 2 / 5 | ✅ Success: 88 / Processed: 325
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (g : β → γ) :
+    Option.map g ∘ Option.map f = Option.map (g ∘ f) := by
+  funext x
+  cases x
+  · rfl
+  · simp [map, Function.comp]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:56: error: unsolved goals
+case h.some
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+val✝ : α
+⊢ (Option.map g ∘ Option.map f) (some val✝) = Option.map (g ∘ f) (some val✝)
+case h.some
+α : Type u_1
+β : Type u_2
+γ : Type u_3
+f : α → β
+g : β → γ
+val✝ : α
+⊢ (Option.map g ∘ Option.map f) (some val✝) = Option.map (g ∘ f) (some val✝)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25190, Option.map_comp_map (data point #326)
+🔁 Attempt 3 / 5 | ✅ Success: 88 / Processed: 325
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (g : β → γ) :
+    Option.map g ∘ Option.map f = Option.map (g ∘ f) := by
+  funext x
+  cases x
+  · rfl
+  · simp [Option.map, Function.comp]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25191, Option.not_isSome (data point #327)
+🔁 Attempt 1 / 5 | ✅ Success: 89 / Processed: 326
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : isSome a = false ↔ a.isNone = true := by
+  cases a <;> simp [isSome, isNone]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25193, Option.bind_none (data point #328)
+🔁 Attempt 1 / 5 | ✅ Success: 90 / Processed: 327
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (x : Option α) : x.bind (fun _ => none (α := β)) = none := by
+  cases x <;> simp [bind]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25194, Option.bind_eq_none (data point #329)
+🔁 Attempt 1 / 5 | ✅ Success: 91 / Processed: 328
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {f : α → Option β} :
+    o.bind f = none ↔ ∀ a, o = some a → f a = none := by
+  cases o <;> simp only [bind_eq_none, bind_none]
+  · exact ⟨fun h a h', h h', fun h', h' (Option.get _ _) rfl⟩
+  · exact ⟨fun h a h', h, fun h, h⟩
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25195, Option.getD_of_ne_none (data point #330)
+🔁 Attempt 1 / 5 | ✅ Success: 92 / Processed: 329
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} (hx : x ≠ none) (y : α) : some (x.getD y) = x := by
+  unfold getD
+  cases x <;> simp [hx]
+❌ Lean check FAILED. Error message:
+tmp.lean:10:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25195, Option.getD_of_ne_none (data point #330)
+🔁 Attempt 2 / 5 | ✅ Success: 92 / Processed: 329
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+example {x : Option α} (hx : x ≠ none) (y : α) : some (x.getD y) = x := by
+  unfold getD
+  cases x
+  · exfalso; exact hx rfl
+  · simp
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25197, Option.ne_none_iff_isSome (data point #331)
+🔁 Attempt 1 / 5 | ✅ Success: 93 / Processed: 330
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o ≠ none ↔ o.isSome := by
+  cases o <;> simp [isSome]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25200, Option.not_isSome_iff_eq_none (data point #332)
+🔁 Attempt 1 / 5 | ✅ Success: 94 / Processed: 331
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : ¬o.isSome ↔ o = none := by
+  cases o <;> simp [isSome]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25203, Option.eq_some_iff_get_eq (data point #333)
+🔁 Attempt 1 / 5 | ✅ Success: 95 / Processed: 332
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o = some a ↔ ∃ h : o.isSome, o.get h = a := by
+  cases o <;> simp
+  · left
+    rintro ⟨h, h'⟩
+    apply h'
+  · right
+    constructor
+    · exact id
+    · rintro ⟨h, h'⟩
+      exact h'
+❌ Lean check FAILED. Error message:
+tmp.lean:12:4: error: unexpected token '·'; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25203, Option.eq_some_iff_get_eq (data point #333)
+🔁 Attempt 2 / 5 | ✅ Success: 95 / Processed: 332
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  33%|██████████████▎                            | 333/1000 [08:24<2:34:41, 13.92s/it]🔄 Processing:  33%|██████████████▎                            | 334/1000 [09:30<4:20:46, 23.49s/it]🔄 Processing:  34%|██████████████▍                            | 335/1000 [09:36<3:40:13, 19.87s/it]🔄 Processing:  34%|██████████████▍                            | 336/1000 [09:43<3:06:03, 16.81s/it]import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o = some a ↔ ∃ h : o.isSome, o.get h = a := by
+  cases o <;> simp
+  · apply Iff.intro
+    · intro h
+      exfalso
+      apply h.not_isSome
+    · intro h
+      exfalso
+      exact h
+  · apply Iff.intro
+    · intro h
+      exists h
+    · rintro ⟨h, rfl⟩
+      exact h
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: no goals to be solved
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25203, Option.eq_some_iff_get_eq (data point #333)
+🔁 Attempt 3 / 5 | ✅ Success: 95 / Processed: 332
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o = some a ↔ ∃ h : o.isSome, o.get h = a := by
+  cases o <;> simp
+  · apply Iff.intro
+    · intro h
+      exfalso
+      apply h.not_isSome
+    · intro h
+      exfalso
+      exact h
+  · apply Iff.intro
+    · intro h
+      exists h
+    · rintro ⟨h, rfl⟩
+      exact h
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: no goals to be solved
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25203, Option.eq_some_iff_get_eq (data point #333)
+🔁 Attempt 4 / 5 | ✅ Success: 95 / Processed: 332
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o = some a ↔ ∃ h : o.isSome, o.get h = a := by
+  cases o <;> simp
+  · exact Iff.intro
+      (fun h => False.elim (h.not_isSome))
+      (fun ⟨h, h'⟩ => False.elim h')
+  · exact Iff.intro
+      (fun h => ⟨h, rfl⟩)
+      (fun ⟨h, h'⟩ => h)
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: no goals to be solved
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25203, Option.eq_some_iff_get_eq (data point #333)
+🔁 Attempt 5 / 5 | ✅ Success: 95 / Processed: 332
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o = some a ↔ ∃ h : o.isSome, o.get h = a := by
+  cases o <;> simp
+  · exact Iff.intro
+      (fun h => by contradiction)
+      (fun ⟨h, h'⟩ => by contradiction)
+  · exact Iff.intro
+      (fun h => ⟨h, rfl⟩)
+      (fun ⟨h, h'⟩ => h)
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25209, Option.ne_none_iff_exists (data point #334)
+🔁 Attempt 1 / 5 | ✅ Success: 96 / Processed: 333
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o ≠ none ↔ ∃ x, some x = o := by
+  cases o with
+  | none =>
+    simp only [Ne.def, not_false_iff, isSome_none, exists_prop, exists_false]
+  | some x =>
+    simp only [Ne.def, isSome_some, exists_prop, exists_eq_left']
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: no goals to be solved
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25209, Option.ne_none_iff_exists (data point #334)
+🔁 Attempt 2 / 5 | ✅ Success: 96 / Processed: 333
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o ≠ none ↔ ∃ x, some x = o := by
+  cases o with
+  | none =>
+    simp only [Ne.def, not_false_iff, isSome_none, exists_prop, exists_false]
+  | some x =>
+    simp only [Ne.def, isSome_some, exists_prop, exists_eq_left']
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: no goals to be solved
+tmp.lean:14:4: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25209, Option.ne_none_iff_exists (data point #334)
+🔁 Attempt 3 / 5 | ✅ Success: 96 / Processed: 333
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o ≠ none ↔ ∃ x, some x = o := by
+  cases o with
+  | none =>
+    simp only [Ne.def, not_false_iff, isSome_none, exists_prop, exists_false]
+    exact Iff.rfl
+  | some x =>
+    simp only [Ne.def, isSome_some, exists_prop, exists_eq_left']
+    exact Iff.rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:15:7: error: unknown tactic
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25209, Option.ne_none_iff_exists (data point #334)
+🔁 Attempt 4 / 5 | ✅ Success: 96 / Processed: 333
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o ≠ none ↔ ∃ x, some x = o := by
+  cases o with
+  | none =>
+    simp only [Ne.def, not_false_iff, exists_prop]
+    exact Iff.rfl
+  | some x =>
+    simp only [Ne.def, exists_prop, exists_eq_left']
+    exact Iff.rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:11:10: error: alternative 'none' has not been provided
+tmp.lean:11:10: error: alternative 'some' has not been provided
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25209, Option.ne_none_iff_exists (data point #334)
+🔁 Attempt 5 / 5 | ✅ Success: 96 / Processed: 333
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : o ≠ none ↔ ∃ x, some x = o := by
+  cases o with
+  | none =>
+    simp only [Ne.def, not_false_iff, exists_prop]
+    exact iff_of_false (by simp) (by simp)
+  | some x =>
+    simp only [Ne.def, exists_prop, exists_eq_left']
+    exact iff_of_true (by simp) (by simp)
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25210, Option.liftOrGet_none_right (data point #335)
+🔁 Attempt 1 / 5 | ✅ Success: 97 / Processed: 334
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {f} {a : Option α} : liftOrGet f a none = a := by
+  cases a
+  · refl
+  · intro x
+    refl
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25211, Option.isSome_iff_exists (data point #336)
+🔁 Attempt 1 / 5 | ✅ Success: 98 / Processed: 335
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : isSome x ↔ ∃ a, x = some a := by
+  cases x
+  case none =>
+    simp only [isSome, exists_prop, exists_false, false_iff]
+  case some val =>
+    simp only [isSome, exists_prop, exists_eq_left]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25215, Option.bind_eq_some (data point #337)
+🔁 Attempt 1 / 5 | ✅ Success: 99 / Processed: 336
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  34%|██████████████▍                            | 337/1000 [10:43<5:03:00, 27.42s/it]import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.bind f = some b ↔ ∃ a, x = some a ∧ f a = some b := by
+  constructor
+  · intro h
+    cases x <;> simp at h
+    · contradiction
+    · exact ⟨x_val, rfl, h⟩
+  · rintro ⟨a, rfl, h⟩
+    cases x <;> simp
+    · contradiction
+    · rw [h]
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+f : α✝ → Option α✝¹
+val✝ : α✝
+h : f val✝ = some b
+⊢ ∃ a, some val✝ = some a ∧ f a = some b
+tmp.lean:10:64: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → Option α✝¹
+⊢ (∃ a, x = some a ∧ f a = some b) → x.bind f = some b
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+f : α✝ → Option α✝¹
+val✝ : α✝
+h : f val✝ = some b
+⊢ ∃ a, some val✝ = some a ∧ f a = some b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25215, Option.bind_eq_some (data point #337)
+🔁 Attempt 2 / 5 | ✅ Success: 99 / Processed: 336
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.bind f = some b ↔ ∃ a, x = some a ∧ f a = some b := by
+  constructor
+  · intro h
+    cases x <;> simp at h
+    · exfalso
+      exact h rfl
+    · exact ⟨x_val, rfl, h⟩
+  · rintro ⟨a, rfl, h⟩
+    simp [h]
+❌ Lean check FAILED. Error message:
+tmp.lean:14:4: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+f : α✝ → Option α✝¹
+val✝ : α✝
+h : f val✝ = some b
+⊢ False
+tmp.lean:10:64: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → Option α✝¹
+⊢ (∃ a, x = some a ∧ f a = some b) → x.bind f = some b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25215, Option.bind_eq_some (data point #337)
+🔁 Attempt 3 / 5 | ✅ Success: 99 / Processed: 336
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.bind f = some b ↔ ∃ a, x = some a ∧ f a = some b := by
+  constructor
+  · intro h
+    cases x <;> simp at h
+    · exfalso
+      exact h
+    · exact ⟨x_val, rfl, h⟩
+  · rintro ⟨a, rfl, h⟩
+    simp [bind]
+    exact h
+❌ Lean check FAILED. Error message:
+tmp.lean:14:4: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+f : α✝ → Option α✝¹
+val✝ : α✝
+h : f val✝ = some b
+⊢ False
+tmp.lean:10:64: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → Option α✝¹
+⊢ (∃ a, x = some a ∧ f a = some b) → x.bind f = some b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25215, Option.bind_eq_some (data point #337)
+🔁 Attempt 4 / 5 | ✅ Success: 99 / Processed: 336
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.bind f = some b ↔ ∃ a, x = some a ∧ f a = some b := by
+  constructor
+  · intro h
+    cases x <;> simp at h
+    · exfalso
+      exact h rfl
+    · exact ⟨x_val, rfl, h⟩
+  · rintro ⟨a, rfl, h⟩
+    simp [bind]
+    exact h
+❌ Lean check FAILED. Error message:
+tmp.lean:14:4: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+f : α✝ → Option α✝¹
+val✝ : α✝
+h : f val✝ = some b
+⊢ False
+tmp.lean:10:64: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → Option α✝¹
+⊢ (∃ a, x = some a ∧ f a = some b) → x.bind f = some b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25215, Option.bind_eq_some (data point #337)
+🔁 Attempt 5 / 5 | ✅ Success: 99 / Processed: 336
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.bind f = some b ↔ ∃ a, x = some a ∧ f a = some b := by
+  constructor
+  · intro h
+    cases x <;> simp at h
+    · exfalso
+      exact ne_of_mem_of_not_mem h (by decide)
+    · exact ⟨x_val, rfl, h⟩
+  · rintro ⟨a, rfl, h⟩
+    simp [bind]
+    exact h
+❌ Lean check FAILED. Error message:
+tmp.lean:14:4: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+f : α✝ → Option α✝¹
+val✝ : α✝
+h : f val✝ = some b
+⊢ False
+tmp.lean:10:64: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → Option α✝¹
+⊢ (∃ a, x = some a ∧ f a = some b) → x.bind f = some b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25216, Option.getD_eq_iff (data point #338)
+🔁 Attempt 1 / 5 | ✅ Success: 99 / Processed: 337
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {a b} : o.getD a = b ↔ (o = some b ∨ o = none ∧ a = b) := by
+
+  cases o
+  · -- Case 1: o = none
+    simp [getD]
+    constructor
+    · intro h
+      right
+      constructor
+      · rfl
+      · assumption
+    · intro h
+      cases h
+      · contradiction
+      · assumption
+  · -- Case 2: o = some val
+    intro val
+    simp [getD]
+    constructor
+    · intro h
+      left
+      apply some.inj
+      assumption
+    · intro h
+      cases h
+      · assumption
+      · contradiction
+❌ Lean check FAILED. Error message:
+tmp.lean:10:81: error: unsolved goals
+case some
+α : Type u_1
+a b val✝ : α
+⊢ (some val✝).getD a = b ↔ some val✝ = some b ∨ some val✝ = none ∧ a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25216, Option.getD_eq_iff (data point #338)
+🔁 Attempt 2 / 5 | ✅ Success: 99 / Processed: 337
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {a b} : o.getD a = b ↔ (o = some b ∨ o = none ∧ a = b) := by
+
+  cases o
+  · -- Case 1: o = none
+    simp [getD]
+    constructor
+    · intro h
+      right
+      constructor
+      · rfl
+      · exact h
+    · intro h
+      cases h
+      · contradiction
+      · exact h
+  · -- Case 2: o = some val
+    intro val
+    simp [getD]
+    constructor
+    · intro h
+      left
+      exact h
+    · intro h
+      cases h
+      · exact h
+      · contradiction
+❌ Lean check FAILED. Error message:
+tmp.lean:10:81: error: unsolved goals
+case some
+α : Type u_1
+a b val✝ : α
+⊢ (some val✝).getD a = b ↔ some val✝ = some b ∨ some val✝ = none ∧ a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25216, Option.getD_eq_iff (data point #338)
+🔁 Attempt 3 / 5 | ✅ Success: 99 / Processed: 337
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  34%|██████████████▌                            | 338/1000 [11:45<6:41:59, 36.43s/it]🔄 Processing:  34%|██████████████▌                            | 339/1000 [11:51<5:11:29, 28.27s/it]🔄 Processing:  34%|██████████████▌                            | 340/1000 [12:12<4:48:47, 26.25s/it]🔄 Processing:  34%|██████████████▋                            | 341/1000 [12:18<3:44:58, 20.48s/it]🔄 Processing:  34%|██████████████▋                            | 342/1000 [12:36<3:34:43, 19.58s/it]🔄 Processing:  34%|██████████████▋                            | 343/1000 [12:42<2:50:44, 15.59s/it]import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {a b} : o.getD a = b ↔ (o = some b ∨ o = none ∧ a = b) := by
+
+  cases o
+  · -- Case 1: o = none
+    simp [getD]
+    constructor
+    · intro h
+      right
+      constructor
+      · rfl
+      · exact h
+    · intro h
+      cases h
+      · contradiction
+      · exact h
+  · -- Case 2: o = some val
+    intro val
+    simp [getD]
+    constructor
+    · intro h
+      left
+      exact Eq.symm h
+    · intro h
+      cases h
+      · exact Eq.symm h
+      · contradiction
+❌ Lean check FAILED. Error message:
+tmp.lean:10:81: error: unsolved goals
+case some
+α : Type u_1
+a b val✝ : α
+⊢ (some val✝).getD a = b ↔ some val✝ = some b ∨ some val✝ = none ∧ a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25216, Option.getD_eq_iff (data point #338)
+🔁 Attempt 4 / 5 | ✅ Success: 99 / Processed: 337
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {a b} : o.getD a = b ↔ (o = some b ∨ o = none ∧ a = b) := by
+
+  cases o
+  · -- Case 1: o = none
+    simp [getD]
+    constructor
+    · intro h
+      right
+      constructor
+      · rfl
+      · exact h
+    · rintro (h | ⟨_, h⟩)
+      · contradiction
+      · exact h
+  · -- Case 2: o = some val
+    intro val
+    simp [getD]
+    constructor
+    · intro h
+      left
+      exact h.symm
+    · rintro (h | ⟨_, h⟩)
+      · exact h.symm
+      · contradiction
+❌ Lean check FAILED. Error message:
+tmp.lean:10:81: error: unsolved goals
+case some
+α : Type u_1
+a b val✝ : α
+⊢ (some val✝).getD a = b ↔ some val✝ = some b ∨ some val✝ = none ∧ a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25216, Option.getD_eq_iff (data point #338)
+🔁 Attempt 5 / 5 | ✅ Success: 99 / Processed: 337
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {o : Option α} {a b} : o.getD a = b ↔ (o = some b ∨ o = none ∧ a = b) := by
+
+  cases o
+  · -- Case 1: o = none
+    simp [getD]
+    constructor
+    · intro h
+      right
+      constructor
+      · rfl
+      · exact h
+    · rintro (_ | ⟨_, h⟩)
+      · contradiction
+      · exact h
+  · -- Case 2: o = some val
+    intro val
+    simp [getD]
+    constructor
+    · intro h
+      left
+      exact h.symm
+    · rintro (h | ⟨_, h⟩)
+      · exact h
+      · contradiction
+❌ Lean check FAILED. Error message:
+tmp.lean:10:81: error: unsolved goals
+case some
+α : Type u_1
+a b val✝ : α
+⊢ (some val✝).getD a = b ↔ some val✝ = some b ∨ some val✝ = none ∧ a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25218, Option.bind_comm (data point #339)
+🔁 Attempt 1 / 5 | ✅ Success: 99 / Processed: 338
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {f : α → β → Option γ} (a : Option α) (b : Option β) :
+    (a.bind fun x => b.bind (f x)) = b.bind fun y => a.bind fun x => f x y := by
+  cases a <;> cases b <;> rfl
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25220, Option.map_orElse (data point #340)
+🔁 Attempt 1 / 5 | ✅ Success: 100 / Processed: 339
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x y : Option α} : (x <|> y).map f = (x.map f <|> y.map f) := by
+  cases x <;> simp [map, orElse]
+❌ Lean check FAILED. Error message:
+tmp.lean:10:70: error: unsolved goals
+α : Type u_1
+α✝ : Type u_2
+f : α → α✝
+x y : Option α
+⊢ Option.map f (x <|> y) = (Option.map f x <|> Option.map f y)
+α : Type u_1
+α✝ : Type u_2
+f : α → α✝
+x y : Option α
+⊢ Option.map f (x <|> y) = (Option.map f x <|> Option.map f y)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25220, Option.map_orElse (data point #340)
+🔁 Attempt 2 / 5 | ✅ Success: 100 / Processed: 339
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x y : Option α} : (x <|> y).map f = (x.map f <|> y.map f) := by
+  cases x <;> simp [Option.map, Option.orElse]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25223, Option.map_map (data point #341)
+🔁 Attempt 1 / 5 | ✅ Success: 101 / Processed: 340
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (h : β → γ) (g : α → β) (x : Option α) :
+    (x.map g).map h = x.map (h ∘ g) := by
+  cases x
+  · simp
+  · simp
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25225, Option.orElse_none (data point #342)
+🔁 Attempt 1 / 5 | ✅ Success: 102 / Processed: 341
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (x : Option α) : (x <|> none) = x := by
+  cases x
+  · simp [orElse]
+  · simp [orElse]
+❌ Lean check FAILED. Error message:
+tmp.lean:10:45: error: unsolved goals
+case none
+α : Type u_1
+⊢ (none <|> none) = none
+
+case some
+α : Type u_1
+val✝ : α
+⊢ (some val✝ <|> none) = some val✝
+case none
+α : Type u_1
+⊢ (none <|> none) = none
+
+case some
+α : Type u_1
+val✝ : α
+⊢ (some val✝ <|> none) = some val✝
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25225, Option.orElse_none (data point #342)
+🔁 Attempt 2 / 5 | ✅ Success: 102 / Processed: 341
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (x : Option α) : (x <|> none) = x := by
+  cases x
+  · rfl
+  · rfl
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25227, Option.liftOrGet_none_left (data point #343)
+🔁 Attempt 1 / 5 | ✅ Success: 103 / Processed: 342
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {f} {b : Option α} : liftOrGet f none b = b := by
+  cases b <;> rfl
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25229, Option.isSome_map' (data point #344)
+🔁 Attempt 1 / 5 | ✅ Success: 104 / Processed: 343
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} : (x.map f).isSome = x.isSome := by
+
+  cases x
+  case none =>
+    simp
+    exact rfl
+  case some a =>
+    simp
+    exact rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:10:56: error: unsolved goals
+case some
+α : Type u_1
+α✝ : Type u_2
+f : α → α✝
+val✝ : α
+⊢ (Option.map f (some val✝)).isSome = (some val✝).isSome
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔄 Processing:  34%|██████████████▊                            | 344/1000 [13:43<5:16:56, 28.99s/it]🔄 Processing:  34%|██████████████▊                            | 345/1000 [13:49<4:02:36, 22.22s/it]🔢 Processing ID 25229, Option.isSome_map' (data point #344)
+🔁 Attempt 2 / 5 | ✅ Success: 104 / Processed: 343
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} : (x.map f).isSome = x.isSome := by
+
+  cases x
+  case none =>
+    simp
+    rfl
+  case some a =>
+    simp
+    rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:10:56: error: unsolved goals
+case some
+α : Type u_1
+α✝ : Type u_2
+f : α → α✝
+val✝ : α
+⊢ (Option.map f (some val✝)).isSome = (some val✝).isSome
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25229, Option.isSome_map' (data point #344)
+🔁 Attempt 3 / 5 | ✅ Success: 104 / Processed: 343
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} : (x.map f).isSome = x.isSome := by
+
+  cases x
+  case none =>
+    simp
+    rfl
+  case some a =>
+    simp [map, isSome]
+    rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:10:56: error: unsolved goals
+case some
+α : Type u_1
+α✝ : Type u_2
+f : α → α✝
+val✝ : α
+⊢ (Option.map f (some val✝)).isSome = (some val✝).isSome
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25229, Option.isSome_map' (data point #344)
+🔁 Attempt 4 / 5 | ✅ Success: 104 / Processed: 343
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} : (x.map f).isSome = x.isSome := by
+
+  cases x
+  case none =>
+    simp
+    rfl
+  case some a =>
+    simp [Option.map, isSome]
+    rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:10:56: error: unsolved goals
+case some
+α : Type u_1
+α✝ : Type u_2
+f : α → α✝
+val✝ : α
+⊢ (Option.map f (some val✝)).isSome = (some val✝).isSome
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25229, Option.isSome_map' (data point #344)
+🔁 Attempt 5 / 5 | ✅ Success: 104 / Processed: 343
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} : (x.map f).isSome = x.isSome := by
+
+  cases x
+  case none =>
+    simp
+    rfl
+  case some a =>
+    simp only [Option.map, isSome]
+    rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:10:56: error: unsolved goals
+case some
+α : Type u_1
+α✝ : Type u_2
+f : α → α✝
+val✝ : α
+⊢ (Option.map f (some val✝)).isSome = (some val✝).isSome
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25236, Option.join_map_eq_map_join (data point #345)
+🔁 Attempt 1 / 5 | ✅ Success: 104 / Processed: 344
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {f : α → β} {x : Option (Option α)} :
+    (x.map (Option.map f)).join = x.join.map f := by
+  cases x
+  · simp [Option.map]
+  · simp [Option.map, Option.join]
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25237, Option.map_eq_some' (data point #346)
+🔁 Attempt 1 / 5 | ✅ Success: 105 / Processed: 345
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.map f = some b ↔ ∃ a, x = some a ∧ f a = b := by
+  constructor
+  · intro h
+    cases hx : x <;> simp at h
+    · contradiction
+    · exists hx
+  · rintro ⟨a, rfl, rfl⟩
+    simp
+❌ Lean check FAILED. Error message:
+tmp.lean:12:2: error: unsolved goals
+case mp.none
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+hx : x = none
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, none = some a ∧ f a = b
+
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+tmp.lean:10:58: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+⊢ (∃ a, x = some a ∧ f a = b) → Option.map f x = some b
+case mp.none
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+hx : x = none
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, none = some a ∧ f a = b
+
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25237, Option.map_eq_some' (data point #346)
+🔁 Attempt 2 / 5 | ✅ Success: 105 / Processed: 345
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.map f = some b ↔ ∃ a, x = some a ∧ f a = b := by
+  constructor
+  · intro h
+    cases hx : x <;> simp at h
+    · exfalso
+      exact h
+    · exists hx
+  · rintro ⟨a, rfl, rfl⟩
+    simp
+❌ Lean check FAILED. Error message:
+tmp.lean:14:4: error: unsolved goals
+case mp.none
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+hx : x = none
+h : ∃ a, x = some a ∧ f a = b
+⊢ False
+tmp.lean:12:2: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+tmp.lean:10:58: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+⊢ (∃ a, x = some a ∧ f a = b) → Option.map f x = some b
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25237, Option.map_eq_some' (data point #346)
+🔁 Attempt 3 / 5 | ✅ Success: 105 / Processed: 345
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.map f = some b ↔ ∃ a, x = some a ∧ f a = b := by
+  constructor
+  · intro h
+    cases hx : x <;> simp at h
+    · exfalso
+      apply not_exists_of_not_forall
+      intro a
+      simp
+    · exists val
+  · rintro ⟨a, rfl, rfl⟩
+    simp
+❌ Lean check FAILED. Error message:
+🔄 Processing:  35%|██████████████▉                            | 346/1000 [14:55<6:24:23, 35.26s/it]🔄 Processing:  35%|██████████████▉                            | 347/1000 [15:01<4:48:56, 26.55s/it]tmp.lean:14:4: error: unsolved goals
+case mp.none
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+hx : x = none
+h : ∃ a, x = some a ∧ f a = b
+⊢ False
+tmp.lean:12:2: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+tmp.lean:10:58: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+⊢ (∃ a, x = some a ∧ f a = b) → Option.map f x = some b
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25237, Option.map_eq_some' (data point #346)
+🔁 Attempt 4 / 5 | ✅ Success: 105 / Processed: 345
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.map f = some b ↔ ∃ a, x = some a ∧ f a = b := by
+  constructor
+  · intro h
+    cases hx : x <;> simp at h
+    · exfalso
+      apply not_exists_of_not_forall
+      intro a
+      simp
+    · exists val
+  · rintro ⟨a, rfl, rfl⟩
+    simp
+❌ Lean check FAILED. Error message:
+tmp.lean:14:4: error: unsolved goals
+case mp.none
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+hx : x = none
+h : ∃ a, x = some a ∧ f a = b
+⊢ False
+tmp.lean:12:2: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+tmp.lean:10:58: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+⊢ (∃ a, x = some a ∧ f a = b) → Option.map f x = some b
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25237, Option.map_eq_some' (data point #346)
+🔁 Attempt 5 / 5 | ✅ Success: 105 / Processed: 345
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : x.map f = some b ↔ ∃ a, x = some a ∧ f a = b := by
+  constructor
+  · intro h
+    cases hx : x <;> simp at h
+    · exfalso
+      exact h
+    · exists val
+      exact ⟨hx.symm, h⟩
+  · rintro ⟨a, rfl, rfl⟩
+    simp
+❌ Lean check FAILED. Error message:
+tmp.lean:14:4: error: unsolved goals
+case mp.none
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+hx : x = none
+h : ∃ a, x = some a ∧ f a = b
+⊢ False
+tmp.lean:12:2: error: unsolved goals
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+tmp.lean:10:58: error: unsolved goals
+case mpr
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+⊢ (∃ a, x = some a ∧ f a = b) → Option.map f x = some b
+case mp.some
+α✝¹ : Type u_1
+b : α✝¹
+α✝ : Type u_2
+x : Option α✝
+f : α✝ → α✝¹
+val✝ : α✝
+hx : x = some val✝
+h : ∃ a, x = some a ∧ f a = b
+⊢ ∃ a, some val✝ = some a ∧ f a = b
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25239, Option.or_none (data point #347)
+🔁 Attempt 1 / 5 | ✅ Success: 105 / Processed: 346
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : or o none = o := by
+  cases o
+  case none =>
+    rfl
+  case some x =>
+    rfl
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25241, Option.getD_map (data point #348)
+🔁 Attempt 1 / 5 | ✅ Success: 106 / Processed: 347
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (x : α) (o : Option α) :
+  (o.map f).getD (f x) = f (getD o x) := by
+  cases o
+  · -- Case 1: o = none
+    have h1 : (none.map f) = none := rfl
+    have h2 : none.getD (f x) = f x := rfl
+    have h3 : f (getD none x) = f x := rfl
+    rw [h1, h2, h3]
+    exact rfl
+  · -- Case 2: o = some val
+    have h1 : (some val).map f = some (f val) := rfl
+    have h2 : (some (f val)).getD (f x) = f val := rfl
+    have h3 : f (getD (some val) x) = f val := rfl
+    rw [h1, h2, h3]
+    exact rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:11:41: error: unsolved goals
+case some
+α : Type u_1
+β : Type u_2
+f : α → β
+x val✝ : α
+⊢ (Option.map f (some val✝)).getD (f x) = f ((some val✝).getD x)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25241, Option.getD_map (data point #348)
+🔁 Attempt 2 / 5 | ✅ Success: 106 / Processed: 347
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (x : α) (o : Option α) :
+  (o.map f).getD (f x) = f (getD o x) := by
+  cases o
+  · -- Case 1: o = none
+    have h1 : (none.map f) = none := rfl
+    have h2 : none.getD (f x) = f x := rfl
+    have h3 : f (getD none x) = f x := rfl
+    rw [h1, h2, h3]
+  · -- Case 2: o = some a
+    have h1 : (some a).map f = some (f a) := rfl
+    have h2 : (some (f a)).getD (f x) = f a := rfl
+    have h3 : f (getD (some a) x) = f a := rfl
+    rw [h1, h2, h3]
+❌ Lean check FAILED. Error message:
+tmp.lean:19:2: error: expected '{' or indented tactic sequence
+tmp.lean:18:2: error: unsolved goals
+case some
+α : Type u_1
+β : Type u_2
+f : α → β
+x val✝ : α
+⊢ (Option.map f (some val✝)).getD (f x) = f ((some val✝).getD x)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25241, Option.getD_map (data point #348)
+🔁 Attempt 3 / 5 | ✅ Success: 106 / Processed: 347
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (x : α) (o : Option α) :
+  (o.map f).getD (f x) = f (getD o x) := by
+  cases o
+  · -- Case 1: o = none
+    have h1 : (none.map f) = none := rfl
+    have h2 : none.getD (f x) = f x := rfl
+    have h3 : f (getD none x) = f x := rfl
+    rw [h1, h2, h3]
+  · -- Case 2: o = some a
+    intro a
+    have h1 : (some a).map f = some (f a) := rfl
+    have h2 : (some (f a)).getD (f x) = f a := rfl
+    have h3 : f (getD (some a) x) = f a := rfl
+    rw [h1, h2, h3]
+❌ Lean check FAILED. Error message:
+tmp.lean:19:2: error: expected '{' or indented tactic sequence
+tmp.lean:18:2: error: unsolved goals
+case some
+α : Type u_1
+β : Type u_2
+f : α → β
+x val✝ : α
+⊢ (Option.map f (some val✝)).getD (f x) = f ((some val✝).getD x)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25241, Option.getD_map (data point #348)
+🔁 Attempt 4 / 5 | ✅ Success: 106 / Processed: 347
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  35%|██████████████▉                            | 348/1000 [16:02<6:40:50, 36.89s/it]🔄 Processing:  35%|███████████████                            | 349/1000 [17:03<7:56:52, 43.95s/it]import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (x : α) (o : Option α) :
+  (o.map f).getD (f x) = f (getD o x) := by
+  cases o
+  · -- Case 1: o = none
+    have h1 : (none.map f) = none := rfl
+    have h2 : none.getD (f x) = f x := rfl
+    have h3 : f (getD none x) = f x := rfl
+    rw [h1, h2, h3]
+  · -- Case 2: o = some a
+    rw [map_some, getD_some]
+    rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:19:2: error: expected '{' or indented tactic sequence
+tmp.lean:18:2: error: unsolved goals
+case some
+α : Type u_1
+β : Type u_2
+f : α → β
+x val✝ : α
+⊢ (Option.map f (some val✝)).getD (f x) = f ((some val✝).getD x)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25241, Option.getD_map (data point #348)
+🔁 Attempt 5 / 5 | ✅ Success: 106 / Processed: 347
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example (f : α → β) (x : α) (o : Option α) :
+  (o.map f).getD (f x) = f (getD o x) := by
+  cases o
+  · -- Case 1: o = none
+    have h1 : (none.map f) = none := rfl
+    have h2 : none.getD (f x) = f x := rfl
+    have h3 : f (getD none x) = f x := rfl
+    rw [h1, h2, h3]
+  · -- Case 2: o = some a
+    rw [map_some, getD_some, getD_some]
+    rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:12:0: error: unexpected end of input; expected ':=', 'where' or '|'
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25244, Option.map_congr (data point #349)
+🔁 Attempt 1 / 5 | ✅ Success: 106 / Processed: 348
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} (h : ∀ a, a ∈ x → f a = g a) : x.map f = x.map g := by
+  cases x
+  · simp
+  · simp
+❌ Lean check FAILED. Error message:
+tmp.lean:10:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25244, Option.map_congr (data point #349)
+🔁 Attempt 2 / 5 | ✅ Success: 106 / Processed: 348
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} (h : ∀ a, a ∈ x → f a = g a) : x.map f = x.map g := by
+  cases x
+  · simp [map]
+  · simp [map]
+    apply congrArg
+    exact h _ (mem_some.2 rfl)
+❌ Lean check FAILED. Error message:
+tmp.lean:11:41: error: unsolved goals
+α : Type u_1
+β : Type u_2
+f : α → β
+x : α
+o : Option α
+⊢ (Option.map f o).getD (f x) = f (o.getD x)
+α : Type u_1
+β : Type u_2
+f : α → β
+x : α
+o : Option α
+⊢ (Option.map f o).getD (f x) = f (o.getD x)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25244, Option.map_congr (data point #349)
+🔁 Attempt 3 / 5 | ✅ Success: 106 / Processed: 348
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} (h : ∀ a, a ∈ x → f a = g a) : x.map f = x.map g := by
+  cases x
+  · simp [map]
+  · simp [map]
+    apply congrArg
+    exact h _ rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:11:41: error: unsolved goals
+α : Type u_1
+β : Type u_2
+f : α → β
+x : α
+o : Option α
+⊢ (Option.map f o).getD (f x) = f (o.getD x)
+α : Type u_1
+β : Type u_2
+f : α → β
+x : α
+o : Option α
+⊢ (Option.map f o).getD (f x) = f (o.getD x)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25244, Option.map_congr (data point #349)
+🔁 Attempt 4 / 5 | ✅ Success: 106 / Processed: 348
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} (h : ∀ a, a ∈ x → f a = g a) : x.map f = x.map g := by
+  cases x
+  · simp [map]
+  · simp [map]
+    exact congrArg some (h _ (mem_some.2 rfl))
+❌ Lean check FAILED. Error message:
+tmp.lean:10:75: error: unsolved goals
+case none
+α : Type u_1
+α✝ : Type u_2
+f g : α → α✝
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+
+case some
+α : Type u_1
+α✝ : Type u_2
+f g : α → α✝
+val✝ : α
+h : ∀ (a : α), a ∈ some val✝ → f a = g a
+⊢ Option.map f (some val✝) = Option.map g (some val✝)
+case none
+α : Type u_1
+α✝ : Type u_2
+f g : α → α✝
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+
+case some
+α : Type u_1
+α✝ : Type u_2
+f g : α → α✝
+val✝ : α
+h : ∀ (a : α), a ∈ some val✝ → f a = g a
+⊢ Option.map f (some val✝) = Option.map g (some val✝)
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25244, Option.map_congr (data point #349)
+🔁 Attempt 5 / 5 | ✅ Success: 106 / Processed: 348
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option α} (h : ∀ a, a ∈ x → f a = g a) : x.map f = x.map g := by
+  cases x
+  · simp [Option.map]
+  · simp [Option.map]
+    exact h _ rfl
+❌ Lean check FAILED. Error message:
+tmp.lean:10:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25247, Option.join_join (data point #350)
+🔁 Attempt 1 / 5 | ✅ Success: 106 / Processed: 349
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option (Option (Option α))} : x.join.join = (x.map join).join := by
+  cases x
+  case none =>
+    repeat rw [join]
+  case some y =>
+    repeat rw [join, map]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:9: error: unsolved goals
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+tmp.lean:11:2: error: alternative 'some' has not been provided
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25247, Option.join_join (data point #350)
+🔁 Attempt 2 / 5 | ✅ Success: 106 / Processed: 349
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option (Option (Option α))} : x.join.join = (x.map join).join := by
+  cases x
+  case none =>
+    repeat rw [join]
+  case some y =>
+    cases y
+    case none =>
+      repeat rw [join]
+    case some z =>
+      repeat rw [join, map]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:9: error: unsolved goals
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+tmp.lean:11:2: error: alternative 'some' has not been provided
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25247, Option.join_join (data point #350)
+🔁 Attempt 3 / 5 | ✅ Success: 106 / Processed: 349
+
+📜 Generated Lean 4 proof:
+🔄 Processing:  35%|███████████████                            | 350/1000 [18:02<8:46:50, 48.63s/it]🔄 Processing:  35%|███████████████                            | 351/1000 [18:14<6:46:14, 37.56s/it]🔄 Processing:  35%|███████████████▏                           | 352/1000 [19:12<7:53:17, 43.82s/it]🔄 Processing:  35%|███████████████▊                             | 352/1000 [19:31<35:57,  3.33s/it]
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option (Option (Option α))} : x.join.join = (x.map join).join := by
+  cases x
+  case none =>
+    repeat rw [join]
+  case some y =>
+    cases y
+    case none =>
+      repeat rw [join]
+    case some z =>
+      cases z
+      case none =>
+        repeat rw [join]
+      case some w =>
+        repeat rw [join]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:9: error: unsolved goals
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+tmp.lean:11:2: error: alternative 'some' has not been provided
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25247, Option.join_join (data point #350)
+🔁 Attempt 4 / 5 | ✅ Success: 106 / Processed: 349
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option (Option (Option α))} : x.join.join = (x.map join).join := by
+  cases x
+  case none =>
+    repeat rw [join]
+  case some y =>
+    cases y
+    case none =>
+      repeat rw [join]
+    case some z =>
+      repeat rw [join, map]
+❌ Lean check FAILED. Error message:
+tmp.lean:11:9: error: unsolved goals
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+tmp.lean:11:2: error: alternative 'some' has not been provided
+case none
+α α₁ : Type
+f g : α → α₁
+h : ∀ (a : α), a ∈ none → f a = g a
+⊢ Option.map f none = Option.map g none
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25247, Option.join_join (data point #350)
+🔁 Attempt 5 / 5 | ✅ Success: 106 / Processed: 349
+
+📜 Generated Lean 4 proof:
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example {x : Option (Option (Option α))} : x.join.join = (x.map join).join := by
+  cases x
+  case none =>
+    repeat rw [join]
+  case some y =>
+    cases y
+    case none =>
+      repeat rw [join]
+    case some z =>
+      rw [join, map]
+      rw [join]
+❌ Lean check FAILED. Error message:
+tmp.lean:13:16: error: unknown identifier 'map'
+tmp.lean:16:16: error: unknown identifier 'map'
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25271, Bool.eq_false_or_eq_true (data point #351)
+🔁 Attempt 1 / 5 | ✅ Success: 106 / Processed: 350
+
+📜 Generated Lean 4 proof:
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : (b : Bool) → b = true ∨ b = false := by
+  intro b
+  cases b
+  . left
+    refl
+  . right
+    refl
+✅ Lean check PASSED!
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25274, Bool.eq_false_iff (data point #352)
+🔁 Attempt 1 / 5 | ✅ Success: 107 / Processed: 351
+
+📜 Generated Lean 4 proof:
+API ERROR: API error occurred: Status 429
+{"message":"Requests rate limit exceeded"}
+❌ Lean check FAILED. Error message:
+tmp.lean:2:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25274, Bool.eq_false_iff (data point #352)
+🔁 Attempt 2 / 5 | ✅ Success: 107 / Processed: 351
+
+📜 Generated Lean 4 proof:
+API ERROR: API error occurred: Status 400
+{"object":"error","message":"Assistant message must have either content or tool_calls, but not none.","type":"invalid_request_error","param":null,"code":null}
+❌ Lean check FAILED. Error message:
+tmp.lean:11:5: error: unknown tactic
+tmp.lean:10:2: error: unsolved goals
+case false.h
+⊢ false = true
+tmp.lean:7:47: error: unsolved goals
+case true
+⊢ true = true ∨ true = false
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25274, Bool.eq_false_iff (data point #352)
+🔁 Attempt 3 / 5 | ✅ Success: 107 / Processed: 351
+
+📜 Generated Lean 4 proof:
+API ERROR: API error occurred: Status 400
+{"object":"error","message":"Assistant message must have either content or tool_calls, but not none.","type":"invalid_request_error","param":null,"code":null}
+❌ Lean check FAILED. Error message:
+tmp.lean:1:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25274, Bool.eq_false_iff (data point #352)
+🔁 Attempt 4 / 5 | ✅ Success: 107 / Processed: 351
+
+📜 Generated Lean 4 proof:
+API ERROR: API error occurred: Status 400
+{"object":"error","message":"Assistant message must have either content or tool_calls, but not none.","type":"invalid_request_error","param":null,"code":null}
+❌ Lean check FAILED. Error message:
+tmp.lean:1:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25274, Bool.eq_false_iff (data point #352)
+🔁 Attempt 5 / 5 | ✅ Success: 107 / Processed: 351
+
+📜 Generated Lean 4 proof:
+API ERROR: API error occurred: Status 400
+{"object":"error","message":"Assistant message must have either content or tool_calls, but not none.","type":"invalid_request_error","param":null,"code":null}
+❌ Lean check FAILED. Error message:
+tmp.lean:1:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25275, Bool.ne_false_iff (data point #353)
+🔁 Attempt 1 / 5 | ✅ Success: 107 / Processed: 352
+
+📜 Generated Lean 4 proof:
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : {b : Bool} → b ≠ false ↔ b = true := by
+  constructor
+  · intro h
+    cases b <;> try { assumption }
+    · exact absurd rfl h
+  · intro h
+    exact Ne.symm (Ne.ofEqFun h)
+❌ Lean check FAILED. Error message:
+tmp.lean:1:0: error: unexpected identifier; expected command
+
+
+
+
+
+
+
+
+
+
+================================================================================
+🔢 Processing ID 25275, Bool.ne_false_iff (data point #353)
+🔁 Attempt 2 / 5 | ✅ Success: 107 / Processed: 352
+
+📜 Generated Lean 4 proof:
+API ERROR: API error occurred: Status 400
+{"object":"error","message":"Assistant message must have either content or tool_calls, but not none.","type":"invalid_request_error","param":null,"code":null}
+Traceback (most recent call last):
+  File "/home/michail/Autoformalization_Cleaned/experiment_mistral_header_pipeline_cut_state/pipeline.py", line 347, in <module>
+    main()
+  File "/home/michail/Autoformalization_Cleaned/experiment_mistral_header_pipeline_cut_state/pipeline.py", line 309, in main
+    prev_line = proof_lines[err_line-2]
+                ~~~~~~~~~~~^^^^^^^^^^^^
+IndexError: list index out of range

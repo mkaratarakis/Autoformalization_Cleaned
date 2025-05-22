@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Boolean Less-Than or Equality Implies Less-Than-or-Equal: \( x < y \lor x = y \to x \leq y \) : For any boolean values \( x \) and \( y \), if \( x < y \) or \( x = y \), then \( x \leq y \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( x \) and \( y \), if \( x < y \) or \( x = y \), then \( x \leq y \). Since \( x \) and \( y \) can only be `true` or `false`, we can check all possible cases:
+
+1. **Case 1: \( x = \text{false} \) and \( y = \text{false} \)**
+- \( x < y \) is false.
+- \( x = y \) is true.
+- Therefore, \( x \leq y \) is true.
+
+2. **Case 2: \( x = \text{false} \) and \( y = \text{true} \)**
+- \( x < y \) is true.
+- \( x = y \) is false.
+- Therefore, \( x \leq y \) is true.
+
+3. **Case 3: \( x = \text{true} \) and \( y = \text{false} \)**
+- \( x < y \) is false.
+- \( x = y \) is false.
+- This case does not satisfy the hypothesis \( x < y \lor x = y \).
+
+4. **Case 4: \( x = \text{true} \) and \( y = \text{true} \)**
+- \( x < y \) is false.
+- \( x = y \) is true.
+- Therefore, \( x \leq y \) is true.
+
+In all valid cases, \( x \leq y \) holds. Hence, the statement is true. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x < y ∨ x = y → x ≤ y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x < y ∨ x = y → x ≤ y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

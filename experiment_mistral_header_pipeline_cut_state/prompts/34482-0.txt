@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+TakeWhile of Concatenated Lists with Positive Predicate on First List: \(\text{takeWhile } p \, (l_1 ++ l_2) = l_1 ++ \text{takeWhile } p \, l_2\) : For any type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), and for any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), if every element \( a \) in \( l_1 \) satisfies \( p(a) = \text{true} \), then the longest initial segment of the concatenated list \( l_1 ++ l_2 \) for which \( p \) returns `true` is given by:
+\[ \text{takeWhile } p \, (l_1 ++ l_2) = l_1 ++ \text{takeWhile } p \, l_2. \]
+
+2. **Informal Proof**  
+We prove this by induction on the list \( l_1 \).
+
+**Base Case:**
+Consider \( l_1 = [] \). We need to show:
+\[ \text{takeWhile } p \, ([] ++ l_2) = [] ++ \text{takeWhile } p \, l_2. \]
+Since the concatenation of the empty list with any list \( l_2 \) is just \( l_2 \), the left-hand side simplifies to:
+\[ \text{takeWhile } p \, l_2. \]
+The right-hand side is:
+\[ [] ++ \text{takeWhile } p \, l_2 = \text{takeWhile } p \, l_2. \]
+Thus, the base case holds trivially.
+
+**Inductive Case:**
+Assume the statement holds for some list \( xs \), i.e.,
+\[ \text{takeWhile } p \, (xs ++ l_2) = xs ++ \text{takeWhile } p \, l_2. \]
+We need to show that the statement holds for \( l_1 = x :: xs \). Specifically, we need to show:
+\[ \text{takeWhile } p \, ((x :: xs) ++ l_2) = (x :: xs) ++ \text{takeWhile } p \, l_2. \]
+By the definition of `takeWhile`, the left-hand side can be expanded as:
+\[ \text{takeWhile } p \, (x :: (xs ++ l_2)). \]
+Since \( p(x) = \text{true} \) (by the hypothesis that every element in \( l_1 \) satisfies \( p \)), the `takeWhile` function will include \( x \) and then continue to process the rest of the list:
+\[ \text{takeWhile } p \, (x :: (xs ++ l_2)) = x :: \text{takeWhile } p \, (xs ++ l_2). \]
+By the inductive hypothesis, we know that:
+\[ \text{takeWhile } p \, (xs ++ l_2) = xs ++ \text{takeWhile } p \, l_2. \]
+Substituting this into the previous equation, we get:
+\[ x :: \text{takeWhile } p \, (xs ++ l_2) = x :: (xs ++ \text{takeWhile } p \, l_2). \]
+This simplifies to:
+\[ (x :: xs) ++ \text{takeWhile } p \, l_2. \]
+Thus, the inductive case holds.
+
+By induction, the theorem is proved.
+
+3. **Formal Theorem**  
+example {p : α → Bool} {l₁ l₂ : List α} (h : ∀ a ∈ l₁, p a) :
+    (l₁ ++ l₂).takeWhile p = l₁ ++ l₂.takeWhile p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {p : α → Bool} {l₁ l₂ : List α} (h : ∀ a ∈ l₁, p a) :
+    (l₁ ++ l₂).takeWhile p = l₁ ++ l₂.takeWhile p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

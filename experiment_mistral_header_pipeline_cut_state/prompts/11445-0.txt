@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+GCD Identity: \(\gcd(\gcd(m, n), m) = \gcd(m, n)\) : For any natural numbers \( m \) and \( n \), the greatest common divisor of \( \gcd(m, n) \) and \( m \) is equal to \( \gcd(m, n) \), i.e., \(\gcd(\gcd(m, n), m) = \gcd(m, n)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \((\gcd(m, n)).\gcd m = \gcd(m, n)\).
+
+1. **Step 1: Use GCD Commutativity**
+- We use the commutativity property of the greatest common divisor (gcd), which states that \(\gcd(a, b) = \gcd(b, a)\) for any elements \(a\) and \(b\) in a type that is a cancellative commutative monoid with zero and has a `NormalizedGCDMonoid` structure.
+- Applying this property, we rewrite \(\gcd(m, n)\) as \(\gcd(n, m)\). This transforms our goal from \((\gcd(m, n)).\gcd m = \gcd(m, n)\) to \((\gcd(n, m)).\gcd m = \gcd(n, m)\).
+
+2. **Step 2: Use GCD Identity**
+- Next, we use the identity \(\gcd(\gcd(n, m), m) = \gcd(n, m)\), which states that for any natural numbers \(m\) and \(n\), the greatest common divisor of \(\gcd(n, m)\) and \(m\) is equal to \(\gcd(n, m)\).
+- Applying this identity, we simplify the goal to \(\gcd(n, m) = \gcd(n, m)\).
+
+3. **Step 3: Trivial Equality**
+- The goal \(\gcd(n, m) = \gcd(n, m)\) is a trivial equality, which is always true.
+
+Thus, we have shown that \(\gcd(\gcd(m, n), m) = \gcd(m, n)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n : Nat) : gcd (gcd m n) m = gcd m n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (m n : Nat) : gcd (gcd m n) m = gcd m n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

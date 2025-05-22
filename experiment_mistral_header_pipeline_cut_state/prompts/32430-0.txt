@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Minimum of Sums Equals Sum of Minimum in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), the minimum of \(a + b\) and \(a + c\) is equal to \(a + \min(b, c)\), i.e., \(\min(a + b, a + c) = a + \min(b, c)\).
+
+2. **Informal Proof**  
+We start by using the commutativity of addition to rewrite the goal. Specifically, we rewrite \(a + b\) as \(b + a\) and \(a + c\) as \(c + a\). This transforms the goal from \(\min(a + b, a + c) = a + \min(b, c)\) to \(\min(b + a, c + a) = a + \min(b, c)\).
+
+Next, we use the distributive property of the minimum over addition in natural numbers, which states that \(\min(a + c, b + c) = \min(a, b) + c\). Applying this property, we see that \(\min(b + a, c + a) = \min(b, c) + a\).
+
+Thus, the goal \(\min(b + a, c + a) = \min(b, c) + a\) is satisfied, and the proof is complete. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c : Nat) : min (a + b) (a + c) = a + min b c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) : min (a + b) (a + c) = a + min b c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

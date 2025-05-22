@@ -1,0 +1,73 @@
+
+1. **Informal Theorem**  
+Conjunction with \( 2^n - 1 \) is Equivalent to Modulo \( 2^n \) : For any natural numbers \( x \) and \( n \), the conjunction \( x \&&& (2^n - 1) \) is equal to the modulo operation \( x \mod 2^n \), i.e., \( x \&&& (2^n - 1) = x \mod 2^n \).
+
+2. **Informal Proof**  
+To prove that \( x \&&& (2^n - 1) = x \mod 2^n \), it suffices to show that for all natural numbers \( i \), the \( i \)-th bit of \( x \&&& (2^n - 1) \) is equal to the \( i \)-th bit of \( x \mod 2^n \).
+
+Let \( i \) be an arbitrary natural number. We need to show:
+\[
+(x \text{ testBit } i \, \text{and} \, (2^n - 1) \text{ testBit } i) = (\text{decide}(i < n) \, \text{and} \, x \text{ testBit } i)
+\]
+
+We will discuss every possible case of \( x \text{ testBit } i \).
+
+**Case 1:**
+If \( x \text{ testBit } i = \text{false} \), we need to show:
+\[
+(\text{false} \, \text{and} \, (2^n - 1) \text{ testBit } i) = (\text{decide}(i < n) \, \text{and} \, \text{false})
+\]
+Simplifying both sides, we get:
+\[
+\text{false} = \text{false}
+\]
+Thus, the equality holds.
+
+**Case 2:**
+If \( x \text{ testBit } i = \text{true} \), we need to show:
+\[
+(\text{true} \, \text{and} \, (2^n - 1) \text{ testBit } i) = (\text{decide}(i < n) \, \text{and} \, \text{true})
+\]
+Simplifying both sides, we get:
+\[
+(2^n - 1) \text{ testBit } i = \text{decide}(i < n)
+\]
+Since \( 2^n - 1 \) is a number with all bits set to 1 up to the \( n \)-th bit, \( (2^n - 1) \text{ testBit } i \) is true if and only if \( i < n \). Therefore, both sides are equal, and the equality holds.
+
+Since both cases are covered, we have shown that for all \( i \), the \( i \)-th bit of \( x \&&& (2^n - 1) \) is equal to the \( i \)-th bit of \( x \mod 2^n \). Therefore, \( x \&&& (2^n - 1) = x \mod 2^n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x n : Nat) : x &&& (2^n-1) = x % 2^n := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x n : Nat) : x &&& (2^n-1) = x % 2^n := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

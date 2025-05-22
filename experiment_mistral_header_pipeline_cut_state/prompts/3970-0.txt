@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Divisibility Implies Remainder is Zero in Natural Numbers : For any natural numbers \( m \) and \( n \), if \( m \) divides \( n \), then the remainder when \( n \) is divided by \( m \) is zero, i.e., \( m \mid n \implies n \% m = 0 \).
+
+2. **Informal Proof**  
+Assume \( m \mid n \). By the definition of divisibility, there exists a natural number \( z \) such that \( n = m \cdot z \). Substituting this into the expression for the remainder, we get \( n \% m = (m \cdot z) \% m \). By the property of the modulus operation, the remainder of a product with a factor is zero when divided by that factor, i.e., \( (m \cdot z) \% m = 0 \). Therefore, \( n \% m = 0 \), which completes the proof.
+
+3. **Formal Theorem**  
+example {m n : Nat} (H : m ∣ n) : n % m = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example {m n : Nat} (H : m ∣ n) : n % m = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

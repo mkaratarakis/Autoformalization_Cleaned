@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Mapping First Component of Enumerated List Equals Range of List Length : For any list \( l \) of elements of type \( \alpha \), the result of mapping the first component function `Prod.fst` over the enumerated list `l.enum` is equal to the list of natural numbers from \( 0 \) to \( \text{length}(l) - 1 \), i.e., \(\text{map}(\text{fst}, \text{enum}(l)) = \text{range}(\text{length}(l))\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by simplifying the expression using the definitions and properties of the enumerated list and the range function. Specifically, we use the following facts:
+1. The enumerated list \(\text{enum}(l)\) is equivalent to \(\text{enumFrom}(0, l)\).
+2. Mapping the first component function \(\text{Prod.fst}\) over \(\text{enumFrom}(n, l)\) results in the list of natural numbers from \( n \) to \( n + \text{length}(l) - 1 \).
+3. The list \(\text{range}(n)\) is equivalent to \(\text{range'}(0, n)\).
+
+Using these properties, we can rewrite the left-hand side of the equation:
+\[
+\text{map} \, (\text{fst}) \, (\text{enum} \, l) = \text{map} \, (\text{fst}) \, (\text{enumFrom} \, 0 \, l)
+\]
+By the property of \(\text{enumFrom}\), this simplifies to:
+\[
+\text{map} \, (\text{fst}) \, (\text{enumFrom} \, 0 \, l) = \text{range'} \, 0 \, (\text{length} \, l)
+\]
+Finally, using the property of \(\text{range}\), we have:
+\[
+\text{range'} \, 0 \, (\text{length} \, l) = \text{range} \, (\text{length} \, l)
+\]
+Thus, we have shown that:
+\[
+\text{map} \, (\text{fst}) \, (\text{enum} \, l) = \text{range} \, (\text{length} \, l)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (l : List α) : map Prod.fst (enum l) = range l.length := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (l : List α) : map Prod.fst (enum l) = range l.length := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

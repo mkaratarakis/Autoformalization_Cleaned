@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Right Addition of Multiple Preserves Modulo in Natural Numbers : For any natural numbers \( x \), \( y \), and \( z \), the expression \( (x + y \cdot z) \mod z \) is equal to \( x \mod z \). In other words, adding a multiple of \( z \) to \( x \) does not change the remainder when \( x \) is divided by \( z \).
+
+2. **Informal Proof**  
+We start by using the commutativity of multiplication, which states that for any natural numbers \( y \) and \( z \), \( y \cdot z = z \cdot y \). Applying this, we rewrite \( (x + y \cdot z) \mod z \) as \( (x + z \cdot y) \mod z \).
+
+Next, we use the property that adding a multiple of \( y \) to \( x \) does not change the remainder when \( x \) is divided by \( y \). Specifically, for any natural numbers \( x \), \( y \), and \( z \), \( (x + y \cdot z) \mod y = x \mod y \). Applying this property, we simplify \( (x + z \cdot y) \mod z \) to \( x \mod z \).
+
+Thus, we have shown that \( (x + y \cdot z) \mod z = x \mod z \), completing the proof.
+
+3. **Formal Theorem**  
+example (x y z : Nat) : (x + y * z) % z = x % z := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (x y z : Nat) : (x + y * z) % z = x % z := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

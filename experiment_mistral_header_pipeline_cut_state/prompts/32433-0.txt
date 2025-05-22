@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Successor of Minimum is Minimum of Successors: \(\min(x + 1, y + 1) = \min(x, y) + 1\) : For any natural numbers \( x \) and \( y \), the minimum of their successors is equal to the successor of their minimum, i.e., \(\min(x + 1, y + 1) = \min(x, y) + 1\).
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \( x \) and \( y \), \(\min(x + 1, y + 1) = \min(x, y) + 1\).
+
+Consider the following cases:
+
+1. **Case 1: \( y \leq x \)**
+- By the property of the minimum function, \(\min(x, y) = y\).
+- Since the successor function preserves the less than or equal relation, we have \( y + 1 \leq x + 1 \).
+- Therefore, \(\min(x + 1, y + 1) = y + 1\).
+- Hence, \(\min(x + 1, y + 1) = \min(x, y) + 1\) is equivalent to \( y + 1 = y + 1 \), which is trivially true.
+
+2. **Case 2: \( x \leq y \)**
+- By the property of the minimum function, \(\min(x, y) = x\).
+- Since the successor function preserves the less than or equal relation, we have \( x + 1 \leq y + 1 \).
+- Therefore, \(\min(x + 1, y + 1) = x + 1\).
+- Hence, \(\min(x + 1, y + 1) = \min(x, y) + 1\) is equivalent to \( x + 1 = x + 1 \), which is trivially true.
+
+In both cases, the goal is satisfied. Therefore, for any natural numbers \( x \) and \( y \), \(\min(x + 1, y + 1) = \min(x, y) + 1\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y) : min (succ x) (succ y) = succ (min x y) := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (x y) : min (succ x) (succ y) = succ (min x y) := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

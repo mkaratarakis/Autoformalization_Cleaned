@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Equivalence of Division and Multiplication in Natural Numbers: \(\frac{a}{b} = c \leftrightarrow a = c \cdot b\) : For any natural numbers \(a\), \(b\), and \(c\) such that \(b > 0\) and \(b \mid a\), the following equivalence holds:
+\[ \frac{a}{b} = c \quad \text{if and only if} \quad a = c \cdot b. \]
+
+2. **Informal Proof**  
+We start with the given conditions that \(b > 0\) and \(b \mid a\). We need to show the equivalence \(\frac{a}{b} = c \leftrightarrow a = c \cdot b\).
+
+First, we use the commutativity of multiplication to rewrite the goal. Specifically, we rewrite \(a = c \cdot b\) as \(a = b \cdot c\). This step is valid because multiplication is commutative in the natural numbers.
+
+Next, we apply the theorem that states for any natural numbers \(a\), \(b\), and \(c\) such that \(b > 0\) and \(b \mid a\), the equivalence \(\frac{a}{b} = c\) holds if and only if \(a = b \cdot c\). This theorem directly gives us the desired equivalence \(\frac{a}{b} = c \leftrightarrow a = c \cdot b\).
+
+Thus, we have shown that \(\frac{a}{b} = c\) if and only if \(a = c \cdot b\). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b c : Nat} (H : 0 < b) (H' : b ∣ a) :
+    a / b = c ↔ a = c * b := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a b c : Nat} (H : 0 < b) (H' : b ∣ a) :
+    a / b = c ↔ a = c * b := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

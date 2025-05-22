@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Signed Less Than or Equal To in Bitvectors is Equivalent to Negation of XOR of MSB and Carry Bit : For any natural number \( w \) and any bitvectors \( x \) and \( y \) of width \( w \), the signed less than or equal to relation \( x \leq y \) (denoted as `x.sle y`) is equal to the negation of the exclusive or (XOR) of the most significant bits of \( x \) and \( y \) and the carry bit at position \( w \) when adding \( y \) and the complement of \( x \) with an initial carry bit of `true`. In other words, \( x \leq y \) if and only if \( \neg ((\text{msb}(x) = \text{msb}(y)) \oplus \text{carry}(w, y, \sim x, \text{true})) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the equivalence that the signed less than or equal to relation \( x \leq y \) is the negation of the signed less than relation \( y < x \). This transforms our goal to show that:
+\[ \neg (y < x) = \neg ((\text{msb}(x) = \text{msb}(y)) \oplus \text{carry}(w, y, \sim x, \text{true})) \]
+
+Next, we use the equivalence that the signed less than relation \( y < x \) is the XOR of the most significant bits of \( y \) and \( x \) and the carry bit at position \( w \) when adding \( y \) and the complement of \( x \) with an initial carry bit of `true`. This further simplifies our goal to show that:
+\[ \neg ((\text{msb}(y) = \text{msb}(x)) \oplus \text{carry}(w, y, \sim x, \text{true})) = \neg ((\text{msb}(x) = \text{msb}(y)) \oplus \text{carry}(w, y, \sim x, \text{true})) \]
+
+Finally, we use the commutativity of boolean equality to conclude that:
+\[ (\text{msb}(y) = \text{msb}(x)) = (\text{msb}(x) = \text{msb}(y)) \]
+
+Thus, the two expressions are identical, and the goal is trivially true. Therefore, we have shown that:
+\[ x \leq y \iff \neg ((\text{msb}(x) = \text{msb}(y)) \oplus \text{carry}(w, y, \sim x, \text{true})) \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec w) :
+    x.sle y = !((x.msb == y.msb).xor (carry w y (~~~x) true)) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x y : BitVec w) :
+    x.sle y = !((x.msb == y.msb).xor (carry w y (~~~x) true)) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

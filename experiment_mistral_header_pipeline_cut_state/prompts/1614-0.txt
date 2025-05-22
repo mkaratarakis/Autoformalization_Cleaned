@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+First Component of Enumerated List Element is Less Than Sum of Starting Index and List Length : For any types \(\alpha\), any pair \(x = (i, a) \in \mathbb{N} \times \alpha\), any natural number \(n\), and any list \(l\) of elements of type \(\alpha\), if \(x\) is a member of the list \(\text{List.enumFrom} \, n \, l\), then the first component of \(x\) (i.e., \(i\)) is strictly less than \(n + \text{length}(l)\). In other words, if \(x \in \text{List.enumFrom} \, n \, l\), then \(i < n + |l|\).
+
+2. **Informal Proof**  
+We start by using the characterization of list membership. If \( x \in \text{List.enumFrom} \, n \, l \), then there exists an index \( i \) such that \( x \) is the \( i \)-th element of \(\text{List.enumFrom} \, n \, l\). We can write \( x \) as \( (i, a) \) where \( a \) is the corresponding element in the list. Thus, our goal is to show that \( i < n + \text{length}(l) \).
+
+Since \( i \) is an element of \(\text{Fin} \, (\text{length}(\text{List.enumFrom} \, n \, l))\), by the property that the value of an element in \(\text{Fin} \, n\) is strictly less than \( n \), we have \( i < \text{length}(\text{List.enumFrom} \, n \, l) \). The length of \(\text{List.enumFrom} \, n \, l\) is \( n + \text{length}(l) \). Therefore, \( i < n + \text{length}(l) \), which completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x : Nat × α} {n : Nat} {l : List α} (h : x ∈ enumFrom n l) :
+    x.1 < n + length l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example {x : Nat × α} {n : Nat} {l : List α} (h : x ∈ enumFrom n l) :
+    x.1 < n + length l := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

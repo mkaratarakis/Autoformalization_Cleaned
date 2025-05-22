@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Equivalence of `List.eraseIdx` and `List.eraseIdxTR` : For any list \( l \) of elements of type \( \alpha \) and any natural number \( n \), the function `List.eraseIdx` that removes the element at index \( n \) from \( l \) is equal to the tail-recursive function `List.eraseIdxTR` that performs the same operation. Formally, this is expressed as:
+\[ \text{List.eraseIdx}(l, n) = \text{List.eraseIdxTR}(l, n) \]
+
+2. **Informal Proof**  
+To prove the equality of the functions `List.eraseIdx` and `List.eraseIdxTR`, we use the principle of function extensionality. It suffices to show that for all lists \( l \) of elements of type \( \alpha \) and all natural numbers \( n \), the functions yield the same result. Using the definition of `List.eraseIdxTR`, we simplify the goal to show that:
+\[ l.\text{eraseIdx}(n) = \text{eraseIdxTR.go}(l, l, n, \text{#}[]) \]
+
+To prove this, we perform induction on the list \( xs \) and generalize the natural number \( n \).
+
+**Base Case:**
+For the base case where \( xs \) is the empty list, we introduce an array \( acc \) and a hypothesis \( h \) that \( l = \text{acc.data} ++ [] \). Using the definitions of `List.eraseIdx` and `List.eraseIdxTR.go`, and the hypothesis \( h \), we simplify the goal and show that it holds trivially.
+
+**Inductive Step:**
+For the inductive step where \( xs \) is a non-empty list \( x :: xs \), we use the induction hypothesis \( \text{IH} \). We need to show that:
+\[ \text{eraseIdxTR.go}(l, x :: xs, n, acc) = \text{acc.data} ++ (x :: xs).\text{eraseIdx}(n) \]
+
+We consider two cases for \( n \):
+
+1. **Case \( n = 0 \):**
+Using the definitions of `List.eraseIdx` and `List.eraseIdxTR.go`, we simplify the goal and show that it holds trivially.
+
+2. **Case \( n = k + 1 \):**
+Using the definitions of `List.eraseIdxTR.go` and `List.eraseIdx`, we simplify the goal to:
+\[ \text{eraseIdxTR.go}(l, xs, k, \text{acc.push}(x)) = \text{acc.data} ++ x :: xs.\text{eraseIdx}(k) \]
+Using the induction hypothesis \( \text{IH} \), we rewrite the goal. Then, we simplify the expression twice. Finally, we use the hypothesis \( h \) to conclude the proof.
+
+This completes the proof that \( \text{List.eraseIdx}(l, n) = \text{List.eraseIdxTR}(l, n) \).
+
+3. **Formal Theorem**  
+example : @eraseIdx = @eraseIdxTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @eraseIdx = @eraseIdxTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

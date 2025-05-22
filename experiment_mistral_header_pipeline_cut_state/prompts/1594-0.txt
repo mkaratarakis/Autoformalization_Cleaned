@@ -1,0 +1,59 @@
+
+1. **Informal Theorem**  
+Mapping Subtraction over Range with Step: \(\text{map} (x \mapsto x - a) (\text{range}'(s, n, step)) = \text{range}'(s - a, n, step)\) : For any natural numbers \(a\), \(s\), and \(n\) such that \(a \leq s\), and for any natural number \(step\), the list obtained by applying the function \(x \mapsto x - a\) to each element of the list \(\text{range}'(s, n, step)\) is equal to the list \(\text{range}'(s - a, n, step)\). Formally, this can be written as:
+\[
+\text{map} (x \mapsto x - a) (\text{range}'(s, n, step)) = \text{range}'(s - a, n, step)
+\]
+
+2. **Informal Proof**  
+We start by focusing on the left-hand side of the equation, \(\text{map} (x \mapsto x - a) (\text{range}'(s, n, step))\). Using the property that for any natural numbers \(a\) and \(b\) such that \(a \leq s\), \(a + (s - a) = s\), we can rewrite the left-hand side as:
+\[
+\text{map} (x \mapsto x - a) (\text{range}'(a + (s - a), n, step))
+\]
+
+Next, we use the property that \(\text{map} (x \mapsto a + x) (\text{range}'(s - a, n, step)) = \text{range}'(a + (s - a), n, step)\) to further rewrite the left-hand side as:
+\[
+\text{map} (x \mapsto x - a) (\text{map} (x \mapsto a + x) (\text{range}'(s - a, n, step)))
+\]
+
+By the composition property of `List.map`, this is equivalent to:
+\[
+\text{map} ((x \mapsto x - a) \circ (x \mapsto a + x)) (\text{range}'(s - a, n, step))
+\]
+
+We need to show that \((x \mapsto x - a) \circ (x \mapsto a + x) = \text{id}\), where \(\text{id}\) is the identity function. To do this, we prove that for every \(x \in \mathbb{N}\), \((x \mapsto x - a) (a + x) = x\). By the property of addition and subtraction in natural numbers, \(a + x - a = x\), which is exactly the identity function. Therefore, \((x \mapsto x - a) \circ (x \mapsto a + x) = \text{id}\).
+
+Finally, by the property that \(\text{map} (\text{id}) l = l\), the left-hand side simplifies to:
+\[
+\text{range}'(s - a, n, step)
+\]
+
+Thus, we have shown that:
+\[
+\text{map} (x \mapsto x - a) (\text{range}'(s, n, step)) = \text{range}'(s - a, n, step)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a s n : Nat) (h : a ≤ s) :
+    map (· - a) (range' s n step) = range' (s - a) n step := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (a s n : Nat) (h : a ≤ s) :
+    map (· - a) (range' s n step) = range' (s - a) n step := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

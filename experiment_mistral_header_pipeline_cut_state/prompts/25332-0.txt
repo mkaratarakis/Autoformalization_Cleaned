@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Boolean AND Equals False if and only if True Implies False: $(x \land y) = \text{false} \leftrightarrow (x = \text{true} \to y = \text{false})$ : For any boolean values $x$ and $y$, the boolean "and" operation $(x \land y)$ is equal to `false` if and only if $x = \text{true}$ implies $y = \text{false}$.
+
+2. **Informal Proof**  
+To prove the statement, we need to show that for any boolean values $x$ and $y$, the boolean "and" operation $(x \land y)$ is equal to `false` if and only if $x = \text{true}$ implies $y = \text{false}$.
+
+We consider all possible values of $x$ and $y$:
+
+1. **Case 1: $x = \text{true}$ and $y = \text{true}$**
+- $(x \land y) = (\text{true} \land \text{true}) = \text{true}$
+- The right-hand side $x = \text{true} \to y = \text{false}$ is false.
+- Therefore, $(x \land y) = \text{false}$ is false, and the implication holds.
+
+2. **Case 2: $x = \text{true}$ and $y = \text{false}$**
+- $(x \land y) = (\text{true} \land \text{false}) = \text{false}$
+- The right-hand side $x = \text{true} \to y = \text{false}$ is true.
+- Therefore, $(x \land y) = \text{false}$ is true, and the implication holds.
+
+3. **Case 3: $x = \text{false}$ and $y = \text{true}$**
+- $(x \land y) = (\text{false} \land \text{true}) = \text{false}$
+- The right-hand side $x = \text{true} \to y = \text{false}$ is vacuously true (since the antecedent $x = \text{true}$ is false).
+- Therefore, $(x \land y) = \text{false}$ is true, and the implication holds.
+
+4. **Case 4: $x = \text{false}$ and $y = \text{false}$**
+- $(x \land y) = (\text{false} \land \text{false}) = \text{false}$
+- The right-hand side $x = \text{true} \to y = \text{false}$ is vacuously true (since the antecedent $x = \text{true}$ is false).
+- Therefore, $(x \land y) = \text{false}$ is true, and the implication holds.
+
+Since the statement holds for all possible values of $x$ and $y$, we conclude that for any boolean values $x$ and $y$, the boolean "and" operation $(x \land y)$ is equal to `false` if and only if $x = \text{true}$ implies $y = \text{false}$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), (x && y) = false ↔ (x = true → y = false) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (x && y) = false ↔ (x = true → y = false) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

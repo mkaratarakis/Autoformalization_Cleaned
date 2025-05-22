@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+GCD Identity: \(\gcd(\gcd(n, m), m) = \gcd(n, m)\) : For any natural numbers \( m \) and \( n \), the greatest common divisor of \( \gcd(n, m) \) and \( m \) is equal to \( \gcd(n, m) \), i.e., \(\gcd(\gcd(n, m), m) = \gcd(n, m)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \((n \gcd m) \gcd m = n \gcd m\). We use the commutativity of the greatest common divisor (gcd) to rewrite \((n \gcd m) \gcd m\) as \(m \gcd (n \gcd m)\). This step is justified by the theorem that for any elements \(a\) and \(b\) in a type that is a cancellative commutative monoid with zero and has a `NormalizedGCDMonoid` structure, \(\gcd(a, b) = \gcd(b, a)\).
+
+Next, we use the property that the gcd of a number and its gcd with another number is equal to the gcd of the two numbers, i.e., \(\gcd(m, \gcd(n, m)) = \gcd(n, m)\). This simplifies our goal to \(m \gcd (n \gcd m) = n \gcd m\), which is equivalent to \(n \gcd m = n \gcd m\). This is trivially true by the properties of equality.
+
+Thus, we have shown that \(\gcd(\gcd(n, m), m) = \gcd(n, m)\), completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n : Nat) : gcd (gcd n m) m = gcd n m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example (m n : Nat) : gcd (gcd n m) m = gcd n m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

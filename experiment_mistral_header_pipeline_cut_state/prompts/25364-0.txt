@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Exclusive Or with Negation: $x \oplus \neg y = \neg (x \oplus y)$ : For any boolean values $x$ and $y$, the exclusive or of $x$ and the negation of $y$ is equal to the negation of the exclusive or of $x$ and $y$, i.e., $x \oplus \neg y = \neg (x \oplus y)$.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values $x$ and $y$, the equation $x \oplus \neg y = \neg (x \oplus y)$ holds. We use the `decide` tactic to automatically verify this equality by checking all possible combinations of $x$ and $y$.
+
+- **Case 1: $x = \text{true}$ and $y = \text{true}$**
+- Left-hand side: $x \oplus \neg y = \text{true} \oplus \neg \text{true} = \text{true} \oplus \text{false} = \text{true}$
+- Right-hand side: $\neg (x \oplus y) = \neg (\text{true} \oplus \text{true}) = \neg \text{false} = \text{true}$
+- Both sides are equal.
+
+- **Case 2: $x = \text{true}$ and $y = \text{false}$**
+- Left-hand side: $x \oplus \neg y = \text{true} \oplus \neg \text{false} = \text{true} \oplus \text{true} = \text{false}$
+- Right-hand side: $\neg (x \oplus y) = \neg (\text{true} \oplus \text{false}) = \neg \text{true} = \text{false}$
+- Both sides are equal.
+
+- **Case 3: $x = \text{false}$ and $y = \text{true}$**
+- Left-hand side: $x \oplus \neg y = \text{false} \oplus \neg \text{true} = \text{false} \oplus \text{false} = \text{false}$
+- Right-hand side: $\neg (x \oplus y) = \neg (\text{false} \oplus \text{true}) = \neg \text{true} = \text{false}$
+- Both sides are equal.
+
+- **Case 4: $x = \text{false}$ and $y = \text{false}$**
+- Left-hand side: $x \oplus \neg y = \text{false} \oplus \neg \text{false} = \text{false} \oplus \text{true} = \text{true}$
+- Right-hand side: $\neg (x \oplus y) = \neg (\text{false} \oplus \text{false}) = \neg \text{false} = \text{true}$
+- Both sides are equal.
+
+Since the equality holds for all possible combinations of $x$ and $y$, the theorem is proven. Therefore, for any boolean values $x$ and $y$, we have $x \oplus \neg y = \neg (x \oplus y)$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), xor x (!y) = !(xor x y) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), xor x (!y) = !(xor x y) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

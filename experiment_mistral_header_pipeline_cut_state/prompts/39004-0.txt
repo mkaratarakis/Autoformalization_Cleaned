@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Dependent If-Then-Else Equals Right if Proposition is True: $(\text{dite } P \, A \, (\lambda h, b)) = b \leftrightarrow (\forall h : P, A(h) = b)$ : For any type $\alpha$, any element $b \in \alpha$, and any decidable proposition $P$, the dependent if-then-else construct `dite P A (fun x => b)` is equal to $b$ if and only if for every proof $h$ of $P$, the function $A$ applied to $h$ is equal to $b$. In other words, if $P$ is true, then $A(h) = b$ for all proofs $h$ of $P$; if $P$ is false, then the result is $b$.
+
+2. **Informal Proof**  
+We need to show that the dependent if-then-else construct `dite P A (fun x => b)` is equal to $b$ if and only if for every proof $h$ of $P$, $A(h) = b$.
+
+Consider two cases:
+
+1. **Case 1: Assume $P$ holds.**
+- In this case, the dependent if-then-else construct `dite P A (fun x => b)` simplifies to $A(h)$, where $h$ is a proof of $P$.
+- We need to show that $A(h) = b$ for any proof $h$ of $P$.
+- By the property of universal quantification over true propositions, $\forall h : P, A(h) = b$ is equivalent to $A(h) = b$ for any proof $h$ of $P$.
+- Therefore, in this case, `dite P A (fun x => b) = b` if and only if $A(h) = b$ for any proof $h$ of $P$.
+
+2. **Case 2: Assume $P$ does not hold.**
+- In this case, the dependent if-then-else construct `dite P A (fun x => b)` simplifies to $b$.
+- We need to show that $\forall h : P, A(h) = b$ is true.
+- By the property of universal quantification over false propositions, $\forall h : P, A(h) = b$ is equivalent to `True` if $P$ is false.
+- Therefore, in this case, `dite P A (fun x => b) = b` is always true.
+
+Combining both cases, we conclude that `dite P A (fun x => b) = b` if and only if for every proof $h$ of $P$, $A(h) = b$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {P : Prop} [Decidable P] {A : P → α} :
+    (dite P A fun _ => b) = b ↔ ∀ h, A h = b := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.ByCases
+
+
+
+
+example {P : Prop} [Decidable P] {A : P → α} :
+    (dite P A fun _ => b) = b ↔ ∀ h, A h = b := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.ByCases not found. --
+

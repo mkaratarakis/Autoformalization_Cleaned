@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Erasing an Element from a Replicated List Reduces its Length by One : For any type \(\alpha\) and any natural number \(n\), if \(a\) is an element of \(\alpha\), then erasing \(a\) from the list containing \(n\) copies of \(a\) results in a list containing \(n - 1\) copies of \(a\). Formally, \((\text{replicate } n \, a). \text{erase } a = \text{replicate } (n - 1) \, a\).
+
+2. **Informal Proof**  
+We will consider two cases for the natural number \( n \):
+
+1. **Case 1:** \( n = 0 \)
+- When \( n = 0 \), the list \(\text{replicate } 0 \, a\) is the empty list \([]\).
+- Erasing \( a \) from the empty list results in the empty list, and \(\text{replicate } (0 - 1) \, a\) is also the empty list.
+- Therefore, the proposition \((\text{replicate } 0 \, a). \text{erase } a = \text{replicate } (0 - 1) \, a\) simplifies to \([] = []\), which is trivially true.
+
+2. **Case 2:** \( n = k + 1 \) for some natural number \( k \)
+- When \( n = k + 1 \), the list \(\text{replicate } (k + 1) \, a\) is the list \([a, a, ..., a]\) with \( k + 1 \) elements.
+- Erasing \( a \) from this list results in the list \([a, a, ..., a]\) with \( k \) elements, which is exactly \(\text{replicate } k \, a\).
+- Therefore, the proposition \((\text{replicate } (k + 1) \, a). \text{erase } a = \text{replicate } (k + 1 - 1) \, a\) simplifies to \([a, a, ..., a] = [a, a, ..., a]\) with \( k \) elements, which is also trivially true.
+
+Since both cases are trivially true, the theorem is proved. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {a : α} :
+    (replicate n a).erase a = replicate (n - 1) a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {a : α} :
+    (replicate n a).erase a = replicate (n - 1) a := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

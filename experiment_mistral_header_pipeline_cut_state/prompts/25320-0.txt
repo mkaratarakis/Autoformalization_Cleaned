@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Boolean Identity: \(\text{false} == b = \neg b\) : For any boolean value \( b \), the boolean equality \( \text{false} == b \) is equal to the negation of \( b \), i.e., \( \text{false} == b = \neg b \).
+
+2. **Informal Proof**  
+To prove the theorem, we consider the two possible values of \( b \):
+
+1. **Case \( b = \text{true} \):**
+- \(\text{false} == \text{true}\) evaluates to \(\text{false}\).
+- \(\neg \text{true}\) also evaluates to \(\text{false}\).
+- Therefore, \(\text{false} == \text{true} = \neg \text{true}\).
+
+2. **Case \( b = \text{false} \):**
+- \(\text{false} == \text{false}\) evaluates to \(\text{true}\).
+- \(\neg \text{false}\) also evaluates to \(\text{true}\).
+- Therefore, \(\text{false} == \text{false} = \neg \text{false}\).
+
+Since the equality \(\text{false} == b = \neg b\) holds for both possible values of \( b \), the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀b, (false == b) = !b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀b, (false == b) = !b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

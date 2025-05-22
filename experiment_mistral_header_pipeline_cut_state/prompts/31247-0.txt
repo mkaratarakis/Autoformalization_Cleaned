@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Distributive Property of Multiplication over Subtraction in Natural Numbers : For any natural numbers \( n \), \( m \), and \( k \), the product of \( n \) with the difference \( m - k \) is equal to the difference between the product of \( n \) and \( m \) and the product of \( n \) and \( k \). In other words, \( n \times (m - k) = n \times m - n \times k \).
+
+2. **Informal Proof**  
+To prove the distributive property of multiplication over subtraction in natural numbers, we start with the goal \( n \times (m - k) = n \times m - n \times k \).
+
+1. **Step 1: Use Commutativity of Multiplication**
+- By the commutativity of multiplication, we can rewrite \( n \times (m - k) \) as \( (m - k) \times n \). Thus, our goal becomes:
+\[
+(m - k) \times n = n \times m - n \times k
+\]
+
+2. **Step 2: Apply Right Distributive Property**
+- Using the right distributive property of multiplication over subtraction, we have:
+\[
+(m - k) \times n = m \times n - k \times n
+\]
+- Therefore, our goal now is:
+\[
+m \times n - k \times n = n \times m - n \times k
+\]
+
+3. **Step 3: Use Commutativity of Multiplication Again**
+- By the commutativity of multiplication, we can rewrite \( m \times n \) as \( n \times m \) and \( k \times n \) as \( n \times k \). Thus, our goal becomes:
+\[
+n \times m - n \times k = n \times m - n \times k
+\]
+
+4. **Step 4: Trivial Equality**
+- The equation \( n \times m - n \times k = n \times m - n \times k \) is trivially true by the properties of equality.
+
+Thus, we have shown that \( n \times (m - k) = n \times m - n \times k \), completing the proof.
+
+3. **Formal Theorem**  
+example (n m k : Nat) : n * (m - k) = n * m - n * k := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m k : Nat) : n * (m - k) = n * m - n * k := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

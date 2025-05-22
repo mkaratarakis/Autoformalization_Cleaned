@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Injectivity of Conjunction and Disjunction on the Right: $(x \land m) = (y \land m) \land (x \lor m) = (y \lor m) \to x = y$ : For any boolean values $m$, $x$, and $y$, if $(x \land m) = (y \land m)$ and $(x \lor m) = (y \lor m)$, then $x = y$.
+
+2. **Informal Proof**  
+We need to show that for any boolean values $m$, $x$, and $y$, if $(x \land m) = (y \land m)$ and $(x \lor m) = (y \lor m)$, then $x = y$. Since boolean values are decidable, we can check all possible combinations of $x$, $y$, and $m$:
+
+1. **Case 1: $x = \text{true}$, $y = \text{true}$**
+- $(x \land m) = (\text{true} \land m) = m$
+- $(y \land m) = (\text{true} \land m) = m$
+- $(x \lor m) = (\text{true} \lor m) = \text{true}$
+- $(y \lor m) = (\text{true} \lor m) = \text{true}$
+- Both conditions $(x \land m) = (y \land m)$ and $(x \lor m) = (y \lor m)$ are satisfied, and $x = y$.
+
+2. **Case 2: $x = \text{true}$, $y = \text{false}$**
+- $(x \land m) = (\text{true} \land m) = m$
+- $(y \land m) = (\text{false} \land m) = \text{false}$
+- $(x \lor m) = (\text{true} \lor m) = \text{true}$
+- $(y \lor m) = (\text{false} \lor m) = m$
+- The condition $(x \land m) = (y \land m)$ is not satisfied, so this case does not apply.
+
+3. **Case 3: $x = \text{false}$, $y = \text{true}$**
+- $(x \land m) = (\text{false} \land m) = \text{false}$
+- $(y \land m) = (\text{true} \land m) = m$
+- $(x \lor m) = (\text{false} \lor m) = m$
+- $(y \lor m) = (\text{true} \lor m) = \text{true}$
+- The condition $(x \lor m) = (y \lor m)$ is not satisfied, so this case does not apply.
+
+4. **Case 4: $x = \text{false}$, $y = \text{false}$**
+- $(x \land m) = (\text{false} \land m) = \text{false}$
+- $(y \land m) = (\text{false} \land m) = \text{false}$
+- $(x \lor m) = (\text{false} \lor m) = m$
+- $(y \lor m) = (\text{false} \lor m) = m$
+- Both conditions $(x \land m) = (y \land m)$ and $(x \lor m) = (y \lor m)$ are satisfied, and $x = y$.
+
+In all valid cases, we have shown that if $(x \land m) = (y \land m)$ and $(x \lor m) = (y \lor m)$, then $x = y$. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀ {m x y : Bool}, (x && m) = (y && m) → (x || m) = (y || m) → x = y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {m x y : Bool}, (x && m) = (y && m) → (x || m) = (y || m) → x = y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

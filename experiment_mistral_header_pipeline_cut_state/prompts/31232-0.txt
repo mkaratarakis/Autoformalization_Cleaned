@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Subtraction Inequality with Successor in Natural Numbers : For any natural numbers \(a\) and \(i\), the inequality \(a - i \leq a + 1 - i\) holds.
+
+2. **Informal Proof**  
+We will prove the inequality \( a - i \leq a + 1 - i \) for any natural numbers \( a \) and \( i \) by considering two cases based on the value of \( i \).
+
+1. **Case 1: \( i = 0 \)**
+- To prove \( a - 0 \leq a + 1 - 0 \), it suffices to show \( a - 0 < a + 1 - 0 \).
+- Since \( a - 0 = a \) and \( a + 1 - 0 = a + 1 \), this reduces to showing \( a < a + 1 \).
+- By the property that any natural number is less than its successor, we have \( a < a + 1 \).
+- Therefore, \( a - 0 \leq a + 1 - 0 \) holds.
+
+2. **Case 2: \( i = i' + 1 \) for some natural number \( i' \)**
+- We need to show \( a - (i' + 1) \leq a + 1 - (i' + 1) \).
+- Using the properties of subtraction and successors, we can rewrite the goal as \( (a - i').\text{pred} \leq a - i' \).
+- By the property that the predecessor of any natural number is less than or equal to the number itself, we have \( (a - i').\text{pred} \leq a - i' \).
+- Therefore, \( a - (i' + 1) \leq a + 1 - (i' + 1) \) holds.
+
+Since both cases are covered, the inequality \( a - i \leq a + 1 - i \) holds for any natural numbers \( a \) and \( i \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a i : Nat) : a - i ≤ a.succ - i := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (a i : Nat) : a - i ≤ a.succ - i := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

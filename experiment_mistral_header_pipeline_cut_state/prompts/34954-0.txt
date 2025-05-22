@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Suffix of Replicated List: \( l \text{ is a suffix of } \text{replicate } n \, a \iff l.\text{length} \le n \land \forall x \in l, x = a \) : For any type \( \alpha \) and any list \( l \) of elements of type \( \alpha \), and for any natural number \( n \) and any element \( a \) of type \( \alpha \), the list \( l \) is a suffix of the list `replicate n a` if and only if the length of \( l \) is less than or equal to \( n \) and every element in \( l \) is equal to \( a \). Formally, this can be written as:
+\[ l \text{ is a suffix of } \text{replicate } n \, a \iff \text{decide}(l.\text{length} \le n) \land l.\text{all} \, (\lambda x, x = a) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definitions of `isSuffixOf` and `all_eq` to simplify the proposition. Specifically, we need to show that:
+\[ l \text{ is a suffix of } \text{replicate } n \, a \iff \text{decide}(l.\text{length} \le n) \land l.\text{all} \, (\lambda x, x = a) \]
+
+1. **Simplification using Definitions:**
+- The function `List.length` computes the length of a list. For example, the length of the empty list `[]` is \(0\), and the length of a list `a :: l` is the length of `l` plus \(1\).
+- The boolean "and" operation `x && y` returns `false` if \( x \) is `false`, and returns the value of \( y \) if \( x \) is `true`.
+- The function `List.all p l` returns `true` if and only if the predicate \( p \) holds for all elements in the list \( l \). Formally, this means \( \text{List.all } p \, l = \text{true} \) if and only if \( \forall x \in l, \, p(x) = \text{true} \).
+
+2. **Simplification of the Goal:**
+- Using these definitions, we can simplify the goal to:
+\[
+l \text{ is a suffix of } \text{replicate } n \, a \iff \text{decide}(l.\text{length} \le n) \land l.\text{all} \, (\lambda x, x = a)
+\]
+- This means that \( l \) is a suffix of the list `replicate n a` if and only if the length of \( l \) is less than or equal to \( n \) and every element in \( l \) is equal to \( a \).
+
+3. **Conclusion:**
+- Since the simplification using the definitions of `isSuffixOf` and `all_eq` directly gives us the desired equivalence, the theorem is proved.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a : α} :
+    isSuffixOf l (replicate n a) = (decide (l.length ≤ n) && l.all (· == a)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {a : α} :
+    isSuffixOf l (replicate n a) = (decide (l.length ≤ n) && l.all (· == a)) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Conditional Expression Evaluates to Second Argument if False: $(\text{if } c \text{ then } b \text{ else } c) = (c \land b)$ : For any boolean values $c$ and $b$, the conditional expression `bif c then b else c` is equal to the boolean AND operation `c && b`, i.e., $(\text{if } c \text{ then } b \text{ else } c) = (c \land b)$.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values $c$ and $b$, the expression $(\text{if } c \text{ then } b \text{ else } c)$ is equal to $(c \land b)$. We will consider all possible values of $c$ and $b$:
+
+1. **Case 1: $c = \text{true}$ and $b = \text{true}$**
+- The conditional expression $(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{true})$ evaluates to $\text{true}$.
+- The boolean AND operation $(\text{true} \land \text{true})$ also evaluates to $\text{true}$.
+- Therefore, $(\text{if } \text{true} \text{ then } \text{true} \text{ else } \text{true}) = (\text{true} \land \text{true})$.
+
+2. **Case 2: $c = \text{true}$ and $b = \text{false}$**
+- The conditional expression $(\text{if } \text{true} \text{ then } \text{false} \text{ else } \text{true})$ evaluates to $\text{false}$.
+- The boolean AND operation $(\text{true} \land \text{false})$ also evaluates to $\text{false}$.
+- Therefore, $(\text{if } \text{true} \text{ then } \text{false} \text{ else } \text{true}) = (\text{true} \land \text{false})$.
+
+3. **Case 3: $c = \text{false}$ and $b = \text{true}$**
+- The conditional expression $(\text{if } \text{false} \text{ then } \text{true} \text{ else } \text{false})$ evaluates to $\text{false}$.
+- The boolean AND operation $(\text{false} \land \text{true})$ also evaluates to $\text{false}$.
+- Therefore, $(\text{if } \text{false} \text{ then } \text{true} \text{ else } \text{false}) = (\text{false} \land \text{true})$.
+
+4. **Case 4: $c = \text{false}$ and $b = \text{false}$**
+- The conditional expression $(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{false})$ evaluates to $\text{false}$.
+- The boolean AND operation $(\text{false} \land \text{false})$ also evaluates to $\text{false}$.
+- Therefore, $(\text{if } \text{false} \text{ then } \text{false} \text{ else } \text{false}) = (\text{false} \land \text{false})$.
+
+Since the equality holds in all possible cases, we conclude that for any boolean values $c$ and $b$, the conditional expression $(\text{if } c \text{ then } b \text{ else } c)$ is equal to the boolean AND operation $(c \land b)$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c b : Bool), cond c b c = (c && b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c b : Bool), cond c b c = (c && b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

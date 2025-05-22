@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Distributivity of Disjunction on the Right: \((a \lor b) \lor c \leftrightarrow (a \lor c) \lor (b \lor c)\) : For any propositions \( a \), \( b \), and \( c \), the disjunction \((a \lor b) \lor c\) is logically equivalent to the disjunction \((a \lor c) \lor (b \lor c)\), i.e., \((a \lor b) \lor c \leftrightarrow (a \lor c) \lor (b \lor c)\).
+
+2. **Informal Proof**  
+We start by using the commutativity of disjunction, which states that \((a \lor b) \lor c \lor d \leftrightarrow (a \lor c) \lor b \lor d\). Applying this to our goal, we rewrite \((a \lor b) \lor c\) as \((a \lor b) \lor c \lor c\). Next, we use the idempotence of disjunction, which states that \( p \lor p = p \). Applying this, we simplify \((a \lor b) \lor c \lor c\) to \((a \lor b) \lor c\). This is equivalent to the original goal, thus completing the proof.
+
+3. **Formal Theorem**  
+example : (a ∨ b) ∨ c ↔ (a ∨ c) ∨ b ∨ c := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : (a ∨ b) ∨ c ↔ (a ∨ c) ∨ b ∨ c := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

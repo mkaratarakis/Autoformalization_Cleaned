@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+First Element of Dropped List Equals \( n \)-th Element of Original List : For any list \( l \) of elements of type \( \alpha \) and any natural number \( n \), if the list obtained by dropping the first \( n \) elements of \( l \) is non-empty, then the first element of this resulting list is equal to the \( n \)-th element of \( l \). Formally, if \( \text{List.drop } n \, l \neq \text{[]} \), then \( (\text{List.drop } n \, l).\text{head} \, h = l[n] \), where \( h \) is the proof that the resulting list is non-empty.
+
+2. **Informal Proof**  
+We start by noting that if the list obtained by dropping the first \( n \) elements of \( l \) is non-empty, then \( n \) must be strictly less than the length of \( l \). Formally, since \( \text{List.drop } n \, l \neq \text{[]} \), we have \( n < |l| \).
+
+Next, we use the fact that the first element of the list obtained by dropping the first \( n \) elements of \( l \) is equal to the \( n \)-th element of \( l \) when both are considered as optional values. Since \( \text{List.drop } n \, l \neq \text{[]} \), the first element of \( \text{List.drop } n \, l \) is the same as the \( n \)-th element of \( l \). Formally, we have:
+\[
+(\text{List.drop } n \, l).\text{head} \, h = l[n]
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} {n : Nat} (h : l.drop n ≠ []) :
+    (l.drop n).head h = l[n]'(by simp_all) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} {n : Nat} (h : l.drop n ≠ []) :
+    (l.drop n).head h = l[n]'(by simp_all) := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

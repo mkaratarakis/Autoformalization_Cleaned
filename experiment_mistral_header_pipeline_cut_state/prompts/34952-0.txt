@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Sublist Preservation under Filter: \( l_1 \subseteq l_2 \implies \text{filter } p \, l_1 \subseteq \text{filter } p \, l_2 \) : For any types \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), if \( l_1 \) is a sublist of \( l_2 \), then the list obtained by filtering \( l_1 \) with \( p \) is a sublist of the list obtained by filtering \( l_2 \) with \( p \). In other words, if \( l_1 \subseteq l_2 \), then \( \text{filter } p \, l_1 \subseteq \text{filter } p \, l_2 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that the filter operation on a list can be expressed as a filter map operation. Specifically, we use the equivalence that \( \text{filter } p \, l = \text{filterMap } p \, l \). This allows us to rewrite the goal from showing that the filtered list of \( l_1 \) is a sublist of the filtered list of \( l_2 \) to showing that the filter map of \( l_1 \) is a sublist of the filter map of \( l_2 \).
+
+Given that \( l_1 \) is a sublist of \( l_2 \), we can apply the property that if \( l_1 \) is a sublist of \( l_2 \), then the filter map of \( l_1 \) is a sublist of the filter map of \( l_2 \). Therefore, we conclude that \( \text{filter } p \, l_1 \) is a sublist of \( \text{filter } p \, l_2 \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p : α → Bool) {l₁ l₂} (s : l₁ <+ l₂) : filter p l₁ <+ filter p l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Sublist
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example (p : α → Bool) {l₁ l₂} (s : l₁ <+ l₂) : filter p l₁ <+ filter p l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

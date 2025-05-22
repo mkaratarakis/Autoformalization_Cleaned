@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Evaluation of Polynomial-Monomial Multiplication: \(\text{denote}(\text{ctx}, p \cdot (k, m)) = \text{denote}(\text{ctx}, p) \cdot k \cdot \text{denote}(\text{ctx}, m)\) : For any context \( \text{ctx} \) of type `Nat.Linear.Context`, any polynomial \( p \) over the semiring of natural numbers with a specific structure, any natural number \( k \), and any monomial \( m \) of type `Nat.SOM.Mon`, the evaluation of the polynomial obtained by multiplying \( p \) by the monomial \( (k, m) \) in the context \( \text{ctx} \) is equal to the product of the evaluation of \( p \) in \( \text{ctx} \), the natural number \( k \), and the evaluation of \( m \) in \( \text{ctx} \). Mathematically, this can be expressed as:
+\[
+\text{denote}(\text{ctx}, p \cdot (k, m)) = \text{denote}(\text{ctx}, p) \cdot k \cdot \text{denote}(\text{ctx}, m)
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by simplifying the goal using the definitions of `mulMon` and `go`. The definition of `mulMon` specifies how the multiplication of a polynomial by a monomial is performed, and the definition of `go` provides the necessary steps to evaluate the resulting polynomial in the context \( \text{ctx} \).
+
+After applying these definitions, the goal reduces to showing that:
+\[
+\text{denote}(\text{ctx}, p \cdot (k, m)) = \text{denote}(\text{ctx}, p) \cdot k \cdot \text{denote}(\text{ctx}, m)
+\]
+
+By the definition of `mulMon`, the polynomial \( p \cdot (k, m) \) is constructed by multiplying each term of \( p \) by \( k \) and then by the monomial \( m \). The evaluation of this polynomial in the context \( \text{ctx} \) is then the sum of the evaluations of these terms.
+
+Using the properties of polynomial and monomial evaluation, we can see that:
+\[
+\text{denote}(\text{ctx}, p \cdot (k, m)) = \text{denote}(\text{ctx}, p) \cdot k \cdot \text{denote}(\text{ctx}, m)
+\]
+
+Thus, the theorem is proved. This completes the proof.
+
+3. **Formal Theorem**  
+example (ctx : Context) (p : Poly) (k : Nat) (m : Mon) : (p.mulMon k m).denote ctx = p.denote ctx * k * m.denote ctx := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.List.BasicAux
+import Init.Data.Nat.SOM
+
+open Nat
+open SOM
+open Poly
+open Linear (Var hugeFuel Context Var.denote)
+
+example (ctx : Context) (p : Poly) (k : Nat) (m : Mon) : (p.mulMon k m).denote ctx = p.denote ctx * k * m.denote ctx := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.List.BasicAux not found. --
+
+-- Init.Data.Nat.SOM not found. --
+

@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Base 2 Logarithm is Less Than or Equal to the Number: \(\text{Nat.log2}(n) \leq n\) : For any natural number \( n \), the base 2 logarithm of \( n \), denoted as \(\lfloor \max(0, \log_2 n) \rfloor\), is less than or equal to \( n \). In other words, \(\text{Nat.log2}(n) \leq n\).
+
+2. **Informal Proof**  
+We start by expanding the definition of \(\text{Nat.log2}\), which is defined as:
+\[
+\text{Nat.log2}(n) = \begin{cases}
+(n / 2).log2 + 1 & \text{if } n \geq 2 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+We then split the proof into two cases based on whether \( n \geq 2 \) or \( n < 2 \).
+
+**Case 1: \( n \geq 2 \)**
+In this case, we need to show that \((n / 2).log2 + 1 \leq n\). We construct a lemma that \((n / 2).log2 \leq n / 2\). Using this lemma and the fact that \( n / 2 < n \) (since \( n \geq 2 \)), we conclude that:
+\[
+(n / 2).log2 + 1 \leq n / 2 + 1 \leq n
+\]
+
+**Case 2: \( n < 2 \)**
+In this case, we need to show that \(0 \leq n\). This is true because \(0\) is less than or equal to any natural number.
+
+Finally, we ensure that the recursive definition of \(\text{Nat.log2}\) terminates by showing that for any \( n \geq 2 \), \( n / 2 < n \).
+
+Thus, we have shown that \(\text{Nat.log2}(n) \leq n\) for any natural number \( n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n : Nat) : Nat.log2 n ≤ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Linear
+import Init.Data.Nat.Log2
+
+open Nat
+
+
+example (n : Nat) : Nat.log2 n ≤ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Linear not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+

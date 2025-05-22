@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Distributive Property of Conditional Equality with True : For any boolean values \( c, t, f \), the expression \((\text{if } c \text{ then } t \text{ else } f) = \text{true}\) is equivalent to \(\text{if } c = \text{true} \text{ then } t = \text{true} \text{ else } f = \text{true}\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values \( c, t, \) and \( f \), the expression \((\text{if } c \text{ then } t \text{ else } f) = \text{true}\) is equivalent to \(\text{if } c = \text{true} \text{ then } t = \text{true} \text{ else } f = \text{true}\).
+
+We consider the two cases for \( c \):
+
+1. **Case 1: \( c = \text{true} \)**
+- If \( c = \text{true} \), then the expression \((\text{if } c \text{ then } t \text{ else } f)\) simplifies to \( t \).
+- Therefore, \((\text{if } c \text{ then } t \text{ else } f) = \text{true}\) is equivalent to \( t = \text{true} \).
+- This matches the right-hand side of the equivalence, which is \(\text{if } c = \text{true} \text{ then } t = \text{true} \text{ else } f = \text{true}\).
+
+2. **Case 2: \( c = \text{false} \)**
+- If \( c = \text{false} \), then the expression \((\text{if } c \text{ then } t \text{ else } f)\) simplifies to \( f \).
+- Therefore, \((\text{if } c \text{ then } t \text{ else } f) = \text{true}\) is equivalent to \( f = \text{true} \).
+- This matches the right-hand side of the equivalence, which is \(\text{if } c = \text{true} \text{ then } t = \text{true} \text{ else } f = \text{true}\).
+
+Since both cases hold, the equivalence is true for all boolean values \( c, t, \) and \( f \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c t f : Bool),
+    (cond c t f = true) = ite (c = true) (t = true) (f = true) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c t f : Bool),
+    (cond c t f = true) = ite (c = true) (t = true) (f = true) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

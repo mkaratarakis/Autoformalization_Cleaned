@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Element at Index in Enumerated List: \( l.\text{enum}[i] = (i, l[i]) \) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( i \) such that \( i < \text{length}(l.\text{enum}) \), the element at index \( i \) in the enumerated list \( l.\text{enum} \) is the pair \((i, l[i])\). In other words, \( l.\text{enum}[i] = (i, l[i]) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the enumeration function `List.enum`. The function `List.enum` takes a list \( l \) and returns a list of pairs, where each pair consists of an index and the corresponding element from \( l \). Specifically, the enumerated list \( l.\text{enum} \) is constructed such that the element at index \( i \) is the pair \((i, l[i])\).
+
+Given the assumption that \( i < \text{length}(l.\text{enum}) \), we can directly conclude that the element at index \( i \) in the enumerated list \( l.\text{enum} \) is indeed the pair \((i, l[i])\). This is because the enumeration function `List.enum` is defined to produce exactly this result.
+
+Thus, the proposition \( l.\text{enum}[i] = (i, l[i]) \) holds by the definition of the enumeration function. This completes the proof.
+
+3. **Formal Theorem**  
+example (l : List α) (i : Nat) (h : i < l.enum.length) :
+    l.enum[i] = (i, l[i]'(by simpa [enum_length] using h)) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (l : List α) (i : Nat) (h : i < l.enum.length) :
+    l.enum[i] = (i, l[i]'(by simpa [enum_length] using h)) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

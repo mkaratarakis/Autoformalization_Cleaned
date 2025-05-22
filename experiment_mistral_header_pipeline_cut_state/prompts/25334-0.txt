@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Negation of Boolean Value is Not Equal to Itself: \( \text{not}(b) \neq b \) : For any boolean value \( b \), the negation of \( b \) is equal to \( b \) if and only if the proposition `False` holds, i.e., \( \text{not}(b) = b \leftrightarrow \text{False} \).
+
+2. **Informal Proof**  
+To prove the statement, we consider the two possible boolean values: `true` and `false`.
+
+1. **Case 1: \( b = \text{true} \)**
+- The negation of `true` is `false`.
+- Therefore, \( \text{not}(\text{true}) = \text{false} \).
+- Clearly, \( \text{false} \neq \text{true} \).
+- Hence, \( \text{not}(\text{true}) = \text{true} \) is false.
+
+2. **Case 2: \( b = \text{false} \)**
+- The negation of `false` is `true`.
+- Therefore, \( \text{not}(\text{false}) = \text{true} \).
+- Clearly, \( \text{true} \neq \text{false} \).
+- Hence, \( \text{not}(\text{false}) = \text{false} \) is false.
+
+In both cases, \( \text{not}(b) = b \) is false. Therefore, the statement \( \text{not}(b) = b \leftrightarrow \text{False} \) holds for all boolean values \( b \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(b : Bool), ((!b) = b) ↔ False := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(b : Bool), ((!b) = b) ↔ False := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

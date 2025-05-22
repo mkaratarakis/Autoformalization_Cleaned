@@ -1,0 +1,72 @@
+
+1. **Informal Theorem**  
+Zipping Replicated Lists Equals Replicated Pairs: \(\text{zip} \, (\text{replicate } n \, a) \, (\text{replicate } n \, b) = \text{replicate } n \, (a, b)\) : For any types $\alpha$ and $\beta$, and any elements $a \in \alpha$ and $b \in \beta$, and any natural number $n$, the list obtained by zipping the list containing $n$ copies of $a$ with the list containing $n$ copies of $b$ is equal to the list containing $n$ copies of the pair $(a, b)$. Formally, for any $n \in \mathbb{N}$:
+\[ \text{zip} \, (\text{replicate } n \, a) \, (\text{replicate } n \, b) = \text{replicate } n \, (a, b) \]
+
+2. **Informal Proof**  
+We prove this by induction on $n$.
+
+**Base Case:**
+For $n = 0$, the list containing $0$ copies of $a$ is the empty list, and the list containing $0$ copies of $b$ is also the empty list. Therefore, zipping these two empty lists results in the empty list, which is the same as the list containing $0$ copies of the pair $(a, b)$. This is trivially true due to the reflexive property of equality.
+
+**Inductive Step:**
+Assume that the statement holds for some natural number $k$, i.e.,
+\[
+(\text{replicate } k \, a).zip (\text{replicate } k \, b) = \text{replicate } k \, (a, b)
+\]
+
+We need to show that the statement holds for $k + 1$, i.e.,
+\[
+(\text{replicate } (k + 1) \, a).zip (\text{replicate } (k + 1) \, b) = \text{replicate } (k + 1) \, (a, b)
+\]
+
+Using the definition of `replicate`, we have:
+\[
+\text{replicate } (k + 1) \, a = a :: (\text{replicate } k \, a)
+\]
+and
+\[
+\text{replicate } (k + 1) \, b = b :: (\text{replicate } k \, b)
+\]
+
+By the definition of `zip`, we get:
+\[
+(\text{replicate } (k + 1) \, a).zip (\text{replicate } (k + 1) \, b) = (a, b) :: ((\text{replicate } k \, a).zip (\text{replicate } k \, b))
+\]
+
+By the inductive hypothesis, we know:
+\[
+(\text{replicate } k \, a).zip (\text{replicate } k \, b) = \text{replicate } k \, (a, b)
+\]
+
+Therefore, we have:
+\[
+(a, b) :: ((\text{replicate } k \, a).zip (\text{replicate } k \, b)) = (a, b) :: (\text{replicate } k \, (a, b))
+\]
+
+By the definition of `replicate`, this is equal to:
+\[
+\text{replicate } (k + 1) \, (a, b)
+\]
+
+Thus, the inductive step is proved. By the principle of mathematical induction, the statement holds for all natural numbers $n$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {a : α} {b : β} {n : Nat} :
+    zip (replicate n a) (replicate n b) = replicate n (a, b) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {a : α} {b : β} {n : Nat} :
+    zip (replicate n a) (replicate n b) = replicate n (a, b) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

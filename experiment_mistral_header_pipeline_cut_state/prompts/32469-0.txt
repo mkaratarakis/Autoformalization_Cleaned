@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Multiplication Inequality Implies Subtraction Inequality in Natural Numbers : For any natural numbers \( m \), \( k \), and \( n \), the inequality \( k \cdot m \leq m + n \) holds if and only if the inequality \( (k - 1) \cdot m \leq n \) holds.
+
+2. **Informal Proof**  
+We need to show that for any natural numbers \( m \), \( k \), and \( n \), the inequality \( k \cdot m \leq m + n \) holds if and only if the inequality \( (k - 1) \cdot m \leq n \) holds.
+
+1. **Base Case: \( k = 0 \)**
+- The goal is to show that \( 0 \cdot m \leq m + n \leftrightarrow (0 - 1) \cdot m \leq n \).
+- Simplifying, we get \( 0 \leq m + n \leftrightarrow 0 \leq n \).
+- Since \( 0 \leq m + n \) and \( 0 \leq n \) are always true for natural numbers, the base case is trivially true.
+
+2. **Inductive Case: \( k = k' + 1 \)**
+- The goal is to show that \((k' + 1) \cdot m \leq m + n \leftrightarrow (k' + 1 - 1) \cdot m \leq n\).
+- Using the identity \((k' + 1) \cdot m = k' \cdot m + m\), the commutativity of addition \(a + b = b + a\), and the fact that adding the same number to both sides of an inequality preserves the inequality \(a + b \leq a + c \leftrightarrow b \leq c\), we simplify the goal to \(k' \cdot m + m \leq m + n \leftrightarrow k' \cdot m \leq n\).
+- This simplifies to \(k' \cdot m \leq n\), which is exactly what we need to show.
+
+By induction, the theorem holds for all natural numbers \( k \). Therefore, the inequality \( k \cdot m \leq m + n \) holds if and only if the inequality \( (k - 1) \cdot m \leq n \) holds. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m k n : Nat) : k * m ≤ m + n ↔ (k-1) * m ≤ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (m k n : Nat) : k * m ≤ m + n ↔ (k-1) * m ≤ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

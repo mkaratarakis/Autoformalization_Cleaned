@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Commutativity of Conjunction in Four Propositions: \((a \land b) \land c \land d \leftrightarrow (a \land c) \land b \land d\) : For any propositions \( a \), \( b \), \( c \), and \( d \), the conjunction \((a \land b) \land c \land d\) is logically equivalent to the conjunction \((a \land c) \land b \land d\), i.e., \((a \land b) \land c \land d \leftrightarrow (a \land c) \land b \land d\).
+
+2. **Informal Proof**  
+We begin by applying the associativity of conjunction, which states that \((a \land b) \land c \leftrightarrow a \land b \land c\). This allows us to rewrite the goal from \((a \land b) \land c \land d\) to \(((a \land b) \land c) \land d\). Next, we use the right commutativity of conjunction, which states that \((a \land b) \land c \leftrightarrow (a \land c) \land b\), to transform \(((a \land b) \land c) \land d\) into \(((a \land c) \land b) \land d\). Finally, we apply associativity once more to rewrite \(((a \land c) \land b) \land d\) as \((a \land c) \land b \land d\). This completes the proof, as the goal is now equivalent to the desired form.
+
+3. **Formal Theorem**  
+example : (a ∧ b) ∧ c ∧ d ↔ (a ∧ c) ∧ b ∧ d := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : (a ∧ b) ∧ c ∧ d ↔ (a ∧ c) ∧ b ∧ d := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

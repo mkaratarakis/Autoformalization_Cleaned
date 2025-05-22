@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Distributivity of AND over XOR: $(x \oplus y) \land z = (x \land z) \oplus (y \land z)$ : For any boolean values $x$, $y$, and $z$, the conjunction of the exclusive or of $x$ and $y$ with $z$ is equal to the exclusive or of the conjunction of $x$ with $z$ and the conjunction of $y$ with $z$, i.e., $(x \oplus y) \land z = (x \land z) \oplus (y \land z)$.
+
+2. **Informal Proof**  
+To prove the distributivity of the AND operation over the XOR operation, we need to show that for any boolean values $x$, $y$, and $z$, the equation $(x \oplus y) \land z = (x \land z) \oplus (y \land z)$ holds. We use the `decide` tactic to automatically verify this property. The `decide` tactic exhaustively checks all possible combinations of $x$, $y$, and $z$ to ensure that the equation holds in every case. Since the `decide` tactic confirms the equation for all possible boolean values, the distributivity property is established. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), (xor x y && z) = xor (x && z) (y && z) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), (xor x y && z) = xor (x && z) (y && z) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

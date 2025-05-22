@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Bitvector Addition of Complement Yields All Ones: \( x + \sim x = \text{allOnes}(w) \) : For any bitvector \( x \) of width \( w \), the sum of \( x \) and its complement \( \sim x \) is the bitvector of width \( w \) with all bits set to 1, i.e., \( x + \sim x = \text{allOnes}(w) \).
+
+2. **Informal Proof**  
+To prove that \( x + \sim x = \text{allOnes}(w) \), we start by using the equivalence that the sum of two bitvectors \( x \) and \( y \) is equal to the second component of the result of the bitwise addition with carry operation `adc` applied to \( x \), \( y \), and the boolean value `false`. This transforms our goal into showing that the second component of the result of `adc` applied to \( x \), \( \sim x \), and `false` is equal to the all-ones bitvector of width \( w \).
+
+Next, we use the definition of `adc` to expand this into the iterative unfolding of the bitwise addition with carry operation. Specifically, we need to show that for each index \( i \) in \( \text{Fin } w \), the result of the bitwise addition of \( x \) and \( \sim x \) with carry `false` is `false` and the least significant bit of the all-ones bitvector is `true`.
+
+We then use the `iunfoldr_replace` theorem to replace the iterative unfolding with the all-ones bitvector, reducing our goal to showing that the least significant bit of the all-ones bitvector is `true` for all indices \( i \) in \( \text{Fin } w \).
+
+The current goal is to show that `false = false`, which is trivially true by the reflexive property of equality.
+
+Finally, we simplify the remaining goal using the definitions of `adcb` and `atLeastTwo`. The function `adcb` computes the carry and result of a bitwise addition, and `atLeastTwo` checks if at least two of the inputs are `true`. By simplifying with these definitions, we show that for each index \( i \) in \( \text{Fin } w \), the result of the bitwise addition of \( x \) and \( \sim x \) with carry `false` is `false` and the least significant bit of the all-ones bitvector is `true`.
+
+Thus, we have shown that \( x + \sim x = \text{allOnes}(w) \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec w) : x + ~~~x = allOnes w := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x : BitVec w) : x + ~~~x = allOnes w := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

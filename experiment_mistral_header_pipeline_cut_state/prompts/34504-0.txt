@@ -1,0 +1,74 @@
+
+1. **Informal Theorem**  
+Drop While on Concatenation of Lists : For any type \( \alpha \) and any predicate \( p : \alpha \to \text{Bool} \), and for any lists \( xs \) and \( ys \) of elements of type \( \alpha \), the result of applying the `dropWhile` function to the concatenation of \( xs \) and \( ys \) is:
+- \( \text{dropWhile } p \, ys \) if \( \text{dropWhile } p \, xs \) is an empty list,
+- \( \text{dropWhile } p \, xs \) concatenated with \( \text{dropWhile } p \, ys \) otherwise.
+
+2. **Informal Proof**  
+We prove the theorem by induction on the list \( xs \).
+
+1. **Base Case: \( xs \) is the empty list.**
+- The goal is to show that \( \text{dropWhile } p \, ([] ++ ys) = \text{dropWhile } p \, ys \).
+- Since the concatenation of the empty list with any list \( ys \) is just \( ys \), and the `dropWhile` of an empty list is also an empty list, the goal simplifies to:
+\[
+\text{dropWhile } p \, ys = \text{dropWhile } p \, ys
+\]
+- This is trivially true.
+
+2. **Inductive Step: \( xs \) is a non-empty list.**
+- Assume \( xs \) is of the form \( h :: t \), where \( h \) is the head of the list and \( t \) is the tail.
+- Assume the induction hypothesis that for any list \( t \) and \( ys \), the property holds:
+\[
+\text{dropWhile } p \, (t ++ ys) = \text{if } (\text{dropWhile } p \, t).isEmpty = \text{true} \text{ then } \text{dropWhile } p \, ys \text{ else } \text{dropWhile } p \, t ++ ys
+\]
+- We need to show that:
+\[
+\text{dropWhile } p \, (h :: t ++ ys) = \text{if } (\text{dropWhile } p \, (h :: t)).isEmpty = \text{true} \text{ then } \text{dropWhile } p \, ys \text{ else } \text{dropWhile } p \, (h :: t) ++ ys
+\]
+- Using the properties of the `cons` function and the `dropWhile` function, we have:
+\[
+\text{dropWhile } p \, (h :: t ++ ys) = \text{if } p(h) = \text{true} \text{ then } \text{dropWhile } p \, (t ++ ys) \text{ else } h :: (t ++ ys)
+\]
+- We consider two sub-cases based on whether \( p(h) \) is true or false.
+
+- **Sub-case 1: \( p(h) = \text{true} \)**
+- The goal simplifies to:
+\[
+\text{dropWhile } p \, (t ++ ys) = \text{if } (\text{dropWhile } p \, t).isEmpty = \text{true} \text{ then } \text{dropWhile } p \, ys \text{ else } \text{dropWhile } p \, t ++ ys
+\]
+- By the induction hypothesis, this is true.
+
+- **Sub-case 2: \( p(h) = \text{false} \)**
+- The goal simplifies to:
+\[
+h :: (t ++ ys) = \text{if } (h :: t).isEmpty = \text{true} \text{ then } \text{dropWhile } p \, ys \text{ else } h :: t ++ ys
+\]
+- Since \( h :: t \) is not an empty list, the condition \( (h :: t).isEmpty = \text{true} \) is false. Therefore, the goal further simplifies to:
+\[
+h :: (t ++ ys) = h :: t ++ ys
+\]
+- This is trivially true.
+
+Thus, by induction, the theorem holds for all lists \( xs \) and \( ys \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {xs ys : List α} :
+    (xs ++ ys).dropWhile p =
+      if (xs.dropWhile p).isEmpty then ys.dropWhile p else xs.dropWhile p ++ ys := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {xs ys : List α} :
+    (xs ++ ys).dropWhile p =
+      if (xs.dropWhile p).isEmpty then ys.dropWhile p else xs.dropWhile p ++ ys := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

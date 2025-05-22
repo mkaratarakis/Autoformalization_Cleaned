@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Dependent If-Then-Else Evaluates to True Branch: $c = \text{True} \implies \text{dite}(c, t, e) = t(h)$ : For any type $\alpha$, proposition $c$, and decidable proof $x$ of $c$, if $c$ is true, then the dependent if-then-else construct `dite c t e` evaluates to the value $t(h)$, where $h$ is a proof of $c$. Formally, if $c = \text{True}$, then $\text{dite}(c, t, e) = t(h)$.
+
+2. **Informal Proof**  
+We start with the assumption that $c = \text{True}$. Using this assumption, we can simplify the expression $\text{dite}(c, t, e)$. By the definition of the dependent if-then-else construct, $\text{dite}(c, t, e)$ evaluates to $t(h)$ when $c$ is true, where $h$ is a proof of $c$. Therefore, we have $\text{dite}(c, t, e) = t(h)$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {α : Sort u} {c : Prop} {_ : Decidable c} {t : c → α} {e : ¬ c → α} (h : c = True) : (dite c t e) = t (of_eq_true h) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example {α : Sort u} {c : Prop} {_ : Decidable c} {t : c → α} {e : ¬ c → α} (h : c = True) : (dite c t e) = t (of_eq_true h) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

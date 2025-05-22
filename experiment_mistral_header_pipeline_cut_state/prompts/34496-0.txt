@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Drop While Equals Filter Not in Replicated List : For any type $\alpha$, natural number $n$, and element $a \in \alpha$, and for any predicate $p : \alpha \to \text{Bool}$, the list obtained by dropping elements from the list `replicate n a` while the predicate $p$ is true is equal to the list obtained by filtering `replicate n a` to keep only the elements for which the predicate $p$ is false. In other words, `dropWhile p (replicate n a)` is equal to `filter (not p) (replicate n a)`.
+
+2. **Informal Proof**  
+We prove this by induction on \(n\).
+
+**Base Case:**
+For \(n = 0\), the list `replicate 0 a` is the empty list. Therefore, both `dropWhile p (replicate 0 a)` and `filter (fun a => !p a) (replicate 0 a)` are the empty list, and thus they are equal.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some \(k \geq 0\), `dropWhile p (replicate k a) = filter (fun a => !p a) (replicate k a)`. We need to show that `dropWhile p (replicate (k + 1) a) = filter (fun a => !p a) (replicate (k + 1) a)`.
+
+By the definition of `replicate`, `replicate (k + 1) a` is `a :: replicate k a`. We consider two cases based on the value of \(p(a)\):
+
+1. **Case 1: \(p(a) = \text{true}\)**
+- By the definition of `dropWhile`, `dropWhile p (a :: replicate k a)` is `dropWhile p (replicate k a)`.
+- By the inductive hypothesis, `dropWhile p (replicate k a) = filter (fun a => !p a) (replicate k a)`.
+- By the definition of `filter`, `filter (fun a => !p a) (a :: replicate k a)` is `filter (fun a => !p a) (replicate k a)` because \(p(a) = \text{true}\) implies \(!p(a) = \text{false}\).
+- Therefore, `dropWhile p (replicate (k + 1) a) = filter (fun a => !p a) (replicate (k + 1) a)`.
+
+2. **Case 2: \(p(a) = \text{false}\)**
+- By the definition of `dropWhile`, `dropWhile p (a :: replicate k a)` is `a :: replicate k a`.
+- By the definition of `filter`, `filter (fun a => !p a) (a :: replicate k a)` is `a :: filter (fun a => !p a) (replicate k a)` because \(p(a) = \text{false}\) implies \(!p(a) = \text{true}\).
+- Therefore, `a :: replicate k a = a :: filter (fun a => !p a) (replicate k a)`, and thus `dropWhile p (replicate (k + 1) a) = filter (fun a => !p a) (replicate (k + 1) a)`.
+
+By induction, the theorem holds for all natural numbers \(n\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (p : α → Bool) :
+    (replicate n a).dropWhile p = (replicate n a).filter (fun a => !p a) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p : α → Bool) :
+    (replicate n a).dropWhile p = (replicate n a).filter (fun a => !p a) := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

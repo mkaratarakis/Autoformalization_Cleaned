@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Equivalence of Division and Multiplication in Natural Numbers: \( \frac{a}{b} = c \to a = b \cdot c \) : For any natural numbers \(a\), \(b\), and \(c\) such that \(b \mid a\) and \(\frac{a}{b} = c\), it holds that \(a = b \cdot c\).
+
+2. **Informal Proof**  
+We start with the given hypotheses:
+1. \( b \mid a \), which means there exists a natural number \( k \) such that \( a = b \cdot k \).
+2. \( \frac{a}{b} = c \).
+
+To prove \( a = b \cdot c \), we use the hypothesis \( \frac{a}{b} = c \) to rewrite the goal. Specifically, we substitute \( c \) with \( \frac{a}{b} \) in the equation \( a = b \cdot c \), which gives us:
+\[ a = b \cdot \left( \frac{a}{b} \right). \]
+
+Next, we use the theorem that for any natural number \( a \) and any nonzero natural number \( b \) such that \( b \mid a \), the equation \( b \cdot \left( \frac{a}{b} \right) = a \) holds. This theorem simplifies our goal to:
+\[ a = a. \]
+
+Since \( a = a \) is trivially true, we have completed the proof. Therefore, \( a = b \cdot c \).
+
+3. **Formal Theorem**  
+example {a b c : Nat} (H1 : b ∣ a) (H2 : a / b = c) :
+    a = b * c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a b c : Nat} (H1 : b ∣ a) (H2 : a / b = c) :
+    a = b * c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

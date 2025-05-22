@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Element at Index 0 in a Cons List is the First Element: \( l[0] = a \) for \( l = a :: l' \) : For any type \( \alpha \), any element \( a \) of type \( \alpha \), and any list \( l \) of elements of type \( \alpha \), if the index \( 0 \) is less than the length of the list \( a :: l \), then the element at index \( 0 \) in the list \( a :: l \) is equal to \( a \).
+
+2. **Informal Proof**  
+We need to show that for any type \( \alpha \), any element \( a \) of type \( \alpha \), and any list \( l \) of elements of type \( \alpha \), if the index \( 0 \) is less than the length of the list \( a :: l \), then the element at index \( 0 \) in the list \( a :: l \) is equal to \( a \).
+
+By the definition of the `getElem` function, the element at index \( 0 \) in the list \( a :: l \) is \( a \). This is a direct consequence of the construction of the list \( a :: l \), where \( a \) is the first element. Therefore, the equality \( \text{getElem}(a :: l, 0, h) = a \) holds trivially due to the reflexive property of equality.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a : α) (as : List α) (h : 0 < (a :: as).length) : getElem (a :: as) 0 h = a := by sorry
+
+4. **Prefix**
+import Init.Util
+import Init.GetElem
+
+open List
+
+
+example (a : α) (as : List α) (h : 0 < (a :: as).length) : getElem (a :: as) 0 h = a := by
+
+5. **Header Information**  
+-- Init.Util not found. --
+
+-- Init.GetElem not found. --
+

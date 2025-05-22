@@ -1,0 +1,63 @@
+
+1. **Informal Theorem**  
+Base 2 Logarithm of a Nonzero Natural Number is Greater Than or Equal to \( k \) if and only if \( 2^k \leq n \) : For any natural numbers \( n \) and \( k \) such that \( n \neq 0 \), it holds that \( k \leq \lfloor \log_2 n \rfloor \) if and only if \( 2^k \leq n \).
+
+2. **Informal Proof**  
+We proceed by induction on \( k \).
+
+**Base Case:**
+For \( k = 0 \), we need to show that \( 0 \leq \lfloor \log_2 n \rfloor \) if and only if \( 2^0 \leq n \). Since \( n \neq 0 \), we have \( 1 \leq n \), which is equivalent to \( 2^0 \leq n \).
+
+**Inductive Step:**
+Assume the statement holds for \( k \). We need to show that \( k + 1 \leq \lfloor \log_2 n \rfloor \) if and only if \( 2^{k+1} \leq n \).
+
+**Case 1: \( n \geq 2 \)**
+We use the definition of \(\lfloor \log_2 n \rfloor\):
+\[
+\lfloor \log_2 n \rfloor = \lfloor \log_2 (n / 2) \rfloor + 1
+\]
+We need to show:
+\[
+k + 1 \leq \lfloor \log_2 (n / 2) \rfloor + 1 \iff 2^{k+1} \leq n
+\]
+This simplifies to:
+\[
+k \leq \lfloor \log_2 (n / 2) \rfloor \iff 2^k \leq n / 2
+\]
+By the inductive hypothesis, \( k \leq \lfloor \log_2 (n / 2) \rfloor \) if and only if \( 2^k \leq n / 2 \). Therefore, \( 2^k \leq n / 2 \) is equivalent to \( 2^k \cdot 2 \leq n \), which is \( 2^{k+1} \leq n \).
+
+**Case 2: \( n < 2 \)**
+We simplify the goal using the properties of natural numbers:
+\[
+k + 1 \leq 0 \iff 2^{k+1} \leq n
+\]
+Since \( k + 1 \leq 0 \) is false for any natural number \( k \), \( 2^{k+1} \leq n \) is also false.
+
+Thus, the statement holds for all \( k \) and \( n \neq 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (h : n ≠ 0) : k ≤ n.log2 ↔ 2 ^ k ≤ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (h : n ≠ 0) : k ≤ n.log2 ↔ 2 ^ k ≤ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

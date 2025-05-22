@@ -1,0 +1,37 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:11:5: error: unknown tactic
+tmp.lean:10:2: error: unsolved goals
+case mp
+a b : Nat
+h : compare a b ≠ Ordering.lt
+⊢ b ≤ a
+tmp.lean:8:51: error: unsolved goals
+case mpr
+a b : Nat
+⊢ b ≤ a → compare a b ≠ Ordering.lt
+tmp.lean:10:2: error: unsolved goals
+case mp
+a b : Nat
+h : compare a b ≠ Ordering.lt
+⊢ b ≤ a
+tmp.lean:8:51: error: unsolved goals
+case mpr
+a b : Nat
+⊢ b ≤ a → compare a b ≠ Ordering.lt
+case mpr
+a b : Nat
+⊢ b ≤ a → compare a b ≠ Ordering.lt
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b ≠ .lt ↔ b ≤ a := by
+  constructor
+  · intro h

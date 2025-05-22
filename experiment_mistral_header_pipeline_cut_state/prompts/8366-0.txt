@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Right Subtraction Preserves Inequality in Natural Numbers: \(a + b \leq c + d \leftrightarrow a + (b - d) \leq c\) : For any natural numbers \(a\) and \(c\), and for any natural numbers \(b\) and \(d\) such that \(b \geq d\), the inequality \(a + b \leq c + d\) holds if and only if \(a + (b - d) \leq c\).
+
+2. **Informal Proof**  
+We start with the given inequality \(a + b \leq c + d\) and the condition \(b \geq d\). We need to show that this inequality holds if and only if \(a + (b - d) \leq c\).
+
+1. **Step 1: Apply the associativity of addition and subtraction.**
+By the associativity of addition and subtraction in natural numbers, we have:
+\[
+a + b - d = a + (b - d)
+\]
+Therefore, the inequality \(a + b \leq c + d\) can be rewritten as:
+\[
+a + (b - d) \leq c + d
+\]
+
+2. **Step 2: Apply the property of inequalities involving subtraction.**
+Using the property of inequalities involving subtraction, which states that \(a - c \leq b\) if and only if \(a \leq b + c\), we can rewrite the inequality \(a + (b - d) \leq c + d\) as:
+\[
+a + (b - d) \leq c
+\]
+
+Thus, we have shown that \(a + b \leq c + d\) if and only if \(a + (b - d) \leq c\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a c : Nat) {b d : Nat} (h : b ≥ d) : (a + b ≤ c + d) = (a + (b - d) ≤ c) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example (a c : Nat) {b d : Nat} (h : b ≥ d) : (a + b ≤ c + d) = (a + (b - d) ≤ c) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

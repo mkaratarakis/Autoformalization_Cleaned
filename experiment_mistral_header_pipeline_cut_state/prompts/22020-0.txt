@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Partial Map Equals Map for Elements Satisfying Predicate: \(\text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, l \, H = \text{map} \, f \, l\) : For any types \( \alpha \) and \( \beta \), a predicate \( p : \alpha \to \text{Prop} \), a function \( f : \alpha \to \beta \), a list \( l \) of elements of type \( \alpha \), and a proof \( H \) that all elements of \( l \) satisfy \( p \), the partial map `pmap` applied to \( f \) and \( l \) using \( H \) is equal to the map `map` applied to \( f \) and \( l \). Formally, if \( l = [a_1, a_2, \ldots, a_n] \) and \( H \) is a proof that \( p(a_i) \) holds for each \( a_i \in l \), then \( \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, l \, H = \text{map} \, f \, l \).
+
+2. **Informal Proof**  
+We perform induction on the list \( l \) to prove the theorem.
+
+1. **Base Case:**
+- If \( l \) is the empty list, then both \( \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, [] \, H \) and \( \text{map} \, f \, [] \) are the empty list. Therefore, the equality \( \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, [] \, H = \text{map} \, f \, [] \) holds trivially.
+
+2. **Inductive Step:**
+- Suppose \( l = a :: l' \), where \( a \) is the head of the list and \( l' \) is the tail. By the inductive hypothesis, we have \( \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, l' \, H' = \text{map} \, f \, l' \) for some proof \( H' \) that all elements of \( l' \) satisfy \( p \).
+- Using the definitions of `pmap` and `map`, we have:
+\[
+\text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, (a :: l') \, H = f(a) :: \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, l' \, H'
+\]
+and
+\[
+\text{map} \, f \, (a :: l') = f(a) :: \text{map} \, f \, l'.
+\]
+- By the inductive hypothesis, \( \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, l' \, H' = \text{map} \, f \, l' \). Therefore, we have:
+\[
+f(a) :: \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, l' \, H' = f(a) :: \text{map} \, f \, l'.
+\]
+- This shows that \( \text{pmap} (fun \, a \, x \, \Rightarrow \, f \, a) \, (a :: l') \, H = \text{map} \, f \, (a :: l') \).
+
+By induction, the theorem holds for all lists \( l \). This completes the proof.
+
+3. **Formal Theorem**  
+example (p : α → Prop) (f : α → β) (l : List α) (H) :
+    @pmap _ _ p (fun a _ => f a) l H = map f l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.Subtype
+import Init.Data.List.Attach
+
+open List
+
+
+example (p : α → Prop) (f : α → β) (l : List α) (H) :
+    @pmap _ _ p (fun a _ => f a) l H = map f l := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.Subtype not found. --
+
+-- Init.Data.List.Attach not found. --
+

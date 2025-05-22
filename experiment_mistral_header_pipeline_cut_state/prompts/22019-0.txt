@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Mapping a Function over a Partially Mapped List: \(\text{map } g \, (\text{pmap } f \, l \, H) = \text{pmap } (\lambda a h, g (f a h)) \, l \, H\) : For any types \( \alpha \), \( \beta \), and \( \gamma \), and a predicate \( p : \alpha \to \text{Prop} \), if \( g : \beta \to \gamma \) is a function and \( f : \Pi a, p a \to \beta \) is a partial function defined on elements of \( \alpha \) that satisfy \( p \), and \( l \) is a list of elements of type \( \alpha \) such that all elements of \( l \) satisfy \( p \) (i.e., \( H : \forall a \in l, p a \)), then the result of applying \( g \) to the list obtained by applying \( f \) to each element of \( l \) that satisfies \( p \) is the same as applying the partial function \( \lambda a h, g (f a h) \) to each element of \( l \) that satisfies \( p \). Formally, this is expressed as:
+\[
+\text{map } g \, (\text{pmap } f \, l \, H) = \text{pmap } (\lambda a h, g (f a h)) \, l \, H
+\]
+
+2. **Informal Proof**  
+We perform induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, then both sides of the equation \( \text{map } g \, (\text{pmap } f \, [] \, H) = \text{pmap } (\lambda a h, g (f a h)) \, [] \, H \) are the empty list. This is trivially true by the definitions of `pmap` and `map` on the empty list.
+
+2. **Inductive Step:**
+- Assume the inductive hypothesis that the equality holds for the tail of the list \( \text{tail} \). We need to show that the equality holds for the list \( \text{head} :: \text{tail} \).
+- By the definitions of `pmap` and `map`, the left-hand side of the equation becomes:
+\[
+\text{map } g \, (\text{pmap } f \, (\text{head} :: \text{tail}) \, H) = g (f \, \text{head} \, H(\text{head})) :: \text{map } g \, (\text{pmap } f \, \text{tail} \, H)
+\]
+- The right-hand side of the equation becomes:
+\[
+\text{pmap } (\lambda a h, g (f a h)) \, (\text{head} :: \text{tail}) \, H = g (f \, \text{head} \, H(\text{head})) :: \text{pmap } (\lambda a h, g (f a h)) \, \text{tail} \, H
+\]
+- By the inductive hypothesis, we have:
+\[
+\text{map } g \, (\text{pmap } f \, \text{tail} \, H) = \text{pmap } (\lambda a h, g (f a h)) \, \text{tail} \, H
+\]
+- Therefore, the left-hand side and the right-hand side are equal, completing the inductive step.
+
+By induction, the theorem holds for all lists \( l \). This completes the proof.
+
+3. **Formal Theorem**  
+example {p : α → Prop} (g : β → γ) (f : ∀ a, p a → β) (l H) :
+    map g (pmap f l H) = pmap (fun a h => g (f a h)) l H := by sorry
+
+4. **Prefix**
+import Init.Data.List.Count
+import Init.Data.Subtype
+import Init.Data.List.Attach
+
+open List
+
+
+example {p : α → Prop} (g : β → γ) (f : ∀ a, p a → β) (l H) :
+    map g (pmap f l H) = pmap (fun a h => g (f a h)) l H := by
+
+5. **Header Information**  
+-- Init.Data.List.Count not found. --
+
+-- Init.Data.Subtype not found. --
+
+-- Init.Data.List.Attach not found. --
+

@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Is Some False if and only if Is None True: \( a.\text{isSome} = \text{false} \leftrightarrow a.\text{isNone} = \text{true} \) : For any type \( \alpha \) and any `Option` value \( a \) of type \( \alpha \), the predicate \( a.\text{isSome} = \text{false} \) is equivalent to \( a.\text{isNone} = \text{true} \). In other words, \( a \) is not `Some` if and only if \( a \) is `None`.
+
+2. **Informal Proof**  
+To prove the equivalence \( a.\text{isSome} = \text{false} \leftrightarrow a.\text{isNone} = \text{true} \), we will consider every possible case of \( a \).
+
+1. **Case 1: \( a = \text{none} \)**
+- We need to show that \( \text{none.isSome} = \text{false} \leftrightarrow \text{none.isNone} = \text{true} \).
+- By the definition of the `Option` type, \( \text{none.isSome} = \text{false} \) and \( \text{none.isNone} = \text{true} \).
+- Therefore, \( \text{false} \leftrightarrow \text{true} \) is true.
+
+2. **Case 2: \( a = \text{some } val \)**
+- We need to show that \( (\text{some } val).isSome = \text{false} \leftrightarrow (\text{some } val).isNone = \text{true} \).
+- By the definition of the `Option` type, \( (\text{some } val).isSome = \text{true} \) and \( (\text{some } val).isNone = \text{false} \).
+- Therefore, \( \text{true} \leftrightarrow \text{false} \) is false.
+
+Since both cases are covered and the simplifications are valid, we conclude that \( a.\text{isSome} = \text{false} \leftrightarrow a.\text{isNone} = \text{true} \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : isSome a = false ↔ a.isNone = true := by sorry
+
+4. **Prefix**
+import Init.Data.Option.BasicAux
+import Init.Data.Option.Instances
+import Init.Classical
+import Init.Ext
+import Init.Data.Option.Lemmas
+
+open Option
+
+
+example : isSome a = false ↔ a.isNone = true := by
+
+5. **Header Information**  
+-- Init.Data.Option.BasicAux not found. --
+
+-- Init.Data.Option.Instances not found. --
+
+-- Init.Classical not found. --
+
+-- Init.Ext not found. --
+
+-- Init.Data.Option.Lemmas not found. --
+

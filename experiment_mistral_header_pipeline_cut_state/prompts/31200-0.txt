@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Left Addition Commutativity in Natural Numbers: \( n + (m + k) = m + (n + k) \) : For any natural numbers \( n \), \( m \), and \( k \), the equation \( n + (m + k) = m + (n + k) \) holds. This theorem demonstrates the commutativity of addition when the first term is fixed and the other two terms are permuted.
+
+2. **Informal Proof**  
+To prove that \( n + (m + k) = m + (n + k) \) for any natural numbers \( n \), \( m \), and \( k \), we proceed as follows:
+
+1. **Step 1: Use the associativity of addition.**
+By the associativity of addition, we have:
+\[
+n + (m + k) = n + m + k
+\]
+
+2. **Step 2: Use the commutativity of addition.**
+By the commutativity of addition, we can rewrite \( n + m + k \) as:
+\[
+n + m + k = m + n + k
+\]
+
+3. **Step 3: Use the associativity of addition again.**
+By the associativity of addition, we can rewrite \( m + n + k \) as:
+\[
+m + n + k = m + (n + k)
+\]
+
+Combining these steps, we have:
+\[
+n + (m + k) = m + (n + k)
+\]
+
+Since the right-hand side of the equation is equal to itself, the equation \( n + (m + k) = m + (n + k) \) holds. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m k : Nat) : n + (m + k) = m + (n + k) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m k : Nat) : n + (m + k) = m + (n + k) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

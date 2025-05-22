@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Element at Successor Index in Cons List : For any type \( \alpha \), any element \( a \in \alpha \), any list \( l \) of elements of type \( \alpha \), and any natural number \( i \), if \( i + 1 \) is less than the length of the list \( a :: l \), then the element at index \( i + 1 \) in the list \( a :: l \) is equal to the element at index \( i \) in the list \( l \).
+
+2. **Informal Proof**  
+We need to show that for any type \( \alpha \), any element \( a \in \alpha \), any list \( l \) of elements of type \( \alpha \), and any natural number \( i \), if \( i + 1 \) is less than the length of the list \( a :: l \), then the element at index \( i + 1 \) in the list \( a :: l \) is equal to the element at index \( i \) in the list \( l \).
+
+By the definition of the `getElem` function, the element at index \( i + 1 \) in the list \( a :: l \) is the same as the element at index \( i \) in the list \( l \). This is trivially true due to the reflexive property of equality. Therefore, the element at index \( i + 1 \) in the list \( a :: l \) is indeed equal to the element at index \( i \) in the list \( l \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a : α) (as : List α) (i : Nat) (h : i + 1 < (a :: as).length) : getElem (a :: as) (i+1) h = getElem as i (Nat.lt_of_succ_lt_succ h) := by sorry
+
+4. **Prefix**
+import Init.Util
+import Init.GetElem
+
+open List
+
+
+example (a : α) (as : List α) (i : Nat) (h : i + 1 < (a :: as).length) : getElem (a :: as) (i+1) h = getElem as i (Nat.lt_of_succ_lt_succ h) := by
+
+5. **Header Information**  
+-- Init.Util not found. --
+
+-- Init.GetElem not found. --
+

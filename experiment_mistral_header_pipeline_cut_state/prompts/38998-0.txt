@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Function Application to Dependent If-Then-Else Construct: $f(\text{dite } P \, x \, y) = \text{if } h : P \text{ then } f(x(h)) \text{ else } f(y(h))$ : For any types $\alpha$ and $\beta$, a function $f : \alpha \to \beta$, a decidable proposition $P$, and two functions $x : P \to \alpha$ and $y : \neg P \to \alpha$, the application of $f$ to the dependent if-then-else construct `dite P x y` is equal to the if-then-else construct applied to $f$ on each branch. Specifically, if $P$ is true, then $f(\text{dite } P \, x \, y) = f(x(h))$ where $h$ is a proof of $P$; if $P$ is false, then $f(\text{dite } P \, x \, y) = f(y(h))$ where $h$ is a proof of $\neg P$.
+
+2. **Informal Proof**  
+To prove the theorem, we consider two cases based on the truth of the proposition $P$.
+
+1. **Case 1: Assume $P$ holds.**
+- Let $h$ be a proof of $P$.
+- We need to show that $f(\text{dite } P \, x \, y) = f(x(h))$.
+- By the definition of the dependent if-then-else construct, $\text{dite } P \, x \, y = x(h)$ when $P$ is true.
+- Therefore, $f(\text{dite } P \, x \, y) = f(x(h))$.
+
+2. **Case 2: Assume $P$ does not hold.**
+- Let $h$ be a proof of $\neg P$.
+- We need to show that $f(\text{dite } P \, x \, y) = f(y(h))$.
+- By the definition of the dependent if-then-else construct, $\text{dite } P \, x \, y = y(h)$ when $P$ is false.
+- Therefore, $f(\text{dite } P \, x \, y) = f(y(h))$.
+
+In both cases, the goal is satisfied. Hence, the theorem is proved. $\blacksquare$
+
+3. **Formal Theorem**  
+example (f : α → β) (P : Prop) [Decidable P] (x : P → α) (y : ¬P → α) :
+    f (dite P x y) = dite P (fun h => f (x h)) (fun h => f (y h)) := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.ByCases
+
+
+
+
+example (f : α → β) (P : Prop) [Decidable P] (x : P → α) (y : ¬P → α) :
+    f (dite P x y) = dite P (fun h => f (x h)) (fun h => f (y h)) := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.ByCases not found. --
+

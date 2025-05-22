@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Pairwise Strict Inequality in `List.range` : For any natural number \( n \), the list `List.range n` is pairwise strictly less than, i.e., for all elements \( x \) and \( x' \) in the list `List.range n`, where \( x \) appears before \( x' \), it holds that \( x < x' \).
+
+2. **Informal Proof**  
+To prove that the list `List.range n` is pairwise strictly less than, we use the following steps:
+
+1. **Simplify the Proposition:**
+We know that the list `List.range n` is equal to the list `List.range' 0 n`. This is a direct consequence of the definition of `List.range` and `List.range'` for natural numbers. Specifically, `List.range n` returns the list of natural numbers from \( 0 \) to \( n-1 \) in increasing order, and `List.range' 0 n` returns the same list.
+
+2. **Use Pairwise Property:**
+We also know that the list `List.range' 0 n` is pairwise strictly less than. This means that for any two elements \( x \) and \( x' \) in the list `List.range' 0 n`, where \( x \) appears before \( x' \), it holds that \( x < x' \).
+
+3. **Conclusion:**
+Since `List.range n` is equal to `List.range' 0 n` and `List.range' 0 n` is pairwise strictly less than, it follows by the transitivity of equality that `List.range n` is also pairwise strictly less than. Therefore, the proposition is true, and the proof is complete.
+
+3. **Formal Theorem**  
+example (n : Nat) : Pairwise (· < ·) (range n) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (n : Nat) : Pairwise (· < ·) (range n) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

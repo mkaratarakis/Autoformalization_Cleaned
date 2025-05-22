@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Conditional True Left Equals Boolean Or: $(\text{if } c \text{ then } \text{true} \text{ else } f) = (c \lor f)$ : For any boolean values $c$ and $f$, the expression `bif c then true else f` is equal to `c || f`, i.e., $(\text{if } c \text{ then } \text{true} \text{ else } f) = (c \lor f)$.
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any boolean values $c$ and $f$, the expression $(\text{if } c \text{ then } \text{true} \text{ else } f)$ is equal to $(c \lor f)$. We can verify this by considering all possible values of $c$ and $f$:
+
+1. **Case 1: $c = \text{true}$**
+- If $c = \text{true}$, then $(\text{if } c \text{ then } \text{true} \text{ else } f) = \text{true}$.
+- Also, $(c \lor f) = (\text{true} \lor f) = \text{true}$.
+- Therefore, $(\text{if } c \text{ then } \text{true} \text{ else } f) = (c \lor f)$.
+
+2. **Case 2: $c = \text{false}$**
+- If $c = \text{false}$, then $(\text{if } c \text{ then } \text{true} \text{ else } f) = f$.
+- Also, $(c \lor f) = (\text{false} \lor f) = f$.
+- Therefore, $(\text{if } c \text{ then } \text{true} \text{ else } f) = (c \lor f)$.
+
+Since the equality holds in both cases, we conclude that for any boolean values $c$ and $f$, the expression $(\text{if } c \text{ then } \text{true} \text{ else } f)$ is equal to $(c \lor f)$. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀(c f : Bool), cond c true f  = ( c || f) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(c f : Bool), cond c true f  = ( c || f) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Greatest Common Divisor Equals Divisor if Divisor Divides the Other Number : For any natural numbers \( m \) and \( n \), if \( n \) divides \( m \), then the greatest common divisor of \( m \) and \( n \) is equal to \( n \), i.e., \(\gcd(m, n) = n\).
+
+2. **Informal Proof**  
+To prove that \(\gcd(m, n) = n\) given that \( n \) divides \( m \), we start by using the commutativity of the greatest common divisor. The commutativity property states that \(\gcd(m, n) = \gcd(n, m)\). Therefore, the goal \(\gcd(m, n) = n\) is equivalent to \(\gcd(n, m) = n\).
+
+Next, we use the fact that if \( n \) divides \( m \), then \(\gcd(n, m) = n\). This is a known property of the greatest common divisor. Since \( n \) divides \( m \) by assumption, it follows that \(\gcd(n, m) = n\).
+
+Thus, we have shown that \(\gcd(m, n) = n\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n : Nat} (H : n ∣ m) : gcd m n = n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Dvd
+import Init.NotationExtra
+import Init.RCases
+import Init.Data.Nat.Gcd
+
+open Nat
+
+
+example {m n : Nat} (H : n ∣ m) : gcd m n = n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Dvd not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.RCases not found. --
+
+-- Init.Data.Nat.Gcd not found. --
+

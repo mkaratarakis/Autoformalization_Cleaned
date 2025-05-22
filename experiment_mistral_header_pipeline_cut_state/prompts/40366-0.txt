@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Dropping Elements from Empty List Results in Empty List : For any type $\alpha$ and any natural number $i$, dropping the first $i$ elements from the empty list of type $\alpha$ results in the empty list, i.e., $\text{drop}(i, \text{nil}) = \text{nil}$.
+
+2. **Informal Proof**  
+We need to show that for any natural number $i$, $\text{drop}(i, \text{nil}) = \text{nil}$. We will consider two cases for $i$:
+
+1. **Case 1: $i = 0$**
+- By the definition of the `drop` function, $\text{drop}(0, \text{nil})$ does not remove any elements from the empty list. Therefore, $\text{drop}(0, \text{nil}) = \text{nil}$.
+
+2. **Case 2: $i = n + 1$ for some natural number $n$**
+- By the definition of the `drop` function, $\text{drop}(n + 1, \text{nil})$ removes the first $n + 1$ elements from the empty list. Since the empty list has no elements, removing any number of elements from it results in the empty list. Therefore, $\text{drop}(n + 1, \text{nil}) = \text{nil}$.
+
+In both cases, we have shown that $\text{drop}(i, \text{nil}) = \text{nil}$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example : ([] : List α).drop i = [] := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example : ([] : List α).drop i = [] := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Boolean Value is Not Equal to Its Negation: \( x == \neg x = \text{false} \) : For any boolean value \( x \), the boolean equality between \( x \) and its negation \(\neg x\) is `false`, i.e., \( x == \neg x = \text{false} \).
+
+2. **Informal Proof**  
+To prove that for any boolean value \( x \), the equality \( x == \neg x \) is `false`, we consider the two possible values of \( x \):
+
+1. **Case 1: \( x = \text{true} \)**
+- The negation of \( x \) is \(\neg x = \text{false}\).
+- Therefore, \( x == \neg x \) is \(\text{true} == \text{false}\), which is `false`.
+
+2. **Case 2: \( x = \text{false} \)**
+- The negation of \( x \) is \(\neg x = \text{true}\).
+- Therefore, \( x == \neg x \) is \(\text{false} == \text{true}\), which is `false`.
+
+Since both cases show that \( x == \neg x \) is `false`, we conclude that for any boolean value \( x \), the equality \( x == \neg x \) is `false`. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x : Bool), (x   == !x) = false := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x : Bool), (x   == !x) = false := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

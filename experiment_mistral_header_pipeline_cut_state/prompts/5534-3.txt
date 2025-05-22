@@ -1,0 +1,57 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:14:6: error: tactic 'cases' failed, major premise type is not an inductive type
+  p
+
+Explanation: the 'cases' tactic is for constructor-based reasoning as well as for applying custom cases principles with a 'using' clause or a registered '@[cases_eliminator]' theorem. The above type neither is an inductive type nor has a registered theorem.
+case isFalse.a.mp
+p q : Prop
+h✝ : ¬p
+h1 : if p then q else p
+⊢ p ∧ q
+tmp.lean:17:12: error: unknown identifier 'h'
+tmp.lean:22:6: error: tactic 'cases' failed, major premise type is not an inductive type
+  q
+
+Explanation: the 'cases' tactic is for constructor-based reasoning as well as for applying custom cases principles with a 'using' clause or a registered '@[cases_eliminator]' theorem. The above type neither is an inductive type nor has a registered theorem.
+case isTrue.a.mp
+p q : Prop
+h✝ : p
+h1 : if p then q else p
+⊢ p ∧ q
+tmp.lean:13:4: error: unsolved goals
+case isFalse.a.mp
+p q : Prop
+h✝ : ¬p
+h1 : if p then q else p
+⊢ p ∧ q
+tmp.lean:10:2: error: unsolved goals
+case isFalse.a.mpr
+p q : Prop
+h✝ : ¬p
+⊢ p ∧ q → if p then q else p
+tmp.lean:8:75: error: unsolved goals
+case isTrue
+p q : Prop
+h✝ : p
+⊢ (if p then q else p) = (p ∧ q)
+case isFalse.a.mpr
+p q : Prop
+h✝ : ¬p
+⊢ p ∧ q → if p then q else p
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example (p q : Prop) [h : Decidable p] : (if p then q else p) = (p ∧ q) := by
+  cases h
+  · -- Case 1: p is false
+    apply propext
+    constructor
+    · intro h1

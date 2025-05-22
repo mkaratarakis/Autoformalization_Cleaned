@@ -1,0 +1,30 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:9:31: error: unknown identifier 'le_of_sub_eq'
+tmp.lean:12:8: error: unknown identifier 'add_comm'
+tmp.lean:8:2: error: unsolved goals
+case mp
+b a c : Nat
+h : b ≤ a
+h1 : a - b = c
+⊢ a = b + c
+tmp.lean:6:57: error: unsolved goals
+case mpr
+b a c : Nat
+h : b ≤ a
+⊢ a = b + c → a - b = c
+case mpr
+b a c : Nat
+h : b ≤ a
+⊢ a = b + c → a - b = c
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+example {c : Nat} (h : b ≤ a) : a - b = c ↔ a = b + c := by
+  constructor
+  · intro h1

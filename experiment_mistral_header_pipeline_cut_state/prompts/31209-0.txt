@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Right Multiplication Cancellation in Natural Numbers : For any natural numbers \( n \), \( m \), and \( k \), if \( m \) is nonzero and \( n \cdot m = k \cdot m \), then \( n = k \).
+
+2. **Informal Proof**  
+Given natural numbers \( n \), \( m \), and \( k \), and the assumption that \( m \) is nonzero, we start with the equation \( n \cdot m = k \cdot m \). By the commutativity of multiplication, we can rewrite this equation as \( m \cdot n = m \cdot k \). Since \( m \) is nonzero, we can apply the left cancellation property of multiplication, which states that if \( m \cdot n = m \cdot k \) and \( m \neq 0 \), then \( n = k \). Therefore, we conclude that \( n = k \). This completes the proof.
+
+3. **Formal Theorem**  
+example {n m k : Nat} (hm : 0 < m) (h : n * m = k * m) : n = k := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {n m k : Nat} (hm : 0 < m) (h : n * m = k * m) : n = k := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

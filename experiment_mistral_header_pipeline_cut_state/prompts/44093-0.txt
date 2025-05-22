@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Bitwise Disjunction of Bitvectors Preserves Conversion to Canonical Type: \((x \ ||| \ y).toFin = x.toFin \ ||| \ y.toFin\) : For any natural number \( v \) and any two bitvectors \( x \) and \( y \) of length \( v \), the result of the bitwise disjunction \( x \ ||| \ y \) when converted to the canonical type with \( 2^v \) elements (denoted by \( \text{Fin}(2^v) \)) is equal to the bitwise disjunction of the results of converting \( x \) and \( y \) individually to \( \text{Fin}(2^v) \). In other words, \((x \ ||| \ y).toFin = x.toFin \ ||| \ y.toFin\).
+
+2. **Informal Proof**  
+To prove that \((x \ ||| \ y).toFin = x.toFin \ ||| \ y.toFin\), it suffices to show that the values of these elements in the canonical type \(\text{Fin}(2^v)\) are equal, i.e., \(\text{val}((x \ ||| \ y).toFin) = \text{val}(x.toFin \ ||| \ y.toFin)\).
+
+Since \(x\) and \(y\) are bitvectors of length \(v\), their underlying natural numbers \(x.toNat\) and \(y.toNat\) are both less than \(2^v\). By the property of the bitwise disjunction, \(x.toNat \ ||| \ y.toNat\) is also less than \(2^v\). Therefore, the modulo operation \((x.toNat \ ||| \ y.toNat) \% 2^v\) is equal to \(x.toNat \ ||| \ y.toNat\). This is exactly what we need to show, and the symmetry of equality completes the proof.
+
+Thus, \((x \ ||| \ y).toFin = x.toFin \ ||| \ y.toFin\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y : BitVec v) :
+    BitVec.toFin (x ||| y) = BitVec.toFin x ||| BitVec.toFin y := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec v) :
+    BitVec.toFin (x ||| y) = BitVec.toFin x ||| BitVec.toFin y := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

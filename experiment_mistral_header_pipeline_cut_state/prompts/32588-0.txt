@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Disjunction Equivalence to Right Proposition if and only if Implication: \( a \lor b \leftrightarrow b \leftrightarrow a \to b \) : For any propositions \( a \) and \( b \), the disjunction \( a \lor b \) is logically equivalent to \( b \) if and only if \( a \) implies \( b \), i.e., \( a \lor b \leftrightarrow b \) if and only if \( a \to b \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \( (a \lor b \leftrightarrow b) \leftrightarrow a \to b \).
+
+1. **Step 1: Use the commutativity of disjunction.**
+- By the commutativity of disjunction, \( a \lor b \leftrightarrow b \lor a \).
+- Therefore, the goal \( (a \lor b \leftrightarrow b) \leftrightarrow a \to b \) can be rewritten as \( (b \lor a \leftrightarrow b) \leftrightarrow a \to b \).
+
+2. **Step 2: Use the equivalence \( (b \lor a \leftrightarrow b) \leftrightarrow a \to b \).**
+- The equivalence \( (b \lor a \leftrightarrow b) \leftrightarrow a \to b \) states that the disjunction \( b \lor a \) is logically equivalent to \( b \) if and only if \( a \) implies \( b \).
+- Therefore, the goal \( (b \lor a \leftrightarrow b) \leftrightarrow a \to b \) simplifies to \( a \to b \leftrightarrow a \to b \).
+
+3. **Step 3: Conclude the proof.**
+- The statement \( a \to b \leftrightarrow a \to b \) is trivially true, as it is a tautology.
+
+Thus, we have shown that \( (a \lor b \leftrightarrow b) \leftrightarrow a \to b \). This completes the proof.
+
+3. **Formal Theorem**  
+example : (a ∨ b ↔ b) ↔ (a → b) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example : (a ∨ b ↔ b) ↔ (a → b) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

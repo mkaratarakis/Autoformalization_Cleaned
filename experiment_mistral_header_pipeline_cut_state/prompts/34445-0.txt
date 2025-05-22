@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+TakeWhile of Cons with Negative Predicate Returns Empty List : For any type \( \alpha \), predicate \( p : \alpha \to \text{Bool} \), element \( a \in \alpha \), and list \( l \) of elements of type \( \alpha \), if \( p(a) \) is `false`, then the longest initial segment of the list \( a :: l \) that satisfies \( p \) is the empty list, i.e., \(\text{takeWhile } p (a :: l) = []\).
+
+2. **Informal Proof**  
+We start with the given hypothesis that \( p(a) \) is `false`. According to the definition of `List.takeWhile` on a cons list, we have:
+\[ \text{List.takeWhile } p (a :: l) = \begin{cases}
+a :: \text{List.takeWhile } p \, l & \text{if } p(a) = \text{true} \\
+[] & \text{if } p(a) = \text{false}
+\end{cases} \]
+Since \( p(a) = \text{false} \) by the hypothesis, it follows that:
+\[ \text{List.takeWhile } p (a :: l) = [] \]
+Thus, the longest initial segment of the list \( a :: l \) that satisfies \( p \) is indeed the empty list. This completes the proof.
+
+3. **Formal Theorem**  
+example {p : α → Bool} {a : α} {l : List α} (h : ¬ p a) :
+    (a :: l).takeWhile p = [] := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example {p : α → Bool} {a : α} {l : List α} (h : ¬ p a) :
+    (a :: l).takeWhile p = [] := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

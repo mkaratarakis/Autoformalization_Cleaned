@@ -1,0 +1,19 @@
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example : carry 0 x y c = c := by
+  cases c <;>
+    simp [carry]
+    simp [Nat.ModEq, Nat.mod_one]
+    constructor
+    · exact ⟨Nat.mod_lt _ _, Nat.mod_lt _ _⟩
+    · exact ⟨Nat.mod_lt _ _, Nat.mod_lt _ _⟩
+
+/- ACTUAL PROOF OF BitVec.carry_zero -/
+
+example : carry 0 x y c = c := by
+  cases c <;> simp [carry, mod_one]

@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Subtraction Commutativity on Natural Numbers : For any natural numbers \( m \), \( n \), and \( k \), the expression \( m - n - k \) is equal to \( m - k - n \).
+
+2. **Informal Proof**  
+To prove that \( m - n - k = m - k - n \) for any natural numbers \( m \), \( n \), and \( k \), we use the following steps:
+
+1. **Step 1: Apply the Subtraction Identity**
+- We use the identity that for any natural numbers \( a, b, \) and \( c \), the expression \( a - b - c \) is equal to \( a - (b + c) \). Applying this identity twice, we get:
+\[
+m - n - k = m - (n + k)
+\]
+and
+\[
+m - k - n = m - (k + n)
+\]
+
+2. **Step 2: Use the Commutativity of Addition**
+- We use the commutativity of addition, which states that for any natural numbers \( n \) and \( k \), \( n + k = k + n \). Therefore, we have:
+\[
+m - (n + k) = m - (k + n)
+\]
+
+3. **Step 3: Conclude the Proof**
+- The original goal \( m - n - k = m - k - n \) is now equivalent to \( m - (k + n) = m - (k + n) \), which is trivially true by the reflexive property of equality.
+
+Thus, we have shown that \( m - n - k = m - k - n \) for any natural numbers \( m \), \( n \), and \( k \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m n k : Nat) : m - n - k = m - k - n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (m n k : Nat) : m - n - k = m - k - n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

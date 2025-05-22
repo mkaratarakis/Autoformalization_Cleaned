@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Power of Sum Equals Product of Powers in Natural Numbers: \(a^{m + n} = a^m \cdot a^n\) : For any natural numbers \(a\), \(m\), and \(n\), the power of \(a\) raised to the sum of \(m\) and \(n\) is equal to the product of \(a\) raised to \(m\) and \(a\) raised to \(n\), i.e., \(a^{m + n} = a^m \cdot a^n\).
+
+2. **Informal Proof**  
+We prove this by induction on \( n \).
+
+**Base Case:**
+Consider \( n = 0 \). We need to show that \( a^{m + 0} = a^m \cdot a^0 \). Using the properties of addition and power:
+1. \( m + 0 = m \) (since adding zero to any number \( m \) does not change it).
+2. \( a^0 = 1 \) (since any number raised to the power of zero is 1).
+3. \( a^m \cdot 1 = a^m \) (since multiplying any number \( a^m \) by 1 does not change it).
+
+Thus, \( a^{m + 0} = a^m \cdot a^0 \) simplifies to \( a^m = a^m \), which is trivially true.
+
+**Inductive Step:**
+Assume the inductive hypothesis that \( a^{m + k} = a^m \cdot a^k \) for some natural number \( k \). We need to show that \( a^{m + (k + 1)} = a^m \cdot a^{k + 1} \). Using the properties of addition and power:
+1. \( m + (k + 1) = (m + k) + 1 \) (since addition is associative).
+2. \( a^{(m + k) + 1} = a^{m + k} \cdot a \) (since raising a number to the power of a successor is equivalent to multiplying the number raised to the original power by the number itself).
+3. By the inductive hypothesis, \( a^{m + k} = a^m \cdot a^k \).
+4. Substituting the inductive hypothesis, we get \( a^{(m + k) + 1} = (a^m \cdot a^k) \cdot a \).
+5. Using the associativity of multiplication, \( (a^m \cdot a^k) \cdot a = a^m \cdot (a^k \cdot a) \).
+6. Finally, \( a^m \cdot (a^k \cdot a) = a^m \cdot a^{k + 1} \) (since \( a^k \cdot a = a^{k + 1} \)).
+
+Thus, \( a^{m + (k + 1)} = a^m \cdot a^{k + 1} \) is satisfied.
+
+By the principle of mathematical induction, the theorem holds for all natural numbers \( n \). Therefore, for any natural numbers \( a \), \( m \), and \( n \), \( a^{m + n} = a^m \cdot a^n \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a m n : Nat) : a ^ (m + n) = a ^ m * a ^ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a m n : Nat) : a ^ (m + n) = a ^ m * a ^ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

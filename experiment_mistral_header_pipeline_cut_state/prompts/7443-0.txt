@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Existence of Sublists for List Element Update : For any list \( l \) of elements of type \( \alpha \), any natural number \( n \) such that \( n < \text{length}(l) \), and any element \( a' \) of type \( \alpha \), there exist lists \( l_1 \) and \( l_2 \) such that:
+- \( l = l_1 ++ l[n] :: l_2 \)
+- \( \text{length}(l_1) = n \)
+- \( \text{set}(n, a', l) = l_1 ++ a' :: l_2 \)
+
+2. **Informal Proof**  
+To prove the existence of lists \( l_1 \) and \( l_2 \) with the desired properties, we construct \( l_1 \) as the first \( n \) elements of \( l \) (i.e., \( l_1 = \text{take}(n, l) \)) and \( l_2 \) as the elements of \( l \) starting from the \( (n + 1) \)-th position (i.e., \( l_2 = \text{drop}(n + 1, l) \)).
+
+1. **Equality of \( l \) and \( l_1 ++ l[n] :: l_2 \):**
+- By the definition of \( l_1 \) and \( l_2 \), we have \( l = \text{take}(n, l) ++ l[n] :: \text{drop}(n + 1, l) \). This is trivially true by the definition of list concatenation and element retrieval.
+
+2. **Length of \( l_1 \):**
+- Since \( n < \text{length}(l) \), it follows that \( n \leq \text{length}(l) \). By the property of the `take` function, the length of the first \( n \) elements of \( l \) is \( n \). Therefore, \( \text{length}(l_1) = n \).
+
+3. **Equality of \( \text{set}(n, a', l) \) and \( l_1 ++ a' :: l_2 \):**
+- Using the property of list element update, we know that \( \text{set}(n, a', l) \) is equal to \( \text{take}(n, l) ++ a' :: \text{drop}(n + 1, l) \) if \( n < \text{length}(l) \). Since \( n < \text{length}(l) \) by assumption, this simplifies to \( \text{set}(n, a', l) = l_1 ++ a' :: l_2 \).
+
+Thus, we have shown that there exist lists \( l_1 \) and \( l_2 \) such that \( l = l_1 ++ l[n] :: l_2 \), \( \text{length}(l_1) = n \), and \( \text{set}(n, a', l) = l_1 ++ a' :: l_2 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n : Nat} {a' : α} {l : List α} (h : n < l.length) :
+    ∃ l₁ l₂, l = l₁ ++ l[n] :: l₂ ∧ l₁.length = n ∧ l.set n a' = l₁ ++ a' :: l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {n : Nat} {a' : α} {l : List α} (h : n < l.length) :
+    ∃ l₁ l₂, l = l₁ ++ l[n] :: l₂ ∧ l₁.length = n ∧ l.set n a' = l₁ ++ a' :: l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

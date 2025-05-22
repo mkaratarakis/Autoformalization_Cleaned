@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Left-Commutativity of Boolean AND Operation: $x \land (y \land z) = y \land (x \land z)$ : For any boolean values $x$, $y$, and $z$, the boolean "and" operation is left-commutative, i.e., $x \land (y \land z) = y \land (x \land z)$.
+
+2. **Informal Proof**  
+To prove the left-commutativity of the boolean "and" operation, we need to show that for any boolean values $x$, $y$, and $z$, the equation $x \land (y \land z) = y \land (x \land z)$ holds. We use a decision procedure to check this equality for all possible combinations of $x$, $y$, and $z$. The decision procedure evaluates the expression for each combination and confirms that the equality holds in every case. Therefore, the left-commutativity of the boolean "and" operation is established. This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ (x y z : Bool), (x && (y && z)) = (y && (x && z)) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y z : Bool), (x && (y && z)) = (y && (x && z)) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

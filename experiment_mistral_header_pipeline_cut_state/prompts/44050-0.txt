@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Most Significant Bit of Boolean to Bitvector Conversion Equals the Boolean Value : For any boolean value \( b \), the most significant bit of the bitvector of length 1 generated from \( b \) is equal to \( b \). Specifically, if \( b \) is `true`, the most significant bit of the bitvector `1` is `true`; if \( b \) is `false`, the most significant bit of the bitvector `0` is `false`.
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value \( b \).
+
+1. **Case 1: \( b = \text{false} \)**
+- We need to show that \((\text{ofBool} \, \text{false}).\text{msb} = \text{false}\).
+- By the definition of the function \(\text{ofBool}\), \(\text{ofBool} \, \text{false} = 0\).
+- The most significant bit of the bitvector `0` is `false`.
+- Therefore, \((\text{ofBool} \, \text{false}).\text{msb} = \text{false}\).
+
+2. **Case 2: \( b = \text{true} \)**
+- We need to show that \((\text{ofBool} \, \text{true}).\text{msb} = \text{true}\).
+- By the definition of the function \(\text{ofBool}\), \(\text{ofBool} \, \text{true} = 1\).
+- The most significant bit of the bitvector `1` is `true`.
+- Therefore, \((\text{ofBool} \, \text{true}).\text{msb} = \text{true}\).
+
+Since both cases are true, the theorem is proved.
+
+3. **Formal Theorem**  
+example (b : Bool) : (ofBool b).msb = b := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (b : Bool) : (ofBool b).msb = b := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

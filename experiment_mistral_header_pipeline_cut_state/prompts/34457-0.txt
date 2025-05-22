@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Pairwise Implication for List Elements: \(\text{Pairwise } R \, l \to \text{Pairwise } S \, l\) : For any list \( l \) of elements of type \( \alpha \) and any relations \( R \) and \( S \) on \( \alpha \), if for all elements \( a \) and \( b \) in \( l \), \( a \in l \) and \( b \in l \) and \( R a b \) imply \( S a b \), then the pairwise relation \( R \) holding on \( l \) implies the pairwise relation \( S \) also holds on \( l \). In other words, if \( R \) implies \( S \) for all pairs of elements in \( l \), then \( \text{Pairwise } R \, l \) implies \( \text{Pairwise } S \, l \).
+
+2. **Informal Proof**  
+We prove this by induction on the list \( l \).
+
+1. **Base Case:**
+- If \( l \) is the empty list, the pairwise relation \( S \) trivially holds for the empty list. This is because there are no elements to compare, and thus the condition is vacuously true.
+
+2. **Inductive Step:**
+- Assume \( l \) is a list of the form \( a :: l \), where \( a \) is an element of type \( \alpha \) and \( l \) is a list of elements of type \( \alpha \).
+- We need to show that the pairwise relation \( S \) holds for the list \( a :: l \).
+- To do this, we need to show two things:
+1. For any element \( a' \) in \( l \), \( S a a' \) holds.
+2. The pairwise relation \( S \) holds for the list \( l \).
+
+- **First Part:**
+- For any element \( a' \) in \( l \), since \( a \) is a member of \( a :: l \) and \( a' \) is a member of \( a :: l \) (because \( a' \in l \)), and \( R a a' \) holds by the hypothesis \( r \), it follows that \( S a a' \) holds by the hypothesis \( H \).
+
+- **Second Part:**
+- To show that the pairwise relation \( S \) holds for the list \( l \), we use the induction hypothesis \( \text{ih} \). Specifically, for any elements \( m \) and \( m' \) in \( l \), if \( m \in l \) and \( m' \in l \), and \( R m m' \) holds, then \( S m m' \) must also hold. This is because \( m \) and \( m' \) are also members of the list \( a :: l \), and by the hypothesis \( H \), \( R m m' \) implies \( S m m' \).
+
+By induction, we have shown that if \( R \) implies \( S \) for all pairs of elements in \( l \), then \( \text{Pairwise } R \, l \) implies \( \text{Pairwise } S \, l \). This completes the proof.
+
+3. **Formal Theorem**  
+example {S : α → α → Prop}
+    (H : ∀ {a b}, a ∈ l → b ∈ l → R a b → S a b) (p : Pairwise R l) : Pairwise S l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Pairwise
+
+open List
+open Pairwise
+open Nat
+
+example {S : α → α → Prop}
+    (H : ∀ {a b}, a ∈ l → b ∈ l → R a b → S a b) (p : Pairwise R l) : Pairwise S l := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Pairwise not found. --
+

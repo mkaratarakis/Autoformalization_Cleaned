@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Maximum of Products Equals Product of Maximum in Natural Numbers : For any natural numbers \(a\), \(b\), and \(c\), the maximum of the products \(a \cdot b\) and \(a \cdot c\) is equal to the product of \(a\) and the maximum of \(b\) and \(c\), i.e., \(\max(a \cdot b, a \cdot c) = a \cdot \max(b, c)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \(\max(a \cdot b, a \cdot c) = a \cdot \max(b, c)\). We use the commutativity of multiplication, which states that for any natural numbers \(x\) and \(y\), \(x \cdot y = y \cdot x\). Applying this property, we rewrite the goal as follows:
+\[
+\max(a \cdot b, a \cdot c) = \max(b \cdot a, c \cdot a)
+\]
+Next, we need to show that \(\max(b \cdot a, c \cdot a) = \max(b, c) \cdot a\). This is exactly what the theorem \(\max(a \cdot c, b \cdot c) = \max(a, b) \cdot c\) states, which is a known result in the theory of natural numbers. Therefore, the goal is satisfied, and the proof is complete.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b c : Nat) : max (a * b) (a * c) = a * max b c := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (a b c : Nat) : max (a * b) (a * c) = a * max b c := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

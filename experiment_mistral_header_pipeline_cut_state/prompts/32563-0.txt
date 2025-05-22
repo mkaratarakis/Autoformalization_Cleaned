@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+If-then-else Function Returns Second Argument if Condition is False: $\text{ite}(c, a, b) = b$ if $c = \text{False}$ : For any type $\alpha$ and any proposition $c$, if $c$ is false, then the if-then-else function `ite` returns the second argument $b$. Formally, for any elements $a, b \in \alpha$, if $c = \text{False}$, then $\text{ite}(c, a, b) = b$.
+
+2. **Informal Proof**  
+We start with the hypothesis that $c = \text{False}$. Using this hypothesis, we can simplify the expression $\text{ite}(c, a, b)$. By the definition of the if-then-else function, $\text{ite}(c, a, b)$ returns the second argument $b$ when the condition $c$ is false. Therefore, $\text{ite}(c, a, b) = b$ is trivially true. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {α : Sort u} {c : Prop} {_ : Decidable c} (a b : α) (h : c = False) : (if c then a else b) = b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example {α : Sort u} {c : Prop} {_ : Decidable c} (a b : α) (h : c = False) : (if c then a else b) = b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Disjunction with Zero Equals the Number: \( x \ ||| \ 0 = x \) : For any natural number \( x \), the disjunction-like operation \( x \ ||| \ 0 \) is equal to \( x \), i.e., \( x \ ||| \ 0 = x \).
+
+2. **Informal Proof**  
+To prove that \( x \ ||| \ 0 = x \) for any natural number \( x \), we start by using the definitions of the disjunction-like operation. Specifically, we simplify the proposition to show that \( \text{bitwise or } x \ 0 = x \).
+
+Next, we expand the definition of the bitwise operation:
+- If \( x = 0 \), the result is \( 0 \) if \( \text{false} \ || \ \text{true} \) is true, otherwise it is \( 0 \). Since \( \text{false} \ || \ \text{true} \) is true, the result is \( 0 \).
+- If \( 0 = 0 \), the result is \( x \) if \( \text{true} \ || \ \text{false} \) is true, otherwise it is \( 0 \). Since \( \text{true} \ || \ \text{false} \) is true, the result is \( x \).
+- If both \( x \) and \( 0 \) are non-zero, the function computes the result of \( \text{bitwise or } (x / 2) \ (0 / 2) \), and then adds 1 to the result if \( (x \% 2 = 1) \ || \ (0 \% 2 = 1) \) is true, otherwise it just returns the result of the recursive call. However, since \( 0 / 2 = 0 \), the recursive call simplifies to \( \text{bitwise or } (x / 2) \ 0 \), and the result is \( x / 2 \) if \( (x \% 2 = 1) \ || \ (0 \% 2 = 1) \) is true, otherwise it is \( x / 2 \).
+
+Using the symmetry of equality, we can simplify the expression to show that the result of the bitwise operation is indeed \( x \). Therefore, we have \( x \ ||| \ 0 = x \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x : Nat) : x ||| 0 = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x : Nat) : x ||| 0 = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

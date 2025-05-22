@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Positive Left Addition Preserves Strict Inequality in Natural Numbers : For any natural numbers \( k \) and \( n \), if \( k \) is strictly greater than 0, then \( n \) is strictly less than \( k + n \).
+
+2. **Informal Proof**  
+To prove that for any natural numbers \( k \) and \( n \), if \( k > 0 \), then \( n < k + n \), we start by using the commutativity of addition. This allows us to rewrite the inequality \( n < k + n \) as \( n < n + k \).
+
+Next, we apply the theorem that states if \( k > 0 \), then \( n < n + k \). This theorem is a known result in the properties of natural numbers, which asserts that adding a positive number to another number results in a strictly larger number.
+
+Since \( k > 0 \), it follows that \( n < n + k \). Therefore, we have shown that \( n < k + n \), completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : 0 < k → n < k + n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example : 0 < k → n < k + n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Membership in Left List Implies Membership in Appended List : For any type \( \alpha \), any element \( a \) of type \( \alpha \), and any lists \( as \) and \( bs \) of elements of type \( \alpha \), if \( a \) is a member of \( as \), then \( a \) is also a member of the list \( as ++ bs \).
+
+2. **Informal Proof**  
+We start by letting \( h \) be the hypothesis that \( a \in as \). We need to show that \( a \in as ++ bs \).
+
+1. **Case 1: \( a \) is the head of the list \( as \).**
+- By the property that an element is a member of a list if it is the head of the list, \( a \in a :: as \).
+- Therefore, \( a \in a :: as ++ bs \).
+
+2. **Case 2: \( a \) is a member of the tail of the list \( as \).**
+- By the induction hypothesis, \( a \in as \) implies \( a \in as ++ bs \).
+- Since \( a \in as \) and \( as \) is the tail of \( as \), we have \( a \in as ++ bs \).
+- By the property that if an element is in a list, it is also in the list obtained by adding an element to the front, \( a \in b :: as ++ bs \).
+
+Thus, in both cases, we have shown that \( a \in as ++ bs \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a : α} {as : List α} (bs : List α) : a ∈ as → a ∈ as ++ bs := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example {a : α} {as : List α} (bs : List α) : a ∈ as → a ∈ as ++ bs := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

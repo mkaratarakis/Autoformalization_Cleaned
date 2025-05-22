@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Bit Test Implies \( x \ge 2^i \) in Natural Numbers : For any natural numbers \( i \) and \( x \), if the \( i \)-th bit of \( x \) is true, then \( x \) is greater than or equal to \( 2^i \), i.e., \( x \ge 2^i \).
+
+2. **Informal Proof**  
+We start with the hypothesis that the \( i \)-th bit of \( x \) is true. Using the identity that the \( i \)-th bit of \( x \) is true if and only if the remainder when \( x \) is divided by \( 2^i \) and then divided by 2 is 1, we can rewrite the hypothesis as \( \text{decide}(x / 2^i \% 2 = 1) = \text{true} \).
+
+To prove \( x \ge 2^i \), we assume the negation, i.e., \( x < 2^i \). From this assumption, we have \( x < 2^i \). Using the fact that if \( x < 2^i \), then \( x / 2^i = 0 \), we can simplify the hypothesis to \( \text{decide}(0 \% 2 = 1) = \text{true} \). Since \( 0 \% 2 = 0 \), this simplifies to \( \text{decide}(0 = 1) = \text{true} \), which is a contradiction.
+
+Therefore, the assumption \( x < 2^i \) must be false, and thus \( x \ge 2^i \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x : Nat} (p : testBit x i = true) : x ≥ 2^i := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example {x : Nat} (p : testBit x i = true) : x ≥ 2^i := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

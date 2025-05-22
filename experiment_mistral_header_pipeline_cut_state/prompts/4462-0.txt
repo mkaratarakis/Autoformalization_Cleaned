@@ -1,0 +1,26 @@
+
+1. **Informal Theorem**  
+Maximum of Replicated List is the Element if Replication Count is Positive: $\text{maximum?}(\text{replicate } n \, a) = \text{some } a$ for $n > 0$ : For any type $\alpha$ with a maximum operation, and for any natural number $n$ and element $a \in \alpha$, if the maximum of $a$ and $a$ is $a$ (i.e., $a \leq a$), and if $n$ is a positive natural number, then the maximum element of the list containing $n$ copies of $a$ is $a$. Formally, if $n > 0$, then $\text{maximum?}(\text{replicate } n \, a) = \text{some } a$.
+
+2. **Informal Proof**  
+Given that $n$ is a positive natural number, we know that $n \neq 0$. By the property of the maximum operation, since $a \leq a$, the maximum element of the list `replicate n a` is `some a` if $n > 0$. Using the fact that a number greater than zero is not equal to zero, we simplify the proposition to show that the maximum of the list `replicate n a` is `some a`. This completes the proof.
+
+3. **Formal Theorem**  
+example [Max α] {n : Nat} {a : α} (w : max a a = a) (h : 0 < n) :
+    (replicate n a).maximum? = some a := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.MinMax
+
+open List
+open Nat
+
+example [Max α] {n : Nat} {a : α} (w : max a a = a) (h : 0 < n) :
+    (replicate n a).maximum? = some a := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.MinMax not found. --
+

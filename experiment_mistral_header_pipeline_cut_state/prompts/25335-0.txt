@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Boolean Inequality Implies Negation: \( x \neq y \to x = \neg y \) : For any boolean values \( x \) and \( y \), if \( x \neq y \), then \( x = \text{not}(y) \), i.e., \( x = \neg y \).
+
+2. **Informal Proof**  
+We need to show that for any boolean values \( x \) and \( y \), if \( x \neq y \), then \( x = \neg y \).
+
+Consider the boolean values \( x \) and \( y \). By the properties of boolean logic, there are only two possible values for \( x \) and \( y \): \( \text{true} \) and \( \text{false} \).
+
+1. If \( x = \text{true} \) and \( y = \text{false} \), then \( x \neq y \) and \( x = \neg y \) because \( \neg \text{false} = \text{true} \).
+2. If \( x = \text{false} \) and \( y = \text{true} \), then \( x \neq y \) and \( x = \neg y \) because \( \neg \text{true} = \text{false} \).
+
+In both cases, if \( x \neq y \), then \( x = \neg y \). Therefore, the statement holds for all boolean values \( x \) and \( y \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y : Bool}, x ≠ y → x = !y := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y : Bool}, x ≠ y → x = !y := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

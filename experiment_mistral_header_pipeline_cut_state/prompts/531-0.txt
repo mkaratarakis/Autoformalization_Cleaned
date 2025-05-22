@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Erase First Occurrence of Element is Equivalent to Erase First Element Satisfying Predicate: \( \text{List.erase } l \, a = \text{List.eraseP } (x \mapsto x = a) \, l \) : For any type \(\alpha\) with a boolean equality function `BEq`, and for any element \(a \in \alpha\) and list \(l\) of elements of type \(\alpha\), the list obtained by erasing the first occurrence of \(a\) from \(l\) using the `List.erase` function is equal to the list obtained by removing the first element that satisfies the predicate \(x \mapsto (x = a)\) from \(l\) using the `List.eraseP` function. Formally, for a list \(l = [a_1, a_2, \ldots, a_n]\) and an element \(a\):
+- `List.erase l a` and `List.eraseP (fun x => x == a) l` both return the list obtained by removing the first occurrence of \(a\) from \(l\).
+
+2. **Informal Proof**  
+We perform induction on the list \( l \).
+
+**Base Case:**
+For the empty list \([]\), we need to show that \([]. \text{erase } a = \text{eraseP } (x \mapsto x = a) \, []\). Simplifying both sides, we see that the empty list with the first occurrence of \(a\) erased is the empty list, and the empty list with the first element satisfying \(x \mapsto x = a\) erased is also the empty list. Therefore, the base case is trivially true.
+
+**Inductive Step:**
+Assume \( l \) is of the form \( b :: t \), where \( b \in \alpha \) and \( t \) is a list of elements of type \(\alpha\). We need to show that \((b :: t). \text{erase } a = \text{eraseP } (x \mapsto x = a) \, (b :: t)\).
+
+Using the definitions of `List.erase` and `List.eraseP` on cons lists, we have:
+- If \( b = a \), then \((b :: t). \text{erase } a = t\) and \(\text{eraseP } (x \mapsto x = a) \, (b :: t) = t\).
+- If \( b \neq a \), then \((b :: t). \text{erase } a = b :: (t. \text{erase } a)\) and \(\text{eraseP } (x \mapsto x = a) \, (b :: t) = b :: \text{eraseP } (x \mapsto x = a) \, t\).
+
+By the inductive hypothesis, \( t. \text{erase } a = \text{eraseP } (x \mapsto x = a) \, t \), the two expressions are equal in both cases.
+
+**Case 1: \( b = a \)**
+- The goal simplifies to \( t = t \), which is trivially true.
+
+**Case 2: \( b \neq a \)**
+- The goal simplifies to \( b :: (t. \text{erase } a) = b :: \text{eraseP } (x \mapsto x = a) \, t \), which is true by the inductive hypothesis.
+
+Thus, by induction, the theorem holds for all lists \( l \). This completes the proof.
+
+3. **Formal Theorem**  
+example (a : α) (l : List α) : l.erase a = l.eraseP (· == a) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example (a : α) (l : List α) : l.erase a = l.eraseP (· == a) := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

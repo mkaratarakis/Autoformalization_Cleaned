@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Disjunction with Repeated Proposition is Equivalent to Simple Disjunction: \( a \lor a \lor b \leftrightarrow a \lor b \) : For any propositions \( a \) and \( b \), the disjunction \( a \lor a \lor b \) is logically equivalent to \( a \lor b \), i.e., \( a \lor a \lor b \leftrightarrow a \lor b \).
+
+2. **Informal Proof**  
+To prove that \( a \lor a \lor b \leftrightarrow a \lor b \), we start by using the associativity of disjunction. The associativity of disjunction states that \((a \lor a) \lor b\) is logically equivalent to \(a \lor a \lor b\). Therefore, we can rewrite our goal as \((a \lor a) \lor b \leftrightarrow a \lor b\).
+
+Next, we use the idempotence of disjunction, which states that \(a \lor a = a\). Applying this property, we simplify \((a \lor a) \lor b\) to \(a \lor b\). Thus, our goal reduces to \(a \lor b \leftrightarrow a \lor b\), which is trivially true by the properties of equality.
+
+Therefore, we have shown that \( a \lor a \lor b \leftrightarrow a \lor b \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : a ∨ (a ∨ b) ↔ a ∨ b := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+
+
+
+example : a ∨ (a ∨ b) ↔ a ∨ b := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

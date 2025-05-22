@@ -1,0 +1,38 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:19:2: error: tactic 'generalize' failed, result is not type correct
+  ∀ (x : Prop), (2 ^ i * a + b).testBit j = if x then b.testBit j else a.testBit (j - i)
+a b i : Nat
+b_lt : b < 2 ^ i
+j : Nat
+⊢ (2 ^ i * a + b).testBit j = if j < i then b.testBit j else a.testBit (j - i)
+tmp.lean:18:29: error: unsolved goals
+a b i : Nat
+b_lt : b < 2 ^ i
+j : Nat
+⊢ (2 ^ i * a + b).testBit j = if j < i then b.testBit j else a.testBit (j - i)
+a b i : Nat
+b_lt : b < 2 ^ i
+j : Nat
+⊢ (2 ^ i * a + b).testBit j = if j < i then b.testBit j else a.testBit (j - i)
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (a : Nat) {b i : Nat} (b_lt : b < 2^i) (j : Nat) :
+    testBit (2 ^ i * a + b) j =
+      if j < i then
+        testBit b j
+      else
+        testBit a (j - i) := by

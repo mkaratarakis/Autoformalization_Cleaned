@@ -1,0 +1,30 @@
+
+1. **Informal Theorem**  
+Division of a Nonzero Natural Number by Itself Equals One: \( n / n = 1 \) : For any natural number \( n \) such that \( n > 0 \), the division of \( n \) by itself is equal to 1, i.e., \( n / n = 1 \).
+
+2. **Informal Proof**  
+Let \( t \) denote the result of applying the theorem that states \(\frac{0 + n}{n} = \frac{0}{n} + 1\) to the natural number \( n \) with the assumption \( 0 < n \). Using the properties that \( 0 + n = n \) and \( 0 / n = 0 \), we can rewrite \( t \) to show that \(\frac{n}{n} = 0 + 1\). Since \( 0 + 1 = 1 \), this directly proves that \(\frac{n}{n} = 1\).
+
+3. **Formal Theorem**  
+example (H : 0 < n) : n / n = 1 := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (H : 0 < n) : n / n = 1 := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

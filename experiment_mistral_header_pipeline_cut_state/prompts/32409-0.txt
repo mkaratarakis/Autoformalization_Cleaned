@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Associativity of Minimum with Self in Natural Numbers : For any natural numbers \( m \) and \( n \), the equation \(\min(m, \min(m, n)) = \min(m, n)\) holds.
+
+2. **Informal Proof**  
+To prove the equation \(\min(m, \min(m, n)) = \min(m, n)\), we start by using the associativity of the minimum operation. The associativity property states that for any natural numbers \( a, b, \) and \( c \), \(\min(\min(a, b), c) = \min(a, \min(b, c))\). Applying this property, we can rewrite \(\min(m, \min(m, n))\) as \(\min(\min(m, m), n)\).
+
+Next, we use the property that the minimum of an element with itself is the element itself, i.e., \(\min(a, a) = a\). Applying this property to \(\min(m, m)\), we get \(\min(m, m) = m\). Substituting this back into our expression, we have \(\min(\min(m, m), n) = \min(m, n)\).
+
+Thus, we have shown that \(\min(m, \min(m, n)) = \min(m, n)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {m n : Nat} : min m (min m n) = min m n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {m n : Nat} : min m (min m n) = min m n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

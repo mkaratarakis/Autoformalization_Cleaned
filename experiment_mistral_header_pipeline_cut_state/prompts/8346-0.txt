@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Boolean Not-Equal Equivalence in Natural Numbers: \(a \neq b \leftrightarrow c \neq d\) if \(a = b \leftrightarrow c = d\) : For any natural numbers \(a\), \(b\), \(c\), and \(d\), if the equality \(a = b\) is equivalent to the equality \(c = d\), then the boolean not-equal relation \(a \neq b\) is equivalent to the boolean not-equal relation \(c \neq d\).
+
+2. **Informal Proof**  
+We start with the given assumption that the equality \(a = b\) is equivalent to the equality \(c = d\). This means that \(a = b\) if and only if \(c = d\).
+
+To prove that the boolean not-equal relation \(a \neq b\) is equivalent to the boolean not-equal relation \(c \neq d\), we use the definition of the boolean not-equal function `bne`. The function `bne` returns `true` if the two inputs are not equal and `false` otherwise. Formally, \(a \neq b\) is defined as the negation of \(a == b\), and similarly, \(c \neq d\) is defined as the negation of \(c == d\).
+
+Given the theorem that if \(a = b\) is equivalent to \(c = d\), then \(a == b\) is equivalent to \(c == d\), we can use this to simplify our goal. Since \(a == b\) is equivalent to \(c == d\), the negation of \(a == b\) (which is \(a \neq b\)) must be equivalent to the negation of \(c == d\) (which is \(c \neq d\)).
+
+Therefore, we have shown that \((a \neq b) = (c \neq d)\). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b c d : Nat} (p : (a = b) = (c = d)) : (a != b) = (c != d) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+
+open Nat
+open Simproc
+
+
+example {a b c d : Nat} (p : (a = b) = (c = d)) : (a != b) = (c != d) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+

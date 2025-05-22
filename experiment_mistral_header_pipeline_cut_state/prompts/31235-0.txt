@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Right Addition Cancellation in Subtraction of Natural Numbers : For any natural numbers \( n \), \( k \), and \( m \), the equation \( n + k - (m + k) = n - m \) holds.
+
+2. **Informal Proof**  
+We will prove this by induction on \( k \).
+
+**Base Case:**
+Consider \( k = 0 \). We need to show that \( n + 0 - (m + 0) = n - m \). Simplifying the left-hand side, we get:
+\[
+n + 0 - m = n - m
+\]
+This is trivially true.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some natural number \( k' \), the equation \( n + k' - (m + k') = n - m \) holds. We need to show that \( n + (k' + 1) - (m + (k' + 1)) = n - m \).
+
+Using the associativity of addition, we can rewrite the left-hand side as:
+\[
+n + (k' + 1) - (m + (k' + 1)) = (n + k' + 1) - (m + k' + 1)
+\]
+By the successor subtraction identity, this simplifies to:
+\[
+(n + k') - (m + k')
+\]
+By the inductive hypothesis, this is equal to:
+\[
+n - m
+\]
+Thus, the inductive step holds.
+
+By the principle of mathematical induction, the equation \( n + k - (m + k) = n - m \) holds for all natural numbers \( n \), \( k \), and \( m \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n k m : Nat) : (n + k) - (m + k) = n - m := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n k m : Nat) : (n + k) - (m + k) = n - m := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

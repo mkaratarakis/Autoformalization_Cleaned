@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Boolean Or Identity: $(x \lor y) = \text{true} \leftrightarrow (x = \text{true} \lor y = \text{true})$ : For any boolean values \( x \) and \( y \), the boolean "or" operation \( x \lor y \) is equal to `true` if and only if \( x \) is `true` or \( y \) is `true`. In other words, \( (x \lor y) = \text{true} \) if and only if \( x = \text{true} \) or \( y = \text{true} \).
+
+2. **Informal Proof**  
+To prove the equivalence \( (x \lor y) = \text{true} \leftrightarrow (x = \text{true} \lor y = \text{true}) \), we use the properties of boolean operations and the definition of disjunction. Specifically, we know that:
+
+1. The boolean "or" operation \( x \lor y \) is defined such that \( x \lor y = \text{true} \) if and only if at least one of \( x \) or \( y \) is `true`.
+2. This can be expressed as \( (x \lor y) = \text{true} \leftrightarrow (x = \text{true} \lor y = \text{true}) \).
+
+By using these properties, we can directly conclude that the equivalence holds. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀ (x y : Bool), (x || y) = true ↔ x = true ∨ y = true := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ (x y : Bool), (x || y) = true ↔ x = true ∨ y = true := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

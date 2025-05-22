@@ -1,17 +1,16 @@
-import Mathlib.Logic.Function.Defs
-import Batteries.Tactic.Init
-import Mathlib.Data.Option.NAry
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
 
-open Option
-open Function
-variable {α β γ δ : Type*} {f : α → β → γ} {a : Option α} {b : Option β} {c : Option γ}
+open BitVec
 
-example {c : γ} : c ∈ map₂ f a b ↔ ∃ a' b', a' ∈ a ∧ b' ∈ b ∧ f a' b' = c := by
-  constructor
-  · intro h
-    cases a <;> cases b <;> try {exfalso; exact h rfl}
-    · exact ⟨_, _, mem_some_self _, mem_some_self _, rfl⟩
-  · rintro ⟨a', b', ha', hb', rfl⟩
-    rcases ha' with ⟨rfl⟩
-    rcases hb' with ⟨rfl⟩
-    exact mem_some_self (f a' b')
+
+example (x y z : BitVec w) :
+    x ||| y ||| z = x ||| (y ||| z) := by
+  funext i
+  simp [BitVec.bor_def]
+  rw [Bool.bor_assoc]

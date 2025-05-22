@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+$m$-th Element of `List.take n l` is `none` if $n \leq m$ : For any type $\alpha$, any list $l$ of elements of type $\alpha$, and any natural numbers $n$ and $m$ such that $n \leq m$, the $m$-th element of the list `List.take n l` (zero-based) is `none`. In other words, if $n \leq m$, then $(\text{List.take } n \, l)[m] = \text{none}$.
+
+2. **Informal Proof**  
+We start with the assumption that $n \leq m$. We need to show that the $m$-th element of the list `List.take n l` is `none`. By the theorem that for any type $\alpha$, any list $l$ of elements of type $\alpha$, and any natural numbers $n$ and $m$ such that $n \leq m$, the $m$-th element of the list `List.take n l` (zero-based) is `none`, we can directly conclude that:
+\[
+(\text{List.take } n \, l)[m] = \text{none}
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} {n m : Nat} (h : n ≤ m) :
+    (l.take n).get? m = none := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example {l : List α} {n m : Nat} (h : n ≤ m) :
+    (l.take n).get? m = none := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

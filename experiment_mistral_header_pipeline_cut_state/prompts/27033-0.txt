@@ -1,0 +1,58 @@
+
+1. **Informal Theorem**  
+Mapping a Function over the Result of ZipWith: \( \text{map } f \, (\text{zipWith } g \, l \, l') = \text{zipWith } (\lambda x y, f(g(x, y))) \, l \, l' \) : For any types \( \alpha \), \( \beta \), \( \gamma \), and \( \delta \), and any functions \( f : \alpha \to \beta \) and \( g : \gamma \to \delta \to \alpha \), the result of applying `List.map f` to the list obtained by `List.zipWith g l l'` is equal to the list obtained by `List.zipWith` applied to the function \( \lambda x y, f(g(x, y)) \) and the lists \( l \) and \( l' \). Formally, for lists \( l : \text{List } \gamma \) and \( l' : \text{List } \delta \):
+\[ \text{map } f \, (\text{zipWith } g \, l \, l') = \text{zipWith } (\lambda x y, f(g(x, y))) \, l \, l' \]
+
+2. **Informal Proof**  
+We will prove this by induction on the list \( l \).
+
+**Base Case:**
+Consider the case where \( l \) is the empty list. We need to show:
+\[ \text{map } f \, (\text{zipWith } g \, [] \, l') = \text{zipWith } (\lambda x y, f(g(x, y))) \, [] \, l' \]
+By the definition of `zipWith`, both sides are the empty list, so the base case is trivially true.
+
+**Inductive Case:**
+Assume the statement holds for a list \( tl \). We need to show that it holds for \( l = \text{hd} :: tl \). Specifically, we need to show:
+\[ \text{map } f \, (\text{zipWith } g \, (hd :: tl) \, l') = \text{zipWith } (\lambda x y, f(g(x, y))) \, (hd :: tl) \, l' \]
+
+We will consider two sub-cases for \( l' \):
+
+1. **Sub-case 1: \( l' \) is the empty list.**
+\[ \text{map } f \, (\text{zipWith } g \, (hd :: tl) \, []) = \text{zipWith } (\lambda x y, f(g(x, y))) \, (hd :: tl) \, [] \]
+By the definition of `zipWith`, both sides are the empty list, so this sub-case is trivially true.
+
+2. **Sub-case 2: \( l' = \text{head} :: \text{tail} \).**
+\[ \text{map } f \, (\text{zipWith } g \, (hd :: tl) \, (\text{head} :: \text{tail})) = \text{zipWith } (\lambda x y, f(g(x, y))) \, (hd :: tl) \, (\text{head} :: \text{tail}) \]
+By the definition of `zipWith`, the left-hand side becomes:
+\[ \text{map } f \, (g(hd, \text{head}) :: \text{zipWith } g \, tl \, \text{tail}) \]
+By the definition of `map`, this simplifies to:
+\[ g(hd, \text{head}) :: \text{map } f \, (\text{zipWith } g \, tl \, \text{tail}) \]
+By the induction hypothesis, we have:
+\[ \text{map } f \, (\text{zipWith } g \, tl \, \text{tail}) = \text{zipWith } (\lambda x y, f(g(x, y))) \, tl \, \text{tail} \]
+Therefore, the left-hand side becomes:
+\[ g(hd, \text{head}) :: \text{zipWith } (\lambda x y, f(g(x, y))) \, tl \, \text{tail} \]
+By the definition of `zipWith`, the right-hand side is:
+\[ g(hd, \text{head}) :: \text{zipWith } (\lambda x y, f(g(x, y))) \, tl \, \text{tail} \]
+Thus, the left-hand side and the right-hand side are equal, and the inductive case is proved.
+
+By induction, the theorem holds for all lists \( l \) and \( l' \). This completes the proof.
+
+3. **Formal Theorem**  
+example {δ : Type _} (f : α → β) (g : γ → δ → α) (l : List γ) (l' : List δ) :
+    map f (zipWith g l l') = zipWith (fun x y => f (g x y)) l l' := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {δ : Type _} (f : α → β) (g : γ → δ → α) (l : List γ) (l' : List δ) :
+    map f (zipWith g l l') = zipWith (fun x y => f (g x y)) l l' := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

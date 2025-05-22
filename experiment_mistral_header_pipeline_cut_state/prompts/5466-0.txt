@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Equality of True is the Identity Function: \( \text{Eq}(\text{True}) = \text{id} \) : The equality relation on the proposition `True` is the same as the identity function, i.e., \( \text{Eq}(\text{True}) = \text{id} \).
+
+2. **Informal Proof**  
+We aim to show that the equality relation on the proposition `True` is the same as the identity function. To do this, we apply function extensionality to consider an arbitrary element. Then, we simplify using the fact that `True` is always true, the definition of the identity function, and the equivalence of equality and implication. This simplification directly shows that the equality relation on `True` is indeed the identity function.
+
+3. **Formal Theorem**  
+example : Eq True = id := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : Eq True = id := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

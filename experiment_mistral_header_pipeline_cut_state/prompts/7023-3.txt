@@ -1,0 +1,31 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:17:10: error: unknown constant 'Array.toList_cons'
+tmp.lean:16:4: error: unsolved goals
+case neg
+α : Type u_1
+p : α → Bool
+x : α
+xs : List α
+ih : eraseP p xs = erasePTR p xs
+h : ¬p x = true
+⊢ x :: erasePTR p xs = erasePTR.go p (x :: xs) xs #[x]
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @eraseP = @erasePTR := by
+  funext α p l
+  induction l with
+  | nil =>
+    simp [eraseP, erasePTR, erasePTR.go, Array.toList]
+  | cons x xs ih =>
+    simp [eraseP, erasePTR, erasePTR.go, Array.toList]
+    by_cases h : p x
+    · simp [h, ih]
+    · simp [h, ih]

@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Distributivity of Conjunction over Disjunction on the Right: \( (a \land b) \lor c \leftrightarrow (a \lor c) \land (b \lor c) \) : For any propositions \( a \), \( b \), and \( c \), the conjunction \( a \land b \) or the proposition \( c \) is logically equivalent to the conjunction of \( a \lor c \) and \( b \lor c \), i.e., \( (a \land b) \lor c \leftrightarrow (a \lor c) \land (b \lor c) \).
+
+2. **Informal Proof**  
+We start by using the commutativity of disjunction to swap the positions of \( a \land b \) and \( c \), resulting in \( c \lor (a \land b) \). Applying the distributivity of disjunction over conjunction on the left, we obtain \( (c \lor a) \land (c \lor b) \). Using the commutativity of disjunction again, we swap \( c \) and \( a \) in the first term, yielding \( (a \lor c) \land (c \lor b) \). Finally, we use the commutativity of disjunction once more to swap \( c \) and \( b \) in the second term, resulting in \( (a \lor c) \land (b \lor c) \). This completes the proof, as the left-hand side is now identical to the right-hand side.
+
+3. **Formal Theorem**  
+example : (a ∧ b) ∨ c ↔ (a ∨ c) ∧ (b ∨ c) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : (a ∧ b) ∨ c ↔ (a ∨ c) ∧ (b ∨ c) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Equivalence of `zipWith` and `zipWithTR` for Lists : For any types \( \alpha \), \( \beta \), and \( \gamma \), and for any function \( f : \alpha \to \beta \to \gamma \), the result of applying the `List.zipWith` function to two lists `as` and `bs` is equal to the result of applying the tail-recursive `List.zipWithTR` function to the same lists `as` and `bs`. Formally, for any lists `as : List \alpha` and `bs : List \beta`, it holds that:
+\[ \text{zipWith } f \, \text{as} \, \text{bs} = \text{zipWithTR } f \, \text{as} \, \text{bs} \]
+
+2. **Informal Proof**  
+To prove the equivalence of the `zipWith` and `zipWithTR` functions, we use the principle of function extensionality. It suffices to show that for all possible types \( \alpha \), \( \beta \), and \( \gamma \), and for all functions \( f : \alpha \to \beta \to \gamma \), and for all lists \( \text{as} : \text{List} \, \alpha \) and \( \text{bs} : \text{List} \, \beta \), the functions `zipWith f as bs` and `zipWithTR f as bs` yield the same result.
+
+We define a recursive function \( \text{go} \) that takes three arguments: two lists \( \text{as} \) and \( \text{bs} \), and an array \( \text{acc} \). The function \( \text{go} \) is defined such that:
+- If \( \text{as} \) is an empty list or \( \text{bs} \) is an empty list, then \( \text{go} \, \text{as} \, \text{bs} \, \text{acc} \) is equal to \( \text{acc.data} \) concatenated with the result of `zipWith f as bs`.
+- If \( \text{as} \) and \( \text{bs} \) are non-empty lists, then \( \text{go} \, (a::\text{as}) \, (b::\text{bs}) \, \text{acc} \) is equal to \( \text{go} \, \text{as} \, \text{bs} \, (\text{acc.push} \, (f \, a \, b)) \).
+
+We then simplify the goal using the definitions of `zipWithTR.go` and `zipWith` to show that the recursive function \( \text{go} \) holds for the base cases and the inductive step.
+
+Finally, the current goal is exactly proved by the symmetric property of the equality \( \text{go} \, \text{as} \, \text{bs} \, \text{#[]} \). This means that \( \text{zipWith} \, f \, \text{as} \, \text{bs} \) is equal to \( \text{zipWithTR} \, f \, \text{as} \, \text{bs} \).
+
+Thus, we have shown that for any types \( \alpha \), \( \beta \), and \( \gamma \), and for any function \( f : \alpha \to \beta \to \gamma \), and for any lists \( \text{as} : \text{List} \, \alpha \) and \( \text{bs} : \text{List} \, \beta \), the result of applying the `List.zipWith` function to `as` and `bs` is equal to the result of applying the tail-recursive `List.zipWithTR` function to `as` and `bs`. This completes the proof.
+
+3. **Formal Theorem**  
+example : @zipWith = @zipWithTR := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example : @zipWith = @zipWithTR := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

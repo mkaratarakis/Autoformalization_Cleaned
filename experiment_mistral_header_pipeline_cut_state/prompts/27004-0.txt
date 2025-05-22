@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Unzipping a List of Replicated Pairs : For any types $\alpha$ and $\beta$, and for any natural number $n$, the list of pairs `replicate n (a, b)` unzipped into two lists is equal to the pair of lists `(replicate n a, replicate n b)`. Formally, if we have a list of $n$ pairs, each pair being $(a, b)$, then unzipping this list results in two lists: one containing $n$ copies of $a$ and the other containing $n$ copies of $b$.
+
+2. **Informal Proof**  
+To prove the theorem, we start by applying a single extensionality lemma to the current goal. This splits the goal into two subgoals: proving that the first components of the unzipped lists are equal and proving that the second components of the unzipped lists are equal.
+
+1. **First Subgoal:**
+- We need to show that the first component of the unzipped list of `replicate n (a, b)` is equal to `replicate n a`.
+- Simplifying the proposition, we find that the first component of the unzipped list of `replicate n (a, b)` is indeed `replicate n a`.
+
+2. **Second Subgoal:**
+- We need to show that the second component of the unzipped list of `replicate n (a, b)` is equal to `replicate n b`.
+- Simplifying the proposition, we find that the second component of the unzipped list of `replicate n (a, b)` is indeed `replicate n b`.
+
+Since both subgoals are satisfied, we conclude that the unzipped list of `replicate n (a, b)` is equal to the pair of lists `(replicate n a, replicate n b)`. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example {n : Nat} {a : α} {b : β} :
+    unzip (replicate n (a, b)) = (replicate n a, replicate n b) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example {n : Nat} {a : α} {b : β} :
+    unzip (replicate n (a, b)) = (replicate n a, replicate n b) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

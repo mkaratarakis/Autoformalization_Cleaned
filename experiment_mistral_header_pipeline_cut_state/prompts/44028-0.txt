@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Bitvector from Canonical Type Element Equals Bitvector from Natural Number Representation : For any natural numbers \( w \) and \( x \) such that \( x < 2^w \), the bitvector of width \( w \) constructed from the canonical type element \( x \) (i.e., \( \text{Fin}(2^w) \)) is equal to the bitvector of width \( w \) constructed from the natural number \( x \). In other words, if \( x \) is less than \( 2^w \), then \( \text{BitVec.ofFin}(x) = \text{BitVec.ofNat}(w, x) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the given natural numbers \( w \) and \( x \) such that \( x < 2^w \). We need to show that the bitvector of width \( w \) constructed from the canonical type element \( x \) (i.e., \( \text{Fin}(2^w) \)) is equal to the bitvector of width \( w \) constructed from the natural number \( x \).
+
+Using the definitions of `BitVec.ofNat` and `Fin.ofNat'`, along with the assumption \( x < 2^w \) and the property that for any natural numbers \( a \) and \( b \), if \( a < b \), then \( a \% b = a \), we can simplify the proposition we want to show. Specifically, we need to show that the bitvector of width \( w \) constructed from the canonical type element \( x \) (i.e., \( \text{Fin}(2^w) \)) is equal to the bitvector of width \( w \) constructed from the natural number \( x \). This simplification directly results in the equality \( \text{BitVec.ofFin}(x) = \text{BitVec.ofNat}(w, x) \).
+
+Thus, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : @BitVec.ofFin w (Fin.mk x lt) = BitVec.ofNat w x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example : @BitVec.ofFin w (Fin.mk x lt) = BitVec.ofNat w x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

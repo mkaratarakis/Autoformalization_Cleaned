@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Test Bit of Successor in Natural Number Representation Equals Test Bit of Half : For any natural numbers \( x \) and \( i \), the \((i+1)\)-th least significant bit in the binary representation of \( x \) is equal to the \(i\)-th least significant bit in the binary representation of \( x / 2 \). Formally, this is expressed as:
+\[ x.\text{testBit}(i + 1) = (x / 2).\text{testBit}(i). \]
+
+2. **Informal Proof**  
+We start by expanding the definition of the `testBit` function. The function `testBit m n` returns `true` if the \((n+1)\)-th least significant bit in the binary representation of the natural number \( m \) is 1, and `false` otherwise. Therefore, the goal becomes:
+\[ (1 \&\&& x \>>> (i + 1) \neq 0) = (1 \&\&& (x / 2) \>>> i \neq 0). \]
+
+Next, we use the property of right shift for natural numbers, which states that for any natural numbers \( m \) and \( n \), the right shift of \( m \) by \( n + 1 \) positions is equal to the right shift of \( m / 2 \) by \( n \) positions, i.e., \( m \>>> (n + 1) = (m / 2) \>>> n \). Applying this property, we simplify the goal to:
+\[ (1 \&\&& (x / 2) \>>> i \neq 0) = (1 \&\&& (x / 2) \>>> i \neq 0). \]
+This is trivially true, thus completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x i : Nat) : testBit x (succ i) = testBit (x/2) i := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.Int.Pow
+import Init.Data.Nat.Bitwise.Basic
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Simproc
+import Init.TacticsExtra
+import Init.Omega
+import Init.Data.Nat.Bitwise.Lemmas
+
+open Nat
+
+
+example (x i : Nat) : testBit x (succ i) = testBit (x/2) i := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.Int.Pow not found. --
+
+-- Init.Data.Nat.Bitwise.Basic not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Simproc not found. --
+
+-- Init.TacticsExtra not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Bitwise.Lemmas not found. --
+

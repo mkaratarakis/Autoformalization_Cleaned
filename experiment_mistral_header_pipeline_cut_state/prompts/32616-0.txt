@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Negation of Boolean Value Equals False if and only if Value is True: \(\text{not } b = \text{false} \iff b = \text{true}\) : For any boolean value \( b \), the negation of \( b \) is equal to `false` if and only if \( b \) is equal to `true`, i.e., \(\text{not } b = \text{false} \iff b = \text{true}\).
+
+2. **Informal Proof**  
+We will consider every possible case of the boolean value \( b \). There are two cases:
+
+1. **Case 1: \( b = \text{false} \)**
+- We need to show that \((\text{not } \text{false}) = \text{false} \) is equivalent to \(\text{false} = \text{true} \).
+- Simplify the expression \((\text{not } \text{false}) = \text{false} \). Since \(\text{not } \text{false} = \text{true} \), the expression becomes \(\text{true} = \text{false} \), which is false.
+- Simplify the expression \(\text{false} = \text{true} \), which is also false.
+- Therefore, \((\text{not } \text{false}) = \text{false} \) is equivalent to \(\text{false} = \text{true} \).
+
+2. **Case 2: \( b = \text{true} \)**
+- We need to show that \((\text{not } \text{true}) = \text{false} \) is equivalent to \(\text{true} = \text{true} \).
+- Simplify the expression \((\text{not } \text{true}) = \text{false} \). Since \(\text{not } \text{true} = \text{false} \), the expression becomes \(\text{false} = \text{false} \), which is true.
+- Simplify the expression \(\text{true} = \text{true} \), which is also true.
+- Therefore, \((\text{not } \text{true}) = \text{false} \) is equivalent to \(\text{true} = \text{true} \).
+
+Since both cases are true, we conclude that for any boolean value \( b \), \(\text{not } b = \text{false} \) if and only if \( b = \text{true} \). This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) : ((!b) = false) = (b = true) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : ((!b) = false) = (b = true) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

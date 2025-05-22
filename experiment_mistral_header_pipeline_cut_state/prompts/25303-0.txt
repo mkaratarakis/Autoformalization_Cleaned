@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Right Self-Idempotence of Boolean Or Operation : For any boolean values $a$ and $b$, the expression $(a \lor b \lor b)$ is equal to $(a \lor b)$, i.e., $(a \lor b \lor b) = (a \lor b)$.
+
+2. **Informal Proof**  
+To prove that for any boolean values $a$ and $b$, the expression $(a \lor b \lor b)$ is equal to $(a \lor b)$, we can use the fact that the boolean values are finite and the operation $\lor$ (logical or) is well-defined. By evaluating all possible combinations of $a$ and $b$, we can verify that $(a \lor b \lor b) = (a \lor b)$ holds in every case. Specifically, we consider the following cases:
+
+1. If $a = \text{true}$ and $b = \text{true}$, then $(a \lor b \lor b) = (\text{true} \lor \text{true} \lor \text{true}) = \text{true}$ and $(a \lor b) = (\text{true} \lor \text{true}) = \text{true}$.
+2. If $a = \text{true}$ and $b = \text{false}$, then $(a \lor b \lor b) = (\text{true} \lor \text{false} \lor \text{false}) = \text{true}$ and $(a \lor b) = (\text{true} \lor \text{false}) = \text{true}$.
+3. If $a = \text{false}$ and $b = \text{true}$, then $(a \lor b \lor b) = (\text{false} \lor \text{true} \lor \text{true}) = \text{true}$ and $(a \lor b) = (\text{false} \lor \text{true}) = \text{true}$.
+4. If $a = \text{false}$ and $b = \text{false}$, then $(a \lor b \lor b) = (\text{false} \lor \text{false} \lor \text{false}) = \text{false}$ and $(a \lor b) = (\text{false} \lor \text{false}) = \text{false}$.
+
+In all cases, we see that $(a \lor b \lor b) = (a \lor b)$. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example : ∀(a b : Bool), ((a || b) || b) = (a || b) := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀(a b : Bool), ((a || b) || b) = (a || b) := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

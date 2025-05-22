@@ -1,0 +1,78 @@
+
+1. **Informal Theorem**  
+Monadic Action on Concatenated Lists: $(l_1 \oplus l_2). \text{forM } f = \text{do} \{ l_1. \text{forM } f; l_2. \text{forM } f \}$ : For any monad `m` and any lists `l₁` and `l₂` of elements of type `α`, the monadic action `f` applied to the concatenation of `l₁` and `l₂` is equivalent to first applying `f` to `l₁` and then applying `f` to `l₂`. Formally, this is expressed as:
+\[
+(l_1 \oplus l_2). \text{forM } f = \text{do} \{ l_1. \text{forM } f; l_2. \text{forM } f \}
+\]
+where `⊕` denotes the list concatenation operation, and `do` is the monadic sequencing operation.
+
+2. **Informal Proof**  
+We perform induction on the list `l₁` to break down the proof into two cases: the base case where `l₁` is the empty list, and the inductive step where `l₁` is a non-empty list of the form `head :: tail`.
+
+**Base Case:**
+For the base case, we need to show that:
+\[
+([] \oplus l_2). \text{forM } f = \text{do} \{ []. \text{forM } f; l_2. \text{forM } f \}
+\]
+Simplifying the left-hand side, we have:
+\[
+([] \oplus l_2). \text{forM } f = l_2. \text{forM } f
+\]
+Simplifying the right-hand side, we have:
+\[
+\text{do} \{ []. \text{forM } f; l_2. \text{forM } f \} = l_2. \text{forM } f
+\]
+Thus, the base case holds.
+
+**Inductive Step:**
+For the inductive step, assume that the property holds for a list `tail`, i.e.,
+\[
+(tail \oplus l_2). \text{forM } f = \text{do} \{ tail. \text{forM } f; l_2. \text{forM } f \}
+\]
+We need to show that the property holds for the list `head :: tail`, i.e.,
+\[
+((head :: tail) \oplus l_2). \text{forM } f = \text{do} \{ (head :: tail). \text{forM } f; l_2. \text{forM } f \}
+\]
+Simplifying the left-hand side, we have:
+\[
+((head :: tail) \oplus l_2). \text{forM } f = (head :: (tail \oplus l_2)). \text{forM } f
+\]
+By the definition of `forM` for a non-empty list, this is equivalent to:
+\[
+f(head) >>= \lambda \_. (tail \oplus l_2). \text{forM } f
+\]
+Using the inductive hypothesis, we get:
+\[
+f(head) >>= \lambda \_. \text{do} \{ tail. \text{forM } f; l_2. \text{forM } f \}
+\]
+By the monadic sequencing operation, this is equivalent to:
+\[
+\text{do} \{ f(head); tail. \text{forM } f; l_2. \text{forM } f \}
+\]
+Simplifying the right-hand side, we have:
+\[
+\text{do} \{ (head :: tail). \text{forM } f; l_2. \text{forM } f \} = \text{do} \{ f(head); tail. \text{forM } f; l_2. \text{forM } f \}
+\]
+Thus, the inductive step holds.
+
+By induction, the theorem is proved.
+
+3. **Formal Theorem**  
+example [Monad m] [LawfulMonad m] (l₁ l₂ : List α) (f : α → m PUnit) :
+    (l₁ ++ l₂).forM f = (do l₁.forM f; l₂.forM f) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Monadic
+
+open List
+open Nat
+
+example [Monad m] [LawfulMonad m] (l₁ l₂ : List α) (f : α → m PUnit) :
+    (l₁ ++ l₂).forM f = (do l₁.forM f; l₂.forM f) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Monadic not found. --
+

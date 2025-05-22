@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Size of Dropped List is Less Than or Equal to Original List Size: \(\text{sizeOf}(\text{List.drop}(n, l)) \leq \text{sizeOf}(l)\) : For any list \( l \) of elements of type \( \alpha \) and any natural number \( n \), the size of the list obtained by dropping the first \( n \) elements of \( l \) is less than or equal to the size of \( l \). Formally, if \( l \) is a list of elements of type \( \alpha \) and \( n \) is a natural number, then \( \text{sizeOf}(\text{List.drop}(n, l)) \leq \text{sizeOf}(l) \).
+
+2. **Informal Proof**  
+We will prove this by induction on the structure of the list \( l \).
+
+1. **Base Case:**
+- Consider the case where the list \( l \) is empty, i.e., \( l = \text{nil} \).
+- By the definition of the `drop` function, dropping any number of elements from the empty list results in the empty list:
+\[ \text{drop}(n, \text{nil}) = \text{nil} \]
+- Therefore, the size of the empty list is less than or equal to the size of the empty list:
+\[ \text{sizeOf}(\text{nil}) \leq \text{sizeOf}(\text{nil}) \]
+- This is trivially true by the reflexivity of the less than or equal to relation.
+
+2. **Inductive Step:**
+- Consider the case where the list \( l \) is non-empty, i.e., \( l = \text{head} :: \text{tail} \).
+- We will use induction on the natural number \( n \) to prove the statement.
+
+- **Base Case for \( n = 0 \):**
+- When \( n = 0 \), we need to show that the size of the list obtained by dropping 0 elements from \( \text{head} :: \text{tail} \) is less than or equal to the size of \( \text{head} :: \text{tail} \).
+- Dropping 0 elements from a list results in the list itself:
+\[ \text{drop}(0, \text{head} :: \text{tail}) = \text{head} :: \text{tail} \]
+- Therefore, the size of the list remains unchanged:
+\[ \text{sizeOf}(\text{head} :: \text{tail}) \leq \text{sizeOf}(\text{head} :: \text{tail}) \]
+- This is true by the reflexivity of the less than or equal to relation.
+
+- **Inductive Step for \( n + 1 \):**
+- Assume that the statement holds for \( n \), i.e., \( \text{sizeOf}(\text{drop}(n, \text{tail})) \leq \text{sizeOf}(\text{tail}) \).
+- We need to show that the statement holds for \( n + 1 \), i.e., \( \text{sizeOf}(\text{drop}(n + 1, \text{head} :: \text{tail})) \leq \text{sizeOf}(\text{head} :: \text{tail}) \).
+
+- By the definition of the `drop` function, dropping \( n + 1 \) elements from \( \text{head} :: \text{tail} \) is equivalent to dropping \( n \) elements from \( \text{tail} \):
+\[ \text{sizeOf}(\text{drop}(n + 1, \text{head} :: \text{tail})) = \text{sizeOf}(\text{drop}(n, \text{tail})) \]
+
+- By the inductive hypothesis, we know:
+\[ \text{sizeOf}(\text{drop}(n, \text{tail})) \leq \text{sizeOf}(\text{tail}) \]
+
+- Since the size of \( \text{head} :: \text{tail} \) is the size of \( \text{head} \) plus the size of \( \text{tail} \):
+\[ \text{sizeOf}(\text{head} :: \text{tail}) = \text{sizeOf}(\text{head}) + \text{sizeOf}(\text{tail}) \]
+
+- Using the transitivity of the less than or equal to relation and the fact that adding a non-negative number (the size of \( \text{head} \)) to both sides of an inequality preserves the inequality, we get:
+\[ \text{sizeOf}(\text{drop}(n, \text{tail})) \leq \text{sizeOf}(\text{tail}) \leq \text{sizeOf}(\text{head}) + \text{sizeOf}(\text{tail}) \]
+
+- Thus, we have:
+\[ \text{sizeOf}(\text{drop}(n + 1, \text{head} :: \text{tail})) \leq \text{sizeOf}(\text{head} :: \text{tail}) \]
+
+This completes the inductive step and the proof.
+
+3. **Formal Theorem**  
+example [SizeOf α] (l : List α) (n : Nat) : sizeOf (l.drop n) ≤ sizeOf l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example [SizeOf α] (l : List α) (n : Nat) : sizeOf (l.drop n) ≤ sizeOf l := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

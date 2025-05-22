@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+TakeWhile and Filter Commute: \(\text{takeWhile } q \, (\text{filter } p \, l) = \text{filter } p \, (\text{takeWhile } (\text{not } p \, a \, \text{ or } q \, a) \, l)\) : For any type \( \alpha \) and any predicates \( p, q : \alpha \to \text{Bool} \), and for any list \( l \) of elements of type \( \alpha \), the list obtained by taking the longest initial segment of the filtered list \( \text{filter } p \, l \) for which \( q \) returns `true` is equal to the list obtained by filtering the list \( l \) after taking the longest initial segment of \( l \) for which the predicate \( \text{not } p \, a \, \text{ or } q \, a \) returns `true`. In other words:
+\[
+\text{takeWhile } q \, (\text{filter } p \, l) = \text{filter } p \, (\text{takeWhile } (\text{not } p \, a \, \text{ or } q \, a) \, l)
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we use the following steps:
+
+1. **Simplify the Goal:**
+We use the theorem that the `filterMap` operation is equivalent to the `filter` operation and the theorem that `takeWhile` and `filterMap` commute. Specifically, we use the fact that:
+\[
+\text{filterMap } f \, l = \text{filter } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, l
+\]
+and
+\[
+\text{takeWhile } p \, (\text{filterMap } f \, l) = \text{filterMap } f \, (\text{takeWhile } (\lambda a, \, \text{Option.all } p \, (f \, a)) \, l)
+\]
+to simplify the goal. This simplification shows that:
+\[
+\text{takeWhile } q \, (\text{filter } p \, l) = \text{filter } p \, (\text{takeWhile } (\lambda a, \, \text{not } p \, a \, \text{ or } q \, a) \, l)
+\]
+
+2. **Conclusion:**
+Since the goal is simplified to the desired equality, the theorem is proved.
+
+Thus, we have shown that:
+\[
+\text{takeWhile } q \, (\text{filter } p \, l) = \text{filter } p \, (\text{takeWhile } (\text{not } p \, a \, \text{ or } q \, a) \, l)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (p q : α → Bool) (l : List α) :
+    (l.filter p).takeWhile q = (l.takeWhile fun a => !p a || q a).filter p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Lemmas
+import Init.Data.List.TakeDrop
+
+open List
+open Nat
+
+example (p q : α → Bool) (l : List α) :
+    (l.filter p).takeWhile q = (l.takeWhile fun a => !p a || q a).filter p := by
+
+5. **Header Information**  
+-- Init.Data.List.Lemmas not found. --
+
+-- Init.Data.List.TakeDrop not found. --
+

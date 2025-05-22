@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Distributivity of Conjunction over Disjunction on the Right: \((a \lor b) \land c \leftrightarrow (a \land c) \lor (b \land c)\) : For any propositions \( a \), \( b \), and \( c \), the conjunction of the disjunction \( a \lor b \) with \( c \) is logically equivalent to the disjunction of the conjunctions \( a \land c \) and \( b \land c \). In other words, \((a \lor b) \land c \leftrightarrow (a \land c) \lor (b \land c)\).
+
+2. **Informal Proof**  
+We start by using the commutativity of conjunction to rewrite \((a \lor b) \land c\) as \(c \land (a \lor b)\). Next, we apply the distributivity of conjunction over disjunction to \(c \land (a \lor b)\), which results in \(c \land a \lor c \land b\). Then, we use the commutativity of conjunction to swap \(c\) and \(a\) in \(c \land a\), obtaining \(a \land c \lor c \land b\). Finally, we use the commutativity of conjunction again to swap \(c\) and \(b\) in \(c \land b\), resulting in \(a \land c \lor b \land c\). This completes the proof, as the goal is now trivially true by reflexivity.
+
+Thus, we have shown that \((a \lor b) \land c \leftrightarrow (a \land c) \lor (b \land c)\).
+
+3. **Formal Theorem**  
+example : (a ∨ b) ∧ c ↔ (a ∧ c) ∨ (b ∧ c) := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example : (a ∨ b) ∧ c ↔ (a ∧ c) ∨ (b ∧ c) := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.NotationExtra not found. --
+
+-- Init.PropLemmas not found. --
+

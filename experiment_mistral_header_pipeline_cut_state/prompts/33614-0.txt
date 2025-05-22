@@ -1,0 +1,66 @@
+
+1. **Informal Theorem**  
+Commutativity of `eraseP` for Disjoint Predicates: $\text{eraseP } q \circ \text{eraseP } p = \text{eraseP } p \circ \text{eraseP } q$ : For any type $\alpha$ and any two predicates $p, q : \alpha \to \text{Bool}$, if for every element $a \in l$, either $p(a)$ or $q(a)$ is false, then the list obtained by first removing the first element that satisfies $p$ and then removing the first element that satisfies $q$ is the same as the list obtained by first removing the first element that satisfies $q$ and then removing the first element that satisfies $p$. Formally, this is expressed as:
+\[
+\forall a \in l, \ (\neg p(a) \text{ or } \neg q(a)) \implies \text{eraseP } q (\text{eraseP } p \ l) = \text{eraseP } p (\text{eraseP } q \ l)
+\]
+
+2. **Informal Proof**  
+We prove this by induction on the list \( l \).
+
+**Base Case:**
+For the base case where the list \( l \) is empty, the goal is trivially true by the reflexive property of equality. The empty list remains unchanged when elements are removed, so both sides of the equation are the same:
+\[
+\text{eraseP } q (\text{eraseP } p \ []) = \text{eraseP } p (\text{eraseP } q \ [])
+\]
+
+**Inductive Step:**
+Assume the list \( l \) is of the form \( a :: l \) (i.e., \( a \) is the head of the list and \( l \) is the tail). We will use the induction hypothesis \( ih \) to prove the goal for this case.
+
+We simplify the goal using the definition of `eraseP` for a list with a head and a tail. This simplification breaks down the goal into a more manageable form, specifically considering the cases where the head \( a \) satisfies the predicates \( p \) and \( q \).
+
+**Case 1: \( p(a) \) holds**
+- **Sub-case 1.1: \( q(a) \) holds**
+- We simplify the goal using the properties of `eraseP` and the induction hypothesis. Since both \( p(a) \) and \( q(a) \) hold, the first element \( a \) is removed in both operations, and the remaining list is the same:
+\[
+\text{eraseP } q (\text{eraseP } p (a :: l)) = \text{eraseP } p (\text{eraseP } q (a :: l))
+\]
+- **Sub-case 1.2: \( q(a) \) does not hold**
+- We simplify the goal using the hypotheses \( p(a) \) and \( \neg q(a) \), and the induction hypothesis. Since \( p(a) \) holds, the first element \( a \) is removed in the first operation, and the remaining list is the same:
+\[
+\text{eraseP } q (\text{eraseP } p (a :: l)) = \text{eraseP } p (\text{eraseP } q (a :: l))
+\]
+
+**Case 2: \( p(a) \) does not hold**
+- **Sub-case 2.1: \( q(a) \) holds**
+- We simplify the goal using the hypotheses \( \neg p(a) \) and \( q(a) \), and the induction hypothesis. Since \( q(a) \) holds, the first element \( a \) is removed in the first operation, and the remaining list is the same:
+\[
+\text{eraseP } q (\text{eraseP } p (a :: l)) = \text{eraseP } p (\text{eraseP } q (a :: l))
+\]
+- **Sub-case 2.2: \( q(a) \) does not hold**
+- We simplify the goal using the hypotheses \( \neg p(a) \) and \( \neg q(a) \), and the induction hypothesis. Since neither \( p(a) \) nor \( q(a) \) holds, the first element \( a \) is not removed in either operation, and the remaining list is the same:
+\[
+\text{eraseP } q (\text{eraseP } p (a :: l)) = \text{eraseP } p (\text{eraseP } q (a :: l))
+\]
+
+By considering all cases, we have shown that the goal holds for the inductive step. Therefore, by induction, the theorem is true for all lists \( l \). This completes the proof.
+
+3. **Formal Theorem**  
+example {l : List α} (h : ∀ a ∈ l, ¬ p a ∨ ¬ q a) :
+    (l.eraseP p).eraseP q = (l.eraseP q).eraseP p := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+
+example {l : List α} (h : ∀ a ∈ l, ¬ p a ∨ ¬ q a) :
+    (l.eraseP p).eraseP q = (l.eraseP q).eraseP p := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

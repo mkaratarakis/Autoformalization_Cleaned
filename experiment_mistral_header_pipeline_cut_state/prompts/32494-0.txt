@@ -1,0 +1,67 @@
+
+1. **Informal Theorem**  
+Modulo of Sum of Multiples and Remainder in Natural Numbers: \((m \cdot x + y) \% m = y \% m\) : For any natural numbers \( m \), \( x \), and \( y \), the remainder of the sum \( m \cdot x + y \) when divided by \( m \) is equal to the remainder of \( y \) when divided by \( m \), i.e., \((m \cdot x + y) \% m = y \% m\).
+
+2. **Informal Proof**  
+We will prove this by induction on \( x \).
+
+**Base Case:**
+Consider \( x = 0 \). We need to show that \((m \cdot 0 + y) \% m = y \% m\). Simplifying the left-hand side, we get:
+\[
+(m \cdot 0 + y) \% m = (0 + y) \% m = y \% m
+\]
+This is trivially true.
+
+**Inductive Step:**
+Assume the statement holds for some \( x = x' \), i.e., \((m \cdot x' + y) \% m = y \% m\). We need to show that it holds for \( x = x' + 1 \), i.e., \((m \cdot (x' + 1) + y) \% m = y \% m\).
+
+Using the properties of multiplication and addition, we can rewrite the left-hand side as:
+\[
+(m \cdot (x' + 1) + y) \% m = (m \cdot x' + m + y) \% m
+\]
+By the associativity of addition, this can be further simplified to:
+\[
+(m \cdot x' + (m + y)) \% m
+\]
+Using the property of modulo, we know that \((a + b) \% m = (a \% m + b \% m) \% m\). Applying this property, we get:
+\[
+(m \cdot x' + (m + y)) \% m = (m \cdot x' \% m + (m + y) \% m) \% m
+\]
+Since \( m \cdot x' \% m = 0 \) (because \( m \cdot x' \) is a multiple of \( m \)), and \( (m + y) \% m = y \% m \) (because \( m \% m = 0 \)), we have:
+\[
+(0 + y \% m) \% m = y \% m
+\]
+Thus, the left-hand side simplifies to \( y \% m \), which is equal to the right-hand side. This completes the inductive step.
+
+By the principle of mathematical induction, the statement holds for all natural numbers \( x \). Therefore, for any natural numbers \( m \), \( x \), and \( y \), we have:
+\[
+(m \cdot x + y) \% m = y \% m
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (m x y : Nat) : (m * x + y) % m = y % m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example (m x y : Nat) : (m * x + y) % m = y % m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

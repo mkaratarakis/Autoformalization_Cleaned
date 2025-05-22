@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Length of Zipped Lists Equals Minimum of Original Lengths : For any lists \( l_1 \) and \( l_2 \) of types \( \alpha \) and \( \beta \) respectively, the length of the list obtained by zipping \( l_1 \) and \( l_2 \) is equal to the minimum of the lengths of \( l_1 \) and \( l_2 \). In other words:
+\[ \text{length}(\text{zip}(l_1, l_2)) = \min(\text{length}(l_1), \text{length}(l_2)) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the `zip` function. The `zip` function pairs elements from two lists until one of the lists is exhausted. Therefore, the length of the zipped list is equal to the length of the shorter of the two input lists. Formally, this can be stated as:
+\[ \text{length}(\text{zip}(l_1, l_2)) = \min(\text{length}(l_1), \text{length}(l_2)) \]
+
+This simplification directly gives us the desired result, completing the proof.
+
+3. **Formal Theorem**  
+example (l₁ : List α) (l₂ : List β) :
+    length (zip l₁ l₂) = min (length l₁) (length l₂) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Zip
+import Init.Data.Nat.Lemmas
+import Init.Data.List.Nat.TakeDrop
+
+open List
+open Nat
+
+example (l₁ : List α) (l₂ : List β) :
+    length (zip l₁ l₂) = min (length l₁) (length l₂) := by
+
+5. **Header Information**  
+-- Init.Data.List.Zip not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+

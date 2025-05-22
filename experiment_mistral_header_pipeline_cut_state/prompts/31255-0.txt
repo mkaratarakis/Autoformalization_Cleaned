@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Addition and Subtraction Inequality: \(a < c - b \to a + b < c\) : For any natural numbers \(a\), \(b\), and \(c\), if \(a < c - b\), then \(a + b < c\).
+
+2. **Informal Proof**  
+We start by showing that \( b \leq c \). To do this, we use the theorem that if \( c \) is not less than \( b \), then \( b \leq c \). Therefore, it suffices to show that \( c \) is not less than \( b \).
+
+Let \( hgt \) be an arbitrary hypothesis that \( c < b \). We need to show that this leads to a contradiction. To derive a contradiction, we use the theorem that no natural number is less than zero. Therefore, it suffices to show that \( a < 0 \).
+
+Since \( c < b \) implies \( c \leq b \), we can use the theorem that \( c - b = 0 \). Substituting this into the hypothesis \( a < c - b \), we get \( a < 0 \). This is a contradiction because no natural number is less than zero. Therefore, \( c \) is not less than \( b \), and thus \( b \leq c \).
+
+Next, we construct a new lemma that \( a + 1 + b \leq c \). This follows from the theorem that if \( b \leq c \) and \( a \leq c - b \), then \( a + b \leq c \). We use the hypothesis \( b \leq c \) and the fact that \( a < c - b \) implies \( a \leq c - b \).
+
+Using the theorem that \( a + 1 + b = (a + b) + 1 \), we simplify the lemma to \( a + b + 1 \leq c \). This implies \( a + b < c \).
+
+Therefore, we have shown that if \( a < c - b \), then \( a + b < c \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Nat} (h : a < c - b) : a + b < c := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example {a b c : Nat} (h : a < c - b) : a + b < c := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

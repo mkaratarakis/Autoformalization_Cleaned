@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Logical Right Shift of Bitvector by Successive Bits : For any natural numbers \( w_1 \) and \( w_2 \), and any natural number \( n \), if \( x \) is a bitvector of width \( w_1 \) and \( y \) is a bitvector of width \( w_2 \), then the logical right shift of \( x \) by the first \( n + 1 \) bits of \( y \) is equal to the logical right shift of \( x \) by the first \( n \) bits of \( y \), followed by a logical right shift by the \( (n + 1) \)-th bit of \( y \). Mathematically, this can be expressed as:
+\[ x.\text{ushiftRightRec}(y, n + 1) = x.\text{ushiftRightRec}(y, n) >>> (y \&&& \text{twoPow}(w_2, n + 1)) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the logical right shift function `ushiftRightRec`. The function `ushiftRightRec` shifts a bitvector `x` of width \( w_1 \) logically to the right by the first \( n \) bits of another bitvector `y` of width \( w_2 \). Specifically, for \( n + 1 \), it first shifts `x` by the first \( n \) bits of `y` and then performs another logical right shift by the amount \( y \&&& 2^{n+1} \).
+
+Thus, the proposition we want to show is:
+\[ x.\text{ushiftRightRec}(y, n + 1) = x.\text{ushiftRightRec}(y, n) >>> (y \&&& \text{twoPow}(w_2, n + 1)) \]
+
+By the definition of `ushiftRightRec`, this simplifies directly to the desired equality. Therefore, the theorem is proved.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec w₁) (y : BitVec w₂) :
+    ushiftRightRec x y (n + 1) = (ushiftRightRec x y n) >>> (y &&& twoPow w₂ (n + 1)) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x : BitVec w₁) (y : BitVec w₂) :
+    ushiftRightRec x y (n + 1) = (ushiftRightRec x y n) >>> (y &&& twoPow w₂ (n + 1)) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

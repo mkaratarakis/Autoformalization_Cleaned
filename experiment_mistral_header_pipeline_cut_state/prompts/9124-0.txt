@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Mapping Increasing Indices to List Elements Produces a Sublist: \(\text{List.map} \, (l[i]) \, is \subseteq l\) : For any list \( l \) of elements of type \( \alpha \) and any list \( is \) of indices in the range \( 0 \leq i < \text{length}(l) \), if the indices in \( is \) are pairwise strictly increasing, then the list obtained by mapping the function \( l[i] \) over \( is \) is a sublist of \( l \). Formally, if \( is \) is a list of indices such that for all \( x, x_1 \in is \), \( x < x_1 \), then \( \text{List.map} \, (l[i]) \, is \) is a sublist of \( l \).
+
+2. **Informal Proof**  
+To prove that the list obtained by mapping the function \( l[i] \) over \( is \) is a sublist of \( l \), we proceed by induction on the structure of \( is \).
+
+1. **Base Case:**
+- If \( is \) is the empty list, then the list obtained by mapping \( l[i] \) over \( is \) is the empty list, which is trivially a sublist of any list \( l \).
+
+2. **Inductive Step:**
+- Assume \( is \) is a non-empty list, let \( hd \) be the head of \( is \) and \( tl \) be the tail of \( is \).
+- By the inductive hypothesis, for any natural number \( n \) and any list \( l' \) of elements of type \( \alpha \), if \( l' = \text{drop}(n, l) \) and for all \( i \in tl \), \( n \leq i \), then the list obtained by mapping \( l[i] \) over \( tl \) is a sublist of \( l' \).
+- We need to show that \( l[hd] :: \text{map}(l[i], tl) \) is a sublist of \( \text{drop}(n, l) \).
+- Using the property that dropping the first \( n \) elements of \( l \) is equivalent to taking the \( n \)-th element of \( l \) followed by dropping the first \( n + 1 \) elements of \( l \), we can show that \( l[hd] :: \text{map}(l[i], tl) \) is a sublist of \( \text{drop}(hd, l) \).
+- Since the empty list is a sublist of any list, and the list obtained by taking the first \( hd \) elements of \( l \) and dropping the first \( n \) elements of \( l \) is a sublist of \( \text{drop}(n, l) \), we can show that \( l[hd] :: \text{map}(l[i], tl) \) is a sublist of \( \text{drop}(n, l) \).
+- Using the property that the minimum of two natural numbers is the left number if the left number is less than or equal to the right number, and the fact that \( n \leq hd \), we can simplify the goal to show that \( n \leq \text{length}(\text{take}(hd, l)) \), which is true by the definition of \( \text{take} \).
+
+Thus, we have shown that the list obtained by mapping \( l[i] \) over \( is \) is a sublist of \( l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l : List α} {is : List (Fin l.length)} (h : is.Pairwise (· < ·)) :
+    is.map (l[·]) <+ l := by sorry
+
+4. **Prefix**
+import Init.Data.Fin.Lemmas
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Pairwise
+
+open List
+
+
+example {l : List α} {is : List (Fin l.length)} (h : is.Pairwise (· < ·)) :
+    is.map (l[·]) <+ l := by
+
+5. **Header Information**  
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Pairwise not found. --
+

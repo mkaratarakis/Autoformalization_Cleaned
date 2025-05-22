@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+At Least Two of Three Booleans with Left False is Equivalent to AND of the Other Two: \( b \land c \) : For any boolean values \( b \) and \( c \), the function `atLeastTwo` returns `true` if at least two out of the three boolean values `false`, \( b \), and \( c \) are `true`. This is equivalent to the boolean value \( b \) and \( c \) being `true`, i.e., \( b \land c \).
+
+2. **Informal Proof**  
+To prove that `false.atLeastTwo b c = (b && c)`, we use the definition of the `atLeastTwo` function. The function `atLeastTwo` checks if at least two out of the three boolean values are `true`. Given that the first value is `false`, the function simplifies to the boolean "and" operation between `b` and `c`. This is because for `atLeastTwo` to return `true`, both `b` and `c` must be `true`. Therefore, `false.atLeastTwo b c` is equivalent to `b && c`. Hence, the proposition `false.atLeastTwo b c = (b && c)` holds. This completes the proof.
+
+3. **Formal Theorem**  
+example : atLeastTwo false b c = (b && c) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open Bool
+open Nat Bool
+
+example : atLeastTwo false b c = (b && c) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+

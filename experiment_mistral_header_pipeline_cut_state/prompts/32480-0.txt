@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Exponentiation Preserves Strict Inequality in Natural Numbers: \(a^n < a^m\) if \(1 < a\) and \(n < m\) : For any natural numbers \(a\), \(n\), and \(m\) such that \(1 < a\) and \(n < m\), it holds that \(a^n < a^m\).
+
+2. **Informal Proof**  
+We start by noting that since \( n < m \), there exists a natural number \( k \) such that \( m = n + k + 1 \). We can rewrite this as \( m = n + 1 + k \) using the right commutativity of addition.
+
+Next, we substitute \( m = n + 1 + k \) into the goal, so the goal becomes \( a^n < a^{n + 1 + k} \). Using the properties of exponents, we can rewrite \( a^{n + 1 + k} \) as \( a^n \cdot a \cdot a^k \). Therefore, the goal is to show \( a^n < a^n \cdot a \cdot a^k \).
+
+We know that \( 1 < a \), so \( a^n < a^{n+1} \) by the property of exponents. Additionally, since \( 1 < a \), we have \( 0 < a \), and thus \( 0 < a^k \) for any natural number \( k \).
+
+Using the fact that \( a^n < a^{n+1} \) and \( 0 < a^k \), we can apply the property of multiplication in ordered monoids to conclude that \( a^n \cdot 1 < a^{n+1} \cdot a^k \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a n m : Nat} (h : 1 < a) (w : n < m) : a ^ n < a ^ m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example {a n m : Nat} (h : 1 < a) (w : n < m) : a ^ n < a ^ m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

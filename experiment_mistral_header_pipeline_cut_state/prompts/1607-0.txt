@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Length of Iota List Equals \( n \) : For any natural number \( n \), the length of the list of natural numbers from \( n \) down to 1 in decreasing order, denoted as \(\text{iota}(n)\), is equal to \( n \). In other words, \(\text{length}(\text{iota}(n)) = n\).
+
+2. **Informal Proof**  
+To prove that the length of \(\text{iota}(n)\) is \( n \), we use the fact that \(\text{iota}(n)\) is equal to the reverse of the list of natural numbers starting from 1 and incrementing by 1 for \( n \) times, denoted as \(\text{range}'(1, n)\). Therefore, we need to show that the length of \(\text{reverse}(\text{range}'(1, n))\) is equal to \( n \).
+
+Since the length of a list is preserved under the reverse operation, the length of \(\text{reverse}(\text{range}'(1, n))\) is the same as the length of \(\text{range}'(1, n)\). The list \(\text{range}'(1, n)\) contains exactly \( n \) elements, starting from 1 and incrementing by 1 up to \( n \). Hence, the length of \(\text{range}'(1, n)\) is \( n \).
+
+Thus, the length of \(\text{iota}(n)\) is also \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : length (iota n) = n := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (n : Nat) : length (iota n) = n := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

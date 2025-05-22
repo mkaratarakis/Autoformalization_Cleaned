@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Count of Element Unchanged by Erasing Different Element in List : For any type \(\alpha\) and elements \(a, b \in \alpha\) such that \(a \neq b\), and for any list \(l\) of elements of type \(\alpha\), the number of occurrences of \(a\) in the list \(l\) after erasing the first occurrence of \(b\) is equal to the number of occurrences of \(a\) in the original list \(l\). Formally, if \(a \neq b\), then \(\text{count}(a, \text{erase}(l, b)) = \text{count}(a, l)\).
+
+2. **Informal Proof**  
+We start by using the theorem that the count of \(a\) in the list obtained by erasing the first occurrence of \(b\) from \(l\) is given by:
+\[
+\text{count}(a, \text{erase}(b, l)) = \text{count}(a, l) - \begin{cases}
+1 & \text{if } b = a \\
+0 & \text{otherwise}
+\end{cases}
+\]
+Since \(a \neq b\), the condition \(b == a\) is false. Therefore, the if-then-else expression evaluates to 0. Substituting this into the equation, we get:
+\[
+\text{count}(a, \text{erase}(b, l)) = \text{count}(a, l) - 0
+\]
+Using the property that subtracting 0 from any number is the number itself, we have:
+\[
+\text{count}(a, \text{erase}(b, l)) = \text{count}(a, l)
+\]
+Thus, the number of occurrences of \(a\) in the list \(l\) after erasing the first occurrence of \(b\) is equal to the number of occurrences of \(a\) in the original list \(l\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (ab : a ≠ b) (l : List α) : count a (l.erase b) = count a l := by sorry
+
+4. **Prefix**
+import Init.Data.List.Sublist
+import Init.Data.List.Count
+
+open List
+open Nat
+variable (p q : α → Bool)
+variable {p q}
+variable [BEq α]
+variable [LawfulBEq α]
+
+example (ab : a ≠ b) (l : List α) : count a (l.erase b) = count a l := by
+
+5. **Header Information**  
+-- Init.Data.List.Sublist not found. --
+
+-- Init.Data.List.Count not found. --
+

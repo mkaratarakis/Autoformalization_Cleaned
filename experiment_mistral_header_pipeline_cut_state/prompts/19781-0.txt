@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Comparison Not Less Than Implies \( b \leq a \) in Natural Numbers : For any natural numbers \( a \) and \( b \), if the comparison of \( a \) and \( b \) is not less than, i.e., \( \text{compare}(a, b) \neq \text{lt} \), then it holds that \( b \leq a \).
+
+2. **Informal Proof**  
+We start by using the definition of the comparison function for natural numbers, which states that \( \text{compare}(a, b) \) is less than if and only if \( a < b \). Therefore, the statement \( \text{compare}(a, b) \neq \text{lt} \) is equivalent to \( a < b \) being false. We need to show that \( a < b \) being false implies \( b \leq a \).
+
+1. **Forward Direction:**
+- Assume \( a < b \) is false.
+- By the property of natural numbers, if \( a \) is not less than \( b \), then \( b \leq a \).
+- Therefore, \( a < b \) being false implies \( b \leq a \).
+
+2. **Backward Direction:**
+- Assume \( b \leq a \).
+- By the property of natural numbers, if \( b \leq a \), then \( a < b \) is false.
+- Therefore, \( b \leq a \) implies \( a < b \) is false.
+
+Combining these two directions, we have shown that \( \text{compare}(a, b) \neq \text{lt} \) if and only if \( b \leq a \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Nat} : compare a b ≠ .lt ↔ b ≤ a := by sorry
+
+4. **Prefix**
+import Init.Classical
+import Init.Data.Ord
+import Init.Data.Nat.Compare
+
+open Nat
+
+
+example {a b : Nat} : compare a b ≠ .lt ↔ b ≤ a := by
+
+5. **Header Information**  
+-- Init.Classical not found. --
+
+-- Init.Data.Ord not found. --
+
+-- Init.Data.Nat.Compare not found. --
+

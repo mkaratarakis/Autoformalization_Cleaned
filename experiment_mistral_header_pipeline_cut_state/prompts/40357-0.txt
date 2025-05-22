@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Appending Empty List is Identity for Lists : For any list \( \text{as} \) of elements of type \( \alpha \), appending the empty list \( \text{nil} \) to \( \text{as} \) results in the list \( \text{as} \) itself. Formally, \( \text{as} \) ++ \( \text{nil} \) = \( \text{as} \).
+
+2. **Informal Proof**  
+We prove this by induction on the list \( \text{as} \).
+
+1. **Base Case:**
+- Consider the empty list \( \text{nil} \).
+- The goal is to show that \( \text{nil} \) ++ \( \text{nil} \) = \( \text{nil} \).
+- This is trivially true because appending the empty list to the empty list results in the empty list.
+
+2. **Inductive Step:**
+- Assume that for any list \( \text{as} \), appending the empty list to \( \text{as} \) results in \( \text{as} \) (inductive hypothesis).
+- We need to show that for any element \( a \) and list \( \text{as} \), appending the empty list to \( a :: \text{as} \) results in \( a :: \text{as} \).
+- By the definition of list concatenation, \( a :: \text{as} \) ++ \( \text{nil} \) = \( a :: (\text{as} ++ \text{nil}) \).
+- By the inductive hypothesis, \( \text{as} ++ \text{nil} = \text{as} \).
+- Therefore, \( a :: (\text{as} ++ \text{nil}) = a :: \text{as} \).
+
+By induction, the theorem holds for all lists \( \text{as} \). This completes the proof.
+
+3. **Formal Theorem**  
+example (as : List α) : as ++ [] = as := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (as : List α) : as ++ [] = as := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

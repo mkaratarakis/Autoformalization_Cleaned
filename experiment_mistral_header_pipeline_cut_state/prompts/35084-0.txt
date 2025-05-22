@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Concatenation of Sublists is Sublist if and only if Splitting Condition Holds: \( (l_1 \oplus l_2) \subseteq r \leftrightarrow \exists r_1, r_2, r = r_1 \oplus r_2 \land l_1 \subseteq r_1 \land l_2 \subseteq r_2 \) : For any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), and for any list \( r \) of elements of type \( \alpha \), the list \( l_1 \) concatenated with \( l_2 \) is a sublist of \( r \) if and only if there exist lists \( r_1 \) and \( r_2 \) such that \( r = r_1 \) concatenated with \( r_2 \), \( l_1 \) is a sublist of \( r_1 \), and \( l_2 \) is a sublist of \( r_2 \). In other words, \( l_1 \) and \( l_2 \) can be found as sublists in \( r \) in the same order they appear in \( l_1 \) and \( l_2 \).
+
+2. **Informal Proof**  
+We prove the theorem by induction on \( l_1 \).
+
+**Base Case:**
+Consider the case where \( l_1 \) is the empty list. We need to show that \( l_1 ++ l_2 \) is a sublist of \( r \) if and only if there exist lists \( r_1 \) and \( r_2 \) such that \( r = r_1 ++ r_2 \), \( l_1 \) is a sublist of \( r_1 \), and \( l_2 \) is a sublist of \( r_2 \).
+
+1. **(\(\Rightarrow\))** Assume \( l_1 ++ l_2 \) is a sublist of \( r \). Since \( l_1 \) is the empty list, \( l_1 ++ l_2 = l_2 \). We can choose \( r_1 \) to be the empty list and \( r_2 \) to be \( r \). Since the empty list is a sublist of any list, \( l_1 \) is a sublist of \( r_1 \), and \( l_2 \) is a sublist of \( r_2 \).
+
+2. **(\(\Leftarrow\))** Assume there exist \( r_1 \) and \( r_2 \) such that \( r = r_1 ++ r_2 \), \( l_1 \) is a sublist of \( r_1 \), and \( l_2 \) is a sublist of \( r_2 \). Since \( l_1 \) is the empty list, it is trivially a sublist of \( r_1 \). Therefore, \( l_2 \) is a sublist of \( r_2 \), and thus \( l_1 ++ l_2 = l_2 \) is a sublist of \( r_1 ++ r_2 = r \).
+
+**Inductive Step:**
+Consider the case where \( l_1 \) is of the form \( a :: l_1' \). We need to show that \( a :: l_1' ++ l_2 \) is a sublist of \( r \) if and only if there exist lists \( r_1 \) and \( r_2 \) such that \( r = r_1 ++ r_2 \), \( a :: l_1' \) is a sublist of \( r_1 \), and \( l_2 \) is a sublist of \( r_2 \).
+
+1. **(\(\Rightarrow\))** Assume \( a :: l_1' ++ l_2 \) is a sublist of \( r \). By the definition of sublist, there exist \( r_1 \) and \( r_2 \) such that \( r = r_1 ++ r_2 \), \( a \in r_1 \), and \( l_1' ++ l_2 \) is a sublist of \( r_2 \). By the inductive hypothesis, since \( l_1' ++ l_2 \) is a sublist of \( r_2 \), there exist \( s_1 \) and \( s_2 \) such that \( r_2 = s_1 ++ s_2 \), \( l_1' \) is a sublist of \( s_1 \), and \( l_2 \) is a sublist of \( s_2 \). Therefore, we can choose \( r_1' = r_1 ++ s_1 \) and \( r_2' = s_2 \). Since \( a \in r_1 \) and \( l_1' \) is a sublist of \( s_1 \), \( a :: l_1' \) is a sublist of \( r_1 ++ s_1 = r_1' \). Thus, \( a :: l_1' \) is a sublist of \( r_1' \) and \( l_2 \) is a sublist of \( r_2' \).
+
+2. **(\(\Leftarrow\))** Assume there exist \( r_1 \) and \( r_2 \) such that \( r = r_1 ++ r_2 \), \( a :: l_1' \) is a sublist of \( r_1 \), and \( l_2 \) is a sublist of \( r_2 \). Since \( a :: l_1' \) is a sublist of \( r_1 \) and \( l_2 \) is a sublist of \( r_2 \), the concatenation \( a :: l_1' ++ l_2 \) is a sublist of \( r_1 ++ r_2 = r \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} :
+    l₁ ++ l₂ <+ r ↔ ∃ r₁ r₂, r = r₁ ++ r₂ ∧ l₁ <+ r₁ ∧ l₂ <+ r₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {l₁ l₂ : List α} :
+    l₁ ++ l₂ <+ r ↔ ∃ r₁ r₂, r = r₁ ++ r₂ ∧ l₁ <+ r₁ ∧ l₂ <+ r₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

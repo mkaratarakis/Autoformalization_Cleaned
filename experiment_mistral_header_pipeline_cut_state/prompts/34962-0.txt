@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Concatenation of Lists is a Subset if and Only If Both Lists are Subsets: \( l_1 ++ l_2 \subseteq l \leftrightarrow l_1 \subseteq l \land l_2 \subseteq l \) : For any type \( \alpha \) and lists \( l_1, l_2, l \) of elements of type \( \alpha \), the list \( l_1 \) concatenated with \( l_2 \) is a subset of \( l \) if and only if both \( l_1 \) and \( l_2 \) are subsets of \( l \). In other words, \( l_1 \) and \( l_2 \) are subsets of \( l \) if and only if \( l_1 ++ l_2 \subseteq l \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that \( l_1 ++ l_2 \subseteq l \) if and only if \( l_1 \subseteq l \) and \( l_2 \subseteq l \).
+
+1. **Simplification:**
+Using the definitions of subset, the logical implication of disjunction, and the equivalence of universal quantification and conjunction, we can simplify the proposition we want to show. Specifically, we need to prove that:
+\[
+l_1 ++ l_2 \subseteq l \leftrightarrow (l_1 \subseteq l) \land (l_2 \subseteq l)
+\]
+
+2. **Forward Direction:**
+- Assume \( l_1 ++ l_2 \subseteq l \).
+- We need to show that \( l_1 \subseteq l \) and \( l_2 \subseteq l \).
+- By the definition of subset, \( l_1 ++ l_2 \subseteq l \) means that for every element \( x \) in \( l_1 ++ l_2 \), \( x \) is also in \( l \).
+- Since \( l_1 \) is a prefix of \( l_1 ++ l_2 \), every element of \( l_1 \) is also in \( l_1 ++ l_2 \). Therefore, every element of \( l_1 \) is in \( l \), which means \( l_1 \subseteq l \).
+- Similarly, since \( l_2 \) is a suffix of \( l_1 ++ l_2 \), every element of \( l_2 \) is also in \( l_1 ++ l_2 \). Therefore, every element of \( l_2 \) is in \( l \), which means \( l_2 \subseteq l \).
+
+3. **Backward Direction:**
+- Assume \( l_1 \subseteq l \) and \( l_2 \subseteq l \).
+- We need to show that \( l_1 ++ l_2 \subseteq l \).
+- By the definition of subset, \( l_1 \subseteq l \) means that every element of \( l_1 \) is in \( l \).
+- Similarly, \( l_2 \subseteq l \) means that every element of \( l_2 \) is in \( l \).
+- Since \( l_1 ++ l_2 \) is the concatenation of \( l_1 \) and \( l_2 \), every element of \( l_1 ++ l_2 \) is either in \( l_1 \) or in \( l_2 \). Therefore, every element of \( l_1 ++ l_2 \) is in \( l \), which means \( l_1 ++ l_2 \subseteq l \).
+
+Thus, we have shown that \( l_1 ++ l_2 \subseteq l \) if and only if \( l_1 \subseteq l \) and \( l_2 \subseteq l \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l₁ l₂ l : List α} :
+    l₁ ++ l₂ ⊆ l ↔ l₁ ⊆ l ∧ l₂ ⊆ l := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {l₁ l₂ l : List α} :
+    l₁ ++ l₂ ⊆ l ↔ l₁ ⊆ l ∧ l₂ ⊆ l := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

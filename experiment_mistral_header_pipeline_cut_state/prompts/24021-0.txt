@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+LCM is Idempotent: \(\text{lcm}(m, m) = m\) : For any natural number \( m \), the least common multiple of \( m \) and itself is equal to \( m \), i.e., \(\text{lcm}(m, m) = m\).
+
+2. **Informal Proof**  
+We need to show that \(\text{lcm}(m, m) = m\) for any natural number \( m \).
+
+1. **Case 1: \( m = 0 \)**
+- By the definition of the least common multiple, \(\text{lcm}(0, m) = 0\) for any \( m \).
+- Therefore, \(\text{lcm}(0, 0) = 0\).
+
+2. **Case 2: \( m \neq 0 \)**
+- By the definition of the least common multiple, \(\text{lcm}(m, m)\) is the smallest positive integer that is a multiple of both \( m \) and \( m \).
+- Since \( m \) is a multiple of itself, \(\text{lcm}(m, m) = m\).
+- This can be shown using the property that \( m \cdot \left(\frac{m}{m}\right) = m \), where \(\frac{m}{m} = 1\) because \( m \neq 0 \).
+
+Thus, in both cases, we have \(\text{lcm}(m, m) = m\). This completes the proof.
+
+3. **Formal Theorem**  
+example (m : Nat) : lcm m m = m := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Gcd
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Lcm
+
+open Nat
+
+
+example (m : Nat) : lcm m m = m := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Gcd not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Lcm not found. --
+

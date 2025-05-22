@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Unzip of Enumerated List Equals Pair of Range and Original List : For any list \( l \) of elements of type \( \alpha \), the `unzip` operation applied to the enumeration of \( l \) (i.e., `l.enum`) results in a pair of lists: the first list is the range of natural numbers from \( 0 \) to \( \text{length}(l) - 1 \), and the second list is \( l \) itself. Formally, this can be written as:
+\[
+\text{unzip}(\text{enum}(l)) = (\text{range}(\text{length}(l)), l)
+\]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the enumeration of a list. The enumeration of a list \( l \) is the zip of the range of natural numbers from \( 0 \) to \( \text{length}(l) - 1 \) with the list \( l \) itself. Formally, this can be written as:
+\[
+l.\text{enum} = \text{zip}(\text{range}(\text{length}(l)), l)
+\]
+
+Next, we use the property of the `unzip` operation on zipped lists. Specifically, if two lists \( l_1 \) and \( l_2 \) have equal lengths, then unzipping the zipped list \( l_1 \text{ zip } l_2 \) returns the original lists \( (l_1, l_2) \). Formally, if \( |l_1| = |l_2| \), then:
+\[
+(l_1 \text{ zip } l_2). \text{unzip} = (l_1, l_2)
+\]
+
+In our case, the list \(\text{range}(\text{length}(l))\) has a length equal to \(\text{length}(l)\), as given by the property of the `range` function:
+\[
+\text{length}(\text{range}(\text{length}(l))) = \text{length}(l)
+\]
+
+Therefore, we can apply the `unzip` operation to the zipped list \(\text{zip}(\text{range}(\text{length}(l)), l)\) and get:
+\[
+\text{unzip}(\text{zip}(\text{range}(\text{length}(l)), l)) = (\text{range}(\text{length}(l)), l)
+\]
+
+Since the left-hand side of the equation is exactly \(\text{unzip}(l.\text{enum})\), we have:
+\[
+\text{unzip}(l.\text{enum}) = (\text{range}(\text{length}(l)), l)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (l : List α) : l.enum.unzip = (range l.length, l) := by sorry
+
+4. **Prefix**
+import Init.Data.List.Nat.TakeDrop
+import Init.Data.List.Pairwise
+import Init.Data.List.Nat.Range
+
+open List
+open Nat
+
+example (l : List α) : l.enum.unzip = (range l.length, l) := by
+
+5. **Header Information**  
+-- Init.Data.List.Nat.TakeDrop not found. --
+
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Nat.Range not found. --
+

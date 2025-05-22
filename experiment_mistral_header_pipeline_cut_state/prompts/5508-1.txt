@@ -1,0 +1,44 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:11:11: error: tactic 'introN' failed, insufficient number of binders
+case isFalse
+p q : Prop
+h✝ : ¬p
+⊢ (if p then q else True) ↔ p → q
+tmp.lean:13:11: error: tactic 'introN' failed, insufficient number of binders
+case isTrue
+p q : Prop
+h✝ : p
+⊢ (if p then q else True) ↔ p → q
+tmp.lean:9:28: error: unsolved goals
+case isFalse
+p q : Prop
+h✝ : ¬p
+⊢ (if p then q else True) ↔ p → q
+
+case isTrue
+p q : Prop
+h✝ : p
+⊢ (if p then q else True) ↔ p → q
+case isFalse
+p q : Prop
+h✝ : ¬p
+⊢ (if p then q else True) ↔ p → q
+
+case isTrue
+p q : Prop
+h✝ : p
+⊢ (if p then q else True) ↔ p → q
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Core
+import Init.NotationExtra
+import Init.PropLemmas
+
+
+
+
+example [h : Decidable p] :
+    ite p q True ↔ p → q := by
+  cases h

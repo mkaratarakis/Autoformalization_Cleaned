@@ -1,0 +1,92 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:12:7: error: unknown tactic
+tmp.lean:12:4: error: unsolved goals
+case pos
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+h1 : (if h : P then some (x h) else none) = some y
+hp : P
+⊢ ∃ h, x h = y
+tmp.lean:10:2: error: unsolved goals
+case neg
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+h1 : (if h : P then some (x h) else none) = some y
+hp : ¬P
+⊢ ∃ h, x h = y
+tmp.lean:8:72: error: unsolved goals
+case mpr
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+⊢ (∃ h, x h = y) → (if h : P then some (x h) else none) = some y
+tmp.lean:10:2: error: unsolved goals
+case pos
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+h1 : (if h : P then some (x h) else none) = some y
+hp : P
+⊢ ∃ h, x h = y
+
+case neg
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+h1 : (if h : P then some (x h) else none) = some y
+hp : ¬P
+⊢ ∃ h, x h = y
+tmp.lean:8:72: error: unsolved goals
+case mpr
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+⊢ (∃ h, x h = y) → (if h : P then some (x h) else none) = some y
+case pos
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+h1 : (if h : P then some (x h) else none) = some y
+hp : P
+⊢ ∃ h, x h = y
+
+case neg
+P : Prop
+α : Type u_1
+inst✝ : Decidable P
+x : P → α
+y : α
+h1 : (if h : P then some (x h) else none) = some y
+hp : ¬P
+⊢ ∃ h, x h = y
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Classical
+import Init.ByCases
+
+
+
+
+example [Decidable P] {x : P → α} {y : α} :
+    (if h : P then some (x h) else none) = some y ↔ ∃ h : P, x h = y := by
+  constructor
+  · intro h1
+    by_cases hp : P

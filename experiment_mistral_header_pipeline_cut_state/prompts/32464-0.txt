@@ -1,0 +1,33 @@
+
+1. **Informal Theorem**  
+Base 2 Logarithm of Zero is Zero: \(\log_2(0) = 0\) : The base 2 logarithm of the natural number 0 is 0, i.e., \(\log_2(0) = 0\).
+
+2. **Informal Proof**  
+To prove that \(\log_2(0) = 0\), we use the definition of the base 2 logarithm function on natural numbers. The function \(\text{Nat.log2}\) is defined such that \(\text{Nat.log2}(0) = 0\). Therefore, the proposition \(\log_2(0) = 0\) is trivially true. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : Nat.log2 0 = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.MinMax
+import Init.Data.Nat.Log2
+import Init.Data.Nat.Power2
+import Init.Omega
+import Init.Data.Nat.Lemmas
+
+open Nat
+
+
+example : Nat.log2 0 = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Nat.MinMax not found. --
+
+-- Init.Data.Nat.Log2 not found. --
+
+-- Init.Data.Nat.Power2 not found. --
+
+-- Init.Omega not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+

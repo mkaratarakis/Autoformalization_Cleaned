@@ -1,0 +1,40 @@
+
+1. **Informal Theorem**  
+Left Mapping Preserves Zip Operation in Lists : For any types \( \alpha \), \( \beta \), and \( \gamma \), and for any function \( f : \alpha \to \gamma \), lists \( l_1 : \text{List } \alpha \) and \( l_2 : \text{List } \beta \), the following holds:
+\[ (\text{map } f \, l_1) \text{.zip } l_2 = \text{map } (\text{Prod.map } f \, \text{id}) \, (l_1 \text{.zip } l_2) \]
+In other words, zipping a list \( l_1 \) after applying \( f \) to each element of \( l_1 \) with a list \( l_2 \) is the same as applying the function \( \text{Prod.map } f \, \text{id} \) to each pair in the zipped list of \( l_1 \) and \( l_2 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that zipping the results of applying \( f \) to \( l_1 \) and the identity function to \( l_2 \) is the same as applying the function \( \text{Prod.map } f \, \text{id} \) to the pairs in the zipped list of \( l_1 \) and \( l_2 \). This theorem states:
+\[
+(\text{map } f \, l_1). \text{zip } (\text{map } \text{id} \, l_2) = \text{map } (\text{Prod.map } f \, \text{id}) \, (l_1. \text{zip } l_2).
+\]
+Since applying the identity function to \( l_2 \) results in \( l_2 \) itself, we have:
+\[
+(\text{map } f \, l_1). \text{zip } l_2 = (\text{map } f \, l_1). \text{zip } l_2.
+\]
+This is a trivial equality, and thus the proof is complete. Therefore, we have shown that:
+\[
+(\text{map } f \, l_1) \text{.zip } l_2 = \text{map } (\text{Prod.map } f \, \text{id}) \, (l_1 \text{.zip } l_2).
+\]
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : α → γ) (l₁ : List α) (l₂ : List β) :
+    zip (l₁.map f) l₂ = (zip l₁ l₂).map (Prod.map f id) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example (f : α → γ) (l₁ : List α) (l₂ : List β) :
+    zip (l₁.map f) l₂ = (zip l₁ l₂).map (Prod.map f id) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

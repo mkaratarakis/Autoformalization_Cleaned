@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Right Multiplication Preserves Divisibility in Natural Numbers : For any natural numbers \( k, m, \) and \( n \), if \( k > 0 \) and \( m \cdot k \) divides \( n \cdot k \), then \( m \) divides \( n \).
+
+2. **Informal Proof**  
+Given the divisibility condition \( m \cdot k \mid n \cdot k \), we start by using the commutativity of multiplication in natural numbers to rewrite this condition as \( k \cdot m \mid k \cdot n \). Since \( k > 0 \), we can apply the theorem that if \( k \cdot m \mid k \cdot n \), then \( m \mid n \). This directly establishes the desired divisibility relation, completing the proof.
+
+3. **Formal Theorem**  
+example (kpos : 0 < k) (H : m * k ∣ n * k) : m ∣ n := by sorry
+
+4. **Prefix**
+import Init.Data.Nat.Div
+import Init.Meta
+import Init.Data.Nat.Dvd
+
+open Nat
+
+
+example (kpos : 0 < k) (H : m * k ∣ n * k) : m ∣ n := by
+
+5. **Header Information**  
+-- Init.Data.Nat.Div not found. --
+
+-- Init.Meta not found. --
+
+-- Init.Data.Nat.Dvd not found. --
+

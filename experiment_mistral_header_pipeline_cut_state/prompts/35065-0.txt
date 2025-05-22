@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Sublist Condition for Cons: $(a :: l) \text{ is a sublist of } l' \leftrightarrow \exists r_1, r_2, l' = r_1 ++ r_2 \land a \in r_1 \land l \text{ is a sublist of } r_2$ : For any type \( \alpha \) and elements \( a \in \alpha \), lists \( l, l' \) of type \( \alpha \), the list \( a :: l \) is a sublist of \( l' \) if and only if there exist lists \( r_1 \) and \( r_2 \) such that \( l' = r_1 ++ r_2 \), \( a \in r_1 \), and \( l \) is a sublist of \( r_2 \).
+
+2. **Informal Proof**  
+We need to prove the equivalence in both directions.
+
+1. **(\(\Rightarrow\)) If \(a :: l\) is a sublist of \(l'\), then there exist lists \(r_1\) and \(r_2\) such that \(l' = r_1 ++ r_2\), \(a \in r_1\), and \(l\) is a sublist of \(r_2\):**
+
+- **Base Case:** If \(l'\) is the empty list, then \(a :: l\) cannot be a sublist of \(l'\) unless \(l\) is also empty. This simplifies to a trivially true statement.
+- **Inductive Step:** Assume \(l'\) is of the form \(a' :: l'\). Suppose \(a :: l\) is a sublist of \(a' :: l'\). By the inductive hypothesis, there exist lists \(r_1\) and \(r_2\) such that \(a' :: l' = r_1 ++ r_2\), \(a \in r_1\), and \(l\) is a sublist of \(r_2\). Therefore, we can take \(r_1\) to be \(a' :: r_1\) and \(r_2\) to be \(r_2\). Since \(a' :: l' = (a' :: r_1) ++ r_2\), \(a \in a' :: r_1\), and \(l\) is a sublist of \(r_2\), the conditions are satisfied.
+
+2. **(\(\Leftarrow\)) If there exist lists \(r_1\) and \(r_2\) such that \(l' = r_1 ++ r_2\), \(a \in r_1\), and \(l\) is a sublist of \(r_2\), then \(a :: l\) is a sublist of \(l'\):**
+
+- Assume there exist lists \(r_1\) and \(r_2\) such that \(l' = r_1 ++ r_2\), \(a \in r_1\), and \(l\) is a sublist of \(r_2\). Since the sublist relation is preserved under concatenation, and we have \(a \in r_1\) and \(l \subseteq r_2\), it follows that \([a] ++ l \subseteq r_1 ++ r_2\). Therefore, \(a :: l\) is a sublist of \(l'\).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : α} {l l'} :
+    a :: l <+ l' ↔ ∃ r₁ r₂, l' = r₁ ++ r₂ ∧ a ∈ r₁ ∧ l <+ r₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {a : α} {l l'} :
+    a :: l <+ l' ↔ ∃ r₁ r₂, l' = r₁ ++ r₂ ∧ a ∈ r₁ ∧ l <+ r₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

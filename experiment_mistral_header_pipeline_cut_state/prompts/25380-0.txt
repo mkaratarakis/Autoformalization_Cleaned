@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Transitivity of Less-Than Relation in Boolean Type : For any boolean values \( x, y, z \), if \( x \leq y \) and \( y < z \), then \( x < z \).
+
+2. **Informal Proof**  
+To prove the transitivity of the less-than relation in the boolean type, we consider the decidability of the boolean values. The boolean type has only two values: `true` and `false`. The relations `≤` and `<` are defined as follows:
+- \( x \leq y \) is true if \( x \) is `false` or \( y \) is `true`.
+- \( x < y \) is true if \( x \) is `false` and \( y \) is `true`.
+
+We need to show that for any boolean values \( x, y, z \), if \( x \leq y \) and \( y < z \), then \( x < z \).
+
+We evaluate the statement for all possible combinations of \( x, y, \) and \( z \):
+
+1. **Case 1: \( x = \text{false} \)**
+- If \( y = \text{false} \), then \( x \leq y \) is true, but \( y < z \) is false for any \( z \), so this case does not apply.
+- If \( y = \text{true} \), then \( x \leq y \) is true. For \( y < z \) to be true, \( z \) must be `true`. In this case, \( x < z \) is true because \( x = \text{false} \) and \( z = \text{true} \).
+
+2. **Case 2: \( x = \text{true} \)**
+- If \( y = \text{false} \), then \( x \leq y \) is false, so this case does not apply.
+- If \( y = \text{true} \), then \( x \leq y \) is true. For \( y < z \) to be true, \( z \) must be `true`. However, \( x < z \) is false because \( x = \text{true} \) and \( z = \text{true} \), so this case does not apply.
+
+From the above cases, we see that the only valid combination where both \( x \leq y \) and \( y < z \) are true is when \( x = \text{false} \), \( y = \text{true} \), and \( z = \text{true} \). In this case, \( x < z \) is true.
+
+Therefore, the statement \( x \leq y \) and \( y < z \) implies \( x < z \) holds for all boolean values \( x, y, z \). This completes the proof.
+
+3. **Formal Theorem**  
+example : ∀ {x y z : Bool}, x ≤ y → y < z → x < z := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {x y z : Bool}, x ≤ y → y < z → x < z := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

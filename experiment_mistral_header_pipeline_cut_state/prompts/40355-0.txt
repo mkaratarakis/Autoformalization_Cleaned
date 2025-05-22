@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Length of Replicated List Equals the Replication Count : For any natural number \( n \) and any element \( a \) of type \( \alpha \), the length of the list created by replicating \( a \) \( n \) times is equal to \( n \). In other words, \(\text{length}(\text{replicate}(n, a)) = n\).
+
+2. **Informal Proof**  
+We prove this by induction on \( n \).
+
+**Base Case:**
+Consider \( n = 0 \). We need to show that the length of the list created by replicating \( a \) zero times is zero. By the definition of `replicate`, \(\text{replicate}(0, a)\) is the empty list \([]\). The length of the empty list is \(0\). Therefore, \(\text{length}(\text{replicate}(0, a)) = 0\).
+
+**Inductive Step:**
+Assume that for some natural number \( k \), the length of the list created by replicating \( a \) \( k \) times is \( k \). That is, \(\text{length}(\text{replicate}(k, a)) = k\). We need to show that the length of the list created by replicating \( a \) \( k + 1 \) times is \( k + 1 \). By the definition of `replicate`, \(\text{replicate}(k + 1, a)\) is the list \( a :: \text{replicate}(k, a) \). The length of this list is:
+\[
+\text{length}(a :: \text{replicate}(k, a)) = 1 + \text{length}(\text{replicate}(k, a)) = 1 + k = k + 1
+\]
+Thus, the inductive step holds.
+
+By the principle of mathematical induction, the theorem is true for all natural numbers \( n \). Therefore, \(\text{length}(\text{replicate}(n, a)) = n\). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) (a : α) : (replicate n a).length = n := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+
+example (n : Nat) (a : α) : (replicate n a).length = n := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

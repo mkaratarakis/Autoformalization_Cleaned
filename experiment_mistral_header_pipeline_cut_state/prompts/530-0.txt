@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Erasing Element from Left List in Concatenation: \((l_1 ++ l_2). \text{erase } a = l_1. \text{erase } a ++ l_2\) if \(a \in l_1\) : For any type \( \alpha \) and any element \( a \) of type \( \alpha \), if \( a \) is in the list \( l_1 \), then the list obtained by erasing \( a \) from the concatenation \( l_1 ++ l_2 \) is equal to the concatenation of the list obtained by erasing \( a \) from \( l_1 \) and the list \( l_2 \). Formally, if \( a \in l_1 \), then \((l_1 ++ l_2). \text{erase } a = l_1. \text{erase } a ++ l_2\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by simplifying the expression \((l_1 ++ l_2). \text{erase } a\). Using the fact that \(\text{erase } a\) is equivalent to \(\text{eraseP } a \, \text{beq}\), we can rewrite the goal as \((l_1 ++ l_2). \text{eraseP } a \, \text{beq} = l_1. \text{eraseP } a \, \text{beq} ++ l_2\).
+
+Next, we use the property that if \(a\) is in \(l_1\), erasing \(a\) from the concatenation \(l_1 ++ l_2\) is the same as concatenating the list obtained by erasing \(a\) from \(l_1\) with \(l_2\). This property holds because the equality \(a = a\) is always true, and thus the condition for \(\text{eraseP}\) is satisfied.
+
+Therefore, we have \((l_1 ++ l_2). \text{erase } a = l_1. \text{erase } a ++ l_2\), which completes the proof.
+
+3. **Formal Theorem**  
+example [LawfulBEq α] {l₁ : List α} (l₂) (h : a ∈ l₁) :
+    (l₁ ++ l₂).erase a = l₁.erase a ++ l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.Pairwise
+import Init.Data.List.Erase
+
+open List
+open Nat
+variable [BEq α]
+
+example [LawfulBEq α] {l₁ : List α} (l₂) (h : a ∈ l₁) :
+    (l₁ ++ l₂).erase a = l₁.erase a ++ l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.Pairwise not found. --
+
+-- Init.Data.List.Erase not found. --
+

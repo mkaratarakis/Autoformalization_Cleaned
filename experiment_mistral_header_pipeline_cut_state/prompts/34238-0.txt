@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Character Conversion: $\text{Char.ofNat}(c.\text{toNat}) = c$ : For any Unicode character \( c \), the conversion from the natural number representation of \( c \) back to a character using the function `Char.ofNat` results in the original character \( c \). Formally, \( \text{Char.ofNat}(c.\text{toNat}) = c \).
+
+2. **Informal Proof**  
+To prove that for any Unicode character \( c \), the conversion from the natural number representation of \( c \) back to a character using the function `Char.ofNat` results in the original character \( c \), we start by using the definition of `Char.ofNat`.
+
+The function `Char.ofNat` is defined such that for a natural number \( n \), if \( n \) is a valid Unicode scalar value, then `Char.ofNat n` is `Char.ofNatAux n h`, where \( h \) is a proof that \( n \) is valid. Otherwise, it returns the null character `'\0'`.
+
+Given a character \( c \), we know that \( c.toNat \) is a valid Unicode scalar value. Therefore, the expression `Char.ofNat c.toNat` simplifies to `Char.ofNatAux c.toNat h`, where \( h \) is a proof that \( c.toNat \) is valid.
+
+By the definition of `Char.ofNatAux`, we have that `Char.ofNatAux c.toNat h` is definitionally equal to \( c \). Hence, the equality \( \text{Char.ofNat}(c.\text{toNat}) = c \) holds by definition.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (c : Char) : Char.ofNat c.toNat = c := by sorry
+
+4. **Prefix**
+import Init.Data.Char.Basic
+import Init.Data.UInt.Lemmas
+import Init.Data.Char.Lemmas
+
+open Char
+
+
+example (c : Char) : Char.ofNat c.toNat = c := by
+
+5. **Header Information**  
+-- Init.Data.Char.Basic not found. --
+
+-- Init.Data.UInt.Lemmas not found. --
+
+-- Init.Data.Char.Lemmas not found. --
+

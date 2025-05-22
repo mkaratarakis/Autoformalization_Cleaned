@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Underlying Natural Number of All-Ones Bitvector Equals \(2^v - 1\) : For any natural number \( v \), the underlying natural number of the bitvector `BitVec.allOnes v` is equal to \( 2^v - 1 \), i.e., \(\text{toNat}(\text{allOnes}(v)) = 2^v - 1\).
+
+2. **Informal Proof**  
+We start by expanding the definition of `BitVec.allOnes`. The function `BitVec.allOnes` applied to a natural number \( v \) returns a bitvector of size \( v \) where all bits are set to `1`. This is achieved by taking the natural number \( 2^v - 1 \) and converting it to a bitvector of size \( v \). Therefore, the goal is to show that \((2^v - 1)\#'\cdots\).toNat = 2^v - 1\).
+
+Next, we simplify the expression \((2^v - 1)\#'\cdots\).toNat. Using the properties of the `toNat` function and the fact that the bitvector \((2^v - 1)\#'\cdots\) is constructed from the natural number \(2^v - 1\), we can directly conclude that \((2^v - 1)\#'\cdots\).toNat = 2^v - 1\).
+
+Thus, the underlying natural number of the bitvector `BitVec.allOnes v` is indeed \( 2^v - 1 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : (allOnes v).toNat = 2^v - 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example : (allOnes v).toNat = 2^v - 1 := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

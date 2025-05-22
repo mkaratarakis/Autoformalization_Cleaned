@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+Left Distributive Property of Multiplication over Addition in Natural Numbers: \( n \cdot (m + k) = n \cdot m + n \cdot k \) : For any natural numbers \( n \), \( m \), and \( k \), the equation \( n \cdot (m + k) = n \cdot m + n \cdot k \) holds. This theorem demonstrates the left distributive property of multiplication over addition in the natural numbers.
+
+2. **Informal Proof**  
+We prove the theorem by induction on \( n \).
+
+**Base Case:**
+Consider \( n = 0 \). Using the zero multiplication identity, which states that \( 0 \times m = 0 \) for any natural number \( m \), we have:
+\[
+0 \times (m + k) = 0
+\]
+and
+\[
+0 \times m + 0 \times k = 0 + 0 = 0
+\]
+Thus, the base case is proved.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some natural number \( n' \), the equation \( n' \times (m + k) = n' \times m + n' \times k \) holds. We need to show that the equation holds for \( n = n' + 1 \). Using the successor multiplication identity, which states that \((n' + 1) \times m = n' \times m + m\), we have:
+\[
+(n' + 1) \times (m + k) = (n' \times (m + k)) + (m + k)
+\]
+By the inductive hypothesis, we can replace \( n' \times (m + k) \) with \( n' \times m + n' \times k \), so the goal becomes:
+\[
+(n' \times m + n' \times k) + (m + k) = (n' \times m + m) + (n' \times k + k)
+\]
+Using the associativity of addition, we can rewrite the left-hand side as:
+\[
+n' \times m + (n' \times k + (m + k))
+\]
+and the right-hand side as:
+\[
+n' \times m + (m + (n' \times k + k))
+\]
+Since the left-hand side and the right-hand side are now in the same form, we can apply the function congruence theorem to show that they are equal. Finally, using the left-commutativity of addition, we can conclude that:
+\[
+n' \times k + (m + k) = m + (n' \times k + k)
+\]
+This completes the inductive step.
+
+By the principle of mathematical induction, the theorem holds for all natural numbers \( n \). Therefore, the left distributive property of multiplication over addition in the natural numbers is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n m k : Nat) : n * (m + k) = n * m + n * k := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m k : Nat) : n * (m + k) = n * m + n * k := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

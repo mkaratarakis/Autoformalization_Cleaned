@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+False AND Identity: $\text{false} \land b = \text{false}$ : For any boolean value $b$, the boolean "and" operation between `false` and $b$ is equal to `false`, i.e., $\text{false} \land b = \text{false}$.
+
+2. **Informal Proof**  
+To prove that $\text{false} \land b = \text{false}$ for any boolean value $b$, we will consider the two possible cases for $b$.
+
+**Case 1: $b = \text{false}$**
+We need to show that $\text{false} \land \text{false} = \text{false}$. By the definition of the boolean "and" operation, $\text{false} \land \text{false} = \text{false}$, which is trivially true.
+
+**Case 2: $b = \text{true}$**
+We need to show that $\text{false} \land \text{true} = \text{false}$. By the definition of the boolean "and" operation, $\text{false} \land \text{true} = \text{false}$, which is also trivially true.
+
+Since both cases are true, we conclude that for any boolean value $b$, $\text{false} \land b = \text{false}$. This completes the proof. $\blacksquare$
+
+3. **Formal Theorem**  
+example (b : Bool) : (false && b) = false := by sorry
+
+4. **Prefix**
+import Init.Core
+import Init.SimpLemmas
+
+open Bool
+
+
+example (b : Bool) : (false && b) = false := by
+
+5. **Header Information**  
+-- Init.Core not found. --
+
+-- Init.SimpLemmas not found. --
+

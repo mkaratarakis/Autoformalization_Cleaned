@@ -1,0 +1,34 @@
+
+1. **Informal Theorem**  
+Filter and Map Preserves Subset Relation in Lists: \( l_1 \subseteq l_2 \to \text{filterMap } f \, l_1 \subseteq \text{filterMap } f \, l_2 \) : For any types \( \alpha \) and \( \beta \), and any lists \( l_1 \) and \( l_2 \) of elements of type \( \alpha \), if \( l_1 \subseteq l_2 \) and \( f : \alpha \to \text{Option} \beta \) is a function, then the list obtained by applying `filterMap` to \( l_1 \) with \( f \) is a subset of the list obtained by applying `filterMap` to \( l_2 \) with \( f \). In other words, if every element of \( l_1 \) is also an element of \( l_2 \), then every element of \( \text{filterMap } f \, l_1 \) is also an element of \( \text{filterMap } f \, l_2 \).
+
+2. **Informal Proof**  
+Let \( x \) be an arbitrary element of type \( \beta \). We need to show that if \( x \) is in the list obtained by applying `filterMap` to \( l_1 \) with \( f \), then \( x \) is also in the list obtained by applying `filterMap` to \( l_2 \) with \( f \).
+
+Using the definition of `filterMap`, this is equivalent to showing that if there exists an element \( a \) in \( l_1 \) such that \( f(a) = \text{some } x \), then there exists an element \( a \) in \( l_2 \) such that \( f(a) = \text{some } x \).
+
+Let \( a \) be an element of type \( \alpha \), \( h \) be a proof that \( a \) is in \( l_1 \), and \( w \) be a proof that \( f(a) = \text{some } x \). Since \( l_1 \subseteq l_2 \), the element \( a \) that is in \( l_1 \) (as proven by \( h \)) is also in \( l_2 \) (as proven by \( H h \)). Therefore, we have \( a \in l_2 \) and \( f(a) = \text{some } x \) (as proven by \( w \)).
+
+Thus, the list obtained by applying `filterMap` to \( l_1 \) with \( f \) is a subset of the list obtained by applying `filterMap` to \( l_2 \) with \( f \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {l₁ l₂ : List α} (f : α → Option β) (H : l₁ ⊆ l₂) :
+    filterMap f l₁ ⊆ filterMap f l₂ := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Sublist
+
+open List
+open Nat
+variable [BEq α]
+variable [BEq α]
+
+example {l₁ l₂ : List α} (f : α → Option β) (H : l₁ ⊆ l₂) :
+    filterMap f l₁ ⊆ filterMap f l₂ := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Sublist not found. --
+

@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Multiplication and Division Cancellation on the Right in Natural Numbers : For any natural numbers \( n \) and \( m \) such that \( m > 0 \), it holds that \( m \cdot n / m = n \).
+
+2. **Informal Proof**  
+We proceed by induction on \( n \).
+
+**Base Case:**
+For \( n = 0 \), we need to show that \( m \cdot 0 / m = 0 \). This is trivially true since \( m \cdot 0 = 0 \), and thus \( 0 / m = 0 \).
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some \( k \in \mathbb{N} \), \( m \cdot k / m = k \). We need to show that \( m \cdot (k + 1) / m = k + 1 \).
+
+Using the property of multiplication, we have:
+\[ m \cdot (k + 1) = m \cdot k + m \]
+
+Thus,
+\[ m \cdot (k + 1) / m = (m \cdot k + m) / m \]
+
+By the distributive property of division over addition,
+\[ (m \cdot k + m) / m = (m \cdot k / m) + (m / m) \]
+
+Since \( m \cdot k / m = k \) by the inductive hypothesis and \( m / m = 1 \) because \( m > 0 \), we get:
+\[ (m \cdot k / m) + (m / m) = k + 1 \]
+
+Therefore,
+\[ m \cdot (k + 1) / m = k + 1 \]
+
+This completes the inductive step. By induction, the theorem holds for all natural numbers \( n \).
+
+3. **Formal Theorem**  
+example (n : Nat) {m : Nat} (H : 0 < m) : m * n / m = n := by sorry
+
+4. **Prefix**
+import Init.WF
+import Init.WFTactics
+import Init.Data.Nat.Basic
+import Init.Data.Nat.Div
+
+open Nat
+
+
+example (n : Nat) {m : Nat} (H : 0 < m) : m * n / m = n := by
+
+5. **Header Information**  
+-- Init.WF not found. --
+
+-- Init.WFTactics not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.Nat.Div not found. --
+

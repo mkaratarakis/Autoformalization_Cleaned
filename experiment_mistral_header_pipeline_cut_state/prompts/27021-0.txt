@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Distributivity of `zipWith` over `take` : For any types $\alpha$, $\alpha_1$, and $\alpha_2$, and for any function $f : \alpha \to \alpha_1 \to \alpha_2$, and for any lists $l : \text{List } \alpha$ and $l' : \text{List } \alpha_1$, the first $n$ elements of the list obtained by applying `zipWith` to $l$ and $l'$ are equal to the list obtained by applying `zipWith` to the first $n$ elements of $l$ and the first $n$ elements of $l'$. In other words, for any natural number $n$:
+\[ \text{take } n \, (\text{zipWith } f \, l \, l') = \text{zipWith } f \, (\text{take } n \, l) \, (\text{take } n \, l') \]
+
+2. **Informal Proof**  
+We proceed by induction on the list `l`.
+
+1. **Base Case:**
+- **Case 1: `l'` is empty.**
+- We need to show that:
+\[ \text{take } n \, (\text{zipWith } f \, (hd :: tl) \, []) = \text{zipWith } f \, (\text{take } n \, (hd :: tl)) \, (\text{take } n \, []) \]
+- Since `zipWith` applied to any list and the empty list results in the empty list, and taking the first `n` elements of the empty list is the empty list, the goal simplifies to:
+\[ \text{take } n \, [] = \text{zipWith } f \, (\text{take } n \, (hd :: tl)) \, [] \]
+- This is trivially true because both sides are the empty list.
+
+2. **Inductive Step:**
+- **Case 2: `l'` is non-empty, specifically of the form `head :: tail`.**
+- We need to show that:
+\[ \text{take } n \, (\text{zipWith } f \, (hd :: tl) \, (head :: tail)) = \text{zipWith } f \, (\text{take } n \, (hd :: tl)) \, (\text{take } n \, (head :: tail)) \]
+- We perform case analysis on the natural number `n`:
+- **Subcase 1: `n` is zero.**
+- We need to show that:
+\[ \text{take } 0 \, (\text{zipWith } f \, (hd :: tl) \, (head :: tail)) = \text{zipWith } f \, (\text{take } 0 \, (hd :: tl)) \, (\text{take } 0 \, (head :: tail)) \]
+- Since taking the first zero elements of any list results in the empty list, the goal simplifies to:
+\[ \text{take } 0 \, [] = \text{zipWith } f \, [] \, [] \]
+- This is trivially true because both sides are the empty list.
+- **Subcase 2: `n` is a successor of some natural number `n'`.**
+- We need to show that:
+\[ \text{take } (n' + 1) \, (\text{zipWith } f \, (hd :: tl) \, (head :: tail)) = \text{zipWith } f \, (\text{take } (n' + 1) \, (hd :: tl)) \, (\text{take } (n' + 1) \, (head :: tail)) \]
+- Using the inductive hypothesis `hl`, which states that for any list `l'` and natural number `n`, taking the first `n` elements of the list obtained by applying `zipWith` to `tl` and `l'` is equal to applying `zipWith` to the first `n` elements of `tl` and the first `n` elements of `l'`, we can simplify the goal to:
+\[ \text{take } (n' + 1) \, (\text{zipWith } f \, (hd :: tl) \, (head :: tail)) = \text{zipWith } f \, (\text{take } (n' + 1) \, (hd :: tl)) \, (\text{take } (n' + 1) \, (head :: tail)) \]
+- This is true by the definition of `zipWith` and the inductive hypothesis.
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : (zipWith f l l').take n = zipWith f (l.take n) (l'.take n) := by sorry
+
+4. **Prefix**
+import Init.Data.List.TakeDrop
+import Init.Data.List.Zip
+
+open List
+open Nat
+
+example : (zipWith f l l').take n = zipWith f (l.take n) (l'.take n) := by
+
+5. **Header Information**  
+-- Init.Data.List.TakeDrop not found. --
+
+-- Init.Data.List.Zip not found. --
+

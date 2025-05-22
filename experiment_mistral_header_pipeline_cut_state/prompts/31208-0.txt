@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Multiplication by Two Equals Double in Natural Numbers : For any natural number \( n \), the product of 2 and \( n \) is equal to the sum of \( n \) and \( n \), i.e., \( 2 \cdot n = n + n \).
+
+2. **Informal Proof**  
+To prove that \(2 \cdot n = n + n\) for any natural number \( n \), we start by using the identity for the successor of a natural number in multiplication. Specifically, we know that \((n + 1) \cdot m = n \cdot m + m\) for any natural numbers \( n \) and \( m \). Applying this identity with \(2 = 1 + 1\), we rewrite the goal \(2 \cdot n\) as \((1 + 1) \cdot n\), which simplifies to \(1 \cdot n + n\).
+
+Next, we use the multiplicative identity property, which states that \(1 \cdot a = a\) for any natural number \(a\). Applying this property, we simplify \(1 \cdot n\) to \(n\). Therefore, the goal \(1 \cdot n + n\) becomes \(n + n\).
+
+Thus, we have shown that \(2 \cdot n = n + n\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n) : 2 * n = n + n := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n) : 2 * n = n + n := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Successor Subtraction Identity: \( (n + 1) - (m + 1) = n - m \) : For any natural numbers \( n \) and \( m \), the equation \( (n + 1) - (m + 1) = n - m \) holds.
+
+2. **Informal Proof**  
+We prove this by induction on \( m \).
+
+**Base Case:**
+Consider \( m = 0 \). We need to show that \( (n + 1) - (0 + 1) = n - 0 \). This simplifies to \( n + 1 - 1 = n \), which is true by the definition of subtraction and the reflexivity of equality, i.e., \( n + 1 - 1 = n \) and \( n - 0 = n \).
+
+**Inductive Step:**
+Assume the inductive hypothesis that for some natural number \( k \), \( (n + 1) - (k + 1) = n - k \). We need to show that \( (n + 1) - ((k + 1) + 1) = n - (k + 1) \). By the inductive hypothesis, we have \( (n + 1) - (k + 1) = n - k \). Applying the predecessor function to both sides of this equation, we get \( \text{pred}((n + 1) - (k + 1)) = \text{pred}(n - k) \). Since the predecessor function is defined such that \(\text{pred}(a + 1) = a\), this simplifies to \( n - (k + 1) = n - (k + 1) \), which is true by the definition of subtraction and the reflexivity of equality.
+
+By the principle of mathematical induction, the equation \( (n + 1) - (m + 1) = n - m \) holds for all natural numbers \( n \) and \( m \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n m : Nat) : succ n - succ m = n - m := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n m : Nat) : succ n - succ m = n - m := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

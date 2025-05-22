@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Boolean Equality Coincides with Logical Equality in Natural Numbers : For any natural numbers \(a\) and \(b\), the boolean equality \(a == b\) is true if and only if the logical equality \(a = b\) holds. In other words, \(a == b = \text{true}\) if and only if \(a = b\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the boolean equality \(a == b\) is true if and only if the logical equality \(a = b\) holds. We start with the proposition \((a == b) = \text{true} = (a = b)\).
+
+Using the properties of boolean and logical equality, we can simplify this proposition. Specifically, we use the fact that if \(a == b\) is true, then \(a = b\) must hold, and vice versa. This follows from the definitions and properties of equality in natural numbers. Therefore, the proposition \((a == b) = \text{true} = (a = b)\) is trivially true.
+
+Hence, we have shown that \(a == b = \text{true}\) if and only if \(a = b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Nat) : ((a == b) = true) = (a = b) := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (a b : Nat) : ((a == b) = true) = (a = b) := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

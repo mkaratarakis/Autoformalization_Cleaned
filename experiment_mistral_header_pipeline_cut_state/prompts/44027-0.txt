@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Bitvector Inequality via Underlying Natural Number: \( x \neq y \leftrightarrow x.\text{toNat} \neq y.\text{toNat} \) : For any natural number \( n \) and any bitvectors \( x \) and \( y \) of length \( n \), \( x \) is not equal to \( y \) if and only if their underlying natural numbers \( x.\text{toNat} \) and \( y.\text{toNat} \) are not equal, i.e., \( x \neq y \leftrightarrow x.\text{toNat} \neq y.\text{toNat} \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of inequality. The inequality \( x \neq y \) is defined as \( \neg (x = y) \). Next, we use the theorem that states \( x = y \) if and only if \( x.\text{toNat} = y.\text{toNat} \). Therefore, the goal \( x \neq y \leftrightarrow x.\text{toNat} \neq y.\text{toNat} \) is equivalent to \( \neg (x = y) \leftrightarrow \neg (x.\text{toNat} = y.\text{toNat}) \). This simplifies to \( x \neq y \leftrightarrow x.\text{toNat} \neq y.\text{toNat} \). Hence, the theorem is proved.
+
+3. **Formal Theorem**  
+example (x y : BitVec n) : x ≠ y ↔ x.toNat ≠ y.toNat := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec n) : x ≠ y ↔ x.toNat ≠ y.toNat := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

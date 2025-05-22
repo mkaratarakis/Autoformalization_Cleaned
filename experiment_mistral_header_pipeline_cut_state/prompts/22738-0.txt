@@ -1,0 +1,52 @@
+
+1. **Informal Theorem**  
+RProd Implies Lexicographic Order in Product Types : For any types \( \alpha \) and \( \beta \) and any relations \( r \) on \( \alpha \) and \( r' \) on \( \beta \), if \( (a_1, b_1) \) and \( (a_2, b_2) \) are elements of \( \alpha \times \beta \) such that \( (a_1, b_1) \) is less than \( (a_2, b_2) \) according to the relation \( \text{rprod} \), then \( (a_1, b_1) \) is also less than \( (a_2, b_2) \) according to the lexicographic order \( \text{lex} \).
+
+2. **Informal Proof**  
+We need to show that if \((a_1, b_1) < (a_2, b_2)\) in the product order \(\text{rprod}\), then \((a_1, b_1) < (a_2, b_2)\) in the lexicographic order \(\text{lex}\).
+
+1. **Case 1: \(a_1 < a_2\) according to \(r_a\):**
+- By the definition of the lexicographic order, if \(a_1 < a_2\), then \((a_1, b_1) < (a_2, b_2)\) regardless of the values of \(b_1\) and \(b_2\).
+- Therefore, the current goal is exactly proved by the fact that \(a_1 < a_2\).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a : α × β) (b : α × β) (h : RProd ra rb a b) : Prod.Lex ra rb a b := by sorry
+
+4. **Prefix**
+import Init.SizeOf
+import Init.Data.Nat.Basic
+import Init.WF
+
+open Prod
+variable {α : Sort u} {r : α → α → Prop}
+variable {α : Sort u} {r : α → α → Prop} (hwf : WellFounded r)
+variable {C : α → Sort v}
+variable (F : ∀ x, (∀ y, r y x → C y) → C x)
+variable (F : ∀ x, (∀ y, r y x → C y) → C x)
+variable {α : Sort u} {C : α → Sort v} {r : α → α → Prop}
+open WellFounded
+variable {α : Sort u} {r q : α → α → Prop}
+variable {α : Sort u} {β : Sort v} {r : β → β → Prop}
+open Relation
+open WellFounded
+variable {α : Type u} {β : Type v}
+variable  (ra  : α → α → Prop)
+variable  (rb  : β → β → Prop)
+variable  (ra  : α → α → Prop)
+variable  (rb  : β → β → Prop)
+variable  (rb  : β → β → Prop)
+variable {α : Type u} {β : Type v}
+variable {ra  : α → α → Prop} {rb  : β → β → Prop}
+variable {ra  : α → α → Prop} {rb  : β → β → Prop}
+
+example (a : α × β) (b : α × β) (h : RProd ra rb a b) : Prod.Lex ra rb a b := by
+
+5. **Header Information**  
+-- Init.SizeOf not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.WF not found. --
+

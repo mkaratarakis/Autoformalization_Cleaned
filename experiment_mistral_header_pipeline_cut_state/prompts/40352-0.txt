@@ -1,0 +1,37 @@
+
+1. **Informal Theorem**  
+Zip with Empty List on the Right Results in Empty List : For any lists $l$ of elements of type $\alpha$ and the empty list `nil` of elements of type $\beta$, the zip operation `l.zip nil` results in the empty list `nil`. In other words, if one of the lists is empty, the result of the zip operation is also an empty list.
+
+2. **Informal Proof**  
+To prove that `l.zip nil = nil`, we use the definition of the `zip` operation. The `zip` operation is defined as `zip l₁ l₂ = zipWith (λ x y, (x, y)) l₁ l₂`, which pairs corresponding elements from two lists `l₁` and `l₂` until the end of the shorter list.
+
+Given the definition of `zipWith`, we know that `zipWith f l₁ l₂` results in the empty list `nil` if either `l₁` or `l₂` is empty. In our case, `l₂` is the empty list `nil`. Therefore, `zipWith (λ x y, (x, y)) l nil` results in the empty list `nil`.
+
+Thus, `l.zip nil = nil`. This completes the proof.
+
+3. **Formal Theorem**  
+example : zip (l : List α) ([] : List β)  = [] := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+import Init.Data.List.Notation
+import Init.Data.List.Basic
+
+open List
+open Decidable List
+variable {α : Type u} {β : Type v} {γ : Type w}
+variable (R : α → α → Prop)
+variable {R}
+
+example : zip (l : List α) ([] : List β)  = [] := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+
+-- Init.Data.List.Notation not found. --
+
+-- Init.Data.List.Basic not found. --
+

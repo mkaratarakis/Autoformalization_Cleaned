@@ -1,0 +1,24 @@
+
+1. **Informal Theorem**  
+Successor of a Natural Number is Not Zero: \( n + 1 \neq 0 \) : For any natural number \( n \), the successor of \( n \), denoted as \( n + 1 \), is not equal to zero, i.e., \( n + 1 \neq 0 \).
+
+2. **Informal Proof**  
+To prove that for any natural number \( n \), the successor of \( n \), denoted as \( n + 1 \), is not equal to zero, we start by considering the properties of natural numbers and the definition of the successor function. The successor function \( n + 1 \) is defined such that it always yields a positive number, which is greater than zero. Therefore, \( n + 1 \) cannot be zero. This is a fundamental property of natural numbers and the successor function. Hence, the statement \( n + 1 \neq 0 \) is trivially true for any natural number \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : succ n ≠ 0 := by sorry
+
+4. **Prefix**
+import Init.SimpLemmas
+import Init.Data.Nat.Basic
+
+open Nat
+
+
+example (n : Nat) : succ n ≠ 0 := by
+
+5. **Header Information**  
+-- Init.SimpLemmas not found. --
+
+-- Init.Data.Nat.Basic not found. --
+

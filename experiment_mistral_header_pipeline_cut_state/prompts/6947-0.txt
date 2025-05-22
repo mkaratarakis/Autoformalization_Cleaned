@@ -1,0 +1,70 @@
+
+1. **Informal Theorem**  
+Tail-recursive Map Loop Equals Reverse Concatenation of Mapped List : For any types \( \alpha \) and \( \beta \), and for any function \( f : \alpha \to \beta \), list \( \text{as} : \text{List} \, \alpha \), and list \( \text{bs} : \text{List} \, \beta \), the result of the tail-recursive map loop `List.mapTR.loop f as bs` is equal to the concatenation of the reverse of `bs` and the result of applying `f` to each element of `as`, i.e., \(\text{List.mapTR.loop} \, f \, \text{as} \, \text{bs} = \text{bs.reverse} \, ++ \, \text{List.map} \, f \, \text{as}\).
+
+2. **Informal Proof**  
+We prove this by induction on the list `as`.
+
+**Base Case:**
+For the base case where `as` is the empty list, we need to show that:
+\[
+\text{List.mapTR.loop} \, f \, [] \, \text{bs} = \text{bs.reverse} \, ++ \, \text{List.map} \, f \, []
+\]
+Using the definitions of `List.mapTR.loop` and `List.map`, we have:
+\[
+\text{List.mapTR.loop} \, f \, [] \, \text{bs} = \text{bs}
+\]
+and
+\[
+\text{List.map} \, f \, [] = []
+\]
+Thus, the right-hand side becomes:
+\[
+\text{bs.reverse} \, ++ \, [] = \text{bs.reverse}
+\]
+Since both sides are equal, the base case holds.
+
+**Inductive Step:**
+Assume the inductive hypothesis that for any list `bs`, \(\text{List.mapTR.loop} \, f \, \text{as} \, \text{bs} = \text{bs.reverse} \, ++ \, \text{List.map} \, f \, \text{as}\). We need to show that:
+\[
+\text{List.mapTR.loop} \, f \, (a :: \text{as}) \, \text{bs} = \text{bs.reverse} \, ++ \, \text{List.map} \, f \, (a :: \text{as})
+\]
+Using the definition of `List.mapTR.loop`, we have:
+\[
+\text{List.mapTR.loop} \, f \, (a :: \text{as}) \, \text{bs} = \text{List.mapTR.loop} \, f \, \text{as} \, (f \, a :: \text{bs})
+\]
+By the inductive hypothesis, this is:
+\[
+(f \, a :: \text{bs}).\text{reverse} \, ++ \, \text{List.map} \, f \, \text{as}
+\]
+Using the property of the reverse of a cons list, \((a :: \text{as}).\text{reverse} = \text{as.reverse} \, ++ \, [a]\), we get:
+\[
+\text{bs.reverse} \, ++ \, [f \, a] \, ++ \, \text{List.map} \, f \, \text{as}
+\]
+By the associativity of list append, this is:
+\[
+\text{bs.reverse} \, ++ \, (f \, a :: \text{List.map} \, f \, \text{as})
+\]
+Thus, the inductive step holds.
+
+By induction, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (f : α → β) (as : List α) (bs : List β) :
+    mapTR.loop f as bs = bs.reverse ++ map f as := by sorry
+
+4. **Prefix**
+import Init.Data.Array.Lemmas
+import Init.Data.List.Impl
+
+open List
+
+
+example (f : α → β) (as : List α) (bs : List β) :
+    mapTR.loop f as bs = bs.reverse ++ map f as := by
+
+5. **Header Information**  
+-- Init.Data.Array.Lemmas not found. --
+
+-- Init.Data.List.Impl not found. --
+

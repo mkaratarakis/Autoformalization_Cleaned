@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Double Negation Identity: \( \neg(\neg a) = b \leftrightarrow a = b \) : For any boolean values \( a \) and \( b \), the negation of the negation of \( a \) is equal to \( b \) if and only if \( a \) is equal to \( b \), i.e., \( \neg(\neg a) = b \leftrightarrow a = b \).
+
+2. **Informal Proof**  
+To prove the statement \( \forall a, b : \text{Bool}, \neg(\neg a) = b \leftrightarrow a = b \), we use a decision procedure to automatically verify the equivalence. This decision procedure checks all possible boolean values for \( a \) and \( b \) and confirms that the equivalence holds in all cases. Specifically, we consider the following cases:
+
+1. **Case 1: \( a = \text{true} \) and \( b = \text{true} \)**
+- \( \neg(\neg \text{true}) = \neg(\text{false}) = \text{true} \)
+- Since \( \text{true} = \text{true} \), the equivalence holds.
+
+2. **Case 2: \( a = \text{true} \) and \( b = \text{false} \)**
+- \( \neg(\neg \text{true}) = \neg(\text{false}) = \text{true} \)
+- Since \( \text{true} \neq \text{false} \), the equivalence holds.
+
+3. **Case 3: \( a = \text{false} \) and \( b = \text{true} \)**
+- \( \neg(\neg \text{false}) = \neg(\text{true}) = \text{false} \)
+- Since \( \text{false} \neq \text{true} \), the equivalence holds.
+
+4. **Case 4: \( a = \text{false} \) and \( b = \text{false} \)**
+- \( \neg(\neg \text{false}) = \neg(\text{true}) = \text{false} \)
+- Since \( \text{false} = \text{false} \), the equivalence holds.
+
+Since the equivalence \( \neg(\neg a) = b \leftrightarrow a = b \) holds in all possible cases, the theorem is proven.
+
+3. **Formal Theorem**  
+example : ∀ {a b : Bool}, ¬(!a) = b ↔ a = b := by sorry
+
+4. **Prefix**
+import Init.BinderPredicates
+import Init.Data.Bool
+
+open Bool
+
+
+example : ∀ {a b : Bool}, ¬(!a) = b ↔ a = b := by
+
+5. **Header Information**  
+-- Init.BinderPredicates not found. --
+
+-- Init.Data.Bool not found. --
+

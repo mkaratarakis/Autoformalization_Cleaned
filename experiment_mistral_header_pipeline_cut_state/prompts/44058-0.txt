@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Bitvector to Integer Conversion of Natural Number in Two's Complement Form : For any natural number \( n \) and any natural number \( x \), the integer representation of the bitvector `BitVec.ofNat n x` is equal to the balanced modulus of \( x \) with respect to \( 2^n \), i.e., \((\text{BitVec.ofNat } n \, x). \text{toInt} = x \bmod 2^n\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the theorem that the integer representation of a bitvector \( x \) of length \( n \) is equal to the balanced modulus of the natural number representation of \( x \) with respect to \( 2^n \). Formally, this theorem states that for any bitvector \( x \) of length \( n \), \((\text{BitVec.ofNat } n \, x). \text{toInt} = (x \mod 2^n)\).
+
+Given this theorem, we can directly simplify our goal. We need to show that \((\text{BitVec.ofNat } n \, x). \text{toInt} = (x \mod 2^n)\). By the theorem, this is true by definition. Therefore, the integer representation of the bitvector \(\text{BitVec.ofNat } n \, x\) is indeed equal to the balanced modulus of \( x \) with respect to \( 2^n \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n : Nat} (x : Nat) :
+  (BitVec.ofNat n x).toInt = (x : Int).bmod (2^n) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n : Nat} (x : Nat) :
+  (BitVec.ofNat n x).toInt = (x : Int).bmod (2^n) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

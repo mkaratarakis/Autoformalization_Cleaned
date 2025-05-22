@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Logical Right Shift of Bitvector by Zero Bits : For any natural numbers \( w_1 \) and \( w_2 \), and any bitvectors \( x \) of width \( w_1 \) and \( y \) of width \( w_2 \), the logical right shift of \( x \) by the first 0 bits of \( y \) is equal to the logical right shift of \( x \) by the amount determined by the 0-th bit of \( y \). Mathematically, this can be expressed as:
+\[ x.\text{ushiftRightRec}(y, 0) = x >>> (y \&&& \text{twoPow}(w_2, 0)) \]
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the logical right shift operation `ushiftRightRec`. By simplifying the expression using this definition, we directly obtain the desired equality:
+\[ x.\text{ushiftRightRec}(y, 0) = x >>> (y \&&& \text{twoPow}(w_2, 0)) \]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec w₁) (y : BitVec w₂) :
+    ushiftRightRec x y 0 = x >>> (y &&& twoPow w₂ 0) := by sorry
+
+4. **Prefix**
+import Init.Data.BitVec.Folds
+import Init.Data.Nat.Mod
+import Init.Data.BitVec.Bitblast
+
+open BitVec
+open Nat Bool
+
+example (x : BitVec w₁) (y : BitVec w₂) :
+    ushiftRightRec x y 0 = x >>> (y &&& twoPow w₂ 0) := by
+
+5. **Header Information**  
+-- Init.Data.BitVec.Folds not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.BitVec.Bitblast not found. --
+
