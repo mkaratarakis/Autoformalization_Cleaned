@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Antisymmetry of the Less Than or Equal To Relation in Integers : For any integers \(a\) and \(b\), if \(a \leq b\) and \(b \leq a\), then \(a = b\).
+
+2. **Informal Proof**  
+We start by noting that if \(a \leq b\), then there exists a natural number \(n\) such that \(a + n = b\). Similarly, if \(b \leq a\), then there exists a natural number \(m\) such that \(b + m = a\). We denote these natural numbers by \(n\) and \(m\) respectively, and the corresponding equalities by \(a + n = b\) and \(b + m = a\).
+
+Next, we use the equality \(a + n = b\) and substitute \(b\) with \(a + m\) from the equality \(b + m = a\). This gives us \(a + n = a + m\). Using the associativity of addition, we rewrite this as \(a + (m + n) = a\). Finally, we use the property that the canonical map from natural numbers to integers preserves addition to get \(a + (m + n) = a\).
+
+We now use the fact that if \(a + (m + n) = a\), then by the cancellation property of addition, \(m + n = 0\). Since the canonical map from natural numbers to integers is injective, this implies \(m + n = 0\).
+
+Finally, we substitute \(n\) with \(0\) in the equality \(a + n = b\) using the fact that \(m + n = 0\) and the property that if the sum of two natural numbers is zero, then both must be zero. This gives us \(a + 0 = b\). Using the property that adding zero to any integer does not change the integer, we get \(a = b\).
+
+Thus, we have shown that if \(a \leq b\) and \(b \leq a\), then \(a = b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h₁ : a ≤ b) (h₂ : b ≤ a) : a = b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h₁ : a ≤ b) (h₂ : b ≤ a) : a = b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

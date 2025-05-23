@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Associativity of Bitvector Multiplication: \((x * y) * z = x * (y * z)\) : For any natural number \( w \) and any bitvectors \( x, y, z \) of width \( w \), the multiplication operation is associative, i.e., \((x * y) * z = x * (y * z)\).
+
+2. **Informal Proof**  
+To prove the associativity of bitvector multiplication, we need to show that \((x * y) * z = x * (y * z)\) for any bitvectors \( x, y, z \) of width \( w \).
+
+We start by considering the corresponding finite field elements of these bitvectors. Specifically, we use the function \(\text{toFin}\) to map the bitvectors \( x, y, z \) to elements in the finite field \(\mathbb{F}_{2^w}\). The associativity of multiplication in the finite field \(\mathbb{F}_{2^w}\) is a well-known property, which states that for any elements \( a, b, c \in \mathbb{F}_{2^w} \), \((a * b) * c = a * (b * c)\).
+
+Thus, we have:
+\[
+(\text{toFin } x) * (\text{toFin } y) * (\text{toFin } z) = \text{toFin } x * (\text{toFin } y * \text{toFin } z)
+\]
+
+By the definition of the \(\text{toFin}\) function and the properties of bitvector multiplication, this equality implies:
+\[
+(x * y) * z = x * (y * z)
+\]
+
+Therefore, the multiplication operation on bitvectors is associative. This completes the proof.
+
+3. **Formal Theorem**  
+example (x y z : BitVec w) : x * y * z = x * (y * z) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y z : BitVec w) : x * y * z = x * (y * z) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

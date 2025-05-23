@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Characterization of Strict Inequality in Integers: \( a < b \leftrightarrow a \le b \land b \not\le a \) : For any integers \( a \) and \( b \), the inequality \( a < b \) holds if and only if \( a \le b \) and \( b \not\le a \).
+
+2. **Informal Proof**  
+We start by using the equivalence that \( a < b \) if and only if \( a \le b \) and \( a \ne b \). This transforms our goal from \( a < b \leftrightarrow a \le b \land \neg b \le a \) to \( a \le b \land a \ne b \leftrightarrow a \le b \land \neg b \le a \).
+
+To prove this equivalence, we need to show both directions:
+1. **If \( a \le b \land a \ne b \), then \( a \le b \land \neg b \le a \):**
+- Assume \( a \le b \) and \( a \ne b \).
+- We need to show \( a \le b \) and \( \neg b \le a \).
+- The first part \( a \le b \) is already given.
+- For the second part, assume \( b \le a \). By the antisymmetry property of the partial order on integers, if \( a \le b \) and \( b \le a \), then \( a = b \). This contradicts \( a \ne b \). Therefore, \( \neg b \le a \).
+
+2. **If \( a \le b \land \neg b \le a \), then \( a \le b \land a \ne b \):**
+- Assume \( a \le b \) and \( \neg b \le a \).
+- We need to show \( a \le b \) and \( a \ne b \).
+- The first part \( a \le b \) is already given.
+- For the second part, assume \( a = b \). Then \( b \le a \) would hold, which contradicts \( \neg b \le a \). Therefore, \( a \ne b \).
+
+Thus, we have shown both directions, completing the proof. Therefore, \( a < b \) if and only if \( a \le b \) and \( b \not\le a \). \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} : a < b ↔ a ≤ b ∧ ¬b ≤ a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} : a < b ↔ a ≤ b ∧ ¬b ≤ a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

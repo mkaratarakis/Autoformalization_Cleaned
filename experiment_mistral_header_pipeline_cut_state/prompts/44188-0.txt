@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Multiplication by One on Bitvectors of Fixed Width : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the product of \( x \) and the bitvector \( 1 \) of width \( w \) is equal to \( x \), i.e., \( x * 1 = x \).
+
+2. **Informal Proof**  
+We will consider every possible case of the natural number \( w \).
+
+1. **Case 1: \( w = 0 \)**
+- The type of bitvectors of width 0 is a subsingleton, meaning that any two elements of this type are equal.
+- Therefore, for any bitvector \( x \) of width 0, \( x * 1#0 = x \) holds trivially.
+
+2. **Case 2: \( w = n + 1 \) for some natural number \( n \)**
+- We need to show that \( x * 1#(n + 1) = x \).
+- To do this, we use the theorem that if the natural number representation of two bitvectors of the same width are equal, then the bitvectors themselves are equal.
+- Thus, it suffices to show that the natural number representation of \( x * 1#(n + 1) \) is equal to the natural number representation of \( x \).
+- Using the property of natural numbers, we simplify the expression to show that \( (x * 1#(n + 1)).\text{toNat} = x.\text{toNat} \).
+
+Since both cases are covered, we conclude that for any natural number \( w \) and any bitvector \( x \) of width \( w \), \( x * 1 = x \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec w) : x * 1#w = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) : x * 1#w = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

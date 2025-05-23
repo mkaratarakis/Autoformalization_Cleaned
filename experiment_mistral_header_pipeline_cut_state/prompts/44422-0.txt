@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Subtraction on the Right Preserves Strict Inequality in Integers : For any integers \(a\), \(b\), and \(c\), if \(a < b + c\), then \(a - c < b\).
+
+2. **Informal Proof**  
+We start with the given inequality \(a < b + c\). To prove that \(a - c < b\), we first add \(-c\) to both sides of the inequality \(a < b + c\). This gives us:
+\[
+a + (-c) < b + c + (-c)
+\]
+Using the property of additive inverses in the integers, which states that \(a + b + (-b) = a\), we can simplify the right side of the inequality:
+\[
+a + (-c) < b
+\]
+This simplifies to:
+\[
+a - c < b
+\]
+Thus, we have shown that if \(a < b + c\), then \(a - c < b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a < b + c) : a - c < b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a < b + c) : a - c < b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

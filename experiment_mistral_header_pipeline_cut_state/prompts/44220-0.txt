@@ -1,0 +1,80 @@
+
+1. **Informal Theorem**  
+Negation of Bitvector Equals Complement Plus One: \(-x = \sim x + 1\) : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the negation of \( x \), denoted as \( -x \), is equal to the complement of \( x \) plus one, i.e., \( -x = \sim x + 1 \).
+
+2. **Informal Proof**  
+To prove that \(-x = \sim x + 1\), it suffices to show that the natural number representation of \(-x\) is equal to the natural number representation of \(\sim x + 1\). In other words, we need to show that \((-x).toNat = (\sim x + 1).toNat\).
+
+Using the properties of the natural number representation of bitvectors, we can simplify the goal. Specifically, we use the following properties:
+- The natural number representation of the negation of a bitvector \( x \) is \((2^w - x.toNat) \mod 2^w\).
+- The natural number representation of the complement of a bitvector \( x \) is \(2^w - 1 - x.toNat\).
+- The natural number representation of the sum of two bitvectors is the sum of their natural number representations modulo \(2^w\).
+- The natural number representation of a bitvector constructed from a natural number \( x \) is \( x \mod 2^w \).
+- The modulo operation distributes over addition with modulo.
+
+After simplification, our goal becomes:
+\[
+(2^w - x.toNat) \mod 2^w = (2^w - 1 - x.toNat + 1) \mod 2^w
+\]
+
+To establish this equality, we decompose it into proving that:
+\[
+2^w - x.toNat = 2^w - 1 - x.toNat + 1
+\]
+
+We know that the natural number representation of \( x \), denoted as \( x.toNat \), is strictly less than \( 2^w \). This is a property of bitvectors, and we denote this fact as \( x.toNat < 2^w \).
+
+Using the following properties:
+1. The subtraction identity: \( a - b - c = a - (b + c) \).
+2. The commutativity of addition: \( a + b = b + a \).
+3. The subtraction identity in reverse: \( a - (b + c) = a - b - c \).
+4. The cancellation property of subtraction and addition: \( a - b + b = a \).
+
+We get:
+\[
+2^w - x.toNat = 2^w - (1 + x.toNat) + 1
+\]
+\[
+2^w - x.toNat = 2^w - (x.toNat + 1) + 1
+\]
+\[
+2^w - x.toNat = 2^w - x.toNat - 1 + 1
+\]
+\[
+2^w - x.toNat = 2^w - x.toNat
+\]
+
+Since the left-hand side and the right-hand side are equal, the goal is satisfied. Therefore, we have shown that \(-x = \sim x + 1\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec w) : -x = ~~~x + 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) : -x = ~~~x + 1 := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

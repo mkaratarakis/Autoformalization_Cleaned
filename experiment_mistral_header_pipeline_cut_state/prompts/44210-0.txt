@@ -1,0 +1,55 @@
+
+1. **Informal Theorem**  
+Left Rotation of Bitvector Equals Auxiliary Left Rotation when Rotation Amount is Less Than Bitwidth : For any natural number \( w \) and any bitvector \( x \) of width \( w \), if the rotation amount \( r \) is less than \( w \), then the left rotation of \( x \) by \( r \) positions, denoted as \( x \lll r \), is equal to the result of the auxiliary function `rotateLeftAux` applied to \( x \) and \( r \), i.e., \( x \lll r = x \lll r \lor \lor x \ggg (w - r) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the given conditions: \( w \) is a natural number, \( x \) is a bitvector of width \( w \), and \( r \) is a natural number such that \( r < w \).
+
+1. **Simplification using Definitions and Properties:**
+- We use the definition of the `rotateLeft` function and the property of the modulo operation for natural numbers. Specifically, for any natural numbers \(a\) and \(b\), if \(a < b\), then \(a \% b = a\).
+- Given \( r < w \), we have \( r \% w = r \).
+- Therefore, the left rotation of \( x \) by \( r \) positions, \( x \lll r \), can be simplified using the definition of `rotateLeft` and the modulo property.
+
+2. **Equivalence to Auxiliary Function:**
+- The definition of `rotateLeft` for a bitvector \( x \) of width \( w \) and rotation amount \( r \) is \( x \lll r = x \lll r \lor \lor x \ggg (w - r) \).
+- Since \( r < w \), the expression \( x \lll r \) is exactly the same as \( x \lll r \lor \lor x \ggg (w - r) \).
+
+3. **Conclusion:**
+- Thus, we have shown that \( x \lll r = x \lll r \lor \lor x \ggg (w - r) \), which is the result of the auxiliary function `rotateLeftAux` applied to \( x \) and \( r \).
+
+Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x : BitVec w} {r : Nat} (hr : r < w) :
+    x.rotateLeft r = x.rotateLeftAux r := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec w} {r : Nat} (hr : r < w) :
+    x.rotateLeft r = x.rotateLeftAux r := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Canonical Map from Non-Negative Integers to Natural Numbers: \( \text{Int.toNat}(a) = a \) for \( 0 \leq a \) : For any integer \( a \) such that \( 0 \leq a \), the canonical map from integers to natural numbers, denoted as \( \text{Int.toNat} \), satisfies \( \text{Int.toNat}(a) = a \). In other words, if \( a \) is a non-negative integer, then \( a \) is mapped to itself as a natural number.
+
+2. **Informal Proof**  
+To prove that for any integer \( a \) such that \( 0 \leq a \), the canonical map from integers to natural numbers, \( \text{Int.toNat}(a) \), is equal to \( a \), we proceed as follows:
+
+1. By the definition of the canonical map from integers to natural numbers, we have:
+\[
+a.\text{toNat} = \max(a, 0)
+\]
+2. Given the hypothesis \( 0 \leq a \), we can use the property of the maximum function that if \( b \leq a \), then \(\max(a, b) = a\). Therefore:
+\[
+\max(a, 0) = a
+\]
+3. Combining these results, we get:
+\[
+a.\text{toNat} = a
+\]
+
+Thus, we have shown that for any non-negative integer \( a \), the canonical map from integers to natural numbers, \( \text{Int.toNat}(a) \), is equal to \( a \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : Int} (h : 0 ≤ a) : (toNat a : Int) = a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a : Int} (h : 0 ≤ a) : (toNat a : Int) = a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

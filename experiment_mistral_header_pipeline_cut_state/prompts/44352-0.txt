@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Subtraction of Positive Difference Implies Less Than in Integers : For any integers \(a\) and \(b\), if \(0 < a - b\), then \(b < a\).
+
+2. **Informal Proof**  
+To prove that \(b < a\) given \(0 < a - b\), we proceed as follows:
+
+1. **Construct a new hypothesis:**
+We start by adding \(b\) to both sides of the inequality \(0 < a - b\). This gives us:
+\[
+0 + b < a - b + b
+\]
+Simplifying the right-hand side using the property that \(a - b + b = a\) (subtraction and addition cancel each other), we get:
+\[
+0 + b < a
+\]
+
+2. **Simplify the inequality:**
+Using the property that \(0 + b = b\) (zero is the additive identity), we further simplify the inequality to:
+\[
+b < a
+\]
+
+Thus, we have shown that if \(0 < a - b\), then \(b < a\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : 0 < a - b) : b < a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : 0 < a - b) : b < a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

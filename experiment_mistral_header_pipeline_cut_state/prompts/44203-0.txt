@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Replication of Bitvector Zero Times Equals Zero Bitvector : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the replication of \( x \) zero times results in the zero bitvector of width 0, i.e., \(\text{replicate}(0, x) = 0\#0\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by considering the definition of the replication function. The replication function \(\text{replicate}(n, x)\) takes a natural number \( n \) and a bitvector \( x \) of width \( w \), and produces a new bitvector by repeating \( x \) \( n \) times. When \( n = 0 \), the replication function should produce the zero bitvector of width 0, denoted as \( 0\#0 \).
+
+Using the definition of the replication function, we can simplify the proposition \(\text{replicate}(0, x) = 0\#0\). By the definition, replicating \( x \) zero times results in the zero bitvector of width 0. Therefore, the proposition \(\text{replicate}(0, x) = 0\#0\) holds true.
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x : BitVec w} : x.replicate 0 = 0#0 := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec w} : x.replicate 0 = 0#0 := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

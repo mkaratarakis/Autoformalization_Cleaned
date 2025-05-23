@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Absolute Value of Integer Equals Natural Number if and only if Product is Zero: \( |a| = n \leftrightarrow (a - n) \cdot (a + n) = 0 \) : For any integer \( a \) and any natural number \( n \), the absolute value of \( a \) as a natural number, denoted \( |a| \), is equal to \( n \) if and only if the product \((a - n) \cdot (a + n)\) is equal to 0, where \( n \) is interpreted as an integer via the canonical map from natural numbers to integers.
+
+2. **Informal Proof**  
+We start by using the equivalence that the absolute value of an integer \( a \) is equal to a natural number \( n \) if and only if \( a \) is equal to \( n \) or \( -n \). This can be written as:
+\[ a.natAbs = n \leftrightarrow a = n \lor a = -n. \]
+
+Next, we use the fact that the product of two integers is zero if and only if one of the factors is zero. This gives us:
+\[ (a - n) \cdot (a + n) = 0 \leftrightarrow (a - n = 0) \lor (a + n = 0). \]
+
+We then use the property that \( a - (-n) = a + n \) to rewrite the second condition:
+\[ (a - n) \cdot (a + n) = 0 \leftrightarrow (a - n = 0) \lor (a - (-n) = 0). \]
+
+Finally, we use the property that \( a - b = 0 \) if and only if \( a = b \) to simplify the conditions:
+\[ (a - n = 0) \lor (a - (-n) = 0) \leftrightarrow a = n \lor a = -n. \]
+
+Thus, we have shown that:
+\[ a.natAbs = n \leftrightarrow (a - n) \cdot (a + n) = 0. \]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : natAbs a = n ↔ (a - n) * (a + n) = 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example : natAbs a = n ↔ (a - n) * (a + n) = 0 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

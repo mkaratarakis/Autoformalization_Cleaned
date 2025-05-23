@@ -7,7 +7,6 @@ with
 w : Nat
 x y z : BitVec w
 ⊢ x ||| y ||| z = x ||| (y ||| z)
-tmp.lean:18:4: error: unexpected token '..'; expected command
 tmp.lean:13:39: error: unsolved goals
 w : Nat
 x y z : BitVec w

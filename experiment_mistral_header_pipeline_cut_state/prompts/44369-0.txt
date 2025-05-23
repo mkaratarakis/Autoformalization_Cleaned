@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Absolute Value of Negation of a Natural Number as an Integer Equals the Natural Number : For any natural number \( n \), the absolute value of the negation of \( n \) as an integer, denoted as \(\text{natAbs}(-n)\), is equal to \( n \). In other words, \(\text{natAbs}(\text{Int.negOfNat}(n)) = n\).
+
+2. **Informal Proof**  
+We will consider every possible case of \( n \).
+
+**Case 1: \( n = 0 \)**
+The goal is to show that \((\text{negOfNat}(0)).\text{natAbs} = 0\). This is trivially true because the negation of \(0\) as an integer is \(-0\), and the absolute value of \(-0\) is \(0\).
+
+**Case 2: \( n = k + 1 \) for some \( k \in \mathbb{N} \)**
+The goal is to show that \((\text{negOfNat}(k + 1)).\text{natAbs} = k + 1\). This is also trivially true because the negation of \(k + 1\) as an integer is \(-(k + 1)\), and the absolute value of \(-(k + 1)\) is \(k + 1\).
+
+Since both cases are trivially true, the theorem holds for all natural numbers \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : natAbs (negOfNat n) = n := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (n : Nat) : natAbs (negOfNat n) = n := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

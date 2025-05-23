@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Zero Bitvector Addition Identity : For any natural number \( n \) and any bitvector \( x \) of width \( n \), adding the zero bitvector \( 0#n \) to \( x \) results in \( x \), i.e., \( 0#n + x = x \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of bitvector addition. According to the definition, adding the zero bitvector \( 0#n \) to any bitvector \( x \) of width \( n \) should result in \( x \). Formally, we need to show that \( 0#n + x = x \).
+
+By the definition of bitvector addition, the zero bitvector \( 0#n \) is a bitvector of length \( n \) where all bits are zero. When we add \( 0#n \) to \( x \), each bit of \( x \) remains unchanged because adding zero to any bit does not change the bit. Therefore, the result of the addition is \( x \).
+
+Thus, we have shown that \( 0#n + x = x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec n) : 0#n + x = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec n) : 0#n + x = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

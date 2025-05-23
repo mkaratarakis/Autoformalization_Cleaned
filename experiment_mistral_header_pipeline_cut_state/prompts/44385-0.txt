@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Inequality of Integers: \( a \neq b \leftrightarrow a < b \lor b < a \) : For any integers \( a \) and \( b \), \( a \neq b \) if and only if \( a < b \) or \( b < a \).
+
+2. **Informal Proof**  
+To prove the equivalence \( a \neq b \leftrightarrow a < b \lor b < a \), we need to prove both directions.
+
+1. **(\( a \neq b \to a < b \lor b < a \))**:
+- Let \( h \) be an arbitrary proof that \( a \neq b \).
+- We will discuss every possible case of the trichotomy property of the integers \( a \) and \( b \):
+- **Case 1**: \( a < b \). By the left introduction of disjunction, \( a < b \lor b < a \) is true.
+- **Case 2**: \( a = b \). This contradicts our assumption \( h \) that \( a \neq b \), so this case is impossible.
+- **Case 3**: \( b < a \). By the right introduction of disjunction, \( a < b \lor b < a \) is true.
+- Therefore, \( a \neq b \to a < b \lor b < a \).
+
+2. **(\( a < b \lor b < a \to a \neq b \))**:
+- Let \( h \) be an arbitrary proof that \( a < b \lor b < a \).
+- We will discuss every possible case of the disjunction \( a < b \lor b < a \):
+- **Case 1**: \( a < b \). By the property that \( a < b \) implies \( a \neq b \), we conclude that \( a \neq b \).
+- **Case 2**: \( b < a \). By the property that \( b < a \) implies \( a \neq b \), we conclude that \( a \neq b \).
+- Therefore, \( a < b \lor b < a \to a \neq b \).
+
+Since we have proven both directions, we conclude that \( a \neq b \leftrightarrow a < b \lor b < a \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Int} : a ≠ b ↔ a < b ∨ b < a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} : a ≠ b ↔ a < b ∨ b < a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

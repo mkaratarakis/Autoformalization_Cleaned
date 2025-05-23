@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Left Addition Preserves Nonnegative Inequality in Integers : For any integers \(a\) and \(b\), if \(0 \le b\), then \(a \le b + a\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the given assumption that \(0 \le b\). We need to show that \(a \le b + a\).
+
+1. **Step 1: Construct the inequality \(0 + a \le b + a\):**
+- Using the property that adding the same element to both sides of an inequality preserves the inequality, we have \(0 + a \le b + a\) because \(0 \le b\).
+
+2. **Step 2: Simplify the inequality using the additive identity:**
+- We know that \(0 + a = a\) for any integer \(a\). Therefore, the inequality \(0 + a \le b + a\) simplifies to \(a \le b + a\).
+
+Since the simplified inequality \(a \le b + a\) is exactly what we needed to prove, the theorem is established. Thus, for any integers \(a\) and \(b\), if \(0 \le b\), then \(a \le b + a\). \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : 0 ≤ b) : a ≤ b + a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : 0 ≤ b) : a ≤ b + a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

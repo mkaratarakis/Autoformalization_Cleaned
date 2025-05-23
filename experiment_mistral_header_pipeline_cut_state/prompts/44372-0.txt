@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Canonical Map from Absolute Value of Non-Positive Integers to Natural Numbers: \( a.\text{natAbs} = -a \) : For any integer \( a \) such that \( a \leq 0 \), the canonical map from the absolute value of \( a \) to the natural numbers is equal to the negation of \( a \), i.e., \( a.\text{natAbs} = -a \).
+
+2. **Informal Proof**  
+We start with the assumption that \( a \leq 0 \). We need to show that the canonical map from the absolute value of \( a \) to the natural numbers, denoted as \( a.\text{natAbs} \), is equal to the negation of \( a \), i.e., \( a.\text{natAbs} = -a \).
+
+First, we use the property that the absolute value of a negative integer is equal to the absolute value of the integer itself. This means:
+\[
+\text{natAbs}(-a) = \text{natAbs}(a)
+\]
+Thus, our goal transforms to:
+\[
+\text{natAbs}(-a) = -a
+\]
+
+Next, we use the fact that if \( a \leq 0 \), then \(-a \geq 0\). Since \(-a\) is non-negative, the absolute value of \(-a\) is \(-a\) itself. Therefore:
+\[
+\text{natAbs}(-a) = -a
+\]
+
+This completes the proof, as we have shown that:
+\[
+a.\text{natAbs} = -a
+\]
+
+3. **Formal Theorem**  
+example {a : Int} (H : a ≤ 0) : (natAbs a : Int) = -a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a : Int} (H : a ≤ 0) : (natAbs a : Int) = -a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Nonnegative Integer Equals Canonical Image of Natural Number: \( 0 \leq a \to \exists n, a = n \) : For any integer \( a \) such that \( 0 \leq a \), there exists a natural number \( n \) such that \( a = n \).
+
+2. **Informal Proof**  
+Given an integer \( a \) such that \( 0 \leq a \), we need to show that there exists a natural number \( n \) such that \( a = n \).
+
+1. **Step 1:**
+Since \( 0 \leq a \), by the lemma that nonnegativity implies the existence of a nonnegative difference, there exists an integer \( c \) such that \( a = 0 + c \). Simplifying this, we get \( a = c \).
+
+2. **Step 2:**
+Since \( a = c \) and \( 0 \leq a \), it follows that \( c \) is a nonnegative integer. Therefore, \( c \) can be viewed as a natural number. Let \( n = c \). Thus, \( a = n \).
+
+Hence, we have shown that there exists a natural number \( n \) such that \( a = n \). This completes the proof.
+
+3. **Formal Theorem**  
+example {a : Int} (h : 0 ≤ a) : ∃ n : Nat, a = n := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a : Int} (h : 0 ≤ a) : ∃ n : Nat, a = n := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

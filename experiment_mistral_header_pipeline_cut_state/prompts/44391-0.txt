@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Inequality Transformation: \(a + b \le c \to b \le -a + c\) : For any integers \(a\), \(b\), and \(c\), if \(a + b \le c\), then \(b \le -a + c\).
+
+2. **Informal Proof**  
+We start with the given inequality \(a + b \le c\). To prove that \(b \le -a + c\), we use the property that adding the same element to both sides of an inequality preserves the inequality. Specifically, we add \(-a\) to both sides of the inequality \(a + b \le c\):
+
+\[
+-a + (a + b) \le -a + c
+\]
+
+Next, we use the property of additive groups that \(-a + (a + b) = b\). Applying this property, we get:
+
+\[
+b \le -a + c
+\]
+
+Thus, we have shown that if \(a + b \le c\), then \(b \le -a + c\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a + b ≤ c) : b ≤ -a + c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a + b ≤ c) : b ≤ -a + c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

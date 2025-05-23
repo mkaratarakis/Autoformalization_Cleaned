@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Negative Successor of a Natural Number in Integers: \(\text{Int.negSucc}(m) = -m - 1\) : For any natural number \( m \), the negative successor of \( m \) in the integers is equal to \(-m - 1\), i.e., \(\text{Int.negSucc}(m) = -m - 1\).
+
+2. **Informal Proof**  
+To prove that \(\text{Int.negSucc}(m) = -m - 1\) for any natural number \( m \), we start by using the definition of the negative successor and the property of negation in a commutative subtraction monoid.
+
+1. By the definition of the negative successor, \(\text{Int.negSucc}(m)\) is defined as \(-[m + 1]\).
+2. Using the property of negation in a commutative subtraction monoid, we know that \(-(a + b) = -a + -b\). Applying this property to \(-[m + 1]\), we get:
+\[
+-[m + 1] = -m + -1
+\]
+3. Simplifying the right-hand side, we have:
+\[
+-m + -1 = -m - 1
+\]
+4. Therefore, we have shown that:
+\[
+\text{Int.negSucc}(m) = -m - 1
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (m : Nat) : -[m+1] = -m - 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (m : Nat) : -[m+1] = -m - 1 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

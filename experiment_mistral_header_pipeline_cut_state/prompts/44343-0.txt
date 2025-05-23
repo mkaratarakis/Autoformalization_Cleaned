@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Equality of Integers: \( x = y \leftrightarrow x \le y \land y \le x \) : For any integers \( x \) and \( y \), \( x = y \) if and only if \( x \le y \) and \( y \le x \).
+
+2. **Informal Proof**  
+To prove the equivalence \( x = y \leftrightarrow x \le y \land y \le x \), we need to show both directions:
+
+1. **(\( \rightarrow \))** If \( x = y \), then \( x \le y \) and \( y \le x \):
+- Assume \( x = y \).
+- By the reflexive property of the order relation, \( x \le x \) and \( y \le y \).
+- Since \( x = y \), it follows that \( x \le y \) and \( y \le x \).
+
+2. **(\( \leftarrow \))** If \( x \le y \) and \( y \le x \), then \( x = y \):
+- Assume \( x \le y \) and \( y \le x \).
+- By the antisymmetry property of the order relation on integers, if \( x \le y \) and \( y \le x \), then \( x = y \).
+
+Thus, we have shown both directions, and the equivalence \( x = y \leftrightarrow x \le y \land y \le x \) is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {x y : Int} : x = y ↔ x ≤ y ∧ y ≤ x := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {x y : Int} : x = y ↔ x ≤ y ∧ y ≤ x := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

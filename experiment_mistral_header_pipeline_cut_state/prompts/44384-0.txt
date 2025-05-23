@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Left Addition Preserves Strict Inequality in Integers : For any integers \(a\), \(b\), and \(c\), if \(a + b < a + c\), then \(b < c\).
+
+2. **Informal Proof**  
+We start with the given inequality \(a + b < a + c\). To prove that \(b < c\), we first add \(-a\) to both sides of the inequality. By the property that adding the same element to both sides of a strict inequality preserves the inequality, we get:
+\[
+-a + (a + b) < -a + (a + c)
+\]
+Next, we simplify the left and right sides of this inequality using the property of additive groups that \(-a + (a + b) = b\) and \(-a + (a + c) = c\). This simplification reduces the inequality to:
+\[
+b < c
+\]
+Thus, we have shown that \(b < c\), completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a + b < a + c) : b < c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a + b < a + c) : b < c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

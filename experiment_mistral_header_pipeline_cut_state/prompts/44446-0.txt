@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Sign of Negated Integer: \(\text{sign}(-z) = -\text{sign}(z)\) : For any integer \( z \), the sign of \(-z\) is equal to the negation of the sign of \( z \), i.e., \(\text{sign}(-z) = -\text{sign}(z)\).
+
+2. **Informal Proof**  
+We consider the integer \( z \) in three cases:
+
+1. **Case \( z = 0 \):**
+- We have \(\text{sign}(-0) = \text{sign}(0)\).
+- Since \(\text{sign}(0) = 0\), the equality \(\text{sign}(-0) = -\text{sign}(0)\) holds trivially.
+
+2. **Case \( z = n + 1 \) where \( n \) is a natural number:**
+- We have \(\text{sign}(-(n + 1)) = -\text{sign}(n + 1)\).
+- Since \(\text{sign}(n + 1) = 1\) and \(\text{sign}(-(n + 1)) = -1\), the equality \(\text{sign}(-(n + 1)) = -\text{sign}(n + 1)\) holds trivially.
+
+3. **Case \( z = -(m + 1) \) where \( m \) is a natural number:**
+- We have \(\text{sign}(-(-(m + 1))) = -\text{sign}(-(m + 1))\).
+- Since \(\text{sign}(-(m + 1)) = -1\) and \(\text{sign}(-(-(m + 1))) = 1\), the equality \(\text{sign}(-(-(m + 1))) = -\text{sign}(-(m + 1))\) holds trivially.
+
+In all cases, the equality \(\text{sign}(-z) = -\text{sign}(z)\) holds. Therefore, the theorem is proved.
+
+3. **Formal Theorem**  
+example (z : Int) : Int.sign (-z) = -Int.sign z := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (z : Int) : Int.sign (-z) = -Int.sign z := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

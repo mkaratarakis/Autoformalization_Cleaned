@@ -1,0 +1,26 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:10:10: error: unknown identifier 'add_lt_add_left'
+tmp.lean:11:4: error: no goals to be solved
+tmp.lean:10:2: error: expected '{' or indented tactic sequence
+tmp.lean:9:43: error: unsolved goals
+a b c : Int
+h : a + b < a + c
+⊢ -a + (a + b) < -a + (a + c)
+tmp.lean:8:53: error: unsolved goals
+a b c : Int
+h : a + b < a + c
+h₁ : -a + (a + b) < -a + (a + c)
+⊢ b < c
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a + b < a + c) : b < c := by
+  have h₁ : -a + (a + b) < -a + (a + c) := by

@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Truncation Preserves XOR Operation in Bitvectors : For any natural numbers \( w \) and \( k \), and for any bitvectors \( x, y \in \text{BitVec}(w) \), the bitvector obtained by truncating the result of the XOR operation between \( x \) and \( y \) to length \( k \) is equal to the XOR of the bitvectors obtained by truncating \( x \) and \( y \) to length \( k \). In other words, \(\text{truncate}_k(x \^^^ y) = \text{truncate}_k(x) \^^^ \text{truncate}_k(y)\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for every \( i \in \{0, 1, \ldots, k-1\} \), the \( i \)-th least significant bit of \(\text{truncate}_k(x \^^^ y)\) is equal to the \( i \)-th least significant bit of \(\text{truncate}_k(x) \^^^ \text{truncate}_k(y)\).
+
+1. **Step 1:**
+We introduce a new variable \( i \) to reason about the \( i \)-th least significant bit of the bitvectors involved. This reduces our goal to showing:
+\[
+(\text{truncate}_k(x \^^^ y)).\text{getLsb}(i) = (\text{truncate}_k(x) \^^^ \text{truncate}_k(y)).\text{getLsb}(i)
+\]
+
+2. **Step 2:**
+Using the properties of the least significant bit (LSB) and the XOR operation, we can simplify the expression. Specifically, the \( i \)-th least significant bit of \(\text{truncate}_k(x \^^^ y)\) is equal to the \( i \)-th least significant bit of \( x \^^^ y \) for \( i < k \). Similarly, the \( i \)-th least significant bit of \(\text{truncate}_k(x) \^^^ \text{truncate}_k(y)\) is equal to the \( i \)-th least significant bit of \( x \^^^ y \) for \( i < k \). Therefore, the two expressions are equal.
+
+Since the \( i \)-th least significant bit of \(\text{truncate}_k(x \^^^ y)\) is equal to the \( i \)-th least significant bit of \(\text{truncate}_k(x) \^^^ \text{truncate}_k(y)\) for every \( i \in \{0, 1, \ldots, k-1\} \), we conclude that:
+\[
+\text{truncate}_k(x \^^^ y) = \text{truncate}_k(x) \^^^ \text{truncate}_k(y)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x y : BitVec w} :
+    (x ^^^ y).truncate k = x.truncate k ^^^ y.truncate k := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x y : BitVec w} :
+    (x ^^^ y).truncate k = x.truncate k ^^^ y.truncate k := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

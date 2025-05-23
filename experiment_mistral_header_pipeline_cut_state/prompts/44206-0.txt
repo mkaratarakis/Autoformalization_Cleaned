@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Strict Inequality from Non-Equality and Less-Than-or-Equal in Bitvectors of Specified Width : For any natural number \( n \) and any two bitvectors \( x \) and \( y \) of width \( n \), if \( x \leq y \) and \( x \neq y \), then \( x < y \).
+
+2. **Informal Proof**  
+We start by strengthening the proposition we are proving. We show that for any bitvectors \( x \) and \( y \) of width \( n \), if \( x \leq y \) and \( x \neq y \), then \( x < y \).
+
+1. **Construct the natural numbers and their bounds:**
+- Let \( x \) and \( \text{lt}_x \) denote the natural number and the proof that \( x < 2^n \) from the bitvector \( x \).
+- Let \( y \) and \( \text{lt}_y \) denote the natural number and the proof that \( y < 2^n \) from the bitvector \( y \).
+
+2. **Simplify the goal:**
+- Using the definitions and properties of bitvectors and natural numbers, we simplify the proposition we want to show. The goal reduces to proving that if \( x \leq y \) and \( x \neq y \), then \( x < y \).
+
+3. **Apply the theorem:**
+- The theorem states that for any natural numbers \( x \) and \( y \), if \( x \leq y \) and \( x \neq y \), then \( x < y \). This theorem directly proves our goal.
+
+Therefore, we have shown that if \( x \leq y \) and \( x \neq y \), then \( x < y \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y : BitVec n) (h1 : x <= y) (h2 : ¬ x = y) : x < y := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec n) (h1 : x <= y) (h2 : ¬ x = y) : x < y := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

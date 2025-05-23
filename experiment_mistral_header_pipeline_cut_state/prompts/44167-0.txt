@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Addition of Bitvector Representations of Integers Modulo \( 2^n \) : For any natural number \( n \) and any integers \( x \) and \( y \), the bitvector representation of the sum \( x + y \) modulo \( 2^n \) is equal to the sum of the bitvector representations of \( x \) and \( y \) modulo \( 2^n \). In other words, \(\text{BitVec.ofInt}(n, x + y) = \text{BitVec.ofInt}(n, x) + \text{BitVec.ofInt}(n, y)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that the bitvector representation of an integer \( z \) modulo \( 2^n \) is a bitvector of width \( n \) that represents \( z \mod 2^n \). We need to show that \(\text{BitVec.ofInt}(n, x + y) = \text{BitVec.ofInt}(n, x) + \text{BitVec.ofInt}(n, y)\).
+
+1. **Step 1:**
+To prove that the bitvector representation of the sum \( x + y \) modulo \( 2^n \) is equal to the sum of the bitvector representations of \( x \) and \( y \) modulo \( 2^n \), it suffices to show that the integer representation of \(\text{BitVec.ofInt}(n, x + y)\) is equal to the integer representation of \(\text{BitVec.ofInt}(n, x) + \text{BitVec.ofInt}(n, y)\). This is because if the integer representations are equal, then the bitvectors themselves are equal.
+
+2. **Step 2:**
+Using the properties of the integer representation of bitvectors and the properties of addition, we can simplify the proposition we want to show to the equality of the integer representations, which is trivially true. Specifically, the integer representation of \(\text{BitVec.ofInt}(n, x + y)\) is \( (x + y) \mod 2^n \), and the integer representation of \(\text{BitVec.ofInt}(n, x) + \text{BitVec.ofInt}(n, y)\) is \((x \mod 2^n) + (y \mod 2^n) \mod 2^n\). Since \((x + y) \mod 2^n = (x \mod 2^n + y \mod 2^n) \mod 2^n\), the equality holds.
+
+Therefore, we have shown that \(\text{BitVec.ofInt}(n, x + y) = \text{BitVec.ofInt}(n, x) + \text{BitVec.ofInt}(n, y)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n} (x y : Int) : BitVec.ofInt n (x + y) =
+    BitVec.ofInt n x + BitVec.ofInt n y := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n} (x y : Int) : BitVec.ofInt n (x + y) =
+    BitVec.ofInt n x + BitVec.ofInt n y := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

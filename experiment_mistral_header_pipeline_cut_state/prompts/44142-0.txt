@@ -1,0 +1,65 @@
+
+1. **Informal Theorem**  
+Most Significant Bit of Prepended Bitvector : For any boolean value \( a \) and any bitvector \( x \) of width \( w \), the most significant bit of the bitvector obtained by prepending \( a \) to \( x \) is equal to \( a \). In other words, the most significant bit of the bitvector \( \text{BitVec.cons}(a, x) \) is \( a \).
+
+2. **Informal Proof**  
+To prove that the most significant bit of the bitvector obtained by prepending \( a \) to \( x \) is \( a \), we use the following properties and definitions:
+1. **Most Significant Bit Preservation under Bitvector Cast:**
+\[
+\text{if } w = v, \text{ then } \text{msb}(\text{cast}(h, x)) = \text{msb}(x)
+\]
+This property states that the most significant bit of a bitvector cast to the same width is the same as the most significant bit of the original bitvector.
+2. **Most Significant Bit of Concatenated Bitvectors:**
+\[
+\text{msb}(x \mathbin{\|} y) = \begin{cases}
+y.\text{msb} & \text{if } w = 0 \\
+x.\text{msb} & \text{otherwise}
+\end{cases}
+\]
+This property states that the most significant bit of the concatenation of two bitvectors is the most significant bit of the first bitvector if the first bitvector is non-empty, otherwise it is the most significant bit of the second bitvector.
+3. **Definition of Prepending a Boolean Value:**
+The operation \( \text{BitVec.cons}(a, x) \) prepends the boolean value \( a \) to the bitvector \( x \).
+
+Using these properties, we can simplify the expression \( \text{msb}(\text{BitVec.cons}(a, x)) \):
+- By the definition of \( \text{BitVec.cons}(a, x) \), this is equivalent to the most significant bit of the bitvector obtained by concatenating a bitvector of width 1 containing \( a \) with \( x \).
+- Since the bitvector of width 1 containing \( a \) is non-empty, the most significant bit of the concatenated bitvector is the most significant bit of the bitvector of width 1 containing \( a \), which is \( a \).
+
+Therefore, we have:
+\[
+\text{msb}(\text{BitVec.cons}(a, x)) = a
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example : (cons a x).msb = a := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example : (cons a x).msb = a := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

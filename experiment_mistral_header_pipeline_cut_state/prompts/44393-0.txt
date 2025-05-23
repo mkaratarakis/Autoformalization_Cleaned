@@ -1,0 +1,46 @@
+
+1. **Informal Theorem**  
+Subtraction of Integers is Negative if First is Less Than Second: \(a < b \to a - b < 0\) : For any integers \(a\) and \(b\), if \(a < b\), then \(a - b < 0\).
+
+2. **Informal Proof**  
+To prove that for any integers \(a\) and \(b\), if \(a < b\), then \(a - b < 0\), we proceed as follows:
+
+1. **Step 1:**
+We start with the given inequality \(a < b\). Using the property that adding the same element to both sides of a strict inequality preserves the inequality, we add \(-b\) to both sides:
+\[
+a + (-b) < b + (-b)
+\]
+This simplifies to:
+\[
+a - b < b - b
+\]
+
+2. **Step 2:**
+Next, we use the property of additive inverses, which states that for any integer \(b\), \(b + (-b) = 0\). Applying this property to the right-hand side of the inequality, we get:
+\[
+a - b < 0
+\]
+This is exactly the inequality we needed to prove.
+
+Therefore, we have shown that if \(a < b\), then \(a - b < 0\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : a < b) : a - b < 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : a < b) : a - b < 0 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

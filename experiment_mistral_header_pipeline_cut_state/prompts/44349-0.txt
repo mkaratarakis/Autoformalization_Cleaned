@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Negation of Nonnegative Integer is Nonpositive : For any integer \( a \), if \( 0 \leq a \), then \( -a \leq 0 \).
+
+2. **Informal Proof**  
+We start by assuming that \( 0 \leq a \). We need to show that \(-a \leq 0\).
+
+1. First, we construct the lemma that \(-a \leq -0\) using the fact that if \(0 \leq a\), then \(-a \leq -0\). This follows from the property that negation reverses the inequality in ordered additive commutative groups.
+2. Next, we use the property that the negation of zero is zero, i.e., \(-0 = 0\), to replace \(-0\) with \(0\) in the lemma \(-a \leq -0\). This simplifies our lemma to \(-a \leq 0\), which is exactly what we need to prove.
+
+Thus, we have shown that if \(0 \leq a\), then \(-a \leq 0\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : Int} (h : 0 ≤ a) : -a ≤ 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a : Int} (h : 0 ≤ a) : -a ≤ 0 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

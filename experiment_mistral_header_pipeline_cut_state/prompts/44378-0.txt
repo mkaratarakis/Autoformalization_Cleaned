@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Multiplication of Nonpositive and Nonnegative Integers is Nonpositive : For any integers \(a\) and \(b\), if \(a \leq 0\) and \(0 \leq b\), then \(a \times b \leq 0\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting the given conditions: \(a \leq 0\) and \(0 \leq b\). We need to show that \(a \times b \leq 0\).
+
+1. **Construct a lemma:**
+We construct a lemma \( h \) that states \( a \times b \leq 0 \times b \). This follows from the property that right multiplication by a nonnegative element preserves inequality. Specifically, since \( a \leq 0 \) and \( 0 \leq b \), we have:
+\[
+a \times b \leq 0 \times b
+\]
+
+2. **Simplify the lemma:**
+We use the property that zero multiplied by any integer is zero to simplify the lemma \( h \). Since \( 0 \times b = 0 \), the lemma \( h \) simplifies to:
+\[
+a \times b \leq 0
+\]
+This is exactly the goal we need to prove.
+
+Therefore, we have shown that if \(a \leq 0\) and \(0 \leq b\), then \(a \times b \leq 0\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int}
+  (ha : a ≤ 0) (hb : 0 ≤ b) : a * b ≤ 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int}
+  (ha : a ≤ 0) (hb : 0 ≤ b) : a * b ≤ 0 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

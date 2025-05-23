@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Left Addition with Negation Preserves Strict Inequality in Integers : For any integers \(a\), \(b\), and \(c\), if \(a < b + c\), then \(-b + a < c\).
+
+2. **Informal Proof**  
+We start with the hypothesis that \(a < b + c\). To prove that \(-b + a < c\), we first use the commutativity of addition in the integers to rewrite the goal \(-b + a < c\) as \(a + (-b) < c\).
+
+Next, we apply the theorem that states if \(a < b + c\), then \(a - b < c\). Since \(a + (-b)\) is equivalent to \(a - b\), and we have the hypothesis \(a < b + c\), this theorem directly implies that \(a + (-b) < c\).
+
+Therefore, we have shown that \(-b + a < c\), completing the proof.
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a < b + c) : -b + a < c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a < b + c) : -b + a < c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Natural Number Representation of Cons Operation in Bitvectors: \((\text{BitVec.cons}(b, x)).\text{toNat} = b.\text{toNat} \<<< w \ ||| x.\text{toNat}\) : For any natural number \( w \), any boolean \( b \), and any bitvector \( x \) of width \( w \), the natural number representation of the bitvector obtained by prepending \( b \) to \( x \) is equal to the natural number representation of \( b \) shifted left by \( w \) positions, bitwise ORed with the natural number representation of \( x \). In other words, \((\text{BitVec.cons}(b, x)).\text{toNat} = b.\text{toNat} \<<< w \ ||| x.\text{toNat}\).
+
+2. **Informal Proof**  
+We start by decomposing the bitvector \( x \) of width \( w \) into its underlying natural number representation \( x \) and the proof that \( x < 2^w \). Let \( x \) denote the natural number representation of the bitvector \( x \).
+
+Next, we use the definitions of the `BitVec.cons` function, the `toNat_append` function, and the `toNat_ofBool` function to simplify the expression \((\text{BitVec.cons}(b, x)).\text{toNat}\). According to these definitions:
+- `BitVec.cons` prepends a single bit \( b \) to the front of the bitvector \( x \).
+- `toNat_append` converts the concatenated bitvector to a natural number.
+- `toNat_ofBool` converts the boolean \( b \) to a natural number.
+
+By these definitions, the natural number representation of the bitvector obtained by prepending \( b \) to \( x \) is equal to the natural number representation of \( b \) shifted left by \( w \) positions, bitwise ORed with the natural number representation of \( x \). Therefore, we have:
+\[
+(\text{BitVec.cons}(b, x)).\text{toNat} = b.\text{toNat} \<<< w \ ||| x.\text{toNat}
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (b : Bool) (x : BitVec w) :
+    (cons b x).toNat = (b.toNat <<< w) ||| x.toNat := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (b : Bool) (x : BitVec w) :
+    (cons b x).toNat = (b.toNat <<< w) ||| x.toNat := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

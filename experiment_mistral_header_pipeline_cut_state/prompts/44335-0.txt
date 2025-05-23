@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Minimum is Less Than or Equal to Right Argument in Integers : For any integers \(a\) and \(b\), the minimum of \(a\) and \(b\) is less than or equal to \(b\), i.e., \(\min(a, b) \le b\).
+
+2. **Informal Proof**  
+To prove that \(\min(a, b) \le b\), we start by using the definition of the minimum function in a linear order. According to this definition, \(\min(a, b)\) is given by:
+\[
+\min(a, b) = \begin{cases}
+a & \text{if } a \le b \\
+b & \text{if } b \le a
+\end{cases}
+\]
+Thus, the goal of showing \(\min(a, b) \le b\) is equivalent to showing:
+\[
+(\text{if } a \le b \text{ then } a \text{ else } b) \le b
+\]
+
+We consider two cases:
+
+1. **Case 1: \(a \le b\)**
+
+In this case, \(\min(a, b) = a\). Therefore, we need to show that \(a \le b\). This is true by the assumption \(a \le b\).
+
+2. **Case 2: \(b \le a\)**
+
+In this case, \(\min(a, b) = b\). Therefore, we need to show that \(b \le b\). This is trivially true by the reflexive property of the order relation.
+
+In both cases, we have shown that \(\min(a, b) \le b\). Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Int) : min a b ≤ b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a b : Int) : min a b ≤ b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

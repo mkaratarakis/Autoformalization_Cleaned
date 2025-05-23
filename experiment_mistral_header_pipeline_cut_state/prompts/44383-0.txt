@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Absolute Value of Integer is Positive if and Only if Integer is Nonzero : For any integer \( a \), the absolute value of \( a \) as a natural number, denoted as \( |a| \), is strictly greater than 0 if and only if \( a \) is not equal to 0. Formally, \( 0 < |a| \) if and only if \( a \neq 0 \).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal \( 0 < a.natAbs \leftrightarrow a \neq 0 \).
+
+1. **Step 1:**
+We use the equivalence that for any element \( a \) in a canonically ordered additive commutative monoid, \( 0 < a \) if and only if \( a \neq 0 \). This transforms our goal from \( 0 < a.natAbs \) to \( a.natAbs \neq 0 \).
+
+2. **Step 2:**
+We use the definition of inequality \( a \neq 0 \) as \( \neg (a = 0) \). This transforms our goal to \( a.natAbs \neq 0 \leftrightarrow \neg (a = 0) \).
+
+3. **Step 3:**
+We use the equivalence that the absolute value of an integer \( a \) is zero if and only if \( a \) itself is zero, which transforms our goal to \( \neg (a = 0) \leftrightarrow a \neq 0 \). This is trivially true by the definition of inequality.
+
+Thus, we have shown that \( 0 < a.natAbs \) if and only if \( a \neq 0 \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : 0 < natAbs a ↔ a ≠ 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example : 0 < natAbs a ↔ a ≠ 0 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,54 @@
+
+1. **Informal Theorem**  
+Subtraction of Bitvector by Itself is Zero Bitvector in Bitvectors of Specified Width : For any natural number \( n \) and any bitvector \( x \) of width \( n \), the subtraction of \( x \) from itself results in the zero bitvector of width \( n \), i.e., \( x - x = 0#n \).
+
+2. **Informal Proof**  
+To prove that \( x - x = 0#n \), it suffices to show that the natural number representation of \( x - x \) is equal to the natural number representation of \( 0#n \), i.e., \( (x - x).\text{toNat} = (0#n).\text{toNat} \).
+
+Using the theorem that the natural number representation of the subtraction of two bitvectors is the result of the subtraction of their natural number representations modulo \( 2^n \), we can simplify the proposition we want to show to:
+\[
+(x - x).\text{toNat} = (2^n - x.\text{toNat} + x.\text{toNat}) \mod 2^n
+\]
+
+Since the commutativity of addition in natural numbers and the identity \( a + (b - a) = b \) for \( a \leq b \) hold, we can rewrite the goal as:
+\[
+2^n \mod 2^n = (0#n).\text{toNat}
+\]
+and we need to show that \( x.\text{toNat} \leq 2^n \).
+
+First, we show that \( 2^n \mod 2^n = 0 \). This is trivial because any number modulo itself is zero. Therefore, the goal is now to show that \( x.\text{toNat} \leq 2^n \).
+
+The current goal \( x.\text{toNat} \leq 2^n \) is exactly proved by the fact that the natural number representation of any bitvector \( x \) of width \( n \) is strictly less than \( 2^n \), i.e., \( x.\text{toNat} < 2^n \). Since \( a < b \) implies \( a \leq b \), this completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec n) : x - x = 0#n := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec n) : x - x = 0#n := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

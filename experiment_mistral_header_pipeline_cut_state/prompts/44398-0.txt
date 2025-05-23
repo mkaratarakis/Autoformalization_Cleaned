@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Commutativity of Maximum on Integers: \(\max(a, b) = \max(b, a)\) : For any integers \(a\) and \(b\), the maximum of \(a\) and \(b\) is equal to the maximum of \(b\) and \(a\), i.e., \(\max(a, b) = \max(b, a)\).
+
+2. **Informal Proof**  
+We start by using the definition of the maximum function for integers, which states that \(\max(a, b) = \text{if } a \leq b \text{ then } b \text{ else } a\). Therefore, our goal is to show that \((\text{if } a \leq b \text{ then } b \text{ else } a) = (\text{if } b \leq a \text{ then } a \text{ else } b)\).
+
+We consider the following cases:
+
+1. **Case 1: \(a \leq b\) and \(b \leq a\):**
+- Since \(a \leq b\) and \(b \leq a\), by the antisymmetry of the less than or equal to relation, we have \(a = b\).
+- Therefore, \((\text{if } a \leq b \text{ then } b \text{ else } a) = b\) and \((\text{if } b \leq a \text{ then } a \text{ else } b) = a\), which simplifies to \(b = a\).
+
+2. **Case 2: \(a \leq b\) and \(\neg (b \leq a)\):**
+- Since \(a \leq b\) and \(\neg (b \leq a)\), we have \((\text{if } a \leq b \text{ then } b \text{ else } a) = b\) and \((\text{if } b \leq a \text{ then } a \text{ else } b) = b\), which simplifies to \(b = b\).
+
+3. **Case 3: \(\neg (a \leq b)\) and \(b \leq a\):**
+- Since \(\neg (a \leq b)\) and \(b \leq a\), we have \((\text{if } a \leq b \text{ then } b \text{ else } a) = a\) and \((\text{if } b \leq a \text{ then } a \text{ else } b) = a\), which simplifies to \(a = a\).
+
+4. **Case 4: \(\neg (a \leq b)\) and \(\neg (b \leq a)\):**
+- Since \(\neg (a \leq b)\) and \(\neg (b \leq a)\), this case is impossible because the totality of the order relation on integers ensures that either \(a \leq b\) or \(b \leq a\) must hold.
+
+In all valid cases, we have shown that \((\text{if } a \leq b \text{ then } b \text{ else } a) = (\text{if } b \leq a \text{ then } a \text{ else } b)\). Therefore, \(\max(a, b) = \max(b, a)\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Int) : max a b = max b a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a b : Int) : max a b = max b a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

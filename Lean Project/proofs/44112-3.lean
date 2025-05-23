@@ -11,14 +11,9 @@ open BitVec
 
 example (x y z : BitVec w) :
     x ||| y ||| z = x ||| (y ||| z) := by
-  ext i
-  calc
-    (x ||| y ||| z).getLsb i
-      = ((x ||| y).getLsb i : Bool) || (z.getLsb i : Bool) := rfl
-    ... = (x.getLsb i || y.getLsb i) || z.getLsb i := rfl
-    ... = x.getLsb i || (y.getLsb i || z.getLsb i) := by rw [or_assoc]
-    ... = x.getLsb i || ((y ||| z).getLsb i : Bool) := rfl
-    ... = (x ||| (y ||| z)).getLsb i := rfl
+  funext i
+  simp only [getLsb_bor]
+  exact or_assoc (x.getLsb i) (y.getLsb i) (z.getLsb i)
 
 /- ACTUAL PROOF OF BitVec.or_assoc -/
 

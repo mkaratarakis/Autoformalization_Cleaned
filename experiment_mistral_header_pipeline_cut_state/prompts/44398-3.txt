@@ -1,0 +1,46 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:11:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  dite (a ≤ b) ?m.67 ?m.68
+case pos
+a b : Int
+h : a ≤ b
+⊢ Int.instMax.1 a b = Int.instMax.1 b a
+tmp.lean:14:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  dite (a ≤ b) ?m.76 ?m.77
+case neg
+a b : Int
+h : ¬a ≤ b
+⊢ Int.instMax.1 a b = Int.instMax.1 b a
+tmp.lean:8:43: error: unsolved goals
+case pos
+a b : Int
+h : a ≤ b
+⊢ Int.instMax.1 a b = Int.instMax.1 b a
+
+case neg
+a b : Int
+h : ¬a ≤ b
+⊢ Int.instMax.1 a b = Int.instMax.1 b a
+case pos
+a b : Int
+h : a ≤ b
+⊢ Int.instMax.1 a b = Int.instMax.1 b a
+
+case neg
+a b : Int
+h : ¬a ≤ b
+⊢ Int.instMax.1 a b = Int.instMax.1 b a
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a b : Int) : max a b = max b a := by
+  unfold max
+  by_cases h : a ≤ b

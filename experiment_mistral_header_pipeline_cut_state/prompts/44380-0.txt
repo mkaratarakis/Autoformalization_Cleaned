@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Negation Reverses Strict Inequality in Integers: \( a < -b \to b < -a \) : For any integers \( a \) and \( b \), if \( a < -b \), then \( b < -a \).
+
+2. **Informal Proof**  
+We start with the assumption that \( a < -b \). Using the property that negation reverses strict inequality in ordered additive commutative groups, we have:
+\[
+a < -b \implies -(-b) < -a
+\]
+By the double negation identity, \(-(-b) = b\), we can substitute \(-(-b)\) with \(b\) in the inequality:
+\[
+b < -a
+\]
+Thus, we have shown that if \( a < -b \), then \( b < -a \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : a < -b) : b < -a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : a < -b) : b < -a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

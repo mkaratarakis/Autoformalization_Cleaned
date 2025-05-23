@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Arithmetic Right Shift of Bitvector Equals Conversion of Right Shifted Integer : For any natural number \( n \), any bitvector \( x \) of width \( n \), and any natural number \( i \), the arithmetic right shift of \( x \) by \( i \) positions, denoted as \( x \gg i \), is equal to the bitvector obtained by converting the integer result of the right shift operation \( x.\text{toInt} \gg i \) back to a bitvector of width \( n \). Formally, \( x.\text{sshiftRight} \, i = \text{BitVec.ofInt} \, n \, (x.\text{toInt} \gg i) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that to show \( x.\text{sshiftRight} \, i = \text{BitVec.ofInt} \, n \, (x.\text{toInt} \gg i) \), it suffices to show that the integer representation of \( x.\text{sshiftRight} \, i \) is equal to the integer representation of \( \text{BitVec.ofInt} \, n \, (x.\text{toInt} \gg i) \). This is because if the integer representations of two bitvectors are equal, then the bitvectors themselves are equal.
+
+Next, we use the definition of the arithmetic right shift operation on bitvectors. The arithmetic right shift of a bitvector \( x \) by \( i \) positions, \( x.\text{sshiftRight} \, i \), is defined as the bitvector obtained by converting the integer result of the right shift operation \( x.\text{toInt} \gg i \) back to a bitvector of width \( n \). Therefore, the integer representation of \( x.\text{sshiftRight} \, i \) is exactly \( x.\text{toInt} \gg i \).
+
+Similarly, the integer representation of \( \text{BitVec.ofInt} \, n \, (x.\text{toInt} \gg i) \) is also \( x.\text{toInt} \gg i \). Since both integer representations are equal, we conclude that \( x.\text{sshiftRight} \, i = \text{BitVec.ofInt} \, n \, (x.\text{toInt} \gg i) \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec n} {i : Nat} :
+    x.sshiftRight i = BitVec.ofInt n (x.toInt >>> i) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec n} {i : Nat} :
+    x.sshiftRight i = BitVec.ofInt n (x.toInt >>> i) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

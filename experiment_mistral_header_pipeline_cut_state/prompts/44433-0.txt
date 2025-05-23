@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Absolute Value of Product of Integers Equals Product of Absolute Values: \(\text{natAbs}(a * b) = \text{natAbs}(a) * \text{natAbs}(b)\) : For any integers \( a \) and \( b \), the absolute value of their product is equal to the product of their absolute values, i.e., \(\text{natAbs}(a * b) = \text{natAbs}(a) * \text{natAbs}(b)\).
+
+2. **Informal Proof**  
+To prove that \(\text{natAbs}(a * b) = \text{natAbs}(a) * \text{natAbs}(b)\) for any integers \( a \) and \( b \), we will consider every possible case for \( a \) and \( b \).
+
+1. **Case 1: \( a \) and \( b \) are both non-negative integers.**
+- Let \( a = \text{ofNat}(a_1) \) and \( b = \text{ofNat}(b_1) \) where \( a_1, b_1 \in \mathbb{N} \).
+- We need to show that \(\text{natAbs}(\text{ofNat}(a_1) * \text{ofNat}(b_1)) = \text{natAbs}(\text{ofNat}(a_1)) * \text{natAbs}(\text{ofNat}(b_1))\).
+- Simplifying, we get \(\text{natAbs}(\text{ofNat}(a_1 * b_1)) = a_1 * b_1\).
+- Since \(\text{natAbs}(\text{ofNat}(a_1)) = a_1\) and \(\text{natAbs}(\text{ofNat}(b_1)) = b_1\), the equation holds.
+
+2. **Case 2: \( a \) is a non-negative integer and \( b \) is a negative integer.**
+- Let \( a = \text{ofNat}(a_1) \) and \( b = -\text{ofNat}(b_1 + 1) \) where \( a_1, b_1 \in \mathbb{N} \).
+- We need to show that \(\text{natAbs}(\text{ofNat}(a_1) * -\text{ofNat}(b_1 + 1)) = \text{natAbs}(\text{ofNat}(a_1)) * \text{natAbs}(-\text{ofNat}(b_1 + 1))\).
+- Simplifying, we get \(\text{natAbs}(-\text{ofNat}(a_1 * (b_1 + 1))) = a_1 * (b_1 + 1)\).
+- Since \(\text{natAbs}(\text{ofNat}(a_1)) = a_1\) and \(\text{natAbs}(-\text{ofNat}(b_1 + 1)) = b_1 + 1\), the equation holds.
+
+3. **Case 3: \( a \) is a negative integer and \( b \) is a non-negative integer.**
+- Let \( a = -\text{ofNat}(a_1 + 1) \) and \( b = \text{ofNat}(b_1) \) where \( a_1, b_1 \in \mathbb{N} \).
+- We need to show that \(\text{natAbs}(-\text{ofNat}(a_1 + 1) * \text{ofNat}(b_1)) = \text{natAbs}(-\text{ofNat}(a_1 + 1)) * \text{natAbs}(\text{ofNat}(b_1))\).
+- Simplifying, we get \(\text{natAbs}(-\text{ofNat}((a_1 + 1) * b_1)) = (a_1 + 1) * b_1\).
+- Since \(\text{natAbs}(-\text{ofNat}(a_1 + 1)) = a_1 + 1\) and \(\text{natAbs}(\text{ofNat}(b_1)) = b_1\), the equation holds.
+
+4. **Case 4: \( a \) and \( b \) are both negative integers.**
+- Let \( a = -\text{ofNat}(a_1 + 1) \) and \( b = -\text{ofNat}(b_1 + 1) \) where \( a_1, b_1 \in \mathbb{N} \).
+- We need to show that \(\text{natAbs}(-\text{ofNat}(a_1 + 1) * -\text{ofNat}(b_1 + 1)) = \text{natAbs}(-\text{ofNat}(a_1 + 1)) * \text{natAbs}(-\text{ofNat}(b_1 + 1))\).
+- Simplifying, we get \(\text{natAbs}(\text{ofNat}((a_1 + 1) * (b_1 + 1))) = (a_1 + 1) * (b_1 + 1)\).
+- Since \(\text{natAbs}(-\text{ofNat}(a_1 + 1)) = a_1 + 1\) and \(\text{natAbs}(-\text{ofNat}(b_1 + 1)) = b_1 + 1\), the equation holds.
+
+In all cases, the equation \(\text{natAbs}(a * b) = \text{natAbs}(a) * \text{natAbs}(b)\) holds. Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Int) : natAbs (a * b) = natAbs a * natAbs b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a b : Int) : natAbs (a * b) = natAbs a * natAbs b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

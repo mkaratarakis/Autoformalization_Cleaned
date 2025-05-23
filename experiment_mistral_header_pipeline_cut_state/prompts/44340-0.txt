@@ -1,0 +1,56 @@
+
+1. **Informal Theorem**  
+Left Integer is Less Than or Equal to Maximum : For any integers \(a\) and \(b\), it holds that \(a \leq \max(a, b)\).
+
+2. **Informal Proof**  
+To prove that \(a \leq \max(a, b)\) for any integers \(a\) and \(b\), we start by using the definition of the maximum function. According to the definition, \(\max(a, b)\) is given by:
+\[
+\max(a, b) = \begin{cases}
+b & \text{if } a \leq b \\
+a & \text{if } a > b
+\end{cases}
+\]
+Thus, the goal \(a \leq \max(a, b)\) can be rewritten as:
+\[
+a \leq \text{if } a \leq b \text{ then } b \text{ else } a
+\]
+We now consider the two cases:
+
+1. **Case 1: \(a \leq b\)**
+
+In this case, \(\max(a, b) = b\). Therefore, the goal becomes:
+\[
+a \leq b
+\]
+This is true by the assumption \(a \leq b\).
+
+2. **Case 2: \(a > b\)**
+
+In this case, \(\max(a, b) = a\). Therefore, the goal becomes:
+\[
+a \leq a
+\]
+This is true by the reflexive property of the inequality, which states that \(a \leq a\) for any integer \(a\).
+
+Since both cases are true, we conclude that \(a \leq \max(a, b)\) for any integers \(a\) and \(b\). This completes the proof.
+
+3. **Formal Theorem**  
+example (a b : Int) : a ≤ max a b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a b : Int) : a ≤ max a b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

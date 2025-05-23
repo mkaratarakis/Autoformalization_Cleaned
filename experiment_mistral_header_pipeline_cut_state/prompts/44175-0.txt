@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Left Rotation of Bitvector is Invariant under Modulo Width : For any natural number \( w \) and any bitvector \( x \) of width \( w \), and for any natural number \( r \), the left rotation of \( x \) by \( r \mod w \) is equal to the left rotation of \( x \) by \( r \). In other words, \( x.\text{rotateLeft}(r \mod w) = x.\text{rotateLeft}(r) \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the left rotation operation and the property of the modulo operation. Specifically, we use the fact that for any natural numbers \( a \) and \( n \), the identity \((a \% n) \% n = a \% n\) holds. This means that the expression \( r \% w \) is equivalent to \( r \) when taken modulo \( w \). Therefore, the left rotation of \( x \) by \( r \% w \) is the same as the left rotation of \( x \) by \( r \). Hence, we have:
+\[
+x.\text{rotateLeft}(r \% w) = x.\text{rotateLeft}(r)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec w} {r : Nat} :
+    x.rotateLeft (r % w) = x.rotateLeft r := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec w} {r : Nat} :
+    x.rotateLeft (r % w) = x.rotateLeft r := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

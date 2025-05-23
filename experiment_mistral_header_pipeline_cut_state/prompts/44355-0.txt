@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Positive Difference Implies Less Than in Integers : For any integers \(a\) and \(b\), if \(b < a\), then \(0 < a - b\).
+
+2. **Informal Proof**  
+To prove that \(0 < a - b\) given \(b < a\), we proceed as follows:
+
+1. **Step 1:**
+We use the property that adding the same element to both sides of a strict inequality preserves the inequality. Specifically, since \( b < a \), adding \(-b\) to both sides gives:
+\[
+b + (-b) < a + (-b)
+\]
+We denote this new inequality as \( h \).
+
+2. **Step 2:**
+We use the property of additive inverses, which states that for any integer \( b \), \( b + (-b) = 0 \). Applying this property to the inequality \( b + (-b) < a + (-b) \), we get:
+\[
+0 < a + (-b)
+\]
+This is equivalent to:
+\[
+0 < a - b
+\]
+which is exactly what we need to prove.
+
+Therefore, we have shown that if \( b < a \), then \( 0 < a - b \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : b < a) : 0 < a - b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : b < a) : 0 < a - b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

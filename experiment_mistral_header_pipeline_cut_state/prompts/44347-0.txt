@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Left Addition Cancellation for Less Than or Equal To in Integers : For any integers \(a\), \(b\), and \(c\), if \(a + b \leq a + c\), then \(b \leq c\).
+
+2. **Informal Proof**  
+We start with the assumption that \(a + b \leq a + c\). To prove that \(b \leq c\), we first construct the inequality \(-a + (a + b) \leq -a + (a + c)\) using the property that adding the same element to both sides of an inequality preserves the inequality. Since \(a + b \leq a + c\) by assumption, we have \(-a + (a + b) \leq -a + (a + c)\).
+
+Next, we simplify the inequality \(-a + (a + b) \leq -a + (a + c)\) using the property of additive groups that \(-a + (a + b) = b\) and \(-a + (a + c) = c\). This simplification yields \(b \leq c\).
+
+Thus, the current goal \(b \leq c\) has been proved, and the proof is complete. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a + b ≤ a + c) : b ≤ c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a + b ≤ a + c) : b ≤ c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

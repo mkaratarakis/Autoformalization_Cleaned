@@ -1,0 +1,53 @@
+
+1. **Informal Theorem**  
+Right Shift Composition: \( x >>> n >>> m = x >>> (n + m) \) : For any natural number \( w \) and any bitvector \( x \) of width \( w \), and for any natural numbers \( n \) and \( m \), the right shift operation applied twice, i.e., \( x >>> n >>> m \), is equal to the right shift operation applied once with the sum of \( n \) and \( m \), i.e., \( x >>> (n + m) \).
+
+2. **Informal Proof**  
+We start with the goal of proving that \( x \>>> n \>>> m = x \>>> (n + m) \). By the theorem that states the right shift of a bitvector \( x \) by \( n + m \) is equivalent to the right shift of \( x \) by \( n \) followed by the right shift of the result by \( m \), we can rewrite the right-hand side of our goal. Specifically, we have:
+\[
+x \>>> (n + m) = (x \>>> n) \>>> m
+\]
+Thus, the goal \( x \>>> n \>>> m = x \>>> (n + m) \) becomes:
+\[
+x \>>> n \>>> m = (x \>>> n) \>>> m
+\]
+This is trivially true by the properties of equality, as both sides of the equation are identical. Therefore, we have shown that:
+\[
+x \>>> n \>>> m = x \>>> (n + m)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {w : Nat} (x : BitVec w) (n m : Nat) :
+    (x >>> n) >>> m = x >>> (n + m) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {w : Nat} (x : BitVec w) (n m : Nat) :
+    (x >>> n) >>> m = x >>> (n + m) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

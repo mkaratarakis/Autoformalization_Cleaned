@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Natural Number Less Than or Equal to Integer's Natural Image : For any natural number \( n \) and any integer \( z \) such that \( 0 \le z \), it holds that \( n \le z.toNat \) if and only if \( n \le z \).
+
+2. **Informal Proof**  
+We start with the goal of proving that for any natural number \( n \) and any integer \( z \) such that \( 0 \le z \), the inequality \( n \le z.toNat \) holds if and only if \( n \le z \).
+
+1. **Step 1:**
+We use the equivalence that for any natural numbers \( m \) and \( n \), \( m \leq n \) if and only if \( \text{ofNat}(m) \leq \text{ofNat}(n) \). This allows us to rewrite the goal \( n \leq z.toNat \) as \( \text{ofNat}(n) \leq \text{ofNat}(z.toNat) \).
+
+2. **Step 2:**
+Since \( 0 \leq z \), we use the fact that for any non-negative integer \( a \), \( \text{toNat}(a) = a \). Therefore, \( \text{ofNat}(z.toNat) = z \).
+
+3. **Step 3:**
+Combining these, our goal \( n \leq z.toNat \) is equivalent to \( \text{ofNat}(n) \leq z \), which is exactly \( n \leq z \).
+
+Thus, we have shown that \( n \le z.toNat \) if and only if \( n \le z \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {n : Nat} {z : Int} (h : 0 ≤ z) : n ≤ z.toNat ↔ (n : Int) ≤ z := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {n : Nat} {z : Int} (h : 0 ≤ z) : n ≤ z.toNat ↔ (n : Int) ≤ z := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

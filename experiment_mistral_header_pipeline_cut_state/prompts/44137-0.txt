@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Right Shift of Bitvector by Sum of Two Natural Numbers : For any natural number \( w \), any bitvector \( x \) of width \( w \), and any natural numbers \( n \) and \( m \), the right shift of \( x \) by \( n + m \) is equal to the right shift of \( x \) by \( n \) followed by the right shift of the result by \( m \). In other words, \( x \>>> (n + m) = (x \>>> n) \>>> m \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for every index \( i \) in the bitvector \( x \), the least significant bit (LSB) of \( x \>>> (n + m) \) at position \( i \) is equal to the LSB of \( (x \>>> n) \>>> m \) at position \( i \).
+
+1. **Introduce a new variable \( i \) into the context:**
+We introduce a new variable \( i \) to reason about the individual bits of the bitvector \( x \). This allows us to consider the LSB of \( x \>>> (n + m) \) and \( (x \>>> n) \>>> m \) at position \( i \).
+
+2. **Simplify using the associativity of addition:**
+Using the associativity of addition, we can rewrite the expression \( (x \>>> (n + m)).\text{getLsb}(i) \) as \( (x \>>> n \>>> m).\text{getLsb}(i) \). This simplification shows that the LSB of \( x \>>> (n + m) \) at position \( i \) is indeed equal to the LSB of \( (x \>>> n) \>>> m \) at position \( i \).
+
+Since this holds for every index \( i \) in the bitvector \( x \), we conclude that \( x \>>> (n + m) = (x \>>> n) \>>> m \). This completes the proof.
+
+3. **Formal Theorem**  
+example {w : Nat} (x : BitVec w) (n m : Nat) :
+    x >>> (n + m) = (x >>> n) >>> m := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {w : Nat} (x : BitVec w) (n m : Nat) :
+    x >>> (n + m) = (x >>> n) >>> m := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

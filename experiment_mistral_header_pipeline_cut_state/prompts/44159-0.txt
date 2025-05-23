@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Commutativity of Bitvector Multiplication: \( x * y = y * x \) : For any natural number \( w \), and for any two bitvectors \( x \) and \( y \) of width \( w \), the product \( x * y \) is equal to the product \( y * x \). In other words, bitvector multiplication is commutative.
+
+2. **Informal Proof**  
+To prove that \( x * y = y * x \) for any bitvectors \( x \) and \( y \) of width \( w \), we use the fact that two bitvectors are equal if and only if their corresponding finite representations are equal. Specifically, we need to show that the finite representation of \( x * y \) is equal to the finite representation of \( y * x \).
+
+By the commutativity of multiplication in the finite type, we know that the finite representation of \( x * y \) is equal to the finite representation of \( y * x \). Therefore, \( x * y = y * x \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec w) : x * y = y * x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec w) : x * y = y * x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

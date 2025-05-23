@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Right Multiplication Preserves Nonnegative Inequality in Integers : For any integers \(a\), \(b\), and \(c\), if \(a \le b\) and \(0 \le c\), then \(a \cdot c \le b \cdot c\).
+
+2. **Informal Proof**  
+We start with the given hypotheses \(a \le b\) and \(0 \le c\). To prove \(a \cdot c \le b \cdot c\), we use the commutativity of multiplication to rewrite the goal as \(c \cdot a \le c \cdot b\). By the theorem that states if \(a \le b\) and \(0 \le c\), then \(c \cdot a \le c \cdot b\), and since we have \(a \le b\) and \(0 \le c\) by the given hypotheses, this theorem directly gives us the desired inequality \(c \cdot a \le c \cdot b\). Therefore, we have \(a \cdot c \le b \cdot c\). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b c : Int}
+    (h₁ : a ≤ b) (h₂ : 0 ≤ c) : a * c ≤ b * c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int}
+    (h₁ : a ≤ b) (h₂ : 0 ≤ c) : a * c ≤ b * c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

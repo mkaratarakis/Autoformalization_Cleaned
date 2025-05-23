@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Right Shift by Zero Preserves Bitvector : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the right shift of \( x \) by 0 is equal to \( x \), i.e., \( x >>> 0 = x \).
+
+2. **Informal Proof**  
+To prove that the right shift of a bitvector \( x \) by 0 is equal to \( x \), we start by considering the definition of the right shift operation. The right shift by 0 does not change the bitvector. Therefore, the proposition \( x >>> 0 = x \) is trivially true. This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec w) : x >>> 0 = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) : x >>> 0 = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

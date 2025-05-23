@@ -1,0 +1,25 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:9:6: error: unknown identifier 'add_left_comm'
+tmp.lean:8:54: error: unsolved goals
+a b c : Int
+h : a ≤ b + c
+⊢ -b + a ≤ c
+tmp.lean:8:54: error: unsolved goals
+a b c : Int
+h : a ≤ b + c
+⊢ -b + a ≤ c
+a b c : Int
+h : a ≤ b + c
+⊢ -b + a ≤ c
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a ≤ b + c) : -b + a ≤ c := by

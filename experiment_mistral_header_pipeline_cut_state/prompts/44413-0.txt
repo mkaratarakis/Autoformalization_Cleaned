@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Negative Successor of a Natural Number is Not Positive: \( 0 < - (n + 1) \leftrightarrow \text{False} \) : For any natural number \( n \), the negative successor of \( n \) in the integers, denoted as \( - (n + 1) \), is not positive, i.e., \( 0 < - (n + 1) \) is false.
+
+2. **Informal Proof**  
+We need to show that for any natural number \( n \), the statement \( 0 < - (n + 1) \) is false.
+
+First, we use the theorems that the negation of \( a < b \) is \( b \le a \) and the equivalence of negations to simplify the goal. This simplifies the goal to showing that \( 0 < - (n + 1) \) implies \(\text{False}\).
+
+To prove this implication, we assume \( 0 < - (n + 1) \) and show that this leads to a contradiction.
+
+Assume \( 0 < - (n + 1) \). By the definition of the negative successor, \( - (n + 1) \) is a negative integer. Therefore, \( - (n + 1) \le 0 \). This contradicts our assumption that \( 0 < - (n + 1) \), because \( 0 < - (n + 1) \) implies \( - (n + 1) > 0 \), which is impossible.
+
+Thus, the assumption \( 0 < - (n + 1) \) leads to a contradiction, and therefore \( 0 < - (n + 1) \) is false. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (n : Nat) : 0 < -[n+1] ↔ False := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (n : Nat) : 0 < -[n+1] ↔ False := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

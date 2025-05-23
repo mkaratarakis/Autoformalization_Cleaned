@@ -1,0 +1,83 @@
+
+1. **Informal Theorem**  
+Natural Number Representation of Prepend Operation in Bitvectors: \((\text{BitVec.cons}(a, x)).\text{toNat} = a.\text{toNat} \<<< w + x.\text{toNat}\) : For any natural number \( w \), any boolean \( a \), and any bitvector \( x \) of width \( w \), the natural number representation of the bitvector obtained by prepending \( a \) to \( x \) is equal to the natural number representation of \( a \) shifted left by \( w \) positions, plus the natural number representation of \( x \). In other words, \((\text{BitVec.cons}(a, x)).\text{toNat} = a.\text{toNat} \<<< w + x.\text{toNat}\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the goal of showing that the natural number representation of the bitvector obtained by prepending \( a \) to \( x \) is equal to the natural number representation of \( a \) shifted left by \( w \) positions, plus the natural number representation of \( x \). We use the following properties and definitions:
+
+1. **Left Shift and Multiplication:**
+\[
+a \<<< w = a \cdot 2^w
+\]
+This property states that the left shift of a natural number \( a \) by \( w \) positions is equivalent to multiplying \( a \) by \( 2^w \).
+
+2. **Commutativity of Multiplication:**
+\[
+a \cdot 2^w = 2^w \cdot a
+\]
+This property states that the product of \( a \) and \( 2^w \) is the same as the product of \( 2^w \) and \( a \).
+
+3. **Natural Number Representation of Bitvector:**
+\[
+x.\text{toNat} < 2^w
+\]
+This property states that the natural number representation of a bitvector \( x \) of length \( w \) is strictly less than \( 2^w \).
+
+4. **Multiplication and Addition Identity:**
+\[
+2^w \cdot a + x.\text{toNat} = 2^w \cdot a \ ||| \ x.\text{toNat}
+\]
+This property states that for any natural numbers \( a \) and \( x.\text{toNat} \) such that \( x.\text{toNat} < 2^w \), the sum \( 2^w \cdot a + x.\text{toNat} \) is equal to the disjunction-like operation \( 2^w \cdot a \ ||| \ x.\text{toNat} \).
+
+Using these properties, we can simplify the goal:
+\[
+(\text{BitVec.cons}(a, x)).\text{toNat} = a.\text{toNat} \<<< w + x.\text{toNat}
+\]
+By substituting the left shift property and the commutativity of multiplication, we get:
+\[
+(\text{BitVec.cons}(a, x)).\text{toNat} = a.\text{toNat} \cdot 2^w + x.\text{toNat}
+\]
+Since \( x.\text{toNat} < 2^w \), we can use the multiplication and addition identity to conclude:
+\[
+a.\text{toNat} \cdot 2^w + x.\text{toNat} = 2^w \cdot a \ ||| \ x.\text{toNat}
+\]
+Thus, we have:
+\[
+(\text{BitVec.cons}(a, x)).\text{toNat} = a.\text{toNat} \<<< w + x.\text{toNat}
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec w} :
+    (cons a x).toNat = (a.toNat <<< w) + x.toNat := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec w} :
+    (cons a x).toNat = (a.toNat <<< w) + x.toNat := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Bitvector with 0-th Bit Set to 1 is \( 1 \) in Bitvector of Width \( w \) : For any natural number \( w \), the bitvector of width \( w \) with the 0-th bit set to 1 is equal to the bitvector \( 1 \) of width \( w \), i.e., \(\text{twoPow}(w, 0) = 1_w\).
+
+2. **Informal Proof**  
+To prove that the bitvector \(\text{twoPow}(w, 0)\) is equal to the bitvector \(1_w\), we use the fact that two bitvectors are equal if and only if their natural number representations are equal. Therefore, it suffices to show that \((\text{twoPow}(w, 0)).\text{toNat} = (1_w).\text{toNat}\).
+
+The natural number representation of \(\text{twoPow}(w, 0)\) is \(2^0 = 1\). Similarly, the natural number representation of \(1_w\) is also \(1\). Hence, \((\text{twoPow}(w, 0)).\text{toNat} = (1_w).\text{toNat}\).
+
+Since the natural number representations are equal, we conclude that \(\text{twoPow}(w, 0) = 1_w\). This completes the proof.
+
+3. **Formal Theorem**  
+example {w : Nat} : twoPow w 0 = 1#w := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {w : Nat} : twoPow w 0 = 1#w := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

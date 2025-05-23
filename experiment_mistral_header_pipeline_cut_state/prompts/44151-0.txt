@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Subtraction of Bitvectors: \( x - y = \text{BitVec.ofNat}(n, (2^n - y.\text{toNat} + x.\text{toNat}) \mod 2^n) \) : For any natural number \( n \) and any bitvectors \( x, y \) of width \( n \), the subtraction \( x - y \) is defined as the bitvector of width \( n \) corresponding to the natural number \((2^n - y.\text{toNat} + x.\text{toNat}) \mod 2^n\). In other words, \( x - y = \text{BitVec.ofNat}(n, (2^n - y.\text{toNat} + x.\text{toNat}) \mod 2^n) \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the subtraction \( x - y \) of two bitvectors \( x \) and \( y \) of width \( n \) is equal to the bitvector of width \( n \) corresponding to the natural number \((2^n - y.\text{toNat} + x.\text{toNat}) \mod 2^n\).
+
+By the definition of bitvector subtraction, \( x - y \) is defined as \(\text{BitVec.ofNat}(n, (2^n - y.\text{toNat} + x.\text{toNat}) \mod 2^n)\). Therefore, the equality \( x - y = \text{BitVec.ofNat}(n, (2^n - y.\text{toNat} + x.\text{toNat}) \mod 2^n) \) holds by definition. This completes the proof.
+
+3. **Formal Theorem**  
+example {n} (x y : BitVec n) : x - y = .ofNat n ((2^n - y.toNat) + x.toNat) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n} (x y : BitVec n) : x - y = .ofNat n ((2^n - y.toNat) + x.toNat) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

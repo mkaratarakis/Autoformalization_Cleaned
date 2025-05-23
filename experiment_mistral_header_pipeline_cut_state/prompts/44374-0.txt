@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Multiplication by Positive Integer Preserves Strict Inequality on the Left : For any integers \(a\), \(b\), and \(c\), if \(a < b\) and \(0 < c\), then \(c \cdot a < c \cdot b\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting the given conditions: \(a < b\) and \(0 < c\).
+
+1. **Construct a lemma:**
+We first construct a lemma that \(0 < c \cdot (b - a)\). This follows from the fact that \(0 < c\) and \(0 < b - a\) (since \(a < b\)). By the property that the product of two positive integers is positive, we have:
+\[
+0 < c \cdot (b - a)
+\]
+
+2. **Rewrite the lemma:**
+Using the distributive property of multiplication over subtraction, we rewrite the lemma:
+\[
+0 < c \cdot (b - a) \implies 0 < c \cdot b - c \cdot a
+\]
+
+3. **Conclude the proof:**
+Finally, we use the property that if \(0 < c \cdot b - c \cdot a\), then \(c \cdot a < c \cdot b\). Therefore, we have:
+\[
+c \cdot a < c \cdot b
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int}
+  (h₁ : a < b) (h₂ : 0 < c) : c * a < c * b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int}
+  (h₁ : a < b) (h₂ : 0 < c) : c * a < c * b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

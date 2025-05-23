@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Complement of Bitvector to Natural Number: \( \text{toNat}(\sim x) = 2^v - 1 - \text{toNat}(x) \) : For any natural number \( v \) and any bitvector \( x \) of width \( v \), the underlying natural number of the complement of \( x \), denoted as \( \sim x \), is equal to \( 2^v - 1 - \text{toNat}(x) \). In other words, \( \text{toNat}(\sim x) = 2^v - 1 - \text{toNat}(x) \).
+
+2. **Informal Proof**  
+We start by using the identity \( a - b - c = a - (b + c) \) to rewrite the goal as \((\sim x).toNat = 2^v - (1 + x.toNat)\). Then, we use the commutativity of addition \( a + b = b + a \) to rewrite \( 1 + x.toNat \) as \( x.toNat + 1 \). Next, we use the definition of the complement of a bitvector, which states that \(\sim x = \text{allOnes}(v) \^^^ x\). Finally, we use the property that the underlying natural number of the XOR of two bitvectors is the XOR of their underlying natural numbers, i.e., \((x \^^^ y).toNat = x.toNat \^^^ y.toNat\). This simplifies our goal to \((\text{allOnes}(v).toNat \^^^ x.toNat) = 2^v - (x.toNat + 1)\).
+
+To prove this, it suffices to show that for all natural numbers \( i \), the \( i \)-th bit of \((\text{allOnes}(v).toNat \^^^ x.toNat)\) is equal to the \( i \)-th bit of \( 2^v - (x.toNat + 1) \). This is because two natural numbers are equal if and only if they have the same bits at every position.
+
+Let \( i \) be an arbitrary natural number. We need to show that the \( i \)-th bit of \((\text{allOnes}(v).toNat \^^^ x.toNat)\) is equal to the \( i \)-th bit of \( 2^v - (x.toNat + 1) \).
+
+Using the properties that \(\text{allOnes}(v).toNat = 2^v - 1\), the \( i \)-th bit of the XOR of two natural numbers is the XOR of their \( i \)-th bits, and the \( i \)-th bit of \( 2^v - 1 \) is 1 if and only if \( i < v \), we simplify the goal to \((\text{decide}(i < v) \oplus x.toNat.testBit(i)) = (2^v - (x.toNat + 1)).testBit(i)\).
+
+We consider two cases:
+1. **Case 1: \( \text{decide}(i < v) = \text{false} \)**:
+- This means \( v \le i \).
+- Using the property that if \( x < 2^i \), then the \( i \)-th bit of \( x \) is false, we need to show \( x.toNat < 2^i \).
+- We use the fact that the underlying natural number of a bitvector \( x \) of width \( v \) is less than \( 2^v \) and the property that if \( v \le i \), then \( 2^v \le 2^i \) to show that \( x.toNat < 2^i \).
+
+2. **Case 2: \( \text{decide}(i < v) = \text{true} \)**:
+- This means \( i < v \).
+- Using the property that the \( i \)-th bit of \( 2^v - (x + 1) \) is 1 if and only if \( i < v \) and the \( i \)-th bit of \( x \) is 0, we simplify the goal to a trivial equality.
+
+In both cases, the goal is satisfied, completing the proof. Therefore, we have shown that \( \text{toNat}(\sim x) = 2^v - 1 - \text{toNat}(x) \).
+
+3. **Formal Theorem**  
+example {x : BitVec v} : (~~~x).toNat = 2^v - 1 - x.toNat := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec v} : (~~~x).toNat = 2^v - 1 - x.toNat := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

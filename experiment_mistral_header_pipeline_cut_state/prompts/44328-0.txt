@@ -1,0 +1,28 @@
+
+1. **Informal Theorem**  
+Subtraction and Nonnegativity Imply Less Than or Equal To in Integers : For any integers \(a\) and \(b\), and for any natural number \(n\), if \(b - a = n\), then \(a \le b\).
+
+2. **Informal Proof**  
+To prove that \(a \le b\), we start with the given hypothesis that \(b - a = n\) for some natural number \(n\). By the definition of the less than or equal to relation in the integers, \(a \le b\) if and only if \(b - a\) is a nonnegative integer. Since \(n\) is a natural number, it is nonnegative. Therefore, \(b - a = n\) implies that \(b - a\) is nonnegative. Hence, \(a \le b\). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Int} (n : Nat) (h : b - a = n) : a ≤ b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open le
+open Nat
+
+example {a b : Int} (n : Nat) (h : b - a = n) : a ≤ b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

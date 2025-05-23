@@ -1,0 +1,89 @@
+
+1. **Informal Theorem**  
+Subtraction of Bitvector Representations of Natural Numbers : For any natural number \( n \) and any natural numbers \( x \) and \( y \), the subtraction of the bitvector representation of \( y \) from the bitvector representation of \( x \) of width \( n \) is equal to the bitvector representation of \( 2^n - (y \mod 2^n) + x \) of width \( n \). In other words, \( \text{BitVec.ofNat}(n, x) - \text{BitVec.ofNat}(n, y) = \text{BitVec.ofNat}(n, 2^n - (y \mod 2^n) + x) \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that the natural number representation of the left-hand side of the equation is equal to the natural number representation of the right-hand side. This is because the function `BitVec.ofNat` is injective, meaning that if two bitvector representations are equal, their natural number representations must also be equal.
+
+1. **Step 1:**
+We start with the goal of proving:
+\[
+\text{BitVec.ofNat}(n, x) - \text{BitVec.ofNat}(n, y) = \text{BitVec.ofNat}(n, 2^n - (y \mod 2^n) + x)
+\]
+To achieve this, it suffices to show that the natural number representation of the left-hand side is equal to the natural number representation of the right-hand side. This is because the function `BitVec.ofNat` is injective.
+
+2. **Step 2:**
+Using the definition of `BitVec.ofNat`, we simplify the expression. The natural number representation of a bitvector is the natural number that the bitvector represents. Therefore, we need to show:
+\[
+\text{toNat}(\text{BitVec.ofNat}(n, x) - \text{BitVec.ofNat}(n, y)) = \text{toNat}(\text{BitVec.ofNat}(n, 2^n - (y \mod 2^n) + x))
+\]
+
+3. **Step 3:**
+By the properties of the `BitVec.ofNat` function and the definition of subtraction in bitvectors, we know that:
+\[
+\text{toNat}(\text{BitVec.ofNat}(n, x) - \text{BitVec.ofNat}(n, y)) = (x - y) \mod 2^n
+\]
+and
+\[
+\text{toNat}(\text{BitVec.ofNat}(n, 2^n - (y \mod 2^n) + x)) = (2^n - (y \mod 2^n) + x) \mod 2^n
+\]
+
+4. **Step 4:**
+We need to show that:
+\[
+(x - y) \mod 2^n = (2^n - (y \mod 2^n) + x) \mod 2^n
+\]
+
+5. **Step 5:**
+Simplifying the right-hand side, we get:
+\[
+(2^n - (y \mod 2^n) + x) \mod 2^n = (2^n - y + x) \mod 2^n
+\]
+Since \( 2^n \mod 2^n = 0 \), this simplifies to:
+\[
+(2^n - y + x) \mod 2^n = (x - y) \mod 2^n
+\]
+
+6. **Conclusion:**
+Therefore, we have shown that:
+\[
+\text{toNat}(\text{BitVec.ofNat}(n, x) - \text{BitVec.ofNat}(n, y)) = \text{toNat}(\text{BitVec.ofNat}(n, 2^n - (y \mod 2^n) + x))
+\]
+Since `BitVec.ofNat` is injective, this implies:
+\[
+\text{BitVec.ofNat}(n, x) - \text{BitVec.ofNat}(n, y) = \text{BitVec.ofNat}(n, 2^n - (y \mod 2^n) + x)
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n} (x y : Nat) : BitVec.ofNat n x - BitVec.ofNat n y = .ofNat n ((2^n - y % 2^n) + x) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n} (x y : Nat) : BitVec.ofNat n x - BitVec.ofNat n y = .ofNat n ((2^n - y % 2^n) + x) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

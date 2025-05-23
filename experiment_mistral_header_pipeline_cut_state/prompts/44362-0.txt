@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Integer Less-Than Characterization: \( a < b \leftrightarrow a \le b \land a \ne b \) : For any integers \( a \) and \( b \), the inequality \( a < b \) holds if and only if \( a \le b \) and \( a \ne b \).
+
+2. **Informal Proof**  
+To prove the equivalence \( a < b \leftrightarrow a \le b \land a \ne b \), we need to show both directions.
+
+1. **(\( \rightarrow \)) If \( a < b \), then \( a \le b \) and \( a \ne b \):**
+- Assume \( a < b \).
+- By the definition of strict inequality, \( a \le b \).
+- Also, by the property of strict inequality, \( a \ne b \).
+
+2. **(\( \leftarrow \)) If \( a \le b \) and \( a \ne b \), then \( a < b \):**
+- Assume \( a \le b \) and \( a \ne b \).
+- By the definition of non-strict inequality, there exists a natural number \( n \) such that \( a + n = b \).
+- We need to show that \( n \ne 0 \). Assume for contradiction that \( n = 0 \).
+- Substituting \( n = 0 \) into the equation \( a + n = b \), we get \( a + 0 = b \).
+- By the property of addition with zero, \( a + 0 = a \), so \( a = b \).
+- This contradicts the assumption \( a \ne b \).
+- Therefore, \( n \ne 0 \).
+- Since \( n \ne 0 \), \( n \) is a positive natural number.
+- By the property of positive natural numbers, \( n = \text{succ}(n - 1) \).
+- Substituting this into the equation \( a + n = b \), we get \( a + \text{succ}(n - 1) = b \).
+- This implies \( a < b \) by the definition of strict inequality.
+
+Thus, we have shown both directions, and the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} : a < b ↔ a ≤ b ∧ a ≠ b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} : a < b ↔ a ≤ b ∧ a ≠ b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

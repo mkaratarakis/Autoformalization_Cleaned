@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Square of Absolute Value Equals Square of Integer: \( \text{natAbs}(a)^2 = a^2 \) : For any integer \( a \), the product of the canonical image of the absolute value of \( a \) in the natural numbers with itself is equal to the product of \( a \) with itself, i.e., \( \text{natAbs}(a) \times \text{natAbs}(a) = a \times a \).
+
+2. **Informal Proof**  
+To prove that for any integer \( a \), \(\text{natAbs}(a) \times \text{natAbs}(a) = a \times a\), we start by using the property of the canonical map from natural numbers to integers. Specifically, the canonical map preserves multiplication, i.e., \(\uparrow(n \cdot m) = \uparrow n \cdot \uparrow m\). Applying this property, we can rewrite the left-hand side of the goal as follows:
+\[
+\uparrow a.\text{natAbs} \cdot \uparrow a.\text{natAbs} = \uparrow (a.\text{natAbs} \cdot a.\text{natAbs})
+\]
+Next, we use the theorem that the square of the absolute value of an integer is equal to the square of the integer itself, i.e., \(\uparrow (a.\text{natAbs} \cdot a.\text{natAbs}) = a \cdot a\). This simplifies our goal to:
+\[
+\uparrow (a.\text{natAbs} \cdot a.\text{natAbs}) = a \cdot a
+\]
+Since the left-hand side and the right-hand side are now identical, the goal reduces to:
+\[
+a \cdot a = a \cdot a
+\]
+This is trivially true by the properties of equality. Therefore, we have shown that \(\text{natAbs}(a) \times \text{natAbs}(a) = a \times a\), completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : Int) : (natAbs a * natAbs a : Int) = a * a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a : Int) : (natAbs a * natAbs a : Int) = a * a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

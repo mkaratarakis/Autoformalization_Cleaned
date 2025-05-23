@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Addition and Inequality: \(b \leq -a + c \to a + b \leq c\) : For any integers \(a\), \(b\), and \(c\), if \(b \leq -a + c\), then \(a + b \leq c\).
+
+2. **Informal Proof**  
+We start with the given inequality \( b \leq -a + c \). To prove that \( a + b \leq c \), we use the property that adding the same element to both sides of an inequality preserves the inequality. Specifically, adding \( a \) to both sides of \( b \leq -a + c \) gives us:
+\[
+a + b \leq a + (-a + c)
+\]
+Next, we use the cancellation property of addition and negation in the integers, which states that \( a + (-a + c) = c \). Therefore, we can simplify the inequality to:
+\[
+a + b \leq c
+\]
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : b ≤ -a + c) : a + b ≤ c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : b ≤ -a + c) : a + b ≤ c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

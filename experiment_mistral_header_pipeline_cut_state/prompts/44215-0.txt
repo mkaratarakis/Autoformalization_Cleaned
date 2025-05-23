@@ -1,0 +1,68 @@
+
+1. **Informal Theorem**  
+Distributive Property of Multiplication over Addition for Bitvectors of Fixed Width : For any natural number \( w \) and any bitvectors \( x, y, z \) of width \( w \), the multiplication of \( x \) with the sum of \( y \) and \( z \) is equal to the sum of the products \( x * y \) and \( x * z \). In other words, \( x * (y + z) = x * y + x * z \).
+
+2. **Informal Proof**  
+To prove that \( x * (y + z) = x * y + x * z \), it suffices to show that the natural number representation of \( x * (y + z) \) is equal to the natural number representation of \( x * y + x * z \). In other words, we need to show that:
+\[ (x * (y + z)).\text{toNat} = (x * y + x * z).\text{toNat} \]
+
+Using the properties of the natural number representation of bitvectors, we can simplify the proposition we want to show. Specifically, we use the following properties:
+- The natural number representation of the product of two bitvectors is the product of their natural number representations modulo \( 2^w \).
+- The natural number representation of the sum of two bitvectors is the sum of their natural number representations modulo \( 2^w \).
+- The modulo operation distributes over addition with modulo.
+- The modulo operation applied to the sum of a natural number and the modulo of another natural number is the same as the modulo operation applied to the sum of the two natural numbers.
+
+After simplification, we get:
+\[ x.\text{toNat} * ((y.\text{toNat} + z.\text{toNat}) \% 2^w) \% 2^w = (x.\text{toNat} * y.\text{toNat} + x.\text{toNat} * z.\text{toNat}) \% 2^w \]
+
+We use the following identities to further simplify the goal:
+- The product of two natural numbers modulo \( n \) is equal to the product of their modulo \( n \) values modulo \( n \).
+- The modulo operation applied to a natural number modulo \( n \) is the same as the natural number modulo \( n \).
+- The product of a natural number and the sum of two natural numbers modulo \( n \) is equal to the sum of the products of the natural number and each of the two natural numbers modulo \( n \).
+
+Applying these identities step by step, we get:
+1. \( x.\text{toNat} * ((y.\text{toNat} + z.\text{toNat}) \% 2^w) \% 2^w = x.\text{toNat} \% 2^w * ((y.\text{toNat} + z.\text{toNat}) \% 2^w \% 2^w) \% 2^w \)
+2. \( x.\text{toNat} \% 2^w * ((y.\text{toNat} + z.\text{toNat}) \% 2^w \% 2^w) \% 2^w = x.\text{toNat} \% 2^w * ((y.\text{toNat} + z.\text{toNat}) \% 2^w) \% 2^w \)
+3. \( x.\text{toNat} \% 2^w * ((y.\text{toNat} + z.\text{toNat}) \% 2^w) \% 2^w = x.\text{toNat} * (y.\text{toNat} + z.\text{toNat}) \% 2^w \)
+4. \( x.\text{toNat} * (y.\text{toNat} + z.\text{toNat}) \% 2^w = (x.\text{toNat} * y.\text{toNat} + x.\text{toNat} * z.\text{toNat}) \% 2^w \)
+
+Since the left-hand side and the right-hand side are now identical, the goal is trivially true. Therefore, we have shown that:
+\[ x * (y + z) = x * y + x * z \]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x y z : BitVec w} :
+    x * (y + z) = x * y + x * z := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+open BitVec
+
+
+example {x y z : BitVec w} :
+    x * (y + z) = x * y + x * z := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Nonnegative Sign of Integer if and only if Integer is Nonnegative: \( 0 \leq \text{sign}(x) \leftrightarrow 0 \leq x \) : For any integer \( x \), the sign of \( x \) is nonnegative if and only if \( x \) itself is nonnegative, i.e., \( 0 \leq \text{sign}(x) \leftrightarrow 0 \leq x \).
+
+2. **Informal Proof**  
+We consider three cases for the integer \( x \):
+
+1. **Case 1: \( x \) is a negative integer.**
+- If \( x \) is a negative integer, then \( x = - (n + 1) \) for some natural number \( n \). The sign of \( x \) is \(-1\). Therefore, \( 0 \leq -1 \) is false, and \( 0 \leq x \) is also false because \( x \) is negative. Hence, \( 0 \leq \text{sign}(x) \leftrightarrow 0 \leq x \) is true in this case.
+
+2. **Case 2: \( x = 0 \).**
+- The sign of \( 0 \) is \( 0 \). Therefore, \( 0 \leq 0 \) is true, and the goal \( 0 \leq 0 \leftrightarrow 0 \leq 0 \) is trivially true by reflexivity.
+
+3. **Case 3: \( x \) is a positive integer.**
+- If \( x \) is a positive integer, then \( x = n + 1 \) for some natural number \( n \). The sign of \( x \) is \( 1 \). Therefore, \( 0 \leq 1 \) is true. We need to show that \( 0 \leq n + 1 \) is true. Since \( n \) is a natural number, \( 0 \leq n \) is true. By the property that adding one to a non-negative integer preserves the non-strict inequality, \( 0 \leq n + 1 \) is true. Hence, \( 0 \leq \text{sign}(x) \leftrightarrow 0 \leq x \) is true in this case.
+
+Since all cases are covered, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example : 0 ≤ sign x ↔ 0 ≤ x := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example : 0 ≤ sign x ↔ 0 ≤ x := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

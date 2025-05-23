@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Addition Preserves Strict Inequality from Right Subtraction in Integers : For any integers \(a\), \(b\), and \(c\), if \(a < c - b\), then \(a + b < c\).
+
+2. **Informal Proof**  
+We need to show that if \(a < c - b\), then \(a + b < c\).
+
+1. **Step 1:**
+We start by using the property that right addition preserves strict inequality in ordered monoids. Specifically, since \(a < c - b\), adding \(b\) to both sides gives us:
+\[
+a + b < (c - b) + b
+\]
+
+2. **Step 2:**
+Next, we use the property that subtraction and addition cancel each other in additive groups. This means that:
+\[
+(c - b) + b = c
+\]
+Therefore, the inequality \(a + b < (c - b) + b\) simplifies to:
+\[
+a + b < c
+\]
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a < c - b) : a + b < c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a < c - b) : a + b < c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

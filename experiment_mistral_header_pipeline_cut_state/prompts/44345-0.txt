@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Negative Successor of a Natural Number is Not Nonnegative : For any natural number \( n \), the negative successor of \( n \) in the integers, denoted as \( - (n + 1) \), is nonnegative if and only if the false proposition holds, i.e., \( 0 \le - (n + 1) \leftrightarrow \text{False} \).
+
+2. **Informal Proof**  
+To prove that \( 0 \le - (n + 1) \) is equivalent to the false proposition, we start by noting that \( 0 \le - (n + 1) \) is equivalent to the negation of \( - (n + 1) < 0 \). This is because the statement \( 0 \le - (n + 1) \) is false if and only if \( - (n + 1) < 0 \) is true.
+
+We then use the theorem that states \( - (n + 1) < 0 \) for any natural number \( n \). This theorem is true because the negative of any positive integer is less than zero. Therefore, \( - (n + 1) < 0 \) is always true for any natural number \( n \).
+
+Since \( - (n + 1) < 0 \) is always true, the negation of this statement, \( 0 \le - (n + 1) \), is always false. Hence, \( 0 \le - (n + 1) \) is equivalent to the false proposition. This completes the proof.
+
+3. **Formal Theorem**  
+example (n : Nat) : 0 ≤ -[n+1] ↔ False := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (n : Nat) : 0 ≤ -[n+1] ↔ False := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

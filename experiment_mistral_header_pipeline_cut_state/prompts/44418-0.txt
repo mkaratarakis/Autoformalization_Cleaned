@@ -1,0 +1,43 @@
+
+1. **Informal Theorem**  
+Strict Inequality Preservation: \(a + b < c \to b < c - a\) : For any integers \(a\), \(b\), and \(c\), if \(a + b < c\), then \(b < c - a\).
+
+2. **Informal Proof**  
+We start with the given inequality \(a + b < c\). To prove that \(b < c - a\), we first use the property that adding the same integer to both sides of a strict inequality preserves the inequality. Specifically, since \(a + b < c\), we have:
+\[
+a + b + (-a) < c + (-a)
+\]
+Next, we use the commutativity of addition to rewrite the left-hand side:
+\[
+b + a + (-a) < c + (-a)
+\]
+Then, we use the property that adding an integer and its negation results in the original integer:
+\[
+b < c + (-a)
+\]
+This simplifies to:
+\[
+b < c - a
+\]
+Thus, we have shown that if \(a + b < c\), then \(b < c - a\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a + b < c) : b < c - a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a + b < c) : b < c - a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

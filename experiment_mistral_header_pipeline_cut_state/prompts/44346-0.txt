@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Negation of a Positive Integer is Negative: \( 0 < a \to -a < 0 \) : For any integer \( a \), if \( 0 < a \), then \( -a < 0 \).
+
+2. **Informal Proof**  
+To prove that for any integer \( a \), if \( 0 < a \), then \( -a < 0 \), we proceed as follows:
+
+1. **Step 1: Construct a Lemma**
+- We start with the assumption that \( 0 < a \).
+- Using the property of ordered additive commutative groups, we know that if \( 0 < a \), then \(-a < -0\). This is because the negation of a strictly positive element is strictly less than the negation of zero.
+- Therefore, we have \(-a < -0\).
+
+2. **Step 2: Simplify the Lemma**
+- We use the property that the negation of zero is zero, i.e., \(-0 = 0\).
+- Substituting \(-0\) with \(0\) in the lemma \(-a < -0\), we get \(-a < 0\).
+
+Thus, we have shown that if \( 0 < a \), then \(-a < 0\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a : Int} (h : 0 < a) : -a < 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a : Int} (h : 0 < a) : -a < 0 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Right Addition Preserves Nonnegative Inequality in Integers : For any integers \(a\) and \(b\), if \(0 \le b\), then \(a \le a + b\).
+
+2. **Informal Proof**  
+To prove that \(a \le a + b\) for any integers \(a\) and \(b\) given that \(0 \le b\), we proceed as follows:
+
+1. **Construct a Lemma:**
+We first construct a lemma that \(a + b \ge a + 0\). This follows from the property that adding a nonnegative number to any integer preserves the inequality. Since \(0 \le b\), we have:
+\[
+a + b \ge a + 0
+\]
+
+2. **Simplify the Lemma:**
+Next, we use the property that \(a + 0 = a\) to simplify the lemma \(a + b \ge a + 0\) to \(a + b \ge a\). This simplification shows that:
+\[
+a + b \ge a
+\]
+which is exactly the same as the goal \(a \le a + b\).
+
+Therefore, we have shown that \(a \le a + b\) under the assumption that \(0 \le b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : 0 ≤ b) : a ≤ a + b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : 0 ≤ b) : a ≤ a + b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

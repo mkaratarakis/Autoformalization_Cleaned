@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Double Left Shift of Bitvector Equals Single Left Shift by Sum of Shifts : For any natural number \( w \) and any bitvector \( x \) of width \( w \), and for any natural numbers \( n \) and \( m \), the left shift operation applied twice, i.e., \( (x \lll n) \lll m \), is equal to the left shift operation applied once with the sum of the shifts, i.e., \( x \lll (n + m) \). This can be written as:
+\[ (x \lll n) \lll m = x \lll (n + m) \]
+
+2. **Informal Proof**  
+To prove the theorem, we use the property of the left shift operation on bitvectors. Specifically, we use the theorem that states for any natural number \( w \), any bitvector \( x \) of width \( w \), and any natural numbers \( n \) and \( m \), the left shift operation on \( x \) by \( n + m \) is equal to the left shift operation on \( x \) by \( n \) followed by the left shift operation by \( m \). Mathematically, this is expressed as:
+\[ x \lll (n + m) = (x \lll n) \lll m \]
+
+Using this property, we can rewrite the goal \( (x \lll n) \lll m = x \lll (n + m) \) as:
+\[ (x \lll n) \lll m = (x \lll n) \lll m \]
+
+This is a trivial equality, as it states that a value is equal to itself. Therefore, the theorem is proved.
+
+\(\blacksquare\)
+
+3. **Formal Theorem**  
+example {w : Nat} (x : BitVec w) (n m : Nat) :
+    (x <<< n) <<< m = x <<< (n + m) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {w : Nat} (x : BitVec w) (n m : Nat) :
+    (x <<< n) <<< m = x <<< (n + m) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

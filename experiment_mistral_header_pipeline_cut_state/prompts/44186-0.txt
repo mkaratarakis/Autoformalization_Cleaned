@@ -1,0 +1,48 @@
+
+1. **Informal Theorem**  
+Multiplication by Zero Bitvector Results in Zero Bitvector : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the product of \( x \) and the zero bitvector of width \( w \) is the zero bitvector of width \( w \). In other words, \( x * 0_w = 0_w \).
+
+2. **Informal Proof**  
+To prove that \( x * 0_w = 0_w \), we use the fact that two bitvectors are equal if and only if their natural number representations are equal. Therefore, it suffices to show that the natural number representation of \( x * 0_w \) is equal to the natural number representation of \( 0_w \).
+
+We start by noting that the natural number representation of the product of two bitvectors is the product of their natural number representations. Thus, \((x * 0_w).\text{toNat} = x.\text{toNat} * 0\). Since the product of any natural number with 0 is 0, we have \( x.\text{toNat} * 0 = 0 \). Therefore, \((x * 0_w).\text{toNat} = 0\).
+
+The natural number representation of the zero bitvector \( 0_w \) is 0, so \((0_w).\text{toNat} = 0\). Hence, \((x * 0_w).\text{toNat} = (0_w).\text{toNat}\).
+
+By the property of bitvector equality, if the natural number representations of two bitvectors are equal, then the bitvectors themselves are equal. Therefore, \( x * 0_w = 0_w \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec w} : x * 0#w = 0#w := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+open BitVec
+
+
+example {x : BitVec w} : x * 0#w = 0#w := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

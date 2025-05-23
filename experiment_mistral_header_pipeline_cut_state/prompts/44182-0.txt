@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Bitvector Less-Than or Equal Relation via Modulo: \( \text{BitVec.ofNat } n \, x \leq \text{BitVec.ofNat } n \, y \leftrightarrow x \% 2^n \leq y \% 2^n \) : For any natural number \( n \) and any two natural numbers \( x \) and \( y \), the bitvector \( \text{BitVec.ofNat } n \, x \) is less than or equal to the bitvector \( \text{BitVec.ofNat } n \, y \) if and only if \( x \mod 2^n \) is less than or equal to \( y \mod 2^n \). In other words, \( \text{BitVec.ofNat } n \, x \leq \text{BitVec.ofNat } n \, y \) if and only if \( x \% 2^n \leq y \% 2^n \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the less-than-or-equal-to relation on bitvectors. Specifically, we need to show that \( \text{BitVec.ofNat } n \, x \leq \text{BitVec.ofNat } n \, y \) if and only if \( x \% 2^n \leq y \% 2^n \).
+
+1. **Simplification:**
+Using the definition of the less-than-or-equal-to relation, we simplify the proposition we want to show. The goal is to prove that \( \text{BitVec.ofNat } n \, x \leq \text{BitVec.ofNat } n \, y \) if and only if \( x \% 2^n \leq y \% 2^n \). This simplification is straightforward and follows from the definition of the less-than-or-equal-to relation on bitvectors.
+
+2. **Conclusion:**
+After simplification, the proposition is trivially true. Therefore, we have shown that \( \text{BitVec.ofNat } n \, x \leq \text{BitVec.ofNat } n \, y \) if and only if \( x \% 2^n \leq y \% 2^n \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n} (x y : Nat) : (BitVec.ofNat n x) ≤ (BitVec.ofNat n y) ↔ x % 2^n ≤ y % 2^n := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n} (x y : Nat) : (BitVec.ofNat n x) ≤ (BitVec.ofNat n y) ↔ x % 2^n ≤ y % 2^n := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

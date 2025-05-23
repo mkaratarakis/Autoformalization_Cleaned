@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Bitvector Strict Inequality from Natural Number Modulo Comparison : For any natural number \( n \) and any two natural numbers \( x \) and \( y \), the bitvector \( \text{BitVec.ofNat } n \, x \) is strictly less than the bitvector \( \text{BitVec.ofNat } n \, y \) if and only if \( x \mod 2^n \) is strictly less than \( y \mod 2^n \). In other words, \( \text{BitVec.ofNat } n \, x < \text{BitVec.ofNat } n \, y \) if and only if \( x \% 2^n < y \% 2^n \).
+
+2. **Informal Proof**  
+To prove the theorem, we start by using the definition of the less-than relation on bitvectors. The less-than relation on bitvectors of width \( n \) is defined in terms of the modulo operation. Specifically, the statement \( \text{BitVec.ofNat } n \, x < \text{BitVec.ofNat } n \, y \) is equivalent to \( x \% 2^n < y \% 2^n \).
+
+Thus, the original statement \( \text{BitVec.ofNat } n \, x < \text{BitVec.ofNat } n \, y \) is true if and only if \( x \% 2^n < y \% 2^n \). This completes the proof.
+
+3. **Formal Theorem**  
+example {n} (x y : Nat) : BitVec.ofNat n x < BitVec.ofNat n y ↔ x % 2^n < y % 2^n := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n} (x y : Nat) : BitVec.ofNat n x < BitVec.ofNat n y ↔ x % 2^n < y % 2^n := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

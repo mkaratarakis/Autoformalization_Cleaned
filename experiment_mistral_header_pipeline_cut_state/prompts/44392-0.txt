@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Subtraction Less Than Zero Implies Less Than in Integers : For any integers \(a\) and \(b\), if \(a - b < 0\), then \(a < b\).
+
+2. **Informal Proof**  
+To prove the theorem, we start with the given inequality \(a - b < 0\). We construct a new hypothesis by adding \(b\) to both sides of this inequality:
+\[
+a - b + b < 0 + b
+\]
+Using the property of subtraction and addition, we know that \(a - b + b = a\). Additionally, using the property of the zero element, we know that \(0 + b = b\). Therefore, the inequality simplifies to:
+\[
+a < b
+\]
+This is exactly the goal we need to prove. Hence, we have shown that if \(a - b < 0\), then \(a < b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : a - b < 0) : a < b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : a - b < 0) : a < b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Subtraction Preserves Inequality: \(a \leq b + c \to a - c \leq b\) : For any integers \(a\), \(b\), and \(c\), if \(a \leq b + c\), then \(a - c \leq b\).
+
+2. **Informal Proof**  
+We start with the given inequality \(a \leq b + c\). To prove that \(a - c \leq b\), we first use the property that adding the same element to both sides of an inequality preserves the inequality. Specifically, we add \(-c\) to both sides of the inequality \(a \leq b + c\):
+
+\[
+a + (-c) \leq b + c + (-c)
+\]
+
+Next, we use the property of additive inverses in the integers, which states that adding an element and its negation results in the original element. Therefore, we have:
+
+\[
+b + c + (-c) = b
+\]
+
+Substituting this back into our inequality, we get:
+
+\[
+a + (-c) \leq b
+\]
+
+This is exactly the same as:
+
+\[
+a - c \leq b
+\]
+
+Thus, we have shown that if \(a \leq b + c\), then \(a - c \leq b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a ≤ b + c) : a - c ≤ b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a ≤ b + c) : a - c ≤ b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

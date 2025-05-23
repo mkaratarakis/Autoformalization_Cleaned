@@ -1,0 +1,32 @@
+
+1. **Informal Theorem**  
+Preservation of Strict Inequality under Canonical Map from Natural Numbers to Integers: \( \text{Int.ofNat}(n) < \text{Int.ofNat}(m) \leftrightarrow n < m \) : For any natural numbers \( n \) and \( m \), the canonical map from natural numbers to integers, denoted as \( \mathbb{N} \to \mathbb{Z} \), preserves the strict inequality \( n < m \). Specifically, \( \text{Int.ofNat}(n) < \text{Int.ofNat}(m) \) if and only if \( n < m \).
+
+2. **Informal Proof**  
+To prove that \( \text{Int.ofNat}(n) < \text{Int.ofNat}(m) \) if and only if \( n < m \), we use the following equivalences:
+1. By the definition of strict inequality in natural numbers, \( n < m \) is equivalent to \( n + 1 \leq m \).
+2. By the property of the canonical map and the successor function, \( \text{Int.ofNat}(n + 1) = \text{Int.ofNat}(n) + 1 \).
+3. By the property of the canonical map preserving the order, \( \text{Int.ofNat}(n) \leq \text{Int.ofNat}(m) \) if and only if \( n \leq m \).
+
+Using these equivalences, we can rewrite the goal to show that \( \text{Int.ofNat}(n) + 1 \leq \text{Int.ofNat}(m) \) if and only if \( n + 1 \leq m \). Since the canonical map preserves the order, this is trivially true by the properties of the canonical map and the order in natural numbers. Therefore, \( \text{Int.ofNat}(n) < \text{Int.ofNat}(m) \) if and only if \( n < m \). This completes the proof.
+
+3. **Formal Theorem**  
+example {n m : Nat} : (↑n : Int) < ↑m ↔ n < m := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {n m : Nat} : (↑n : Int) < ↑m ↔ n < m := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

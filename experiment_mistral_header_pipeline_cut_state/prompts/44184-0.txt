@@ -1,0 +1,57 @@
+
+1. **Informal Theorem**  
+Equivalence of Subtraction and Addition in Bitvectors: \( x = z - y \leftrightarrow x + y = z \) : For any natural number \( w \) and bitvectors \( x, y, z \) of width \( w \), the equation \( x = z - y \) holds if and only if \( x + y = z \).
+
+2. **Informal Proof**  
+To prove the equivalence \( x = z - y \leftrightarrow x + y = z \), we need to show both directions:
+
+1. **(\( x = z - y \to x + y = z \))**:
+- Assume \( x = z - y \).
+- Using the property that subtraction and addition cancel each other in additive groups (i.e., \( a - b + b = a \)), we have:
+\[
+x + y = (z - y) + y = z
+\]
+- Therefore, \( x + y = z \).
+
+2. **(\( x + y = z \to x = z - y \))**:
+- Assume \( x + y = z \).
+- Using the property that addition and subtraction cancel in additive commutative groups (i.e., \( a + (b - a) = b \)), we have:
+\[
+x = z - y = (x + y) - y = x
+\]
+- Therefore, \( x = z - y \).
+
+Since both directions are proven, we conclude that \( x = z - y \leftrightarrow x + y = z \). This completes the proof.
+
+3. **Formal Theorem**  
+example {x y z : BitVec w} : x = z - y ↔ x + y = z := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x y z : BitVec w} : x = z - y ↔ x + y = z := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Minimum Equals Right if Right is Less Than or Equal to Left : For any integers \(a\) and \(b\), if \(b \leq a\), then the minimum of \(a\) and \(b\) is \(b\), i.e., \(\min(a, b) = b\).
+
+2. **Informal Proof**  
+To prove that \(\min(a, b) = b\) given \(b \leq a\), we start by using the commutativity property of the minimum function. This property states that \(\min(a, b) = \min(b, a)\). Therefore, our goal is to show that \(\min(b, a) = b\).
+
+Next, we use the fact that if \(b \leq a\), then \(\min(b, a) = b\). Since we have the assumption \(b \leq a\), it follows directly that \(\min(b, a) = b\).
+
+Thus, we have shown that \(\min(a, b) = b\), completing the proof.
+
+3. **Formal Theorem**  
+example {a b : Int} (h : b ≤ a) : min a b = b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : b ≤ a) : min a b = b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

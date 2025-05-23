@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Product of Two Negative Integers is Positive: \( a < 0 \) and \( b < 0 \) implies \( 0 < a \cdot b \) : For any integers \( a \) and \( b \), if \( a < 0 \) and \( b < 0 \), then \( 0 < a \cdot b \).
+
+2. **Informal Proof**  
+To prove that \(0 < a \cdot b\) for any integers \(a\) and \(b\) where \(a < 0\) and \(b < 0\), we proceed as follows:
+
+1. **Construct a Lemma:**
+We first construct a lemma that \(0 \cdot b < a \cdot b\). This follows from the property that if \(a < 0\) and \(b < 0\), then multiplying a negative number \(a\) by a negative number \(b\) results in a product that is greater than the product of zero and \(b\). Formally, this is a consequence of the property that right multiplication by a negative element preserves strict inequality in semirings.
+
+2. **Simplify the Lemma:**
+We use the property that \(0 \cdot b = 0\) to simplify the lemma \(0 \cdot b < a \cdot b\) to \(0 < a \cdot b\). Since \(0 \cdot b = 0\), the inequality \(0 < a \cdot b\) is exactly what we need to prove.
+
+Therefore, we have shown that if \(a < 0\) and \(b < 0\), then \(0 < a \cdot b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (ha : a < 0) (hb : b < 0) : 0 < a * b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (ha : a < 0) (hb : b < 0) : 0 < a * b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

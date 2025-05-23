@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Associativity of Addition on Bitvectors of Width \( n \) : For any natural number \( n \) and any bitvectors \( x, y, z \) of width \( n \), the addition operation on bitvectors is associative, i.e., \((x + y) + z = x + (y + z)\).
+
+2. **Informal Proof**  
+To prove the associativity of addition on bitvectors of width \( n \), we need to show that \((x + y) + z = x + (y + z)\) for any bitvectors \( x, y, z \) of width \( n \).
+
+1. **Step 1:**
+To prove that \((x + y) + z = x + (y + z)\), it suffices to show that the natural number representation of \((x + y) + z\) is equal to the natural number representation of \(x + (y + z)\). This is because the equality of bitvectors is determined by the equality of their natural number representations.
+
+2. **Step 2:**
+Using the associativity of addition on natural numbers, we know that for any natural numbers \(a, b, c\), \((a + b) + c = a + (b + c)\). Therefore, the natural number representation of \((x + y) + z\) is equal to the natural number representation of \(x + (y + z)\).
+
+Thus, we have shown that \((x + y) + z = x + (y + z)\) for any bitvectors \( x, y, z \) of width \( n \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y z : BitVec n) : x + y + z = x + (y + z) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y z : BitVec n) : x + y + z = x + (y + z) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

@@ -1,0 +1,74 @@
+
+1. **Informal Theorem**  
+Truncation of Bitwise Disjunction Equals Bitwise Disjunction of Truncated Bitvectors : For any natural numbers \( w \) and \( k \), and any two bitvectors \( x \) and \( y \) of width \( w \), the most significant \( k \) bits of the bitwise disjunction \( x \ ||| \ y \) are equal to the bitwise disjunction of the most significant \( k \) bits of \( x \) and \( y \), i.e., \(\text{truncate}_k(x \ ||| \ y) = \text{truncate}_k(x) \ ||| \ \text{truncate}_k(y)\).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any \( i \) in the range \( 0 \leq i < k \), the \( i \)-th least significant bit of the truncated bitwise disjunction \( \text{truncate}_k(x \ ||| \ y) \) is equal to the \( i \)-th least significant bit of the bitwise disjunction of the truncated bitvectors \( \text{truncate}_k(x) \ ||| \ \text{truncate}_k(y) \).
+
+1. **Introduce a new variable \( i \):**
+We introduce a new variable \( i \) in the context to reason about the \( i \)-th least significant bit of the truncated bitvectors. This allows us to consider individual bits in the bitvectors.
+
+2. **Simplify the expression:**
+Using the properties of the least significant bit (LSB) of bitwise disjunction and zero-extension, we simplify the expression to show that:
+\[
+(\text{truncate}_k(x \ ||| \ y)).\text{getLsb}(i) = (\text{truncate}_k(x) \ ||| \ \text{truncate}_k(y)).\text{getLsb}(i)
+\]
+Specifically, we use the following properties:
+- The \( i \)-th least significant bit of the bitwise disjunction \( x \ ||| \ y \) is the logical disjunction of the \( i \)-th least significant bits of \( x \) and \( y \):
+\[
+(x \ ||| \ y).\text{getLsb}(i) = (x.\text{getLsb}(i) \ || \ y.\text{getLsb}(i))
+\]
+- The \( i \)-th least significant bit of the zero-extended bitvector is the \( i \)-th least significant bit of the original bitvector if \( i < k \):
+\[
+\text{getLsb}(\text{zeroExtend}(k, x), i) = \text{decide}(i < k) \land x.\text{getLsb}(i)
+\]
+- Since \( i \) is in the range \( 0 \leq i < k \), the condition \( \text{decide}(i < k) \) is always true, and thus:
+\[
+(\text{truncate}_k(x \ ||| \ y)).\text{getLsb}(i) = (x \ ||| \ y).\text{getLsb}(i) = (x.\text{getLsb}(i) \ || \ y.\text{getLsb}(i))
+\]
+- Similarly, for the truncated bitvectors:
+\[
+(\text{truncate}_k(x) \ ||| \ \text{truncate}_k(y)).\text{getLsb}(i) = (\text{truncate}_k(x).\text{getLsb}(i) \ || \ \text{truncate}_k(y).\text{getLsb}(i)) = (x.\text{getLsb}(i) \ || \ y.\text{getLsb}(i))
+\]
+
+Since the \( i \)-th least significant bit of the truncated bitwise disjunction \( \text{truncate}_k(x \ ||| \ y) \) is equal to the \( i \)-th least significant bit of the bitwise disjunction of the truncated bitvectors \( \text{truncate}_k(x) \ ||| \ \text{truncate}_k(y) \) for all \( i \) in the range \( 0 \leq i < k \), we conclude that:
+\[
+\text{truncate}_k(x \ ||| \ y) = \text{truncate}_k(x) \ ||| \ \text{truncate}_k(y)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {x y : BitVec w} :
+    (x ||| y).truncate k = x.truncate k ||| y.truncate k := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x y : BitVec w} :
+    (x ||| y).truncate k = x.truncate k ||| y.truncate k := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

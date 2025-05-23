@@ -1,0 +1,56 @@
+
+1. **Informal Theorem**  
+Complement of Bitvector to Canonical Type: \( \text{toFin}(\sim x) = \text{rev}(\text{toFin}(x)) \) : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the canonical type element corresponding to the complement of \( x \), denoted as \( \sim x \), is equal to the reverse of the canonical type element corresponding to \( x \). In other words, \( \text{toFin}(\sim x) = \text{rev}(\text{toFin}(x)) \).
+
+2. **Informal Proof**  
+To prove that \(\text{toFin}(\sim x) = \text{rev}(\text{toFin}(x))\), it suffices to show that the natural number values of \(\text{toFin}(\sim x)\) and \(\text{rev}(\text{toFin}(x))\) are equal, i.e., \(\text{Fin.val}(\text{toFin}(\sim x)) = \text{Fin.val}(\text{rev}(\text{toFin}(x)))\).
+
+Using the properties of the `val_toFin`, `toNat_not`, and `Fin.val_rev` functions, we can simplify the proposition we want to show to:
+\[
+2^w - 1 - x.toNat = 2^w - (x.toNat + 1)
+\]
+
+The equation \(2^w - 1 - x.toNat = 2^w - (x.toNat + 1)\) holds true by simple algebraic manipulation. Specifically, we can simplify the right-hand side:
+\[
+2^w - (x.toNat + 1) = 2^w - x.toNat - 1
+\]
+Thus, the equation becomes:
+\[
+2^w - 1 - x.toNat = 2^w - x.toNat - 1
+\]
+which is clearly true. Therefore, \(\text{toFin}(\sim x) = \text{rev}(\text{toFin}(x))\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec w) :
+    (~~~x).toFin = x.toFin.rev := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) :
+    (~~~x).toFin = x.toFin.rev := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

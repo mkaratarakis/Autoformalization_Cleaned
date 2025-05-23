@@ -1,0 +1,80 @@
+
+1. **Informal Theorem**  
+Addition and Subtraction Cancellation: \( x + y - y = x \) : For any natural number \( w \) and any bitvectors \( x, y \) of width \( w \), the expression \( x + y - y \) is equal to \( x \), i.e., \( x + y - y = x \).
+
+2. **Informal Proof**  
+To prove that \( x + y - y = x \), it suffices to show that the natural number representation of \( x + y - y \) is equal to the natural number representation of \( x \), i.e., \((x + y - y).toNat = x.toNat\).
+
+First, we show that \( y.toNat \le 2^w \). This follows from the fact that the natural number representation of any bitvector \( y \) of width \( w \) is strictly less than \( 2^w \), i.e., \( y.toNat < 2^w \).
+
+Next, we simplify the expression \((x + y - y).toNat\) step by step using the following properties and theorems:
+1. **Natural Number Representation of Bitvector Subtraction**: \((x - y).toNat = (2^w - y.toNat + x.toNat) \mod 2^w\).
+2. **Natural Number Representation of Bitvector Sum**: \((x + y).toNat = (x.toNat + y.toNat) \mod 2^w\).
+3. **Commutativity of Addition**: \(a + b = b + a\).
+4. **Modulo Addition Identity**: \((m \% n + k) \% n = (m + k) \% n\).
+5. **Associativity of Addition**: \(a + (b + c) = (a + b) + c\).
+6. **Associativity of Addition and Subtraction**: \(a + b - c = a + (b - c)\).
+7. **Left Addition and Subtraction Cancel Each Other**: \(a + b - a = b\).
+8. **Right Addition Distributes Over Modulo**: \((x + z) \% z = x \% z\).
+9. **Modulo Cancellation for Bitvector to Natural Number Conversion**: \(x.toNat \% 2^w = x.toNat\).
+
+Using these properties, we can rewrite the expression as follows:
+\[
+(x + y - y).toNat = (2^w - y.toNat + (x + y).toNat) \mod 2^w
+\]
+\[
+= (2^w - y.toNat + (x.toNat + y.toNat) \mod 2^w) \mod 2^w
+\]
+\[
+= ((x.toNat + y.toNat) \mod 2^w + (2^w - y.toNat)) \mod 2^w
+\]
+\[
+= (x.toNat + y.toNat + 2^w - y.toNat) \mod 2^w
+\]
+\[
+= (x.toNat + (y.toNat + 2^w - y.toNat)) \mod 2^w
+\]
+\[
+= (x.toNat + 2^w) \mod 2^w
+\]
+\[
+= x.toNat \mod 2^w
+\]
+\[
+= x.toNat
+\]
+
+Thus, we have shown that \((x + y - y).toNat = x.toNat\), which implies \( x + y - y = x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y : BitVec w) : x + y - y = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec w) : x + y - y = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

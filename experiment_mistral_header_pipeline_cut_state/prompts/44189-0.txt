@@ -1,0 +1,61 @@
+
+1. **Informal Theorem**  
+Subtraction and Addition Cancellation: \( x - y + y = x \) : For any natural number \( w \) and any bitvectors \( x, y \) of width \( w \), the expression \( x - y + y \) is equal to \( x \), i.e., \( x - y + y = x \).
+
+2. **Informal Proof**  
+To prove that \( x - y + y = x \), we start by using the property that subtraction can be expressed as addition of the negation:
+\[ x - y = x + (-y). \]
+Thus, the goal \( x - y + y = x \) can be rewritten as:
+\[ x + (-y) + y = x. \]
+
+Next, we use the associativity of addition:
+\[ x + ((-y) + y) = x. \]
+
+We then use the commutativity of addition:
+\[ x + (y + (-y)) = x. \]
+
+Using the associativity of addition again:
+\[ x + y + (-y) = x. \]
+
+We use the property that subtraction can be expressed as addition of the negation in reverse:
+\[ x + y - y = x. \]
+
+Finally, we use the property that addition and subtraction cancel each other out in an additive commutative group:
+\[ x + (y - y) = x. \]
+
+This simplifies to:
+\[ x = x, \]
+which is trivially true. Therefore, we have shown that \( x - y + y = x \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x y : BitVec w) : x - y + y = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec w) : x - y + y = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

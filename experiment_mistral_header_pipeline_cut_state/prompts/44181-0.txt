@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Negation of One in Bitvector Equals All Ones: \(-1_w = \text{allOnes}(w)\) : For any natural number \( w \), the negation of the bitvector \( 1 \) of width \( w \), denoted as \( -1_w \), is equal to the bitvector of width \( w \) where all bits are set to 1, i.e., \( -1_w = \text{allOnes}(w) \).
+
+2. **Informal Proof**  
+To prove that \(-1_w = \text{allOnes}(w)\), it suffices to show that the natural number representation of \(-1_w\) is equal to the natural number representation of \(\text{allOnes}(w)\). In other words, we need to show that \((-1_w).\text{toNat} = (\text{allOnes}(w)).\text{toNat}\).
+
+We establish two intermediate results:
+1. \(1 < 2^w\), which is true because \(2^w\) is always greater than 1 for any natural number \(w\).
+2. \(2^w - 1 < 2^w\), which is true because \(2^w - 1\) is always less than \(2^w\).
+
+Using these results, we can simplify the natural number representations:
+- The natural number representation of \(-1_w\) is \((2^w - 1) \mod 2^w\), which simplifies to \(2^w - 1\) because \(2^w - 1 < 2^w\).
+- The natural number representation of \(\text{allOnes}(w)\) is also \(2^w - 1\).
+
+Thus, \((-1_w).\text{toNat} = 2^w - 1\) and \((\text{allOnes}(w)).\text{toNat} = 2^w - 1\), which means \((-1_w).\text{toNat} = (\text{allOnes}(w)).\text{toNat}\).
+
+Therefore, \(-1_w = \text{allOnes}(w)\). This completes the proof.
+
+3. **Formal Theorem**  
+example : -1#w = allOnes w := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example : -1#w = allOnes w := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

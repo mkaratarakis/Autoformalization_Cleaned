@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Negation of Zero Bitvector is Zero: \(-0_n = 0_n\) : For any natural number \( n \), the negation of the zero bitvector of width \( n \) is equal to the zero bitvector of width \( n \), i.e., \(-0_n = 0_n\).
+
+2. **Informal Proof**  
+To prove that \(-0_n = 0_n\), we use the fact that two bitvectors are equal if and only if their natural number representations are equal. Therefore, it suffices to show that the natural number representation of \(-0_n\) is equal to the natural number representation of \(0_n\). In other words, we need to show that \((-0_n).\text{toNat} = (0_n).\text{toNat}\).
+
+Since \(0_n\) is the zero bitvector of width \( n \), its natural number representation is \(0\). The negation of \(0_n\) is also a bitvector of width \( n \), and its natural number representation is also \(0\). Therefore, \((-0_n).\text{toNat} = 0\) and \((0_n).\text{toNat} = 0\).
+
+Thus, \((-0_n).\text{toNat} = (0_n).\text{toNat}\), which implies that \(-0_n = 0_n\).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (n:Nat) : -BitVec.ofNat n 0 = BitVec.ofNat n 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (n:Nat) : -BitVec.ofNat n 0 = BitVec.ofNat n 0 := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

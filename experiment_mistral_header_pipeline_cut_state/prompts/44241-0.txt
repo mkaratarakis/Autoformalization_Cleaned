@@ -1,0 +1,66 @@
+
+1. **Informal Theorem**  
+Multiplication by Bitvector with \( i \)-th Bit Set to 1 is Equivalent to Left Shift by \( i \) Positions : For any natural number \( w \), any bitvector \( x \) of width \( w \), and any natural number \( i \), the product of \( x \) and the bitvector with the \( i \)-th bit set to 1 (denoted as \(\text{twoPow}(w, i)\)) is equal to the left shift of \( x \) by \( i \) positions, i.e., \( x * \text{twoPow}(w, i) = x \lll i \).
+
+2. **Informal Proof**  
+To prove that \( x * \text{twoPow}(w, i) = x \lll i \), it suffices to show that the natural number representation of \( x * \text{twoPow}(w, i) \) is equal to the natural number representation of \( x \lll i \), i.e., \((x * \text{twoPow}(w, i)).\text{toNat} = (x \lll i).\text{toNat}\).
+
+Using the properties of the natural number representation of bitvectors, we can simplify the proposition we want to show to:
+\[
+x.\text{toNat} \cdot (2^i \mod 2^w) \mod 2^w = x.\text{toNat} \cdot 2^i \mod 2^w
+\]
+
+Consider two cases:
+1. **Case 1: \( i < w \)**
+- We first show that \( 2^i < 2^w \). This follows from the fact that the function \( 2^n \) is strictly increasing for natural numbers \( n \), and since \( i < w \), it follows that \( 2^i < 2^w \).
+- Since \( 2^i < 2^w \), we can use the property of the modulo operation that \( a \% b = a \) if \( a < b \). Therefore, \( 2^i \% 2^w = 2^i \).
+- Substituting this into our goal, we get:
+\[
+x.\text{toNat} \cdot 2^i \mod 2^w = x.\text{toNat} \cdot 2^i \mod 2^w
+\]
+- This is trivially true, so the case \( i < w \) is proved.
+
+2. **Case 2: \( i \geq w \)**
+- We first show that \( 2^i \% 2^w = 0 \). This follows from the fact that \( 2^w \) divides \( 2^i \) because \( w \leq i \). Therefore, \( 2^i \% 2^w = 0 \).
+- Using the property of the modulo operation for multiplication, we can simplify the proposition we want to show to:
+\[
+x.\text{toNat} \cdot 0 \mod 2^w = x.\text{toNat} \cdot 2^i \mod 2^w
+\]
+- Since \( 2^i \% 2^w = 0 \), the left-hand side is \( 0 \), and the right-hand side is also \( 0 \). Therefore, the case \( i \geq w \) is proved.
+
+Since both cases are proved, the theorem is established. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (x : BitVec w) (i : Nat) :
+    x * (twoPow w i) = x <<< i := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) (i : Nat) :
+    x * (twoPow w i) = x <<< i := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

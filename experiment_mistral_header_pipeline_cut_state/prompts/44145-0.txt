@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Commutativity of Addition on Bitvectors: \( x + y = y + x \) : For any natural number \( n \) and any two bitvectors \( x \) and \( y \) of width \( n \), the addition operation is commutative, i.e., \( x + y = y + x \).
+
+2. **Informal Proof**  
+To prove that the addition of bitvectors is commutative, we start by using the definition of bitvector addition. The addition of bitvectors is defined in terms of the addition of natural numbers. Since the addition of natural numbers is commutative, i.e., for any natural numbers \( a \) and \( b \), \( a + b = b + a \), it follows that the addition of bitvectors is also commutative. Therefore, for any bitvectors \( x \) and \( y \) of width \( n \), we have \( x + y = y + x \). This completes the proof.
+
+3. **Formal Theorem**  
+example (x y : BitVec n) : x + y = y + x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x y : BitVec n) : x + y = y + x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

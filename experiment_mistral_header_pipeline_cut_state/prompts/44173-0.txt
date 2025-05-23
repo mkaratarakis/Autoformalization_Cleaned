@@ -1,0 +1,60 @@
+
+1. **Informal Theorem**  
+Multiplication by One on Bitvectors of Fixed Width: \( 1 * x = x \) : For any natural number \( w \) and any bitvector \( x \) of width \( w \), the product of the bitvector \( 1 \) of width \( w \) and \( x \) is equal to \( x \), i.e., \( 1 * x = x \).
+
+2. **Informal Proof**  
+To prove that for any natural number \( w \) and any bitvector \( x \) of width \( w \), the product \( 1 \# w * x \) is equal to \( x \), we proceed as follows:
+
+1. **Commutativity of Multiplication:**
+By the commutativity of multiplication in the context of bitvectors, we have:
+\[
+1 \# w * x = x * 1 \# w
+\]
+
+2. **Multiplicative Identity:**
+Using the property of the multiplicative identity, we know that:
+\[
+x * 1 \# w = x
+\]
+
+3. **Conclusion:**
+Combining these two steps, we get:
+\[
+1 \# w * x = x
+\]
+This completes the proof.
+
+Thus, for any bitvector \( x \) of width \( w \), the product \( 1 \# w * x \) is indeed equal to \( x \).
+
+3. **Formal Theorem**  
+example (x : BitVec w) : 1#w * x = x := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec w) : 1#w * x = x := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

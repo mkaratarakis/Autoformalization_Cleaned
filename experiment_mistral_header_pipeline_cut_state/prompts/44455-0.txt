@@ -1,0 +1,51 @@
+
+1. **Informal Theorem**  
+Triangle Inequality for Integer Subtraction: \((a - b).| \leq |a| + |b|\) : For any integers \(a\) and \(b\), the absolute value of the difference \(a - b\) is less than or equal to the sum of the absolute values of \(a\) and \(b\), i.e., \((a - b).| \leq |a| + |b|\).
+
+2. **Informal Proof**  
+To prove the inequality \((a - b).| \leq |a| + |b|\), we start by using the property that the absolute value of the negation of an integer is equal to the absolute value of the integer itself. Specifically, \(\text{natAbs}(-b) = \text{natAbs}(b)\). This allows us to rewrite the goal as:
+\[
+(a - b).natAbs = (a + -b).natAbs
+\]
+Thus, the goal becomes:
+\[
+(a + -b).natAbs \leq a.natAbs + (-b).natAbs
+\]
+Next, we apply the triangle inequality for absolute values, which states that for any integers \(a\) and \(b\):
+\[
+\text{natAbs}(a + b) \leq \text{natAbs}(a) + \text{natAbs}(b)
+\]
+By substituting \(b\) with \(-b\), we get:
+\[
+\text{natAbs}(a + -b) \leq \text{natAbs}(a) + \text{natAbs}(-b)
+\]
+Since \(\text{natAbs}(-b) = \text{natAbs}(b)\), this simplifies to:
+\[
+\text{natAbs}(a + -b) \leq \text{natAbs}(a) + \text{natAbs}(b)
+\]
+Therefore, we have:
+\[
+(a - b).natAbs \leq a.natAbs + b.natAbs
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a b : Int) : natAbs (a - b) ≤ natAbs a + natAbs b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a b : Int) : natAbs (a - b) ≤ natAbs a + natAbs b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Left Shift of Bitvector by Another Bitvector Equals Left Shift by Underlying Natural Number : For any natural numbers \( w_1 \) and \( w_2 \), and for any bitvectors \( x \) of width \( w_1 \) and \( y \) of width \( w_2 \), the left shift of \( x \) by \( y \) is equal to the left shift of \( x \) by the underlying natural number of \( y \). In other words, \( x \lll y = x \lll \text{toNat}(y) \).
+
+2. **Informal Proof**  
+To prove the theorem, we need to show that for any bitvectors \( x \) and \( y \) of widths \( w_1 \) and \( w_2 \) respectively, the left shift of \( x \) by \( y \) is equal to the left shift of \( x \) by the underlying natural number of \( y \). This equality holds by the definition of the left shift operation and the conversion of \( y \) to its underlying natural number. Therefore, the equality \( x \lll y = x \lll \text{toNat}(y) \) is trivially true due to the reflexive property. This completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec w₁} {y : BitVec w₂} : x <<< y = x <<< y.toNat := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec w₁} {y : BitVec w₂} : x <<< y = x <<< y.toNat := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

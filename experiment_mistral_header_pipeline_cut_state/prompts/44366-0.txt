@@ -1,0 +1,41 @@
+
+1. **Informal Theorem**  
+Multiplication by Nonpositive Integer Preserves Inequality on the Left : For any integers \(a\), \(b\), and \(c\), if \(a \leq 0\) and \(c \leq b\), then \(a \cdot b \leq a \cdot c\).
+
+2. **Informal Proof**  
+We start with the given conditions \(a \leq 0\) and \(c \leq b\). Our goal is to prove that \(a \cdot b \leq a \cdot c\).
+
+First, we use the commutativity of multiplication to rewrite the goal:
+\[
+a \cdot b \leq a \cdot c \quad \text{is equivalent to} \quad b \cdot a \leq c \cdot a.
+\]
+
+Next, we apply the theorem that states for any integers \(a, b, c\) in a semiring with a preorder, if \(b \leq c\) and \(a \leq 0\), then \(c \cdot a \leq b \cdot a\). Given that \(c \leq b\) and \(a \leq 0\), this theorem directly implies:
+\[
+b \cdot a \leq c \cdot a.
+\]
+
+Thus, we have shown that \(a \cdot b \leq a \cdot c\), completing the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int}
+    (ha : a ≤ 0) (h : c ≤ b) : a * b ≤ a * c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int}
+    (ha : a ≤ 0) (h : c ≤ b) : a * b ≤ a * c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

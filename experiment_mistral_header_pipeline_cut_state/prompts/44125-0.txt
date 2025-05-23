@@ -1,0 +1,50 @@
+
+1. **Informal Theorem**  
+Left Shift of Bitvectors is Associative with Natural Number Addition : For any natural numbers \( w_1, w_2, \) and \( w_3 \), and for any bitvectors \( x \) of width \( w_1 \), \( y \) of width \( w_2 \), and \( z \) of width \( w_3 \), the left shift of \( x \) by \( y \) bits, followed by a left shift of the result by \( z \) bits, is equal to the left shift of \( x \) by the sum of the underlying natural numbers of \( y \) and \( z \) bits. In other words, \( (x \lll y) \lll z = x \lll (y + z) \).
+
+2. **Informal Proof**  
+To prove the theorem, we use the property of left shift operations on bitvectors. Specifically, we use the fact that for any bitvector \( x \) of width \( w \) and any natural numbers \( n \) and \( m \), the left shift of \( x \) by \( n + m \) is equivalent to performing the left shift sequentially by \( n \) and then by \( m \). Formally, this property is stated as:
+\[ x \lll (n + m) = (x \lll n) \lll m. \]
+
+Given the bitvectors \( x \) of width \( w_1 \), \( y \) of width \( w_2 \), and \( z \) of width \( w_3 \), we need to show:
+\[ (x \lll y) \lll z = x \lll (y.toNat + z.toNat). \]
+
+By applying the property of left shift operations, we can rewrite the left-hand side of the equation as:
+\[ (x \lll y) \lll z = x \lll (y.toNat + z.toNat). \]
+
+Thus, the left shift of \( x \) by \( y \) bits, followed by a left shift of the result by \( z \) bits, is indeed equal to the left shift of \( x \) by the sum of the underlying natural numbers of \( y \) and \( z \) bits. This completes the proof.
+
+3. **Formal Theorem**  
+example {x : BitVec w₁} {y : BitVec w₂} {z : BitVec w₃} :
+    x <<< y <<< z = x <<< (y.toNat + z.toNat) := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {x : BitVec w₁} {y : BitVec w₂} {z : BitVec w₃} :
+    x <<< y <<< z = x <<< (y.toNat + z.toNat) := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

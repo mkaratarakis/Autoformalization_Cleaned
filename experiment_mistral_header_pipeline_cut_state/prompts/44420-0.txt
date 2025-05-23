@@ -1,0 +1,44 @@
+
+1. **Informal Theorem**  
+Commutativity of Minimum on Integers: \(\min(a, b) = \min(b, a)\) : For any integers \(a\) and \(b\), the minimum of \(a\) and \(b\) is equal to the minimum of \(b\) and \(a\), i.e., \(\min(a, b) = \min(b, a)\).
+
+2. **Informal Proof**  
+We start by using the definition of the minimum function. The minimum of two integers \(a\) and \(b\) is defined as \(a\) if \(a \leq b\), and \(b\) otherwise. Therefore, the goal \(\min(a, b) = \min(b, a)\) is equivalent to \((\text{if } a \leq b \text{ then } a \text{ else } b) = (\text{if } b \leq a \text{ then } b \text{ else } a)\).
+
+We consider the following cases for \(a \leq b\) and \(b \leq a\):
+
+1. **Case 1:** Assume \(a \leq b\) and \(b \leq a\).
+- By the antisymmetry of the less than or equal to relation, if \(a \leq b\) and \(b \leq a\), then \(a = b\).
+- Therefore, \((\text{if } a \leq b \text{ then } a \text{ else } b) = a\) and \((\text{if } b \leq a \text{ then } b \text{ else } a) = b\), which simplifies to \(a = b\).
+
+2. **Case 2:** Assume \(a \leq b\) and \(\neg (b \leq a)\).
+- Since \(a \leq b\) and \(\neg (b \leq a)\), the goal \((\text{if } a \leq b \text{ then } a \text{ else } b) = (\text{if } b \leq a \text{ then } b \text{ else } a)\) simplifies to \(a = a\), which is trivially true.
+
+3. **Case 3:** Assume \(\neg (a \leq b)\) and \(b \leq a\).
+- Since \(\neg (a \leq b)\) and \(b \leq a\), the goal \((\text{if } a \leq b \text{ then } a \text{ else } b) = (\text{if } b \leq a \text{ then } b \text{ else } a)\) simplifies to \(b = b\), which is trivially true.
+
+4. **Case 4:** Assume \(\neg (a \leq b)\) and \(\neg (b \leq a)\).
+- By the totality of the linear order, if \(\neg (a \leq b)\) and \(\neg (b \leq a)\), then \(a\) and \(b\) cannot be compared, which is a contradiction. Therefore, this case is impossible.
+
+In all valid cases, the goal \(\min(a, b) = \min(b, a)\) holds. Therefore, the commutativity of the minimum function on integers is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a b : Int) : min a b = min b a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a b : Int) : min a b = min b a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

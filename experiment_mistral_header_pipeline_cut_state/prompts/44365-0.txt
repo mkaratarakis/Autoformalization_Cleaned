@@ -1,0 +1,38 @@
+
+1. **Informal Theorem**  
+Negation Reverses Strict Inequality in Integers: \( a < b \to -b < -a \) : For any integers \( a \) and \( b \), if \( a < b \), then \( -b < -a \).
+
+2. **Informal Proof**  
+We start with the assumption that \( a < b \). To prove that \( -b < -a \), we proceed as follows:
+
+1. **Step 1:**
+We show that \( 0 < -a + b \). This follows from the fact that adding \(-a\) to both sides of the inequality \( a < b \) results in \( 0 < -a + b \), using the property that adding the same element to both sides of a strict inequality preserves the inequality.
+
+2. **Step 2:**
+Next, we show that \( 0 + -b < -a + b + -b \). This follows from the fact that adding \(-b\) to both sides of the inequality \( 0 < -a + b \) results in \( 0 + -b < -a + b + -b \), using the property that adding the same element to both sides of a strict inequality preserves the inequality.
+
+3. **Step 3:**
+We simplify the inequality \( 0 + -b < -a + b + -b \) using the properties of additive inverses and the additive identity. Specifically, we use the fact that \( a + b + (-b) = a \) (right cancellation of additive inverse) and \( 0 + a = a \) (zero element is the additive identity). This simplifies the inequality to \( -b < -a \).
+
+Thus, we have shown that if \( a < b \), then \( -b < -a \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : a < b) : -b < -a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : a < b) : -b < -a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

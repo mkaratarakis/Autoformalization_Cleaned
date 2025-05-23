@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Minimum Equals Left if Left is Less Than or Equal to Right : For any integers \(a\) and \(b\), if \(a \leq b\), then the minimum of \(a\) and \(b\) is \(a\), i.e., \(\min(a, b) = a\).
+
+2. **Informal Proof**  
+We start with the hypothesis that \(a \leq b\). According to the definition of the minimum function, \(\min(a, b)\) is defined as \(a\) if \(a \leq b\) and \(b\) otherwise. Given that \(a \leq b\), it follows directly from the definition that \(\min(a, b) = a\). Therefore, the minimum of \(a\) and \(b\) is indeed \(a\). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Int} (h : a ≤ b) : min a b = a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : a ≤ b) : min a b = a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,47 @@
+
+1. **Informal Theorem**  
+Subtraction Nonpositive Implies Less Than or Equal: \(a - b \le 0 \to a \le b\) : For any integers \(a\) and \(b\), if \(a - b \le 0\), then \(a \le b\).
+
+2. **Informal Proof**  
+To prove that \(a \le b\) given \(a - b \le 0\), we start by using the property that adding the same integer to both sides of an inequality preserves the inequality. Specifically, since \(a - b \le 0\), adding \(b\) to both sides gives:
+\[
+a - b + b \le 0 + b
+\]
+Using the property that subtraction and addition cancel each other out, we have:
+\[
+a - b + b = a
+\]
+Thus, the inequality simplifies to:
+\[
+a \le 0 + b
+\]
+Finally, using the property that adding zero to any integer \(b\) gives \(b\), we have:
+\[
+0 + b = b
+\]
+Therefore, the inequality simplifies to:
+\[
+a \le b
+\]
+This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Int} (h : a - b ≤ 0) : a ≤ b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : a - b ≤ 0) : a ≤ b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

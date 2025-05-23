@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Right Addition by Positive Integer Preserves Strict Inequality in Integers : For any integers \(a\) and \(b\), if \(0 < b\), then \(a < a + b\).
+
+2. **Informal Proof**  
+To prove that \(a < a + b\) given \(0 < b\), we start by constructing the lemma that \(a + 0 < a + b\). This follows from the property that adding a positive integer \(b\) to any integer \(a\) preserves the strict inequality. Specifically, since \(0 < b\), we have \(a + 0 < a + b\).
+
+Next, we use the property of addition with zero, which states that \(a + 0 = a\). By substituting \(a + 0\) with \(a\) in our lemma, we get \(a < a + b\). This is exactly the goal we need to prove.
+
+Thus, we have shown that if \(0 < b\), then \(a < a + b\). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example (a : Int) {b : Int} (h : 0 < b) : a < a + b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a : Int) {b : Int} (h : 0 < b) : a < a + b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

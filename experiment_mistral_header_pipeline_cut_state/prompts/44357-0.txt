@@ -1,0 +1,45 @@
+
+1. **Informal Theorem**  
+Non-negative Difference for Integer Inequality: \( b \leq a \to 0 \leq a - b \) : For any integers \( a \) and \( b \), if \( b \leq a \), then \( 0 \leq a - b \).
+
+2. **Informal Proof**  
+To prove that \( 0 \leq a - b \) given \( b \leq a \), we proceed as follows:
+
+1. **Step 1:**
+We use the property that adding the same element to both sides of an inequality preserves the inequality. Specifically, since \( b \leq a \), we have:
+\[
+b + (-b) \leq a + (-b)
+\]
+
+2. **Step 2:**
+We use the property of additive inverses, which states that \( b + (-b) = 0 \). Therefore, the inequality \( b + (-b) \leq a + (-b) \) simplifies to:
+\[
+0 \leq a + (-b)
+\]
+Since \( a + (-b) \) is the same as \( a - b \), we have:
+\[
+0 \leq a - b
+\]
+
+Thus, we have shown that if \( b \leq a \), then \( 0 \leq a - b \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (h : b ≤ a) : 0 ≤ a - b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : b ≤ a) : 0 ≤ a - b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

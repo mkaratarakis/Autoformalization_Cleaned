@@ -1,0 +1,73 @@
+
+1. **Informal Theorem**  
+Subtraction as Addition of Negation in Bitvectors of Specified Width : For any natural number \( n \) and any bitvectors \( x \) and \( y \) of width \( n \), the subtraction of \( y \) from \( x \) is equal to the addition of \( x \) and the negation of \( y \), i.e., \( x - y = x + (-y) \).
+
+2. **Informal Proof**  
+To prove that \( x - y = x + (-y) \), we start by showing that the natural number representation of \( x - y \) is equal to the natural number representation of \( x + (-y) \). This means we need to show:
+\[
+(x - y).\text{toNat} = (x + (-y)).\text{toNat}
+\]
+
+Using the properties of natural number addition and the definition of bitvector negation, we can simplify the left-hand side and the right-hand side. Specifically, we have:
+\[
+(x - y).\text{toNat} = (2^n - y.\text{toNat} + x.\text{toNat}) \mod 2^n
+\]
+and
+\[
+(x + (-y)).\text{toNat} = (x.\text{toNat} + (2^n - y.\text{toNat})) \mod 2^n
+\]
+
+By the commutativity of addition in natural numbers, we know that:
+\[
+2^n - y.\text{toNat} + x.\text{toNat} = x.\text{toNat} + (2^n - y.\text{toNat})
+\]
+
+Thus, the simplified goal is:
+\[
+(x.\text{toNat} + (2^n - y.\text{toNat})) \mod 2^n = (x.\text{toNat} + (2^n - y.\text{toNat})) \mod 2^n
+\]
+
+This is trivially true by the properties of equality. Therefore, we have shown that:
+\[
+(x - y).\text{toNat} = (x + (-y)).\text{toNat}
+\]
+
+By the theorem that if the natural number representation of two bitvectors is equal, then the bitvectors themselves are equal, we conclude that:
+\[
+x - y = x + (-y)
+\]
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example {n} (x y : BitVec n) : x - y = x + - y := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n} (x y : BitVec n) : x - y = x + - y := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

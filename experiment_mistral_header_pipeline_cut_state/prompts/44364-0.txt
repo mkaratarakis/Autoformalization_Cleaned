@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Multiplication by Positive Integer Preserves Strict Inequality on the Right : For any integers \(a\), \(b\), and \(c\), if \(a < b\) and \(0 < c\), then \(a \cdot c < b \cdot c\).
+
+2. **Informal Proof**  
+To prove that \(a \cdot c < b \cdot c\) given \(a < b\) and \(0 < c\), we proceed as follows:
+
+1. First, we show that \(0 < b - a\). This follows from the property that if \(a < b\), then \(0 < b - a\).
+
+2. Next, we show that \(0 < (b - a) \cdot c\). This follows from the property that the product of two positive integers is positive, using the facts \(0 < b - a\) and \(0 < c\).
+
+3. We use the distributive property of multiplication over subtraction to rewrite \(0 < (b - a) \cdot c\) as \(0 < b \cdot c - a \cdot c\).
+
+4. Finally, we conclude that \(a \cdot c < b \cdot c\) using the property that if \(0 < b \cdot c - a \cdot c\), then \(a \cdot c < b \cdot c\).
+
+This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int}
+  (h₁ : a < b) (h₂ : 0 < c) : a * c < b * c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int}
+  (h₁ : a < b) (h₂ : 0 < c) : a * c < b * c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

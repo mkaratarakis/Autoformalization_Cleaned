@@ -1,0 +1,27 @@
+
+1. **Informal Theorem**  
+Negation Reverses Less Than or Equal To Inequality in Integers: \( -a \le b \to -b \le a \) : For any integers \( a \) and \( b \), if \( -a \le b \), then \( -b \le a \).
+
+2. **Informal Proof**  
+We start with the assumption that \(-a \le b\). Using the property that negation reverses the inequality in an ordered additive commutative group, we deduce that \(-b \le -(-a)\). By the double negation identity, \(-(-a) = a\). Substituting \(-(-a)\) with \(a\) in the inequality \(-b \le -(-a)\), we get \(-b \le a\). Therefore, we have shown that if \(-a \le b\), then \(-b \le a\). This completes the proof.
+
+3. **Formal Theorem**  
+example {a b : Int} (h : -a ≤ b) : -b ≤ a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : -a ≤ b) : -b ≤ a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

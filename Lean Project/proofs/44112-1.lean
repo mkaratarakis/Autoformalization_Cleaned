@@ -13,8 +13,9 @@ example (x y z : BitVec w) :
     x ||| y ||| z = x ||| (y ||| z) := by
   funext i
   calc
-    (x ||| y ||| z).getLsb i = (x.getLsb i) || (y.getLsb i) || (z.getLsb i) := rfl
-    _ = (x.getLsb i) || ((y.getLsb i) || (z.getLsb i)) := by rw [Bool.bor_assoc]
+    ((x ||| y) ||| z).getLsb i
+      = (x.getLsb i || y.getLsb i) || z.getLsb i := rfl
+    _ = x.getLsb i || (y.getLsb i || z.getLsb i) := by rw [or_assoc]
     _ = (x ||| (y ||| z)).getLsb i := rfl
 
 /- ACTUAL PROOF OF BitVec.or_assoc -/

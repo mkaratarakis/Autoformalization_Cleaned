@@ -1,0 +1,36 @@
+Below are the error message and proof state for the proof you generated. Please revise the proof accordingly starting with new prefix. DO NOT include backticks, explanations, comments, code fences or any other text before or after the proof.
+6. **Error Message and Proof State**
+tmp.lean:15:9: error: unknown constant 'Int.mul_sub_right_distrib'
+tmp.lean:15:2: error: expected '{' or indented tactic sequence
+tmp.lean:14:33: error: unsolved goals
+a b c : Int
+h₁ : a < b
+h₂ : 0 < c
+h₃ : 0 < b - a
+h₄ : 0 < (b - a) * c
+⊢ 0 < b * c - a * c
+tmp.lean:9:47: error: unsolved goals
+a b c : Int
+h₁ : a < b
+h₂ : 0 < c
+h₃ : 0 < b - a
+h₄ : 0 < (b - a) * c
+h₅ : 0 < b * c - a * c
+⊢ a * c < b * c
+
+4. **New Prefix**  
+   The initial Lean 4 code that you must build on.
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int}
+  (h₁ : a < b) (h₂ : 0 < c) : a * c < b * c := by
+  have h₃ : 0 < b - a :=
+    Int.sub_pos_of_lt h₁
+  have h₄ : 0 < (b - a) * c :=
+    Int.mul_pos h₃ h₂
+  have h₅ : 0 < b * c - a * c := by

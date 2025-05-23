@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Negative Product of Negative and Positive Integers: \(a \times b < 0\) if \(a < 0\) and \(0 < b\) : For any integers \(a\) and \(b\), if \(a < 0\) and \(0 < b\), then \(a \times b < 0\).
+
+2. **Informal Proof**  
+To prove that \( a \times b < 0 \) given \( a < 0 \) and \( 0 < b \), we proceed as follows:
+
+1. **Construct a lemma \( h \):**
+We construct a lemma \( h \) that states \( a \times b < 0 \times b \). This follows from the fact that if \( a < 0 \) and \( 0 < b \), then multiplying both sides of the inequality \( a < 0 \) by the positive integer \( b \) preserves the inequality, i.e., \( a \times b < 0 \times b \).
+
+2. **Simplify the lemma \( h \):**
+We use the property that \( 0 \times b = 0 \) to simplify the lemma \( h \). Since \( 0 \times b = 0 \), the lemma \( h \) becomes \( a \times b < 0 \). This is exactly the goal we need to prove.
+
+Therefore, we have shown that \( a \times b < 0 \) if \( a < 0 \) and \( 0 < b \). This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} (ha : a < 0) (hb : 0 < b) : a * b < 0 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (ha : a < 0) (hb : 0 < b) : a * b < 0 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

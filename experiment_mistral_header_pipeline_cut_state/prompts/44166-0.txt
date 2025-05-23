@@ -1,0 +1,39 @@
+
+1. **Informal Theorem**  
+Negation of Bitvector to Natural Number Conversion Modulo \( 2^n \) : For any natural number \( n \) and any bitvector \( x \) of width \( n \), the negation of \( x \), denoted as \( -x \), when converted to a natural number using the `toNat` function, is equal to \((2^n - x.toNat) \mod 2^n\). In other words, \((-x).toNat = (2^n - x.toNat) \mod 2^n\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by considering the definitions of the negation of a bitvector and the `toNat` function. The negation of a bitvector \( -x \) is defined such that when converted to a natural number, it is equivalent to \((2^n - x.toNat) \mod 2^n\). This is a direct consequence of the definition of the negation operation for bitvectors and the `toNat` function. Therefore, the goal \((-x).toNat = (2^n - x.toNat) \mod 2^n\) is trivially true by these definitions. This completes the proof.
+
+3. **Formal Theorem**  
+example (x : BitVec n) : (- x).toNat = (2^n - x.toNat) % 2^n := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example (x : BitVec n) : (- x).toNat = (2^n - x.toNat) % 2^n := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

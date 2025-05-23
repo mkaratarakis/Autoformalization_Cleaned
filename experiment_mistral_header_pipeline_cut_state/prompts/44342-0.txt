@@ -1,0 +1,29 @@
+
+1. **Informal Theorem**  
+Non-negative Integer Equals its Absolute Value as a Natural Number : For any integer \( a \), if \( 0 \leq a \), then \( a \) is equal to its absolute value as a natural number, i.e., \( a = \text{natAbs}(a) \).
+
+2. **Informal Proof**  
+Given an integer \( a \) such that \( 0 \leq a \), we know from the property of nonnegative integers that there exists a natural number \( n \) such that \( a = n \). Let \( n \) denote this natural number and \( e \) denote the equality \( a = n \).
+
+Using the equality \( a = n \), we substitute \( a \) with \( n \) in the goal. Since \( n \) is a natural number, the absolute value of \( a \) as a natural number, denoted by \( \text{natAbs}(a) \), is also \( n \). Therefore, \( a = \text{natAbs}(a) \) holds by the reflexivity of equality. This completes the proof.
+
+3. **Formal Theorem**  
+example {a : Int} (h : 0 ≤ a) : a = natAbs a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a : Int} (h : 0 ≤ a) : a = natAbs a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

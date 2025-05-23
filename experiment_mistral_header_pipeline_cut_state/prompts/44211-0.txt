@@ -1,0 +1,58 @@
+
+1. **Informal Theorem**  
+Multiplication of Bitvectors from Integers Modulo \( 2^n \) : For any natural number \( n \) and any integers \( x \) and \( y \), the bitvector of width \( n \) obtained by taking the product \( x * y \) modulo \( 2^n \) is equal to the product of the bitvectors of width \( n \) obtained by taking \( x \) and \( y \) modulo \( 2^n \), i.e., \(\text{BitVec.ofInt}(n, x * y) = \text{BitVec.ofInt}(n, x) * \text{BitVec.ofInt}(n, y)\).
+
+2. **Informal Proof**  
+To prove the theorem, we start by noting that the bitvector equality \(\text{BitVec.ofInt}(n, x * y) = \text{BitVec.ofInt}(n, x) * \text{BitVec.ofInt}(n, y)\) can be reduced to showing that the integer representations of these bitvectors are equal. This is because if the integer representations of two bitvectors are equal, then the bitvectors themselves are equal.
+
+We need to show that:
+\[
+(\text{BitVec.ofInt}(n, x * y)).\text{toInt} = (\text{BitVec.ofInt}(n, x) * \text{BitVec.ofInt}(n, y)).\text{toInt}
+\]
+
+Using the properties of the balanced modulus and the definition of the integer representation of bitvectors, we can simplify the left-hand side and the right-hand side. Specifically, we use the fact that for any integers \( x \) and \( y \), and any natural number \( n \), the balanced modulus of the product \( x \cdot y \) with respect to \( n \) is equal to the balanced modulus of the product \( (x \bmod n) \cdot y \) with respect to \( n \). This simplification shows that:
+\[
+(x * y) \bmod 2^n = (x \bmod 2^n) * (y \bmod 2^n) \bmod 2^n
+\]
+
+Thus, the integer representation of \(\text{BitVec.ofInt}(n, x * y)\) is equal to the integer representation of \(\text{BitVec.ofInt}(n, x) * \text{BitVec.ofInt}(n, y)\). Therefore, we have:
+\[
+(\text{BitVec.ofInt}(n, x * y)).\text{toInt} = (\text{BitVec.ofInt}(n, x) * \text{BitVec.ofInt}(n, y)).\text{toInt}
+\]
+
+This completes the proof. Hence, \(\text{BitVec.ofInt}(n, x * y) = \text{BitVec.ofInt}(n, x) * \text{BitVec.ofInt}(n, y)\).
+
+3. **Formal Theorem**  
+example {n} (x y : Int) : BitVec.ofInt n (x * y) =
+    BitVec.ofInt n x * BitVec.ofInt n y := by sorry
+
+4. **Prefix**
+import Init.Data.Bool
+import Init.Data.BitVec.Basic
+import Init.Data.Fin.Lemmas
+import Init.Data.Nat.Lemmas
+import Init.Data.Nat.Mod
+import Init.Data.Int.Bitwise.Lemmas
+import Init.Data.BitVec.Lemmas
+
+open BitVec
+
+
+example {n} (x y : Int) : BitVec.ofInt n (x * y) =
+    BitVec.ofInt n x * BitVec.ofInt n y := by
+
+5. **Header Information**  
+-- Init.Data.Bool not found. --
+
+-- Init.Data.BitVec.Basic not found. --
+
+-- Init.Data.Fin.Lemmas not found. --
+
+-- Init.Data.Nat.Lemmas not found. --
+
+-- Init.Data.Nat.Mod not found. --
+
+-- Init.Data.Int.Bitwise.Lemmas not found. --
+
+-- Init.Data.BitVec.Lemmas not found. --
+

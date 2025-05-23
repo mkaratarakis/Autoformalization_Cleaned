@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Maximum of Integers Equals Left Argument if Right is Less Than or Equal to Left : For any integers \(a\) and \(b\), if \(b \leq a\), then the maximum of \(a\) and \(b\) is equal to \(a\), i.e., \(\max(a, b) = a\).
+
+2. **Informal Proof**  
+To prove that \(\max(a, b) = a\) given \(b \leq a\), we start by using the commutativity of the maximum function. The commutativity property states that \(\max(a, b) = \max(b, a)\). Therefore, we can rewrite our goal \(\max(a, b) = a\) as \(\max(b, a) = a\).
+
+Next, we use the property of the maximum function that if \(b \leq a\), then \(\max(b, a) = a\). Since we have the assumption \(b \leq a\), it follows directly that \(\max(b, a) = a\).
+
+Thus, we have shown that \(\max(a, b) = a\), completing the proof.
+
+3. **Formal Theorem**  
+example {a b : Int} (h : b ≤ a) : max a b = a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} (h : b ≤ a) : max a b = a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

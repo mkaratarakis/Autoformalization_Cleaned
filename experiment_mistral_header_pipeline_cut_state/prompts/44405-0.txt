@@ -1,0 +1,35 @@
+
+1. **Informal Theorem**  
+Addition Preserves Strict Inequality: \(a + b < c \to b < -a + c\) : For any integers \(a\), \(b\), and \(c\), if \(a + b < c\), then \(b < -a + c\).
+
+2. **Informal Proof**  
+We start with the assumption that \(a + b < c\). To prove that \(b < -a + c\), we use the property that adding the same element to both sides of a strict inequality preserves the inequality. Specifically, adding \(-a\) to both sides of \(a + b < c\) gives:
+\[
+-a + (a + b) < -a + c
+\]
+Next, we use the property of additive groups that \(-a + (a + b) = b\). Substituting this into our inequality, we get:
+\[
+b < -a + c
+\]
+This is exactly the goal we need to prove. Therefore, the theorem is established. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : a + b < c) : b < -a + c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : a + b < c) : b < -a + c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

@@ -1,0 +1,49 @@
+
+1. **Informal Theorem**  
+Absolute Value Equality: \( |a| = |b| \leftrightarrow a = b \lor a = -b \) : For any integers \( a \) and \( b \), the absolute values of \( a \) and \( b \) as natural numbers are equal if and only if \( a \) is equal to \( b \) or \( a \) is equal to \(-b\). In other words, \( |a| = |b| \) if and only if \( a = b \) or \( a = -b \).
+
+2. **Informal Proof**  
+To prove the equivalence \( a.natAbs = b.natAbs \leftrightarrow a = b \lor a = -b \), we need to show both directions.
+
+1. **(\(\rightarrow\)) Assume \( a.natAbs = b.natAbs \) and show \( a = b \lor a = -b \):**
+- We consider the cases for the absolute value of \( a \):
+- **Case 1:** \( a = \text{natAbs}(a) \)
+- **Subcase 1.1:** \( b = \text{natAbs}(b) \)
+- Substitute \( a \) and \( b \) with their absolute values: \( a = b \).
+- **Subcase 1.2:** \( b = -\text{natAbs}(b) \)
+- Substitute \( a \) and \( b \) with their absolute values: \( a = -b \).
+- **Case 2:** \( a = -\text{natAbs}(a) \)
+- **Subcase 2.1:** \( b = \text{natAbs}(b) \)
+- Substitute \( a \) and \( b \) with their absolute values: \( a = -b \).
+- **Subcase 2.2:** \( b = -\text{natAbs}(b) \)
+- Substitute \( a \) and \( b \) with their absolute values: \( a = b \).
+
+2. **(\(\leftarrow\)) Assume \( a = b \lor a = -b \) and show \( a.natAbs = b.natAbs \):**
+- **Case 1:** \( a = b \)
+- Substitute \( a \) with \( b \) in the goal \( a.natAbs = b.natAbs \): \( b.natAbs = b.natAbs \), which is trivially true.
+- **Case 2:** \( a = -b \)
+- Substitute \( a \) with \(-b\) in the goal \( a.natAbs = b.natAbs \): \((-b).natAbs = b.natAbs\).
+- Using the property that the absolute value of a negative integer is the same as the absolute value of the integer, this simplifies to \( b.natAbs = b.natAbs \), which is trivially true.
+
+Thus, we have shown both directions, and the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b : Int} : a.natAbs = b.natAbs ↔ a = b ∨ a = -b := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b : Int} : a.natAbs = b.natAbs ↔ a = b ∨ a = -b := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

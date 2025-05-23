@@ -1,0 +1,31 @@
+
+1. **Informal Theorem**  
+Inequality Preservation: \(-c + a \leq b \to a \leq b + c\) : For any integers \(a\), \(b\), and \(c\), if \(-c + a \leq b\), then \(a \leq b + c\).
+
+2. **Informal Proof**  
+We start with the assumption that \(-c + a \leq b\). By the commutativity of addition in the integers, we can rewrite \(-c + a\) as \(a + -c\). Thus, the assumption becomes \(a + -c \leq b\).
+
+Next, we use the theorem that states for any integers \(a\), \(b\), and \(c\), if \(a - c \leq b\), then \(a \leq b + c\). Since \(a + -c\) is equivalent to \(a - c\), we have \(a - c \leq b\). By applying this theorem, we conclude that \(a \leq b + c\).
+
+Therefore, the theorem is proved. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {a b c : Int} (h : -c + a ≤ b) : a ≤ b + c := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {a b c : Int} (h : -c + a ≤ b) : a ≤ b + c := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

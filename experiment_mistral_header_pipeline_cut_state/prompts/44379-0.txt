@@ -1,0 +1,36 @@
+
+1. **Informal Theorem**  
+Integer is Less Than or Equal to its Canonical Image in Natural Numbers: \( a \leq \text{toNat}(a) \) : For any integer \( a \), it holds that \( a \leq \text{toNat}(a) \), where \(\text{toNat}(a)\) is the canonical map from integers to natural numbers. Specifically, if \( a \) is non-negative, \(\text{toNat}(a) = a\), and if \( a \) is negative, \(\text{toNat}(a) = 0\).
+
+2. **Informal Proof**  
+To prove that for any integer \( a \), \( a \leq \text{toNat}(a) \), we start by using the property of the canonical map from integers to natural numbers. Specifically, we know that \( a.\text{toNat} = \max(a, 0) \). This means that the canonical map \( a.\text{toNat} \) is the maximum of \( a \) and \( 0 \).
+
+Thus, the goal \( a \leq a.\text{toNat} \) is equivalent to \( a \leq \max(a, 0) \).
+
+- If \( a \geq 0 \), then \( \max(a, 0) = a \). Therefore, \( a \leq a \) is trivially true.
+- If \( a < 0 \), then \( \max(a, 0) = 0 \). Therefore, \( a \leq 0 \) is also true since \( a \) is negative.
+
+In both cases, \( a \leq \max(a, 0) \) holds. Hence, \( a \leq \text{toNat}(a) \) for any integer \( a \).
+
+This completes the proof.
+
+3. **Formal Theorem**  
+example (a : Int) : a ≤ toNat a := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example (a : Int) : a ≤ toNat a := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+

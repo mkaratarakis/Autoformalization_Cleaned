@@ -1,0 +1,42 @@
+
+1. **Informal Theorem**  
+Absolute Value of Sign of Nonzero Integer is One : For any nonzero integer \( z \), the absolute value of its sign is equal to 1, i.e., \( | \text{sign}(z) | = 1 \).
+
+2. **Informal Proof**  
+We start with the assumption that \( z \) is a nonzero integer, i.e., \( z \neq 0 \). According to the definition of the absolute value of the sign of an integer, we have:
+\[
+| \text{sign}(z) | = \begin{cases}
+0 & \text{if } z = 0 \\
+1 & \text{if } z \neq 0
+\end{cases}
+\]
+Since \( z \neq 0 \), the expression \( | \text{sign}(z) | \) simplifies to 1. Therefore, we need to show that:
+\[
+z.sign.natAbs = 1
+\]
+Given the definition and the assumption, this simplifies to:
+\[
+1 = 1
+\]
+which is trivially true. Hence, the absolute value of the sign of any nonzero integer \( z \) is indeed 1. This completes the proof. \(\blacksquare\)
+
+3. **Formal Theorem**  
+example {z : Int} (hz : z ≠ 0) : z.sign.natAbs = 1 := by sorry
+
+4. **Prefix**
+import Init.Data.Int.Lemmas
+import Init.ByCases
+import Init.Data.Int.Order
+
+open Int
+open Nat
+
+example {z : Int} (hz : z ≠ 0) : z.sign.natAbs = 1 := by
+
+5. **Header Information**  
+-- Init.Data.Int.Lemmas not found. --
+
+-- Init.ByCases not found. --
+
+-- Init.Data.Int.Order not found. --
+
