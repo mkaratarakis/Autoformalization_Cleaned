@@ -50,7 +50,7 @@ This repository contains the data and scripts used for our Lean formalization pi
 
 * **dataset.csv**: A sampled subset of the full dataset, extracted for efficient processing.
 
-* **sampling.py**: Script to sample 100 entries from the full dataset. Ensures that the total size of header content does not exceed 10000 characters (to keep prompts within reasonable length).
+* **sampling.py**: Script to sample entries from the full dataset (defaults to 100, but the number is customizable). Ensures that the total size of header content does not exceed 10000 characters (to keep prompts within reasonable length, the number is customizable).
 
 * **Lean Project/**: Local Lean 4 project environment for running `lake` and verifying generated proofs.
 
